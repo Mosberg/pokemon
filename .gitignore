@@ -1,1 +1,14 @@
 /docs/.old
+/games/gbc
+/games/gba
+/games/roms
+/tools/agbcc
+/tools/gb-asm-tools
+/tools/porymap
+/tools/porypal
+/tools/poryscript
+/tools/porytiles
+/tools/porymap-windows
+/tools/porypal-windows
+/tools/poryscript-windows
+/tools/porytiles-linux-amd64
