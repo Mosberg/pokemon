@@ -1,0 +1,106 @@
+{
+  // C/C++ Engine & IntelliSense Configuration
+  "C_Cpp.default.compilerPath": "/usr/bin/arm-none-eabi-gcc",
+  "C_Cpp.default.cStandard": "c11",
+  "C_Cpp.default.cppStandard": "c++17",
+  "C_Cpp.default.intelliSenseMode": "gcc-arm",
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}/include",
+    "${workspaceFolder}/src",
+    "${workspaceFolder}/tools/**"
+  ],
+  "C_Cpp.default.defines": [
+    "MODERN=1",
+    "GEN_9=1",
+    "B_SAVE_EXPANSION=1",
+    "DEBUG=1",
+    "ENGLISH=1",
+    "EMERALD=1"
+  ],
+
+  // File Associations for GBA & Decomp DSLs
+  "files.associations": {
+    "*.pory": "poryscript",
+    "*.inc": "arm",
+    "*.s": "arm",
+    "*.h": "c",
+    "*.ld": "linkerscript",
+    "*.gbapal": "hex",
+    "*.4bpp": "hex",
+    "*.bin": "hex"
+  },
+
+  // Editor Optimization for Embedded Code
+  "editor.tabSize": 4,
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": false,
+  "files.trimTrailingWhitespace": true,
+  "files.eol": "\n",
+
+  // Poryscript Configuration
+  "poryscript.commandPath": "poryscript",
+  "poryscript.fontConfig": "pokeemerald",
+  "poryscript.emitExpansionStringEncoding": true,
+
+  // Python Toolchain Environment
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/poke-migrator/scripts",
+    "${workspaceFolder}/poke-migrator/bin"
+  ],
+
+  // Exclude Build Blobs and Temp Caches from Search
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/build/**": true,
+    "**/pokeemerald.gba": true,
+    "**/pokeemerald.elf": true
+  },
+  "search.exclude": {
+    "**/build/**": true,
+    "**/*.4bpp": true,
+    "**/*.bin": true,
+    "**/*.gbapal": true
+  },
+  "cSpell.words": [
+    "backsprites",
+    "decomp",
+    "Decomp",
+    "eabi",
+    "EWRAM",
+    "frlg",
+    "FRLG",
+    "legendaries",
+    "MAPSEC",
+    "metatile",
+    "Modder",
+    "Mosberg",
+    "multiprocess",
+    "Multiprocess",
+    "overworld",
+    "pathlib",
+    "pipefail",
+    "pokeemerald",
+    "pokefirered",
+    "Popen",
+    "porymap",
+    "Porymap",
+    "poryscript",
+    "Poryscript",
+    "porytiles",
+    "Porytiles",
+    "pycache",
+    "returncode",
+    "SAVEBLOCK",
+    "Seagallop",
+    "softlocks",
+    "tileset",
+    "tilesets",
+    "voicegroup",
+    "voicegroups",
+    "worktrees"
+  ],
+  "cmake.sourceDirectory": "C:/Projects/Games/Poke-Migrator/porytiles",
+  "pokeemeraldAi.bridge.port": 8888,
+  "python-envs.defaultEnvManager": "ms-python.python:system"
+}

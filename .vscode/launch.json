@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug ROM with mGBA (GDB Stub)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/pokeemerald.elf",
+      "cwd": "${workspaceFolder}",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/arm-none-eabi-gdb",
+      "miDebuggerServerAddress": "localhost:2345",
+      "setupCommands": [
+        {
+          "description": "Load ELF symbols",
+          "text": "file ${workspaceFolder}/pokeemerald.elf",
+          "ignoreFailures": false
+        },
+        {
+          "description": "Disable software breakpoints in ROM space",
+          "text": "set can-use-hw-watchpoints 1",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "Build ROM (Parallel)",
+      "windows": {
+        "miDebuggerPath": "C:/devkitPro/devkitARM/bin/arm-none-eabi-gdb.exe"
+      }
+    },
+    {
+      "name": "Attach to External GBA GDB Server",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/pokeemerald.elf",
+      "cwd": "${workspaceFolder}",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/arm-none-eabi-gdb",
+      "miDebuggerServerAddress": "127.0.0.1:2345",
+      "setupCommands": [
+        {
+          "text": "target remote 127.0.0.1:2345"
+        },
+        {
+          "text": "symbol-file ${workspaceFolder}/pokeemerald.elf"
+        }
+      ]
+    }
+  ]
+}

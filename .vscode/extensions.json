@@ -1,0 +1,27 @@
+{
+  "recommendations": [
+    // Core C/C++ & Embedded Toolchain
+    "ms-vscode.cpptools",
+    "ms-vscode.cpptools-extension-pack",
+    "ms-vscode.makefile-tools",
+
+    // ARM Assembly & GBA Architecture
+    "dan-c-underwood.arm",
+    "marus25.cortex-debug",
+    "webfreak.debug",
+
+    // Pokémon Decompilation DSLs & Formats
+    "huderlem.poryscript",
+    "tomek-k.gbapalette-vscode",
+
+    // Scripting & Tool Automation
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "tamasfe.even-better-toml",
+    "redhat.vscode-yaml",
+
+    // File Formats & Hex Inspection
+    "ms-vscode.hexeditor",
+    "irongeek.path-autocomplete"
+  ]
+}

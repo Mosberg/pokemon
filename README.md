@@ -1,31 +1,32 @@
-# **Pokémon Triad Version**
+# Pokémon Confluence Version
 
-**Embark on the Ultimate Regional Journey.**
+**Three continents. One fractured balance.**
 
-The legendary birds, beasts, and titans have begun reacting to a mysterious phenomenon known as:
+For generations, the natural boundaries between Kanto, Johto, and Hoenn kept the world’s primal energies contained. That ended with the completion of the **Great Meridian Transit line**—a deep-sea tectonic transit network linking the three landmasses for the first time in history.
 
-The Triad Convergence has begun to reshape the balance of power among the regions, drawing trainers into an unprecedented adventure.
+The construction disturbed ancient fault lines, triggering the **Convergence Crisis**:
 
-## **Three Regions! One Big Adventure Awaits!**
+- Kanto's skies churn violently as the Legendary Birds abandon their roosts.
+- Johto's sacred towers resonate with strange seismic tremors, driving the Legendary Beasts wild.
+- Deep beneath the sea, the slumber of Hoenn's Ancient Titans has destabilized.
 
-For the first time in recorded history:
+As an ambitious trainer embarking on an unprecedented inter-regional League challenge, you quickly uncover that the corporate syndicate funding the transit route isn't just moving passengers—they are siphoning regional leyline energy to awaken something far worse.
 
-- **Kanto**
-- **Johto**
-- **Hoenn**
+---
 
-are directly connected through a new transportation network.
+## What Sets It Apart
 
-As trainers travel freely between regions, ancient forces begin awakening and the player discovers that the balance between the three regions is breaking down.
+- **Non-Linear Regional Navigation:**
+  Begin in your choice of Kanto, Johto, or Hoenn. Once you secure your second badge, board the high-speed Meridian line and tackle the remaining gyms in any order with a dynamic scaling system.
 
-Will you rise to the challenge and restore harmony, or will the Triad Convergence plunge the world into chaos? The fate of Kanto, Johto, and Hoenn rests in your hands.
+- **The Resonance Encounters:**
+  Track weather anomalies and localized catastrophes across all three regions to calm and capture the Birds, Beasts, and Titans before the land fractures.
 
-## **Prepare yourself for the ultimate Pokémon adventure across three interconnected regions!**
+- **Unified 24-Badge Circuit:**
+  Collect badges across all three regions to qualify for the **Apex Summit**—a grueling endgame tournament held atop Mt. Silver against gym leaders, frontier brains, and regional champions.
 
-**Key Features:**
+- **Modern Battle Engine & Quality of Life:**
+  Full Gen 9 mechanics (Physical/Special split, Fairy-type, modern movepools, updated abilities), built-in soft level caps to prevent overleveling, reusable TMs, and HM field moves assigned directly to key items.
 
-- Explore Kanto, Johto, and Hoenn like never before.
-- Encounter legendary Pokémon and ancient titans.
-- Uncover the mysteries behind the Triad Convergence.
-- Experience a seamless journey across multiple regions.
-- Challenge powerful trainers and restore balance to the world.
+- **Interconnected Lore & Villainous Alliance:**
+  Witness the power struggle as the remnants of Team Rocket, Team Magma, and Team Aqua collide in an escalating turf war over who controls the cross-continental hub.
