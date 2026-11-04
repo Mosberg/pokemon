@@ -1,0 +1,203 @@
+{
+  "id": "MAP_JOHTO_ROUTE_29",
+  "name": "Route29_Johto",
+  "layout": "LAYOUT_JOHTO_ROUTE_29",
+  "music": "MUS_ROUTE101",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_ROUTE_29",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_ROUTE_46",
+      "offset": 20,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_JOHTO_CHERRYGROVE_CITY",
+      "offset": 0,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_JOHTO_NEW_BARK_TOWN",
+      "offset": 0,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+      "x": 50,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route29_Johto_CatchingTutorialDudeScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 27,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route29_Johto_Route29YoungsterScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "x": 15,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route29_Johto_Route29TeacherScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 12,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route29_Johto_Route29FruitTree_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 25,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route29_Johto_Route29FisherScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+      "x": 13,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route29_Johto_Route29CooltrainerMScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "x": 29,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route29_Johto_TuscanyScript_Entry",
+      "flag": "FLAG_JOHTO_ROUTE_29_TUSCANY_OF_TUESDAY"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 48,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route29_Johto_Route29Potion_Entry",
+      "flag": "FLAG_JOHTO_ROUTE_29_POTION"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 27,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_29_ROUTE_46_GATE",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 53,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_ROUTE_29",
+      "var_value": "1",
+      "script": "Route29_Johto_Route29Tutorial1_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 53,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_ROUTE_29",
+      "var_value": "1",
+      "script": "Route29_Johto_Route29Tutorial2_Entry"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 51,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route29_Johto_Route29Sign1_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route29_Johto_Route29Sign2_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 30,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route29_Johto_CutTree0"
+    },
+    {
+      "type": "sign",
+      "x": 21,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route29_Johto_CutTree1"
+    }
+  ]
+}

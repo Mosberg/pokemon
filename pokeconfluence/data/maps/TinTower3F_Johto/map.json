@@ -1,0 +1,51 @@
+{
+  "id": "MAP_JOHTO_TIN_TOWER_3F",
+  "name": "TinTower3F_Johto",
+  "layout": "LAYOUT_JOHTO_TIN_TOWER_3F",
+  "music": "MUS_ROUTE104",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_ECRUTEAK_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 3,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "TinTower3F_Johto_TinTower3FFullHeal_Entry",
+      "flag": "FLAG_JOHTO_TIN_TOWER_3F_FULL_HEAL"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 10,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_TIN_TOWER_2F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_TIN_TOWER_4F",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

@@ -1,0 +1,19 @@
+MoveDeletersHouse_Johto_MapScripts::
+	.byte 0
+
+MoveDeletersHouse_Johto_MoveDeleter_Entry::
+	lockall
+	goto MoveDeletersHouse_Johto_MoveDeleter
+
+MoveDeletersHouse_Johto_MoveDeletersHouseBookshelf_Entry::
+	lockall
+	goto MoveDeletersHouse_Johto_MoveDeletersHouseBookshelf
+
+
+MoveDeletersHouse_Johto_MoveDeleter:
+	faceplayer
+	@ TODO unsupported: special MoveDeletion
+	goto Johto_EventScript_Unimplemented
+
+MoveDeletersHouse_Johto_MoveDeletersHouseBookshelf:
+	goto Johto_Std_DifficultBookshelfScript

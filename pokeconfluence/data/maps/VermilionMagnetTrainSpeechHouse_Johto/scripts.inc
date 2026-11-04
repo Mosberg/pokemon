@@ -1,0 +1,48 @@
+VermilionMagnetTrainSpeechHouse_Johto_MapScripts::
+	.byte 0
+
+VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHousePokefanFScript_Entry::
+	lockall
+	goto VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHousePokefanFScript
+
+VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHouseYoungsterScript_Entry::
+	lockall
+	goto VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHouseYoungsterScript
+
+VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHouseBookshelf_Entry::
+	lockall
+	goto VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHouseBookshelf
+
+
+VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHousePokefanFScript:
+	faceplayer
+	message VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHousePokefanFText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHouseYoungsterScript:
+	faceplayer
+	message VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHouseYoungsterText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHouseBookshelf:
+	goto Johto_Std_PictureBookshelfScript
+
+VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHousePokefanFText:
+	.string "Do you know about\n"
+	.string "the MAGNET TRAIN?"
+	.string "\pIt's a railway\n"
+	.string "that goes to GOL-\l"
+	.string "DENROD in JOHTO.$"
+
+VermilionMagnetTrainSpeechHouse_Johto_VermilionMagnetTrainSpeechHouseYoungsterText:
+	.string "I want to go to\n"
+	.string "SAFFRON to see\l"
+	.string "the MAGNET TRAIN.$"

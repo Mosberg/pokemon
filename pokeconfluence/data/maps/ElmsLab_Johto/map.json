@@ -1,0 +1,318 @@
+{
+  "id": "MAP_JOHTO_ELMS_LAB",
+  "name": "ElmsLab_Johto",
+  "layout": "LAYOUT_JOHTO_ELMS_LAB",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_NEW_BARK_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
+      "x": 5,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ElmsLab_Johto_ProfElmScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+      "x": 2,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ElmsLab_Johto_ElmsAideScript_Entry",
+      "flag": "FLAG_JOHTO_ELMS_AIDE_IN_LAB"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 6,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ElmsLab_Johto_CyndaquilPokeBallScript_Entry",
+      "flag": "FLAG_JOHTO_CYNDAQUIL_POKEBALL_IN_ELMS_LAB"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 7,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ElmsLab_Johto_TotodilePokeBallScript_Entry",
+      "flag": "FLAG_JOHTO_TOTODILE_POKEBALL_IN_ELMS_LAB"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 8,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ElmsLab_Johto_ChikoritaPokeBallScript_Entry",
+      "flag": "FLAG_JOHTO_CHIKORITA_POKEBALL_IN_ELMS_LAB"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 5,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ElmsLab_Johto_CopScript_Entry",
+      "flag": "FLAG_JOHTO_COP_IN_ELMS_LAB"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_NEW_BARK_TOWN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 5,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_NEW_BARK_TOWN",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_ELMS_LAB",
+      "var_value": "1",
+      "script": "ElmsLab_Johto_LabTryToLeaveScript_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_ELMS_LAB",
+      "var_value": "1",
+      "script": "ElmsLab_Johto_LabTryToLeaveScript_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_ELMS_LAB",
+      "var_value": "3",
+      "script": "ElmsLab_Johto_MeetCopScript_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_ELMS_LAB",
+      "var_value": "3",
+      "script": "ElmsLab_Johto_MeetCopScript2_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_ELMS_LAB",
+      "var_value": "5",
+      "script": "ElmsLab_Johto_AideScript_WalkPotion1_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_ELMS_LAB",
+      "var_value": "5",
+      "script": "ElmsLab_Johto_AideScript_WalkPotion2_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_ELMS_LAB",
+      "var_value": "6",
+      "script": "ElmsLab_Johto_AideScript_WalkBalls1_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_ELMS_LAB",
+      "var_value": "6",
+      "script": "ElmsLab_Johto_AideScript_WalkBalls2_Entry"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabHealingMachine_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabBookshelf_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabBookshelf_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabBookshelf_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabBookshelf_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 0,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabTravelTip1_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 1,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabTravelTip2_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabTravelTip3_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabTravelTip4_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabBookshelf_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabBookshelf_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabBookshelf_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabBookshelf_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabTrashcan_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 0,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ElmsLab_Johto_ElmsLabWindow_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_SOUTH",
+      "script": "ElmsLab_Johto_ElmsLabPC_Entry"
+    }
+  ]
+}

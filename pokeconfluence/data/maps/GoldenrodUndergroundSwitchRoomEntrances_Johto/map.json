@@ -1,0 +1,302 @@
+{
+  "id": "MAP_JOHTO_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES",
+  "name": "GoldenrodUndergroundSwitchRoomEntrances_Johto",
+  "layout": "LAYOUT_JOHTO_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES",
+  "music": "MUS_ROUTE104",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_GOLDENROD_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 9,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_TrainerBurglarDuncan",
+      "flag": "FLAG_JOHTO_RADIO_TOWER_ROCKET_TAKEOVER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 4,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_TrainerBurglarEddie",
+      "flag": "FLAG_JOHTO_RADIO_TOWER_ROCKET_TAKEOVER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 17,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_TrainerGruntM13",
+      "flag": "FLAG_JOHTO_RADIO_TOWER_ROCKET_TAKEOVER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 11,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_TrainerGruntM11",
+      "flag": "FLAG_JOHTO_RADIO_TOWER_ROCKET_TAKEOVER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 3,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_TrainerGruntM25",
+      "flag": "FLAG_JOHTO_RADIO_TOWER_ROCKET_TAKEOVER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 19,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_TrainerGruntF3",
+      "flag": "FLAG_JOHTO_RADIO_TOWER_ROCKET_TAKEOVER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "x": 3,
+      "y": 27,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesTeacherScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 19,
+      "y": 27,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesSuperNerdScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 1,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesSmokeBall_Entry",
+      "flag": "FLAG_JOHTO_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_SMOKE_BALL"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 14,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesFullHeal_Entry",
+      "flag": "FLAG_JOHTO_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_FULL_HEAL"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BRENDAN_NORMAL",
+      "x": 23,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Johto_EventScript_Stub",
+      "flag": "FLAG_JOHTO_RIVAL_GOLDENROD_UNDERGROUND"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 23,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_UNDERGROUND",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 22,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_UNDERGROUND_WAREHOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 23,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_UNDERGROUND_WAREHOUSE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 5,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_UNDERGROUND",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 4,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_CITY",
+      "dest_warp_id": "13"
+    },
+    {
+      "x": 5,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_CITY",
+      "dest_warp_id": "13"
+    },
+    {
+      "x": 21,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_UNDERGROUND",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 20,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_CITY",
+      "dest_warp_id": "12"
+    },
+    {
+      "x": 21,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_CITY",
+      "dest_warp_id": "12"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 4,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES",
+      "var_value": "0",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_UndergroundRivalScene1_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES",
+      "var_value": "0",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_UndergroundRivalScene2_Entry"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch1Script_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 10,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch2Script_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch3Script_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 20,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodUndergroundSwitchRoomEntrances_Johto_EmergencySwitchScript_Entry"
+    },
+    {
+      "type": "hidden_item",
+      "x": 8,
+      "y": 9,
+      "elevation": 3,
+      "item": "ITEM_MAX_POTION",
+      "flag": "FLAG_JOHTO_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 1,
+      "y": 8,
+      "elevation": 3,
+      "item": "ITEM_REVIVE",
+      "flag": "FLAG_JOHTO_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+WhirlIslandB1F_Johto_MapScripts::
+	.byte 0
+
+WhirlIslandB1F_Johto_WhirlIslandB1FFullRestore_Entry::
+	lockall
+	goto WhirlIslandB1F_Johto_WhirlIslandB1FFullRestore
+
+WhirlIslandB1F_Johto_WhirlIslandB1FCarbos_Entry::
+	lockall
+	goto WhirlIslandB1F_Johto_WhirlIslandB1FCarbos
+
+WhirlIslandB1F_Johto_WhirlIslandB1FCalcium_Entry::
+	lockall
+	goto WhirlIslandB1F_Johto_WhirlIslandB1FCalcium
+
+WhirlIslandB1F_Johto_WhirlIslandB1FNugget_Entry::
+	lockall
+	goto WhirlIslandB1F_Johto_WhirlIslandB1FNugget
+
+WhirlIslandB1F_Johto_WhirlIslandB1FEscapeRope_Entry::
+	lockall
+	goto WhirlIslandB1F_Johto_WhirlIslandB1FEscapeRope
+
+WhirlIslandB1F_Johto_WhirlIslandB1FBoulder_Entry::
+	lockall
+	goto WhirlIslandB1F_Johto_WhirlIslandB1FBoulder
+
+
+WhirlIslandB1F_Johto_WhirlIslandB1FFullRestore:
+	finditem ITEM_FULL_RESTORE
+	releaseall
+	end
+
+WhirlIslandB1F_Johto_WhirlIslandB1FCarbos:
+	finditem ITEM_CARBOS
+	releaseall
+	end
+
+WhirlIslandB1F_Johto_WhirlIslandB1FCalcium:
+	finditem ITEM_CALCIUM
+	releaseall
+	end
+
+WhirlIslandB1F_Johto_WhirlIslandB1FNugget:
+	finditem ITEM_NUGGET
+	releaseall
+	end
+
+WhirlIslandB1F_Johto_WhirlIslandB1FEscapeRope:
+	finditem ITEM_ESCAPE_ROPE
+	releaseall
+	end
+
+WhirlIslandB1F_Johto_WhirlIslandB1FBoulder:
+	goto Johto_Std_StrengthBoulderScript

@@ -1,0 +1,12 @@
+IcePathB2FBlackthornSide_Johto_MapScripts::
+	.byte 0
+
+IcePathB2FBlackthornSide_Johto_IcePathB2FBlackthornSideTMRest_Entry::
+	lockall
+	goto IcePathB2FBlackthornSide_Johto_IcePathB2FBlackthornSideTMRest
+
+
+IcePathB2FBlackthornSide_Johto_IcePathB2FBlackthornSideTMRest:
+	finditem ITEM_TM_REST
+	releaseall
+	end

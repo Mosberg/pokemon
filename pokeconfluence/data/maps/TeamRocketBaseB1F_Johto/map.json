@@ -1,0 +1,476 @@
+{
+  "id": "MAP_JOHTO_TEAM_ROCKET_BASE_B1F",
+  "name": "TeamRocketBaseB1F_Johto",
+  "layout": "LAYOUT_JOHTO_TEAM_ROCKET_BASE_B1F",
+  "music": "MUS_ROUTE104",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_MAHOGANY_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 0,
+      "y": 0,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Johto_EventScript_Stub",
+      "flag": "FLAG_JOHTO_TEAM_ROCKET_BASE_SECURITY_GRUNTS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 2,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "TeamRocketBaseB1F_Johto_TrainerGruntM16",
+      "flag": "FLAG_JOHTO_TEAM_ROCKET_BASE_POPULATION"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+      "x": 18,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "TeamRocketBaseB1F_Johto_TrainerScientistJed",
+      "flag": "FLAG_JOHTO_TEAM_ROCKET_BASE_POPULATION"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 27,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FHyperPotion_Entry",
+      "flag": "FLAG_JOHTO_TEAM_ROCKET_BASE_B1F_HYPER_POTION"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 14,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FNugget_Entry",
+      "flag": "FLAG_JOHTO_TEAM_ROCKET_BASE_B1F_NUGGET"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 21,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FGuardSpec_Entry",
+      "flag": "FLAG_JOHTO_TEAM_ROCKET_BASE_B1F_GUARD_SPEC"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 27,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MAHOGANY_MART_1F",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 3,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_TEAM_ROCKET_BASE_B2F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 5,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_TEAM_ROCKET_BASE_B1F",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 25,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_TEAM_ROCKET_BASE_B1F",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_SecurityCamera1a_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_SecurityCamera1b_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_SecurityCamera2a_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_SecurityCamera2b_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_SecurityCamera3a_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_SecurityCamera3b_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 16,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_SecurityCamera4_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 16,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_SecurityCamera5_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 2,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap1_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap2_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap3_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 1,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap4_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap5_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap6_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap7_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap8_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 1,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap9_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 2,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap10_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap11_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap12_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 2,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap13_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap14_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 1,
+      "y": 12,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap15_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 2,
+      "y": 12,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap16_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 12,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap17_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 12,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap18_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 1,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap19_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap20_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap21_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B1F",
+      "var_value": "0",
+      "script": "TeamRocketBaseB1F_Johto_ExplodingTrap22_Entry"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 19,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FSecretSwitch_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 24,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FSecurityCamera_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FSecurityCamera_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FSecurityCamera_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FSecurityCamera_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 24,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FSecurityCamera_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 20,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FBookshelf_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 21,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "TeamRocketBaseB1F_Johto_TeamRocketBaseB1FBookshelf_Entry"
+    },
+    {
+      "type": "hidden_item",
+      "x": 3,
+      "y": 11,
+      "elevation": 3,
+      "item": "ITEM_REVIVE",
+      "flag": "FLAG_JOHTO_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
+}

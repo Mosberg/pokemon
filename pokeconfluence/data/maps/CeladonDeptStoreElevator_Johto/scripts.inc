@@ -1,0 +1,11 @@
+CeladonDeptStoreElevator_Johto_MapScripts::
+	.byte 0
+
+CeladonDeptStoreElevator_Johto_CeladonDeptStoreElevatorScript_Entry::
+	lockall
+	goto CeladonDeptStoreElevator_Johto_CeladonDeptStoreElevatorScript
+
+
+CeladonDeptStoreElevator_Johto_CeladonDeptStoreElevatorScript:
+	@ TODO unsupported: elevator CeladonDeptStoreElevatorData
+	goto Johto_EventScript_Unimplemented

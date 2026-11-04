@@ -1,0 +1,93 @@
+{
+  "id": "MAP_JOHTO_ROUTE_5",
+  "name": "Route5_Johto",
+  "layout": "LAYOUT_JOHTO_ROUTE_5",
+  "music": "MUS_ROUTE101",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_ROUTE_5",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_CERULEAN_CITY",
+      "offset": -10,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_JOHTO_SAFFRON_CITY",
+      "offset": -10,
+      "direction": "down"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 17,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route5_Johto_Route5PokefanMScript_Entry",
+      "flag": "FLAG_JOHTO_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 17,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_5_UNDERGROUND_PATH_ENTRANCE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_5_SAFFRON_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_5_SAFFRON_GATE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 10,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_5_CLEANSE_TAG_HOUSE",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 17,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route5_Johto_Route5UndergroundPathSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 10,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route5_Johto_HouseForSaleSign_Entry"
+    }
+  ]
+}

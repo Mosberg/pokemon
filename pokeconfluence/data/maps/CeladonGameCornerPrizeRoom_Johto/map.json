@@ -1,0 +1,81 @@
+{
+  "id": "MAP_JOHTO_CELADON_GAME_CORNER_PRIZE_ROOM",
+  "name": "CeladonGameCornerPrizeRoom_Johto",
+  "layout": "LAYOUT_JOHTO_CELADON_GAME_CORNER_PRIZE_ROOM",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_CELADON_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "x": 0,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomGentlemanScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 4,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPharmacistScript_Entry",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 2,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_CITY",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 3,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_CITY",
+      "dest_warp_id": "6"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomTMVendor_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_Entry"
+    }
+  ]
+}

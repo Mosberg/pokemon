@@ -1,0 +1,26 @@
+MobileBattleRoom_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, MobileBattleRoom_Johto_OnFrame
+	.byte 0
+
+MobileBattleRoom_Johto_OnFrame:
+	map_script_2 VAR_JOHTO_SCENE_MOBILE_BATTLE_ROOM, 0, MobileBattleRoom_Johto_MobileBattleRoomInitializeAndPreparePokecenter2FScript_Entry
+	.2byte 0
+
+MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_Entry::
+	lockall
+	goto MobileBattleRoom_Johto_MobileBattleRoomConsoleScript
+
+MobileBattleRoom_Johto_MobileBattleRoomInitializeAndPreparePokecenter2FScript_Entry::
+	lockall
+	goto MobileBattleRoom_Johto_MobileBattleRoomInitializeAndPreparePokecenter2FScript
+
+
+MobileBattleRoom_Johto_MobileBattleRoomInitializeAndPreparePokecenter2FScript:
+	setvar VAR_JOHTO_SCENE_MOBILE_BATTLE_ROOM, 1
+	setvar VAR_JOHTO_SCENE_POKECENTER_2F, 5
+	releaseall
+	end
+
+MobileBattleRoom_Johto_MobileBattleRoomConsoleScript:
+	@ TODO unsupported: special Function1037c2
+	goto Johto_EventScript_Unimplemented

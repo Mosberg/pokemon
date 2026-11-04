@@ -1,0 +1,129 @@
+{
+  "id": "MAP_JOHTO_VICTORY_ROAD_GATE",
+  "name": "VictoryRoadGate_Johto",
+  "layout": "LAYOUT_JOHTO_VICTORY_ROAD_GATE",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_ROUTE_26",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 8,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VictoryRoadGate_Johto_VictoryRoadGateOfficerScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "x": 7,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VictoryRoadGate_Johto_VictoryRoadGateLeftBlackBeltScript_Entry",
+      "flag": "FLAG_JOHTO_OPENED_MT_SILVER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "x": 12,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VictoryRoadGate_Johto_VictoryRoadGateRightBlackBeltScript_Entry",
+      "flag": "FLAG_JOHTO_FOUGHT_SNORLAX"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 17,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_22",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 18,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_22",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_26",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_26",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_VICTORY_ROAD",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_VICTORY_ROAD",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 1,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_28",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 2,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_28",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_VICTORY_ROAD_GATE",
+      "var_value": "0",
+      "script": "VictoryRoadGate_Johto_VictoryRoadGateBadgeCheckScript_Entry"
+    }
+  ],
+  "bg_events": []
+}

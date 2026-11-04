@@ -1,0 +1,222 @@
+{
+  "id": "MAP_JOHTO_FAST_SHIP_B1F",
+  "name": "FastShipB1F_Johto",
+  "layout": "LAYOUT_JOHTO_FAST_SHIP_B1F",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_FAST_SHIP",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 30,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FastShipB1F_Johto_FastShipB1FSailorScript_Entry",
+      "flag": "FLAG_JOHTO_FAST_SHIP_B1F_SAILOR_LEFT"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 31,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FastShipB1F_Johto_FastShipB1FSailorScript_Entry",
+      "flag": "FLAG_JOHTO_FAST_SHIP_B1F_SAILOR_RIGHT"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 9,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "FastShipB1F_Johto_TrainerSailorJeff",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "x": 6,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "FastShipB1F_Johto_TrainerPicnickerDebra",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 26,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "FastShipB1F_Johto_TrainerJugglerFritz",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 17,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "FastShipB1F_Johto_TrainerSailorGarrett",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 25,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "FastShipB1F_Johto_TrainerFisherJonah",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "x": 15,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "FastShipB1F_Johto_TrainerBlackbeltWai",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 23,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "FastShipB1F_Johto_TrainerSailorKenneth",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "x": 9,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "FastShipB1F_Johto_TrainerTeacherShirley",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 14,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "FastShipB1F_Johto_TrainerSchoolboyNate",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 14,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "FastShipB1F_Johto_TrainerSchoolboyRicky",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 5,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 31,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "11"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 30,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_FAST_SHIP_B1F",
+      "var_value": "0",
+      "script": "FastShipB1F_Johto_FastShipB1FSailorBlocksLeft_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_FAST_SHIP_B1F",
+      "var_value": "0",
+      "script": "FastShipB1F_Johto_FastShipB1FSailorBlocksRight_Entry"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 27,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FastShipB1F_Johto_FastShipB1FTrashcan_Entry"
+    }
+  ]
+}

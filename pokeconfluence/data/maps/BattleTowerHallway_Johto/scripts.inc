@@ -1,0 +1,16 @@
+BattleTowerHallway_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleTowerHallway_Johto_OnFrame
+	.byte 0
+
+BattleTowerHallway_Johto_OnFrame:
+	map_script_2 VAR_JOHTO_SCENE_BATTLE_TOWER_HALLWAY, 0, BattleTowerHallway_Johto_BattleTowerHallwayChooseBattleRoomScript_Entry
+	.2byte 0
+
+BattleTowerHallway_Johto_BattleTowerHallwayChooseBattleRoomScript_Entry::
+	lockall
+	goto BattleTowerHallway_Johto_BattleTowerHallwayChooseBattleRoomScript
+
+
+BattleTowerHallway_Johto_BattleTowerHallwayChooseBattleRoomScript:
+	@ TODO unsupported: callasm .asm_load_battle_room
+	goto Johto_EventScript_Unimplemented

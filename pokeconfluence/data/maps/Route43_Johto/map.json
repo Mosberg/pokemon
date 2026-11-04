@@ -1,0 +1,207 @@
+{
+  "id": "MAP_JOHTO_ROUTE_43",
+  "name": "Route43_Johto",
+  "layout": "LAYOUT_JOHTO_ROUTE_43",
+  "music": "MUS_ROUTE101",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_ROUTE_43",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_LAKE_OF_RAGE",
+      "offset": -10,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_JOHTO_MAHOGANY_TOWN",
+      "offset": 0,
+      "direction": "down"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 13,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "Route43_Johto_TrainerPokemaniacBen",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 13,
+      "y": 20,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Route43_Johto_TrainerPokemaniacBrent",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 14,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "Route43_Johto_TrainerPokemaniacRon",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 4,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route43_Johto_TrainerFisherMarvin",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "x": 9,
+      "y": 25,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "Route43_Johto_TrainerPicnickerTiffany",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 13,
+      "y": 40,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Route43_Johto_TrainerCamperSpencer",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 1,
+      "y": 26,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route43_Johto_Route43FruitTree_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 12,
+      "y": 32,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route43_Johto_Route43MaxEther_Entry",
+      "flag": "FLAG_JOHTO_ROUTE_43_MAX_ETHER"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 9,
+      "y": 51,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_43_MAHOGANY_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 51,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_43_MAHOGANY_GATE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 17,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_43_GATE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 17,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_43_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 18,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_43_GATE",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route43_Johto_Route43Sign1_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 11,
+      "y": 49,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route43_Johto_Route43Sign2_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 38,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route43_Johto_Route43TrainerTips_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 28,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route43_Johto_CutTree0"
+    }
+  ]
+}

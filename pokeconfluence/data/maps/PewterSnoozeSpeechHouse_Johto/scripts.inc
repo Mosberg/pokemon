@@ -1,0 +1,28 @@
+PewterSnoozeSpeechHouse_Johto_MapScripts::
+	.byte 0
+
+PewterSnoozeSpeechHouse_Johto_PewterSnoozeSpeechHouseGrampsScript_Entry::
+	lockall
+	goto PewterSnoozeSpeechHouse_Johto_PewterSnoozeSpeechHouseGrampsScript
+
+PewterSnoozeSpeechHouse_Johto_PewterSnoozeSpeechHouseBookshelf_Entry::
+	lockall
+	goto PewterSnoozeSpeechHouse_Johto_PewterSnoozeSpeechHouseBookshelf
+
+
+PewterSnoozeSpeechHouse_Johto_PewterSnoozeSpeechHouseGrampsScript:
+	faceplayer
+	message PewterSnoozeSpeechHouse_Johto_PewterSnoozeSpeechHouseGrampsText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+PewterSnoozeSpeechHouse_Johto_PewterSnoozeSpeechHouseBookshelf:
+	goto Johto_Std_PictureBookshelfScript
+
+PewterSnoozeSpeechHouse_Johto_PewterSnoozeSpeechHouseGrampsText:
+	.string "I like snoozing\n"
+	.string "with the radio on…\l"
+	.string "…Zzzz…$"

@@ -1,0 +1,107 @@
+{
+  "id": "MAP_JOHTO_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+  "name": "RuinsOfAlphAerodactylChamber_Johto",
+  "layout": "LAYOUT_JOHTO_RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+  "music": "MUS_ROUTE104",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_RUINS_OF_ALPH",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_RUINS_OF_ALPH_OUTSIDE",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 4,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_RUINS_OF_ALPH_OUTSIDE",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": "7"
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_RUINS_OF_ALPH_INNER_CHAMBER",
+      "dest_warp_id": "8"
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberAncientReplica_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberAncientReplica_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberPuzzle_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberDescriptionSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 0,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternLeft_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 0,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternRight_Entry"
+    }
+  ]
+}

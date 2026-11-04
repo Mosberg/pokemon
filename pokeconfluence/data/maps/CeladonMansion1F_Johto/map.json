@@ -1,0 +1,136 @@
+{
+  "id": "MAP_JOHTO_CELADON_MANSION_1F",
+  "name": "CeladonMansion1F_Johto",
+  "layout": "LAYOUT_JOHTO_CELADON_MANSION_1F",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_CELADON_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
+      "x": 1,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeladonMansion1F_Johto_CeladonMansionManager_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 2,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeladonMansion1F_Johto_CeladonMansion1FMeowth_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
+      "x": 3,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeladonMansion1F_Johto_CeladonMansion1FClefairy_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 4,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CeladonMansion1F_Johto_CeladonMansion1FNidoranF_Entry",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 6,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_CITY",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 7,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_CITY",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_CITY",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_MANSION_2F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 7,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_MANSION_2F",
+      "dest_warp_id": "3"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "CeladonMansion1F_Johto_CeladonMansionManagersSuiteSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 0,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CeladonMansion1F_Johto_CeladonMansion1FBookshelf_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CeladonMansion1F_Johto_CeladonMansion1FBookshelf_Entry"
+    }
+  ]
+}

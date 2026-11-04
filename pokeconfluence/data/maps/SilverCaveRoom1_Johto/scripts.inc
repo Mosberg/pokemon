@@ -1,0 +1,39 @@
+SilverCaveRoom1_Johto_MapScripts::
+	.byte 0
+
+SilverCaveRoom1_Johto_SilverCaveRoom1MaxElixer_Entry::
+	lockall
+	goto SilverCaveRoom1_Johto_SilverCaveRoom1MaxElixer
+
+SilverCaveRoom1_Johto_SilverCaveRoom1Protein_Entry::
+	lockall
+	goto SilverCaveRoom1_Johto_SilverCaveRoom1Protein
+
+SilverCaveRoom1_Johto_SilverCaveRoom1EscapeRope_Entry::
+	lockall
+	goto SilverCaveRoom1_Johto_SilverCaveRoom1EscapeRope
+
+SilverCaveRoom1_Johto_SilverCaveRoom1UltraBall_Entry::
+	lockall
+	goto SilverCaveRoom1_Johto_SilverCaveRoom1UltraBall
+
+
+SilverCaveRoom1_Johto_SilverCaveRoom1MaxElixer:
+	finditem ITEM_MAX_ELIXER
+	releaseall
+	end
+
+SilverCaveRoom1_Johto_SilverCaveRoom1Protein:
+	finditem ITEM_PROTEIN
+	releaseall
+	end
+
+SilverCaveRoom1_Johto_SilverCaveRoom1EscapeRope:
+	finditem ITEM_ESCAPE_ROPE
+	releaseall
+	end
+
+SilverCaveRoom1_Johto_SilverCaveRoom1UltraBall:
+	finditem ITEM_ULTRA_BALL
+	releaseall
+	end

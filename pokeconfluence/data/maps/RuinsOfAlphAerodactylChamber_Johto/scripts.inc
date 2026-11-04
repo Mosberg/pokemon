@@ -1,0 +1,108 @@
+RuinsOfAlphAerodactylChamber_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, RuinsOfAlphAerodactylChamber_Johto_OnFrame
+	.byte 0
+
+RuinsOfAlphAerodactylChamber_Johto_OnFrame:
+	map_script_2 VAR_JOHTO_SCENE_RUINS_OF_ALPH_AERODACTYL_CHAMBER, 0, RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberCheckWallScene_Entry
+	.2byte 0
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberAncientReplica_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberAncientReplica
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberPuzzle_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberPuzzle
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberDescriptionSign_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberDescriptionSign
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternLeft_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternLeft
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternRight_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternRight
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberCheckWallScene_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberCheckWallScene
+
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberCheckWallScene:
+	goto_if_set FLAG_JOHTO_WALL_OPENED_IN_AERODACTYL_CHAMBER, RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberCheckWallScene_OpenWall
+	releaseall
+	end
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberCheckWallScene_OpenWall:
+	@ TODO unsupported: sdefer RuinsOfAlphAerodactylChamberWallOpenScript
+	goto Johto_EventScript_Unimplemented
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberPuzzle:
+	setvar VAR_RESULT, 0
+	@ TODO unsupported: special UnownPuzzle
+	goto Johto_EventScript_Unimplemented
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberAncientReplica:
+	message RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberAncientReplicaText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberDescriptionSign:
+	message RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberDescriptionText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternLeft:
+	message RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternLeftText
+	waitmessage
+	setvar VAR_RESULT, 0
+	@ TODO unsupported: special DisplayUnownWords
+	goto Johto_EventScript_Unimplemented
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternRight:
+	goto_if_set FLAG_JOHTO_WALL_OPENED_IN_AERODACTYL_CHAMBER, RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternRight_WallOpen
+	message RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternRightText
+	waitmessage
+	setvar VAR_RESULT, 0
+	@ TODO unsupported: special DisplayUnownWords
+	goto Johto_EventScript_Unimplemented
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternRight_WallOpen:
+	message RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallHoleText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternLeftText:
+	.string "Patterns appeared\n"
+	.string "on the walls…$"
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternRightText:
+	.string "Patterns appeared\n"
+	.string "on the walls…$"
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallHoleText:
+	.string "There's a big hole\n"
+	.string "in the wall!$"
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberAncientReplicaText:
+	.string "It's a replica of\n"
+	.string "an ancient POKé-\l"
+	.string "MON.$"
+
+RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberDescriptionText:
+	.string "This flying POKé-\n"
+	.string "MON attacked its"
+	.string "\pprey with saw-like\n"
+	.string "fangs.$"

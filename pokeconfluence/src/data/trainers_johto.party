@@ -1,0 +1,11269 @@
+=== TRAINER_JOHTO_FALKNER_FALKNER1 ===
+Name: FALKNER
+Class: Leader
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Pidgey
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Mud Slap
+
+Pidgeotto
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Mud Slap
+- Gust
+
+=== TRAINER_JOHTO_WHITNEY_WHITNEY1 ===
+Name: WHITNEY
+Class: Leader
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Clefairy
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Double Slap
+- Mimic
+- Encore
+- Metronome
+
+Miltank
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Rollout
+- Attract
+- Stomp
+- Milk Drink
+
+=== TRAINER_JOHTO_BUGSY_BUGSY1 ===
+Name: BUGSY
+Class: Leader
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Metapod
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- String Shot
+- Harden
+
+Kakuna
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Poison Sting
+- String Shot
+- Harden
+
+Scyther
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Leer
+- Fury Cutter
+
+=== TRAINER_JOHTO_MORTY_MORTY1 ===
+Name: MORTY
+Class: Leader
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Gastly
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lick
+- Spite
+- Mean Look
+- Curse
+
+Haunter
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Hypnosis
+- Mimic
+- Curse
+- Night Shade
+
+Gengar
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Hypnosis
+- Shadow Ball
+- Mean Look
+- Dream Eater
+
+Haunter
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Spite
+- Mean Look
+- Mimic
+- Night Shade
+
+=== TRAINER_JOHTO_PRYCE_PRYCE1 ===
+Name: PRYCE
+Class: Leader
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Seel
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Headbutt
+- Icy Wind
+- Aurora Beam
+- Rest
+
+Dewgong
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Headbutt
+- Icy Wind
+- Aurora Beam
+- Rest
+
+Piloswine
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Icy Wind
+- Fury Attack
+- Mist
+- Blizzard
+
+=== TRAINER_JOHTO_JASMINE_JASMINE1 ===
+Name: JASMINE
+Class: Leader
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Magnemite
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunderbolt
+- Supersonic
+- Sonic Boom
+- Thunder Wave
+
+Magnemite
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunderbolt
+- Supersonic
+- Sonic Boom
+- Thunder Wave
+
+Steelix
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Screech
+- Sunny Day
+- Rock Throw
+- Iron Tail
+
+=== TRAINER_JOHTO_CHUCK_CHUCK1 ===
+Name: CHUCK
+Class: Leader
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Primeape
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leer
+- Rage
+- Karate Chop
+- Fury Swipes
+
+Poliwrath
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Hypnosis
+- Mind Reader
+- Surf
+- Dynamic Punch
+
+=== TRAINER_JOHTO_CLAIR_CLAIR1 ===
+Name: CLAIR
+Class: Leader
+Pic: Dragon Tamer
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Dragonair
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Wave
+- Surf
+- Slam
+- Dragon Breath
+
+Dragonair
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Wave
+- Thunderbolt
+- Slam
+- Dragon Breath
+
+Dragonair
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Wave
+- Ice Beam
+- Slam
+- Dragon Breath
+
+Kingdra
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Smokescreen
+- Surf
+- Hyper Beam
+- Dragon Breath
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_1_CHIKORITA ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Chikorita
+Level: 5
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_1_CYNDAQUIL ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Cyndaquil
+Level: 5
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_1_TOTODILE ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Totodile
+Level: 5
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_2_CHIKORITA ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Gastly
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Bayleef
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_2_CYNDAQUIL ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Gastly
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Quilava
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_2_TOTODILE ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Gastly
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Croconaw
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_3_CHIKORITA ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Haunter
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lick
+- Spite
+- Mean Look
+- Curse
+
+Magnemite
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Thunder Shock
+- Supersonic
+- Sonic Boom
+
+Zubat
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Supersonic
+- Bite
+- Confuse Ray
+
+Bayleef
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Growl
+- Reflect
+- Razor Leaf
+- Poison Powder
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_3_CYNDAQUIL ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Haunter
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lick
+- Spite
+- Mean Look
+- Curse
+
+Magnemite
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Thunder Shock
+- Supersonic
+- Sonic Boom
+
+Zubat
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Supersonic
+- Bite
+- Confuse Ray
+
+Quilava
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leer
+- Smokescreen
+- Ember
+- Quick Attack
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_3_TOTODILE ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Haunter
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lick
+- Spite
+- Mean Look
+- Curse
+
+Magnemite
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Thunder Shock
+- Supersonic
+- Sonic Boom
+
+Zubat
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Supersonic
+- Bite
+- Confuse Ray
+
+Croconaw
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leer
+- Rage
+- Water Gun
+- Bite
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_4_CHIKORITA ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Golbat
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magnemite
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Thunder Shock
+- Sonic Boom
+- Thunder Wave
+
+Haunter
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lick
+- Mean Look
+- Curse
+- Shadow Ball
+
+Sneasel
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leer
+- Quick Attack
+- Screech
+- Faint Attack
+
+Meganium
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Reflect
+- Razor Leaf
+- Poison Powder
+- Body Slam
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_4_CYNDAQUIL ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Golbat
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magnemite
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Thunder Shock
+- Sonic Boom
+- Thunder Wave
+
+Haunter
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lick
+- Mean Look
+- Curse
+- Shadow Ball
+
+Sneasel
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leer
+- Quick Attack
+- Screech
+- Faint Attack
+
+Quilava
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Smokescreen
+- Ember
+- Quick Attack
+- Flame Wheel
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_4_TOTODILE ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Golbat
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magnemite
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Thunder Shock
+- Sonic Boom
+- Thunder Wave
+
+Haunter
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lick
+- Mean Look
+- Curse
+- Shadow Ball
+
+Sneasel
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leer
+- Quick Attack
+- Screech
+- Faint Attack
+
+Feraligatr
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Rage
+- Water Gun
+- Bite
+- Scary Face
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_5_CHIKORITA ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Sneasel
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Screech
+- Faint Attack
+- Fury Cutter
+
+Golbat
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magneton
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Shock
+- Sonic Boom
+- Thunder Wave
+- Swift
+
+Haunter
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mean Look
+- Curse
+- Shadow Ball
+- Confuse Ray
+
+Kadabra
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Psybeam
+- Recover
+- Future Sight
+
+Meganium
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Reflect
+- Razor Leaf
+- Poison Powder
+- Body Slam
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_5_CYNDAQUIL ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Sneasel
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Screech
+- Faint Attack
+- Fury Cutter
+
+Golbat
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magneton
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Shock
+- Sonic Boom
+- Thunder Wave
+- Swift
+
+Haunter
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mean Look
+- Curse
+- Shadow Ball
+- Confuse Ray
+
+Kadabra
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Psybeam
+- Recover
+- Future Sight
+
+Typhlosion
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Smokescreen
+- Ember
+- Quick Attack
+- Flame Wheel
+
+=== TRAINER_JOHTO_RIVAL1_RIVAL1_5_TOTODILE ===
+Name: SILVER
+Class: Rival
+Pic: Rival Early Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Sneasel
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Screech
+- Faint Attack
+- Fury Cutter
+
+Golbat
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magneton
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Shock
+- Sonic Boom
+- Thunder Wave
+- Swift
+
+Haunter
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mean Look
+- Curse
+- Shadow Ball
+- Confuse Ray
+
+Kadabra
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Psybeam
+- Recover
+- Future Sight
+
+Feraligatr
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Rage
+- Water Gun
+- Scary Face
+- Slash
+
+=== TRAINER_JOHTO_WILL_WILL1 ===
+Name: WILL
+Class: Elite Four
+Pic: Elite Four Sidney
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Xatu
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Future Sight
+- Confuse Ray
+- Psychic
+
+Jynx
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Double Slap
+- Lovely Kiss
+- Ice Punch
+- Psychic
+
+Exeggutor
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Reflect
+- Leech Seed
+- Egg Bomb
+- Psychic
+
+Slowbro
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Curse
+- Amnesia
+- Body Slam
+- Psychic
+
+Xatu
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Future Sight
+- Confuse Ray
+- Psychic
+
+=== TRAINER_JOHTO_CAL_CAL1 ===
+Name: CAL
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Chikorita
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Cyndaquil
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Totodile
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAL_CAL2 ===
+Name: CAL
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bayleef
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Quilava
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Croconaw
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAL_CAL3 ===
+Name: CAL
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Meganium
+Level: 50
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Typhlosion
+Level: 50
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Feraligatr
+Level: 50
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BRUNO_BRUNO1 ===
+Name: BRUNO
+Class: Elite Four Frlg
+Pic: Elite Four Bruno Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Hitmontop
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Pursuit
+- Quick Attack
+- Dig
+- Detect
+
+Hitmonlee
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Swagger
+- Double Kick
+- Hi Jump Kick
+- Foresight
+
+Hitmonchan
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Punch
+- Ice Punch
+- Fire Punch
+- Mach Punch
+
+Onix
+Level: 43
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Bind
+- Earthquake
+- Sandstorm
+- Rock Slide
+
+Machamp
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Rock Slide
+- Foresight
+- Vital Throw
+- Cross Chop
+
+=== TRAINER_JOHTO_KAREN_KAREN1 ===
+Name: KAREN
+Class: Elite Four
+Pic: Elite Four Glacia
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Umbreon
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sand Attack
+- Confuse Ray
+- Faint Attack
+- Mean Look
+
+Vileplume
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Stun Spore
+- Acid
+- Moonlight
+- Petal Dance
+
+Gengar
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lick
+- Spite
+- Curse
+- Destiny Bond
+
+Murkrow
+Level: 44
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Whirlwind
+- Pursuit
+- Faint Attack
+
+Houndoom
+Level: 47
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Roar
+- Pursuit
+- Flamethrower
+- Crunch
+
+=== TRAINER_JOHTO_KOGA_KOGA1 ===
+Name: KOGA
+Class: Elite Four
+Pic: Elite Four Phoebe
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Ariados
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Double Team
+- Spider Web
+- Baton Pass
+- Giga Drain
+
+Venomoth
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Supersonic
+- Gust
+- Psychic
+- Toxic
+
+Forretress
+Level: 43
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Protect
+- Swift
+- Explosion
+- Spikes
+
+Muk
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Minimize
+- Acid Armor
+- Sludge Bomb
+- Toxic
+
+Crobat
+Level: 44
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Double Team
+- Quick Attack
+- Wing Attack
+- Toxic
+
+=== TRAINER_JOHTO_CHAMPION_LANCE ===
+Name: LANCE
+Class: Champion Frlg
+Pic: Elite Four Lance Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Gyarados
+Level: 44
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Flail
+- Rain Dance
+- Surf
+- Hyper Beam
+
+Dragonite
+Level: 47
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Wave
+- Twister
+- Thunder
+- Hyper Beam
+
+Dragonite
+Level: 47
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Wave
+- Twister
+- Blizzard
+- Hyper Beam
+
+Aerodactyl
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Wing Attack
+- Ancient Power
+- Rock Slide
+- Hyper Beam
+
+Charizard
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Flamethrower
+- Wing Attack
+- Slash
+- Hyper Beam
+
+Dragonite
+Level: 50
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Fire Blast
+- Safeguard
+- Outrage
+- Hyper Beam
+
+=== TRAINER_JOHTO_BROCK_BROCK1 ===
+Name: BROCK
+Class: Leader Frlg
+Pic: Leader Brock Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Graveler
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Defense Curl
+- Rock Slide
+- Rollout
+- Earthquake
+
+Rhyhorn
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Fury Attack
+- Scary Face
+- Earthquake
+- Horn Drill
+
+Omastar
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Bite
+- Surf
+- Protect
+- Spike Cannon
+
+Onix
+Level: 44
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Bind
+- Rock Slide
+- Bide
+- Sandstorm
+
+Kabutops
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Slash
+- Surf
+- Endure
+- Giga Drain
+
+=== TRAINER_JOHTO_MISTY_MISTY1 ===
+Name: MISTY
+Class: Leader Frlg
+Pic: Leader Misty Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Golduck
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Surf
+- Disable
+- Psych Up
+- Psychic
+
+Quagsire
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Surf
+- Amnesia
+- Earthquake
+- Rain Dance
+
+Lapras
+Level: 44
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Surf
+- Perish Song
+- Blizzard
+- Rain Dance
+
+Starmie
+Level: 47
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Surf
+- Confuse Ray
+- Recover
+- Ice Beam
+
+=== TRAINER_JOHTO_LT_SURGE_LT_SURGE1 ===
+Name: LT.SURGE
+Class: Leader Frlg
+Pic: Leader Lt Surge Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Raichu
+Level: 44
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Wave
+- Quick Attack
+- Thunderbolt
+- Thunder
+
+Electrode
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Screech
+- Double Team
+- Swift
+- Explosion
+
+Magneton
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lock On
+- Double Team
+- Swift
+- Zap Cannon
+
+Electrode
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Screech
+- Double Team
+- Swift
+- Explosion
+
+Electabuzz
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Thunder Punch
+- Light Screen
+- Thunder
+
+=== TRAINER_JOHTO_SCIENTIST_ROSS ===
+Name: ROSS
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCIENTIST_MITCH ===
+Name: MITCH
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Ditto
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCIENTIST_JED ===
+Name: JED
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magnemite
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCIENTIST_MARC ===
+Name: MARC
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magnemite
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCIENTIST_RICH ===
+Name: RICH
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Porygon
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Conversion
+- Conversion 2
+- Recover
+- Tri Attack
+
+=== TRAINER_JOHTO_ERIKA_ERIKA1 ===
+Name: ERIKA
+Class: Leader Frlg
+Pic: Leader Erika Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Tangela
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Vine Whip
+- Bind
+- Giga Drain
+- Sleep Powder
+
+Jumpluff
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mega Drain
+- Leech Seed
+- Cotton Spore
+- Giga Drain
+
+Victreebel
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sunny Day
+- Synthesis
+- Acid
+- Razor Leaf
+
+Bellossom
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sunny Day
+- Synthesis
+- Petal Dance
+- Solar Beam
+
+=== TRAINER_JOHTO_YOUNGSTER_JOEY1 ===
+Name: JOEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 4
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_MIKEY ===
+Name: MIKEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgey
+Level: 2
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 4
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_ALBERT ===
+Name: ALBERT
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 6
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 8
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_GORDON ===
+Name: GORDON
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Wooper
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_SAMUEL ===
+Name: SAMUEL
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Sandshrew
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Spearow
+Level: 8
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Spearow
+Level: 8
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_IAN ===
+Name: IAN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mankey
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Diglett
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_JOEY2 ===
+Name: JOEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_JOEY3 ===
+Name: JOEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tail Whip
+- Quick Attack
+- Hyper Fang
+- Scary Face
+
+=== TRAINER_JOHTO_YOUNGSTER_WARREN ===
+Name: WARREN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Fearow
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_JIMMY ===
+Name: JIMMY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Arbok
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_OWEN ===
+Name: OWEN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Growlithe
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_JASON ===
+Name: JASON
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sandslash
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Crobat
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_YOUNGSTER_JOEY4 ===
+Name: JOEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tail Whip
+- Quick Attack
+- Hyper Fang
+- Pursuit
+
+=== TRAINER_JOHTO_YOUNGSTER_JOEY5 ===
+Name: JOEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Hyper Beam
+- Quick Attack
+- Hyper Fang
+- Pursuit
+
+=== TRAINER_JOHTO_SCHOOLBOY_JACK1 ===
+Name: JACK
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Oddish
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_KIPP ===
+Name: KIPP
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Voltorb
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magneton
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_ALAN1 ===
+Name: ALAN
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Tangela
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_JOHNNY ===
+Name: JOHNNY
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bellsprout
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Weepinbell
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Victreebel
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_DANNY ===
+Name: DANNY
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Jynx
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Electabuzz
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magmar
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_TOMMY ===
+Name: TOMMY
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Xatu
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Alakazam
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_DUDLEY ===
+Name: DUDLEY
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Oddish
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_JOE ===
+Name: JOE
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Tangela
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Vaporeon
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_BILLY ===
+Name: BILLY
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Paras
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Paras
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Poliwhirl
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ditto
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_CHAD1 ===
+Name: CHAD
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mr Mime
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_NATE ===
+Name: NATE
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Ledian
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Exeggutor
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_RICKY ===
+Name: RICKY
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Aipom
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ditto
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_JACK2 ===
+Name: JACK
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Oddish
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_JACK3 ===
+Name: JACK
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Gloom
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Electrode
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_ALAN2 ===
+Name: ALAN
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Tangela
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Yanma
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_ALAN3 ===
+Name: ALAN
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Natu
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tangela
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Quagsire
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Yanma
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_CHAD2 ===
+Name: CHAD
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mr Mime
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_CHAD3 ===
+Name: CHAD
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mr Mime
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magneton
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_JACK4 ===
+Name: JACK
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Gloom
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Growlithe
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Electrode
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_JACK5 ===
+Name: JACK
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Electrode
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Screech
+- Sonic Boom
+- Rollout
+- Light Screen
+
+Growlithe
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sunny Day
+- Leer
+- Take Down
+- Flame Wheel
+
+Vileplume
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Solar Beam
+- Sleep Powder
+- Acid
+- Moonlight
+
+=== TRAINER_JOHTO_SCHOOLBOY_ALAN4 ===
+Name: ALAN
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Natu
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tangela
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Quagsire
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Yanma
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_ALAN5 ===
+Name: ALAN
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Xatu
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Peck
+- Night Shade
+- Swift
+- Future Sight
+
+Tangela
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Poison Powder
+- Vine Whip
+- Bind
+- Mega Drain
+
+Yanma
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Double Team
+- Sonic Boom
+- Supersonic
+
+Quagsire
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tail Whip
+- Slam
+- Amnesia
+- Earthquake
+
+=== TRAINER_JOHTO_SCHOOLBOY_CHAD4 ===
+Name: CHAD
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mr Mime
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magneton
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SCHOOLBOY_CHAD5 ===
+Name: CHAD
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mr Mime
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Psychic
+- Light Screen
+- Reflect
+- Encore
+
+Magneton
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Zap Cannon
+- Thunder Wave
+- Lock On
+- Swift
+
+=== TRAINER_JOHTO_BIRD_KEEPER_ROD ===
+Name: ROD
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgey
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgey
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_ABE ===
+Name: ABE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Spearow
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_BRYAN ===
+Name: BRYAN
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgey
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgeotto
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_THEO ===
+Name: THEO
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgey
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgey
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgey
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgey
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgey
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_TOBY ===
+Name: TOBY
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Doduo
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Doduo
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Doduo
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_DENIS ===
+Name: DENIS
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Spearow
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Fearow
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Spearow
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_VANCE1 ===
+Name: VANCE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgeotto
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgeotto
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_HANK ===
+Name: HANK
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgey
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgeot
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_ROY ===
+Name: ROY
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Fearow
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Fearow
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_BORIS ===
+Name: BORIS
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Doduo
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Doduo
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Dodrio
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_BOB ===
+Name: BOB
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Noctowl
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_JOSE1 ===
+Name: JOSE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Farfetchd
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_PETER ===
+Name: PETER
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgey
+Level: 6
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgey
+Level: 6
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Spearow
+Level: 8
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_JOSE2 ===
+Name: JOSE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Farfetchd
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_PERRY ===
+Name: PERRY
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Farfetchd
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_BRET ===
+Name: BRET
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgeotto
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Fearow
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_JOSE3 ===
+Name: JOSE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Farfetchd
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Fury Attack
+- Detect
+- Fly
+- Slash
+
+=== TRAINER_JOHTO_BIRD_KEEPER_VANCE2 ===
+Name: VANCE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgeotto
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgeotto
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIRD_KEEPER_VANCE3 ===
+Name: VANCE
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgeot
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Toxic
+- Quick Attack
+- Whirlwind
+- Fly
+
+Pidgeot
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Swift
+- Detect
+- Steel Wing
+- Fly
+
+=== TRAINER_JOHTO_LASS_CARRIE ===
+Name: CARRIE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Snubbull
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Scary Face
+- Charm
+- Bite
+- Lick
+
+=== TRAINER_JOHTO_LASS_BRIDGET ===
+Name: BRIDGET
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Jigglypuff
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Jigglypuff
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Jigglypuff
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_ALICE ===
+Name: ALICE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Gloom
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Arbok
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gloom
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_KRISE ===
+Name: KRISE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Oddish
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Cubone
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_CONNIE1 ===
+Name: CONNIE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Marill
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_LINDA ===
+Name: LINDA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Bulbasaur
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ivysaur
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Venusaur
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_LAURA ===
+Name: LAURA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Gloom
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pidgeotto
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Bellossom
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_SHANNON ===
+Name: SHANNON
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Paras
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Paras
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Parasect
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_MICHELLE ===
+Name: MICHELLE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Skiploom
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Hoppip
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Jumpluff
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_DANA1 ===
+Name: DANA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Flaaffy
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Growl
+- Thunder Shock
+- Thunder Wave
+
+Psyduck
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Scratch
+- Tail Whip
+- Disable
+- Confusion
+
+=== TRAINER_JOHTO_LASS_ELLEN ===
+Name: ELLEN
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Wigglytuff
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Granbull
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_CONNIE2 ===
+Name: CONNIE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Marill
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_CONNIE3 ===
+Name: CONNIE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Marill
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_LASS_DANA2 ===
+Name: DANA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Flaaffy
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Growl
+- Thunder Shock
+- Thunder Wave
+
+Psyduck
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Scratch
+- Tail Whip
+- Disable
+- Confusion
+
+=== TRAINER_JOHTO_LASS_DANA3 ===
+Name: DANA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Psyduck
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Scratch
+- Disable
+- Confusion
+- Screech
+
+Ampharos
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Thunder Shock
+- Thunder Wave
+- Cotton Spore
+
+=== TRAINER_JOHTO_LASS_DANA4 ===
+Name: DANA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Psyduck
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Scratch
+- Disable
+- Confusion
+- Screech
+
+Ampharos
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Thunder Punch
+- Thunder Wave
+- Cotton Spore
+
+=== TRAINER_JOHTO_LASS_DANA5 ===
+Name: DANA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Ampharos
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Swift
+- Thunder Punch
+- Thunder Wave
+- Cotton Spore
+
+Golduck
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Surf
+- Psychic
+- Screech
+
+=== TRAINER_JOHTO_JANINE_JANINE1 ===
+Name: JANINE
+Class: Leader Frlg
+Pic: Leader Koga Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Crobat
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Screech
+- Supersonic
+- Confuse Ray
+- Wing Attack
+
+Weezing
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Smog
+- Sludge Bomb
+- Toxic
+- Explosion
+
+Weezing
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Smog
+- Sludge Bomb
+- Toxic
+- Explosion
+
+Ariados
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Scary Face
+- Giga Drain
+- String Shot
+- Night Shade
+
+Venomoth
+Level: 39
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Foresight
+- Double Team
+- Gust
+- Psychic
+
+=== TRAINER_JOHTO_COOLTRAINERM_NICK ===
+Name: NICK
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Charmander
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Ember
+- Smokescreen
+- Rage
+- Scary Face
+
+Squirtle
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Withdraw
+- Water Gun
+- Bite
+- Curse
+
+Bulbasaur
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Seed
+- Poison Powder
+- Sleep Powder
+- Razor Leaf
+
+=== TRAINER_JOHTO_COOLTRAINERM_AARON ===
+Name: AARON
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Ivysaur
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Charmeleon
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Wartortle
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERM_PAUL ===
+Name: PAUL
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Dratini
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Dratini
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Dratini
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERM_CODY ===
+Name: CODY
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Horsea
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seadra
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERM_MIKE ===
+Name: MIKE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Dragonair
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERM_GAVEN1 ===
+Name: GAVEN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Victreebel
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Wrap
+- Toxic
+- Acid
+- Razor Leaf
+
+Kingler
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Bubble Beam
+- Stomp
+- Guillotine
+- Protect
+
+Flareon
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sand Attack
+- Quick Attack
+- Bite
+- Fire Spin
+
+=== TRAINER_JOHTO_COOLTRAINERM_GAVEN2 ===
+Name: GAVEN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Victreebel
+Level: 39
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Giga Drain
+- Toxic
+- Sludge Bomb
+- Razor Leaf
+
+Kingler @ Kings Rock
+Level: 39
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Surf
+- Stomp
+- Guillotine
+- Blizzard
+
+Flareon
+Level: 39
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Flamethrower
+- Quick Attack
+- Bite
+- Fire Spin
+
+=== TRAINER_JOHTO_COOLTRAINERM_RYAN ===
+Name: RYAN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pidgeot
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sand Attack
+- Quick Attack
+- Whirlwind
+- Wing Attack
+
+Electabuzz
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Punch
+- Light Screen
+- Swift
+- Screech
+
+=== TRAINER_JOHTO_COOLTRAINERM_JAKE ===
+Name: JAKE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Parasect
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Spore
+- Slash
+- Swords Dance
+
+Golduck
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Confusion
+- Screech
+- Psych Up
+- Fury Swipes
+
+=== TRAINER_JOHTO_COOLTRAINERM_GAVEN3 ===
+Name: GAVEN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Victreebel
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Wrap
+- Toxic
+- Acid
+- Razor Leaf
+
+Kingler
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Bubble Beam
+- Stomp
+- Guillotine
+- Protect
+
+Flareon
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sand Attack
+- Quick Attack
+- Bite
+- Fire Spin
+
+=== TRAINER_JOHTO_COOLTRAINERM_BLAKE ===
+Name: BLAKE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magneton
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunderbolt
+- Supersonic
+- Swift
+- Screech
+
+Quagsire
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Water Gun
+- Slam
+- Amnesia
+- Earthquake
+
+Exeggcute
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Seed
+- Confusion
+- Sleep Powder
+- Solar Beam
+
+=== TRAINER_JOHTO_COOLTRAINERM_BRIAN ===
+Name: BRIAN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sandslash
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sand Attack
+- Poison Sting
+- Slash
+- Swift
+
+=== TRAINER_JOHTO_COOLTRAINERM_ERICK ===
+Name: ERICK
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bulbasaur
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Charmander
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Squirtle
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERM_ANDY ===
+Name: ANDY
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bulbasaur
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Charmander
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Squirtle
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERM_TYLER ===
+Name: TYLER
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bulbasaur
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Charmander
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Squirtle
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERM_SEAN ===
+Name: SEAN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Flareon
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tangela
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tauros
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERM_KEVIN ===
+Name: KEVIN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rhyhorn
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Charmeleon
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Wartortle
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERM_STEVE ===
+Name: STEVE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bulbasaur
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Charmander
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Squirtle
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERM_ALLEN ===
+Name: ALLEN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Charmeleon
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Ember
+- Smokescreen
+- Rage
+- Scary Face
+
+=== TRAINER_JOHTO_COOLTRAINERM_DARIN ===
+Name: DARIN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Dragonair
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Wrap
+- Surf
+- Dragon Rage
+- Slam
+
+=== TRAINER_JOHTO_COOLTRAINERF_GWEN ===
+Name: GWEN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Eevee
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Flareon
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Vaporeon
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Jolteon
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_LOIS ===
+Name: LOIS
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Skiploom
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Synthesis
+- Poison Powder
+- Mega Drain
+- Leech Seed
+
+Ninetales
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Ember
+- Quick Attack
+- Confuse Ray
+- Safeguard
+
+=== TRAINER_JOHTO_COOLTRAINERF_FRAN ===
+Name: FRAN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Seadra
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_LOLA ===
+Name: LOLA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Dratini
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Dragonair
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_KATE ===
+Name: KATE
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Shellder
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Cloyster
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_IRENE ===
+Name: IRENE
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Goldeen
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seaking
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_KELLY ===
+Name: KELLY
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Marill
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Wartortle
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Wartortle
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_JOYCE ===
+Name: JOYCE
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Pikachu
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Double Team
+- Thunderbolt
+- Thunder
+
+Blastoise
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Bite
+- Curse
+- Surf
+- Rain Dance
+
+=== TRAINER_JOHTO_COOLTRAINERF_BETH1 ===
+Name: BETH
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Rapidash
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Stomp
+- Fire Spin
+- Fury Attack
+- Agility
+
+=== TRAINER_JOHTO_COOLTRAINERF_REENA1 ===
+Name: REENA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Starmie
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Nidoqueen
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_MEGAN ===
+Name: MEGAN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Bulbasaur
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Growl
+- Leech Seed
+- Poison Powder
+- Razor Leaf
+
+Ivysaur
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Growl
+- Leech Seed
+- Poison Powder
+- Razor Leaf
+
+Venusaur
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Body Slam
+- Sleep Powder
+- Razor Leaf
+- Sweet Scent
+
+=== TRAINER_JOHTO_COOLTRAINERF_BETH2 ===
+Name: BETH
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Rapidash
+Level: 39
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Stomp
+- Fire Spin
+- Fury Attack
+- Agility
+
+=== TRAINER_JOHTO_COOLTRAINERF_CAROL ===
+Name: CAROL
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Electrode
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ninetales
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_QUINN ===
+Name: QUINN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Ivysaur
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_EMMA ===
+Name: EMMA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Poliwhirl
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_CYBIL ===
+Name: CYBIL
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Butterfree
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Confusion
+- Sleep Powder
+- Whirlwind
+- Gust
+
+Bellossom
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Absorb
+- Stun Spore
+- Acid
+- Solar Beam
+
+=== TRAINER_JOHTO_COOLTRAINERF_JENN ===
+Name: JENN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Staryu
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_BETH3 ===
+Name: BETH
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Rapidash @ Focus Band
+Level: 43
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Stomp
+- Fire Spin
+- Fury Attack
+- Fire Blast
+
+=== TRAINER_JOHTO_COOLTRAINERF_REENA2 ===
+Name: REENA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Starmie
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Nidoqueen
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_COOLTRAINERF_REENA3 ===
+Name: REENA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Starmie
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Double Team
+- Psychic
+- Waterfall
+- Confuse Ray
+
+Nidoqueen @ Pink Bow
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Earthquake
+- Double Kick
+- Toxic
+- Body Slam
+
+Starmie
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Blizzard
+- Psychic
+- Waterfall
+- Recover
+
+=== TRAINER_JOHTO_COOLTRAINERF_CARA ===
+Name: CARA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Horsea
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Smokescreen
+- Leer
+- Whirlpool
+- Twister
+
+Horsea
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Smokescreen
+- Leer
+- Whirlpool
+- Twister
+
+Seadra
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Swift
+- Leer
+- Waterfall
+- Twister
+
+=== TRAINER_JOHTO_BEAUTY_VICTORIA ===
+Name: VICTORIA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Sentret
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Sentret
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_SAMANTHA ===
+Name: SAMANTHA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Meowth
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Scratch
+- Growl
+- Bite
+- Pay Day
+
+Meowth
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Scratch
+- Growl
+- Bite
+- Slash
+
+=== TRAINER_JOHTO_BEAUTY_JULIE ===
+Name: JULIE
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_JACLYN ===
+Name: JACLYN
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_BRENDA ===
+Name: BRENDA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Furret
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_CASSIE ===
+Name: CASSIE
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Vileplume
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Butterfree
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_CAROLINE ===
+Name: CAROLINE
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Marill
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seel
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Marill
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_CARLENE ===
+Name: CARLENE
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_JESSICA ===
+Name: JESSICA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_RACHAEL ===
+Name: RACHAEL
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_ANGELICA ===
+Name: ANGELICA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_KENDRA ===
+Name: KENDRA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_VERONICA ===
+Name: VERONICA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_JULIA ===
+Name: JULIA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Paras
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Exeggcute
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Parasect
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_THERESA ===
+Name: THERESA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BEAUTY_VALERIE ===
+Name: VALERIE
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Hoppip
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Synthesis
+- Tail Whip
+- Tackle
+- Poison Powder
+
+Skiploom
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Synthesis
+- Tail Whip
+- Tackle
+- Stun Spore
+
+=== TRAINER_JOHTO_BEAUTY_OLIVIA ===
+Name: OLIVIA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Corsola
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_LARRY ===
+Name: LARRY
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Slowpoke
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_ANDREW ===
+Name: ANDREW
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Marowak
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Marowak
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_CALVIN ===
+Name: CALVIN
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Kangaskhan
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_SHANE ===
+Name: SHANE
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Nidorina
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Nidorino
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_BEN ===
+Name: BEN
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Slowbro
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_BRENT1 ===
+Name: BRENT
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Lickitung
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_RON ===
+Name: RON
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Nidoking
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_ETHAN ===
+Name: ETHAN
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rhyhorn
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rhydon
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_BRENT2 ===
+Name: BRENT
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Kangaskhan
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_BRENT3 ===
+Name: BRENT
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Porygon
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Recover
+- Psychic
+- Conversion 2
+- Tri Attack
+
+=== TRAINER_JOHTO_POKEMANIAC_ISSAC ===
+Name: ISSAC
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Lickitung
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lick
+- Supersonic
+- Cut
+
+=== TRAINER_JOHTO_POKEMANIAC_DONALD ===
+Name: DONALD
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Slowpoke
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Slowpoke
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_ZACH ===
+Name: ZACH
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rhyhorn
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEMANIAC_BRENT4 ===
+Name: BRENT
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Chansey
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Rollout
+- Attract
+- Egg Bomb
+- Soft Boiled
+
+=== TRAINER_JOHTO_POKEMANIAC_MILLER ===
+Name: MILLER
+Class: Pokemaniac
+Pic: Pokemaniac
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Nidoking
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Nidoqueen
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_1 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_2 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_3 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Raticate
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_4 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Grimer
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Grimer
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Muk
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_5 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_6 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Zubat
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_7 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Grimer
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_8 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Weezing
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_9 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_10 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Zubat
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golbat
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Grimer
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_11 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Muk
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_12 ===
+Name: EXECUTIVE
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Houndour
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_13 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_14 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golbat
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_15 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Grimer
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Weezing
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_16 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_17 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Golbat
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_18 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_19 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Venonat
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Venonat
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_20 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Drowzee
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_21 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Zubat
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Grimer
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_22 ===
+Name: EXECUTIVE
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Golbat
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_23 ===
+Name: EXECUTIVE
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_24 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_25 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Muk
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_26 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_27 ===
+Name: EXECUTIVE
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Zubat
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_28 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_29 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Rattata
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rattata
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_30 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Golbat
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golbat
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Arbok
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTM_GRUNTM_31 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Golbat
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GENTLEMAN_PRESTON ===
+Name: PRESTON
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Growlithe
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Growlithe
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GENTLEMAN_EDWARD ===
+Name: EDWARD
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Persian
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GENTLEMAN_GREGORY ===
+Name: GREGORY
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pikachu
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Flaaffy
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GENTLEMAN_VIRGIL ===
+Name: VIRGIL
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Ponyta
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GENTLEMAN_ALFRED ===
+Name: ALFRED
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Noctowl
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SKIER_ROXANNE ===
+Name: ROXANNE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Jynx
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SKIER_CLARISSA ===
+Name: CLARISSA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Dewgong
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_TEACHER_COLETTE ===
+Name: COLETTE
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Clefairy
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_TEACHER_HILLARY ===
+Name: HILLARY
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Aipom
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Cubone
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_TEACHER_SHIRLEY ===
+Name: SHIRLEY
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Jigglypuff
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SABRINA_SABRINA1 ===
+Name: SABRINA
+Class: Leader Frlg
+Pic: Leader Sabrina Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Espeon
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sand Attack
+- Quick Attack
+- Swift
+- Psychic
+
+Mr Mime
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Barrier
+- Reflect
+- Baton Pass
+- Psychic
+
+Alakazam
+Level: 48
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Recover
+- Future Sight
+- Psychic
+- Reflect
+
+=== TRAINER_JOHTO_BUG_CATCHER_DON ===
+Name: DON
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Caterpie
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Caterpie
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_ROB ===
+Name: ROB
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Beedrill
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Butterfree
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_ED ===
+Name: ED
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Beedrill
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Beedrill
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Beedrill
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_WADE1 ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Caterpie
+Level: 2
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Caterpie
+Level: 2
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Weedle
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Caterpie
+Level: 2
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_BUG_CATCHER_BENNY ===
+Name: BENNY
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Weedle
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Kakuna
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Beedrill
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_AL ===
+Name: AL
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Caterpie
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Weedle
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_JOSH ===
+Name: JOSH
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Paras
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_ARNIE1 ===
+Name: ARNIE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Venonat
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_KEN ===
+Name: KEN
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Ariados
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pinsir
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_WADE2 ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Metapod
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Metapod
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Kakuna
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Metapod
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_WADE3 ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Butterfree
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Butterfree
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Beedrill
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Butterfree
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_DOUG ===
+Name: DOUG
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Ariados
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_ARNIE2 ===
+Name: ARNIE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Venonat
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BUG_CATCHER_ARNIE3 ===
+Name: ARNIE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Venomoth
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Supersonic
+- Confusion
+- Leech Life
+
+=== TRAINER_JOHTO_BUG_CATCHER_WADE4 ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Butterfree
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Confusion
+- Poison Powder
+- Supersonic
+- Whirlwind
+
+Butterfree
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Confusion
+- Stun Spore
+- Supersonic
+- Whirlwind
+
+Beedrill
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Fury Attack
+- Focus Energy
+- Twineedle
+- Rage
+
+Butterfree
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Confusion
+- Sleep Powder
+- Supersonic
+- Whirlwind
+
+=== TRAINER_JOHTO_BUG_CATCHER_WADE5 ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Butterfree
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Confusion
+- Poison Powder
+- Supersonic
+- Gust
+
+Butterfree
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Confusion
+- Stun Spore
+- Supersonic
+- Gust
+
+Beedrill
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Fury Attack
+- Pursuit
+- Twineedle
+- Double Team
+
+Butterfree
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Psybeam
+- Sleep Powder
+- Gust
+- Whirlwind
+
+=== TRAINER_JOHTO_BUG_CATCHER_ARNIE4 ===
+Name: ARNIE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Venomoth
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Gust
+- Supersonic
+- Psybeam
+- Leech Life
+
+=== TRAINER_JOHTO_BUG_CATCHER_ARNIE5 ===
+Name: ARNIE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Venomoth
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Gust
+- Supersonic
+- Psychic
+- Toxic
+
+=== TRAINER_JOHTO_BUG_CATCHER_WAYNE ===
+Name: WAYNE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Ledyba
+Level: 8
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Paras
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_JUSTIN ===
+Name: JUSTIN
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magikarp
+Level: 5
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magikarp
+Level: 5
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magikarp
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magikarp
+Level: 5
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_RALPH1 ===
+Name: RALPH
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Goldeen
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_ARNOLD ===
+Name: ARNOLD
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Tentacruel
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_KYLE ===
+Name: KYLE
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Seaking
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Poliwhirl
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seaking
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_HENRY ===
+Name: HENRY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Poliwag
+Level: 8
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Poliwag
+Level: 8
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_MARVIN ===
+Name: MARVIN
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magikarp
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gyarados
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magikarp
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gyarados
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_TULLY1 ===
+Name: TULLY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Qwilfish
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_ANDRE ===
+Name: ANDRE
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Gyarados
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_RAYMOND ===
+Name: RAYMOND
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magikarp
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magikarp
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magikarp
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magikarp
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_WILTON1 ===
+Name: WILTON
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Goldeen
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Goldeen
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seaking
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_EDGAR ===
+Name: EDGAR
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Remoraid
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lock On
+- Psybeam
+- Aurora Beam
+- Bubble Beam
+
+Remoraid
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lock On
+- Psybeam
+- Aurora Beam
+- Bubble Beam
+
+=== TRAINER_JOHTO_FISHER_JONAH ===
+Name: JONAH
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Shellder
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Octillery
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Remoraid
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Cloyster
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_MARTIN ===
+Name: MARTIN
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Remoraid
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Remoraid
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_STEPHEN ===
+Name: STEPHEN
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magikarp
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magikarp
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Qwilfish
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tentacruel
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_BARNEY ===
+Name: BARNEY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Gyarados
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gyarados
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gyarados
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_RALPH2 ===
+Name: RALPH
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Goldeen
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_RALPH3 ===
+Name: RALPH
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Qwilfish
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Goldeen
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_TULLY2 ===
+Name: TULLY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Qwilfish
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_TULLY3 ===
+Name: TULLY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Goldeen
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Goldeen
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Qwilfish
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_WILTON2 ===
+Name: WILTON
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Goldeen
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Goldeen
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seaking
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_SCOTT ===
+Name: SCOTT
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Qwilfish
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Qwilfish
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seaking
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_WILTON3 ===
+Name: WILTON
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Seaking
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Supersonic
+- Waterfall
+- Flail
+- Fury Attack
+
+Seaking
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Supersonic
+- Waterfall
+- Flail
+- Fury Attack
+
+Remoraid
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Psybeam
+- Aurora Beam
+- Bubble Beam
+- Hyper Beam
+
+=== TRAINER_JOHTO_FISHER_RALPH4 ===
+Name: RALPH
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Qwilfish
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Goldeen
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FISHER_RALPH5 ===
+Name: RALPH
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Qwilfish
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Toxic
+- Minimize
+- Surf
+- Pin Missile
+
+Seaking
+Level: 39
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Endure
+- Flail
+- Fury Attack
+- Waterfall
+
+=== TRAINER_JOHTO_FISHER_TULLY4 ===
+Name: TULLY
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Seaking
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Supersonic
+- Rain Dance
+- Waterfall
+- Fury Attack
+
+Seaking
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Supersonic
+- Rain Dance
+- Waterfall
+- Fury Attack
+
+Qwilfish
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Rollout
+- Surf
+- Pin Missile
+- Take Down
+
+=== TRAINER_JOHTO_SWIMMERM_HAROLD ===
+Name: HAROLD
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Remoraid
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seadra
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_SIMON ===
+Name: SIMON
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Tentacool
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tentacool
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_RANDALL ===
+Name: RANDALL
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Shellder
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Wartortle
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Shellder
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_CHARLIE ===
+Name: CHARLIE
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Shellder
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tentacool
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tentacruel
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_GEORGE ===
+Name: GEORGE
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Tentacool
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tentacool
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tentacool
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Staryu
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tentacool
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Remoraid
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_BERKE ===
+Name: BERKE
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Qwilfish
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_KIRK ===
+Name: KIRK
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Gyarados
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gyarados
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_MATHEW ===
+Name: MATHEW
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Krabby
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_HAL ===
+Name: HAL
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Seel
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Dewgong
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seel
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_PATON ===
+Name: PATON
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Piloswine
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Piloswine
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_DARYL ===
+Name: DARYL
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Shellder
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Cloyster
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Shellder
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_WALTER ===
+Name: WALTER
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Horsea
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Horsea
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seadra
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_TONY ===
+Name: TONY
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Staryu
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Horsea
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_JEROME ===
+Name: JEROME
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Seadra
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tentacool
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tentacruel
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Goldeen
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_TUCKER ===
+Name: TUCKER
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Shellder
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Cloyster
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_RICK ===
+Name: RICK
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Staryu
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Horsea
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_CAMERON ===
+Name: CAMERON
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Marill
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_SETH ===
+Name: SETH
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Quagsire
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Octillery
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Quagsire
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_JAMES ===
+Name: JAMES
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Staryu
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Horsea
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_LEWIS ===
+Name: LEWIS
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Staryu
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Horsea
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERM_PARKER ===
+Name: PARKER
+Class: Swimmer M
+Pic: Swimmer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Horsea
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Horsea
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seadra
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_ELAINE ===
+Name: ELAINE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Staryu
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_PAULA ===
+Name: PAULA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Staryu
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Shellder
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_KAYLEE ===
+Name: KAYLEE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Goldeen
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Goldeen
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seaking
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_SUSIE ===
+Name: SUSIE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Psyduck
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Scratch
+- Tail Whip
+- Disable
+- Confusion
+
+Goldeen
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Peck
+- Tail Whip
+- Supersonic
+- Horn Attack
+
+=== TRAINER_JOHTO_SWIMMERF_DENISE ===
+Name: DENISE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Seel
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_KARA ===
+Name: KARA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Staryu
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_WENDY ===
+Name: WENDY
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Horsea
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Bubble
+- Smokescreen
+- Leer
+- Water Gun
+
+Horsea
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Dragon Rage
+- Smokescreen
+- Leer
+- Water Gun
+
+=== TRAINER_JOHTO_SWIMMERF_LISA ===
+Name: LISA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Jynx
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_JILL ===
+Name: JILL
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Dewgong
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_MARY ===
+Name: MARY
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Seaking
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_KATIE ===
+Name: KATIE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Dewgong
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_DAWN ===
+Name: DAWN
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Seaking
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_TARA ===
+Name: TARA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Seaking
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_NICOLE ===
+Name: NICOLE
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Marill
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Marill
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Lapras
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_LORI ===
+Name: LORI
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Starmie
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Starmie
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_JODY ===
+Name: JODY
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Seaking
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_NIKKI ===
+Name: NIKKI
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Seel
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seel
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seel
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Dewgong
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_DIANA ===
+Name: DIANA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Golduck
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SWIMMERF_BRIANA ===
+Name: BRIANA
+Class: Swimmer F
+Pic: Swimmer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Seaking
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seaking
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_EUGENE ===
+Name: EUGENE
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Poliwhirl
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Raticate
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Krabby
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_HUEY1 ===
+Name: HUEY
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Poliwag
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Poliwhirl
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_TERRELL ===
+Name: TERRELL
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Poliwhirl
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_KENT ===
+Name: KENT
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Krabby
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Bubble
+- Leer
+- Vice Grip
+- Harden
+
+Krabby
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Bubble Beam
+- Leer
+- Vice Grip
+- Harden
+
+=== TRAINER_JOHTO_SAILOR_ERNEST ===
+Name: ERNEST
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Machop
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machop
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Poliwhirl
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_JEFF ===
+Name: JEFF
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Raticate
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Raticate
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_GARRETT ===
+Name: GARRETT
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Kingler
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_KENNETH ===
+Name: KENNETH
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Machop
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machop
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Poliwrath
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machop
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_STANLY ===
+Name: STANLY
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Machop
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machoke
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Psyduck
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_HARRY ===
+Name: HARRY
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Wooper
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_HUEY2 ===
+Name: HUEY
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Poliwhirl
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Poliwhirl
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_HUEY3 ===
+Name: HUEY
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Poliwhirl
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Poliwrath
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAILOR_HUEY4 ===
+Name: HUEY
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Politoed
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Whirlpool
+- Rain Dance
+- Body Slam
+- Perish Song
+
+Poliwrath
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Surf
+- Strength
+- Ice Punch
+- Submission
+
+=== TRAINER_JOHTO_SUPER_NERD_STAN ===
+Name: STAN
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Grimer
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_ERIC ===
+Name: ERIC
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Grimer
+Level: 11
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Grimer
+Level: 11
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_GREGG ===
+Name: GREGG
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magnemite
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_JAY ===
+Name: JAY
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_DAVE ===
+Name: DAVE
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Ditto
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_SAM ===
+Name: SAM
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Grimer
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Muk
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_TOM ===
+Name: TOM
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magnemite
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_PAT ===
+Name: PAT
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Porygon
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_SHAWN ===
+Name: SHAWN
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magnemite
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Muk
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_TERU ===
+Name: TERU
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magnemite
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 11
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_RUSS ===
+Name: RUSS
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magnemite
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SUPER_NERD_NORTON ===
+Name: NORTON
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Porygon
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Conversion
+- Conversion 2
+- Recover
+- Tri Attack
+
+=== TRAINER_JOHTO_SUPER_NERD_HUGH ===
+Name: HUGH
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Seadra
+Level: 39
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Smokescreen
+- Twister
+- Surf
+- Waterfall
+
+=== TRAINER_JOHTO_SUPER_NERD_MARKUS ===
+Name: MARKUS
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Slowpoke
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Curse
+- Water Gun
+- Growl
+- Strength
+
+=== TRAINER_JOHTO_RIVAL2_RIVAL2_1_CHIKORITA ===
+Name: SILVER
+Class: Rival
+Pic: Rival Late Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Sneasel
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Screech
+- Faint Attack
+- Fury Cutter
+
+Golbat
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magneton
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Shock
+- Sonic Boom
+- Thunder Wave
+- Swift
+
+Gengar
+Level: 43
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mean Look
+- Curse
+- Shadow Ball
+- Confuse Ray
+
+Alakazam
+Level: 43
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Recover
+- Future Sight
+- Psychic
+
+Meganium
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Razor Leaf
+- Poison Powder
+- Body Slam
+- Light Screen
+
+=== TRAINER_JOHTO_RIVAL2_RIVAL2_1_CYNDAQUIL ===
+Name: SILVER
+Class: Rival
+Pic: Rival Late Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Sneasel
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Screech
+- Faint Attack
+- Fury Cutter
+
+Golbat
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magneton
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Shock
+- Sonic Boom
+- Thunder Wave
+- Swift
+
+Gengar
+Level: 43
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mean Look
+- Curse
+- Shadow Ball
+- Confuse Ray
+
+Alakazam
+Level: 43
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Recover
+- Future Sight
+- Psychic
+
+Typhlosion
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Smokescreen
+- Quick Attack
+- Flame Wheel
+- Swift
+
+=== TRAINER_JOHTO_RIVAL2_RIVAL2_1_TOTODILE ===
+Name: SILVER
+Class: Rival
+Pic: Rival Late Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Sneasel
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Screech
+- Faint Attack
+- Fury Cutter
+
+Golbat
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magneton
+Level: 41
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Shock
+- Sonic Boom
+- Thunder Wave
+- Swift
+
+Gengar
+Level: 43
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mean Look
+- Curse
+- Shadow Ball
+- Confuse Ray
+
+Alakazam
+Level: 43
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Recover
+- Future Sight
+- Psychic
+
+Feraligatr
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Rage
+- Water Gun
+- Scary Face
+- Slash
+
+=== TRAINER_JOHTO_RIVAL2_RIVAL2_2_CHIKORITA ===
+Name: SILVER
+Class: Rival
+Pic: Rival Late Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Sneasel
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Screech
+- Faint Attack
+- Fury Cutter
+
+Crobat
+Level: 48
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Toxic
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magneton
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder
+- Sonic Boom
+- Thunder Wave
+- Swift
+
+Gengar
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mean Look
+- Curse
+- Shadow Ball
+- Confuse Ray
+
+Alakazam
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Recover
+- Future Sight
+- Psychic
+- Reflect
+
+Meganium
+Level: 50
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Giga Drain
+- Body Slam
+- Light Screen
+- Safeguard
+
+=== TRAINER_JOHTO_RIVAL2_RIVAL2_2_CYNDAQUIL ===
+Name: SILVER
+Class: Rival
+Pic: Rival Late Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Sneasel
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Screech
+- Faint Attack
+- Fury Cutter
+
+Crobat
+Level: 48
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Toxic
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magneton
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder
+- Sonic Boom
+- Thunder Wave
+- Swift
+
+Gengar
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mean Look
+- Curse
+- Shadow Ball
+- Confuse Ray
+
+Alakazam
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Recover
+- Future Sight
+- Psychic
+- Reflect
+
+Typhlosion
+Level: 50
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Smokescreen
+- Quick Attack
+- Fire Blast
+- Swift
+
+=== TRAINER_JOHTO_RIVAL2_RIVAL2_2_TOTODILE ===
+Name: SILVER
+Class: Rival
+Pic: Rival Late Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Sneasel
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Screech
+- Faint Attack
+- Fury Cutter
+
+Crobat
+Level: 48
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Toxic
+- Bite
+- Confuse Ray
+- Wing Attack
+
+Magneton
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder
+- Sonic Boom
+- Thunder Wave
+- Swift
+
+Gengar
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mean Look
+- Curse
+- Shadow Ball
+- Confuse Ray
+
+Alakazam
+Level: 46
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Recover
+- Future Sight
+- Psychic
+- Reflect
+
+Feraligatr
+Level: 50
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Surf
+- Rain Dance
+- Slash
+- Screech
+
+=== TRAINER_JOHTO_GUITARIST_CLYDE ===
+Name: CLYDE
+Class: Guitarist
+Pic: Guitarist
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Electabuzz
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GUITARIST_VINCENT ===
+Name: VINCENT
+Class: Guitarist
+Pic: Guitarist
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magnemite
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magnemite
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_ANTHONY1 ===
+Name: ANTHONY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Geodude
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machamp
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_RUSSELL ===
+Name: RUSSELL
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Geodude
+Level: 4
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Geodude
+Level: 6
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Geodude
+Level: 8
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_PHILLIP ===
+Name: PHILLIP
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Geodude
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Geodude
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_LEONARD ===
+Name: LEONARD
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Geodude
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machop
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_ANTHONY2 ===
+Name: ANTHONY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Geodude
+Level: 11
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machop
+Level: 11
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_BENJAMIN ===
+Name: BENJAMIN
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Diglett
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Geodude
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Dugtrio
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_ERIK ===
+Name: ERIK
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Machop
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machop
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_MICHAEL ===
+Name: MICHAEL
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Geodude
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golem
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_PARRY1 ===
+Name: PARRY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Onix
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Swinub
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_TIMOTHY ===
+Name: TIMOTHY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Diglett
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Magnitude
+- Dig
+- Sand Attack
+- Slash
+
+Dugtrio
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Magnitude
+- Dig
+- Sand Attack
+- Slash
+
+=== TRAINER_JOHTO_HIKER_BAILEY ===
+Name: BAILEY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Geodude
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Geodude
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Geodude
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Geodude
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Geodude
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_ANTHONY3 ===
+Name: ANTHONY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Graveler
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machoke
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_TIM ===
+Name: TIM
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Graveler
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_NOLAND ===
+Name: NOLAND
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sandslash
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golem
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_SIDNEY ===
+Name: SIDNEY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Dugtrio
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Onix
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_KENNY ===
+Name: KENNY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sandslash
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golem
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_JIM ===
+Name: JIM
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Machamp
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_DANIEL ===
+Name: DANIEL
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Onix
+Level: 11
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_PARRY2 ===
+Name: PARRY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Piloswine
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Earthquake
+- Blizzard
+- Rest
+- Take Down
+
+Dugtrio
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Magnitude
+- Dig
+- Mud Slap
+- Slash
+
+Steelix
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Dig
+- Iron Tail
+- Sandstorm
+- Slam
+
+=== TRAINER_JOHTO_HIKER_PARRY3 ===
+Name: PARRY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Onix
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_ANTHONY4 ===
+Name: ANTHONY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Graveler
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machoke
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_HIKER_ANTHONY5 ===
+Name: ANTHONY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Graveler
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Magnitude
+- Self Destruct
+- Defense Curl
+- Rollout
+
+Golem
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Magnitude
+- Self Destruct
+- Defense Curl
+- Rollout
+
+Machoke
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Karate Chop
+- Vital Throw
+- Headbutt
+- Dig
+
+=== TRAINER_JOHTO_BIKER_BIKER_BENNY ===
+Name: BENNY
+Class: Biker Frlg
+Pic: Biker Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIKER_KAZU ===
+Name: KAZU
+Class: Biker Frlg
+Pic: Biker Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIKER_DWAYNE ===
+Name: DWAYNE
+Class: Biker Frlg
+Pic: Biker Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIKER_HARRIS ===
+Name: HARRIS
+Class: Biker Frlg
+Pic: Biker Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Flareon
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIKER_ZEKE ===
+Name: ZEKE
+Class: Biker Frlg
+Pic: Biker Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIKER_CHARLES ===
+Name: CHARLES
+Class: Biker Frlg
+Pic: Biker Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Charmeleon
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Weezing
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIKER_RILEY ===
+Name: RILEY
+Class: Biker Frlg
+Pic: Biker Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Weezing
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIKER_JOEL ===
+Name: JOEL
+Class: Biker Frlg
+Pic: Biker Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magmar
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magmar
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BIKER_GLENN ===
+Name: GLENN
+Class: Biker Frlg
+Pic: Biker Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magmar
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Weezing
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BLAINE_BLAINE1 ===
+Name: BLAINE
+Class: Leader Frlg
+Pic: Leader Blaine Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Magcargo
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Curse
+- Smog
+- Flamethrower
+- Rock Slide
+
+Magmar
+Level: 45
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Punch
+- Fire Punch
+- Sunny Day
+- Confuse Ray
+
+Rapidash
+Level: 50
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Fire Spin
+- Fury Attack
+- Fire Blast
+
+=== TRAINER_JOHTO_BURGLAR_DUNCAN ===
+Name: DUNCAN
+Class: Burglar Frlg
+Pic: Burglar Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magmar
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BURGLAR_EDDIE ===
+Name: EDDIE
+Class: Burglar Frlg
+Pic: Burglar Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Growlithe
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Roar
+- Ember
+- Leer
+- Take Down
+
+Koffing
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Smog
+- Sludge
+- Smokescreen
+
+=== TRAINER_JOHTO_BURGLAR_COREY ===
+Name: COREY
+Class: Burglar Frlg
+Pic: Burglar Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magmar
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FIREBREATHER_OTIS ===
+Name: OTIS
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magmar
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Weezing
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magmar
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FIREBREATHER_DICK ===
+Name: DICK
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Charmeleon
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FIREBREATHER_NED ===
+Name: NED
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Growlithe
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FIREBREATHER_BURT ===
+Name: BURT
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Slugma
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FIREBREATHER_BILL ===
+Name: BILL
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 6
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 6
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FIREBREATHER_WALT ===
+Name: WALT
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Magmar
+Level: 11
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magmar
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FIREBREATHER_RAY ===
+Name: RAY
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Vulpix
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_FIREBREATHER_LYLE ===
+Name: LYLE
+Class: Kindler
+Pic: Kindler
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Flareon
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_JUGGLER_IRWIN1 ===
+Name: IRWIN
+Class: Juggler Frlg
+Pic: Juggler Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Voltorb
+Level: 2
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 6
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_JUGGLER_FRITZ ===
+Name: FRITZ
+Class: Juggler Frlg
+Pic: Juggler Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mr Mime
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Magmar
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machoke
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_JUGGLER_HORTON ===
+Name: HORTON
+Class: Juggler Frlg
+Pic: Juggler Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Electrode
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Electrode
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Electrode
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Electrode
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_JUGGLER_IRWIN2 ===
+Name: IRWIN
+Class: Juggler Frlg
+Pic: Juggler Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Voltorb
+Level: 6
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_JUGGLER_IRWIN3 ===
+Name: IRWIN
+Class: Juggler Frlg
+Pic: Juggler Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Voltorb
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Electrode
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_JUGGLER_IRWIN4 ===
+Name: IRWIN
+Class: Juggler Frlg
+Pic: Juggler Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Voltorb
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Voltorb
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Electrode
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BLACKBELT_T_KENJI1 ===
+Name: KENJI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Onix
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Hitmonlee
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Onix
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machoke
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BLACKBELT_T_YOSHI ===
+Name: YOSHI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Hitmonlee
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Double Kick
+- Meditate
+- Jump Kick
+- Focus Energy
+
+=== TRAINER_JOHTO_BLACKBELT_T_KENJI2 ===
+Name: KENJI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Onix
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Bind
+- Rock Throw
+- Toxic
+- Dig
+
+Machamp
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Headbutt
+- Swagger
+- Thunder Punch
+- Vital Throw
+
+Steelix
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Earthquake
+- Rock Throw
+- Iron Tail
+- Sandstorm
+
+Hitmonlee
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Double Team
+- Hi Jump Kick
+- Mud Slap
+- Swift
+
+=== TRAINER_JOHTO_BLACKBELT_T_LAO ===
+Name: LAO
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Hitmonchan
+Level: 27
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Comet Punch
+- Thunder Punch
+- Ice Punch
+- Fire Punch
+
+=== TRAINER_JOHTO_BLACKBELT_T_NOB ===
+Name: NOB
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Machop
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leer
+- Focus Energy
+- Karate Chop
+- Seismic Toss
+
+Machoke
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leer
+- Karate Chop
+- Seismic Toss
+- Rock Slide
+
+=== TRAINER_JOHTO_BLACKBELT_T_KIYO ===
+Name: KIYO
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Hitmonlee
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Hitmonchan
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BLACKBELT_T_LUNG ===
+Name: LUNG
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mankey
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Mankey
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Primeape
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BLACKBELT_T_KENJI3 ===
+Name: KENJI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Machoke
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BLACKBELT_T_WAI ===
+Name: WAI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Machoke
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machoke
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Machoke
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_EXECUTIVEM_EXECUTIVEM_1 ===
+Name: EXECUTIVE
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Houndour
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Ember
+- Roar
+- Bite
+- Faint Attack
+
+Koffing
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Sludge
+- Smokescreen
+- Haze
+
+Houndoom
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Ember
+- Smog
+- Bite
+- Faint Attack
+
+=== TRAINER_JOHTO_EXECUTIVEM_EXECUTIVEM_2 ===
+Name: EXECUTIVE
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Golbat
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leech Life
+- Bite
+- Confuse Ray
+- Wing Attack
+
+=== TRAINER_JOHTO_EXECUTIVEM_EXECUTIVEM_3 ===
+Name: EXECUTIVE
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Koffing
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Self Destruct
+- Sludge
+- Smokescreen
+
+Koffing
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Self Destruct
+- Sludge
+- Smokescreen
+
+Koffing
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Self Destruct
+- Sludge
+- Smokescreen
+
+Weezing
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Explosion
+- Sludge
+- Smokescreen
+
+Koffing
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Self Destruct
+- Sludge
+- Smokescreen
+
+Koffing
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Smog
+- Sludge
+- Smokescreen
+
+=== TRAINER_JOHTO_EXECUTIVEM_EXECUTIVEM_4 ===
+Name: EXECUTIVE
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Zubat
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Raticate
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Koffing
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PSYCHIC_T_NATHAN ===
+Name: NATHAN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Girafarig
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PSYCHIC_T_FRANKLIN ===
+Name: FRANKLIN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Kadabra
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PSYCHIC_T_HERMAN ===
+Name: HERMAN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Exeggcute
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Exeggcute
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Exeggutor
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PSYCHIC_T_FIDEL ===
+Name: FIDEL
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Xatu
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PSYCHIC_T_GREG ===
+Name: GREG
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Drowzee
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Hypnosis
+- Disable
+- Dream Eater
+
+=== TRAINER_JOHTO_PSYCHIC_T_NORMAN ===
+Name: NORMAN
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Slowpoke
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Tackle
+- Growl
+- Water Gun
+
+Slowpoke
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Curse
+- Body Slam
+- Water Gun
+- Confusion
+
+=== TRAINER_JOHTO_PSYCHIC_T_MARK ===
+Name: MARK
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Abra
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Teleport
+- Flash
+
+Abra
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Teleport
+- Flash
+
+Kadabra
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Teleport
+- Kinesis
+- Confusion
+
+=== TRAINER_JOHTO_PSYCHIC_T_PHIL ===
+Name: PHIL
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Natu
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Leer
+- Night Shade
+- Future Sight
+- Confuse Ray
+
+Kadabra
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Psybeam
+- Recover
+- Future Sight
+
+=== TRAINER_JOHTO_PSYCHIC_T_RICHARD ===
+Name: RICHARD
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Espeon
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PSYCHIC_T_GILBERT ===
+Name: GILBERT
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Starmie
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Exeggcute
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Girafarig
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PSYCHIC_T_JARED ===
+Name: JARED
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mr Mime
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Exeggcute
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Exeggcute
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PSYCHIC_T_RODNEY ===
+Name: RODNEY
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Drowzee
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Hypno
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_LIZ1 ===
+Name: LIZ
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Nidoran F
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_GINA1 ===
+Name: GINA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Hoppip
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Hoppip
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Bulbasaur
+Level: 12
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_BROOKE ===
+Name: BROOKE
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Pikachu
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Shock
+- Growl
+- Quick Attack
+- Double Team
+
+=== TRAINER_JOHTO_PICNICKER_KIM ===
+Name: KIM
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Vulpix
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_CINDY ===
+Name: CINDY
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Nidoqueen
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_HOPE ===
+Name: HOPE
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Flaaffy
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_SHARON ===
+Name: SHARON
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Furret
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Rapidash
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_DEBRA ===
+Name: DEBRA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Seaking
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_GINA2 ===
+Name: GINA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Hoppip
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Hoppip
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ivysaur
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_ERIN1 ===
+Name: ERIN
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Ponyta
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ponyta
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_LIZ2 ===
+Name: LIZ
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Weepinbell
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Nidorina
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_LIZ3 ===
+Name: LIZ
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Weepinbell
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Nidorino
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Nidoqueen
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_HEIDI ===
+Name: HEIDI
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Skiploom
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Skiploom
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_EDNA ===
+Name: EDNA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Nidorina
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Raichu
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_GINA3 ===
+Name: GINA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Skiploom
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Skiploom
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ivysaur
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_TIFFANY1 ===
+Name: TIFFANY
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Clefairy
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Encore
+- Sing
+- Double Slap
+- Minimize
+
+=== TRAINER_JOHTO_PICNICKER_TIFFANY2 ===
+Name: TIFFANY
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Clefairy
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Encore
+- Double Slap
+- Minimize
+- Metronome
+
+=== TRAINER_JOHTO_PICNICKER_ERIN2 ===
+Name: ERIN
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Ponyta
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ponyta
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_TANYA ===
+Name: TANYA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Exeggutor
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_TIFFANY3 ===
+Name: TIFFANY
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Clefairy
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Encore
+- Sing
+- Double Slap
+- Minimize
+
+=== TRAINER_JOHTO_PICNICKER_ERIN3 ===
+Name: ERIN
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Ponyta
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Double Team
+- Stomp
+- Fire Spin
+- Sunny Day
+
+Raichu
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Swift
+- Mud Slap
+- Quick Attack
+- Thunderbolt
+
+Ponyta
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Double Team
+- Stomp
+- Fire Spin
+- Sunny Day
+
+=== TRAINER_JOHTO_PICNICKER_LIZ4 ===
+Name: LIZ
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Weepinbell
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Nidorino
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Nidoqueen
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_LIZ5 ===
+Name: LIZ
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Weepinbell
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sleep Powder
+- Poison Powder
+- Stun Spore
+- Sludge Bomb
+
+Nidoking
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Earthquake
+- Double Kick
+- Poison Sting
+- Iron Tail
+
+Nidoqueen
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Earthquake
+- Double Kick
+- Tail Whip
+- Body Slam
+
+=== TRAINER_JOHTO_PICNICKER_GINA4 ===
+Name: GINA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Skiploom
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Skiploom
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ivysaur
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_PICNICKER_GINA5 ===
+Name: GINA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Jumpluff
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Stun Spore
+- Sunny Day
+- Leech Seed
+- Cotton Spore
+
+Jumpluff
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sunny Day
+- Sleep Powder
+- Leech Seed
+- Cotton Spore
+
+Venusaur
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Solar Beam
+- Razor Leaf
+- Headbutt
+- Mud Slap
+
+=== TRAINER_JOHTO_PICNICKER_TIFFANY4 ===
+Name: TIFFANY
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Clefairy
+Level: 43
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Metronome
+- Encore
+- Moonlight
+- Minimize
+
+=== TRAINER_JOHTO_CAMPER_ROLAND ===
+Name: ROLAND
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Nidoran M
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_TODD1 ===
+Name: TODD
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Psyduck
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_IVAN ===
+Name: IVAN
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Diglett
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Diglett
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_ELLIOT ===
+Name: ELLIOT
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sandshrew
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Marill
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_BARRY ===
+Name: BARRY
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Nidoking
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_LLOYD ===
+Name: LLOYD
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Nidoking
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_DEAN ===
+Name: DEAN
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Golduck
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Sandslash
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_SID ===
+Name: SID
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Dugtrio
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Primeape
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Poliwrath
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_HARVEY ===
+Name: HARVEY
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Nidorino
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_DALE ===
+Name: DALE
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Nidorino
+Level: 15
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_TED ===
+Name: TED
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mankey
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_TODD2 ===
+Name: TODD
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Geodude
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Geodude
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Psyduck
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_TODD3 ===
+Name: TODD
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Geodude
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Geodude
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Psyduck
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_THOMAS ===
+Name: THOMAS
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Graveler
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golbat
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golduck
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_LEROY ===
+Name: LEROY
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Graveler
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golbat
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golduck
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_DAVID ===
+Name: DAVID
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Graveler
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golbat
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golduck
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_JOHN ===
+Name: JOHN
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Graveler
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golbat
+Level: 40
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Golduck
+Level: 42
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_JERRY ===
+Name: JERRY
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sandslash
+Level: 37
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_SPENCER ===
+Name: SPENCER
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sandshrew
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Sandslash
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Zubat
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_TODD4 ===
+Name: TODD
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Graveler
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Graveler
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Slugma
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Psyduck
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_CAMPER_TODD5 ===
+Name: TODD
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Graveler
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Self Destruct
+- Rock Throw
+- Harden
+- Magnitude
+
+Graveler
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Self Destruct
+- Rock Throw
+- Harden
+- Magnitude
+
+Magcargo
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Rock Throw
+- Harden
+- Amnesia
+- Flamethrower
+
+Golduck
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Psychic
+- Surf
+- Psych Up
+
+=== TRAINER_JOHTO_CAMPER_QUENTIN ===
+Name: QUENTIN
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Fearow
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Primeape
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Tauros
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_EXECUTIVEF_EXECUTIVEF_1 ===
+Name: EXECUTIVE
+Class: Team Rocket Frlg
+Pic: Rocket Grunt F Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Arbok
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Wrap
+- Poison Sting
+- Bite
+- Glare
+
+Vileplume
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Absorb
+- Sweet Scent
+- Sleep Powder
+- Acid
+
+Murkrow
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Peck
+- Pursuit
+- Haze
+- Night Shade
+
+=== TRAINER_JOHTO_EXECUTIVEF_EXECUTIVEF_2 ===
+Name: EXECUTIVE
+Class: Team Rocket Frlg
+Pic: Rocket Grunt F Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Arbok
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Wrap
+- Leer
+- Poison Sting
+- Bite
+
+Gloom
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Absorb
+- Sweet Scent
+- Sleep Powder
+- Acid
+
+Murkrow
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Peck
+- Pursuit
+- Haze
+
+=== TRAINER_JOHTO_SAGE_CHOW ===
+Name: CHOW
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bellsprout
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Bellsprout
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Bellsprout
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_NICO ===
+Name: NICO
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bellsprout
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Bellsprout
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Bellsprout
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_JIN ===
+Name: JIN
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bellsprout
+Level: 6
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_TROY ===
+Name: TROY
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bellsprout
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Hoothoot
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_JEFFREY ===
+Name: JEFFREY
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Haunter
+Level: 22
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_PING ===
+Name: PING
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Gastly
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gastly
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gastly
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gastly
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gastly
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_EDMOND ===
+Name: EDMOND
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bellsprout
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Bellsprout
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Bellsprout
+Level: 3
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_NEAL ===
+Name: NEAL
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bellsprout
+Level: 6
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_LI ===
+Name: LI
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bellsprout
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Bellsprout
+Level: 7
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Hoothoot
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_GAKU ===
+Name: GAKU
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Noctowl
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Flareon
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_MASA ===
+Name: MASA
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Noctowl
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Jolteon
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_SAGE_KOJI ===
+Name: KOJI
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Noctowl
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Vaporeon
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_MEDIUM_MARTHA ===
+Name: MARTHA
+Class: Channeler Frlg
+Pic: Channeler Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Gastly
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Haunter
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gastly
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_MEDIUM_GRACE ===
+Name: GRACE
+Class: Channeler Frlg
+Pic: Channeler Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Haunter
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Haunter
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_MEDIUM_BETHANY ===
+Name: BETHANY
+Class: Channeler Frlg
+Pic: Channeler Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Haunter
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_MEDIUM_MARGRET ===
+Name: MARGRET
+Class: Channeler Frlg
+Pic: Channeler Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Haunter
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_MEDIUM_ETHEL ===
+Name: ETHEL
+Class: Channeler Frlg
+Pic: Channeler Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Haunter
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_MEDIUM_REBECCA ===
+Name: REBECCA
+Class: Channeler Frlg
+Pic: Channeler Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Drowzee
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Hypno
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_MEDIUM_DORIS ===
+Name: DORIS
+Class: Channeler Frlg
+Pic: Channeler Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Slowpoke
+Level: 34
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Slowbro
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BOARDER_RONALD ===
+Name: RONALD
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Seel
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Dewgong
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seel
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BOARDER_BRAD ===
+Name: BRAD
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Swinub
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Swinub
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_BOARDER_DOUGLAS ===
+Name: DOUGLAS
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Shellder
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Cloyster
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Shellder
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_WILLIAM ===
+Name: WILLIAM
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Raichu @ Oran Berry
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_DEREK1 ===
+Name: DEREK
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pikachu @ Oran Berry
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_ROBERT ===
+Name: ROBERT
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Quagsire @ Oran Berry
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_JOSHUA ===
+Name: JOSHUA
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pikachu @ Oran Berry
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pikachu @ Oran Berry
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pikachu @ Oran Berry
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pikachu @ Oran Berry
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pikachu @ Oran Berry
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Pikachu @ Oran Berry
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_CARTER ===
+Name: CARTER
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Bulbasaur @ Oran Berry
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Charmander @ Oran Berry
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Squirtle @ Oran Berry
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_TREVOR ===
+Name: TREVOR
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Psyduck @ Oran Berry
+Level: 33
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_BRANDON ===
+Name: BRANDON
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Snubbull @ Oran Berry
+Level: 13
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_JEREMY ===
+Name: JEREMY
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Meowth @ Oran Berry
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Meowth @ Oran Berry
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Meowth @ Oran Berry
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_COLIN ===
+Name: COLIN
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Delibird @ Oran Berry
+Level: 32
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_DEREK2 ===
+Name: DEREK
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pikachu @ Oran Berry
+Level: 19
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_DEREK3 ===
+Name: DEREK
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pikachu @ Oran Berry
+Level: 36
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_ALEX ===
+Name: ALEX
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Nidoking @ Oran Berry
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Slowking @ Oran Berry
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Seaking @ Oran Berry
+Level: 29
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_REX ===
+Name: REX
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Phanpy @ Oran Berry
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANM_ALLAN ===
+Name: ALLAN
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Teddiursa @ Oran Berry
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_KIMONO_GIRL_NAOKO_UNUSED ===
+Name: NAOKO
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Skiploom
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Vulpix
+Level: 20
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Skiploom
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_KIMONO_GIRL_NAOKO ===
+Name: NAOKO
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Flareon
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_KIMONO_GIRL_SAYO ===
+Name: SAYO
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Espeon
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_KIMONO_GIRL_ZUKI ===
+Name: ZUKI
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Umbreon
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_KIMONO_GIRL_KUNI ===
+Name: KUNI
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Vaporeon
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_KIMONO_GIRL_MIKI ===
+Name: MIKI
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Jolteon
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_TWINS_AMYANDMAY1 ===
+Name: AMY & MAY
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Spinarak
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ledyba
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_TWINS_ANNANDANNE1 ===
+Name: ANN & ANNE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Clefairy
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Growl
+- Encore
+- Double Slap
+- Metronome
+
+Jigglypuff
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sing
+- Defense Curl
+- Pound
+- Disable
+
+=== TRAINER_JOHTO_TWINS_ANNANDANNE2 ===
+Name: ANN & ANNE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Jigglypuff
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sing
+- Defense Curl
+- Pound
+- Disable
+
+Clefairy
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Growl
+- Encore
+- Double Slap
+- Metronome
+
+=== TRAINER_JOHTO_TWINS_AMYANDMAY2 ===
+Name: AMY & MAY
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Ledyba
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Spinarak
+Level: 10
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_TWINS_JOANDZOE1 ===
+Name: JO & ZOE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Victreebel
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Vileplume
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_TWINS_JOANDZOE2 ===
+Name: JO & ZOE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Vileplume
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Victreebel
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_TWINS_MEGANDPEG1 ===
+Name: MEG & PEG
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Teddiursa
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Phanpy
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_TWINS_MEGANDPEG2 ===
+Name: MEG & PEG
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Phanpy
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Teddiursa
+Level: 31
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_TWINS_LEAANDPIA1 ===
+Name: LEA & PIA
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Dratini
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Wave
+- Twister
+- Flamethrower
+- Headbutt
+
+Dratini
+Level: 35
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Wave
+- Twister
+- Ice Beam
+- Headbutt
+
+=== TRAINER_JOHTO_TWINS_LEAANDPIA2 ===
+Name: LEA & PIA
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Dratini
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Wave
+- Twister
+- Ice Beam
+- Headbutt
+
+Dratini
+Level: 38
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Thunder Wave
+- Twister
+- Flamethrower
+- Headbutt
+
+=== TRAINER_JOHTO_POKEFANF_BEVERLY1 ===
+Name: BEVERLY
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Snubbull @ Oran Berry
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANF_RUTH ===
+Name: RUTH
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Pikachu @ Oran Berry
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANF_BEVERLY2 ===
+Name: BEVERLY
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Snubbull @ Oran Berry
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANF_BEVERLY3 ===
+Name: BEVERLY
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Granbull @ Oran Berry
+Level: 30
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANF_GEORGIA ===
+Name: GEORGIA
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret @ Oran Berry
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Sentret @ Oran Berry
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Sentret @ Oran Berry
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Furret @ Oran Berry
+Level: 28
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Sentret @ Oran Berry
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_POKEFANF_JAIME ===
+Name: JAIME
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Meowth @ Oran Berry
+Level: 16
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_RED_RED1 ===
+Name: RED
+Class: Youngster
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Pikachu
+Level: 81
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Charm
+- Quick Attack
+- Thunderbolt
+- Thunder
+
+Espeon
+Level: 73
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Mud Slap
+- Reflect
+- Swift
+- Psychic
+
+Snorlax
+Level: 75
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Amnesia
+- Snore
+- Rest
+- Body Slam
+
+Venusaur
+Level: 77
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sunny Day
+- Giga Drain
+- Synthesis
+- Solar Beam
+
+Charizard
+Level: 77
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Flamethrower
+- Wing Attack
+- Slash
+- Fire Spin
+
+Blastoise
+Level: 77
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Rain Dance
+- Surf
+- Blizzard
+- Whirlpool
+
+=== TRAINER_JOHTO_BLUE_BLUE1 ===
+Name: BLUE
+Class: Rival
+Pic: Rival Late Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Pidgeot
+Level: 56
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Quick Attack
+- Whirlwind
+- Wing Attack
+- Mirror Move
+
+Alakazam
+Level: 54
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Disable
+- Recover
+- Psychic
+- Reflect
+
+Rhydon
+Level: 56
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Fury Attack
+- Sandstorm
+- Rock Slide
+- Earthquake
+
+Gyarados
+Level: 58
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Twister
+- Hydro Pump
+- Rain Dance
+- Hyper Beam
+
+Exeggutor
+Level: 58
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Sunny Day
+- Leech Seed
+- Egg Bomb
+- Solar Beam
+
+Arcanine
+Level: 58
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Roar
+- Swift
+- Flamethrower
+- Extreme Speed
+
+=== TRAINER_JOHTO_OFFICER_KEITH ===
+Name: KEITH
+Class: Cue Ball Frlg
+Pic: Cue Ball Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Growlithe
+Level: 17
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_OFFICER_DIRK ===
+Name: DIRK
+Class: Cue Ball Frlg
+Pic: Cue Ball Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Growlithe
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Growlithe
+Level: 14
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTF_GRUNTF_1 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt F Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Zubat
+Level: 9
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ekans
+Level: 11
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTF_GRUNTF_2 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt F Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Arbok
+Level: 26
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTF_GRUNTF_3 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt F Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Gloom
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gloom
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTF_GRUNTF_4 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt F Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Ekans
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Oddish
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Ekans
+Level: 21
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+Gloom
+Level: 24
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+
+=== TRAINER_JOHTO_GRUNTF_GRUNTF_5 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt F Frlg
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Ekans
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Wrap
+- Leer
+- Poison Sting
+- Bite
+
+Gloom
+Level: 18
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Absorb
+- Sweet Scent
+- Stun Spore
+- Sleep Powder
+
+=== TRAINER_JOHTO_MYSTICALMAN_EUSINE ===
+Name: EUSINE
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Drowzee
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Dream Eater
+- Hypnosis
+- Disable
+- Confusion
+
+Haunter
+Level: 23
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Lick
+- Hypnosis
+- Mean Look
+- Curse
+
+Electrode
+Level: 25
+IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
+- Screech
+- Sonic Boom
+- Thunder
+- Rollout

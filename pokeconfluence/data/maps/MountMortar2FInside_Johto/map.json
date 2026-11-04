@@ -1,0 +1,140 @@
+{
+  "id": "MAP_JOHTO_MOUNT_MORTAR_2F_INSIDE",
+  "name": "MountMortar2FInside_Johto",
+  "layout": "LAYOUT_JOHTO_MOUNT_MORTAR_2F_INSIDE",
+  "music": "MUS_ROUTE104",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_MT_MORTAR",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 28,
+      "y": 22,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar2FInside_Johto_MountMortar2FInsideMaxPotion_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_2F_INSIDE_MAX_POTION"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 2,
+      "y": 33,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar2FInside_Johto_MountMortar2FInsideRareCandy_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_2F_INSIDE_RARE_CANDY"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 19,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar2FInside_Johto_MountMortar2FInsideTMDefenseCurl_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_2F_INSIDE_TM_DEFENSE_CURL"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 16,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar2FInside_Johto_MountMortar2FInsideDragonScale_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_2F_INSIDE_DRAGON_SCALE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 9,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar2FInside_Johto_MountMortar2FInsideElixer_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_2F_INSIDE_ELIXER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 28,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar2FInside_Johto_MountMortar2FInsideEscapeRope_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_2F_INSIDE_ESCAPE_ROPE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 13,
+      "y": 26,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "MountMortar2FInside_Johto_TrainerSupernerdHugh",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 17,
+      "y": 33,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MOUNT_MORTAR_1F_OUTSIDE",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 3,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MOUNT_MORTAR_1F_INSIDE",
+      "dest_warp_id": "5"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 24,
+      "y": 8,
+      "elevation": 3,
+      "item": "ITEM_FULL_RESTORE",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_2F_INSIDE_HIDDEN_FULL_RESTORE",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
+}

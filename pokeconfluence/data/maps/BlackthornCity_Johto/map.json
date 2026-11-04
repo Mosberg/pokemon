@@ -1,0 +1,265 @@
+{
+  "id": "MAP_JOHTO_BLACKTHORN_CITY",
+  "name": "BlackthornCity_Johto",
+  "layout": "LAYOUT_JOHTO_BLACKTHORN_CITY",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_BLACKTHORN_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_ROUTE_45",
+      "offset": 0,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_44",
+      "offset": 18,
+      "direction": "left"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 18,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BlackthornCity_Johto_BlackthornSuperNerdScript_Entry",
+      "flag": "FLAG_JOHTO_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 19,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BlackthornCity_Johto_BlackthornSuperNerdScript_Entry",
+      "flag": "FLAG_JOHTO_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "x": 20,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BlackthornCity_Johto_BlackthornGramps1Script_Entry",
+      "flag": "FLAG_JOHTO_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "x": 21,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BlackthornCity_Johto_BlackthornGramps2Script_Entry",
+      "flag": "FLAG_JOHTO_BLACKTHORN_CITY_GRAMPS_NOT_BLOCKING_DRAGONS_DEN"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "x": 24,
+      "y": 31,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BlackthornCity_Johto_BlackthornBlackBeltScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
+      "x": 9,
+      "y": 25,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 2,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BlackthornCity_Johto_BlackthornCooltrainerF1Script_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 13,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BlackthornCity_Johto_BlackthornYoungsterScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 22,
+      "y": 20,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BlackthornCity_Johto_SantosScript_Entry",
+      "flag": "FLAG_JOHTO_BLACKTHORN_CITY_SANTOS_OF_SATURDAY"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
+      "x": 35,
+      "y": 19,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "BlackthornCity_Johto_BlackthornCooltrainerF2Script_Entry",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 18,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_BLACKTHORN_GYM_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 13,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_BLACKTHORN_DRAGON_SPEECH_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 29,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_BLACKTHORN_EMYS_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 15,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_BLACKTHORN_MART",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 21,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_BLACKTHORN_POKECENTER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MOVE_DELETERS_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 36,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ICE_PATH_1F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 20,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_DRAGONS_DEN_1F",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 34,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "BlackthornCity_Johto_BlackthornCitySign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "BlackthornCity_Johto_BlackthornGymSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 31,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "BlackthornCity_Johto_MoveDeletersHouseSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 21,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "BlackthornCity_Johto_DragonDensSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 25,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "BlackthornCity_Johto_BlackthornCityTrainerTips_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 29,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "BlackthornCity_Johto_BlackthornCityMartSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 29,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "BlackthornCity_Johto_BlackthornCityPokecenterSign_Entry"
+    }
+  ]
+}

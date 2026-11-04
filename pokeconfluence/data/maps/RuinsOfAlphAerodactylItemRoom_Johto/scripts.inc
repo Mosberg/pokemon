@@ -1,0 +1,56 @@
+RuinsOfAlphAerodactylItemRoom_Johto_MapScripts::
+	.byte 0
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomGoldBerry_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomGoldBerry
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomMoonStone_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomMoonStone
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomHealPowder_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomHealPowder
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomEnergyRoot_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomEnergyRoot
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomAncientReplica_Entry::
+	lockall
+	goto RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomAncientReplica
+
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomGoldBerry:
+	finditem ITEM_SITRUS_BERRY
+	releaseall
+	end
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomMoonStone:
+	finditem ITEM_MOON_STONE
+	releaseall
+	end
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomHealPowder:
+	finditem ITEM_HEAL_POWDER
+	releaseall
+	end
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomEnergyRoot:
+	finditem ITEM_ENERGY_ROOT
+	releaseall
+	end
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomAncientReplica:
+	message RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomAncientReplicaText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphAerodactylItemRoom_Johto_RuinsOfAlphAerodactylItemRoomAncientReplicaText:
+	.string "It's a replica of\n"
+	.string "an ancient POKé-\l"
+	.string "MON.$"

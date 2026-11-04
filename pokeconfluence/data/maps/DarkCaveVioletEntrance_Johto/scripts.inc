@@ -1,0 +1,46 @@
+DarkCaveVioletEntrance_Johto_MapScripts::
+	.byte 0
+
+DarkCaveVioletEntrance_Johto_DarkCaveVioletEntrancePotion_Entry::
+	lockall
+	goto DarkCaveVioletEntrance_Johto_DarkCaveVioletEntrancePotion
+
+DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceRock_Entry::
+	lockall
+	goto DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceRock
+
+DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceFullHeal_Entry::
+	lockall
+	goto DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceFullHeal
+
+DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceHyperPotion_Entry::
+	lockall
+	goto DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceHyperPotion
+
+DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceDireHit_Entry::
+	lockall
+	goto DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceDireHit
+
+
+DarkCaveVioletEntrance_Johto_DarkCaveVioletEntrancePotion:
+	finditem ITEM_POTION
+	releaseall
+	end
+
+DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceFullHeal:
+	finditem ITEM_FULL_HEAL
+	releaseall
+	end
+
+DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceHyperPotion:
+	finditem ITEM_HYPER_POTION
+	releaseall
+	end
+
+DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceDireHit:
+	finditem ITEM_DIRE_HIT
+	releaseall
+	end
+
+DarkCaveVioletEntrance_Johto_DarkCaveVioletEntranceRock:
+	goto Johto_Std_SmashRockScript

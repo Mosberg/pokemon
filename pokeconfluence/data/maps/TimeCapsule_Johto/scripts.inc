@@ -1,0 +1,43 @@
+TimeCapsule_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, TimeCapsule_Johto_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, TimeCapsule_Johto_OnFrame
+	.byte 0
+
+TimeCapsule_Johto_OnTransition:
+	call TimeCapsule_Johto_TimeCapsuleSetWhichChrisCallback_Cb
+	end
+
+TimeCapsule_Johto_OnFrame:
+	map_script_2 VAR_JOHTO_SCENE_TIME_CAPSULE, 0, TimeCapsule_Johto_TimeCapsuleInitializeAndPreparePokecenter2FScript_Entry
+	.2byte 0
+
+TimeCapsule_Johto_TimeCapsuleFriendScript_Entry::
+	lockall
+	goto TimeCapsule_Johto_TimeCapsuleFriendScript
+
+TimeCapsule_Johto_TimeCapsuleConsoleScript_Entry::
+	lockall
+	goto TimeCapsule_Johto_TimeCapsuleConsoleScript
+
+TimeCapsule_Johto_TimeCapsuleInitializeAndPreparePokecenter2FScript_Entry::
+	lockall
+	goto TimeCapsule_Johto_TimeCapsuleInitializeAndPreparePokecenter2FScript
+
+
+TimeCapsule_Johto_TimeCapsuleInitializeAndPreparePokecenter2FScript:
+	setvar VAR_JOHTO_SCENE_TIME_CAPSULE, 1
+	setvar VAR_JOHTO_SCENE_POKECENTER_2F, 3
+	releaseall
+	end
+
+TimeCapsule_Johto_TimeCapsuleConsoleScript:
+	@ TODO unsupported: special TimeCapsule
+	goto Johto_EventScript_Unimplemented
+
+TimeCapsule_Johto_TimeCapsuleFriendScript:
+	@ TODO unsupported: writetext .FriendReadyText
+	goto Johto_EventScript_Unimplemented
+
+TimeCapsule_Johto_TimeCapsuleSetWhichChrisCallback_Cb:
+	@ TODO unsupported: special CableClubCheckWhichChris
+	return

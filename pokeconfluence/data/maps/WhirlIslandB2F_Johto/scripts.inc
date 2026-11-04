@@ -1,0 +1,30 @@
+WhirlIslandB2F_Johto_MapScripts::
+	.byte 0
+
+WhirlIslandB2F_Johto_WhirlIslandB2FFullRestore_Entry::
+	lockall
+	goto WhirlIslandB2F_Johto_WhirlIslandB2FFullRestore
+
+WhirlIslandB2F_Johto_WhirlIslandB2FMaxRevive_Entry::
+	lockall
+	goto WhirlIslandB2F_Johto_WhirlIslandB2FMaxRevive
+
+WhirlIslandB2F_Johto_WhirlIslandB2FMaxElixer_Entry::
+	lockall
+	goto WhirlIslandB2F_Johto_WhirlIslandB2FMaxElixer
+
+
+WhirlIslandB2F_Johto_WhirlIslandB2FFullRestore:
+	finditem ITEM_FULL_RESTORE
+	releaseall
+	end
+
+WhirlIslandB2F_Johto_WhirlIslandB2FMaxRevive:
+	finditem ITEM_MAX_REVIVE
+	releaseall
+	end
+
+WhirlIslandB2F_Johto_WhirlIslandB2FMaxElixer:
+	finditem ITEM_MAX_ELIXER
+	releaseall
+	end

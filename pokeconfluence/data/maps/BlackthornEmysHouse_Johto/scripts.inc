@@ -1,0 +1,18 @@
+BlackthornEmysHouse_Johto_MapScripts::
+	.byte 0
+
+BlackthornEmysHouse_Johto_Emy_Entry::
+	lockall
+	goto BlackthornEmysHouse_Johto_Emy
+
+BlackthornEmysHouse_Johto_EmysHouseBookshelf_Entry::
+	lockall
+	goto BlackthornEmysHouse_Johto_EmysHouseBookshelf
+
+
+BlackthornEmysHouse_Johto_Emy:
+	faceplayer
+	goto Johto_Std_Trade_EMY
+
+BlackthornEmysHouse_Johto_EmysHouseBookshelf:
+	goto Johto_Std_MagazineBookshelfScript

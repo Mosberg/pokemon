@@ -1,0 +1,37 @@
+{
+  "id": "MAP_JOHTO_SAFARI_ZONE_MAIN_OFFICE",
+  "name": "SafariZoneMainOffice_Johto",
+  "layout": "LAYOUT_JOHTO_SAFARI_ZONE_MAIN_OFFICE",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_FUCHSIA_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 2,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FUCHSIA_CITY",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 3,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FUCHSIA_CITY",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

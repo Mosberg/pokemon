@@ -1,0 +1,190 @@
+{
+  "id": "MAP_JOHTO_LAVENDER_TOWN",
+  "name": "LavenderTown_Johto",
+  "layout": "LAYOUT_JOHTO_LAVENDER_TOWN",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_LAVENDER_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_ROUTE_10_SOUTH",
+      "offset": 0,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_12",
+      "offset": 0,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_8",
+      "offset": 0,
+      "direction": "left"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 12,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LavenderTown_Johto_LavenderTownPokefanMScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "x": 2,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LavenderTown_Johto_LavenderTownTeacherScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "x": 14,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LavenderTown_Johto_LavenderTownGrampsScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 6,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LavenderTown_Johto_LavenderTownYoungsterScript_Entry",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 5,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_LAVENDER_POKECENTER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 5,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MR_FUJIS_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 3,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_LAVENDER_SPEECH_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 7,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_LAVENDER_NAME_RATER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 1,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_LAVENDER_MART",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 13,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_SOUL_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 14,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_LAV_RADIO_TOWER_1F",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 11,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LavenderTown_Johto_LavenderTownSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 15,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LavenderTown_Johto_KantoRadioStationSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LavenderTown_Johto_VolunteerPokemonHouseSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 15,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LavenderTown_Johto_SoulHouseSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LavenderTown_Johto_LavenderPokecenterSignText_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LavenderTown_Johto_LavenderMartSignText_Entry"
+    }
+  ]
+}

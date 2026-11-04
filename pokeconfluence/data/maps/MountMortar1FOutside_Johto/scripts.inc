@@ -1,0 +1,21 @@
+MountMortar1FOutside_Johto_MapScripts::
+	.byte 0
+
+MountMortar1FOutside_Johto_MountMortar1FOutsideEther_Entry::
+	lockall
+	goto MountMortar1FOutside_Johto_MountMortar1FOutsideEther
+
+MountMortar1FOutside_Johto_MountMortar1FOutsideRevive_Entry::
+	lockall
+	goto MountMortar1FOutside_Johto_MountMortar1FOutsideRevive
+
+
+MountMortar1FOutside_Johto_MountMortar1FOutsideEther:
+	finditem ITEM_ETHER
+	releaseall
+	end
+
+MountMortar1FOutside_Johto_MountMortar1FOutsideRevive:
+	finditem ITEM_REVIVE
+	releaseall
+	end

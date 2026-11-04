@@ -1,0 +1,76 @@
+{
+  "id": "MAP_JOHTO_CELADON_MANSION_2F",
+  "name": "CeladonMansion2F_Johto",
+  "layout": "LAYOUT_JOHTO_CELADON_MANSION_2F",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_CELADON_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 0,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_MANSION_1F",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_MANSION_3F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 6,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_MANSION_3F",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 7,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CELADON_MANSION_1F",
+      "dest_warp_id": "4"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 0,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CeladonMansion2F_Johto_CeladonMansion2FComputer_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "CeladonMansion2F_Johto_CeladonMansion2FMeetingRoomSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 3,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CeladonMansion2F_Johto_CeladonMansion2FBookshelf_Entry"
+    }
+  ]
+}

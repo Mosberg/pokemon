@@ -1,0 +1,45 @@
+CherrygroveEvolutionSpeechHouse_Johto_MapScripts::
+	.byte 0
+
+CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseLassScript_Entry::
+	lockall
+	goto CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseLassScript
+
+CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseYoungsterScript_Entry::
+	lockall
+	goto CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseYoungsterScript
+
+CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseBookshelf_Entry::
+	lockall
+	goto CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseBookshelf
+
+
+CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseYoungsterScript:
+	message CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseYoungsterText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseLassScript:
+	message CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseLassText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseBookshelf:
+	goto Johto_Std_MagazineBookshelfScript
+
+CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseYoungsterText:
+	.string "POKéMON gain expe-\n"
+	.string "rience in battle"
+	.string "\pand change their\n"
+	.string "form.$"
+
+CherrygroveEvolutionSpeechHouse_Johto_CherrygroveEvolutionSpeechHouseLassText:
+	.string "POKéMON change?"
+	.string "\pI would be shocked\n"
+	.string "if one did that!$"

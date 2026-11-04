@@ -1,0 +1,26 @@
+MobileTradeRoom_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, MobileTradeRoom_Johto_OnFrame
+	.byte 0
+
+MobileTradeRoom_Johto_OnFrame:
+	map_script_2 VAR_JOHTO_SCENE_MOBILE_TRADE_ROOM, 0, MobileTradeRoom_Johto_MobileTradeRoomInitializeAndPreparePokecenter2FScript_Entry
+	.2byte 0
+
+MobileTradeRoom_Johto_MobileTradeRoomConsoleScript_Entry::
+	lockall
+	goto MobileTradeRoom_Johto_MobileTradeRoomConsoleScript
+
+MobileTradeRoom_Johto_MobileTradeRoomInitializeAndPreparePokecenter2FScript_Entry::
+	lockall
+	goto MobileTradeRoom_Johto_MobileTradeRoomInitializeAndPreparePokecenter2FScript
+
+
+MobileTradeRoom_Johto_MobileTradeRoomInitializeAndPreparePokecenter2FScript:
+	setvar VAR_JOHTO_SCENE_MOBILE_TRADE_ROOM, 1
+	setvar VAR_JOHTO_SCENE_POKECENTER_2F, 4
+	releaseall
+	end
+
+MobileTradeRoom_Johto_MobileTradeRoomConsoleScript:
+	@ TODO unsupported: special Function1037c2
+	goto Johto_EventScript_Unimplemented

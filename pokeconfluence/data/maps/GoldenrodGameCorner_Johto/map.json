@@ -1,0 +1,430 @@
+{
+  "id": "MAP_JOHTO_GOLDENROD_GAME_CORNER",
+  "name": "GoldenrodGameCorner_Johto",
+  "layout": "LAYOUT_JOHTO_GOLDENROD_GAME_CORNER",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_GOLDENROD_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
+      "x": 3,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCoinVendorScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 16,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendorScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 18,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 8,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerPharmacistScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 11,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanM1Script_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+      "x": 14,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCooltrainerMScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 17,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanFScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
+      "x": 10,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCooltrainerFScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "x": 5,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerGentlemanScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 2,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanM2Script_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 17,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GoldenrodGameCorner_Johto_MoveTutorInsideScript_Entry",
+      "flag": "FLAG_JOHTO_GOLDENROD_GAME_CORNER_MOVE_TUTOR"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 2,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_CITY",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 3,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_GOLDENROD_CITY",
+      "dest_warp_id": "9"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_EAST",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerLuckySlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_WEST",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 12,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 12,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 12,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 12,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 12,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 12,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_EAST",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_WEST",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_EAST",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 12,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_WEST",
+      "script": "GoldenrodGameCorner_Johto_GoldenrodGameCornerLeftTheirDrinkScript_Entry"
+    }
+  ]
+}

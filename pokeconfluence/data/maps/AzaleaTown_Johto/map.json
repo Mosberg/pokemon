@@ -1,0 +1,350 @@
+{
+  "id": "MAP_JOHTO_AZALEA_TOWN",
+  "name": "AzaleaTown_Johto",
+  "layout": "LAYOUT_JOHTO_AZALEA_TOWN",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_AZALEA_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_ROUTE_34",
+      "offset": -36,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_33",
+      "offset": 0,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 31,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_AzaleaTownRocket1Script_Entry",
+      "flag": "FLAG_JOHTO_AZALEA_TOWN_SLOWPOKETAIL_ROCKET"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "x": 21,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_AzaleaTownGrampsScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "x": 15,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_AzaleaTownTeacherScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 7,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_AzaleaTownYoungsterScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 8,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_AzaleaTownSlowpokeScript_Entry",
+      "flag": "FLAG_JOHTO_AZALEA_TOWN_SLOWPOKES"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 18,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_AzaleaTownSlowpokeScript_Entry",
+      "flag": "FLAG_JOHTO_AZALEA_TOWN_SLOWPOKES"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 29,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_AzaleaTownSlowpokeScript_Entry",
+      "flag": "FLAG_JOHTO_AZALEA_TOWN_SLOWPOKES"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 15,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_AzaleaTownSlowpokeScript_Entry",
+      "flag": "FLAG_JOHTO_AZALEA_TOWN_SLOWPOKES"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 8,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_WhiteApricornTree_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 11,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Johto_EventScript_Stub",
+      "flag": "FLAG_JOHTO_RIVAL_AZALEA_TOWN"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 10,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_AzaleaTownRocket2Script_Entry",
+      "flag": "FLAG_JOHTO_SLOWPOKE_WELL_ROCKETS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 6,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "AzaleaTown_Johto_AzaleaTownKurtScript_Entry",
+      "flag": "FLAG_JOHTO_AZALEA_TOWN_KURT"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 15,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_AZALEA_POKECENTER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 21,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_CHARCOAL_KILN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 21,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_AZALEA_MART",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 9,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_KURTS_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_AZALEA_GYM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 31,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_SLOWPOKE_WELL_B1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 2,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ILEX_FOREST_AZALEA_GATE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 2,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ILEX_FOREST_AZALEA_GATE",
+      "dest_warp_id": "3"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_AZALEA_TOWN",
+      "var_value": "1",
+      "script": "AzaleaTown_Johto_AzaleaTownRivalBattleScene1_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_AZALEA_TOWN",
+      "var_value": "1",
+      "script": "AzaleaTown_Johto_AzaleaTownRivalBattleScene2_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_AZALEA_TOWN",
+      "var_value": "2",
+      "script": "AzaleaTown_Johto_AzaleaTownCelebiScene_Entry"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 19,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "AzaleaTown_Johto_AzaleaTownSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 10,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "AzaleaTown_Johto_KurtsHouseSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "AzaleaTown_Johto_AzaleaGymSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 29,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "AzaleaTown_Johto_SlowpokeWellSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 19,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "AzaleaTown_Johto_CharcoalKilnSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "AzaleaTown_Johto_AzaleaTownPokecenterSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "AzaleaTown_Johto_AzaleaTownMartSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "AzaleaTown_Johto_AzaleaTownIlextForestSign_Entry"
+    },
+    {
+      "type": "hidden_item",
+      "x": 31,
+      "y": 6,
+      "elevation": 3,
+      "item": "ITEM_FULL_HEAL",
+      "flag": "FLAG_JOHTO_AZALEA_TOWN_HIDDEN_FULL_HEAL",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "id": "MAP_JOHTO_VIRIDIAN_CITY",
+  "name": "ViridianCity_Johto",
+  "layout": "LAYOUT_JOHTO_VIRIDIAN_CITY",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_VIRIDIAN_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_ROUTE_2",
+      "offset": 10,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_1",
+      "offset": 20,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_22",
+      "offset": 8,
+      "direction": "left"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "x": 18,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ViridianCity_Johto_ViridianCityCoffeeGramps_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "x": 30,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ViridianCity_Johto_ViridianCityGrampsNearGym_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 6,
+      "y": 23,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ViridianCity_Johto_ViridianCityDreamEaterFisher_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 17,
+      "y": 21,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ViridianCity_Johto_ViridianCityYoungsterScript_Entry",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 32,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_VIRIDIAN_GYM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 21,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_VIRIDIAN_NICKNAME_SPEECH_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 23,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_TRAINER_HOUSE_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 29,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_VIRIDIAN_MART",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 23,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_VIRIDIAN_POKECENTER_1F",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 17,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ViridianCity_Johto_ViridianCitySign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 27,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ViridianCity_Johto_ViridianGymSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 19,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ViridianCity_Johto_ViridianCityWelcomeSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 21,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ViridianCity_Johto_TrainerHouseSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 24,
+      "y": 25,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ViridianCity_Johto_ViridianCityPokecenterSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 30,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ViridianCity_Johto_ViridianCityMartSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ViridianCity_Johto_CutTree0"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 22,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ViridianCity_Johto_CutTree1"
+    }
+  ]
+}

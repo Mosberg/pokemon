@@ -1,0 +1,11 @@
+GoldenrodDeptStoreElevator_Johto_MapScripts::
+	.byte 0
+
+GoldenrodDeptStoreElevator_Johto_GoldenrodDeptStoreElevatorScript_Entry::
+	lockall
+	goto GoldenrodDeptStoreElevator_Johto_GoldenrodDeptStoreElevatorScript
+
+
+GoldenrodDeptStoreElevator_Johto_GoldenrodDeptStoreElevatorScript:
+	@ TODO unsupported: elevator GoldenrodDeptStoreElevatorData
+	goto Johto_EventScript_Unimplemented

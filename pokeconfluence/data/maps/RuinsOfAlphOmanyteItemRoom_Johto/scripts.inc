@@ -1,0 +1,56 @@
+RuinsOfAlphOmanyteItemRoom_Johto_MapScripts::
+	.byte 0
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomMysteryberry_Entry::
+	lockall
+	goto RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomMysteryberry
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomMysticWater_Entry::
+	lockall
+	goto RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomMysticWater
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomStardust_Entry::
+	lockall
+	goto RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomStardust
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomStarPiece_Entry::
+	lockall
+	goto RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomStarPiece
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomAncientReplica_Entry::
+	lockall
+	goto RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomAncientReplica
+
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomMysteryberry:
+	finditem ITEM_LEPPA_BERRY
+	releaseall
+	end
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomMysticWater:
+	finditem ITEM_MYSTIC_WATER
+	releaseall
+	end
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomStardust:
+	finditem ITEM_STARDUST
+	releaseall
+	end
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomStarPiece:
+	finditem ITEM_STAR_PIECE
+	releaseall
+	end
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomAncientReplica:
+	message RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomAncientReplicaText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphOmanyteItemRoom_Johto_RuinsOfAlphOmanyteItemRoomAncientReplicaText:
+	.string "It's a replica of\n"
+	.string "an ancient POKé-\l"
+	.string "MON.$"

@@ -1,0 +1,20 @@
+CeruleanGymBadgeSpeechHouse_Johto_MapScripts::
+	.byte 0
+
+CeruleanGymBadgeSpeechHouse_Johto_CeruleanGymBadgeSpeechHousePokefanMScript_Entry::
+	lockall
+	goto CeruleanGymBadgeSpeechHouse_Johto_CeruleanGymBadgeSpeechHousePokefanMScript
+
+
+CeruleanGymBadgeSpeechHouse_Johto_CeruleanGymBadgeSpeechHousePokefanMScript:
+	faceplayer
+	message CeruleanGymBadgeSpeechHouse_Johto_CeruleanGymBadgeSpeechHousePokefanMText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+CeruleanGymBadgeSpeechHouse_Johto_CeruleanGymBadgeSpeechHousePokefanMText:
+	.string "Are you collecting\n"
+	.string "KANTO GYM BADGES?$"

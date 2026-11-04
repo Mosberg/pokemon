@@ -1,0 +1,91 @@
+{
+  "id": "MAP_JOHTO_ROUTE_32_RUINS_OF_ALPH_GATE",
+  "name": "Route32RuinsOfAlphGate_Johto",
+  "layout": "LAYOUT_JOHTO_ROUTE_32_RUINS_OF_ALPH_GATE",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_ROUTE_32",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 5,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route32RuinsOfAlphGate_Johto_Route32RuinsOfAlphGateOfficerScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 8,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route32RuinsOfAlphGate_Johto_Route32RuinsOfAlphGatePokefanMScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 1,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route32RuinsOfAlphGate_Johto_Route32RuinsOfAlphGateYoungsterScript_Entry",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 0,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_RUINS_OF_ALPH_OUTSIDE",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 0,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_RUINS_OF_ALPH_OUTSIDE",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 9,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_32",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 9,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_32",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

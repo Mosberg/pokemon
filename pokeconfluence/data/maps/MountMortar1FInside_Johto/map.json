@@ -1,0 +1,207 @@
+{
+  "id": "MAP_JOHTO_MOUNT_MORTAR_1F_INSIDE",
+  "name": "MountMortar1FInside_Johto",
+  "layout": "LAYOUT_JOHTO_MOUNT_MORTAR_1F_INSIDE",
+  "music": "MUS_ROUTE104",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_MT_MORTAR",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "x": 21,
+      "y": 43,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_StrengthBoulder",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 35,
+      "y": 38,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar1FInside_Johto_MountMortar1FInsideEscapeRope_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_1F_INSIDE_ESCAPE_ROPE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 16,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar1FInside_Johto_MountMortar1FInsideMaxRevive_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_1F_INSIDE_MAX_REVIVE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 10,
+      "y": 27,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar1FInside_Johto_MountMortar1FInsideHyperPotion_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_1F_INSIDE_HYPER_POTION"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 22,
+      "y": 20,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar1FInside_Johto_MountMortar1FInsideMaxPotion_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_1F_INSIDE_MAX_POTION"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 35,
+      "y": 19,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar1FInside_Johto_MountMortar1FInsideNugget_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_1F_INSIDE_NUGGET"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 33,
+      "y": 43,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "MountMortar1FInside_Johto_TrainerPokemaniacMiller",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 24,
+      "y": 28,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "MountMortar1FInside_Johto_TrainerSupernerdMarkus",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 8,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar1FInside_Johto_MountMortar1FInsideIron_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_1F_INSIDE_IRON"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 17,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MountMortar1FInside_Johto_MountMortar1FInsideUltraBall_Entry",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_1F_INSIDE_ULTRA_BALL"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 11,
+      "y": 47,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MOUNT_MORTAR_1F_OUTSIDE",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 29,
+      "y": 47,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MOUNT_MORTAR_1F_OUTSIDE",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 5,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MOUNT_MORTAR_1F_OUTSIDE",
+      "dest_warp_id": "7"
+    },
+    {
+      "x": 33,
+      "y": 41,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MOUNT_MORTAR_1F_OUTSIDE",
+      "dest_warp_id": "8"
+    },
+    {
+      "x": 3,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MOUNT_MORTAR_B1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MOUNT_MORTAR_2F_INSIDE",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 30,
+      "y": 11,
+      "elevation": 3,
+      "item": "ITEM_MAX_REPEL",
+      "flag": "FLAG_JOHTO_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
+}

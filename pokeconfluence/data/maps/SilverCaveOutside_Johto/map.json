@@ -1,0 +1,100 @@
+{
+  "id": "MAP_JOHTO_SILVER_CAVE_OUTSIDE",
+  "name": "SilverCaveOutside_Johto",
+  "layout": "LAYOUT_JOHTO_SILVER_CAVE_OUTSIDE",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_SILVER_CAVE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_ROUTE_28",
+      "offset": 18,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
+      "x": 24,
+      "y": 21,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "script": "Confluence_EventScript_ApexWarden",
+      "elevation": 3,
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 23,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_SILVER_CAVE_POKECENTER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 18,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_SILVER_CAVE_ROOM_1",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 24,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SilverCaveOutside_Johto_MtSilverPokecenterSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SilverCaveOutside_Johto_MtSilverSign_Entry"
+    },
+    {
+      "type": "hidden_item",
+      "x": 9,
+      "y": 25,
+      "elevation": 3,
+      "item": "ITEM_FULL_RESTORE",
+      "flag": "FLAG_JOHTO_SILVER_CAVE_OUTSIDE_HIDDEN_FULL_RESTORE",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "sign",
+      "x": 34,
+      "y": 23,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SilverCaveOutside_Johto_CutTree0"
+    },
+    {
+      "type": "sign",
+      "x": 31,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SilverCaveOutside_Johto_CutTree1"
+    }
+  ]
+}

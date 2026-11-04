@@ -1,0 +1,36 @@
+PewterNidoranSpeechHouse_Johto_MapScripts::
+	.byte 0
+
+PewterNidoranSpeechHouse_Johto_PewterNidoranSpeechHouseSuperNerdScript_Entry::
+	lockall
+	goto PewterNidoranSpeechHouse_Johto_PewterNidoranSpeechHouseSuperNerdScript
+
+PewterNidoranSpeechHouse_Johto_PewterNidoran_Entry::
+	lockall
+	goto PewterNidoranSpeechHouse_Johto_PewterNidoran
+
+
+PewterNidoranSpeechHouse_Johto_PewterNidoranSpeechHouseSuperNerdScript:
+	faceplayer
+	message PewterNidoranSpeechHouse_Johto_PewterNidoranSpeechHouseSuperNerdText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+PewterNidoranSpeechHouse_Johto_PewterNidoran:
+	message PewterNidoranSpeechHouse_Johto_PewterNidoranText
+	waitmessage
+	playmoncry SPECIES_NIDORAN_M, CRY_MODE_NORMAL
+	waitmoncry
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+PewterNidoranSpeechHouse_Johto_PewterNidoranSpeechHouseSuperNerdText:
+	.string "NIDORAN, shake!$"
+
+PewterNidoranSpeechHouse_Johto_PewterNidoranText:
+	.string "NIDORAN: Gau gau!$"

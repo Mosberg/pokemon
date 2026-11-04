@@ -1,0 +1,303 @@
+{
+  "id": "MAP_JOHTO_ECRUTEAK_CITY",
+  "name": "EcruteakCity_Johto",
+  "layout": "LAYOUT_JOHTO_ECRUTEAK_CITY",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_ECRUTEAK_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_ROUTE_37",
+      "offset": 10,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_38",
+      "offset": 10,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_42",
+      "offset": 18,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "x": 18,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EcruteakCity_Johto_EcruteakCityGramps1Script_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "x": 20,
+      "y": 21,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EcruteakCity_Johto_EcruteakCityGramps2Script_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "x": 21,
+      "y": 29,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 2,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EcruteakCity_Johto_EcruteakCityLass1Script_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "x": 3,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EcruteakCity_Johto_EcruteakCityLass2Script_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 9,
+      "y": 22,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EcruteakCity_Johto_EcruteakCityFisherScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 10,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EcruteakCity_Johto_EcruteakCityYoungsterScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "x": 3,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EcruteakCity_Johto_EcruteakCityGramps3Script_Entry",
+      "flag": "FLAG_JOHTO_ECRUTEAK_CITY_GRAMPS"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 35,
+      "y": 26,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_42_ECRUTEAK_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 35,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_42_ECRUTEAK_GATE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 18,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ECRUTEAK_TIN_TOWER_ENTRANCE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 20,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_WISE_TRIOS_ROOM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 20,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_WISE_TRIOS_ROOM",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 23,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ECRUTEAK_POKECENTER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 5,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ECRUTEAK_LUGIA_SPEECH_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 23,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_DANCE_THEATER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 29,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ECRUTEAK_MART",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 6,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ECRUTEAK_GYM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 13,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ECRUTEAK_ITEMFINDER_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 37,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_TIN_TOWER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 5,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_BURNED_TOWER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 0,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_38_ECRUTEAK_GATE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 0,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_38_ECRUTEAK_GATE",
+      "dest_warp_id": "3"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 15,
+      "y": 21,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "EcruteakCity_Johto_EcruteakCitySign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 38,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "EcruteakCity_Johto_TinTowerSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 28,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "EcruteakCity_Johto_EcruteakGymSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 21,
+      "y": 21,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "EcruteakCity_Johto_EcruteakDanceTheaterSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "EcruteakCity_Johto_BurnedTowerSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 24,
+      "y": 27,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "EcruteakCity_Johto_EcruteakCityPokecenterSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 30,
+      "y": 21,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "EcruteakCity_Johto_EcruteakCityMartSign_Entry"
+    },
+    {
+      "type": "hidden_item",
+      "x": 23,
+      "y": 14,
+      "elevation": 3,
+      "item": "ITEM_HYPER_POTION",
+      "flag": "FLAG_JOHTO_ECRUTEAK_CITY_HIDDEN_HYPER_POTION",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
+}

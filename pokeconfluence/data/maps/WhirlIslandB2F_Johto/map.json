@@ -1,0 +1,91 @@
+{
+  "id": "MAP_JOHTO_WHIRL_ISLAND_B2F",
+  "name": "WhirlIslandB2F_Johto",
+  "layout": "LAYOUT_JOHTO_WHIRL_ISLAND_B2F",
+  "music": "MUS_ROUTE104",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_WHIRL_ISLANDS",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 10,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "WhirlIslandB2F_Johto_WhirlIslandB2FFullRestore_Entry",
+      "flag": "FLAG_JOHTO_WHIRL_ISLAND_B2F_FULL_RESTORE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 6,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "WhirlIslandB2F_Johto_WhirlIslandB2FMaxRevive_Entry",
+      "flag": "FLAG_JOHTO_WHIRL_ISLAND_B2F_MAX_REVIVE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 5,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "WhirlIslandB2F_Johto_WhirlIslandB2FMaxElixer_Entry",
+      "flag": "FLAG_JOHTO_WHIRL_ISLAND_B2F_MAX_ELIXER"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 11,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_WHIRL_ISLAND_B1F",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 7,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_WHIRL_ISLAND_B1F",
+      "dest_warp_id": "7"
+    },
+    {
+      "x": 7,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_WHIRL_ISLAND_LUGIA_CHAMBER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 13,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_WHIRL_ISLAND_SW",
+      "dest_warp_id": "4"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

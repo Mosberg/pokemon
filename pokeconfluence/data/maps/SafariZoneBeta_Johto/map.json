@@ -1,0 +1,37 @@
+{
+  "id": "MAP_JOHTO_SAFARI_ZONE_BETA",
+  "name": "SafariZoneBeta_Johto",
+  "layout": "LAYOUT_JOHTO_SAFARI_ZONE_BETA",
+  "music": "MUS_ROUTE104",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_FUCHSIA_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 9,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_SAFARI_ZONE_FUCHSIA_GATE_BETA",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_SAFARI_ZONE_FUCHSIA_GATE_BETA",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

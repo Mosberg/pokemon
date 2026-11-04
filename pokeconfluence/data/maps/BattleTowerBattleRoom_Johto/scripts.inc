@@ -1,0 +1,17 @@
+BattleTowerBattleRoom_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleTowerBattleRoom_Johto_OnFrame
+	.byte 0
+
+BattleTowerBattleRoom_Johto_OnFrame:
+	map_script_2 VAR_JOHTO_SCENE_BATTLE_TOWER_BATTLE_ROOM, 0, BattleTowerBattleRoom_Johto_BattleTowerBattleRoomEnterScene_Entry
+	.2byte 0
+
+BattleTowerBattleRoom_Johto_BattleTowerBattleRoomEnterScene_Entry::
+	lockall
+	goto BattleTowerBattleRoom_Johto_BattleTowerBattleRoomEnterScene
+
+
+BattleTowerBattleRoom_Johto_BattleTowerBattleRoomEnterScene:
+	removeobject 1
+	@ TODO unsupported: sdefer Script_BattleRoom
+	goto Johto_EventScript_Unimplemented

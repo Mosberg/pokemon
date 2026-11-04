@@ -1,0 +1,150 @@
+{
+  "id": "MAP_JOHTO_OLIVINE_PORT",
+  "name": "OlivinePort_Johto",
+  "layout": "LAYOUT_JOHTO_OLIVINE_PORT",
+  "music": "MUS_ROUTE101",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_OLIVINE_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 7,
+      "y": 23,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivinePort_Johto_OlivinePortSailorAtGangwayScript_Entry",
+      "flag": "FLAG_JOHTO_OLIVINE_PORT_SAILOR_AT_GANGWAY"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 7,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivinePort_Johto_OlivinePortSailorBeforeHOFScript_Entry",
+      "flag": "FLAG_JOHTO_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 6,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivinePort_Johto_OlivinePortSailorAfterHOFScript_Entry",
+      "flag": "FLAG_JOHTO_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 4,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivinePort_Johto_OlivinePortFishingGuru1Script_Entry",
+      "flag": "FLAG_JOHTO_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 13,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivinePort_Johto_OlivinePortFishingGuru2Script_Entry",
+      "flag": "FLAG_JOHTO_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 4,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivinePort_Johto_OlivinePortYoungsterScript_Entry",
+      "flag": "FLAG_JOHTO_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
+      "x": 11,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OlivinePort_Johto_OlivinePortCooltrainerFScript_Entry",
+      "flag": "FLAG_JOHTO_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 11,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_OLIVINE_PORT_PASSAGE",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 7,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_OLIVINE_PORT",
+      "var_value": "0",
+      "script": "OlivinePort_Johto_OlivinePortWalkUpToShipScript_Entry"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 1,
+      "y": 22,
+      "elevation": 3,
+      "item": "ITEM_PROTEIN",
+      "flag": "FLAG_JOHTO_OLIVINE_PORT_HIDDEN_PROTEIN",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+GoldenrodNameRater_Johto_MapScripts::
+	.byte 0
+
+GoldenrodNameRater_Johto_GoldenrodNameRater_Entry::
+	lockall
+	goto GoldenrodNameRater_Johto_GoldenrodNameRater
+
+GoldenrodNameRater_Johto_GoldenrodNameRaterBookshelf_Entry::
+	lockall
+	goto GoldenrodNameRater_Johto_GoldenrodNameRaterBookshelf
+
+GoldenrodNameRater_Johto_GoldenrodNameRaterRadio_Entry::
+	lockall
+	goto GoldenrodNameRater_Johto_GoldenrodNameRaterRadio
+
+
+GoldenrodNameRater_Johto_GoldenrodNameRater:
+	faceplayer
+	@ TODO unsupported: special NameRater
+	goto Johto_EventScript_Unimplemented
+
+GoldenrodNameRater_Johto_GoldenrodNameRaterBookshelf:
+	goto Johto_Std_DifficultBookshelfScript
+
+GoldenrodNameRater_Johto_GoldenrodNameRaterRadio:
+	goto Johto_Std_Radio2Script

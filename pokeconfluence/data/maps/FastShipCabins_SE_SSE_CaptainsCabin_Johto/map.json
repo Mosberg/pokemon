@@ -1,0 +1,218 @@
+{
+  "id": "MAP_JOHTO_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN",
+  "name": "FastShipCabins_SE_SSE_CaptainsCabin_Johto",
+  "layout": "LAYOUT_JOHTO_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_FAST_SHIP",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 3,
+      "y": 25,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaCaptain_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "x": 2,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGrandpa_Entry",
+      "flag": "FLAG_JOHTO_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 3,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGranddaughterAfter_Entry",
+      "flag": "FLAG_JOHTO_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 2,
+      "y": 25,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGranddaughterBefore_Entry",
+      "flag": "FLAG_JOHTO_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 5,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "5",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_TrainerPokefanmColin",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 2,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_TrainerTwinsMegandpeg1",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 3,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_TrainerTwinsMegandpeg2",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 5,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "5",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_TrainerPsychicRodney",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 2,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_TrainerPokefanmJeremy",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 5,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_TrainerPokefanfGeorgia",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "x": 1,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_TrainerSupernerdShawn",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 2,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "7"
+    },
+    {
+      "x": 3,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "7"
+    },
+    {
+      "x": 2,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "8"
+    },
+    {
+      "x": 3,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "8"
+    },
+    {
+      "x": 2,
+      "y": 33,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "9"
+    },
+    {
+      "x": 3,
+      "y": 33,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "9"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 25,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FastShipCabins_SE_SSE_CaptainsCabin_Johto_FastShipCaptainsCabinTrashcan_Entry"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "id": "MAP_JOHTO_FAST_SHIP_CABINS_SW_SSW_NW",
+  "name": "FastShipCabins_SW_SSW_NW_Johto",
+  "layout": "LAYOUT_JOHTO_FAST_SHIP_CABINS_SW_SSW_NW",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_FAST_SHIP",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 1,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "FastShipCabins_SW_SSW_NW_Johto_TrainerFirebreatherLyle",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
+      "x": 6,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "FastShipCabins_SW_SSW_NW_Johto_TrainerBugCatcherKen",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+      "x": 1,
+      "y": 26,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "FastShipCabins_SW_SSW_NW_Johto_TrainerBeautyCassie",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 3,
+      "y": 28,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "FastShipCabins_SW_SSW_NW_Johto_TrainerGuitaristClyde",
+      "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 2,
+      "y": 0,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 2,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 3,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 2,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 3,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FAST_SHIP_1F",
+      "dest_warp_id": "6"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FastShipCabins_SW_SSW_NW_Johto_FastShipBed_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FastShipCabins_SW_SSW_NW_Johto_FastShipBed_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FastShipCabins_SW_SSW_NW_Johto_FastShipCabinsNorthwestCabinTrashcan_Entry"
+    }
+  ]
+}

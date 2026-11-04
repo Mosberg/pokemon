@@ -1,0 +1,44 @@
+WhirlIslandLugiaChamber_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, WhirlIslandLugiaChamber_Johto_OnTransition
+	.byte 0
+
+WhirlIslandLugiaChamber_Johto_OnTransition:
+	call WhirlIslandLugiaChamber_Johto_WhirlIslandLugiaChamberLugiaCallback_Cb
+	end
+
+WhirlIslandLugiaChamber_Johto_Lugia_Entry::
+	lockall
+	goto WhirlIslandLugiaChamber_Johto_Lugia
+
+
+WhirlIslandLugiaChamber_Johto_Lugia:
+	faceplayer
+	message WhirlIslandLugiaChamber_Johto_LugiaText
+	waitmessage
+	playmoncry SPECIES_LUGIA, CRY_MODE_NORMAL
+	waitmoncry
+	delay 15
+	closemessage
+	setflag FLAG_JOHTO_FOUGHT_LUGIA
+	setwildbattle SPECIES_LUGIA, 60
+	dowildbattle
+	removeobject 1
+	releaseall
+	end
+
+WhirlIslandLugiaChamber_Johto_WhirlIslandLugiaChamberLugiaCallback_Cb:
+	goto_if_set FLAG_JOHTO_FOUGHT_LUGIA, WhirlIslandLugiaChamber_Johto_WhirlIslandLugiaChamberLugiaCallback_NoAppear_Cb
+	checkitem ITEM_SILVER_WING, 1
+	goto_if_ne VAR_RESULT, 0, WhirlIslandLugiaChamber_Johto_WhirlIslandLugiaChamberLugiaCallback_Appear_Cb
+	goto WhirlIslandLugiaChamber_Johto_WhirlIslandLugiaChamberLugiaCallback_NoAppear_Cb
+
+WhirlIslandLugiaChamber_Johto_WhirlIslandLugiaChamberLugiaCallback_Appear_Cb:
+	clearflag FLAG_JOHTO_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA
+	return
+
+WhirlIslandLugiaChamber_Johto_WhirlIslandLugiaChamberLugiaCallback_NoAppear_Cb:
+	setflag FLAG_JOHTO_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA
+	return
+
+WhirlIslandLugiaChamber_Johto_LugiaText:
+	.string "Gyaaas!$"

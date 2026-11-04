@@ -1,0 +1,78 @@
+{
+  "id": "MAP_JOHTO_ILEX_FOREST_AZALEA_GATE",
+  "name": "IlexForestAzaleaGate_Johto",
+  "layout": "LAYOUT_JOHTO_ILEX_FOREST_AZALEA_GATE",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_ROUTE_34",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 5,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "IlexForestAzaleaGate_Johto_IlexForestAzaleaGateOfficerScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
+      "x": 1,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "IlexForestAzaleaGate_Johto_IlexForestAzaleaGateGrannyScript_Entry",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 0,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ILEX_FOREST",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 0,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ILEX_FOREST",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 9,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_AZALEA_TOWN",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 9,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_AZALEA_TOWN",
+      "dest_warp_id": "7"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

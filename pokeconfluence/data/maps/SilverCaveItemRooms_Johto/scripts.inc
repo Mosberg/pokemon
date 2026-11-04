@@ -1,0 +1,21 @@
+SilverCaveItemRooms_Johto_MapScripts::
+	.byte 0
+
+SilverCaveItemRooms_Johto_SilverCaveItemRoomsMaxRevive_Entry::
+	lockall
+	goto SilverCaveItemRooms_Johto_SilverCaveItemRoomsMaxRevive
+
+SilverCaveItemRooms_Johto_SilverCaveItemRoomsFullRestore_Entry::
+	lockall
+	goto SilverCaveItemRooms_Johto_SilverCaveItemRoomsFullRestore
+
+
+SilverCaveItemRooms_Johto_SilverCaveItemRoomsMaxRevive:
+	finditem ITEM_MAX_REVIVE
+	releaseall
+	end
+
+SilverCaveItemRooms_Johto_SilverCaveItemRoomsFullRestore:
+	finditem ITEM_FULL_RESTORE
+	releaseall
+	end

@@ -1,0 +1,179 @@
+{
+  "id": "MAP_JOHTO_MAHOGANY_TOWN",
+  "name": "MahoganyTown_Johto",
+  "layout": "LAYOUT_JOHTO_MAHOGANY_TOWN",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_MAHOGANY_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_ROUTE_43",
+      "offset": 0,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_42",
+      "offset": 0,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_44",
+      "offset": 0,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 19,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MahoganyTown_Johto_MahoganyTownPokefanMScript_Entry",
+      "flag": "FLAG_JOHTO_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "x": 6,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MahoganyTown_Johto_MahoganyTownGrampsScript_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 6,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MahoganyTown_Johto_MahoganyTownFisherScript_Entry",
+      "flag": "FLAG_JOHTO_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "x": 12,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MahoganyTown_Johto_MahoganyTownLassScript_Entry",
+      "flag": "FLAG_JOHTO_MAHOGANY_MART_OWNERS"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 11,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MAHOGANY_MART_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MAHOGANY_RED_GYARADOS_SPEECH_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 6,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MAHOGANY_GYM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 15,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_MAHOGANY_POKECENTER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_43_MAHOGANY_GATE",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_MAHOGANY_TOWN",
+      "var_value": "0",
+      "script": "MahoganyTown_Johto_MahoganyTownTryARageCandyBarScript_Entry"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_JOHTO_SCENE_MAHOGANY_TOWN",
+      "var_value": "0",
+      "script": "MahoganyTown_Johto_MahoganyTownTryARageCandyBarScript_Entry"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 1,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "MahoganyTown_Johto_MahoganyTownSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "MahoganyTown_Johto_MahoganyTownRagecandybarSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "MahoganyTown_Johto_MahoganyGymSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "MahoganyTown_Johto_MahoganyTownPokecenterSign_Entry"
+    }
+  ]
+}

@@ -1,0 +1,6513 @@
+[
+ {
+  "name": "OlivinePokecenter1F_Johto",
+  "group": 75,
+  "num": 0,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   75,
+   0
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3179,
+  "md5": "5ffc1da903bcc46c960aa4fe950b0447"
+ },
+ {
+  "name": "OlivineGym_Johto",
+  "group": 75,
+  "num": 1,
+  "x": 4,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   4,
+   15,
+   75,
+   1
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4000,
+  "md5": "da307a8693e7abcf983a018abb659e7d"
+ },
+ {
+  "name": "OlivineTimsHouse_Johto",
+  "group": 75,
+  "num": 2,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   75,
+   2
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3124,
+  "md5": "9edb167f156867a51b17d8950006dc93"
+ },
+ {
+  "name": "OlivineHouseBeta_Johto",
+  "group": 75,
+  "num": 3,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   75,
+   3
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3444,
+  "md5": "676665942751883d0508f48f13628a4d"
+ },
+ {
+  "name": "OlivinePunishmentSpeechHouse_Johto",
+  "group": 75,
+  "num": 4,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   75,
+   4
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3277,
+  "md5": "a59412c7a1b7da29feb9c4468a57bde0"
+ },
+ {
+  "name": "OlivineGoodRodHouse_Johto",
+  "group": 75,
+  "num": 5,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   75,
+   5
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3156,
+  "md5": "ac817b816f3c9280be5959dfabef091c"
+ },
+ {
+  "name": "OlivineCafe_Johto",
+  "group": 75,
+  "num": 6,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   75,
+   6
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3614,
+  "md5": "25bec37186c4e99def06c6475f28e837"
+ },
+ {
+  "name": "OlivineMart_Johto",
+  "group": 75,
+  "num": 7,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   75,
+   7
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3470,
+  "md5": "cbe050b0bbc51a8307c33e0e1fe1496d"
+ },
+ {
+  "name": "Route38EcruteakGate_Johto",
+  "group": 75,
+  "num": 8,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   75,
+   8
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3447,
+  "md5": "6a7381d2c73c5f2ee8ab990c5fb68831"
+ },
+ {
+  "name": "Route39Barn_Johto",
+  "group": 75,
+  "num": 9,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   75,
+   9
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2981,
+  "md5": "a8823dec39de62bf3436089b385eaf7c"
+ },
+ {
+  "name": "Route39Farmhouse_Johto",
+  "group": 75,
+  "num": 10,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   75,
+   10
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3204,
+  "md5": "f7fe700c3f3547d27ed871ec34bf58dc"
+ },
+ {
+  "name": "Route38_Johto",
+  "group": 75,
+  "num": 11,
+  "x": 35,
+  "y": 8,
+  "status": "ok",
+  "at": [
+   35,
+   8,
+   75,
+   11
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4891,
+  "md5": "4ae2ab479f20d54fb9b5a5cc646d3d3b"
+ },
+ {
+  "name": "Route39_Johto",
+  "group": 75,
+  "num": 12,
+  "x": 1,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   1,
+   4,
+   75,
+   12
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4133,
+  "md5": "997cf65796162420aded544fb13a7978"
+ },
+ {
+  "name": "OlivineCity_Johto",
+  "group": 75,
+  "num": 13,
+  "x": 13,
+  "y": 21,
+  "status": "ok",
+  "at": [
+   13,
+   22,
+   75,
+   13
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4210,
+  "md5": "ef4016acfac4d4facc4b7f1051e55bee"
+ },
+ {
+  "name": "MahoganyRedGyaradosSpeechHouse_Johto",
+  "group": 75,
+  "num": 14,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   75,
+   14
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3468,
+  "md5": "758d000e7ee8be4b93ca7845427acdc2"
+ },
+ {
+  "name": "MahoganyGym_Johto",
+  "group": 75,
+  "num": 15,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   17,
+   75,
+   15
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4267,
+  "md5": "ae04303e86f2e495305ced31103d210b"
+ },
+ {
+  "name": "MahoganyPokecenter1F_Johto",
+  "group": 75,
+  "num": 16,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   75,
+   16
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3012,
+  "md5": "459d660897db5d6b8992218caf8b34b0"
+ },
+ {
+  "name": "Route42EcruteakGate_Johto",
+  "group": 75,
+  "num": 17,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   75,
+   17
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3452,
+  "md5": "7ec2b15e6e1ba7d75d0c25257c1ea36c"
+ },
+ {
+  "name": "Route42_Johto",
+  "group": 75,
+  "num": 18,
+  "x": 0,
+  "y": 8,
+  "status": "ok",
+  "at": [
+   0,
+   8,
+   75,
+   18
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5154,
+  "md5": "415a2b09eaad056e5c89d1ef6ebbd273"
+ },
+ {
+  "name": "Route44_Johto",
+  "group": 75,
+  "num": 19,
+  "x": 56,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   56,
+   8,
+   75,
+   19
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4894,
+  "md5": "4194417e776b0f989e809577b50e58de"
+ },
+ {
+  "name": "MahoganyTown_Johto",
+  "group": 75,
+  "num": 20,
+  "x": 11,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   11,
+   8,
+   75,
+   20
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5085,
+  "md5": "9c6a36ca027d4c12ac0fc64189752302"
+ },
+ {
+  "name": "SproutTower1F_Johto",
+  "group": 75,
+  "num": 21,
+  "x": 9,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   9,
+   15,
+   75,
+   21
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3101,
+  "md5": "633bb8f9f9568731de798c890f02e3e3"
+ },
+ {
+  "name": "SproutTower2F_Johto",
+  "group": 75,
+  "num": 22,
+  "x": 6,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   6,
+   4,
+   75,
+   22
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4260,
+  "md5": "bc4d58ac9e2ad792f71ebcabefc6787f"
+ },
+ {
+  "name": "SproutTower3F_Johto",
+  "group": 75,
+  "num": 23,
+  "x": 10,
+  "y": 14,
+  "status": "ok",
+  "at": [
+   10,
+   14,
+   75,
+   23
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3942,
+  "md5": "b1a6a18d9bed74d6df08a30ba0d74a6d"
+ },
+ {
+  "name": "TinTower1F_Johto",
+  "group": 75,
+  "num": 24,
+  "x": 9,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   9,
+   14,
+   75,
+   24
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2819,
+  "md5": "8cabce35a7d48233cff1ee2067064155"
+ },
+ {
+  "name": "TinTower2F_Johto",
+  "group": 75,
+  "num": 25,
+  "x": 10,
+  "y": 14,
+  "status": "ok",
+  "at": [
+   10,
+   14,
+   75,
+   25
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3206,
+  "md5": "3a4da34d1131b097a6c403a041757028"
+ },
+ {
+  "name": "TinTower3F_Johto",
+  "group": 75,
+  "num": 26,
+  "x": 10,
+  "y": 14,
+  "status": "ok",
+  "at": [
+   10,
+   14,
+   75,
+   26
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2728,
+  "md5": "43421d311b39f9d8f271a81c82a17b44"
+ },
+ {
+  "name": "TinTower4F_Johto",
+  "group": 75,
+  "num": 27,
+  "x": 2,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   2,
+   4,
+   75,
+   27
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3628,
+  "md5": "96d1311663cfc811ddc3dd6ad2158f73"
+ },
+ {
+  "name": "TinTower5F_Johto",
+  "group": 75,
+  "num": 28,
+  "x": 11,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   11,
+   15,
+   75,
+   28
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2973,
+  "md5": "78af47f3bffa79e63454d3ce65df11bc"
+ },
+ {
+  "name": "TinTower6F_Johto",
+  "group": 75,
+  "num": 29,
+  "x": 3,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   3,
+   9,
+   75,
+   29
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3495,
+  "md5": "d27eadee786490cb201f01bb44d98b46"
+ },
+ {
+  "name": "TinTower7F_Johto",
+  "group": 75,
+  "num": 30,
+  "x": 3,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   3,
+   9,
+   75,
+   30
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3607,
+  "md5": "d8efbd64ee8b3fa5910cd85231fcc60e"
+ },
+ {
+  "name": "TinTower8F_Johto",
+  "group": 75,
+  "num": 31,
+  "x": 2,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   2,
+   6,
+   75,
+   31
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3524,
+  "md5": "e9cd18ebadaf51627313549c4c75191f"
+ },
+ {
+  "name": "TinTower9F_Johto",
+  "group": 75,
+  "num": 32,
+  "x": 12,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   12,
+   4,
+   75,
+   32
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4181,
+  "md5": "0861a6481b46029cb4a35ba9abb07cac"
+ },
+ {
+  "name": "BurnedTower1F_Johto",
+  "group": 75,
+  "num": 33,
+  "x": 9,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   9,
+   15,
+   75,
+   33
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2984,
+  "md5": "13768a86cde2b506b3905b4e9aa1b496"
+ },
+ {
+  "name": "BurnedTowerB1F_Johto",
+  "group": 75,
+  "num": 34,
+  "x": 10,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   10,
+   9,
+   75,
+   34
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 6801,
+  "md5": "a1dbd840cacacf7eb251d2dde7a608e7"
+ },
+ {
+  "name": "NationalPark_Johto",
+  "group": 75,
+  "num": 35,
+  "x": 33,
+  "y": 18,
+  "status": "ok",
+  "at": [
+   33,
+   18,
+   75,
+   35
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5620,
+  "md5": "4e4059aa2e34f4858b1a68e75ced1489"
+ },
+ {
+  "name": "NationalParkBugContest_Johto",
+  "group": 75,
+  "num": 36,
+  "x": 33,
+  "y": 18,
+  "status": "ok",
+  "at": [
+   33,
+   18,
+   75,
+   36
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5495,
+  "md5": "eed95ff78026efcdd71232f88cc05787"
+ },
+ {
+  "name": "RuinsOfAlphOutside_Johto",
+  "group": 75,
+  "num": 37,
+  "x": 2,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   2,
+   18,
+   75,
+   37
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 6145,
+  "md5": "8aabceb150afcfaa265edc84b7b1ed89"
+ },
+ {
+  "name": "RuinsOfAlphHoOhChamber_Johto",
+  "group": 75,
+  "num": 38,
+  "x": 3,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   3,
+   9,
+   75,
+   38
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 1978,
+  "md5": "38e9c76a779468899748f705d943bc34"
+ },
+ {
+  "name": "RuinsOfAlphKabutoChamber_Johto",
+  "group": 75,
+  "num": 39,
+  "x": 3,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   3,
+   9,
+   75,
+   39
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2021,
+  "md5": "61b9f86e198800b33d765bd380bd8493"
+ },
+ {
+  "name": "RuinsOfAlphOmanyteChamber_Johto",
+  "group": 75,
+  "num": 40,
+  "x": 3,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   3,
+   9,
+   75,
+   40
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 1978,
+  "md5": "38e9c76a779468899748f705d943bc34"
+ },
+ {
+  "name": "RuinsOfAlphAerodactylChamber_Johto",
+  "group": 75,
+  "num": 41,
+  "x": 3,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   3,
+   9,
+   75,
+   41
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 1793,
+  "md5": "5bd1589579e7e8773a737fa6021ad3dd"
+ },
+ {
+  "name": "RuinsOfAlphInnerChamber_Johto",
+  "group": 75,
+  "num": 42,
+  "x": 10,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   10,
+   13,
+   75,
+   42
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3784,
+  "md5": "270a1ab4d9f1389b778d56c4958d5018"
+ },
+ {
+  "name": "RuinsOfAlphResearchCenter_Johto",
+  "group": 75,
+  "num": 43,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   75,
+   43
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3421,
+  "md5": "4d37955333bdd7ea7c0a4b60a8b96611"
+ },
+ {
+  "name": "RuinsOfAlphHoOhItemRoom_Johto",
+  "group": 75,
+  "num": 44,
+  "x": 3,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   3,
+   9,
+   75,
+   44
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2755,
+  "md5": "a57976f138ed28d004d38f6fb5ee12d6"
+ },
+ {
+  "name": "RuinsOfAlphKabutoItemRoom_Johto",
+  "group": 75,
+  "num": 45,
+  "x": 3,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   3,
+   9,
+   75,
+   45
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2761,
+  "md5": "1ad17c32c332135f31dabe7cafbdf199"
+ },
+ {
+  "name": "RuinsOfAlphOmanyteItemRoom_Johto",
+  "group": 75,
+  "num": 46,
+  "x": 3,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   3,
+   9,
+   75,
+   46
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2761,
+  "md5": "1ad17c32c332135f31dabe7cafbdf199"
+ },
+ {
+  "name": "RuinsOfAlphAerodactylItemRoom_Johto",
+  "group": 75,
+  "num": 47,
+  "x": 3,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   3,
+   9,
+   75,
+   47
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2755,
+  "md5": "a57976f138ed28d004d38f6fb5ee12d6"
+ },
+ {
+  "name": "RuinsOfAlphHoOhWordRoom_Johto",
+  "group": 75,
+  "num": 48,
+  "x": 9,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   9,
+   9,
+   75,
+   48
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4685,
+  "md5": "1ec42e6932420aeaae4902bbd2ce59cb"
+ },
+ {
+  "name": "RuinsOfAlphKabutoWordRoom_Johto",
+  "group": 75,
+  "num": 49,
+  "x": 9,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   9,
+   5,
+   75,
+   49
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4151,
+  "md5": "7984c4f213d20a64c56f7fb063ee5558"
+ },
+ {
+  "name": "RuinsOfAlphOmanyteWordRoom_Johto",
+  "group": 75,
+  "num": 50,
+  "x": 9,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   9,
+   7,
+   75,
+   50
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4594,
+  "md5": "e2bdf336a3eceef5571ef487042e6877"
+ },
+ {
+  "name": "RuinsOfAlphAerodactylWordRoom_Johto",
+  "group": 75,
+  "num": 51,
+  "x": 9,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   9,
+   5,
+   75,
+   51
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4261,
+  "md5": "d6e0d597b7c6be6621e7a1c25f66779f"
+ },
+ {
+  "name": "UnionCave1F_Johto",
+  "group": 75,
+  "num": 52,
+  "x": 5,
+  "y": 19,
+  "status": "ok",
+  "at": [
+   5,
+   19,
+   75,
+   52
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5661,
+  "md5": "af0511cee44a6d7b8119a217afce27cc"
+ },
+ {
+  "name": "UnionCaveB1F_Johto",
+  "group": 75,
+  "num": 53,
+  "x": 3,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   3,
+   3,
+   75,
+   53
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4511,
+  "md5": "76540c2f8cf918eb995800f141623cd8"
+ },
+ {
+  "name": "UnionCaveB2F_Johto",
+  "group": 75,
+  "num": 54,
+  "x": 5,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   5,
+   3,
+   75,
+   54
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4700,
+  "md5": "bb7fc241a2a792197d0cbd919955de27"
+ },
+ {
+  "name": "SlowpokeWellB1F_Johto",
+  "group": 75,
+  "num": 55,
+  "x": 17,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   17,
+   15,
+   75,
+   55
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3143,
+  "md5": "294eb95c06bd35e8d3670b1abb4be8db"
+ },
+ {
+  "name": "SlowpokeWellB2F_Johto",
+  "group": 75,
+  "num": 56,
+  "x": 9,
+  "y": 11,
+  "status": "ok",
+  "at": [
+   9,
+   11,
+   75,
+   56
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4396,
+  "md5": "94fa692172cb3720891439257b7cf079"
+ },
+ {
+  "name": "OlivineLighthouse1F_Johto",
+  "group": 75,
+  "num": 57,
+  "x": 10,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   10,
+   17,
+   75,
+   57
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3237,
+  "md5": "04185fc22c6ba430541a8ce2ec82c257"
+ },
+ {
+  "name": "OlivineLighthouse2F_Johto",
+  "group": 75,
+  "num": 58,
+  "x": 3,
+  "y": 11,
+  "status": "ok",
+  "at": [
+   3,
+   11,
+   75,
+   58
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3581,
+  "md5": "318dad3491c195a897f6a930012302c0"
+ },
+ {
+  "name": "OlivineLighthouse3F_Johto",
+  "group": 75,
+  "num": 59,
+  "x": 13,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   13,
+   3,
+   75,
+   59
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4852,
+  "md5": "afd31a268e5757424928354a7f8f438c"
+ },
+ {
+  "name": "OlivineLighthouse4F_Johto",
+  "group": 75,
+  "num": 60,
+  "x": 13,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   13,
+   3,
+   75,
+   60
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4465,
+  "md5": "54dd1a698db76f86f27e2a096abd3374"
+ },
+ {
+  "name": "OlivineLighthouse5F_Johto",
+  "group": 75,
+  "num": 61,
+  "x": 9,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   9,
+   15,
+   75,
+   61
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3872,
+  "md5": "6289fdc151c82115a3f0791c15da7dc1"
+ },
+ {
+  "name": "OlivineLighthouse6F_Johto",
+  "group": 75,
+  "num": 62,
+  "x": 9,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   9,
+   15,
+   75,
+   62
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3465,
+  "md5": "b75cf085163a4142757238f909633766"
+ },
+ {
+  "name": "MahoganyMart1F_Johto",
+  "group": 75,
+  "num": 63,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   75,
+   63
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3385,
+  "md5": "7a83ca491944a892c7ebae891a9df0ee"
+ },
+ {
+  "name": "TeamRocketBaseB1F_Johto",
+  "group": 75,
+  "num": 64,
+  "x": 27,
+  "y": 2,
+  "status": "ok",
+  "at": [
+   27,
+   2,
+   75,
+   64
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3395,
+  "md5": "acc40ee612f5a7679e1b6fb1502459d3"
+ },
+ {
+  "name": "TeamRocketBaseB2F_Johto",
+  "group": 75,
+  "num": 65,
+  "x": 3,
+  "y": 14,
+  "status": "ok",
+  "at": [
+   3,
+   14,
+   75,
+   65
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3041,
+  "md5": "70e5a818f14b8afc0a89a1ad075c4b88"
+ },
+ {
+  "name": "TeamRocketBaseB3F_Johto",
+  "group": 75,
+  "num": 66,
+  "x": 3,
+  "y": 2,
+  "status": "ok",
+  "at": [
+   3,
+   2,
+   75,
+   66
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2910,
+  "md5": "d836f2f1c758fd1988ac6e72cc146816"
+ },
+ {
+  "name": "IlexForest_Johto",
+  "group": 75,
+  "num": 67,
+  "x": 1,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   1,
+   6,
+   75,
+   67
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4673,
+  "md5": "d2f0ce11174e770fb48bab399b8f483b"
+ },
+ {
+  "name": "GoldenrodUnderground_Johto",
+  "group": 75,
+  "num": 68,
+  "x": 3,
+  "y": 2,
+  "status": "ok",
+  "at": [
+   3,
+   2,
+   75,
+   68
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3127,
+  "md5": "16a4d01809e72d6a663f87795c590a5c"
+ },
+ {
+  "name": "GoldenrodUndergroundSwitchRoomEntrances_Johto",
+  "group": 75,
+  "num": 69,
+  "x": 23,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   23,
+   3,
+   75,
+   69
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3133,
+  "md5": "4f11b477713ad9e0f962979ba9f6f8c9"
+ },
+ {
+  "name": "GoldenrodDeptStoreB1F_Johto",
+  "group": 75,
+  "num": 70,
+  "x": 17,
+  "y": 2,
+  "status": "ok",
+  "at": [
+   17,
+   2,
+   75,
+   70
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3077,
+  "md5": "f307d0fd3d4403b835b0666ccb875141"
+ },
+ {
+  "name": "GoldenrodUndergroundWarehouse_Johto",
+  "group": 75,
+  "num": 71,
+  "x": 2,
+  "y": 12,
+  "status": "ok",
+  "at": [
+   2,
+   12,
+   75,
+   71
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3008,
+  "md5": "69b8c6f48709189805d43a21ae7f726c"
+ },
+ {
+  "name": "MountMortar1FOutside_Johto",
+  "group": 75,
+  "num": 72,
+  "x": 3,
+  "y": 33,
+  "status": "ok",
+  "at": [
+   3,
+   33,
+   75,
+   72
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3923,
+  "md5": "6ef4f0efeb9d006ec6f205510b3f6400"
+ },
+ {
+  "name": "MountMortar1FInside_Johto",
+  "group": 75,
+  "num": 73,
+  "x": 11,
+  "y": 47,
+  "status": "ok",
+  "at": [
+   11,
+   47,
+   75,
+   73
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3594,
+  "md5": "7012dbd3b176c62852af17f7477c3829"
+ },
+ {
+  "name": "MountMortar2FInside_Johto",
+  "group": 75,
+  "num": 74,
+  "x": 17,
+  "y": 33,
+  "status": "ok",
+  "at": [
+   17,
+   33,
+   75,
+   74
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3398,
+  "md5": "62a49e3c9117dd6ab3f846051c4f275e"
+ },
+ {
+  "name": "MountMortarB1F_Johto",
+  "group": 75,
+  "num": 75,
+  "x": 3,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   3,
+   3,
+   75,
+   75
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4340,
+  "md5": "456cbdd881c9b29f935bfc2c5a971f80"
+ },
+ {
+  "name": "IcePath1F_Johto",
+  "group": 75,
+  "num": 76,
+  "x": 4,
+  "y": 19,
+  "status": "ok",
+  "at": [
+   4,
+   19,
+   75,
+   76
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5289,
+  "md5": "924158b29e0010e9c6f57d4dadcdc7ef"
+ },
+ {
+  "name": "IcePathB1F_Johto",
+  "group": 75,
+  "num": 77,
+  "x": 3,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   3,
+   15,
+   75,
+   77
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5764,
+  "md5": "d39789e2dc6debcc322ab209bd471919"
+ },
+ {
+  "name": "IcePathB2FMahoganySide_Johto",
+  "group": 75,
+  "num": 78,
+  "x": 17,
+  "y": 1,
+  "status": "ok",
+  "at": [
+   17,
+   1,
+   75,
+   78
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5748,
+  "md5": "38e495f25bb7a5e243b10772a98d52fa"
+ },
+ {
+  "name": "IcePathB2FBlackthornSide_Johto",
+  "group": 75,
+  "num": 79,
+  "x": 3,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   3,
+   15,
+   75,
+   79
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5380,
+  "md5": "d3bfcf61398ba14ac890d77426081aad"
+ },
+ {
+  "name": "IcePathB3F_Johto",
+  "group": 75,
+  "num": 80,
+  "x": 3,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   3,
+   5,
+   75,
+   80
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 7614,
+  "md5": "e39ca6deb53a879e0e845e0e9291562b"
+ },
+ {
+  "name": "WhirlIslandNW_Johto",
+  "group": 75,
+  "num": 81,
+  "x": 5,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   5,
+   7,
+   75,
+   81
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3821,
+  "md5": "71aa722d8c388cdb48e3abea92535631"
+ },
+ {
+  "name": "WhirlIslandNE_Johto",
+  "group": 75,
+  "num": 82,
+  "x": 3,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   3,
+   13,
+   75,
+   82
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4037,
+  "md5": "89dc0f4b546eb561c0912667bdbc211f"
+ },
+ {
+  "name": "WhirlIslandSW_Johto",
+  "group": 75,
+  "num": 83,
+  "x": 5,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   5,
+   7,
+   75,
+   83
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3670,
+  "md5": "3bf7d538affcc8a35183a299df76ac29"
+ },
+ {
+  "name": "WhirlIslandCave_Johto",
+  "group": 75,
+  "num": 84,
+  "x": 7,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   7,
+   5,
+   75,
+   84
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4249,
+  "md5": "f0a660bab9f101a96a3ca2e0bd8f84ca"
+ },
+ {
+  "name": "WhirlIslandSE_Johto",
+  "group": 75,
+  "num": 85,
+  "x": 5,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   5,
+   13,
+   75,
+   85
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3955,
+  "md5": "ca93db3e136761e2dd864d8eac15b3a3"
+ },
+ {
+  "name": "WhirlIslandB1F_Johto",
+  "group": 75,
+  "num": 86,
+  "x": 5,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   5,
+   5,
+   75,
+   86
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5280,
+  "md5": "2105a4b0c011c101fb04b367ae5650e4"
+ },
+ {
+  "name": "WhirlIslandB2F_Johto",
+  "group": 75,
+  "num": 87,
+  "x": 11,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   11,
+   5,
+   75,
+   87
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4429,
+  "md5": "32c5daffdc356cd3e8b400bee5384666"
+ },
+ {
+  "name": "WhirlIslandLugiaChamber_Johto",
+  "group": 75,
+  "num": 88,
+  "x": 9,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   9,
+   13,
+   75,
+   88
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4110,
+  "md5": "33ae79f2a52012e0b99dac323e4a7c53"
+ },
+ {
+  "name": "SilverCaveRoom1_Johto",
+  "group": 75,
+  "num": 89,
+  "x": 9,
+  "y": 33,
+  "status": "ok",
+  "at": [
+   9,
+   33,
+   75,
+   89
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3492,
+  "md5": "fac1eb0378453989033e6d2798b1ff79"
+ },
+ {
+  "name": "SilverCaveRoom2_Johto",
+  "group": 75,
+  "num": 90,
+  "x": 17,
+  "y": 31,
+  "status": "ok",
+  "at": [
+   17,
+   31,
+   75,
+   90
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3689,
+  "md5": "9f6b9833b8ab3ec7133640baf0017006"
+ },
+ {
+  "name": "SilverCaveRoom3_Johto",
+  "group": 75,
+  "num": 91,
+  "x": 9,
+  "y": 33,
+  "status": "ok",
+  "at": [
+   9,
+   33,
+   75,
+   91
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3687,
+  "md5": "81909f26bc99410fa15e9c92f254d346"
+ },
+ {
+  "name": "SilverCaveItemRooms_Johto",
+  "group": 75,
+  "num": 92,
+  "x": 13,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   13,
+   3,
+   75,
+   92
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2814,
+  "md5": "f74fb7b12150b89b7a57054377501ef5"
+ },
+ {
+  "name": "DarkCaveVioletEntrance_Johto",
+  "group": 75,
+  "num": 93,
+  "x": 3,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   3,
+   15,
+   75,
+   93
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4098,
+  "md5": "0b364c38f2f56a037fd12b10a11eaabd"
+ },
+ {
+  "name": "DarkCaveBlackthornEntrance_Johto",
+  "group": 75,
+  "num": 94,
+  "x": 23,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   23,
+   3,
+   75,
+   94
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4539,
+  "md5": "c5fcc2f00474330df3f1f4208ed61790"
+ },
+ {
+  "name": "DragonsDen1F_Johto",
+  "group": 75,
+  "num": 95,
+  "x": 3,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   3,
+   5,
+   75,
+   95
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4144,
+  "md5": "540415c675e9eb3dd5815a8bc7dac0f6"
+ },
+ {
+  "name": "DragonsDenB1F_Johto",
+  "group": 75,
+  "num": 96,
+  "x": 20,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   20,
+   4,
+   75,
+   96
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3004,
+  "md5": "68da260f473575441b70af2db49eb625"
+ },
+ {
+  "name": "DragonShrine_Johto",
+  "group": 75,
+  "num": 97,
+  "x": 4,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   4,
+   7,
+   75,
+   97
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3253,
+  "md5": "b322ef8f905a8b97d06b8b430da4aeb2"
+ },
+ {
+  "name": "TohjoFalls_Johto",
+  "group": 75,
+  "num": 98,
+  "x": 13,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   13,
+   15,
+   75,
+   98
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3420,
+  "md5": "dce53a3af08a435a2e0807e248922c1f"
+ },
+ {
+  "name": "DiglettsCave_Johto",
+  "group": 75,
+  "num": 99,
+  "x": 3,
+  "y": 33,
+  "status": "ok",
+  "at": [
+   3,
+   33,
+   75,
+   99
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3859,
+  "md5": "b829475a964d18f230f3a89a5aefa44e"
+ },
+ {
+  "name": "MountMoon_Johto",
+  "group": 76,
+  "num": 0,
+  "x": 3,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   3,
+   3,
+   76,
+   0
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3879,
+  "md5": "af2fcd167bac0790b867fb652af97752"
+ },
+ {
+  "name": "UndergroundPath_Johto",
+  "group": 76,
+  "num": 1,
+  "x": 3,
+  "y": 2,
+  "status": "ok",
+  "at": [
+   3,
+   2,
+   76,
+   1
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2497,
+  "md5": "10a705a039401c4b701be9f08d7d8332"
+ },
+ {
+  "name": "RockTunnel1F_Johto",
+  "group": 76,
+  "num": 2,
+  "x": 15,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   15,
+   3,
+   76,
+   2
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4382,
+  "md5": "4d3f0877a5d34c24f5d06cfcc5024c12"
+ },
+ {
+  "name": "RockTunnelB1F_Johto",
+  "group": 76,
+  "num": 3,
+  "x": 3,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   3,
+   3,
+   76,
+   3
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4168,
+  "md5": "1323bf8e399f6d6389e51f4b14a5b90f"
+ },
+ {
+  "name": "SafariZoneFuchsiaGateBeta_Johto",
+  "group": 76,
+  "num": 4,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   1,
+   76,
+   4
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3372,
+  "md5": "e8dbc85da4ec23154d4dbd75a0d6f4f1"
+ },
+ {
+  "name": "SafariZoneBeta_Johto",
+  "group": 76,
+  "num": 5,
+  "x": 9,
+  "y": 23,
+  "status": "ok",
+  "at": [
+   9,
+   23,
+   76,
+   5
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4866,
+  "md5": "c7fc4d3d35724756230c0bd548d81a51"
+ },
+ {
+  "name": "VictoryRoad_Johto",
+  "group": 76,
+  "num": 6,
+  "x": 9,
+  "y": 67,
+  "status": "ok",
+  "at": [
+   9,
+   67,
+   76,
+   6
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4409,
+  "md5": "2d075854e5d10c32f5e16279c89e7287"
+ },
+ {
+  "name": "EcruteakTinTowerEntrance_Johto",
+  "group": 76,
+  "num": 7,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   17,
+   76,
+   7
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3305,
+  "md5": "7d9316f9b4d35e2c4e40dcc02cbeaabe"
+ },
+ {
+  "name": "WiseTriosRoom_Johto",
+  "group": 76,
+  "num": 8,
+  "x": 7,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   7,
+   4,
+   76,
+   8
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3544,
+  "md5": "f5303f7356c6fb92dcf98208701bc0dd"
+ },
+ {
+  "name": "EcruteakPokecenter1F_Johto",
+  "group": 76,
+  "num": 9,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   9
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2607,
+  "md5": "fddab58e08de5cd163c999530f3c3e8e"
+ },
+ {
+  "name": "EcruteakLugiaSpeechHouse_Johto",
+  "group": 76,
+  "num": 10,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   10
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3355,
+  "md5": "2f1bbe9bde1e40eadcee57087bf99ced"
+ },
+ {
+  "name": "DanceTheater_Johto",
+  "group": 76,
+  "num": 11,
+  "x": 5,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   5,
+   13,
+   76,
+   11
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3349,
+  "md5": "ab5f02f352702494da22d6684200cd3e"
+ },
+ {
+  "name": "EcruteakMart_Johto",
+  "group": 76,
+  "num": 12,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   12
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3484,
+  "md5": "acfb6dfb56bbee40da074c5423fe3af1"
+ },
+ {
+  "name": "EcruteakGym_Johto",
+  "group": 76,
+  "num": 13,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   16,
+   76,
+   13
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3103,
+  "md5": "728e22ef584ca6f219974fb77589b424"
+ },
+ {
+  "name": "EcruteakItemfinderHouse_Johto",
+  "group": 76,
+  "num": 14,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   14
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3457,
+  "md5": "d77b77988917ccb685ff206d6be8650a"
+ },
+ {
+  "name": "EcruteakCity_Johto",
+  "group": 76,
+  "num": 15,
+  "x": 35,
+  "y": 26,
+  "status": "ok",
+  "at": [
+   35,
+   26,
+   76,
+   15
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4883,
+  "md5": "43719ae11918841b69c97a5a5b76bdd1"
+ },
+ {
+  "name": "BlackthornGym1F_Johto",
+  "group": 76,
+  "num": 16,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   17,
+   76,
+   16
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3129,
+  "md5": "222d494d5441b1b4b637646acd3b7348"
+ },
+ {
+  "name": "BlackthornGym2F_Johto",
+  "group": 76,
+  "num": 17,
+  "x": 1,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   1,
+   7,
+   76,
+   17
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4426,
+  "md5": "2613a2c01cdc9d9e96b583e5d081b7cc"
+ },
+ {
+  "name": "BlackthornDragonSpeechHouse_Johto",
+  "group": 76,
+  "num": 18,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   18
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3447,
+  "md5": "573db14a55b75a1457357ddb5358b7f7"
+ },
+ {
+  "name": "BlackthornEmysHouse_Johto",
+  "group": 76,
+  "num": 19,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   19
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3184,
+  "md5": "7805b158fa784efdb764cdcf9830844a"
+ },
+ {
+  "name": "BlackthornMart_Johto",
+  "group": 76,
+  "num": 20,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   20
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3550,
+  "md5": "eeec0b91062fcade7086a7182936e3e6"
+ },
+ {
+  "name": "BlackthornPokecenter1F_Johto",
+  "group": 76,
+  "num": 21,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   21
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3254,
+  "md5": "e7925311e2a2b19be8084f01a6e083f7"
+ },
+ {
+  "name": "MoveDeletersHouse_Johto",
+  "group": 76,
+  "num": 22,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   22
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3103,
+  "md5": "2fb3a8e910f46bcf53fdba5870f28513"
+ },
+ {
+  "name": "Route45_Johto",
+  "group": 76,
+  "num": 23,
+  "x": 2,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   2,
+   6,
+   76,
+   23
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4582,
+  "md5": "26e21b05112ca1c9d16829702bad3ca8"
+ },
+ {
+  "name": "Route46_Johto",
+  "group": 76,
+  "num": 24,
+  "x": 7,
+  "y": 33,
+  "status": "ok",
+  "at": [
+   7,
+   33,
+   76,
+   24
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4209,
+  "md5": "1815a488ae0dc3accb6043364c95ac4b"
+ },
+ {
+  "name": "BlackthornCity_Johto",
+  "group": 76,
+  "num": 25,
+  "x": 18,
+  "y": 11,
+  "status": "ok",
+  "at": [
+   18,
+   12,
+   76,
+   25
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4931,
+  "md5": "71437eef55fe07dad22b309154a3e78c"
+ },
+ {
+  "name": "CinnabarPokecenter1F_Johto",
+  "group": 76,
+  "num": 26,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   26
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3222,
+  "md5": "1f94d551442ad9f2b25ec5b928ce8717"
+ },
+ {
+  "name": "CinnabarPokecenter2FBeta_Johto",
+  "group": 76,
+  "num": 27,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   76,
+   27
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2661,
+  "md5": "084c947a178de9c9d625ec37aae2faa3"
+ },
+ {
+  "name": "Route19FuchsiaGate_Johto",
+  "group": 76,
+  "num": 28,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   1,
+   76,
+   28
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3535,
+  "md5": "c75a65c2a2dfcf7286e06d499bbd8fa6"
+ },
+ {
+  "name": "SeafoamGym_Johto",
+  "group": 76,
+  "num": 29,
+  "x": 5,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   5,
+   5,
+   76,
+   29
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4227,
+  "md5": "ce53396670fb4968b89232cc4b950367"
+ },
+ {
+  "name": "Route19_Johto",
+  "group": 76,
+  "num": 30,
+  "x": 7,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   7,
+   4,
+   76,
+   30
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5373,
+  "md5": "51c04a4766d0547f1f492f6c3ea54e97"
+ },
+ {
+  "name": "Route20_Johto",
+  "group": 76,
+  "num": 31,
+  "x": 38,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   38,
+   8,
+   76,
+   31
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4618,
+  "md5": "fea6e2bf341eee1b1cd3462c54055f3a"
+ },
+ {
+  "name": "Route21_Johto",
+  "group": 76,
+  "num": 32,
+  "x": 10,
+  "y": 18,
+  "status": "ok",
+  "at": [
+   10,
+   18,
+   76,
+   32
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2953,
+  "md5": "0e4387100cf14be7b3b8cf39f5f88346"
+ },
+ {
+  "name": "CinnabarIsland_Johto",
+  "group": 76,
+  "num": 33,
+  "x": 11,
+  "y": 11,
+  "status": "ok",
+  "at": [
+   11,
+   12,
+   76,
+   33
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4740,
+  "md5": "57b05506fce9845f515e31d29fd1dec3"
+ },
+ {
+  "name": "CeruleanGymBadgeSpeechHouse_Johto",
+  "group": 76,
+  "num": 34,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   34
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3146,
+  "md5": "755849b4c3181058fd0e1eceb762283a"
+ },
+ {
+  "name": "CeruleanPoliceStation_Johto",
+  "group": 76,
+  "num": 35,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   35
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3376,
+  "md5": "c4a56feb468b4dd1223d7311b6e7bf46"
+ },
+ {
+  "name": "CeruleanTradeSpeechHouse_Johto",
+  "group": 76,
+  "num": 36,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   36
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3593,
+  "md5": "9633f57d46d9556a4492a11835e1b761"
+ },
+ {
+  "name": "CeruleanPokecenter1F_Johto",
+  "group": 76,
+  "num": 37,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   37
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3127,
+  "md5": "6b9795bd3432fd1d97216b08bcd68552"
+ },
+ {
+  "name": "CeruleanPokecenter2FBeta_Johto",
+  "group": 76,
+  "num": 38,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   76,
+   38
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2660,
+  "md5": "820f923d6197bd1c839222682acb2e45"
+ },
+ {
+  "name": "CeruleanGym_Johto",
+  "group": 76,
+  "num": 39,
+  "x": 4,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   4,
+   15,
+   76,
+   39
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2967,
+  "md5": "2857d5d46bda600f4bf29880010a8dd9"
+ },
+ {
+  "name": "CeruleanMart_Johto",
+  "group": 76,
+  "num": 40,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   40
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3497,
+  "md5": "b72d6b42a189f3c3aff39bb2e91a9dd3"
+ },
+ {
+  "name": "Route10Pokecenter1F_Johto",
+  "group": 76,
+  "num": 41,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   41
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3027,
+  "md5": "5361e09ea007c84ff90fdd608b952a20"
+ },
+ {
+  "name": "Route10Pokecenter2FBeta_Johto",
+  "group": 76,
+  "num": 42,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   76,
+   42
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2626,
+  "md5": "802479deb0939917f8742d674f40c349"
+ },
+ {
+  "name": "PowerPlant_Johto",
+  "group": 76,
+  "num": 43,
+  "x": 2,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   2,
+   17,
+   76,
+   43
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3074,
+  "md5": "4296342d87ea3ebe56d1ced06b42fd13"
+ },
+ {
+  "name": "BillsHouse_Johto",
+  "group": 76,
+  "num": 44,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   44
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3108,
+  "md5": "1797036134294dbd83bf7e225e2dc167"
+ },
+ {
+  "name": "Route4_Johto",
+  "group": 76,
+  "num": 45,
+  "x": 2,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   2,
+   6,
+   76,
+   45
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4066,
+  "md5": "32fca4ebb165f5eec711f2e46abf4751"
+ },
+ {
+  "name": "Route9_Johto",
+  "group": 76,
+  "num": 46,
+  "x": 48,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   48,
+   16,
+   76,
+   46
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4880,
+  "md5": "c632128dae186cd9bccd9467a83dd863"
+ },
+ {
+  "name": "Route10North_Johto",
+  "group": 76,
+  "num": 47,
+  "x": 11,
+  "y": 1,
+  "status": "ok",
+  "at": [
+   11,
+   2,
+   76,
+   47
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4231,
+  "md5": "b4eef45e0d2238dd1baa6429390e8857"
+ },
+ {
+  "name": "Route24_Johto",
+  "group": 76,
+  "num": 48,
+  "x": 10,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   10,
+   9,
+   76,
+   48
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4744,
+  "md5": "a1dd2aec23d689adc23e8ede05eadeea"
+ },
+ {
+  "name": "Route25_Johto",
+  "group": 76,
+  "num": 49,
+  "x": 47,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   47,
+   6,
+   76,
+   49
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4837,
+  "md5": "c417ad592d33a255fc9cb9d3c9e73bfe"
+ },
+ {
+  "name": "CeruleanCity_Johto",
+  "group": 76,
+  "num": 50,
+  "x": 7,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   7,
+   16,
+   76,
+   50
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4503,
+  "md5": "4be7252900faa4b9183a7bb920a71416"
+ },
+ {
+  "name": "AzaleaPokecenter1F_Johto",
+  "group": 76,
+  "num": 51,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   51
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2992,
+  "md5": "e3d1b41be15ce26de0057cff2f69e801"
+ },
+ {
+  "name": "CharcoalKiln_Johto",
+  "group": 76,
+  "num": 52,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   52
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3614,
+  "md5": "c3758c287bd0828e2fd14b85d0feaa01"
+ },
+ {
+  "name": "AzaleaMart_Johto",
+  "group": 76,
+  "num": 53,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   53
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3438,
+  "md5": "a722fcf087f7f78bea473af86c6ef629"
+ },
+ {
+  "name": "KurtsHouse_Johto",
+  "group": 76,
+  "num": 54,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   54
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3229,
+  "md5": "3f1fc77f750af79cf425909624e151ef"
+ },
+ {
+  "name": "AzaleaGym_Johto",
+  "group": 76,
+  "num": 55,
+  "x": 4,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   4,
+   15,
+   76,
+   55
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3842,
+  "md5": "76ad6318a9419d61abda2f252bc39b40"
+ },
+ {
+  "name": "Route33_Johto",
+  "group": 76,
+  "num": 56,
+  "x": 11,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   11,
+   10,
+   76,
+   56
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5471,
+  "md5": "9d3622eec7fbffd2d7aa418ac16a1081"
+ },
+ {
+  "name": "AzaleaTown_Johto",
+  "group": 76,
+  "num": 57,
+  "x": 15,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   15,
+   10,
+   76,
+   57
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5393,
+  "md5": "410d0e989274b495f271cd0c8047979a"
+ },
+ {
+  "name": "LakeOfRageHiddenPowerHouse_Johto",
+  "group": 76,
+  "num": 58,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   58
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3204,
+  "md5": "c7a03df76ab3aca8b413a5d074dd34c3"
+ },
+ {
+  "name": "LakeOfRageMagikarpHouse_Johto",
+  "group": 76,
+  "num": 59,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   59
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3168,
+  "md5": "13a1cd86babfbf34d5dfd4a207985212"
+ },
+ {
+  "name": "Route43MahoganyGate_Johto",
+  "group": 76,
+  "num": 60,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   1,
+   76,
+   60
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3544,
+  "md5": "eedbcc6eaf782a15a751a4b8d44c9598"
+ },
+ {
+  "name": "Route43Gate_Johto",
+  "group": 76,
+  "num": 61,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   2,
+   76,
+   61
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3287,
+  "md5": "96c16751a39b9f7887879d3e55966123"
+ },
+ {
+  "name": "Route43_Johto",
+  "group": 76,
+  "num": 62,
+  "x": 9,
+  "y": 51,
+  "status": "ok",
+  "at": [
+   9,
+   51,
+   76,
+   62
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5904,
+  "md5": "2cbc28b15d877a4c75c2e01e86c9733f"
+ },
+ {
+  "name": "LakeOfRage_Johto",
+  "group": 76,
+  "num": 63,
+  "x": 7,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   7,
+   4,
+   76,
+   63
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4827,
+  "md5": "0ee5a573e3ebe18b044693e9bcdf5f05"
+ },
+ {
+  "name": "Route32_Johto",
+  "group": 76,
+  "num": 64,
+  "x": 11,
+  "y": 73,
+  "status": "ok",
+  "at": [
+   11,
+   74,
+   76,
+   64
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5528,
+  "md5": "e285eecaa50eda8a520a9acca6a4c653"
+ },
+ {
+  "name": "Route35_Johto",
+  "group": 76,
+  "num": 65,
+  "x": 9,
+  "y": 33,
+  "status": "ok",
+  "at": [
+   9,
+   33,
+   76,
+   65
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5100,
+  "md5": "23c179efaa176a76d3017b44ac293f3c"
+ },
+ {
+  "name": "Route36_Johto",
+  "group": 76,
+  "num": 66,
+  "x": 18,
+  "y": 8,
+  "status": "ok",
+  "at": [
+   18,
+   8,
+   76,
+   66
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5477,
+  "md5": "5302e7ce879a6bc3632423acbcffc790"
+ },
+ {
+  "name": "Route37_Johto",
+  "group": 76,
+  "num": 67,
+  "x": 10,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   10,
+   9,
+   76,
+   67
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5392,
+  "md5": "1b6487596a97b9f6c1987390c78669c5"
+ },
+ {
+  "name": "VioletCity_Johto",
+  "group": 76,
+  "num": 68,
+  "x": 9,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   9,
+   18,
+   76,
+   68
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5418,
+  "md5": "7481113ba70dddc74b16d6e5936a6ceb"
+ },
+ {
+  "name": "VioletMart_Johto",
+  "group": 76,
+  "num": 69,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   69
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3514,
+  "md5": "8e390c859efc9a2abcc826fdb9f9a68a"
+ },
+ {
+  "name": "VioletGym_Johto",
+  "group": 76,
+  "num": 70,
+  "x": 4,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   4,
+   15,
+   76,
+   70
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3325,
+  "md5": "250c8fbf7be28ccbb8fb636dc088e95c"
+ },
+ {
+  "name": "EarlsPokemonAcademy_Johto",
+  "group": 76,
+  "num": 71,
+  "x": 3,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   3,
+   15,
+   76,
+   71
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3154,
+  "md5": "64134ac3079bb773be1a6de04fe2760b"
+ },
+ {
+  "name": "VioletNicknameSpeechHouse_Johto",
+  "group": 76,
+  "num": 72,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   72
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3524,
+  "md5": "5fc77bb90003a61156cd236731251c66"
+ },
+ {
+  "name": "VioletPokecenter1F_Johto",
+  "group": 76,
+  "num": 73,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   73
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2994,
+  "md5": "7474bde00f7e0a4522e59aa4a519faf9"
+ },
+ {
+  "name": "VioletKylesHouse_Johto",
+  "group": 76,
+  "num": 74,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   74
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3284,
+  "md5": "70362499f3007d09d67d6e3e31b27bc3"
+ },
+ {
+  "name": "Route32RuinsOfAlphGate_Johto",
+  "group": 76,
+  "num": 75,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   76,
+   75
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3675,
+  "md5": "4dd12f1e3869a3c46bffe4b9638781b2"
+ },
+ {
+  "name": "Route32Pokecenter1F_Johto",
+  "group": 76,
+  "num": 76,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   76,
+   76
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2833,
+  "md5": "d4fa61917667549c9aa154ab7d515792"
+ },
+ {
+  "name": "Route35GoldenrodGate_Johto",
+  "group": 76,
+  "num": 77,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   1,
+   76,
+   77
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3968,
+  "md5": "a9d8e3382b150e2d11c9ea4792543518"
+ },
+ {
+  "name": "Route35NationalParkGate_Johto",
+  "group": 76,
+  "num": 78,
+  "x": 3,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   3,
+   1,
+   76,
+   78
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3880,
+  "md5": "6f525c6ceaab039a2ef24175c498bb1a"
+ },
+ {
+  "name": "Route36RuinsOfAlphGate_Johto",
+  "group": 76,
+  "num": 79,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   1,
+   76,
+   79
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3750,
+  "md5": "9a9483fcfc807a27deb04bad55579c57"
+ },
+ {
+  "name": "Route36NationalParkGate_Johto",
+  "group": 76,
+  "num": 80,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   76,
+   80
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3238,
+  "md5": "a1130d0c0524cdd16681ee6bc4160b0a"
+ },
+ {
+  "name": "Route34_Johto",
+  "group": 76,
+  "num": 81,
+  "x": 13,
+  "y": 37,
+  "status": "ok",
+  "at": [
+   13,
+   37,
+   76,
+   81
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4761,
+  "md5": "bd6ea76a36db7139137004fcd4d6acb7"
+ },
+ {
+  "name": "GoldenrodCity_Johto",
+  "group": 76,
+  "num": 82,
+  "x": 24,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   24,
+   8,
+   76,
+   82
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3952,
+  "md5": "3ebbc9e8b2b33e3aebbfe8ba377883fc"
+ },
+ {
+  "name": "GoldenrodGym_Johto",
+  "group": 76,
+  "num": 83,
+  "x": 2,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   2,
+   17,
+   76,
+   83
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3652,
+  "md5": "cfb32fd9462c281087af596c1a3b99a9"
+ },
+ {
+  "name": "GoldenrodBikeShop_Johto",
+  "group": 76,
+  "num": 84,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   84
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3211,
+  "md5": "6f059e0ec10c21e0b7b83441da8360d9"
+ },
+ {
+  "name": "GoldenrodHappinessRater_Johto",
+  "group": 76,
+  "num": 85,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   85
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3601,
+  "md5": "15991fdfc1c2c4becc6516116cea480f"
+ },
+ {
+  "name": "BillsFamilysHouse_Johto",
+  "group": 76,
+  "num": 86,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   86
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3132,
+  "md5": "9af757528504c0c428e95bebe19701f1"
+ },
+ {
+  "name": "GoldenrodMagnetTrainStation_Johto",
+  "group": 76,
+  "num": 87,
+  "x": 8,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   8,
+   17,
+   76,
+   87
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2700,
+  "md5": "22f0e9cca799132fad12e01d7cf35e2c"
+ },
+ {
+  "name": "GoldenrodFlowerShop_Johto",
+  "group": 76,
+  "num": 88,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   88
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3577,
+  "md5": "c7fe4ba5013dbd9286700331020f27b8"
+ },
+ {
+  "name": "GoldenrodPPSpeechHouse_Johto",
+  "group": 76,
+  "num": 89,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   89
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3317,
+  "md5": "b4d7437df5cc430a02899bdcecb04ebc"
+ },
+ {
+  "name": "GoldenrodNameRater_Johto",
+  "group": 76,
+  "num": 90,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   76,
+   90
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3115,
+  "md5": "bbfd3445e1c9b1da24b073a22db0fb4b"
+ },
+ {
+  "name": "GoldenrodDeptStore1F_Johto",
+  "group": 76,
+  "num": 91,
+  "x": 7,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   7,
+   7,
+   76,
+   91
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3323,
+  "md5": "077edccd2ae4e162d26f60ab2f52fa0a"
+ },
+ {
+  "name": "GoldenrodDeptStore2F_Johto",
+  "group": 76,
+  "num": 92,
+  "x": 12,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   12,
+   1,
+   76,
+   92
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3887,
+  "md5": "fd41e7182b39e0eb958f1136730d7d03"
+ },
+ {
+  "name": "GoldenrodDeptStore3F_Johto",
+  "group": 76,
+  "num": 93,
+  "x": 12,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   12,
+   1,
+   76,
+   93
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3648,
+  "md5": "da78307c319813a0db2c4dbe931c4a10"
+ },
+ {
+  "name": "GoldenrodDeptStore4F_Johto",
+  "group": 76,
+  "num": 94,
+  "x": 12,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   12,
+   1,
+   76,
+   94
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4282,
+  "md5": "c8c4abcba2e0a3869fbd1b083da4bf2d"
+ },
+ {
+  "name": "GoldenrodDeptStore5F_Johto",
+  "group": 76,
+  "num": 95,
+  "x": 12,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   12,
+   1,
+   76,
+   95
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3974,
+  "md5": "e6cd4fa0c2f0dd5aed3e81241c3ee184"
+ },
+ {
+  "name": "GoldenrodDeptStore6F_Johto",
+  "group": 76,
+  "num": 96,
+  "x": 15,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   15,
+   1,
+   76,
+   96
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3132,
+  "md5": "4a126e3b6e415c77e9d16b98a217a8e6"
+ },
+ {
+  "name": "GoldenrodDeptStoreElevator_Johto",
+  "group": 76,
+  "num": 97,
+  "x": 1,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   1,
+   3,
+   76,
+   97
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2366,
+  "md5": "f9b686d189fa71efff0f8765ecf48bcc"
+ },
+ {
+  "name": "GoldenrodDeptStoreRoof_Johto",
+  "group": 76,
+  "num": 98,
+  "x": 13,
+  "y": 1,
+  "status": "ok",
+  "at": [
+   13,
+   2,
+   76,
+   98
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3503,
+  "md5": "92247bba7f1b05c9a2514d80f586bc55"
+ },
+ {
+  "name": "GoldenrodGameCorner_Johto",
+  "group": 76,
+  "num": 99,
+  "x": 2,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   2,
+   13,
+   76,
+   99
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3380,
+  "md5": "961b8d9cc10f19f3696d6c82fb274199"
+ },
+ {
+  "name": "GoldenrodPokecenter1F_Johto",
+  "group": 77,
+  "num": 0,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   77,
+   0
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3009,
+  "md5": "57cf1ec58437188c0c53770677930967"
+ },
+ {
+  "name": "PokecomCenterAdminOfficeMobile_Johto",
+  "group": 77,
+  "num": 1,
+  "x": 0,
+  "y": 31,
+  "status": "ok",
+  "at": [
+   0,
+   31,
+   77,
+   1
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3774,
+  "md5": "0827c570f6b5c4aa1063506274dc7cff"
+ },
+ {
+  "name": "IlexForestAzaleaGate_Johto",
+  "group": 77,
+  "num": 2,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   77,
+   2
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3676,
+  "md5": "adf7fe152462daa9c4c7ebadd3cf7ec3"
+ },
+ {
+  "name": "Route34IlexForestGate_Johto",
+  "group": 77,
+  "num": 3,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   1,
+   77,
+   3
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4023,
+  "md5": "a7a1b23ec1ef5d2a71eb8233ee46803f"
+ },
+ {
+  "name": "DayCare_Johto",
+  "group": 77,
+  "num": 4,
+  "x": 0,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   0,
+   5,
+   77,
+   4
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3747,
+  "md5": "4327a3cf7d3eac23f3dd4b2f8b9ec237"
+ },
+ {
+  "name": "Route6_Johto",
+  "group": 77,
+  "num": 5,
+  "x": 17,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   17,
+   4,
+   77,
+   5
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4450,
+  "md5": "97c08a2dcadf6f6f402758738a2acbe7"
+ },
+ {
+  "name": "Route11_Johto",
+  "group": 77,
+  "num": 6,
+  "x": 20,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   20,
+   9,
+   77,
+   6
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3715,
+  "md5": "673c1c35226aefe47b87170467144721"
+ },
+ {
+  "name": "VermilionCity_Johto",
+  "group": 77,
+  "num": 7,
+  "x": 5,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   5,
+   6,
+   77,
+   7
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4128,
+  "md5": "76001951c911bb55bf75024d2acfc4cc"
+ },
+ {
+  "name": "VermilionFishingSpeechHouse_Johto",
+  "group": 77,
+  "num": 8,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   8
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3110,
+  "md5": "c5c6781470e5609e3f51e7fffb8e6c21"
+ },
+ {
+  "name": "VermilionPokecenter1F_Johto",
+  "group": 77,
+  "num": 9,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   77,
+   9
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3367,
+  "md5": "4038336cbb52404a816de8b5dc2e624c"
+ },
+ {
+  "name": "VermilionPokecenter2FBeta_Johto",
+  "group": 77,
+  "num": 10,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   77,
+   10
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2658,
+  "md5": "e8b8d71061b3d02f21c4cea91e86c97a"
+ },
+ {
+  "name": "PokemonFanClub_Johto",
+  "group": 77,
+  "num": 11,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   11
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3694,
+  "md5": "d22805417d9277ae5444b34527112154"
+ },
+ {
+  "name": "VermilionMagnetTrainSpeechHouse_Johto",
+  "group": 77,
+  "num": 12,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   12
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3154,
+  "md5": "b9e0d97986a0b92715d2530031184dd5"
+ },
+ {
+  "name": "VermilionMart_Johto",
+  "group": 77,
+  "num": 13,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   13
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3477,
+  "md5": "fc5d802ca66189dc371183b73c524c9c"
+ },
+ {
+  "name": "VermilionDiglettsCaveSpeechHouse_Johto",
+  "group": 77,
+  "num": 14,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   14
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3122,
+  "md5": "9e22e94bfd7882aa24a7a7706a33d4db"
+ },
+ {
+  "name": "VermilionGym_Johto",
+  "group": 77,
+  "num": 15,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   17,
+   77,
+   15
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2844,
+  "md5": "f1ff4ccafcf124bd3966ca1da8e5918b"
+ },
+ {
+  "name": "Route6SaffronGate_Johto",
+  "group": 77,
+  "num": 16,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   1,
+   77,
+   16
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3507,
+  "md5": "bc4f02db2d6bf6f7ba4da4fb0978b2b2"
+ },
+ {
+  "name": "Route6UndergroundPathEntrance_Johto",
+  "group": 77,
+  "num": 17,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   77,
+   17
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2709,
+  "md5": "795bc8efd68033f369da14c31d8be7b8"
+ },
+ {
+  "name": "Route1_Johto",
+  "group": 77,
+  "num": 18,
+  "x": 10,
+  "y": 18,
+  "status": "ok",
+  "at": [
+   10,
+   18,
+   77,
+   18
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3865,
+  "md5": "e092cf0d2b7e6cb863cb9ddc4650c19a"
+ },
+ {
+  "name": "PalletTown_Johto",
+  "group": 77,
+  "num": 19,
+  "x": 5,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   5,
+   6,
+   77,
+   19
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4840,
+  "md5": "dcb9d030de25a6f60014ed43a2074f65"
+ },
+ {
+  "name": "RedsHouse1F_Johto",
+  "group": 77,
+  "num": 20,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   20
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2669,
+  "md5": "ab471140f4d743d509bd1d316ca227f3"
+ },
+ {
+  "name": "RedsHouse2F_Johto",
+  "group": 77,
+  "num": 21,
+  "x": 7,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   7,
+   1,
+   77,
+   21
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2943,
+  "md5": "236fe73e4dd54ee0cc721215b6b10561"
+ },
+ {
+  "name": "BluesHouse_Johto",
+  "group": 77,
+  "num": 22,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   22
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3126,
+  "md5": "19307f9480284530105b660fe02cb376"
+ },
+ {
+  "name": "OaksLab_Johto",
+  "group": 77,
+  "num": 23,
+  "x": 4,
+  "y": 11,
+  "status": "ok",
+  "at": [
+   4,
+   11,
+   77,
+   23
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2627,
+  "md5": "570d6ecb96a0cf78a14faa0db6dd078e"
+ },
+ {
+  "name": "Route3_Johto",
+  "group": 77,
+  "num": 24,
+  "x": 52,
+  "y": 1,
+  "status": "ok",
+  "at": [
+   52,
+   2,
+   77,
+   24
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3441,
+  "md5": "16008ddfdd1415c71fbfd0067ab10dd1"
+ },
+ {
+  "name": "PewterCity_Johto",
+  "group": 77,
+  "num": 25,
+  "x": 29,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   29,
+   14,
+   77,
+   25
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4286,
+  "md5": "a08db4b0dd2ce5445840e631160820d9"
+ },
+ {
+  "name": "PewterNidoranSpeechHouse_Johto",
+  "group": 77,
+  "num": 26,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   26
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3322,
+  "md5": "dc7240d76732926b767f8f61fd64f4dd"
+ },
+ {
+  "name": "PewterGym_Johto",
+  "group": 77,
+  "num": 27,
+  "x": 4,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   4,
+   13,
+   77,
+   27
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3375,
+  "md5": "056e20cfb68c86f82fbdad5997d733f2"
+ },
+ {
+  "name": "PewterMart_Johto",
+  "group": 77,
+  "num": 28,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   28
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3444,
+  "md5": "f658ca62cd0ac16840d07d89d3927c94"
+ },
+ {
+  "name": "PewterPokecenter1F_Johto",
+  "group": 77,
+  "num": 29,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   77,
+   29
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3344,
+  "md5": "79cb63f0d9d02824f52a861c6fc0798c"
+ },
+ {
+  "name": "PewterPokecenter2FBeta_Johto",
+  "group": 77,
+  "num": 30,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   77,
+   30
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2662,
+  "md5": "9005319c059c12504a36ea9ed738aab0"
+ },
+ {
+  "name": "PewterSnoozeSpeechHouse_Johto",
+  "group": 77,
+  "num": 31,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   31
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3151,
+  "md5": "55147c7dae94f8eb9dd7270b83824ca5"
+ },
+ {
+  "name": "OlivinePort_Johto",
+  "group": 77,
+  "num": 32,
+  "x": 11,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   11,
+   7,
+   77,
+   32
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3297,
+  "md5": "90d95e95a884def5631a2f5f43a547a0"
+ },
+ {
+  "name": "VermilionPort_Johto",
+  "group": 77,
+  "num": 33,
+  "x": 9,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   9,
+   5,
+   77,
+   33
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3713,
+  "md5": "36bfce50d2ead96460d69b42ee0b30f8"
+ },
+ {
+  "name": "FastShip1F_Johto",
+  "group": 77,
+  "num": 34,
+  "x": 25,
+  "y": 1,
+  "status": "ok",
+  "at": [
+   25,
+   2,
+   77,
+   34
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2490,
+  "md5": "80d7cc061bbd63955a1af32116acd9c4"
+ },
+ {
+  "name": "FastShipCabins_NNW_NNE_NE_Johto",
+  "group": 77,
+  "num": 35,
+  "x": 2,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   2,
+   1,
+   77,
+   35
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2919,
+  "md5": "495a9d5e3b39952292fcd6a75baa6adb"
+ },
+ {
+  "name": "FastShipCabins_SW_SSW_NW_Johto",
+  "group": 77,
+  "num": 36,
+  "x": 2,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   2,
+   1,
+   77,
+   36
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3387,
+  "md5": "e9d14145ff1ad40c0e2328baa6d9ed8a"
+ },
+ {
+  "name": "FastShipCabins_SE_SSE_CaptainsCabin_Johto",
+  "group": 77,
+  "num": 37,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   37
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3416,
+  "md5": "5c2d39d1e129788821db5cb4561cb9cc"
+ },
+ {
+  "name": "FastShipB1F_Johto",
+  "group": 77,
+  "num": 38,
+  "x": 5,
+  "y": 11,
+  "status": "ok",
+  "at": [
+   5,
+   11,
+   77,
+   38
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4475,
+  "md5": "1e72f9b20f9bce9f925ae01d1c8b9b3c"
+ },
+ {
+  "name": "OlivinePortPassage_Johto",
+  "group": 77,
+  "num": 39,
+  "x": 15,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   15,
+   0,
+   77,
+   39
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2937,
+  "md5": "cb27310aefa26a550ac623ecdb9724b6"
+ },
+ {
+  "name": "VermilionPortPassage_Johto",
+  "group": 77,
+  "num": 40,
+  "x": 15,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   15,
+   0,
+   77,
+   40
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3203,
+  "md5": "fb2efd506f2714feaa6da1f50c6051e1"
+ },
+ {
+  "name": "MountMoonSquare_Johto",
+  "group": 77,
+  "num": 41,
+  "x": 20,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   20,
+   6,
+   77,
+   41
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4930,
+  "md5": "28c1302aefc8c6e383d5169977e67cca"
+ },
+ {
+  "name": "MountMoonGiftShop_Johto",
+  "group": 77,
+  "num": 42,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   77,
+   42
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3049,
+  "md5": "f708f3697020510df021c7c7dc7471bb"
+ },
+ {
+  "name": "TinTowerRoof_Johto",
+  "group": 77,
+  "num": 43,
+  "x": 9,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   9,
+   13,
+   77,
+   43
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4363,
+  "md5": "22ba582920dc31eb25903df4ff00a2f7"
+ },
+ {
+  "name": "Route23_Johto",
+  "group": 77,
+  "num": 44,
+  "x": 9,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   9,
+   6,
+   77,
+   44
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4493,
+  "md5": "a8ca7e7fca529cae891afc218c59e178"
+ },
+ {
+  "name": "IndigoPlateauPokecenter1F_Johto",
+  "group": 77,
+  "num": 45,
+  "x": 5,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   5,
+   13,
+   77,
+   45
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2721,
+  "md5": "65797cfbaedd1e2d5f6d4e9ca3daffba"
+ },
+ {
+  "name": "WillsRoom_Johto",
+  "group": 77,
+  "num": 46,
+  "x": 5,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   5,
+   13,
+   77,
+   46
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2920,
+  "md5": "00d058749bc38e9114ccc1ca94dd1803"
+ },
+ {
+  "name": "KogasRoom_Johto",
+  "group": 77,
+  "num": 47,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   13,
+   77,
+   47
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3864,
+  "md5": "0194524f8066d237ede371d1db32f11b"
+ },
+ {
+  "name": "BrunosRoom_Johto",
+  "group": 77,
+  "num": 48,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   13,
+   77,
+   48
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2923,
+  "md5": "80ce04f3b058c67872c48b48ef74ea07"
+ },
+ {
+  "name": "KarensRoom_Johto",
+  "group": 77,
+  "num": 49,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   13,
+   77,
+   49
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2455,
+  "md5": "68ab90d6a130b97f00fc4f88a524bfef"
+ },
+ {
+  "name": "LancesRoom_Johto",
+  "group": 77,
+  "num": 50,
+  "x": 4,
+  "y": 23,
+  "status": "ok",
+  "at": [
+   4,
+   19,
+   77,
+   50
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3634,
+  "md5": "287c3bed100e24647e71ace3d96ac18e"
+ },
+ {
+  "name": "HallOfFame_Johto",
+  "group": 77,
+  "num": 51,
+  "x": 4,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   4,
+   9,
+   77,
+   51
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2124,
+  "md5": "d6e8fe60279a2e6ac804b94dd7b00028"
+ },
+ {
+  "name": "Route13_Johto",
+  "group": 77,
+  "num": 52,
+  "x": 30,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   30,
+   9,
+   77,
+   52
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3796,
+  "md5": "a100b000d1c701662c607bf23a46b68b"
+ },
+ {
+  "name": "Route14_Johto",
+  "group": 77,
+  "num": 53,
+  "x": 10,
+  "y": 18,
+  "status": "ok",
+  "at": [
+   10,
+   18,
+   77,
+   53
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4722,
+  "md5": "7046fdd7b0677cf2ecea2b575070f630"
+ },
+ {
+  "name": "Route15_Johto",
+  "group": 77,
+  "num": 54,
+  "x": 2,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   2,
+   4,
+   77,
+   54
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4741,
+  "md5": "9a9521d3bd2e7519da9f3937cd614cbc"
+ },
+ {
+  "name": "Route18_Johto",
+  "group": 77,
+  "num": 55,
+  "x": 2,
+  "y": 6,
+  "status": "ok",
+  "at": [
+   2,
+   6,
+   77,
+   55
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4266,
+  "md5": "090d7c2fa2e08159e08ac32530f1cce5"
+ },
+ {
+  "name": "FuchsiaCity_Johto",
+  "group": 77,
+  "num": 56,
+  "x": 5,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   5,
+   14,
+   77,
+   56
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4326,
+  "md5": "49ea6c720beffcd171edba25c86196db"
+ },
+ {
+  "name": "FuchsiaMart_Johto",
+  "group": 77,
+  "num": 57,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   57
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3466,
+  "md5": "73fda164a136425a1cac4f4afe57a53e"
+ },
+ {
+  "name": "SafariZoneMainOffice_Johto",
+  "group": 77,
+  "num": 58,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   58
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3014,
+  "md5": "20009676b0f18b9251abd2541fc34d6b"
+ },
+ {
+  "name": "FuchsiaGym_Johto",
+  "group": 77,
+  "num": 59,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   17,
+   77,
+   59
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2706,
+  "md5": "775fa327fe60a66b4d2f66b58439a908"
+ },
+ {
+  "name": "BillsOlderSistersHouse_Johto",
+  "group": 77,
+  "num": 60,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   60
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3322,
+  "md5": "0fa7ea59476ebf4752aa77b4067f7028"
+ },
+ {
+  "name": "FuchsiaPokecenter1F_Johto",
+  "group": 77,
+  "num": 61,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   77,
+   61
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3210,
+  "md5": "992582e538acfed90209b7fd220d0fbf"
+ },
+ {
+  "name": "FuchsiaPokecenter2FBeta_Johto",
+  "group": 77,
+  "num": 62,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   77,
+   62
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2654,
+  "md5": "9d4f4285b3b747fd6e18ac36caab98aa"
+ },
+ {
+  "name": "SafariZoneWardensHome_Johto",
+  "group": 77,
+  "num": 63,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   63
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3149,
+  "md5": "223ed44c666f31e302938416e7f21e39"
+ },
+ {
+  "name": "Route15FuchsiaGate_Johto",
+  "group": 77,
+  "num": 64,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   77,
+   64
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3452,
+  "md5": "b70b23f9c467862e5ac5a883bc657e11"
+ },
+ {
+  "name": "Route8_Johto",
+  "group": 77,
+  "num": 65,
+  "x": 4,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   4,
+   4,
+   77,
+   65
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5534,
+  "md5": "73251845ae0d1f741ca812427bfc43b1"
+ },
+ {
+  "name": "Route12_Johto",
+  "group": 77,
+  "num": 66,
+  "x": 11,
+  "y": 33,
+  "status": "ok",
+  "at": [
+   11,
+   34,
+   77,
+   66
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3675,
+  "md5": "ff50c5ea8feb9926fbf94c52268c3057"
+ },
+ {
+  "name": "Route10South_Johto",
+  "group": 77,
+  "num": 67,
+  "x": 6,
+  "y": 1,
+  "status": "ok",
+  "at": [
+   6,
+   2,
+   77,
+   67
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3283,
+  "md5": "cc88e1d5eb657c690c80c2b625ece031"
+ },
+ {
+  "name": "LavenderTown_Johto",
+  "group": 77,
+  "num": 68,
+  "x": 5,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   5,
+   6,
+   77,
+   68
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5750,
+  "md5": "bffcd568545636395893f512afbf8856"
+ },
+ {
+  "name": "LavenderPokecenter1F_Johto",
+  "group": 77,
+  "num": 69,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   77,
+   69
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3379,
+  "md5": "a3fdf0c420bcd88139f5b6b236674618"
+ },
+ {
+  "name": "LavenderPokecenter2FBeta_Johto",
+  "group": 77,
+  "num": 70,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   77,
+   70
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2684,
+  "md5": "2b2b98d1e9fdc235c0ad253ff291f539"
+ },
+ {
+  "name": "MrFujisHouse_Johto",
+  "group": 77,
+  "num": 71,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   71
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3769,
+  "md5": "53edb60226b741fb9d6a8bf440dbbd83"
+ },
+ {
+  "name": "LavenderSpeechHouse_Johto",
+  "group": 77,
+  "num": 72,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   72
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3148,
+  "md5": "ec1d8f12a77eac814229e75880926fbc"
+ },
+ {
+  "name": "LavenderNameRater_Johto",
+  "group": 77,
+  "num": 73,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   73
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3193,
+  "md5": "04086688e2c20689d2fe82406d1c9883"
+ },
+ {
+  "name": "LavenderMart_Johto",
+  "group": 77,
+  "num": 74,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   74
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3488,
+  "md5": "7f4e29118f5b5910952dac44e2e0a873"
+ },
+ {
+  "name": "SoulHouse_Johto",
+  "group": 77,
+  "num": 75,
+  "x": 4,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   4,
+   7,
+   77,
+   75
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3584,
+  "md5": "24fcbfb2fd929b45a9bf804b1a5d8410"
+ },
+ {
+  "name": "LavRadioTower1F_Johto",
+  "group": 77,
+  "num": 76,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   76
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3089,
+  "md5": "6db43985b3f9e684c2fc011a4238d69e"
+ },
+ {
+  "name": "Route8SaffronGate_Johto",
+  "group": 77,
+  "num": 77,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   77,
+   77
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3424,
+  "md5": "194dc0f4f4463863723ca7a0273c5aea"
+ },
+ {
+  "name": "Route12SuperRodHouse_Johto",
+  "group": 77,
+  "num": 78,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   78
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3108,
+  "md5": "5107c745d0c64fe7b8fecc350552e38a"
+ },
+ {
+  "name": "Route28_Johto",
+  "group": 77,
+  "num": 79,
+  "x": 7,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   7,
+   4,
+   77,
+   79
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4254,
+  "md5": "10092224ab9897b25f4144e4c26e0486"
+ },
+ {
+  "name": "SilverCaveOutside_Johto",
+  "group": 77,
+  "num": 80,
+  "x": 23,
+  "y": 19,
+  "status": "ok",
+  "at": [
+   23,
+   20,
+   77,
+   80
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5212,
+  "md5": "abab6e834bd2222204884fb1d256fab9"
+ },
+ {
+  "name": "SilverCavePokecenter1F_Johto",
+  "group": 77,
+  "num": 81,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   77,
+   81
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2919,
+  "md5": "4ec90a6d7c3bfca7347e6a7b670ec2a5"
+ },
+ {
+  "name": "Route28SteelWingHouse_Johto",
+  "group": 77,
+  "num": 82,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   77,
+   82
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3361,
+  "md5": "70171ac88cebfa8808997518891b93a1"
+ },
+ {
+  "name": "Pokecenter2F_Johto",
+  "group": 77,
+  "num": 83,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   77,
+   83
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2300,
+  "md5": "92fe29fa621854952677918bb1a63166"
+ },
+ {
+  "name": "TradeCenter_Johto",
+  "group": 77,
+  "num": 84,
+  "x": 4,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   4,
+   7,
+   77,
+   84
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2957,
+  "md5": "973559fa48e445466cef8d57183b9167"
+ },
+ {
+  "name": "Colosseum_Johto",
+  "group": 77,
+  "num": 85,
+  "x": 4,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   4,
+   7,
+   77,
+   85
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2986,
+  "md5": "67c8068a1532951a1e2693d70ad48093"
+ },
+ {
+  "name": "TimeCapsule_Johto",
+  "group": 77,
+  "num": 86,
+  "x": 4,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   4,
+   7,
+   77,
+   86
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2957,
+  "md5": "973559fa48e445466cef8d57183b9167"
+ },
+ {
+  "name": "MobileTradeRoom_Johto",
+  "group": 77,
+  "num": 87,
+  "x": 4,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   4,
+   7,
+   77,
+   87
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2810,
+  "md5": "8bf4387bfad83b472f1a249455a99bb1"
+ },
+ {
+  "name": "MobileBattleRoom_Johto",
+  "group": 77,
+  "num": 88,
+  "x": 4,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   4,
+   7,
+   77,
+   88
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2837,
+  "md5": "7ca32080079c4a5bc0cea49c2ffdb929"
+ },
+ {
+  "name": "Route7_Johto",
+  "group": 77,
+  "num": 89,
+  "x": 15,
+  "y": 6,
+  "status": "ok",
+  "at": [
+   15,
+   6,
+   77,
+   89
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5017,
+  "md5": "91d2f8ef1bf9273ba8e87e7b4f6f42ca"
+ },
+ {
+  "name": "Route16_Johto",
+  "group": 77,
+  "num": 90,
+  "x": 3,
+  "y": 1,
+  "status": "ok",
+  "at": [
+   3,
+   2,
+   77,
+   90
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4165,
+  "md5": "dd03acb9b24ae4f31560066b1b5abd18"
+ },
+ {
+  "name": "Route17_Johto",
+  "group": 77,
+  "num": 91,
+  "x": 17,
+  "y": 82,
+  "status": "ok",
+  "at": [
+   17,
+   82,
+   77,
+   91
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3857,
+  "md5": "84ceb05906a19b439fd35609df4629ff"
+ },
+ {
+  "name": "CeladonCity_Johto",
+  "group": 77,
+  "num": 92,
+  "x": 4,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   4,
+   10,
+   77,
+   92
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3923,
+  "md5": "d70034d230fc0ab64b84bd359a6931fb"
+ },
+ {
+  "name": "CeladonDeptStore1F_Johto",
+  "group": 77,
+  "num": 93,
+  "x": 7,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   7,
+   7,
+   77,
+   93
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3056,
+  "md5": "e1a5e9f0659c0d60b0fb7b498f68faf7"
+ },
+ {
+  "name": "CeladonDeptStore2F_Johto",
+  "group": 77,
+  "num": 94,
+  "x": 12,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   12,
+   1,
+   77,
+   94
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4021,
+  "md5": "4a42310f52d34bdef13051fe6c0f5876"
+ },
+ {
+  "name": "CeladonDeptStore3F_Johto",
+  "group": 77,
+  "num": 95,
+  "x": 12,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   12,
+   1,
+   77,
+   95
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4095,
+  "md5": "0b4843a4fe0f5e1823e438edba98033c"
+ },
+ {
+  "name": "CeladonDeptStore4F_Johto",
+  "group": 77,
+  "num": 96,
+  "x": 12,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   12,
+   1,
+   77,
+   96
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4080,
+  "md5": "6b956c8c9134fcd25f7874225262c182"
+ },
+ {
+  "name": "CeladonDeptStore5F_Johto",
+  "group": 77,
+  "num": 97,
+  "x": 12,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   12,
+   1,
+   77,
+   97
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3395,
+  "md5": "51570b4d8218fc371502a25ed658018b"
+ },
+ {
+  "name": "CeladonDeptStore6F_Johto",
+  "group": 77,
+  "num": 98,
+  "x": 15,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   15,
+   1,
+   77,
+   98
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3180,
+  "md5": "75acf7bd08373b8b42becee529d4e8be"
+ },
+ {
+  "name": "CeladonDeptStoreElevator_Johto",
+  "group": 77,
+  "num": 99,
+  "x": 1,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   1,
+   3,
+   77,
+   99
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2362,
+  "md5": "97a558ceda76ad8bb727440ab90f67cc"
+ },
+ {
+  "name": "CeladonMansion1F_Johto",
+  "group": 78,
+  "num": 0,
+  "x": 6,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   6,
+   9,
+   78,
+   0
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2541,
+  "md5": "d92e60430dfc5d863827b3ebe0ffff93"
+ },
+ {
+  "name": "CeladonMansion2F_Johto",
+  "group": 78,
+  "num": 1,
+  "x": 0,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   0,
+   1,
+   78,
+   1
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3125,
+  "md5": "3dc298ebbc897ad0351d92a2c8090d95"
+ },
+ {
+  "name": "CeladonMansion3F_Johto",
+  "group": 78,
+  "num": 2,
+  "x": 0,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   0,
+   1,
+   78,
+   2
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3586,
+  "md5": "033ae6227c1d552cc0537be3677ac928"
+ },
+ {
+  "name": "CeladonMansionRoof_Johto",
+  "group": 78,
+  "num": 3,
+  "x": 1,
+  "y": 1,
+  "status": "ok",
+  "at": [
+   1,
+   2,
+   78,
+   3
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3559,
+  "md5": "79caa9aaeb12a60f641dbac976cb5c07"
+ },
+ {
+  "name": "CeladonMansionRoofHouse_Johto",
+  "group": 78,
+  "num": 4,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   4
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3037,
+  "md5": "a2d7714aa9689278d3a9aadcc78702a7"
+ },
+ {
+  "name": "CeladonPokecenter1F_Johto",
+  "group": 78,
+  "num": 5,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   78,
+   5
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3141,
+  "md5": "0e0446446b0b6d78ea64ee3c893da979"
+ },
+ {
+  "name": "CeladonPokecenter2FBeta_Johto",
+  "group": 78,
+  "num": 6,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   78,
+   6
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2651,
+  "md5": "bc30e6e38f37ff03c1486fc6d5779b09"
+ },
+ {
+  "name": "CeladonGameCorner_Johto",
+  "group": 78,
+  "num": 7,
+  "x": 14,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   14,
+   13,
+   78,
+   7
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3063,
+  "md5": "40f94fd0f8d0eaa96898c48e6cfd5b87"
+ },
+ {
+  "name": "CeladonGameCornerPrizeRoom_Johto",
+  "group": 78,
+  "num": 8,
+  "x": 2,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   2,
+   5,
+   78,
+   8
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2782,
+  "md5": "81130680a2746f0b34ace61c63fed6ac"
+ },
+ {
+  "name": "CeladonGym_Johto",
+  "group": 78,
+  "num": 9,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   17,
+   78,
+   9
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3044,
+  "md5": "590a7aa52a0c12f7eb0b9e12275407b7"
+ },
+ {
+  "name": "CeladonCafe_Johto",
+  "group": 78,
+  "num": 10,
+  "x": 6,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   6,
+   7,
+   78,
+   10
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3839,
+  "md5": "0fe99eb0fd26c9537cf0f2c15bec9411"
+ },
+ {
+  "name": "Route16FuchsiaSpeechHouse_Johto",
+  "group": 78,
+  "num": 11,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   11
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3044,
+  "md5": "c708286f95722b92e24926c6b188ee6e"
+ },
+ {
+  "name": "Route16Gate_Johto",
+  "group": 78,
+  "num": 12,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   78,
+   12
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3448,
+  "md5": "ac68f8efead7e743b4c2176773d2c9fb"
+ },
+ {
+  "name": "Route7SaffronGate_Johto",
+  "group": 78,
+  "num": 13,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   78,
+   13
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3428,
+  "md5": "502c6e90d9c0a7d8c0629c4517a56b38"
+ },
+ {
+  "name": "Route17Route18Gate_Johto",
+  "group": 78,
+  "num": 14,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   78,
+   14
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3453,
+  "md5": "f7f86c71932f7fa477767ba806ff533d"
+ },
+ {
+  "name": "Route40_Johto",
+  "group": 78,
+  "num": 15,
+  "x": 9,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   9,
+   6,
+   78,
+   15
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5303,
+  "md5": "22ea77cd2171277c22dcdaec73e8b4be"
+ },
+ {
+  "name": "Route41_Johto",
+  "group": 78,
+  "num": 16,
+  "x": 12,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   12,
+   18,
+   78,
+   16
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4654,
+  "md5": "22ca17d5ebe2e441bf0a3f6a7fe49a4d"
+ },
+ {
+  "name": "CianwoodCity_Johto",
+  "group": 78,
+  "num": 17,
+  "x": 17,
+  "y": 41,
+  "status": "ok",
+  "at": [
+   17,
+   42,
+   78,
+   17
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4243,
+  "md5": "6168cecd863d7bb4b53553f8fdb87b29"
+ },
+ {
+  "name": "ManiasHouse_Johto",
+  "group": 78,
+  "num": 18,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   18
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3090,
+  "md5": "d69dc364a032fc695439e2737bea1446"
+ },
+ {
+  "name": "CianwoodGym_Johto",
+  "group": 78,
+  "num": 19,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   17,
+   78,
+   19
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3518,
+  "md5": "04cc39c08bdddeaff6074a42d9645f8e"
+ },
+ {
+  "name": "CianwoodPokecenter1F_Johto",
+  "group": 78,
+  "num": 20,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   78,
+   20
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3215,
+  "md5": "656bbe16d49e45cc866c9251a4a05b47"
+ },
+ {
+  "name": "CianwoodPharmacy_Johto",
+  "group": 78,
+  "num": 21,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   21
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3144,
+  "md5": "02d6152cca081672f927a7809e4c075d"
+ },
+ {
+  "name": "CianwoodPhotoStudio_Johto",
+  "group": 78,
+  "num": 22,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   22
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3144,
+  "md5": "02d6152cca081672f927a7809e4c075d"
+ },
+ {
+  "name": "CianwoodLugiaSpeechHouse_Johto",
+  "group": 78,
+  "num": 23,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   23
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3391,
+  "md5": "dc11493e79ac1da2b2a957fa208022e7"
+ },
+ {
+  "name": "PokeSeersHouse_Johto",
+  "group": 78,
+  "num": 24,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   24
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3153,
+  "md5": "f4e402d94a30dea41c487011341880fc"
+ },
+ {
+  "name": "BattleTower1F_Johto",
+  "group": 78,
+  "num": 25,
+  "x": 7,
+  "y": 9,
+  "status": "ok",
+  "at": [
+   7,
+   9,
+   78,
+   25
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3473,
+  "md5": "bdaa39d01b521784f882dd9fcc5ce798"
+ },
+ {
+  "name": "BattleTowerBattleRoom_Johto",
+  "group": 78,
+  "num": 26,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   78,
+   26
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2353,
+  "md5": "e67d45132cc4dbb3622129597cc2b45e"
+ },
+ {
+  "name": "BattleTowerElevator_Johto",
+  "group": 78,
+  "num": 27,
+  "x": 1,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   2,
+   4,
+   78,
+   27
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 1819,
+  "md5": "61efef30a39c0c6de15179f74686870c"
+ },
+ {
+  "name": "BattleTowerHallway_Johto",
+  "group": 78,
+  "num": 28,
+  "x": 11,
+  "y": 1,
+  "status": "ok",
+  "at": [
+   11,
+   2,
+   78,
+   28
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 1845,
+  "md5": "677082d5d20c010b3357e628664ecd79"
+ },
+ {
+  "name": "Route40BattleTowerGate_Johto",
+  "group": 78,
+  "num": 29,
+  "x": 4,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   4,
+   7,
+   78,
+   29
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3325,
+  "md5": "d0c9987bb567d3f8a7631b8879a77af2"
+ },
+ {
+  "name": "BattleTowerOutside_Johto",
+  "group": 78,
+  "num": 30,
+  "x": 8,
+  "y": 21,
+  "status": "ok",
+  "at": [
+   8,
+   21,
+   78,
+   30
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5328,
+  "md5": "31bbc6e978cf99eeaa39590e4d2374f6"
+ },
+ {
+  "name": "Route2_Johto",
+  "group": 78,
+  "num": 31,
+  "x": 15,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   15,
+   16,
+   78,
+   31
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4598,
+  "md5": "5e7b18c44cbd4ade2219a68378e42455"
+ },
+ {
+  "name": "Route22_Johto",
+  "group": 78,
+  "num": 32,
+  "x": 13,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   13,
+   6,
+   78,
+   32
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4826,
+  "md5": "af8c29af8f9cb56deb8b5c169626c0a2"
+ },
+ {
+  "name": "ViridianCity_Johto",
+  "group": 78,
+  "num": 33,
+  "x": 32,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   32,
+   8,
+   78,
+   33
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4794,
+  "md5": "a2497aa92a8b7d1d97957cc355c8aaaf"
+ },
+ {
+  "name": "ViridianGym_Johto",
+  "group": 78,
+  "num": 34,
+  "x": 4,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   4,
+   17,
+   78,
+   34
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2880,
+  "md5": "f66e55c963c333584e3b77f5071482b7"
+ },
+ {
+  "name": "ViridianNicknameSpeechHouse_Johto",
+  "group": 78,
+  "num": 35,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   35
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3473,
+  "md5": "3a3eb4376c8974dc8e20569eb36d40fc"
+ },
+ {
+  "name": "TrainerHouse1F_Johto",
+  "group": 78,
+  "num": 36,
+  "x": 2,
+  "y": 13,
+  "status": "ok",
+  "at": [
+   2,
+   13,
+   78,
+   36
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3268,
+  "md5": "f6cffcc3c2797605ffe2acbb70a926ac"
+ },
+ {
+  "name": "TrainerHouseB1F_Johto",
+  "group": 78,
+  "num": 37,
+  "x": 9,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   9,
+   4,
+   78,
+   37
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2659,
+  "md5": "15c0286cd121f1bf58a7e697b8d720ed"
+ },
+ {
+  "name": "ViridianMart_Johto",
+  "group": 78,
+  "num": 38,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   38
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3448,
+  "md5": "3cd686fa03e7371b8754e2ee00df6242"
+ },
+ {
+  "name": "ViridianPokecenter1F_Johto",
+  "group": 78,
+  "num": 39,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   78,
+   39
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3336,
+  "md5": "e7a27eed0b0eae96b5d32feac364c5bf"
+ },
+ {
+  "name": "ViridianPokecenter2FBeta_Johto",
+  "group": 78,
+  "num": 40,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   78,
+   40
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2629,
+  "md5": "c4175bcdfbab9722fad18b3d3ca6da74"
+ },
+ {
+  "name": "Route2NuggetHouse_Johto",
+  "group": 78,
+  "num": 41,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   41
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3092,
+  "md5": "dbfa4f6ab17367a0f5cc184edcdb1f84"
+ },
+ {
+  "name": "Route2Gate_Johto",
+  "group": 78,
+  "num": 42,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   1,
+   78,
+   42
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3580,
+  "md5": "24e54c1df75a20d85bf6ecc7ebd724ea"
+ },
+ {
+  "name": "VictoryRoadGate_Johto",
+  "group": 78,
+  "num": 43,
+  "x": 17,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   17,
+   7,
+   78,
+   43
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2720,
+  "md5": "afd7e035879a7ac1001a8ccd884f5d7f"
+ },
+ {
+  "name": "Route26_Johto",
+  "group": 78,
+  "num": 44,
+  "x": 7,
+  "y": 5,
+  "status": "ok",
+  "at": [
+   7,
+   6,
+   78,
+   44
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5095,
+  "md5": "54658746430993a34ad02c1e3038c618"
+ },
+ {
+  "name": "Route27_Johto",
+  "group": 78,
+  "num": 45,
+  "x": 33,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   33,
+   8,
+   78,
+   45
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5858,
+  "md5": "50aa983c823e48450f48ce8e2744e2dd"
+ },
+ {
+  "name": "Route29_Johto",
+  "group": 78,
+  "num": 46,
+  "x": 27,
+  "y": 1,
+  "status": "ok",
+  "at": [
+   27,
+   2,
+   78,
+   46
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5128,
+  "md5": "10b33e5115a3f5c61bb349c453bf5408"
+ },
+ {
+  "name": "NewBarkTown_Johto",
+  "group": 78,
+  "num": 47,
+  "x": 6,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   6,
+   4,
+   78,
+   47
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4983,
+  "md5": "5aac23c9a9c6426e097d766d50004fac"
+ },
+ {
+  "name": "ElmsLab_Johto",
+  "group": 78,
+  "num": 48,
+  "x": 4,
+  "y": 11,
+  "status": "ok",
+  "at": [
+   4,
+   11,
+   78,
+   48
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2598,
+  "md5": "8b05c5c5f1c9594546b52d058b2c848f"
+ },
+ {
+  "name": "PlayersHouse1F_Johto",
+  "group": 78,
+  "num": 49,
+  "x": 6,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   6,
+   7,
+   78,
+   49
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2598,
+  "md5": "c586befdcf117fe46a75c4cd5f41b3de"
+ },
+ {
+  "name": "PlayersHouse2F_Johto",
+  "group": 78,
+  "num": 50,
+  "x": 7,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   7,
+   1,
+   78,
+   50
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2756,
+  "md5": "4bd45c63fca4d436f85f94a6cd5d41dd"
+ },
+ {
+  "name": "PlayersNeighborsHouse_Johto",
+  "group": 78,
+  "num": 51,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   51
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3338,
+  "md5": "e24a29f51a9167d67f5b3c079858f83b"
+ },
+ {
+  "name": "ElmsHouse_Johto",
+  "group": 78,
+  "num": 52,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   52
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2891,
+  "md5": "8cb868dd42e4e2a7ee67247d9845047e"
+ },
+ {
+  "name": "Route26HealHouse_Johto",
+  "group": 78,
+  "num": 53,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   53
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3200,
+  "md5": "f743a1716a8b10af924746378d964b7b"
+ },
+ {
+  "name": "DayOfWeekSiblingsHouse_Johto",
+  "group": 78,
+  "num": 54,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   54
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3160,
+  "md5": "8e1f1802001a0a658baf106dabf9e4ba"
+ },
+ {
+  "name": "Route27SandstormHouse_Johto",
+  "group": 78,
+  "num": 55,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   55
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3096,
+  "md5": "5da3b17866e4946e94e7f434147b12a3"
+ },
+ {
+  "name": "Route29Route46Gate_Johto",
+  "group": 78,
+  "num": 56,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   1,
+   78,
+   56
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3760,
+  "md5": "249eb3485487fd3202ad73f0e5294aeb"
+ },
+ {
+  "name": "Route5_Johto",
+  "group": 78,
+  "num": 57,
+  "x": 17,
+  "y": 15,
+  "status": "ok",
+  "at": [
+   17,
+   16,
+   78,
+   57
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4837,
+  "md5": "56e280b66d7fe70de4a02eb7d22f824b"
+ },
+ {
+  "name": "SaffronCity_Johto",
+  "group": 78,
+  "num": 58,
+  "x": 26,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   26,
+   4,
+   78,
+   58
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4184,
+  "md5": "cbda7689fc54458afd06fabbd5cc16a4"
+ },
+ {
+  "name": "FightingDojo_Johto",
+  "group": 78,
+  "num": 59,
+  "x": 4,
+  "y": 11,
+  "status": "ok",
+  "at": [
+   4,
+   11,
+   78,
+   59
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2787,
+  "md5": "45498d052c7bf5c12e13b4043bcd8f67"
+ },
+ {
+  "name": "SaffronGym_Johto",
+  "group": 78,
+  "num": 60,
+  "x": 8,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   8,
+   17,
+   78,
+   60
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3860,
+  "md5": "119f6e40eb6568d0a1d6b57313afe999"
+ },
+ {
+  "name": "SaffronMart_Johto",
+  "group": 78,
+  "num": 61,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   61
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3483,
+  "md5": "796c409be60eeff62be1f56d92b29aa5"
+ },
+ {
+  "name": "SaffronPokecenter1F_Johto",
+  "group": 78,
+  "num": 62,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   78,
+   62
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3125,
+  "md5": "2e686003b86c51ad227ba784fa657add"
+ },
+ {
+  "name": "SaffronPokecenter2FBeta_Johto",
+  "group": 78,
+  "num": 63,
+  "x": 0,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   0,
+   7,
+   78,
+   63
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2664,
+  "md5": "03d2a8e75bd7d851365aa9ddd5b32b73"
+ },
+ {
+  "name": "MrPsychicsHouse_Johto",
+  "group": 78,
+  "num": 64,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   64
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3135,
+  "md5": "72177c9d445db113bb9cf5d069be0692"
+ },
+ {
+  "name": "SaffronMagnetTrainStation_Johto",
+  "group": 78,
+  "num": 65,
+  "x": 8,
+  "y": 17,
+  "status": "ok",
+  "at": [
+   8,
+   17,
+   78,
+   65
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3190,
+  "md5": "22643b95201527a4822296f9c286e820"
+ },
+ {
+  "name": "SilphCo1F_Johto",
+  "group": 78,
+  "num": 66,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   66
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3025,
+  "md5": "383a2ce5f58b1ff6487049ae291c8576"
+ },
+ {
+  "name": "CopycatsHouse1F_Johto",
+  "group": 78,
+  "num": 67,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   67
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3091,
+  "md5": "c7ef525c80fb8c08c3b44a2e833d8f89"
+ },
+ {
+  "name": "CopycatsHouse2F_Johto",
+  "group": 78,
+  "num": 68,
+  "x": 3,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   3,
+   1,
+   78,
+   68
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3673,
+  "md5": "b85cebaef8310e3b3cd32c837f5729a2"
+ },
+ {
+  "name": "Route5UndergroundPathEntrance_Johto",
+  "group": 78,
+  "num": 69,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   78,
+   69
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2874,
+  "md5": "1691cd5804dc855301cce7a55cb041e2"
+ },
+ {
+  "name": "Route5SaffronGate_Johto",
+  "group": 78,
+  "num": 70,
+  "x": 4,
+  "y": 0,
+  "status": "ok",
+  "at": [
+   4,
+   1,
+   78,
+   70
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3505,
+  "md5": "4b11c62e1db7b7a629044ba516c6d6c4"
+ },
+ {
+  "name": "Route5CleanseTagHouse_Johto",
+  "group": 78,
+  "num": 71,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   71
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3380,
+  "md5": "b7349d49ceecacd356c2f6c096539134"
+ },
+ {
+  "name": "Route30_Johto",
+  "group": 78,
+  "num": 72,
+  "x": 7,
+  "y": 39,
+  "status": "ok",
+  "at": [
+   7,
+   40,
+   78,
+   72
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5427,
+  "md5": "42f2d0ea19005c00624dea4da742c072"
+ },
+ {
+  "name": "Route31_Johto",
+  "group": 78,
+  "num": 73,
+  "x": 4,
+  "y": 6,
+  "status": "ok",
+  "at": [
+   4,
+   6,
+   78,
+   73
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 5037,
+  "md5": "8103ef8d60f99dc8acb8333265c7ac71"
+ },
+ {
+  "name": "CherrygroveCity_Johto",
+  "group": 78,
+  "num": 74,
+  "x": 23,
+  "y": 3,
+  "status": "ok",
+  "at": [
+   23,
+   4,
+   78,
+   74
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 4781,
+  "md5": "fe3c996cf32aa99d43312f0da6329e1f"
+ },
+ {
+  "name": "CherrygroveMart_Johto",
+  "group": 78,
+  "num": 75,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   75
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3620,
+  "md5": "a7dd1a0f3fd2e751027a3ce091211766"
+ },
+ {
+  "name": "CherrygrovePokecenter1F_Johto",
+  "group": 78,
+  "num": 76,
+  "x": 3,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   3,
+   7,
+   78,
+   76
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3434,
+  "md5": "d1bb9690a130dc79d8b7f0db0faf1dfe"
+ },
+ {
+  "name": "CherrygroveGymSpeechHouse_Johto",
+  "group": 78,
+  "num": 77,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   77
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3408,
+  "md5": "5b625daa0d99411655878eec38e7bd88"
+ },
+ {
+  "name": "GuideGentsHouse_Johto",
+  "group": 78,
+  "num": 78,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   78
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 2945,
+  "md5": "84365c14c12916472cc5834c1b8d9069"
+ },
+ {
+  "name": "CherrygroveEvolutionSpeechHouse_Johto",
+  "group": 78,
+  "num": 79,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   79
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3382,
+  "md5": "0d90510dca0e08bbbb5997009ebda358"
+ },
+ {
+  "name": "Route30BerryHouse_Johto",
+  "group": 78,
+  "num": 80,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   80
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3125,
+  "md5": "8d7320a3faa1ad8a6cbb50d14538bc0e"
+ },
+ {
+  "name": "MrPokemonsHouse_Johto",
+  "group": 78,
+  "num": 81,
+  "x": 2,
+  "y": 7,
+  "status": "ok",
+  "at": [
+   2,
+   7,
+   78,
+   81
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3241,
+  "md5": "7179919eb4405464480cda9f51e03e75"
+ },
+ {
+  "name": "Route31VioletGate_Johto",
+  "group": 78,
+  "num": 82,
+  "x": 0,
+  "y": 4,
+  "status": "ok",
+  "at": [
+   0,
+   4,
+   78,
+   82
+  ],
+  "callback2": "0x8193914",
+  "png_bytes": 3659,
+  "md5": "b74e395f6c6e591e8c101dc49873b699"
+ }
+]

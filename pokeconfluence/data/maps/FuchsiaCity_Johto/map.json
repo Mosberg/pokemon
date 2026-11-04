@@ -1,0 +1,250 @@
+{
+  "id": "MAP_JOHTO_FUCHSIA_CITY",
+  "name": "FuchsiaCity_Johto",
+  "layout": "LAYOUT_JOHTO_FUCHSIA_CITY",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_FUCHSIA_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_JOHTO_ROUTE_19",
+      "offset": 0,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_18",
+      "offset": 14,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_JOHTO_ROUTE_15",
+      "offset": 18,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 23,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FuchsiaCity_Johto_FuchsiaCityYoungster_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 13,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FuchsiaCity_Johto_FuchsiaCityPokefanM_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "x": 16,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FuchsiaCity_Johto_FuchsiaCityTeacher_Entry",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 8,
+      "y": 1,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FuchsiaCity_Johto_FuchsiaCityFruitTree_Entry",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 5,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FUCHSIA_MART",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 22,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_SAFARI_ZONE_MAIN_OFFICE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FUCHSIA_GYM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 11,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_BILLS_OLDER_SISTERS_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 19,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_FUCHSIA_POKECENTER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 27,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_SAFARI_ZONE_WARDENS_HOME",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 18,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_SAFARI_ZONE_FUCHSIA_GATE_BETA",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 37,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_15_FUCHSIA_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 37,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_15_FUCHSIA_GATE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 7,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_19_FUCHSIA_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_19_FUCHSIA_GATE",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 21,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FuchsiaCity_Johto_FuchsiaCitySign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 29,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FuchsiaCity_Johto_FuchsiaGymSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 25,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FuchsiaCity_Johto_SafariZoneOfficeSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 27,
+      "y": 29,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FuchsiaCity_Johto_WardensHomeSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FuchsiaCity_Johto_SafariZoneClosedSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FuchsiaCity_Johto_NoLitteringSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 20,
+      "y": 27,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FuchsiaCity_Johto_FuchsiaCityPokecenterSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FuchsiaCity_Johto_FuchsiaCityMartSign_Entry"
+    },
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FuchsiaCity_Johto_CutTree0"
+    },
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FuchsiaCity_Johto_CutTree1"
+    }
+  ]
+}

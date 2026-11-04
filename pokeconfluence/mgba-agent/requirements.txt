@@ -1,0 +1,23 @@
+# Core tools (bridge client, MCP server, agents)
+mcp>=1.2
+pillow
+numpy
+pydantic>=2
+openai>=1.0
+google-genai
+
+# Reinforcement learning
+gymnasium>=0.29
+stable-baselines3>=2.3
+torch
+opencv-python
+tensorboard
+tqdm
+rich
+
+# Deployment
+onnx
+onnxruntime
+
+# Headless emulator: the `mgba` Python bindings must be built from the mGBA source
+# (cmake -DBUILD_PYTHON=ON); they are not on PyPI as a wheel.

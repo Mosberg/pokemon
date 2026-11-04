@@ -1,0 +1,102 @@
+{
+  "id": "MAP_JOHTO_ROCK_TUNNEL_B1F",
+  "name": "RockTunnelB1F_Johto",
+  "layout": "LAYOUT_JOHTO_ROCK_TUNNEL_B1F",
+  "music": "MUS_ROUTE104",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_ROCK_TUNNEL",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 7,
+      "y": 25,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RockTunnelB1F_Johto_RockTunnelB1FIron_Entry",
+      "flag": "FLAG_JOHTO_ROCK_TUNNEL_B1F_IRON"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 6,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RockTunnelB1F_Johto_RockTunnelB1FPPUp_Entry",
+      "flag": "FLAG_JOHTO_ROCK_TUNNEL_B1F_PP_UP"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 15,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RockTunnelB1F_Johto_RockTunnelB1FRevive_Entry",
+      "flag": "FLAG_JOHTO_ROCK_TUNNEL_B1F_REVIVE"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROCK_TUNNEL_1F",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 17,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROCK_TUNNEL_1F",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 23,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROCK_TUNNEL_1F",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 25,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROCK_TUNNEL_1F",
+      "dest_warp_id": "4"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 4,
+      "y": 14,
+      "elevation": 3,
+      "item": "ITEM_MAX_POTION",
+      "flag": "FLAG_JOHTO_ROCK_TUNNEL_B1F_HIDDEN_MAX_POTION",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
+}

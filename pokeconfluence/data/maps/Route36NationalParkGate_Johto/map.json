@@ -1,0 +1,217 @@
+{
+  "id": "MAP_JOHTO_ROUTE_36_NATIONAL_PARK_GATE",
+  "name": "Route36NationalParkGate_Johto",
+  "layout": "LAYOUT_JOHTO_ROUTE_36_NATIONAL_PARK_GATE",
+  "music": "MUS_LITTLEROOT",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_JOHTO_ROUTE_36",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 0,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_Route36OfficerScriptContest_Entry",
+      "flag": "FLAG_JOHTO_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 2,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_BugCatchingContestant1BScript_Entry",
+      "flag": "FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1B"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 4,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_BugCatchingContestant2BScript_Entry",
+      "flag": "FLAG_JOHTO_BUG_CATCHING_CONTESTANT_2B"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 2,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_BugCatchingContestant3BScript_Entry",
+      "flag": "FLAG_JOHTO_BUG_CATCHING_CONTESTANT_3B"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 6,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_BugCatchingContestant4BScript_Entry",
+      "flag": "FLAG_JOHTO_BUG_CATCHING_CONTESTANT_4B"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 2,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_BugCatchingContestant5BScript_Entry",
+      "flag": "FLAG_JOHTO_BUG_CATCHING_CONTESTANT_5B"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 5,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_BugCatchingContestant6BScript_Entry",
+      "flag": "FLAG_JOHTO_BUG_CATCHING_CONTESTANT_6B"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "x": 3,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_BugCatchingContestant7BScript_Entry",
+      "flag": "FLAG_JOHTO_BUG_CATCHING_CONTESTANT_7B"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 4,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_BugCatchingContestant8BScript_Entry",
+      "flag": "FLAG_JOHTO_BUG_CATCHING_CONTESTANT_8B"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 6,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_BugCatchingContestant9BScript_Entry",
+      "flag": "FLAG_JOHTO_BUG_CATCHING_CONTESTANT_9B"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 6,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_BugCatchingContestant10BScript_Entry",
+      "flag": "FLAG_JOHTO_BUG_CATCHING_CONTESTANT_10B"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 3,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36NationalParkGate_Johto_Route36NationalParkGateOfficerScript_Entry",
+      "flag": "FLAG_JOHTO_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 0,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_NATIONAL_PARK",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 0,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_NATIONAL_PARK",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 9,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_36",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ROUTE_36",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 0,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Johto_EventScript_StubSign"
+    }
+  ]
+}

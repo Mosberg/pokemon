@@ -1,0 +1,35 @@
+BattleTowerElevator_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleTowerElevator_Johto_OnFrame
+	.byte 0
+
+BattleTowerElevator_Johto_OnFrame:
+	map_script_2 VAR_JOHTO_SCENE_BATTLE_TOWER_ELEVATOR, 0, BattleTowerElevator_Johto_BattleTowerElevatorRideElevatorScript_Entry
+	.2byte 0
+
+BattleTowerElevator_Johto_MovementData_BattleTowerElevatorReceptionistWalksIn_Entry::
+	lockall
+	goto BattleTowerElevator_Johto_MovementData_BattleTowerElevatorReceptionistWalksIn
+
+BattleTowerElevator_Johto_BattleTowerElevatorRideElevatorScript_Entry::
+	lockall
+	goto BattleTowerElevator_Johto_BattleTowerElevatorRideElevatorScript
+
+
+BattleTowerElevator_Johto_BattleTowerElevatorRideElevatorScript:
+	applymovement OBJ_EVENT_ID_PLAYER, BattleTowerElevator_Johto_MovementData_BattleTowerElevatorReceptionistWalksIn
+	applymovement 1, BattleTowerElevator_Johto_MovementData_BattleTowerElevatorReceptionistWalksIn
+	waitmovement 1
+	applymovement OBJ_EVENT_ID_PLAYER, BattleTowerElevator_Johto_MovementData_BattleTowerElevatorPlayerWalksIn
+	waitmovement OBJ_EVENT_ID_PLAYER
+	setvar VAR_RESULT, 0
+	@ TODO unsupported: special BattleTowerAction
+	goto Johto_EventScript_Unimplemented
+
+BattleTowerElevator_Johto_MovementData_BattleTowerElevatorReceptionistWalksIn:
+	walk_right
+	face_down
+	step_end
+
+BattleTowerElevator_Johto_MovementData_BattleTowerElevatorPlayerWalksIn:
+	face_down
+	step_end
