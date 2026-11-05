@@ -1,5 +1,7 @@
 # Instructions
 
+> **Pokémon Confluence:** this repository is already the hack, so skip the `git clone` step below. Run `scripts/setup.sh --extras` once, then `scripts/build.sh` (or `make -j$(nproc) confluence`) to produce `pokeconfluence.gba`; `scripts/test.sh` runs the Confluence tests. The rest of this file is the upstream guide and applies to the toolchain install.
+
 Install instructions for each supported operating system can be found in their respective directories under `docs/install/`.
 Lines to those can be found under each heading.
 This file only contains a short introduction to each supported system.
