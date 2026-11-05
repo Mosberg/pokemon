@@ -43,7 +43,18 @@
   "poryscript.emitExpansionStringEncoding": true,
 
   // Python Toolchain Environment
+  "python.useEnvironmentsExtension": false,
+  "python.locator": "js",
   "python.defaultInterpreterPath": "${workspaceFolder}/pokeconfluence/.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "python.condaPath": "",
+  "python.pipenvPath": "",
+  "python.poetryPath": "",
+  "python.experiments.optOutFrom": [
+    "pythonPromptNewToolsExt",
+    "pythonTerminalEnvVarActivation"
+  ],
   "python.analysis.extraPaths": [
     "${workspaceFolder}/tools/poke-migrator-pro/bin",
     "${workspaceFolder}/pokeconfluence/mgba-agent",
@@ -104,5 +115,11 @@
   ],
   "cmake.sourceDirectory": "C:/Projects/Games/Poke-Migrator/porytiles",
   "pokeemeraldAi.bridge.port": 8888,
-  "python-envs.defaultEnvManager": "ms-python.python:venv"
+  "python-envs.defaultEnvManager": "ms-python.python:venv",
+  "python-envs.defaultPackageManager": "ms-python.python:pip",
+  "python-envs.terminal.autoActivationType": "off",
+  "python-envs.workspaceSearchPaths": [
+    "${workspaceFolder}/pokeconfluence/.venv"
+  ],
+  "python-envs.globalSearchPaths": []
 }

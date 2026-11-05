@@ -283,6 +283,31 @@ This document tracks all fully converted, integrated, and verified features in *
     6. Automated opening flow replay with headless agent (`mgba-agent/johto_regression.py`).
   - Added continuous integration workflow [.github/workflows/confluence_ci.yml](../../.github/workflows/confluence_ci.yml).
 
+---
+
+## 14. Battle Tower, Mobile & Link Stubs
+
+- **All 21 Crystal Link, Mobile & Battle Tower Stubs Resolved**:
+  - Replaced all legacy `@ TODO unsupported:` stubs across all 383 Johto maps, achieving 0 remaining stubs across the entire repository.
+- **Johto Pokémon Center 2F Link Facility**:
+  - `JohtoCheckMysteryGift` and `JohtoGetMysteryGiftItem`: Cleanly implemented in [src/johto_scripts.c](src/johto_scripts.c) and registered in [data/specials.inc](data/specials.inc). The Delivery Officer NPC in [Pokecenter2F_Johto](data/maps/Pokecenter2F_Johto/scripts.inc) awards event items with bag overflow checks.
+  - Link Record Display Sign: Wired directly to native GBA `ShowLinkBattleRecords` and `RemoveRecordsWindow` specials.
+  - Cable Trade, Battle, and Time Capsule Receptionists: Removed unsupported GBC Mobile Adapter GB calls, handling offline Link Cable connection checks and prompt messages (`Pokecenter2F_Johto_Text_FriendNotReady`).
+- **Waiting Rooms (Colosseum, Trade Center, Time Capsule)**:
+  - Console sign events in [data/maps/Colosseum_Johto/scripts.inc](data/maps/Colosseum_Johto/scripts.inc), [data/maps/TradeCenter_Johto/scripts.inc](data/maps/TradeCenter_Johto/scripts.inc), and [data/maps/TimeCapsule_Johto/scripts.inc](data/maps/TimeCapsule_Johto/scripts.inc) cleanly inform the player if a Game Link cable is not connected.
+  - Callbacks properly hide offline opponent sprites (`FLAG_TEMP_11`, `FLAG_TEMP_12`) and support friend interactions.
+- **Johto Battle Tower Progression**:
+  - Lobby scene check in [data/maps/BattleTower1F_Johto/scripts.inc](data/maps/BattleTower1F_Johto/scripts.inc) properly arms and steps without freezing.
+  - Authentic Receptionist interaction with `MULTI_CHALLENGEINFO` multichoice menu (Challenge, Info, Exit).
+  - `JohtoCheckBattleTowerEligibility`: Verifies at least 3 eligible non-egg battle-ready Pokémon in the player's active party.
+  - Elevator sequence in [data/maps/BattleTowerElevator_Johto/scripts.inc](data/maps/BattleTowerElevator_Johto/scripts.inc) with authentic elevator audio (`SE_ELEVATOR`) and warp transitions.
+  - Hallway navigation in [data/maps/BattleTowerHallway_Johto/scripts.inc](data/maps/BattleTowerHallway_Johto/scripts.inc) guiding the player to the Battle Room doors.
+  - Battle Room entrance sequence in [data/maps/BattleTowerBattleRoom_Johto/scripts.inc](data/maps/BattleTowerBattleRoom_Johto/scripts.inc) with receptionist welcoming and return warp.
+- **Verification**:
+  - [scripts/audit_johto_scripts.py](scripts/audit_johto_scripts.py): Verified 0 stubs remaining across all maps (18/18 checks pass).
+  - [.agents/scripts/check_limits.py](../../.agents/scripts/check_limits.py): Verified 0 remaining stubs.
+
+
 
 
 
