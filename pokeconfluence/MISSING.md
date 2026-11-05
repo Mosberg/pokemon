@@ -61,7 +61,7 @@ fishing encounter tables (Old/Good/Super Rod for 149 maps; the Old Rod is accept
 
 ## Tooling and extension
 
-- Field Kit party-menu row: the menu opens and draws in the emulator (see `mgba-agent/field_kit_menu.py`); performing each listed move through it (Surf, Fly, Dig, Teleport, Dive, Waterfall) is not yet verified
+- Field Kit party-menu row: verified in the emulator for Fly and Teleport (and the Surf message); Flash, Dig, Dive and Waterfall through the list are not yet run
 - VS Code extension views, dashboard, chat participant and real model calls are untested (only the emulator screen and MCP server were run)
 - Headless mGBA Python bindings and the RL stack are not set up
 - No automated test that rebuilds the ROM and replays the Johto opening (the manual replay scripts live in the session scratchpad, not in the repo)
