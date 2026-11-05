@@ -15,6 +15,7 @@
 #include "battle_z_move.h"
 #include "bg.h"
 #include "data.h"
+#include "flee_mons.h"
 #include "frontier_util.h"
 #include "item.h"
 #include "link.h"
@@ -457,6 +458,14 @@ static void OpponentHandleChooseMove(enum BattlerId battler)
     }
     else // Wild Pokémon - use random move
     {
+        // POKE-CONFLUENCE: Authentic Johto fleeing wild Pokémon (from pokecrystal flee_mons.asm)
+        if (TryWildMonFlee(battler))
+        {
+            BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_RUN, 0);
+            BtlController_Complete(battler);
+            return;
+        }
+
         enum Move move = MOVE_NONE;
         u32 chosenMoveIndex = 0;
         struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);

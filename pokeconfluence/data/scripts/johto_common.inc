@@ -74,6 +74,61 @@ Johto_Std_CutDeclined:
 	setvar VAR_RESULT, FALSE
 	return
 
+// POKE-CONFLUENCE: Authentic Johto Headbutt Tree interaction
+Johto_EventScript_HeadbuttTree::
+	lockall
+	special JohtoCheckHeadbuttUser
+	goto_if_eq VAR_RESULT, PARTY_SIZE, Johto_EventScript_TreeCantHeadbutt
+	bufferpartymonnick STR_VAR_1, VAR_RESULT
+	msgbox Johto_Text_WantToHeadbutt, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Johto_EventScript_HeadbuttCanceled
+	msgbox Johto_Text_MonUsedHeadbutt, MSGBOX_DEFAULT
+	closemessage
+	playse SE_M_HEADBUTT
+	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_HeadbuttShake
+	waitmovement 0
+	special JohtoHeadbuttWildEncounter
+	goto_if_eq VAR_RESULT, TRUE, Johto_EventScript_HeadbuttEnd
+	msgbox Johto_Text_HeadbuttNothing, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_EventScript_TreeCantHeadbutt::
+	msgbox Johto_Text_TreeCantHeadbutt, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_EventScript_HeadbuttCanceled::
+	closemessage
+	releaseall
+	end
+
+Johto_EventScript_HeadbuttEnd::
+	releaseall
+	end
+
+Johto_Movement_HeadbuttShake:
+	walk_in_place_fast_up
+	lock_facing_direction
+	walk_in_place_fast_down
+	unlock_facing_direction
+	step_end
+
+Johto_Text_WantToHeadbutt:
+	.string "A Pokémon could be in this tree!\p"
+	.string "Would you like to HEADBUTT it?$"
+
+Johto_Text_MonUsedHeadbutt:
+	.string "{STR_VAR_1} used HEADBUTT!$"
+
+Johto_Text_HeadbuttNothing:
+	.string "Nothing fell out of the tree…$"
+
+Johto_Text_TreeCantHeadbutt:
+	.string "A Pokémon could be in this tree.\n"
+	.string "A Pokémon that knows HEADBUTT\l"
+	.string "could shake it!$"
+
 Johto_Std_Trade_MIKE::
 	setvar VAR_0x8008, INGAME_TRADE_JOHTO_MIKE
 	call EventScript_GetInGameTradeSpeciesInfo

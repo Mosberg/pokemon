@@ -16,6 +16,8 @@
 #include "scanline_effect.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "regions.h" // POKE-CONFLUENCE
+#include "johto_phone.h" // POKE-CONFLUENCE
 
 #define GFXTAG_BLUE_LIGHT 1
 #define GFXTAG_OPTIONS    3
@@ -1217,12 +1219,31 @@ static void AddOptionDescriptionWindow(void)
     CopyWindowToVram(gfx->optionDescWindowId, COPYWIN_FULL);
 }
 
+// POKE-CONFLUENCE: Contextual descriptions for Johto Pokégear cards
+static const u8 sText_JohtoMapCardMissing[] = _("The MAP CARD is not installed.");
+static const u8 sText_JohtoMapDesc[] = _("Check the map of the JOHTO region.");
+static const u8 sText_JohtoPhoneCardMissing[] = _("The PHONE CARD is not installed.");
+static const u8 sText_JohtoPhoneDesc[] = _("Call a registered contact.");
+static const u8 sText_JohtoPokegearPutAway[] = _("Put away the POKéGEAR.");
+
 static void PrintCurrentOptionDescription(void)
 {
     struct Pokenav_MenuGfx *gfx = GetSubstructPtr(POKENAV_SUBSTRUCT_MENU_GFX);
     int menuItem = GetCurrentMenuItemId();
     const u8 *desc = sPageDescriptions[menuItem];
-    u32 width = GetStringWidth(FONT_NORMAL, desc, -1);
+    u32 width;
+
+    if (GetCurrentRegion() == REGION_JOHTO)
+    {
+        if (menuItem == POKENAV_MENUITEM_MAP)
+            desc = Johto_HasMapCard() ? sText_JohtoMapDesc : sText_JohtoMapCardMissing;
+        else if (menuItem == POKENAV_MENUITEM_MATCH_CALL)
+            desc = Johto_HasPhoneCard() ? sText_JohtoPhoneDesc : sText_JohtoPhoneCardMissing;
+        else if (menuItem == POKENAV_MENUITEM_SWITCH_OFF)
+            desc = sText_JohtoPokegearPutAway;
+    }
+
+    width = GetStringWidth(FONT_NORMAL, desc, -1);
     FillWindowPixelBuffer(gfx->optionDescWindowId, PIXEL_FILL(6));
     AddTextPrinterParameterized3(gfx->optionDescWindowId, FONT_NORMAL, (192 - width) / 2, 1, sOptionDescTextColors, 0, desc);
 }

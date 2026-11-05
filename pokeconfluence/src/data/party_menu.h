@@ -822,6 +822,7 @@ struct
     [MENU_CHANGE_FORM]     = {COMPOUND_STRING("Change form"),     CursorCb_ChangeForm},
     [MENU_CHANGE_ABILITY]  = {COMPOUND_STRING("Change Ability"),  CursorCb_ChangeAbility},
     [MENU_FIELD_KIT]       = {COMPOUND_STRING("FIELD KIT"),       CursorCb_FieldKit}, // POKE-CONFLUENCE
+    [MENU_CHECK_MOOD]      = {COMPOUND_STRING("CHECK MOOD"),      CursorCb_CheckMood}, // POKE-CONFLUENCE
 };
 
 static const u8 sPartyMenuAction_SummarySwitchCancel[] = {MENU_SUMMARY, MENU_SWITCH, MENU_CANCEL1};

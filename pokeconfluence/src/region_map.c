@@ -137,6 +137,7 @@ static const u8 sRegionMapPlayerIcon_LeafGfx[] = INCGFX_U8("graphics/pokenav/reg
 #include "data/region_map/region_map_layout_sevii123.h"
 #include "data/region_map/region_map_layout_sevii45.h"
 #include "data/region_map/region_map_layout_sevii67.h"
+#include "data/region_map/region_map_layout_johto.h"
 #include "data/region_map/region_map_entries.h"
 
 static const mapsec_u16_t sRegionMap_SpecialPlaceLocations[][2] =
@@ -376,6 +377,17 @@ const struct RegionMapInfo gRegionMapInfos[] =
         .regionMapPalette = sRegionMapSevii67_Pal,
         .regionMapGfx = sRegionMapSevii67_Gfx,
         .regionMapTilemap = sRegionMapSevii67_Tilemap,
+    },
+    // POKE-CONFLUENCE: Johto Region Map
+    [REGION_MAP_JOHTO]    =
+    {
+        .dexMapPalette = sPokedexAreaMap_Pal,
+        .dexMapGfx = sPokedexAreaMap_Gfx,
+        .dexMapTilemap = sPokedexAreaMap_Tilemap,
+        .dexMapPaletteSize = sizeof(sPokedexAreaMap_Pal),
+        .regionMapPalette = sRegionMapBg_Pal,
+        .regionMapGfx = sRegionMapBg_GfxLZ,
+        .regionMapTilemap = sRegionMapBg_TilemapLZ,
     },
 };
 
@@ -1176,6 +1188,8 @@ enum RegionMapType GetRegionMapType(u32 mapSecId)
 {
     switch (GetRegionForSectionId(mapSecId))
     {
+    case REGION_JOHTO:
+        return REGION_MAP_JOHTO;
     case REGION_KANTO:
         switch (GetKantoSubregion(mapSecId))
         {
@@ -1206,6 +1220,8 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
 
     switch (GetCurrentRegion())
     {
+    case REGION_JOHTO:
+        return sRegionMapSections_Johto[y][x];
     case REGION_KANTO:
         switch (GetKantoSubregion(gMapHeader.regionMapSectionId))
         {
@@ -2330,6 +2346,67 @@ static const struct FlyLocation sFlyLocations[] =
         .regionMapType = REGION_MAP_KANTO,
         .mapsec = MAPSEC_ROUTE_10_POKECENTER,
         .flag = FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F,
+    },
+    // POKE-CONFLUENCE: Johto Fly Destinations
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_NEW_BARK_TOWN,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_NEW_BARK,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_CHERRYGROVE_CITY,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_CHERRYGROVE,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_VIOLET_CITY,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_VIOLET,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_AZALEA_TOWN,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_AZALEA,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_GOLDENROD_CITY,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_GOLDENROD,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_ECRUTEAK_CITY,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_ECRUTEAK,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_OLIVINE_CITY,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_OLIVINE,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_CIANWOOD_CITY,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_CIANWOOD,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_MAHOGANY_TOWN,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_MAHOGANY,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_LAKE_OF_RAGE,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_LAKE_OF_RAGE,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_BLACKTHORN_CITY,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_BLACKTHORN,
+    },
+    {
+        .regionMapType = REGION_MAP_JOHTO,
+        .mapsec = MAPSEC_JOHTO_SILVER_CAVE,
+        .flag = FLAG_JOHTO_ENGINE_FLYPOINT_SILVER_CAVE,
     },
 };
 

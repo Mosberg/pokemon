@@ -4,6 +4,8 @@
 #include "main.h"
 #include "sound.h"
 #include "constants/songs.h"
+#include "regions.h" // POKE-CONFLUENCE
+#include "johto_phone.h" // POKE-CONFLUENCE
 
 struct Pokenav_Menu
 {
@@ -221,6 +223,12 @@ static u32 HandleMainMenuInput(struct Pokenav_Menu *menu)
         switch (sMenuItems[menu->menuType][menu->cursorPos])
         {
         case POKENAV_MENUITEM_MAP:
+            // POKE-CONFLUENCE: Johto Pokégear requires the Map Card
+            if (GetCurrentRegion() == REGION_JOHTO && !Johto_HasMapCard())
+            {
+                PlaySE(SE_FAILURE);
+                return POKENAV_MENU_FUNC_NONE;
+            }
             menu->helpBarIndex = gSaveBlock2Ptr->regionMapZoom ? HELPBAR_MAP_ZOOMED_IN : HELPBAR_MAP_ZOOMED_OUT;
             SetMenuIdAndCB(menu, POKENAV_REGION_MAP);
             return POKENAV_MENU_FUNC_OPEN_FEATURE;
@@ -231,6 +239,12 @@ static u32 HandleMainMenuInput(struct Pokenav_Menu *menu)
             menu->callback = HandleConditionMenuInput;
             return POKENAV_MENU_FUNC_OPEN_CONDITION;
         case POKENAV_MENUITEM_MATCH_CALL:
+            // POKE-CONFLUENCE: Johto Pokégear requires the Phone Card
+            if (GetCurrentRegion() == REGION_JOHTO && !Johto_HasPhoneCard())
+            {
+                PlaySE(SE_FAILURE);
+                return POKENAV_MENU_FUNC_NONE;
+            }
             menu->helpBarIndex = HELPBAR_MC_TRAINER_LIST;
             SetMenuIdAndCB(menu, POKENAV_MATCH_CALL);
             return POKENAV_MENU_FUNC_OPEN_FEATURE;

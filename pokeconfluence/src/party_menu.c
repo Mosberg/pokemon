@@ -1,5 +1,6 @@
 #include "global.h"
 #include "confluence.h" // POKE-CONFLUENCE: Field Kit
+#include "mood.h" // POKE-CONFLUENCE: Universal Mood System
 #include "malloc.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -112,6 +113,7 @@ enum {
     MENU_CHANGE_FORM,
     MENU_CHANGE_ABILITY,
     MENU_FIELD_KIT, // POKE-CONFLUENCE: opens the Field Kit field move list
+    MENU_CHECK_MOOD, // POKE-CONFLUENCE: Universal Mood inspection for all 386 Pokémon
     MENU_FIELD_MOVES
 };
 
@@ -477,6 +479,7 @@ static void CursorCb_Trade2(u8);
 static void CursorCb_Toss(u8);
 static void CursorCb_FieldMove(u8);
 static void CursorCb_FieldKit(u8);
+static void CursorCb_CheckMood(u8);
 static void CursorCb_CatalogBulb(u8);
 static void CursorCb_CatalogOven(u8);
 static void CursorCb_CatalogWashing(u8);
@@ -2986,6 +2989,9 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         else
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_ITEM);
     }
+    // POKE-CONFLUENCE: Universal Mood inspection for all 386 Pokémon (field only, non-eggs)
+    if (sPartyMenuInternal->numActions <= 5 && !GetMonData(&mons[slotId], MON_DATA_IS_EGG) && gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD)
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CHECK_MOOD);
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
 }
 
@@ -4113,6 +4119,28 @@ static void CursorCb_FieldKit(u8 taskId)
     DisplayPartyMenuStdMessage(PARTY_MSG_DO_WHAT_WITH_MON);
     gTasks[taskId].data[0] = 0xFF;
     gTasks[taskId].func = Task_HandleSelectionMenuInput;
+}
+
+// POKE-CONFLUENCE: Universal Mood inspection for all 386 Pokémon
+static void CursorCb_CheckMood(u8 taskId)
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gPartyMenu.slotId];
+    enum PokemonMood mood;
+    const u8 *desc;
+
+    PlaySE(SE_SELECT);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+
+    mood = Confluence_GetPokemonMood(mon);
+    desc = Confluence_GetPokemonMoodDescription(mon, mood);
+
+    GetMonNickname(mon, gStringVar1);
+    PlayCry_Normal(GetMonData(mon, MON_DATA_SPECIES), 0);
+    StringExpandPlaceholders(gStringVar4, desc);
+    DisplayPartyMenuMessage(gStringVar4, FALSE);
+    ScheduleBgCopyTilemapToVram(2);
+    gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
 }
 
 static void CursorCb_FieldMove(u8 taskId)
@@ -6282,6 +6310,20 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 {
     PlaySE(SE_SELECT);
     gCB2_AfterEvolution = gPartyMenu.exitCallback;
+
+    // POKE-CONFLUENCE: Universal stone refusal check (Yellow Pikachu & loyal starters)
+    if (Confluence_CheckStoneRefusal(&gParties[B_TRAINER_PLAYER][gPartyMenu.slotId], gSpecialVar_ItemId))
+    {
+        gPartyMenuUseExitCallback = FALSE;
+        PlaySE(SE_FAILURE);
+        GetMonNickname(&gParties[B_TRAINER_PLAYER][gPartyMenu.slotId], gStringVar1);
+        StringExpandPlaceholders(gStringVar4, gText_PokemonRefusedStone);
+        DisplayPartyMenuMessage(gStringVar4, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+        return;
+    }
+
     if (ExecuteTableBasedItemEffect(&gParties[B_TRAINER_PLAYER][gPartyMenu.slotId], gSpecialVar_ItemId, gPartyMenu.slotId, 0))
     {
         gPartyMenuUseExitCallback = FALSE;

@@ -26,6 +26,8 @@
 #include "strings.h"
 #include "task.h"
 #include "wild_encounter.h"
+#include "regions.h" // POKE-CONFLUENCE
+#include "johto_phone.h" // POKE-CONFLUENCE
 #include "window.h"
 #include "field_name_box.h"
 #include "constants/abilities.h"
@@ -98,6 +100,7 @@ struct MatchCallState
     u16 trainerId;
     u8 stepCounter;
     bool8 triggeredFromScript;
+    bool8 isJohtoCall; // POKE-CONFLUENCE
 };
 
 struct MatchCallTrainerTextInfo
@@ -1157,6 +1160,13 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 */
 bool32 TryStartMatchCall(void)
 {
+    // POKE-CONFLUENCE: Johto Pokégear phone subsystem check
+    if (GetCurrentRegion() == REGION_JOHTO)
+    {
+        if (TryStartJohtoPhoneCall())
+            return TRUE;
+    }
+
     if (FlagGet(FLAG_HAS_MATCH_CALL)
         && UpdateMatchCallStepCounter()
         && UpdateMatchCallMinutesCounter()
@@ -1173,7 +1183,18 @@ bool32 TryStartMatchCall(void)
 
 void StartMatchCallFromScript(const u8 *message)
 {
+    if (message != NULL && message != gStringVar4)
+        StringCopy(gStringVar4, message);
+    sMatchCallState.isJohtoCall = FALSE;
     sMatchCallState.triggeredFromScript = TRUE;
+    StartMatchCall();
+}
+
+void StartJohtoPhoneCall(const u8 *message)
+{
+    StringCopy(gStringVar4, message);
+    sMatchCallState.isJohtoCall = TRUE;
+    sMatchCallState.triggeredFromScript = FALSE;
     StartMatchCall();
 }
 
@@ -1323,7 +1344,7 @@ static bool32 MatchCall_PrintIntro(u8 taskId)
         FillWindowPixelBuffer(tWindowId, PIXEL_FILL(8));
 
         // Ready the message (and the speaker's name if possible)
-        if (!sMatchCallState.triggeredFromScript)
+        if (!sMatchCallState.isJohtoCall && !sMatchCallState.triggeredFromScript)
             SelectMatchCallMessage(sMatchCallState.trainerId, gStringVar4);
 
         if (IsSpeakerBuffered(gStringVar4))
@@ -1382,6 +1403,7 @@ static bool32 MatchCall_EndCall(u8 taskId)
             UnlockPlayerFieldControls();
         }
 
+        sMatchCallState.isJohtoCall = FALSE;
         return TRUE;
     }
 

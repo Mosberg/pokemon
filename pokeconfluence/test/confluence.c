@@ -4,6 +4,7 @@
 #include "caps.h"
 #include "confluence.h"
 #include "data.h"
+#include "follower_helper.h"
 #include "event_data.h"
 #include "item.h"
 #include "pokemon.h"
@@ -20,6 +21,9 @@
 #include "constants/species.h"
 #include "constants/heal_locations.h"
 #include "trainer_card.h"
+#include "mood.h"
+#include "johto_phone.h"
+#include "constants/johto_flags.h"
 
 static void ClearAllBadges(void)
 {
@@ -307,4 +311,233 @@ TEST("Confluence: Regional Trainer Card badge retrieval and cycling")
 
     EXPECT_EQ(TrainerCard_GetBadgeRegion(), GetCurrentRegion());
 }
+
+TEST("Confluence: Johto Town Map sections map correctly to REGION_JOHTO")
+{
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_NEW_BARK_TOWN), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_CHERRYGROVE_CITY), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_VIOLET_CITY), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_AZALEA_TOWN), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_GOLDENROD_CITY), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_ECRUTEAK_CITY), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_OLIVINE_CITY), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_CIANWOOD_CITY), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_MAHOGANY_TOWN), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_BLACKTHORN_CITY), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_SILVER_CAVE), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_JOHTO_APEX_SUMMIT), REGION_JOHTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_PALLET_TOWN), REGION_KANTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_LITTLEROOT_TOWN), REGION_HOENN);
+}
+
+TEST("Confluence: Universal Mood System calculates moods accurately across all conditions")
+{
+    struct Pokemon mon;
+    u8 friendship;
+    u32 hp;
+    u32 maxHp = 100;
+    u32 status = 0;
+
+    CreateMon(&mon, SPECIES_PIKACHU, 25, 0, OTID_STRUCT_PRESET(0));
+
+    // 1. Ecstatic tier (Friendship >= 220)
+    friendship = 250;
+    SetMonData(&mon, MON_DATA_FRIENDSHIP, &friendship);
+    SetMonData(&mon, MON_DATA_MAX_HP, &maxHp);
+    hp = 100;
+    SetMonData(&mon, MON_DATA_HP, &hp);
+    SetMonData(&mon, MON_DATA_STATUS, &status);
+    FlagClear(FLAG_POKEMON_REFUSED_STONE);
+    EXPECT_EQ(Confluence_GetPokemonMood(&mon), MOOD_ECSTATIC);
+    EXPECT_EQ(Confluence_GetFollowerEmotionForMood(MOOD_ECSTATIC), FOLLOWER_EMOTION_LOVE);
+    EXPECT_EQ(Confluence_GetPortraitEmotionForMood(MOOD_ECSTATIC), PORTRAIT_EMOTION_JOYOUS);
+
+    // 2. Happy tier (Friendship 160..219)
+    friendship = 180;
+    SetMonData(&mon, MON_DATA_FRIENDSHIP, &friendship);
+    EXPECT_EQ(Confluence_GetPokemonMood(&mon), MOOD_HAPPY);
+    EXPECT_EQ(Confluence_GetFollowerEmotionForMood(MOOD_HAPPY), FOLLOWER_EMOTION_HAPPY);
+
+    // 3. Content tier (Friendship 100..159)
+    friendship = 130;
+    SetMonData(&mon, MON_DATA_FRIENDSHIP, &friendship);
+    EXPECT_EQ(Confluence_GetPokemonMood(&mon), MOOD_CONTENT);
+    EXPECT_EQ(Confluence_GetFollowerEmotionForMood(MOOD_CONTENT), FOLLOWER_EMOTION_MUSIC);
+
+    // 4. Normal tier (Friendship 50..99)
+    friendship = 70;
+    SetMonData(&mon, MON_DATA_FRIENDSHIP, &friendship);
+    EXPECT_EQ(Confluence_GetPokemonMood(&mon), MOOD_NORMAL);
+
+    // 5. Distant tier (Friendship < 50)
+    friendship = 20;
+    SetMonData(&mon, MON_DATA_FRIENDSHIP, &friendship);
+    EXPECT_EQ(Confluence_GetPokemonMood(&mon), MOOD_DISTANT);
+    EXPECT_EQ(Confluence_GetFollowerEmotionForMood(MOOD_DISTANT), FOLLOWER_EMOTION_PENSIVE);
+
+    // 6. Exhausted / Low HP (HP <= 25%)
+    friendship = 200;
+    SetMonData(&mon, MON_DATA_FRIENDSHIP, &friendship);
+    hp = 20;
+    SetMonData(&mon, MON_DATA_HP, &hp);
+    EXPECT_EQ(Confluence_GetPokemonMood(&mon), MOOD_TIRED);
+    EXPECT_EQ(Confluence_GetFollowerEmotionForMood(MOOD_TIRED), FOLLOWER_EMOTION_SAD);
+
+    // 7. Status conditions override friendship
+    hp = 100;
+    SetMonData(&mon, MON_DATA_HP, &hp);
+    status = STATUS1_SLEEP;
+    SetMonData(&mon, MON_DATA_STATUS, &status);
+    EXPECT_EQ(Confluence_GetPokemonMood(&mon), MOOD_SLEEPING);
+
+    status = STATUS1_POISON;
+    SetMonData(&mon, MON_DATA_STATUS, &status);
+    EXPECT_EQ(Confluence_GetPokemonMood(&mon), MOOD_SICK);
+    EXPECT_EQ(Confluence_GetFollowerEmotionForMood(MOOD_SICK), FOLLOWER_EMOTION_POISONED);
+
+    status = STATUS1_PARALYSIS;
+    SetMonData(&mon, MON_DATA_STATUS, &status);
+    EXPECT_EQ(Confluence_GetPokemonMood(&mon), MOOD_PARALYZED);
+
+    // 8. Fainted (0 HP)
+    hp = 0;
+    SetMonData(&mon, MON_DATA_HP, &hp);
+    EXPECT_EQ(Confluence_GetPokemonMood(&mon), MOOD_ANGRY);
+}
+
+TEST("Confluence: Evolution Stone Refusal for Pikachu and loyal starters")
+{
+    struct Pokemon mon;
+    u8 friendship;
+    u16 item;
+
+    CreateMon(&mon, SPECIES_PIKACHU, 25, 0, OTID_STRUCT_PRESET(0));
+
+    // Pikachu with high friendship refuses Thunder Stone (Yellow authenticity)
+    friendship = 150;
+    SetMonData(&mon, MON_DATA_FRIENDSHIP, &friendship);
+    EXPECT_EQ(Confluence_CheckStoneRefusal(&mon, ITEM_THUNDER_STONE), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_POKEMON_REFUSED_STONE), TRUE);
+
+    // Pikachu does NOT refuse irrelevant items
+    FlagClear(FLAG_POKEMON_REFUSED_STONE);
+    EXPECT_EQ(Confluence_CheckStoneRefusal(&mon, ITEM_WATER_STONE), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_POKEMON_REFUSED_STONE), FALSE);
+
+    // Holding Everstone refuses evolution stones
+    item = ITEM_EVERSTONE;
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &item);
+    EXPECT_EQ(Confluence_CheckStoneRefusal(&mon, ITEM_THUNDER_STONE), TRUE);
+
+    // Loyal Starters refuse stones when FLAG_STARTER_LOYALTY_REFUSAL is set
+    CreateMon(&mon, SPECIES_CHARMANDER, 25, 0, OTID_STRUCT_PRESET(0));
+    friendship = 250;
+    SetMonData(&mon, MON_DATA_FRIENDSHIP, &friendship);
+    item = ITEM_NONE;
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &item);
+    FlagSet(FLAG_STARTER_LOYALTY_REFUSAL);
+    EXPECT_EQ(Confluence_CheckStoneRefusal(&mon, ITEM_FIRE_STONE), TRUE);
+    FlagClear(FLAG_STARTER_LOYALTY_REFUSAL);
+    FlagClear(FLAG_POKEMON_REFUSED_STONE);
+}
+
+TEST("Confluence: Pokégear Card Subsystem and Phone Contact Registration")
+{
+    // 1. Initial state (no cards)
+    FlagClear(FLAG_JOHTO_ENGINE_MAP_CARD);
+    FlagClear(FLAG_JOHTO_ENGINE_PHONE_CARD);
+    FlagClear(FLAG_JOHTO_ENGINE_RADIO_CARD);
+
+    EXPECT_EQ(Johto_HasMapCard(), FALSE);
+    EXPECT_EQ(Johto_HasPhoneCard(), FALSE);
+    EXPECT_EQ(Johto_HasRadioCard(), FALSE);
+
+    // 2. Unlocking cards
+    FlagSet(FLAG_JOHTO_ENGINE_MAP_CARD);
+    EXPECT_EQ(Johto_HasMapCard(), TRUE);
+
+    FlagSet(FLAG_JOHTO_ENGINE_PHONE_CARD);
+    EXPECT_EQ(Johto_HasPhoneCard(), TRUE);
+
+    FlagSet(FLAG_JOHTO_ENGINE_RADIO_CARD);
+    EXPECT_EQ(Johto_HasRadioCard(), TRUE);
+
+    // 3. Contact registration and counts
+    FlagClear(FLAG_JOHTO_PHONE_YOUNGSTER_JOEY_REGISTERED);
+    FlagClear(FLAG_JOHTO_PHONE_BUG_CATCHER_WADE_REGISTERED);
+    FlagClear(FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH);
+    FlagClear(FLAG_JOHTO_ENGINE_WADE_READY_FOR_REMATCH);
+
+    EXPECT_EQ(Johto_GetRegisteredPhoneCount(), 0);
+
+    FlagSet(FLAG_JOHTO_PHONE_YOUNGSTER_JOEY_REGISTERED);
+    EXPECT_EQ(Johto_GetRegisteredPhoneCount(), 1);
+
+    FlagSet(FLAG_JOHTO_PHONE_BUG_CATCHER_WADE_REGISTERED);
+    EXPECT_EQ(Johto_GetRegisteredPhoneCount(), 2);
+
+    // 4. Arming rematches
+    Johto_ArmRandomRematch();
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_WADE_READY_FOR_REMATCH), TRUE);
+
+    // Cleanup
+    FlagClear(FLAG_JOHTO_PHONE_YOUNGSTER_JOEY_REGISTERED);
+    FlagClear(FLAG_JOHTO_PHONE_BUG_CATCHER_WADE_REGISTERED);
+    FlagClear(FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH);
+    FlagClear(FLAG_JOHTO_ENGINE_WADE_READY_FOR_REMATCH);
+    FlagClear(FLAG_JOHTO_ENGINE_MAP_CARD);
+    FlagClear(FLAG_JOHTO_ENGINE_PHONE_CARD);
+    FlagClear(FLAG_JOHTO_ENGINE_RADIO_CARD);
+}
+
+TEST("Confluence: Kanto Yellow progression, MapSecs, and Meridian fast travel access")
+{
+    ClearAllBadges();
+
+    // 1. Initial state: 0 badges -> Meridian ferry locked
+    ConfluenceCheckMeridianAccess();
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+
+    // 2. 1 Kanto badge -> Meridian ferry still locked
+    FlagSet(FLAG_BADGE09_GET); // Boulder Badge (Brock)
+    ConfluenceCheckMeridianAccess();
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+
+    // 3. 2 Kanto badges -> Meridian ferry unlocks
+    FlagSet(FLAG_BADGE10_GET); // Cascade Badge (Misty)
+    ConfluenceCheckMeridianAccess();
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+
+    // 4. Kanto / Yellow map section topology verification
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_VIRIDIAN_FOREST), REGION_KANTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_MT_MOON), REGION_KANTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_CERULEAN_CITY), REGION_KANTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_VERMILION_CITY), REGION_KANTO);
+    EXPECT_EQ(GetRegionForSectionId(MAPSEC_ROUTE_24), REGION_KANTO);
+
+    // 5. Authentic Yellow gift starter flags
+    FlagClear(FLAG_GOT_YELLOW_BULBASAUR);
+    FlagClear(FLAG_GOT_YELLOW_CHARMANDER);
+    FlagClear(FLAG_GOT_YELLOW_SQUIRTLE);
+
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_BULBASAUR), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_CHARMANDER), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_SQUIRTLE), FALSE);
+
+    FlagSet(FLAG_GOT_YELLOW_BULBASAUR);
+    FlagSet(FLAG_GOT_YELLOW_CHARMANDER);
+    FlagSet(FLAG_GOT_YELLOW_SQUIRTLE);
+
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_BULBASAUR), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_CHARMANDER), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_SQUIRTLE), TRUE);
+
+    ClearAllBadges();
+    FlagClear(FLAG_GOT_YELLOW_BULBASAUR);
+    FlagClear(FLAG_GOT_YELLOW_CHARMANDER);
+    FlagClear(FLAG_GOT_YELLOW_SQUIRTLE);
+}
+
+
 

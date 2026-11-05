@@ -95,6 +95,7 @@ BurnedTowerB1F_Johto_ReleaseTheBeasts:
 	fadedefaultbgm
 	setvar VAR_JOHTO_SCENE_BURNED_TOWER_B1F, 1
 	setflag FLAG_JOHTO_RELEASED_THE_BEASTS
+	special InitJohtoRoamMons
 	setvar VAR_JOHTO_SCENE_ECRUTEAK_GYM, 1
 	setvar VAR_JOHTO_SCENE_CIANWOOD_CITY, 1
 	clearflag FLAG_JOHTO_SAW_SUICUNE_AT_CIANWOOD_CITY

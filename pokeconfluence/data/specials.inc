@@ -662,3 +662,6 @@ gSpecials::
 	def_special ConfluenceCheckMeridianAccess
 	def_special ConfluenceCheckApexEligible
 	def_special ConfluenceBufferProgress
+	def_special JohtoHeadbuttWildEncounter
+	def_special JohtoCheckHeadbuttUser
+	def_special InitJohtoRoamMons

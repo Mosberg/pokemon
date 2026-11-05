@@ -28,4 +28,9 @@ struct Trainer;
 // Levels to add to a gym leader's party so that, whatever order the circuit is played in, the leader matches the player's level cap.
 u32 Confluence_GetTrainerLevelBoost(const struct Trainer *trainer);
 
+// Script specials
+void ConfluenceCheckMeridianAccess(void);
+void ConfluenceCheckApexEligible(void);
+void ConfluenceBufferProgress(void);
+
 #endif // GUARD_CONFLUENCE_H

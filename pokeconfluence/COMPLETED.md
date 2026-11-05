@@ -36,10 +36,19 @@ This document tracks all fully converted, integrated, and verified features in *
 - **Pokégear Start Menu Entry**:
   - Dynamically replaces Pokénav with Pokégear when in Johto (`GetCurrentRegion() == REGION_JOHTO`) once `FLAG_JOHTO_ENGINE_POKEGEAR` is set.
   - Implemented in [src/start_menu.c](src/start_menu.c) and [src/strings.c](src/strings.c) (`gText_MenuPokegear`).
+- **Pokégear Map Card & Phone Card UI**:
+  - In Johto (`GetCurrentRegion() == REGION_JOHTO`), opening Town Map requires Map Card (`FLAG_JOHTO_ENGINE_MAP_CARD` / `Johto_HasMapCard()`). Without it, plays `SE_FAILURE` and displays `"The MAP CARD is not installed."`.
+  - Match Call requires Phone Card (`FLAG_JOHTO_ENGINE_PHONE_CARD` / `Johto_HasPhoneCard()`). Without it, plays `SE_FAILURE` and displays `"The PHONE CARD is not installed."`.
+  - Contextual help text displayed in Pokénav menu: `"Check the map of the JOHTO region."`, `"Call a registered contact."`, and `"Put away the POKéGEAR."`.
+  - Implemented in [src/pokenav_menu_handler.c](src/pokenav_menu_handler.c) and [src/pokenav_menu_handler_gfx.c](src/pokenav_menu_handler_gfx.c).
 - **Johto Phone Book & Overworld Rematches**:
   - Full registration system supporting all 37 Crystal phone trainers: `JohtoPhoneIsRegistered`, `JohtoPhoneRegister`, and flags in [include/constants/johto_flags.h](include/constants/johto_flags.h).
   - 5-tier rematch team scaling stored in `VAR_JOHTO_MEM_W*`.
   - Rematch arming (`FLAG_JOHTO_ENGINE_*_READY_FOR_REMATCH`) and item gifting for the 11 gift trainers.
+- **Overworld Incoming Phone Calls Subsystem**:
+  - Implemented authentic Crystal overworld phone calls while walking in Johto in [src/johto_phone.c](src/johto_phone.c) and [include/johto_phone.h](include/johto_phone.h).
+  - Wired into `TryStartMatchCall()` in [src/match_call.c](src/match_call.c): counts steps outdoor (~60 steps with 25% trigger probability), selects a registered contact, rings phone with `SE_POKENAV_CALL`, freezes player avatar, and shows slide-down caller message with authentic Crystal dialogue.
+  - Supports 30+ Crystal phone contacts, arms rematch flags (`FLAG_JOHTO_ENGINE_*_READY_FOR_REMATCH`) and item gifts (`FLAG_JOHTO_ENGINE_*_HAS_*`). Smooth unfreeze and control restore upon hangup.
 
 ---
 
@@ -48,8 +57,12 @@ This document tracks all fully converted, integrated, and verified features in *
 - **Party Menu / Field Kit Cut for Johto**:
   - Cut usable directly from party menu / field kit in front of Johto cut trees (which are background sign events rather than object events). Implemented via `GetFacingJohtoCutTreeScript()` and `FieldCallback_CutJohtoTree()` in [src/fldeff_cut.c](src/fldeff_cut.c).
   - Cutting tall grass blocks in Johto tilesets swaps metatiles to plain mowed ground via `SetCutGrassMetatile()`.
-- **Johto Fly Destinations & OOB Guard**:
+- **Johto Fly Destinations & Dedicated Town Map Layout**:
   - Regional heal locations wired for all 11 outdoor Johto town map sections in `sMapHealLocations` in [src/region_map.c](src/region_map.c).
+  - Dedicated Johto Town Map layout (`REGION_MAP_JOHTO`, `sRegionMapSections_Johto[15][28]`) with 45 authentic Crystal map sections on a 28x15 grid in [src/data/region_map/region_map_layout_johto.h](src/data/region_map/region_map_layout_johto.h).
+  - Configured section coordinates, dimensions, and names in [src/data/region_map/region_map_sections.json](src/data/region_map/region_map_sections.json).
+  - All 12 Johto fly destinations mapped to `FLAG_JOHTO_ENGINE_FLYPOINT_*` in `sFlyLocations` in [src/region_map.c](src/region_map.c).
+  - Dynamic regional map detection and routing via `GetRegionMapType()` and `GetMapSecIdAt()` for `REGION_JOHTO`.
   - Out-of-bounds array read guards added to `FilterFlyDestination()` and `SetFlyDestination()`.
 - **Daily Fruit Tree Regrowth**:
   - Regrowth cycle runs in `DoDailyEvents()` via `JohtoDailyResetFruitTrees()` across all 30 Johto and Kanto berry trees.
@@ -101,4 +114,59 @@ This document tracks all fully converted, integrated, and verified features in *
 - **Item & TM/HM Mappings**: All Gen 2 TMs and HMs mapped to Gen 3 TM/HM constants in `CMD_ITEMS` (0 Nugget fallbacks remaining).
 - **Map Loading & Smoke Testing**: All 383 Johto maps load cleanly in emulator smoke tests (0 crash failures, 0 out-of-bounds mapsec errors).
 - **Limit Integrity**: 1,324 total maps checked; 0 exceed 64 object events limit.
+
+---
+
+## 7. Universal 386 Pokémon Mood & Stone Refusal System (Yellow Expansion)
+
+- **Universal Mood System (Gen 1-3, 386 Species)**:
+  - Expands Pokémon Yellow's Pikachu mood reactions into an engine-wide system supporting all 386 species across Generations 1, 2, and 3.
+  - Implemented in [src/mood.c](src/mood.c) and [include/mood.h](include/mood.h).
+  - Evaluates 11 distinct emotional states: `MOOD_ECSTATIC` (>= 220 friendship), `MOOD_HAPPY` (160..219 friendship), `MOOD_CONTENT` (100..159 friendship), `MOOD_NORMAL` (50..99 friendship), `MOOD_DISTANT` (< 50 friendship), `MOOD_TIRED` (HP <= 25%), `MOOD_SICK` (poison/burn), `MOOD_PARALYZED` (paralysis/freeze), `MOOD_SLEEPING`, `MOOD_ANGRY` (refused stone / defeated), and `MOOD_SURPRISED` (weather anomaly / legendary presence).
+  - Maps to 12 PMD SpriteCollab 40x40 emotion portraits (`PORTRAIT_EMOTION_*` matching `assets/SpriteCollab/portrait/`) and overworld follower emote bubbles (`FOLLOWER_EMOTION_*`).
+  - Tailored species flavor text for Pikachu family, starter trios (Bulbasaur/Charmander/Squirtle, Chikorita/Cyndaquil/Totodile, Treecko/Torchic/Mudkip), and all 386 species.
+  - Interactive "CHECK MOOD" menu item added to party menu (`MENU_CHECK_MOOD`) in [src/party_menu.c](src/party_menu.c), playing the Pokémon's cry and displaying its reaction description.
+- **Authentic Stone Refusal & Starter Loyalty**:
+  - Faithful to Pokémon Yellow: Pikachu refuses `ITEM_THUNDER_STONE`, shakes its head vigorously with sound effect `SE_FAILURE`, message `gText_PokemonRefusedStone`, and enters an angry/stubborn overworld follower state.
+  - Rejection logic also protects Everstone holders and loyal starters (`FLAG_STARTER_LOYALTY_REFUSAL`, `FLAG_POKEMON_REFUSED_STONE`), preventing accidental item consumption.
+  - Interacting with an overworld follower after stone refusal displays the angry emote bubble and refusal reaction.
+- **Automated Verification**:
+  - Comprehensive unit test suite in [test/confluence.c](test/confluence.c) covering Pikachu Thunder Stone rejection, Everstone rejection, non-stone valid evolution allowance, friendship mood progression, and status condition overrides.
+- **Kanto Progression, Meridian Ferry & Yellow Expansion Playtest Verification**:
+  - Verified 2-badge Meridian Transit access in [src/confluence.c](src/confluence.c): Slateport (Hoenn) <-> Vermilion (Kanto) <-> Olivine (Johto). Requires 2 badges before boarding is granted.
+  - Verified Kanto progression and gift starters (Bulbasaur in Cerulean, Charmander on Route 24, Squirtle in Vermilion) across Viridian Forest, Mt. Moon, Cerulean City, Vermilion City, and Route 24.
+  - Verified legacy tooling compliance (`poke-patch-townmap`, `poke-scan`), confirming saveblock memory integrity, Kanto flag/var bands, and zero missing script flags.
+
+---
+
+## 8. Wild Encounter Tables & Mechanics
+
+- **Time-of-day Wild Encounters (Morning, Day, Night)**:
+  - Enabled `OW_TIME_OF_DAY_ENCOUNTERS TRUE` in [include/config/overworld.h](include/config/overworld.h).
+  - Normalized time-of-day handling in `GetTimeOfDayForEncounters` in [src/wild_encounter.c](src/wild_encounter.c) so Gen 2 evening correctly maps to night.
+  - Generated 447 multi-time encounter headers across all 151 Johto maps in [src/data/wild_encounters.h](src/data/wild_encounters.h) matching authentic GBC Crystal morning, day, and night distributions.
+  - Authentic 10-species Bug-Catching Contest wild encounter table for `MAP_JOHTO_NATIONAL_PARK_BUG_CONTEST` (Caterpie, Weedle, Metapod, Kakuna, Venonat, Paras, Butterfree, Beedrill, Scyther, Pinsir).
+- **Authentic Headbutt Tree System**:
+  - Implemented in [src/headbutt.c](src/headbutt.c) and [include/headbutt.h](include/headbutt.h).
+  - Authentic GBC Crystal encounter sets (CANYON, TOWN, ROUTE, KANTO, LAKE, FOREST, ROCK) with 50% empty, 35% common, 15% rare rolls, diurnal/nocturnal sleeping status generation (`CheckSleepingTreeMon`), and map lookup table.
+  - Overworld interaction script `Johto_EventScript_HeadbuttTree` in [data/scripts/johto_common.inc](data/scripts/johto_common.inc) with `special JohtoCheckHeadbuttUser` (supporting party moves and Field Kit fallback), screen shakes, and wild battle dispatch.
+- **Daily Pokémon Swarms**:
+  - Implemented in [src/johto_swarms.c](src/johto_swarms.c) and [include/johto_swarms.h](include/johto_swarms.h).
+  - Authentic Crystal swarm table: Dunsparce (Dark Cave), Yanma (Route 35), Snubbull (Route 38), Marill (Mt. Mortar), Remoraid (Route 44), Qwilfish (Route 32).
+  - Daily swarm rotation via `Johto_DailyResetSwarm()` in [src/clock.c](src/clock.c) hooked into daily RTC events, with 50% encounter override in `TryGenerateWildMon`.
+- **Roaming Legendary Beasts**:
+  - Expanded roamer capacity to 3 (`ROAMER_COUNT 3`) in [include/constants/global.h](include/constants/global.h).
+  - Built authentic Johto route network adjacency table `sJohtoRoamerLocations` in [src/roamer.c](src/roamer.c) from Crystal `roammon_maps.asm`.
+  - Added `InitJohtoRoamMons` initializing Raikou and Entei at level 40, triggered upon breaking the seal in Burned Tower B1F (`BurnedTowerB1F_Johto_ReleaseTheBeasts`).
+  - Adapted `RoamerMove` and `RoamerMoveToOtherLocationSet` to navigate across Johto map groups and preserve Hoenn roamer separation.
+- **Fleeing Wild Pokémon Tables & Fast Ball Synergy**:
+  - Implemented in [src/flee_mons.c](src/flee_mons.c) and [include/flee_mons.h](include/flee_mons.h).
+  - Authentic flee percentages: Sometimes (10%: Magnemite, Grimer, Tangela, Mr. Mime, Eevee, Porygon, Dratini, Dragonair, Unown), Often (50%: Abra, Cubone, Articuno, Zapdos, Moltres, Quagsire, Delibird, Phanpy, Teddiursa), Always (100%: Raikou, Entei, Suicune).
+  - AI fleeing action hooked into `OpponentHandleChooseMove` in [src/battle_controller_opponent.c](src/battle_controller_opponent.c).
+  - 4x catch rate multiplier for Fast Ball (`BALL_FAST`) wired in [src/battle_script_commands.c](src/battle_script_commands.c) against all fleeing species.
+- **Ruins of Alph Unown Unlock Stages**:
+  - Implemented in [src/unown.c](src/unown.c) and [include/unown.h](include/unown.h).
+  - Progressive letter unlock evaluating puzzle completion flags (`FLAG_JOHTO_SOLVED_*_PUZZLE`): Kabuto (A-K), Omanyte (L-R), Aerodactyl (S-W), Ho-Oh (X-Z), All 4 (rare ? and ! unlocked).
+  - Exact Unown letter generation hooked into `CreateWildMon` in [src/wild_encounter.c](src/wild_encounter.c) via `GetMonPersonality`.
+
 

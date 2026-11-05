@@ -20,6 +20,7 @@
 #include "random.h"
 #include "battle_controllers.h"
 #include "battle_interface.h"
+#include "flee_mons.h"
 #include "text.h"
 #include "sound.h"
 #include "pokedex.h"
@@ -7968,7 +7969,7 @@ static void ComputeBallData(u32 wildMonBattler, u32 playerBattler, struct BallDa
         }
         break;
     case BALL_FAST:
-        if (GetSpeciesBaseSpeed(battleMon->species) >= 100)
+        if (GetSpeciesBaseSpeed(battleMon->species) >= 100 || IsFleeingMon(battleMon->species))
             ball->multiplier = 400;
         break;
     case BALL_HEAVY:

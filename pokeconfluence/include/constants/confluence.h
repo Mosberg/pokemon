@@ -33,6 +33,11 @@
 #define FLAG_GOT_YELLOW_CHARMANDER      FLAG_UNUSED_0x026 // Damian entrusted Charmander on Route 24
 #define FLAG_GOT_YELLOW_SQUIRTLE        FLAG_UNUSED_0x027 // Officer Jenny entrusted Squirtle in Vermilion
 
+// POKE-CONFLUENCE: Pokémon Mood and Loyalty Refusal Flags
+#define FLAG_STARTER_PIKACHU            FLAG_UNUSED_0x028 // Pikachu partner with Yellow loyalty
+#define FLAG_STARTER_LOYALTY_REFUSAL    FLAG_UNUSED_0x029 // Starters refuse evolutionary stones out of loyalty
+#define FLAG_POKEMON_REFUSED_STONE      FLAG_UNUSED_0x02A // Most recent stone attempt was refused
+
 // The Convergence Crisis: the syndicate enforcers wait at the Meridian terminals once enough badges are held.
 #define CONFLUENCE_SYNDICATE_MIN_BADGES 6
 #define CONFLUENCE_CHAIRMAN_MIN_BADGES  12

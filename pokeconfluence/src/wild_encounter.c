@@ -7,6 +7,7 @@
 #include "fishing.h"
 #include "follower_npc.h"
 #include "item.h"
+#include "johto_swarms.h"
 #include "random.h"
 #include "field_player_avatar.h"
 #include "link.h"
@@ -18,9 +19,11 @@
 #include "pokemon.h"
 #include "random.h"
 #include "roamer.h"
+#include "rtc.h"
 #include "safari_zone.h"
 #include "script.h"
 #include "tv.h"
+#include "unown.h"
 #include "wild_encounter.h"
 #include "battle_debug.h"
 #include "battle_pike.h"
@@ -451,7 +454,7 @@ u16 GetCurrentMapWildMonHeaderId(void)
 enum TimeOfDay GetTimeOfDayForEncounters(u32 headerId, enum WildPokemonArea area)
 {
     const struct WildPokemonInfo *wildMonInfo;
-    enum TimeOfDay timeOfDay = GetTimeOfDay();
+    enum TimeOfDay timeOfDay = GenConfigTimeOfDay(GetTimeOfDay());
 
     if (!OW_TIME_OF_DAY_ENCOUNTERS)
         return TIME_OF_DAY_DEFAULT;
@@ -482,7 +485,7 @@ enum TimeOfDay GetTimeOfDayForEncounters(u32 headerId, enum WildPokemonArea area
     if (wildMonInfo == NULL && !OW_TIME_OF_DAY_DISABLE_FALLBACK)
         return OW_TIME_OF_DAY_FALLBACK;
     else
-        return GenConfigTimeOfDay(timeOfDay);
+        return timeOfDay;
 }
 
 static u8 PickWildMonNature(enum Species species)
@@ -513,7 +516,8 @@ static u8 PickWildMonNature(enum Species species)
 void CreateWildMon(enum Species species, u8 level)
 {
     ZeroEnemyPartyMons();
-    u32 personality = GetMonPersonality(species, GetSynchronizedGender(WILDMON_ORIGIN, species), PickWildMonNature(species), RANDOM_UNOWN_LETTER);
+    u8 unownLetter = (species == SPECIES_UNOWN) ? GetRuinsOfAlphUnownLetter() : RANDOM_UNOWN_LETTER;
+    u32 personality = GetMonPersonality(species, GetSynchronizedGender(WILDMON_ORIGIN, species), PickWildMonNature(species), unownLetter);
     CreateMonWithIVs(&gParties[B_TRAINER_OPPONENT_A][0], species, level, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
     GiveMonInitialMoveset(&gParties[B_TRAINER_OPPONENT_A][0]);
 }
@@ -577,6 +581,17 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum WildPok
         return FALSE;
     if (gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
         return FALSE;
+
+    // POKE-CONFLUENCE: Johto Daily Swarms
+    {
+        u16 swarmSpecies;
+        u8 swarmMin, swarmMax;
+        if (Johto_TryGetSwarmMon(&swarmSpecies, &swarmMin, &swarmMax, area == WILD_AREA_WATER))
+        {
+            CreateWildMon(swarmSpecies, swarmMin);
+            return TRUE;
+        }
+    }
 
     CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level);
     return TRUE;

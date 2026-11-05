@@ -20,6 +20,7 @@
 #include "fieldmap.h"
 #include "follower_npc.h"
 #include "follower_helper.h"
+#include "mood.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "item.h"
@@ -2589,6 +2590,16 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
     }
     // Set the script to the very end; we'll be calling another script dynamically
     ScriptJump(ctx, EventScript_FollowerEnd);
+
+    // POKE-CONFLUENCE: If the Pokémon recently refused an evolutionary stone, react stubbornly
+    if (FlagGet(FLAG_POKEMON_REFUSED_STONE))
+    {
+        ObjectEventEmote(objEvent, FOLLOWER_EMOTION_ANGRY);
+        ctx->data[0] = (u32) Confluence_GetPokemonMoodDescription(mon, MOOD_ANGRY);
+        ScriptCall(ctx, EventScript_FollowerGeneric);
+        return;
+    }
+
     species = GetMonData(mon, MON_DATA_SPECIES);
     multi = GetMonData(mon, MON_DATA_FRIENDSHIP);
     if (multi > 80)

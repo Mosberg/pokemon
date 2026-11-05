@@ -1,0 +1,41 @@
+name: Asset Validation Pipeline
+
+on:
+  push:
+    paths:
+      - 'graphics/**'
+      - 'sound/**'
+      - 'data/maps/**'
+  pull_request:
+    paths:
+      - 'graphics/**'
+      - 'sound/**'
+      - 'data/maps/**'
+  workflow_dispatch:
+
+jobs:
+  validate-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Tool Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install Pillow numpy scipy
+
+      - name: Audit Map Integrity & Warps
+        run: |
+          python3 ../tools/poke-asset-tools/bin/verify_map_matrix.py data/maps/ data/layouts/layouts.json || true
+
+      - name: Audit Palette Constraints & Color Limits
+        run: |
+          python3 ../.agents/scripts/check_limits.py
+

@@ -31,7 +31,23 @@ All tools reside in [tools/poke-migrator-pro/bin/](file:///home/mosberg/wsl_proj
 - `poke-scan`: Analyzes ROM symbol tables, EWRAM/IWRAM section sizes, and free space buffers.
 - `poke-inspect`: Interactive inspector for saveblock offsets, map headers, and trainer data structures.
 
-### 4. Build & Verification Wrappers
+### 4. GBA Retro Asset & Compiler Suite (`poke-asset-tools`)
+Integrated via symlinks and `poke-toolkit` (`tools/poke-asset-tools/bin/`):
+- `poke-toolkit`: Master orchestrator dispatching all 38 retro asset tools.
+- `poke-asset-tool`: 15-bit color snapping, 15-color quantization, and 4bpp C header generation.
+- `poke-tile-optimizer`: Lossless 8x8 tile deduplication with hardware flip detection.
+- `poke-package-porymap-tileset`: Packages raw tilesets into `tiles.png`, `metatiles.bin`, and 16 JASC palettes.
+- `poke-map-asset-pipeline`: Complete automated map, layout, metatile compilation, and collision auditor suite.
+- `poke-generate-shiny`: Procedural shiny palette generator with HSV rotation and shadow locking.
+- `poke-pal-converter`: Format converter between JASC-PAL, Adobe ACT, binary `.gbapal`, and C headers.
+- `poke-check-palette-conflicts`: Detects metatiles/tiles with >16 colors and outputs debug heatmaps.
+- `poke-gba-audio-pipeline`: DirectSound resampler and MIDI soundfont voicegroup compiler.
+- `poke-convert-cry`: Batch Pokémon cry resampler and 8-bit signed PCM formatter.
+- `poke-rom-patcher`: Production BPS and IPS patch creator and applier.
+- `poke-verify-map-matrix`: Map layout elevation, warp, and collision softlock auditor.
+- `poke-render-dynamic-hp`: Procedural 48px multi-palette battle HUD healthbar renderer.
+
+### 5. Build & Verification Wrappers
 - `poke-wsl-build`: WSL-optimized multi-core build orchestrator with real-time error filtering.
 - `poke-build-debug`: Builds debug ROM targets with extra assertion checks and symbol maps.
 - `poke-emulator`: Launches embedded mGBA with remote GDB socket debugging enabled.

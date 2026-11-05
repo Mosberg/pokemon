@@ -59,6 +59,39 @@ static const u8 sRoamerLocations[][6] =
     { ___, ___, ___, ___, ___, ___ },
 };
 
+struct RoamerMapLocation
+{
+    u8 mapGroup;
+    u8 mapNum;
+};
+
+#define ROAM_MAP(map) { MAP_GROUP(map), MAP_NUM(map) }
+#define ROAM_EMPTY     { 0, MAP_NUM(MAP_UNDEFINED) }
+
+// POKE-CONFLUENCE: Authentic Johto roaming beast route network (from pokecrystal roammon_maps.asm)
+static const struct RoamerMapLocation sJohtoRoamerLocations[][6] =
+{
+    { ROAM_MAP(MAP_JOHTO_ROUTE_29), ROAM_MAP(MAP_JOHTO_ROUTE_30), ROAM_MAP(MAP_JOHTO_ROUTE_46), ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_30), ROAM_MAP(MAP_JOHTO_ROUTE_29), ROAM_MAP(MAP_JOHTO_ROUTE_31), ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_31), ROAM_MAP(MAP_JOHTO_ROUTE_30), ROAM_MAP(MAP_JOHTO_ROUTE_32), ROAM_MAP(MAP_JOHTO_ROUTE_36), ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_32), ROAM_MAP(MAP_JOHTO_ROUTE_36), ROAM_MAP(MAP_JOHTO_ROUTE_31), ROAM_MAP(MAP_JOHTO_ROUTE_33), ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_33), ROAM_MAP(MAP_JOHTO_ROUTE_32), ROAM_MAP(MAP_JOHTO_ROUTE_34), ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_34), ROAM_MAP(MAP_JOHTO_ROUTE_33), ROAM_MAP(MAP_JOHTO_ROUTE_35), ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_35), ROAM_MAP(MAP_JOHTO_ROUTE_34), ROAM_MAP(MAP_JOHTO_ROUTE_36), ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_36), ROAM_MAP(MAP_JOHTO_ROUTE_35), ROAM_MAP(MAP_JOHTO_ROUTE_31), ROAM_MAP(MAP_JOHTO_ROUTE_32), ROAM_MAP(MAP_JOHTO_ROUTE_37), ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_37), ROAM_MAP(MAP_JOHTO_ROUTE_36), ROAM_MAP(MAP_JOHTO_ROUTE_38), ROAM_MAP(MAP_JOHTO_ROUTE_42), ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_38), ROAM_MAP(MAP_JOHTO_ROUTE_37), ROAM_MAP(MAP_JOHTO_ROUTE_39), ROAM_MAP(MAP_JOHTO_ROUTE_42), ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_39), ROAM_MAP(MAP_JOHTO_ROUTE_38), ROAM_MAP(MAP_JOHTO_ROUTE_37), ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_42), ROAM_MAP(MAP_JOHTO_ROUTE_43), ROAM_MAP(MAP_JOHTO_ROUTE_44), ROAM_MAP(MAP_JOHTO_ROUTE_37), ROAM_MAP(MAP_JOHTO_ROUTE_38), ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_43), ROAM_MAP(MAP_JOHTO_ROUTE_42), ROAM_MAP(MAP_JOHTO_ROUTE_44), ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_44), ROAM_MAP(MAP_JOHTO_ROUTE_42), ROAM_MAP(MAP_JOHTO_ROUTE_43), ROAM_MAP(MAP_JOHTO_ROUTE_45), ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_45), ROAM_MAP(MAP_JOHTO_ROUTE_44), ROAM_MAP(MAP_JOHTO_ROUTE_46), ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_MAP(MAP_JOHTO_ROUTE_46), ROAM_MAP(MAP_JOHTO_ROUTE_45), ROAM_MAP(MAP_JOHTO_ROUTE_29), ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY },
+    { ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY, ROAM_EMPTY },
+};
+
+#define NUM_JOHTO_LOCATION_SETS (ARRAY_COUNT(sJohtoRoamerLocations) - 1)
+
 #undef ___
 #define NUM_LOCATION_SETS (ARRAY_COUNT(sRoamerLocations) - 1)
 #define NUM_LOCATIONS_PER_SET (ARRAY_COUNT(sRoamerLocations[0]))
@@ -98,6 +131,12 @@ void MoveAllRoamers(void)
         RoamerMove(i);
 }
 
+static bool8 IsJohtoRoamer(u32 roamerIndex)
+{
+    u16 species = ROAMER(roamerIndex)->species;
+    return (species == SPECIES_RAIKOU || species == SPECIES_ENTEI || species == SPECIES_SUICUNE);
+}
+
 static void CreateInitialRoamerMon(u8 index, enum Species species, u8 level)
 {
     ClearRoamerLocationHistory(index);
@@ -121,8 +160,18 @@ static void CreateInitialRoamerMon(u8 index, enum Species species, u8 level)
     ROAMER(index)->tough = GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_TOUGH);
     ROAMER(index)->shiny = GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_SHINY);
     ROAMER(index)->active = TRUE;
-    sRoamerLocation[index][MAP_GRP] = ROAMER_MAP_GROUP;
-    sRoamerLocation[index][MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
+
+    if (IsJohtoRoamer(index))
+    {
+        u8 locSet = Random() % NUM_JOHTO_LOCATION_SETS;
+        sRoamerLocation[index][MAP_GRP] = sJohtoRoamerLocations[locSet][0].mapGroup;
+        sRoamerLocation[index][MAP_NUM] = sJohtoRoamerLocations[locSet][0].mapNum;
+    }
+    else
+    {
+        sRoamerLocation[index][MAP_GRP] = ROAMER_MAP_GROUP;
+        sRoamerLocation[index][MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
+    }
 }
 
 static u8 GetFirstInactiveRoamerIndex(void)
@@ -161,6 +210,13 @@ void InitRoamer(void)
         TryAddRoamer(SPECIES_LATIOS, 40);
 }
 
+// POKE-CONFLUENCE: Initialize Raikou and Entei to roam Johto (Authentic GBC Crystal Burned Tower event)
+void InitJohtoRoamMons(void)
+{
+    TryAddRoamer(SPECIES_RAIKOU, 40);
+    TryAddRoamer(SPECIES_ENTEI, 40);
+}
+
 void UpdateLocationHistoryForRoamer(void)
 {
     u32 i;
@@ -185,20 +241,41 @@ void RoamerMoveToOtherLocationSet(u32 roamerIndex)
     if (!ROAMER(roamerIndex)->active)
         return;
 
-    sRoamerLocation[roamerIndex][MAP_GRP] = ROAMER_MAP_GROUP;
-
-    // Choose a location set that starts with a map
-    // different from the roamer's current map
-    do
+    if (IsJohtoRoamer(roamerIndex))
     {
-        mapNum = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
-        if (sRoamerLocation[roamerIndex][MAP_NUM] != mapNum)
+        u8 mapGroup = 0;
+        do
         {
-            sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
-            return;
-        }
-    } while (sRoamerLocation[roamerIndex][MAP_NUM] == mapNum);
-    sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
+            u8 locSet = Random() % NUM_JOHTO_LOCATION_SETS;
+            mapGroup = sJohtoRoamerLocations[locSet][0].mapGroup;
+            mapNum = sJohtoRoamerLocations[locSet][0].mapNum;
+            if (sRoamerLocation[roamerIndex][MAP_GRP] != mapGroup || sRoamerLocation[roamerIndex][MAP_NUM] != mapNum)
+            {
+                sRoamerLocation[roamerIndex][MAP_GRP] = mapGroup;
+                sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
+                return;
+            }
+        } while (sRoamerLocation[roamerIndex][MAP_GRP] == mapGroup && sRoamerLocation[roamerIndex][MAP_NUM] == mapNum);
+        sRoamerLocation[roamerIndex][MAP_GRP] = mapGroup;
+        sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
+    }
+    else
+    {
+        sRoamerLocation[roamerIndex][MAP_GRP] = ROAMER_MAP_GROUP;
+
+        // Choose a location set that starts with a map
+        // different from the roamer's current map
+        do
+        {
+            mapNum = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
+            if (sRoamerLocation[roamerIndex][MAP_NUM] != mapNum)
+            {
+                sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
+                return;
+            }
+        } while (sRoamerLocation[roamerIndex][MAP_NUM] == mapNum);
+        sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
+    }
 }
 
 void RoamerMove(u32 roamerIndex)
@@ -214,24 +291,69 @@ void RoamerMove(u32 roamerIndex)
         if (!ROAMER(roamerIndex)->active)
             return;
 
-        while (locSet < NUM_LOCATION_SETS)
+        if (IsJohtoRoamer(roamerIndex))
         {
-            // Find the location set that starts with the roamer's current map
-            if (sRoamerLocation[roamerIndex][MAP_NUM] == sRoamerLocations[locSet][0])
+            while (locSet < NUM_JOHTO_LOCATION_SETS)
             {
-                u8 mapNum;
-                // Choose a new map (excluding the first) within this set
-                // Also exclude a map if the roamer was there 2 moves ago
-                do
+                if (sRoamerLocation[roamerIndex][MAP_GRP] == sJohtoRoamerLocations[locSet][0].mapGroup
+                 && sRoamerLocation[roamerIndex][MAP_NUM] == sJohtoRoamerLocations[locSet][0].mapNum)
                 {
-                    mapNum = sRoamerLocations[locSet][(Random() % (NUM_LOCATIONS_PER_SET - 1)) + 1];
-                } while ((sLocationHistory[roamerIndex][2][MAP_GRP] == ROAMER_MAP_GROUP
-                        && sLocationHistory[roamerIndex][2][MAP_NUM] == mapNum)
-                        || mapNum == MAP_NUM(MAP_UNDEFINED));
-                sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
-                return;
+                    u8 validCount = 0;
+                    u8 j;
+                    for (j = 1; j < 6; j++)
+                    {
+                        if (sJohtoRoamerLocations[locSet][j].mapNum != (u8)MAP_NUM(MAP_UNDEFINED))
+                            validCount++;
+                    }
+                    if (validCount == 0)
+                    {
+                        RoamerMoveToOtherLocationSet(roamerIndex);
+                        return;
+                    }
+                    {
+                        u8 attempts = 0;
+                        do
+                        {
+                            u8 pick = (Random() % validCount) + 1;
+                            u8 mapGroup = sJohtoRoamerLocations[locSet][pick].mapGroup;
+                            u8 mapNum = sJohtoRoamerLocations[locSet][pick].mapNum;
+                            if ((sLocationHistory[roamerIndex][2][MAP_GRP] != mapGroup
+                              || sLocationHistory[roamerIndex][2][MAP_NUM] != mapNum)
+                              || attempts > 8)
+                            {
+                                sRoamerLocation[roamerIndex][MAP_GRP] = mapGroup;
+                                sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
+                                return;
+                            }
+                            attempts++;
+                        } while (1);
+                    }
+                }
+                locSet++;
             }
-            locSet++;
+            RoamerMoveToOtherLocationSet(roamerIndex);
+        }
+        else
+        {
+            while (locSet < NUM_LOCATION_SETS)
+            {
+                // Find the location set that starts with the roamer's current map
+                if (sRoamerLocation[roamerIndex][MAP_NUM] == sRoamerLocations[locSet][0])
+                {
+                    u8 mapNum;
+                    // Choose a new map (excluding the first) within this set
+                    // Also exclude a map if the roamer was there 2 moves ago
+                    do
+                    {
+                        mapNum = sRoamerLocations[locSet][(Random() % (NUM_LOCATIONS_PER_SET - 1)) + 1];
+                    } while ((sLocationHistory[roamerIndex][2][MAP_GRP] == ROAMER_MAP_GROUP
+                            && sLocationHistory[roamerIndex][2][MAP_NUM] == mapNum)
+                            || mapNum == MAP_NUM(MAP_UNDEFINED));
+                    sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
+                    return;
+                }
+                locSet++;
+            }
         }
     }
 }
