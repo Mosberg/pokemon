@@ -1,0 +1,17 @@
+{
+  "confluence-limits-guard": {
+    "PostToolUse": [
+      {
+        "matcher": "write_file|edit_file",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/mosberg/wsl_projects/pokemon/.agents/scripts/hook_post_tool.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}
+
