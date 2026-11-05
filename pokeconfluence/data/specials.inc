@@ -640,6 +640,8 @@ gSpecials::
 	def_special CheckAddCoins
 	def_special JohtoCheckTime
 	def_special JohtoGetWeekday
+	def_special JohtoSyncRtcTime
+	def_special JohtoSetWeekday
 	def_special JohtoGetHour
 	def_special JohtoHaircut
 	def_special JohtoBillsGrandfather
@@ -665,3 +667,6 @@ gSpecials::
 	def_special JohtoHeadbuttWildEncounter
 	def_special JohtoCheckHeadbuttUser
 	def_special InitJohtoRoamMons
+	def_special JohtoCheckMysteryGift
+	def_special JohtoGetMysteryGiftItem
+	def_special JohtoCheckBattleTowerEligibility

@@ -31,13 +31,32 @@ TimeCapsule_Johto_TimeCapsuleInitializeAndPreparePokecenter2FScript:
 	end
 
 TimeCapsule_Johto_TimeCapsuleConsoleScript:
-	@ TODO unsupported: special TimeCapsule
-	goto Johto_EventScript_Unimplemented
+	message TimeCapsule_Johto_Text_LinkCableNotConnected
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 TimeCapsule_Johto_TimeCapsuleFriendScript:
-	@ TODO unsupported: writetext .FriendReadyText
-	goto Johto_EventScript_Unimplemented
+	message TimeCapsule_Johto_Text_FriendReady
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 TimeCapsule_Johto_TimeCapsuleSetWhichChrisCallback_Cb:
-	@ TODO unsupported: special CableClubCheckWhichChris
+	setflag FLAG_TEMP_11
+	setflag FLAG_TEMP_12
 	return
+
+TimeCapsule_Johto_Text_LinkCableNotConnected:
+	.string "The Game Link cable\n"
+	.string "to the past is not\l"
+	.string "connected.$"
+
+TimeCapsule_Johto_Text_FriendReady:
+	.string "Your friend is\n"
+	.string "ready.$"
+

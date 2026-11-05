@@ -12,5 +12,31 @@ BattleTowerHallway_Johto_BattleTowerHallwayChooseBattleRoomScript_Entry::
 
 
 BattleTowerHallway_Johto_BattleTowerHallwayChooseBattleRoomScript:
-	@ TODO unsupported: callasm .asm_load_battle_room
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_JOHTO_SCENE_BATTLE_TOWER_HALLWAY, 1
+	applymovement 1, BattleTowerHallway_Johto_Movement_ReceptionistGuidePlayer
+	applymovement OBJ_EVENT_ID_PLAYER, BattleTowerHallway_Johto_Movement_PlayerFollowToRoom
+	waitmovement OBJ_EVENT_ID_PLAYER
+	warp MAP_JOHTO_BATTLE_TOWER_BATTLE_ROOM, 3, 7
+	waitstate
+	end
+
+BattleTowerHallway_Johto_Movement_ReceptionistGuidePlayer:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	face_up
+	step_end
+
+BattleTowerHallway_Johto_Movement_PlayerFollowToRoom:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	step_end
+

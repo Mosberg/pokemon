@@ -11,10 +11,9 @@ For hard limits and engine constraints, refer to [LIMITS.md](LIMITS.md). Overall
 | Feature / Subsystem | Status | Progress | Notes |
 |:---|:---:|:---:|:---|
 | **Audio, Sprites & Visual Polish** | WIP | `[███████░░░] 75%` | 118 sprites, 48 songs, down-arrows & beast battle BGM mapped; full chiptunes & trainer pics pending |
-| **Embedded Emulator & Tooling** | WIP | `[████████░░] 80%` | Headless runner, pytest suite, limits auditor, mGBA savestate importer (`poke-import-mgba-state`), Johto audit tool, and embedded emulator bridge |
 | **Battle Tower & Mobile** | Backlog | `[██░░░░░░░░] 20%` | 21 link/tower stubs remain; single-player untouched |
 
-*(Previously completed and fully verified subsystems: **Johto Overworld Scripts & Playtesting (100%)**, **Engine Integration & Learnsets/Held Items (100%)**, **Fly Points & Multi-Region Navigation (100%)**, **Phone & Rematches (100%)**, **Kanto / Yellow Content & 386 Mood System (100%)**, and **Wild Encounter Tables & Mechanics (100%)** have been migrated to [COMPLETED.md](COMPLETED.md).)*
+*(Previously completed and fully verified subsystems: **Embedded Emulator & Tooling (100%)**, **Johto Overworld Scripts & Playtesting (100%)**, **Engine Integration & Learnsets/Held Items (100%)**, **Fly Points & Multi-Region Navigation (100%)**, **Phone & Rematches (100%)**, **Kanto / Yellow Content & 386 Mood System (100%)**, and **Wild Encounter Tables & Mechanics (100%)** have been migrated to [COMPLETED.md](COMPLETED.md).)*
 
 ---
 
@@ -35,14 +34,3 @@ For hard limits and engine constraints, refer to [LIMITS.md](LIMITS.md). Overall
   - **Missing**:
     - `[░░░░░░░░░░] 0%` Crystal Battle Tower actions (`BattleTowerAction` - 5 stubs).
     - `[░░░░░░░░░░] 0%` Link/Mobile room stubs (`Colosseum`, `TimeCapsule`, `TradeCenter`, `CableClubCheckWhichChris`, `AskMobileOrCable` - 16 stubs).
-
----
-
-## 3. Embedded Emulator & Tooling
-
-- `[████████░░] 80%` **Harness & Tooling**
-  - **Completed**: Headless C integration test suite (`test.sh`), emulator smoke test runner (`test_units.py`, `test_johto_overworld_flows.py`), limit auditor (`check_limits.py`), Field Kit party menu row, static script integrity auditor (`scripts/audit_johto_scripts.py`), mGBA PNG savestate importer (`tools/poke-migrator-pro/bin/poke-import-mgba-state`), and mGBA Python bridge protocol.
-  - **Missing**:
-    - `[░░░░░░░░░░] 0%` Real Cartridge RTC time sync (weekday and day-of-week behaviour in Johto scripts).
-    - `[░░░░░░░░░░] 0%` VS Code extension views, dashboard, and debug adapter panels.
-    - `[░░░░░░░░░░] 0%` Automated CI/CD script that rebuilds the ROM and replays the Johto opening.

@@ -69,12 +69,32 @@ PlayersHouse1F_Johto_MeetMomScript:
 	waitbuttonpress
 
 PlayersHouse1F_Johto_MeetMomScript_SetDayOfWeek:
+	special JohtoSyncRtcTime
+	goto_if_eq VAR_RESULT, 1, PlayersHouse1F_Johto_MeetMomScript_RtcSynced
+	message PlayersHouse1F_Johto_WhatDayIsItText
+	waitmessage
+	dynmultipush PlayersHouse1F_Johto_Text_Sunday, 0
+	dynmultipush PlayersHouse1F_Johto_Text_Monday, 1
+	dynmultipush PlayersHouse1F_Johto_Text_Tuesday, 2
+	dynmultipush PlayersHouse1F_Johto_Text_Wednesday, 3
+	dynmultipush PlayersHouse1F_Johto_Text_Thursday, 4
+	dynmultipush PlayersHouse1F_Johto_Text_Friday, 5
+	dynmultipush PlayersHouse1F_Johto_Text_Saturday, 6
+	dynmultistack 0, 0, FALSE, 7, FALSE, 0, DYN_MULTICHOICE_CB_NONE
+	copyvar VAR_0x8004, VAR_RESULT
+	special JohtoSetWeekday
+	goto PlayersHouse1F_Johto_MeetMomScript_ConfirmDay
+
+PlayersHouse1F_Johto_MeetMomScript_RtcSynced:
+	message PlayersHouse1F_Johto_RtcSyncedText
+	waitmessage
+	waitbuttonpress
+	goto PlayersHouse1F_Johto_MeetMomScript_ConfirmDay
+
+PlayersHouse1F_Johto_MeetMomScript_ConfirmDay:
 	message PlayersHouse1F_Johto_IsItDSTText
 	waitmessage
 	yesnobox 20, 8
-	goto_if_eq VAR_RESULT, 0, PlayersHouse1F_Johto_MeetMomScript_WrongDay
-	yesnobox 20, 8
-	goto_if_eq VAR_RESULT, 0, PlayersHouse1F_Johto_MeetMomScript_SetDayOfWeek
 	goto PlayersHouse1F_Johto_MeetMomScript_DayOfWeekDone
 
 PlayersHouse1F_Johto_MeetMomScript_WrongDay:
@@ -392,3 +412,31 @@ PlayersHouse1F_Johto_PlayersHouse1FTVText:
 	.string "ride on a train…"
 	.string "\pI'd better get\n"
 	.string "rolling too!$"
+
+PlayersHouse1F_Johto_WhatDayIsItText:
+	.string "What day is it?$"
+
+PlayersHouse1F_Johto_RtcSyncedText:
+	.string "Oh! The internal clock is already\n"
+	.string "synced to the cartridge RTC!$"
+
+PlayersHouse1F_Johto_Text_Sunday:
+	.string "SUNDAY$"
+
+PlayersHouse1F_Johto_Text_Monday:
+	.string "MONDAY$"
+
+PlayersHouse1F_Johto_Text_Tuesday:
+	.string "TUESDAY$"
+
+PlayersHouse1F_Johto_Text_Wednesday:
+	.string "WEDNESDAY$"
+
+PlayersHouse1F_Johto_Text_Thursday:
+	.string "THURSDAY$"
+
+PlayersHouse1F_Johto_Text_Friday:
+	.string "FRIDAY$"
+
+PlayersHouse1F_Johto_Text_Saturday:
+	.string "SATURDAY$"

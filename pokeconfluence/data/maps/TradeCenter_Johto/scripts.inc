@@ -27,9 +27,19 @@ TradeCenter_Johto_TradeCenterInitializeAndPreparePokecenter2FScript:
 	end
 
 TradeCenter_Johto_TradeCenterConsoleScript:
-	@ TODO unsupported: special TradeCenter
-	goto Johto_EventScript_Unimplemented
+	message TradeCenter_Johto_Text_LinkCableNotConnected
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 TradeCenter_Johto_TradeCenterSetWhichChrisCallback_Cb:
-	@ TODO unsupported: special CableClubCheckWhichChris
+	setflag FLAG_TEMP_11
+	setflag FLAG_TEMP_12
 	return
+
+TradeCenter_Johto_Text_LinkCableNotConnected:
+	.string "The Game Link cable\n"
+	.string "is not connected.$"
+

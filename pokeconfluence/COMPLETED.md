@@ -258,6 +258,31 @@ This document tracks all fully converted, integrated, and verified features in *
   - [scripts/audit_johto_scripts.py](scripts/audit_johto_scripts.py): 18/18 static integrity checks passed.
   - [mgba-agent/tests/test_johto_overworld_flows.py](mgba-agent/tests/test_johto_overworld_flows.py): 9 comprehensive automated playtest flow suites (17/17 tests passed).
 
+---
+
+## 13. Embedded Emulator, Tooling & Debug Adapter
+
+- **Real Cartridge RTC Time Sync & Weekday Setting**:
+  - Implemented `JohtoSyncRtcTime` and `JohtoSetWeekday` in [src/johto_scripts.c](src/johto_scripts.c) and registered them in [data/specials.inc](data/specials.inc).
+  - Authentic Mom Pokégear sequence in [data/maps/PlayersHouse1F_Johto/scripts.inc](data/maps/PlayersHouse1F_Johto/scripts.inc): detects cartridge RTC hardware via `RtcGetErrorStatus()`. If healthy RTC is present (mGBA or RTC-capable flash cartridge), clock automatically syncs; if RTC is uncalibrated or dry, dynamically displays Sunday-Saturday multichoice menu (`dynmultipush` / `dynmultistack`) and adjusts `localTimeOffset` days so that `GetDayOfWeek()` accurately yields the selected day.
+  - Bridges with all 36 weekday-dependent scripts across Johto (Bug-Catching Contest, Friday Lapras, day-of-the-week siblings Arthur/Tuscany/Santos, S.S. Aqua sailing days, Mt. Moon Clefairy dance).
+- **Native-mGBA Savestate Importer**:
+  - Developed [tools/poke-migrator-pro/bin/poke-import-mgba-state](../tools/poke-migrator-pro/bin/poke-import-mgba-state): automatically parses native mGBA PNG savestates (`.ss0`..`.ss9`, `.ssA`..`.ssZ`), extracts and decompresses the `gbAs` zlib memory chunk (0x61000 bytes: R0-R15/CPSR registers, Palette RAM, VRAM, OAM, IWRAM, EWRAM), and either generates gba-kit compatible `.ss1` savestates or injects memory live into the TCP bridge.
+  - Transparently integrated PNG savestate decompression into `loadState()` in [tools/pokeemerald-ai-bridge/src/emu/session.ts](../tools/pokeemerald-ai-bridge/src/emu/session.ts).
+- **VS Code Extension Views, Dashboard & Debug Adapter**:
+  - Contributed debugger configuration `"pokeemerald-debug"` to [tools/pokeemerald-ai-bridge/package.json](../tools/pokeemerald-ai-bridge/package.json) with launch and attach configurations for ROM debugging and bridge connectivity.
+  - Registered `PokeemeraldDebugAdapterFactory` (`vscode.DebugAdapterServer`) in [tools/pokeemerald-ai-bridge/src/extension.ts](../tools/pokeemerald-ai-bridge/src/extension.ts).
+  - Verified Game, Party, Battle, Opponent AI trees, and Dashboard webview panels with full node test suite pass (11/11 tests).
+- **Automated CI/CD Pipeline & Regression Replay**:
+  - Built comprehensive automation script [scripts/ci_rebuild_and_replay.sh](scripts/ci_rebuild_and_replay.sh) running the full verification pipeline:
+    1. Multi-threaded ROM compilation (`make -C pokeconfluence -j$(nproc)`).
+    2. Headless C unit tests ([scripts/test.sh](scripts/test.sh)).
+    3. Structural script auditor ([scripts/audit_johto_scripts.py](scripts/audit_johto_scripts.py)).
+    4. Limits & saveblock auditor ([.agents/scripts/check_limits.py](../../.agents/scripts/check_limits.py)).
+    5. Headless emulator pytest test suite (`mgba-agent/tests`).
+    6. Automated opening flow replay with headless agent (`mgba-agent/johto_regression.py`).
+  - Added continuous integration workflow [.github/workflows/confluence_ci.yml](../../.github/workflows/confluence_ci.yml).
+
 
 
 

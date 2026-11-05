@@ -1,0 +1,32 @@
+name: Pokémon Confluence CI/CD Pipeline
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install ARM Toolchain and Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential libpng-dev python3 python3-pip
+
+      - name: Set up Python Environment
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install pytest
+
+      - name: Run CI Rebuild, Audits and Replay
+        run: |
+          bash pokeconfluence/scripts/ci_rebuild_and_replay.sh
+

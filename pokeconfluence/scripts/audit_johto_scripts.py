@@ -215,7 +215,7 @@ def audit_stubs():
         s = d / "scripts.inc"
         if s.exists():
             stubs += len(re.findall(r"@ TODO unsupported:", s.read_text()))
-    check("stubs: only Link / Mobile / Battle Tower stubs remain (<=21)", stubs <= 21, f"{stubs} stubs")
+    check("stubs: all Link, Mobile, and Battle Tower stubs eliminated (==0)", stubs == 0, f"{stubs} stubs")
 
 
 def main():

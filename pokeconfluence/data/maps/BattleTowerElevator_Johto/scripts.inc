@@ -21,9 +21,13 @@ BattleTowerElevator_Johto_BattleTowerElevatorRideElevatorScript:
 	waitmovement 1
 	applymovement OBJ_EVENT_ID_PLAYER, BattleTowerElevator_Johto_MovementData_BattleTowerElevatorPlayerWalksIn
 	waitmovement OBJ_EVENT_ID_PLAYER
-	setvar VAR_RESULT, 0
-	@ TODO unsupported: special BattleTowerAction
-	goto Johto_EventScript_Unimplemented
+	playse SE_ELEVATOR
+	delay 60
+	waitse
+	setvar VAR_JOHTO_SCENE_BATTLE_TOWER_ELEVATOR, 1
+	warp MAP_JOHTO_BATTLE_TOWER_HALLWAY, 11, 2
+	waitstate
+	end
 
 BattleTowerElevator_Johto_MovementData_BattleTowerElevatorReceptionistWalksIn:
 	walk_right

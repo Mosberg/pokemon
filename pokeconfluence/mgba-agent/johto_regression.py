@@ -91,16 +91,21 @@ def main() -> None:
                 b.step(wait)
                 b.step(30)
 
-        def goto(x: int, y: int, tries=8) -> bool:
+        def goto(x: int, y: int, tries=12) -> bool:
             from pathfinding import a_star_search, read_collision_map
             for _ in range(tries):
                 cx, cy, *_ = pos()
                 if (cx, cy) == (x, y):
                     return True
-                blocked, bounds = read_collision_map(b.read)
+                try:
+                    blocked, bounds = read_collision_map(b.read)
+                except RuntimeError:
+                    b.step(30)
+                    continue
                 path = a_star_search((cx, cy), (x, y), blocked, bounds)
                 if not path:
-                    return False
+                    b.step(15)
+                    continue
                 for d in path:
                     b.press(d, 17)
                     b.step(8)
@@ -137,6 +142,7 @@ def main() -> None:
                 if var("SCENE_ELMS_LAB") == 1:
                     break
             check("Elm's scene ends with the lab locked (scene 1)", var("SCENE_ELMS_LAB") == 1)
+            b.step(60)
             for _ in range(8):
                 if goto(7, 4):
                     break

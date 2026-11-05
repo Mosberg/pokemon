@@ -43,6 +43,34 @@ void JohtoGetWeekday(void)
     gSpecialVar_Result = GetDayOfWeek();
 }
 
+// POKE-CONFLUENCE
+// Calibrate/sync RTC with cartridge hardware. If cartridge RTC is healthy, returns 1 in VAR_RESULT.
+// If RTC error status indicates power loss/dry battery/invalid time, returns 0.
+void JohtoSyncRtcTime(void)
+{
+    RtcInit();
+    RtcCalcLocalTime();
+    gSpecialVar_Result = (RtcGetErrorStatus() == 0);
+}
+
+// POKE-CONFLUENCE
+// Sets the current weekday (0 = Sunday ... 6 = Saturday) based on gSpecialVar_0x8004.
+// Adjusts localTimeOffset days so that GetDayOfWeek() returns the chosen weekday.
+void JohtoSetWeekday(void)
+{
+    u8 targetWeekday = gSpecialVar_0x8004 % WEEKDAY_COUNT;
+    u8 currentWeekday;
+    s32 dayDiff;
+
+    RtcCalcLocalTime();
+    currentWeekday = GetDayOfWeek();
+    dayDiff = (targetWeekday - currentWeekday + 7) % 7;
+
+    RtcCalcLocalTimeOffset(gLocalTime.days + dayDiff, gLocalTime.hours, gLocalTime.minutes, gLocalTime.seconds);
+    RtcCalcLocalTime();
+    gSpecialVar_Result = GetDayOfWeek();
+}
+
 // Crystal's VAR_HOUR: 0 .. 23.
 void JohtoGetHour(void)
 {
@@ -335,3 +363,50 @@ void JohtoDailyResetFruitTrees(void)
 
     FlagClear(FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST);
 }
+
+// POKE-CONFLUENCE
+// Checks if a Mystery Gift delivery is pending.
+void JohtoCheckMysteryGift(void)
+{
+    // In GBC Crystal, delivery officer appeared if a gift was waiting in sMysteryGiftItem.
+    // In pokeconfluence, delivery officer is hidden once claimed via FLAG_JOHTO_MYSTERY_GIFT_DELIVERY_GUY.
+    if (FlagGet(FLAG_JOHTO_MYSTERY_GIFT_DELIVERY_GUY))
+        gSpecialVar_Result = 0;
+    else
+        gSpecialVar_Result = 0;
+}
+
+// POKE-CONFLUENCE
+// Delivers the Mystery Gift item.
+void JohtoGetMysteryGiftItem(void)
+{
+    if (AddBagItem(ITEM_LUM_BERRY, 1))
+        gSpecialVar_Result = TRUE;
+    else
+        gSpecialVar_Result = FALSE;
+}
+
+// POKE-CONFLUENCE
+// Checks if player party has at least 3 eligible battle-ready Pokémon for Battle Tower.
+void JohtoCheckBattleTowerEligibility(void)
+{
+    u32 i;
+    u32 count = 0;
+    u8 partyCount = gPartiesCount[B_TRAINER_PLAYER];
+
+    for (i = 0; i < partyCount; i++)
+    {
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+
+        if (!GetMonData(mon, MON_DATA_IS_EGG)
+            && GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE
+            && GetMonData(mon, MON_DATA_HP) > 0)
+        {
+            count++;
+        }
+    }
+
+    gSpecialVar_Result = (count >= 3) ? TRUE : FALSE;
+}
+
+

@@ -32,16 +32,34 @@ Colosseum_Johto_ColosseumInitializeAndPreparePokecenter2FScript:
 	end
 
 Colosseum_Johto_ColosseumConsoleScript:
-	@ TODO unsupported: special Colosseum
-	goto Johto_EventScript_Unimplemented
+	message Colosseum_Johto_Text_LinkCableNotConnected
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 Colosseum_Johto_CableClubFriendScript:
-	@ TODO unsupported: writetext .FriendReadyText
-	goto Johto_EventScript_Unimplemented
+	message Colosseum_Johto_Text_FriendReady
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 Colosseum_Johto_ColosseumSetWhichChrisCallback_Cb:
-	@ TODO unsupported: special CableClubCheckWhichChris
+	setflag FLAG_TEMP_11
+	setflag FLAG_TEMP_12
 	return
+
+Colosseum_Johto_Text_LinkCableNotConnected:
+	.string "The Game Link cable\n"
+	.string "is not connected.$"
+
+Colosseum_Johto_Text_FriendReady:
+	.string "Your friend is\n"
+	.string "ready.$"
+
 
 Colosseum_Johto_ColosseumPreparePokecenter2FCallback_Cb:
 	setvar VAR_JOHTO_SCENE_POKECENTER_2F, 2

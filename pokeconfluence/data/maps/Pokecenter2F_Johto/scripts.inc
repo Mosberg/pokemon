@@ -57,8 +57,12 @@ Pokecenter2F_Johto_Script_LeftMobileBattleRoom_Entry::
 
 
 Pokecenter2F_Johto_Pokecenter2FCheckMysteryGiftScene:
-	@ TODO unsupported: special CheckMysteryGift
-	goto Johto_EventScript_Unimplemented
+	special JohtoCheckMysteryGift
+	goto_if_eq VAR_RESULT, 0, Pokecenter2F_Johto_Pokecenter2FCheckMysteryGiftScene_Done
+	clearflag FLAG_JOHTO_MYSTERY_GIFT_DELIVERY_GUY
+	addobject 4
+Pokecenter2F_Johto_Pokecenter2FCheckMysteryGiftScene_Done:
+	end
 
 Pokecenter2F_Johto_Script_TradeCenterClosed:
 	faceplayer
@@ -84,16 +88,18 @@ Pokecenter2F_Johto_LinkReceptionistScript_Trade:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, Pokecenter2F_Johto_LinkReceptionistScript_Trade_Cancel
-	setvar VAR_RESULT, 0
-	goto_if_eq VAR_RESULT, 0, Pokecenter2F_Johto_LinkReceptionistScript_Trade_NoMobile
-	message Pokecenter2F_Johto_Text_TradeReceptionistMobile
-	waitmessage
-	@ TODO unsupported: special AskMobileOrCable
-	goto Johto_EventScript_Unimplemented
+	goto Pokecenter2F_Johto_LinkReceptionistScript_Trade_NoMobile
 
 Pokecenter2F_Johto_LinkReceptionistScript_Trade_NoMobile:
-	@ TODO unsupported: special SetBitsForLinkTradeRequest
-	goto Johto_EventScript_Unimplemented
+	message Pokecenter2F_Johto_Text_PleaseWait
+	waitmessage
+	delay 30
+	message Pokecenter2F_Johto_Text_FriendNotReady
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 Pokecenter2F_Johto_LinkReceptionistScript_Trade_Cancel:
 	closemessage
@@ -106,16 +112,18 @@ Pokecenter2F_Johto_LinkReceptionistScript_Battle:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, Pokecenter2F_Johto_LinkReceptionistScript_Battle_Cancel
-	setvar VAR_RESULT, 0
-	goto_if_eq VAR_RESULT, 0, Pokecenter2F_Johto_LinkReceptionistScript_Battle_NoMobile
-	message Pokecenter2F_Johto_Text_BattleReceptionistMobile
-	waitmessage
-	@ TODO unsupported: special AskMobileOrCable
-	goto Johto_EventScript_Unimplemented
+	goto Pokecenter2F_Johto_LinkReceptionistScript_Battle_NoMobile
 
 Pokecenter2F_Johto_LinkReceptionistScript_Battle_NoMobile:
-	@ TODO unsupported: special SetBitsForBattleRequest
-	goto Johto_EventScript_Unimplemented
+	message Pokecenter2F_Johto_Text_PleaseWait
+	waitmessage
+	delay 30
+	message Pokecenter2F_Johto_Text_FriendNotReady
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 Pokecenter2F_Johto_LinkReceptionistScript_Battle_Cancel:
 	closemessage
@@ -132,10 +140,17 @@ Pokecenter2F_Johto_Script_TimeCapsuleClosed:
 	end
 
 Pokecenter2F_Johto_LinkReceptionistScript_TimeCapsule:
-	goto_if_set FLAG_JOHTO_MET_BILL, Pokecenter2F_Johto_Script_TimeCapsuleClosed
+	goto_if_unset FLAG_JOHTO_MET_BILL, Pokecenter2F_Johto_Script_TimeCapsuleClosed
 	goto_if_set FLAG_JOHTO_ENGINE_TIME_CAPSULE, Pokecenter2F_Johto_Script_TimeCapsuleClosed
-	@ TODO unsupported: special SetBitsForTimeCapsuleRequest
-	goto Johto_EventScript_Unimplemented
+	message Pokecenter2F_Johto_Text_PleaseWait
+	waitmessage
+	delay 30
+	message Pokecenter2F_Johto_Text_FriendNotReady
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 Pokecenter2F_Johto_Script_LeftCableTradeCenter:
 	call Pokecenter2F_Johto_Script_WalkOutOfLinkTradeRoom_Sub
@@ -199,8 +214,13 @@ Pokecenter2F_Johto_Script_LeftTimeCapsule_Done:
 	end
 
 Pokecenter2F_Johto_Pokecenter2FLinkRecordSign:
-	@ TODO unsupported: special DisplayLinkRecord
-	goto Johto_EventScript_Unimplemented
+	lockall
+	setvar VAR_0x8004, 0
+	special ShowLinkBattleRecords
+	waitbuttonpress
+	special RemoveRecordsWindow
+	releaseall
+	end
 
 Pokecenter2F_Johto_Pokecenter2FOfficerScript:
 	faceplayer
@@ -213,8 +233,21 @@ Pokecenter2F_Johto_Pokecenter2FOfficerScript:
 	waitmessage
 	waitbuttonpress
 	waitse
-	@ TODO unsupported: special GetMysteryGiftItem
-	goto Johto_EventScript_Unimplemented
+	special JohtoGetMysteryGiftItem
+	goto_if_eq VAR_RESULT, FALSE, Pokecenter2F_Johto_Pokecenter2FOfficerScript_NoRoom
+	setflag FLAG_JOHTO_MYSTERY_GIFT_DELIVERY_GUY
+	message Pokecenter2F_Johto_Text_MysteryGiftDeliveryGuy_Outro
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Pokecenter2F_Johto_Pokecenter2FOfficerScript_NoRoom:
+	msgbox gText_TheBagIsFull, MSGBOX_DEFAULT
+	closemessage
+	releaseall
+	end
 
 Pokecenter2F_Johto_Pokecenter2FOfficerScript_AlreadyGotGift:
 	message Pokecenter2F_Johto_Text_MysteryGiftDeliveryGuy_Outro
@@ -444,3 +477,14 @@ Pokecenter2F_Johto_Text_MysteryGiftDeliveryGuy_Outro:
 Pokecenter2F_Johto_Text_MysteryGiftDeliveryGuy_SaidNo:
 	.string "No? That's very\n"
 	.string "strange…$"
+
+Pokecenter2F_Johto_Text_PleaseWait:
+	.string "Please wait.$"
+
+Pokecenter2F_Johto_Text_FriendNotReady:
+	.string "Your friend is not\n"
+	.string "ready.\pPlease check the\n"
+	.string "Game Link cable\l"
+	.string "connection and try\l"
+	.string "again.$"
+
