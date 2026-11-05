@@ -11,8 +11,12 @@
 #include "item.h"
 #include "pokedex.h"
 #include "battle.h"
+#include "random.h"
+#include "daycare.h"
 #include "constants/items.h"
 #include "constants/species.h"
+#include "constants/moves.h"
+#include "constants/johto_flags.h"
 
 // Crystal's time-of-day slots: MORN 4-9, DAY 10-17, NITE 18-3. VAR_0x8004 holds a mask (1 MORN, 2 DAY, 4 NITE);
 // VAR_RESULT is TRUE when the current slot is one of them.
@@ -192,4 +196,142 @@ void JohtoCheckCaughtCelebi(void)
 void JohtoInvertResult(void)
 {
     gSpecialVar_Result = (gSpecialVar_Result == 0);
+}
+
+struct OddEggData {
+    u16 species;
+    u8 shinyProb; // out of totalProb
+    u8 totalProb; // percentage
+    u16 moves[MAX_MON_MOVES];
+};
+
+static const struct OddEggData sOddEggs[] = {
+    // Pichu: 8% normal, 1% shiny (9% total)
+    { SPECIES_PICHU, 1, 9, { MOVE_THUNDER_SHOCK, MOVE_CHARM, MOVE_DIZZY_PUNCH, MOVE_NONE } },
+    // Cleffa: 16% normal, 3% shiny (19% total)
+    { SPECIES_CLEFFA, 3, 19, { MOVE_POUND, MOVE_CHARM, MOVE_ENCORE, MOVE_DIZZY_PUNCH } },
+    // Igglybuff: 16% normal, 3% shiny (19% total)
+    { SPECIES_IGGLYBUFF, 3, 19, { MOVE_SING, MOVE_CHARM, MOVE_DEFENSE_CURL, MOVE_DIZZY_PUNCH } },
+    // Smoochum: 14% normal, 2% shiny (16% total)
+    { SPECIES_SMOOCHUM, 2, 16, { MOVE_POUND, MOVE_LICK, MOVE_SWEET_KISS, MOVE_DIZZY_PUNCH } },
+    // Magby: 10% normal, 2% shiny (12% total)
+    { SPECIES_MAGBY, 2, 12, { MOVE_EMBER, MOVE_LEER, MOVE_DIZZY_PUNCH, MOVE_NONE } },
+    // Elekid: 12% normal, 2% shiny (14% total)
+    { SPECIES_ELEKID, 2, 14, { MOVE_QUICK_ATTACK, MOVE_LEER, MOVE_DIZZY_PUNCH, MOVE_NONE } },
+    // Tyrogue: 10% normal, 1% shiny (11% total)
+    { SPECIES_TYROGUE, 1, 11, { MOVE_TACKLE, MOVE_DIZZY_PUNCH, MOVE_NONE, MOVE_NONE } },
+};
+
+void JohtoGiveOddEgg(void)
+{
+    struct Pokemon mon;
+    u32 roll = Random() % 100;
+    u32 accum = 0;
+    u32 chosenIndex = 0;
+    u32 i;
+    bool8 isShiny = FALSE;
+    u8 isEgg = TRUE;
+
+    if (gPlayerPartyCount >= PARTY_SIZE)
+    {
+        gSpecialVar_Result = FALSE;
+        return;
+    }
+
+    for (i = 0; i < ARRAY_COUNT(sOddEggs); i++)
+    {
+        accum += sOddEggs[i].totalProb;
+        if (roll < accum)
+        {
+            chosenIndex = i;
+            if ((accum - 1 - roll) < sOddEggs[i].shinyProb)
+                isShiny = TRUE;
+            break;
+        }
+    }
+
+    CreateEgg(&mon, sOddEggs[chosenIndex].species, FALSE);
+    SetMonData(&mon, MON_DATA_IS_EGG, &isEgg);
+    SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u16 move = sOddEggs[chosenIndex].moves[i];
+        u32 pp = (move != MOVE_NONE) ? GetMovePP(move) : 0;
+        SetMonData(&mon, MON_DATA_MOVE1 + i, &move);
+        SetMonData(&mon, MON_DATA_PP1 + i, &pp);
+    }
+
+    GiveCapturedMonToPlayer(&mon);
+    gSpecialVar_Result = TRUE;
+}
+
+void JohtoGiveParkBalls(void)
+{
+    u32 i;
+    u8 indices[10];
+
+    // Give 20 Sport Balls for the Bug-Catching Contest
+    AddBagItem(ITEM_SPORT_BALL, 20);
+
+    // Randomly pick 5 of the 10 contestants to appear in the park
+    for (i = 0; i < 10; i++)
+        indices[i] = i;
+
+    for (i = 9; i > 0; i--)
+    {
+        u32 j = Random() % (i + 1);
+        u8 tmp = indices[i];
+        indices[i] = indices[j];
+        indices[j] = tmp;
+    }
+
+    for (i = 0; i < 5; i++)
+        FlagClear(FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1A + indices[i]);
+    for (i = 5; i < 10; i++)
+        FlagSet(FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1A + indices[i]);
+
+    gSpecialVar_Result = TRUE;
+}
+
+static const u16 sJohtoFruitTreeFlags[] = {
+    FLAG_JOHTO_FRUITTREE_ROUTE_38,
+    FLAG_JOHTO_FRUITTREE_ROUTE_39,
+    FLAG_JOHTO_FRUITTREE_ROUTE_42_1,
+    FLAG_JOHTO_FRUITTREE_ROUTE_42_2,
+    FLAG_JOHTO_FRUITTREE_ROUTE_42_3,
+    FLAG_JOHTO_FRUITTREE_ROUTE_44,
+    FLAG_JOHTO_FRUITTREE_ROUTE_45,
+    FLAG_JOHTO_FRUITTREE_ROUTE_46_1,
+    FLAG_JOHTO_FRUITTREE_ROUTE_46_2,
+    FLAG_JOHTO_FRUITTREE_ROUTE_33,
+    FLAG_JOHTO_FRUITTREE_AZALEA_TOWN,
+    FLAG_JOHTO_FRUITTREE_ROUTE_43,
+    FLAG_JOHTO_FRUITTREE_ROUTE_35,
+    FLAG_JOHTO_FRUITTREE_ROUTE_36,
+    FLAG_JOHTO_FRUITTREE_ROUTE_37_1,
+    FLAG_JOHTO_FRUITTREE_ROUTE_37_2,
+    FLAG_JOHTO_FRUITTREE_ROUTE_37_3,
+    FLAG_JOHTO_FRUITTREE_VIOLET_CITY,
+    FLAG_JOHTO_FRUITTREE_ROUTE_11,
+    FLAG_JOHTO_FRUITTREE_ROUTE_1,
+    FLAG_JOHTO_FRUITTREE_PEWTER_CITY_1,
+    FLAG_JOHTO_FRUITTREE_PEWTER_CITY_2,
+    FLAG_JOHTO_FRUITTREE_FUCHSIA_CITY,
+    FLAG_JOHTO_FRUITTREE_ROUTE_8,
+    FLAG_JOHTO_FRUITTREE_ROUTE_2,
+    FLAG_JOHTO_FRUITTREE_ROUTE_26,
+    FLAG_JOHTO_FRUITTREE_ROUTE_29,
+    FLAG_JOHTO_FRUITTREE_ROUTE_30_1,
+    FLAG_JOHTO_FRUITTREE_ROUTE_30_2,
+    FLAG_JOHTO_FRUITTREE_ROUTE_31,
+};
+
+void JohtoDailyResetFruitTrees(void)
+{
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sJohtoFruitTreeFlags); i++)
+        FlagClear(sJohtoFruitTreeFlags[i]);
+
+    FlagClear(FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST);
 }

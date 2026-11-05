@@ -655,6 +655,8 @@ gSpecials::
 	def_special JohtoCheckFirstMonIsEgg
 	def_special JohtoCheckCaughtCelebi
 	def_special JohtoInvertResult
+	def_special JohtoGiveOddEgg
+	def_special JohtoGiveParkBalls
 	def_special ConfluenceCountBadges
 	def_special ConfluenceCountResonance
 	def_special ConfluenceCheckMeridianAccess

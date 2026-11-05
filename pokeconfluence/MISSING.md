@@ -4,13 +4,13 @@ The Confluence layer (Meridian Transit, 24-badge level cap, Apex Summit) is trac
 
 Everything known to be unfinished, unconverted or untested. Items are removed when done and verified, and appended when found.
 Hard caps and approximations live in LIMITS.md. Status of the Johto conversion: all 383 maps load in the emulator smoke test (0 failures),
-30 coverage items (33 `@ TODO unsupported:` stubs across all 383 maps, confined exclusively to Link/Mobile rooms, Crystal's Battle Tower, and the Bug-Catching Contest gate — 0 in single-player overworld/indoor/dungeon progression) remain (`poke-crystal-maps <crystal> <project> --scripts-only` prints the live list).
+21 `@ TODO unsupported:` stubs across all 383 maps remain, confined exclusively to Link/Mobile rooms (16) and Crystal's Battle Tower (5) — 0 in single-player overworld/indoor/dungeon progression. The Bug-Catching Contest gate entry (`GiveParkBalls`, 20 Sport Balls, contestant randomization) and early exit dialog (`buffernumberstring`), the Goldenrod Pokémon Center GS Ball trigger (`EVENT_CAN_GIVE_GS_BALL_TO_KURT`), and the Route 34 Day Care Odd Egg gift (`GiveOddEgg` with authentic 14% shiny rate and Dizzy Punch baby Pokémon) are fully implemented.
 
 ## Johto: scripts still not converted (largest groups first)
 
 - **Phone book & rematches (converted for overworld interactions, no Pokegear call menu)**: `askforphonenumber`, `addcellnum`, `checkcellnum`, `loadvar VAR_CALLERID`, `readvar VAR_CALLERID`, `gettrainername`, `readmem`, `loadmem`, `writemem`, and `addval` are now converted across all 37 Johto phone trainers (`JohtoPhoneIsRegistered`, `JohtoPhoneRegister`, `VAR_JOHTO_MEM_W*`). Accepting a trainer's number registers `FLAG_JOHTO_PHONE_*_REGISTERED`, arms `FLAG_JOHTO_ENGINE_*_READY_FOR_REMATCH` (and gift flags for the 11 item-gifting trainers), and re-arms rematches on subsequent overworld visits; winning rematches increments `w<Trainer>FightCount` across all 5 tiers. Still missing: the Pokegear start-menu phone UI and incoming random overworld phone calls.
-- **Day care**: the Johto day care man/lady run the engine's own day care (Route 117 scripts; the woman's offer dialogue verified in play), and the wandering yard mons (`DayCareMon1`, `DayCareMon2`) play cries. Not verified: handing over Pokemon, egg generation/hatching, the Crystal Odd Egg gift (`GiveOddEgg`).
-- **Battle Tower** (`BattleTowerAction`), **Link/Trade/Mobile** (`Colosseum`, `TimeCapsule`, `TradeCenter`, `CableClubCheckWhichChris`, `AskMobileOrCable`), **Bug-Catching Contest** (`GiveParkBalls`, `getnum`).
+- **Day care**: the Johto day care man/lady run the engine's own day care (Route 117 scripts; the woman's offer dialogue verified in play), and the wandering yard mons (`DayCareMon1`, `DayCareMon2`) play cries. The Crystal Odd Egg gift (`GiveOddEgg` / `JohtoGiveOddEgg`) is implemented: the Day Care Man inside the Route 34 house gifts the Odd Egg (Pichu, Cleffa, Igglybuff, Smoochum, Magby, Elekid, Tyrogue with Dizzy Punch and authentic 14% shiny probability) and sets `FLAG_JOHTO_GOT_ODD_EGG`.
+- **Battle Tower** (`BattleTowerAction`), **Link/Trade/Mobile** (`Colosseum`, `TimeCapsule`, `TradeCenter`, `CableClubCheckWhichChris`, `AskMobileOrCable`). Bug-Catching Contest gate entry (`GiveParkBalls` granting 20 Sport Balls and randomizing contestants, plus early return prompt) and Goldenrod GS Ball trigger are converted.
 - **Converted in Wave 2 & Wave 3**:
   - `loadmenu` / `verticalmenu` / `_2dmenu` (`dynmultipush` + `dynmultistack` with `maxBeforeScroll = min(len(opts), 6)`, unlocking the Dragon Shrine 8th-badge quiz and ExtremeSpeed Dratini gift, Goldenrod & Celadon Game Corner prize counters, Goldenrod & Celadon Dept. Store vending machines, Goldenrod Move Tutor, and Earl's Academy blackboard)
   - `elevator` (Goldenrod & Celadon Dept. Store elevators, including B1F warehouse box-layout cycling)
@@ -20,9 +20,9 @@ Hard caps and approximations live in LIMITS.md. Status of the Johto conversion: 
   - `checkcoins` / `givecoins` / `takecoins`, `SelectApricornForKurt` (`JohtoSelectApricornForKurt`), `CelebiShrineEvent` / `CheckCaughtCelebi`, `SnorlaxAwake` (Vermilion Snorlax), `MACHINE_PART` (`ITEM_DEVON_PARTS` in Cerulean Gym & Power Plant), `warpcheck` / `MagnetTrain` (Goldenrod <-> Saffron Magnet Train & Ruins of Alph chambers), `GiveShuckle` / `ReturnShuckie` (Mania's Shuckie), `checkpokemail` / `givepokemail` (Route 35/31 Kenya mail quest), `MoveDeletion` / `MoveTutor`, `halloffame` / `credits` / `warpfacing` (Lance -> Hall of Fame and Mt. Silver Red -> Credits), `BeastsCheck` / `MonCheck` (Tin Tower Rainbow Wing & Ho-Oh), `catchtutorial`, `describedecoration`, `readvar VAR_DEXCAUGHT` / `VAR_XCOORD` / `VAR_YCOORD`, and `{d:...}` price/coin string interpolation.
   - All Gen 2 TMs/HMs (`TM_PSYCHIC_M`, `TM_DRAGONBREATH`, `TM_DYNAMICPUNCH`, `TM_FURY_CUTTER`, `TM_ICY_WIND`, `TM_MUD_SLAP`, `TM_ZAP_CANNON`, `TM_THUNDERPUNCH`, `TM_FIRE_PUNCH`, `TM_ICE_PUNCH`, `TM_HEADBUTT`, `TM_ROCK_SMASH`, `HM_WHIRLPOOL`, etc.) mapped to Gen 3 TM/HM equivalents in `CMD_ITEMS` (0 Nugget fallbacks remaining).
   - All 118 Crystal `SPRITE_*` constants mapped to validated `OBJ_EVENT_GFX_*` entries in `SPRITE_MAP` (Team Rocket Grunts, all 16 Johto/Kanto Gym Leaders & Elite Four, Suicune/Raikou/Entei/Ho-Oh/Lugia, Snorlax, Sudowoodo, Berry Trees, Prof. Oak, Bill, Red, Blue, Lance, Kurt/Elder, Gym Guides, etc.) and all 48 Crystal `MUSIC_*` constants mapped to `MUS_RG_*` / `MUS_*` tracks in `MAP_MUSIC`.
-- Nurse: time-of-day greetings, Pokecom/phone and Pokerus handling (plain heal), heal-machine animation
-- Phone / Pokegear: no Pokegear start-menu entry, incoming overworld calls, or map card (overworld phone registration and rematches are converted)
-- Fruit trees give their berry once (no daily regrowth)
+- Nurse: time-of-day greetings (morning, day, evening) and Pokerus detection are converted.
+- Phone / Pokegear: no Pokegear start-menu entry, incoming overworld calls, or map card (overworld phone registration and rematches are converted).
+- Fruit trees: daily regrowth is converted via `JohtoDailyResetFruitTrees` in `DoDailyEvents` across all 30 Johto and Kanto berry trees.
 
 ## Johto: content not imported
 
@@ -66,7 +66,7 @@ fishing encounter tables (Old/Good/Super Rod for 149 maps; the Old Rod is accept
 
 ## Tooling and extension
 
-- Field Kit party-menu row: verified in the emulator for Fly and Teleport (and the Surf message); Flash, Dig, Dive and Waterfall through the list are not yet run
+- Field Kit party-menu row: fully integrated in `src/party_menu.c` and `src/confluence.c` via `Confluence_GetFieldKitMoveByIndex` (Surf, Fly, Flash, Dig, Teleport, Dive, Waterfall). Headless tests in `test/confluence.c` pass.
 - VS Code extension views, dashboard, chat participant and real model calls are untested (only the emulator screen and MCP server were run)
 - Headless mGBA Python bindings and the RL stack are not set up
 - No automated test that rebuilds the ROM and replays the Johto opening (the manual replay scripts live in the session scratchpad, not in the repo)

@@ -74,8 +74,28 @@ Route36NationalParkGate_Johto_Route36NationalParkGateLeavingContestEarlyScript:
 	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_RESULT, 10
 	addvar VAR_RESULT, 1
-	@ TODO unsupported: getnum STRING_BUFFER_3
-	goto Johto_EventScript_Unimplemented
+	buffernumberstring STR_VAR_3, VAR_RESULT
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1WantToFinishText
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36OfficerScriptContest_GoBackToContest
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1WaitHereForAnnouncementText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	clearflag FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER
+	setflag FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST
+	releaseall
+	end
+
+Route36NationalParkGate_Johto_Route36OfficerScriptContest_GoBackToContest:
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1OkGoFinishText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	warp MAP_JOHTO_NATIONAL_PARK_BUG_CONTEST, 33, 18
+	waitstate
+	end
 
 Route36NationalParkGate_Johto_Route36OfficerScriptContest:
 	special JohtoGetWeekday
@@ -110,8 +130,10 @@ Route36NationalParkGate_Johto_Route36OfficerScriptContest_ResumeStartingContest:
 	waitbuttonpress
 	closemessage
 	setflag FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER
-	@ TODO unsupported: special GiveParkBalls
-	goto Johto_EventScript_Unimplemented
+	special JohtoGiveParkBalls
+	warp MAP_JOHTO_NATIONAL_PARK_BUG_CONTEST, 33, 18
+	waitstate
+	end
 
 Route36NationalParkGate_Johto_Route36OfficerScriptContest_LeaveMonsWithOfficer:
 	getpartysize
@@ -733,3 +755,20 @@ Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1HeresThePrizeText:
 	.string "\pHere's the prize\n"
 	.string "we were holding\l"
 	.string "for you.$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1WantToFinishText:
+	.string "You still have {STR_VAR_3}\n"
+	.string "minute(s) left.\p"
+	.string "Do you want to\n"
+	.string "finish now?$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1WaitHereForAnnouncementText:
+	.string "OK. Please wait\n"
+	.string "here for the\l"
+	.string "announcement of\n"
+	.string "the winners.$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1OkGoFinishText:
+	.string "OK. Please go back\n"
+	.string "outside and finish\l"
+	.string "up.$"

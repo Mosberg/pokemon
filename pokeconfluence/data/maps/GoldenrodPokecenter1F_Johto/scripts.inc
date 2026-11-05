@@ -31,14 +31,27 @@ GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FNurseScript:
 	goto Johto_Std_PokecenterNurseScript
 
 GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1F_GSBallSceneLeft:
-	setvar VAR_RESULT, 0
-	@ TODO unsupported: special BattleTowerAction
-	goto Johto_EventScript_Unimplemented
+	goto_if_unset FLAG_SYS_GAME_CLEAR, GoldenrodPokecenter1F_Johto_GSBallEnd
+	goto_if_set FLAG_JOHTO_CAN_GIVE_GS_BALL_TO_KURT, GoldenrodPokecenter1F_Johto_GSBallEnd
+	goto_if_set FLAG_JOHTO_GAVE_GS_BALL_TO_KURT, GoldenrodPokecenter1F_Johto_GSBallEnd
+	checkitem ITEM_GS_BALL, 1
+	goto_if_eq VAR_RESULT, TRUE, GoldenrodPokecenter1F_Johto_GSBallEnd
+	message GoldenrodPokecenter1F_Johto_LinkReceptionistPleaseAcceptGSBallText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_GS_BALL
+	setflag FLAG_JOHTO_CAN_GIVE_GS_BALL_TO_KURT
+	message GoldenrodPokecenter1F_Johto_LinkReceptionistPleaseDoComeAgainText
+	waitmessage
+	waitbuttonpress
+	closemessage
+GoldenrodPokecenter1F_Johto_GSBallEnd:
+	setvar VAR_JOHTO_SCENE_GOLDENROD_POKECENTER_1F, 1
+	releaseall
+	end
 
 GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1F_GSBallSceneRight:
-	setvar VAR_RESULT, 0
-	@ TODO unsupported: special BattleTowerAction
-	goto Johto_EventScript_Unimplemented
+	goto GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1F_GSBallSceneLeft
 
 GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FGameboyKidScript:
 	faceplayer
@@ -158,3 +171,15 @@ GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanFAnotherTimeThenText:
 GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText:
 	.string "{PLAYER} gave away\n"
 	.string "the EON MAIL.$"
+
+GoldenrodPokecenter1F_Johto_LinkReceptionistPleaseAcceptGSBallText:
+	.string "{PLAYER}, isn't it?\n"
+	.string "Congratulations!\p"
+	.string "As a special deal,\n"
+	.string "a GS BALL has been\l"
+	.string "sent just for you!\p"
+	.string "Please accept it!$"
+
+GoldenrodPokecenter1F_Johto_LinkReceptionistPleaseDoComeAgainText:
+	.string "Please do come\n"
+	.string "again!$"

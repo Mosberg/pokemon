@@ -3427,9 +3427,20 @@ Johto_Std_NurseAskHealText:
 	.string "\pShall we heal your\n"
 	.string "POKéMON?$"
 
+Johto_Std_NurseMornText:
+	.string "Good morning!\n"
+	.string "Welcome to our\l"
+	.string "POKéMON CENTER.$"
+
 Johto_Std_NurseDayText:
 	.string "Hello!\n"
 	.string "Welcome to our\l"
+	.string "POKéMON CENTER.$"
+
+Johto_Std_NurseNiteText:
+	.string "Good evening!\n"
+	.string "You're out late.\p"
+	.string "Welcome to our\n"
 	.string "POKéMON CENTER.$"
 
 Johto_Std_NurseGoodbyeText:
@@ -3924,7 +3935,24 @@ Johto_Std_PictureBookshelfText:
 	.string "books!$"
 
 Johto_Std_PokecenterNurseScript:
+	setvar VAR_0x8004, 1
+	special JohtoCheckTime
+	goto_if_eq VAR_RESULT, TRUE, Johto_Std_PokecenterNurseScript_Morn
+	setvar VAR_0x8004, 4
+	special JohtoCheckTime
+	goto_if_eq VAR_RESULT, TRUE, Johto_Std_PokecenterNurseScript_Nite
 	message Johto_Std_NurseDayText
+	goto Johto_Std_PokecenterNurseScript_AskHeal
+
+Johto_Std_PokecenterNurseScript_Morn:
+	message Johto_Std_NurseMornText
+	goto Johto_Std_PokecenterNurseScript_AskHeal
+
+Johto_Std_PokecenterNurseScript_Nite:
+	message Johto_Std_NurseNiteText
+	goto Johto_Std_PokecenterNurseScript_AskHeal
+
+Johto_Std_PokecenterNurseScript_AskHeal:
 	waitmessage
 	waitbuttonpress
 	message Johto_Std_NurseAskHealText
@@ -3938,6 +3966,16 @@ Johto_Std_PokecenterNurseScript:
 	playbgm MUS_HEAL, FALSE
 	delay 60
 	fadedefaultbgm
+	goto_if_set FLAG_POKERUS_EXPLAINED, Johto_Std_PokecenterNurseScript_ReturnPkmn
+	specialvar VAR_RESULT, IsPokerusInParty
+	goto_if_eq VAR_RESULT, FALSE, Johto_Std_PokecenterNurseScript_ReturnPkmn
+	message gText_PokerusExplanation
+	waitmessage
+	waitbuttonpress
+	setflag FLAG_POKERUS_EXPLAINED
+	goto Johto_Std_PokecenterNurseScript_done
+
+Johto_Std_PokecenterNurseScript_ReturnPkmn:
 	message Johto_Std_NurseReturnPokemonText
 	waitmessage
 	delay 20
