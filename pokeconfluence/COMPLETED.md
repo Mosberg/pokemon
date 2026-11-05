@@ -191,5 +191,76 @@ This document tracks all fully converted, integrated, and verified features in *
 - **GBC Visual Polish & Scroll Arrows**:
   - Replaced prompt down-arrow graphics with authentic GBC Crystal down-arrow glyphs in [graphics/fonts/down_arrow.png](graphics/fonts/down_arrow.png) and [graphics/fonts/down_arrow_alt.png](graphics/fonts/down_arrow_alt.png).
 
+---
+
+## 10. Multi-Region Fly Navigation & Pokédex Area Screen
+
+- **Multi-Region Fly Navigation (`src/region_map.c`)**:
+  - Full three-region navigation across Hoenn, Kanto, and Johto (`REGION_MAP_HOENN`, `REGION_MAP_KANTO`, `REGION_MAP_JOHTO`) using `L_BUTTON` and `R_BUTTON` when in Fly Map mode.
+  - Dynamic decompression and loading of regional graphics, tilemaps, and 3-palette color banks into BG2 on VRAM during region cycling.
+  - Parameterized destination icons via `CreateFlyDestIcons(regionMapType)` and dynamic sprite clearing via `ClearFlyDestIcons()`, only displaying visited fly points for the active region.
+  - Interactive player avatar icon management: visible and positioned at the player's real coordinates when viewing their current region; hidden gracefully when viewing other regions.
+  - Center cursor defaults upon entering a new region (Hoenn: 14, 13; Kanto: 5, 11; Johto: 22, 9).
+  - Added `HEAL_LOCATION_JOHTO_LAKE_OF_RAGE` and completed all 12 Johto fly destination definitions in `GetMapsecType` (`FLAG_JOHTO_ENGINE_FLYPOINT_*`).
+  - Cross-region fast travel execution cleanly verified via `SetFlyDestination` -> `sMapHealLocations`.
+- **Johto Pokédex Area Screen Wild Encounters (`src/pokedex_area_screen.c`)**:
+  - Wired Johto map groups (`gMapGroup_Johto1..4`) into `FindMapsWithMon` by detecting `GetRegionForSectionId(headerSectionId) == REGION_JOHTO`.
+  - Dispatches outdoor routes, towns, and cities to `SetAreaHasMon` and caves/special landmarks (Mt. Mortar, Dark Cave, Whirl Islands, Silver Cave, etc.) to `SetSpecialMapHasMon`.
+  - Seamlessly renders active glowing area tiles and flashing special markers on Johto layout `sRegionMapSections_Johto`.
+
+---
+
+## 11. Authentic Johto Held Items, Fermentation & Learnset Nuances
+
+- **Authentic Johto Crystal Wild Held Items (`src/pokemon.c`)**:
+  - Implemented lookup table `sJohtoWildMonHeldItems` across 61 authentic Crystal species: Chansey and Blissey (Lucky Egg), Grimer and Muk (Nugget), Misdreavus (Spell Tag), Sneasel (Quick Claw), Farfetch'd (Leek), Cubone and Marowak (Thick Club), Ho-Oh (Sacred Ash), Cleffa/Clefairy/Clefable (Leppa Berry / Moon Stone), Shuckle (Oran Berry), Shellder and Cloyster (Pearl / Big Pearl), Slowpoke family (King's Rock), Magnemite family and Steelix (Metal Coat), Dragonair/Dragonite/Dratini/Horsea/Seadra/Kingdra (Dragon Scale), Snorlax (Leftovers), Staryu/Starmie (Stardust / Star Piece), etc.
+  - Hooked into `SetWildMonHeldItem()`: dynamically overrides wild held items when `GetCurrentRegion() == REGION_JOHTO` while retaining vanilla/expansion items in Hoenn and Kanto.
+- **Authentic Shuckle Berry Juice Fermentation (`src/confluence.c`, `src/battle_setup.c`)**:
+  - Implemented post-battle fermentation routine `Johto_ConvertShuckleBerryJuice()`.
+  - Faithful to Pokémon Crystal: requires reaching Goldenrod City (`FLAG_JOHTO_ENGINE_REACHED_GOLDENROD`).
+  - Evaluates after wild and scripted wild battles (`CB2_EndWildBattle` and `CB2_EndScriptedWildBattle`). If the player party contains a Shuckle holding an Oran Berry, it has a 1-in-16 (6.25%) chance per battle to ferment the berry into `ITEM_BERRY_JUICE`.
+- **Authentic Dragon Shrine ExtremeSpeed Dratini Gift (`data/maps/DragonShrine_Johto/scripts.inc`)**:
+  - In the Dragon's Den Dragon Shrine, after completing Clair's badge test, the Elder quizzes the player on their philosophy regarding Pokémon.
+  - If the player answers all questions with honor and compassionate devotion (checked via `FLAG_JOHTO_ANSWERED_DRAGON_MASTER_QUIZ_WRONG` not being set), the gift Dratini is awarded with the authentic Crystal event moveset: `MOVE_WRAP`, `MOVE_THUNDER_WAVE`, `MOVE_TWISTER`, and the exclusive `MOVE_EXTREME_SPEED`.
+
+---
+
+## 12. Johto Overworld Scripts, Playtests & Flow Verification
+
+- **Static Wild Battles (`loadwildmon`)**:
+  - All 17 authentic Crystal static wild encounters verified: Route 36 Sudowoodo (Lv. 20), Lake of Rage Red Gyarados (Lv. 30), Union Cave B2F Lapras (Lv. 20), Ilex Forest Celebi (Lv. 30), Tin Tower Suicune (Lv. 40), Tin Tower Roof Ho-Oh (Lv. 60), Whirl Islands Lugia (Lv. 60), Vermilion City Snorlax (Lv. 50), and Team Rocket Base B2F generator Electrodes (3x Lv. 23).
+  - All static battles execute valid `setwildbattle` macros, level bounds, and encounter flags.
+- **Dynamic Block Changes (`changeblock` / `setmetatile`)**:
+  - All 812 metatile modifications across 45 maps verified.
+  - Every script modifying metatiles properly executes `special DrawWholeMapView` to redraw the VRAM tilemap buffer. Covers Ruins of Alph secret chambers (Flash, Escape Rope, Water Stone, Ho-Oh), Mahogany Team Rocket Base electric barriers and trap statues, and Ice Path boulder traps.
+- **Hidden Items Across 61 Maps**:
+  - All 85 hidden items verified across 61 Johto maps matching authentic Crystal positions.
+  - All item constants mapped to valid Gen 3 items, all flags mapped to defined flags in [include/constants/johto_flags.h](include/constants/johto_flags.h), and all coordinates verified within map layout dimensions.
+- **Strength Boulders & Rock Smash Breakable Rocks**:
+  - All 24 Strength boulders (`OBJ_EVENT_GFX_PUSHABLE_BOULDER`, `EventScript_StrengthBoulder`) and 16 Rock Smash rocks (`OBJ_EVENT_GFX_BREAKABLE_ROCK`, `EventScript_RockSmash`) verified across Johto dungeons and routes.
+  - Fully integrated with Field Kit and badge obedience (Plain Badge for Strength, Zephyr Badge for Rock Smash in Johto).
+- **Elder Li's Flash Gift Sequence**:
+  - Sprout Tower 3F Sage Li battle, defeat logic, `ITEM_HM_FLASH` award, `FLAG_JOHTO_GOT_HM05_FLASH`, and post-battle dialogue advance verified.
+- **Route 32, Slowpoke Well, Kurt & Ilex Forest Farfetch'd**:
+  - Route 32 Slowpoke Tail salesman refusal sequence.
+  - Slowpoke Well Team Rocket defeat and Kurt's Lure Ball reward (`FLAG_JOHTO_KURT_GAVE_YOU_LURE_BALL`).
+  - Ilex Forest charcoal apprentice Farfetch'd chase (positions 1-4), herding completion (`FLAG_JOHTO_HERDED_FARFETCHD`), and Cut HM reward (`FLAG_JOHTO_GOT_HM01_CUT`).
+- **Togepi Hatching & Elm's Pokégear Call**:
+  - Integrated Togepi egg hatching in [src/egg_hatch.c](src/egg_hatch.c) setting `FLAG_JOHTO_TOGEPI_HATCHED`.
+  - Wired Elm's priority incoming Pokégear call in [src/johto_phone.c](src/johto_phone.c) (`sText_ElmTogepiHatchedCall`, `FLAG_JOHTO_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE`).
+  - Elm in New Bark Town lab inspects Togepi and awards the Everstone (`FLAG_JOHTO_GOT_EVERSTONE_FROM_ELM`).
+- **Per-Town Respawn in Johto Pokémon Centers**:
+  - Verified all 11 Johto towns (New Bark, Cherrygrove, Violet, Azalea, Goldenrod, Ecruteak, Olivine, Cianwood, Mahogany, Blackthorn, Lake of Rage) have dedicated heal locations in [src/data/heal_locations.json](src/data/heal_locations.json) and are wired into `sMapHealLocations` in [src/region_map.c](src/region_map.c).
+  - All 22 Johto Pokémon Center nurse scripts set `setrespawn HEAL_LOCATION_JOHTO_*`. Whiteout wakeup properly recovers in the respective center.
+- **Fishing Encounter Tables Across 149 Maps**:
+  - All 149 Johto fishing headers verified in [src/data/wild_encounters.h](src/data/wild_encounters.h), ensuring 50% encounter rates, authentic species distributions (Old Rod Magikarp/Krabby/Poliwag; Good Rod Corsola/Qwilfish/Remoraid; Super Rod Kingler/Gyarados/Dratini), and zero invalid `SPECIES_NONE` slots.
+- **Automated Verification Harnesses**:
+  - [scripts/audit_johto_scripts.py](scripts/audit_johto_scripts.py): 18/18 static integrity checks passed.
+  - [mgba-agent/tests/test_johto_overworld_flows.py](mgba-agent/tests/test_johto_overworld_flows.py): 9 comprehensive automated playtest flow suites (17/17 tests passed).
+
+
+
+
+
 
 

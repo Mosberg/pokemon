@@ -33,4 +33,7 @@ void ConfluenceCheckMeridianAccess(void);
 void ConfluenceCheckApexEligible(void);
 void ConfluenceBufferProgress(void);
 
+// POKE-CONFLUENCE: Authentic Johto Shuckle Berry Juice fermentation
+void Johto_ConvertShuckleBerryJuice(void);
+
 #endif // GUARD_CONFLUENCE_H

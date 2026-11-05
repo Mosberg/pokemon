@@ -78,6 +78,7 @@ static EWRAM_DATA struct {
     u8 tileBuffer[0x1c0];
     u8 nameBuffer[0x26]; // never read
     bool8 choseFlyLocation;
+    u8 selectedRegionMapType; // POKE-CONFLUENCE
 } *sFlyMap = NULL;
 
 static bool32 sDrawFlyDestTextWindow;
@@ -110,7 +111,9 @@ static void CB2_FlyMap(void);
 static void SetFlyMapCallback(void callback(void));
 static void DrawFlyDestTextWindow(void);
 static void LoadFlyDestIcons(void);
-static void CreateFlyDestIcons(void);
+static void CreateFlyDestIcons(u8 regionMapType); // POKE-CONFLUENCE
+static void ClearFlyDestIcons(void); // POKE-CONFLUENCE
+static void SwitchFlyMapRegion(u8 newRegionMapType); // POKE-CONFLUENCE
 static void TryCreateRedOutlineFlyDestIcons(void);
 static void SpriteCB_FlyDestIcon(struct Sprite *sprite);
 static void CB_FadeInFlyMap(void);
@@ -559,6 +562,7 @@ static const u8 sMapHealLocations[][3] =
     [MAPSEC_JOHTO_MAHOGANY_TOWN] = {MAP_GROUP(MAP_JOHTO_MAHOGANY_TOWN), MAP_NUM(MAP_JOHTO_MAHOGANY_TOWN), HEAL_LOCATION_JOHTO_MAHOGANY_TOWN},
     [MAPSEC_JOHTO_BLACKTHORN_CITY] = {MAP_GROUP(MAP_JOHTO_BLACKTHORN_CITY), MAP_NUM(MAP_JOHTO_BLACKTHORN_CITY), HEAL_LOCATION_JOHTO_BLACKTHORN_CITY},
     [MAPSEC_JOHTO_SILVER_CAVE] = {MAP_GROUP(MAP_JOHTO_SILVER_CAVE_OUTSIDE), MAP_NUM(MAP_JOHTO_SILVER_CAVE_OUTSIDE), HEAL_LOCATION_JOHTO_SILVER_CAVE_OUTSIDE},
+    [MAPSEC_JOHTO_LAKE_OF_RAGE] = {MAP_GROUP(MAP_JOHTO_LAKE_OF_RAGE), MAP_NUM(MAP_JOHTO_LAKE_OF_RAGE), HEAL_LOCATION_JOHTO_LAKE_OF_RAGE}, // POKE-CONFLUENCE
 };
 
 static const u8 *const sEverGrandeCityNames[] =
@@ -765,14 +769,14 @@ bool8 LoadRegionMapGfx(void)
     switch (sRegionMap->initStep)
     {
     case 0:
-        regionMapType = GetRegionMapType(gMapHeader.regionMapSectionId);
+        regionMapType = (sFlyMap != NULL) ? sFlyMap->selectedRegionMapType : GetRegionMapType(gMapHeader.regionMapSectionId);
         if (sRegionMap->bgManaged)
             DecompressAndCopyTileDataToVram(sRegionMap->bgNum, gRegionMapInfos[regionMapType].regionMapGfx, 0, 0, 0);
         else
             DecompressDataWithHeaderVram(gRegionMapInfos[regionMapType].regionMapGfx, (u16 *)BG_CHAR_ADDR(2));
         break;
     case 1:
-        regionMapType = GetRegionMapType(gMapHeader.regionMapSectionId);
+        regionMapType = (sFlyMap != NULL) ? sFlyMap->selectedRegionMapType : GetRegionMapType(gMapHeader.regionMapSectionId);
         if (sRegionMap->bgManaged)
         {
             if (!FreeTempTileDataBuffersIfPossible())
@@ -784,7 +788,7 @@ bool8 LoadRegionMapGfx(void)
         }
         break;
     case 2:
-        regionMapType = GetRegionMapType(gMapHeader.regionMapSectionId);
+        regionMapType = (sFlyMap != NULL) ? sFlyMap->selectedRegionMapType : GetRegionMapType(gMapHeader.regionMapSectionId);
         if (!FreeTempTileDataBuffersIfPossible())
             LoadPalette(gRegionMapInfos[regionMapType].regionMapPalette, BG_PLTT_ID(7), 3 * PLTT_SIZE_4BPP);
         break;
@@ -1211,6 +1215,8 @@ enum RegionMapType GetRegionMapType(u32 mapSecId)
 
 static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
 {
+    u8 currentRegion;
+
     if (y < MAPCURSOR_Y_MIN || y > MAPCURSOR_Y_MAX || x < MAPCURSOR_X_MIN || x > MAPCURSOR_X_MAX)
     {
         return MAPSEC_NONE;
@@ -1218,26 +1224,69 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
     y -= MAPCURSOR_Y_MIN;
     x -= MAPCURSOR_X_MIN;
 
-    switch (GetCurrentRegion())
+    // POKE-CONFLUENCE: Use selectedRegionMapType when in Fly Map
+    if (sFlyMap != NULL)
+    {
+        switch (sFlyMap->selectedRegionMapType)
+        {
+        case REGION_MAP_JOHTO:
+            currentRegion = REGION_JOHTO;
+            break;
+        case REGION_MAP_KANTO:
+        case REGION_MAP_SEVII123:
+        case REGION_MAP_SEVII45:
+        case REGION_MAP_SEVII67:
+            currentRegion = REGION_KANTO;
+            break;
+        case REGION_MAP_HOENN:
+        default:
+            currentRegion = REGION_HOENN;
+            break;
+        }
+    }
+    else
+    {
+        currentRegion = GetCurrentRegion();
+    }
+
+    switch (currentRegion)
     {
     case REGION_JOHTO:
         return sRegionMapSections_Johto[y][x];
     case REGION_KANTO:
-        switch (GetKantoSubregion(gMapHeader.regionMapSectionId))
+        if (sFlyMap != NULL)
         {
-        case KANTO_SUBREGION_SEVII123:
+            switch (sFlyMap->selectedRegionMapType)
+            {
+            case REGION_MAP_SEVII123:
                 return sRegionMapSections_Sevii123[y][x];
-        case KANTO_SUBREGION_SEVII45:
+            case REGION_MAP_SEVII45:
                 return sRegionMapSections_Sevii45[y][x];
-        case KANTO_SUBREGION_SEVII67:
+            case REGION_MAP_SEVII67:
                 return sRegionMapSections_Sevii67[y][x];
-        case KANTO_SUBREGION_KANTO:
-        default:
+            case REGION_MAP_KANTO:
+            default:
                 return sRegionMapSections_Kanto[y][x];
+            }
+        }
+        else
+        {
+            switch (GetKantoSubregion(gMapHeader.regionMapSectionId))
+            {
+            case KANTO_SUBREGION_SEVII123:
+                return sRegionMapSections_Sevii123[y][x];
+            case KANTO_SUBREGION_SEVII45:
+                return sRegionMapSections_Sevii45[y][x];
+            case KANTO_SUBREGION_SEVII67:
+                return sRegionMapSections_Sevii67[y][x];
+            case KANTO_SUBREGION_KANTO:
+            default:
+                return sRegionMapSections_Kanto[y][x];
+            }
         }
     case REGION_HOENN:
     default:
-            return sRegionMap_MapSectionLayout[y][x];
+        return sRegionMap_MapSectionLayout[y][x];
     }
 }
 
@@ -1530,6 +1579,31 @@ static u8 GetMapsecType(mapsec_u16_t mapSecId)
         return FlagGet(FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_ROUTE_10_POKECENTER:
         return FlagGet(FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    // POKE-CONFLUENCE: Johto mapsec fly checks
+    case MAPSEC_JOHTO_NEW_BARK_TOWN:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_NEW_BARK) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_CHERRYGROVE_CITY:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_CHERRYGROVE) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_VIOLET_CITY:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_VIOLET) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_AZALEA_TOWN:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_AZALEA) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_GOLDENROD_CITY:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_GOLDENROD) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_ECRUTEAK_CITY:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_ECRUTEAK) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_OLIVINE_CITY:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_OLIVINE) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_CIANWOOD_CITY:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_CIANWOOD) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_MAHOGANY_TOWN:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_MAHOGANY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_LAKE_OF_RAGE:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_LAKE_OF_RAGE) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_BLACKTHORN_CITY:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_BLACKTHORN) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_JOHTO_SILVER_CAVE:
+        return FlagGet(FLAG_JOHTO_ENGINE_FLYPOINT_SILVER_CAVE) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     default:
         return MAPSECTYPE_ROUTE;
     }
@@ -1992,6 +2066,7 @@ void CB2_OpenFlyMap(void)
         }
         else
         {
+            sFlyMap->selectedRegionMapType = GetRegionMapType(gMapHeader.regionMapSectionId); // POKE-CONFLUENCE
             ResetPaletteFade();
             ResetSpriteData();
             FreeSpriteTileRanges();
@@ -2154,8 +2229,9 @@ static void LoadFlyDestIcons(void)
     sheet.tag = TAG_FLY_ICON;
     LoadSpriteSheet(&sheet);
     LoadSpritePalette(&sFlyTargetIconsSpritePalette);
-    CreateFlyDestIcons();
-    TryCreateRedOutlineFlyDestIcons();
+    CreateFlyDestIcons(sFlyMap->selectedRegionMapType);
+    if (sFlyMap->selectedRegionMapType == REGION_MAP_HOENN)
+        TryCreateRedOutlineFlyDestIcons();
 }
 
 struct FlyLocation
@@ -2415,9 +2491,92 @@ static const struct FlyLocation sFlyLocations[] =
 #define sIconMapSec   data[0]
 #define sFlickerTimer data[1]
 
-static void CreateFlyDestIcons(void)
+static const u8 sFlyMapCycleRegions[] =
 {
-    enum RegionMapType regionMapType = GetRegionMapType(gMapHeader.regionMapSectionId);
+    REGION_MAP_HOENN,
+    REGION_MAP_KANTO,
+    REGION_MAP_JOHTO
+};
+
+static void ClearFlyDestIcons(void)
+{
+    u8 i;
+
+    for (i = 0; i < MAX_SPRITES; i++)
+    {
+        if (gSprites[i].inUse && gSprites[i].template == &sFlyDestIconSpriteTemplate)
+        {
+            DestroySprite(&gSprites[i]);
+        }
+    }
+}
+
+static void SwitchFlyMapRegion(u8 newRegionMapType)
+{
+    u8 playerRegionMapType;
+    u16 x;
+    u16 y;
+
+    if (newRegionMapType == sFlyMap->selectedRegionMapType)
+        return;
+
+    ClearFlyDestIcons();
+    sFlyMap->selectedRegionMapType = newRegionMapType;
+
+    DecompressDataWithHeaderVram(gRegionMapInfos[newRegionMapType].regionMapGfx, (u16 *)BG_CHAR_ADDR(2));
+    DecompressDataWithHeaderVram(gRegionMapInfos[newRegionMapType].regionMapTilemap, (u16 *)BG_SCREEN_ADDR(28));
+    LoadPalette(gRegionMapInfos[newRegionMapType].regionMapPalette, BG_PLTT_ID(7), 3 * PLTT_SIZE_4BPP);
+
+    playerRegionMapType = GetRegionMapType(gMapHeader.regionMapSectionId);
+    if (newRegionMapType == playerRegionMapType)
+    {
+        UnhideRegionMapPlayerIcon();
+        x = sFlyMap->regionMap.playerIconSpritePosX;
+        y = sFlyMap->regionMap.playerIconSpritePosY;
+    }
+    else
+    {
+        HideRegionMapPlayerIcon();
+        switch (newRegionMapType)
+        {
+        case REGION_MAP_KANTO:
+            x = 5 + MAPCURSOR_X_MIN;
+            y = 11 + MAPCURSOR_Y_MIN;
+            break;
+        case REGION_MAP_JOHTO:
+            x = 22 + MAPCURSOR_X_MIN;
+            y = 9 + MAPCURSOR_Y_MIN;
+            break;
+        case REGION_MAP_HOENN:
+        default:
+            x = 14 + MAPCURSOR_X_MIN;
+            y = 13 + MAPCURSOR_Y_MIN;
+            break;
+        }
+    }
+
+    sFlyMap->regionMap.cursorPosX = x;
+    sFlyMap->regionMap.cursorPosY = y;
+    if (sFlyMap->regionMap.cursorSprite != NULL)
+    {
+        sFlyMap->regionMap.cursorSprite->x = x * 8 + 4;
+        sFlyMap->regionMap.cursorSprite->y = y * 8 + 4;
+    }
+
+    CreateFlyDestIcons(newRegionMapType);
+    if (newRegionMapType == REGION_MAP_HOENN)
+        TryCreateRedOutlineFlyDestIcons();
+
+    sFlyMap->regionMap.mapSecId = GetMapSecIdAt(x, y);
+    sFlyMap->regionMap.mapSecId = CorrectSpecialMapSecId_Internal(sFlyMap->regionMap.mapSecId);
+    sFlyMap->regionMap.mapSecType = GetMapsecType(sFlyMap->regionMap.mapSecId);
+    GetMapName(sFlyMap->regionMap.mapSecName, sFlyMap->regionMap.mapSecId, MAP_NAME_LENGTH);
+    GetPositionOfCursorWithinMapSec();
+    DrawFlyDestTextWindow();
+}
+
+static void CreateFlyDestIcons(u8 regionMapType)
+{
     u32 i;
     u16 x;
     u16 y;
@@ -2532,6 +2691,43 @@ static void CB_HandleFlyMapInput(void)
 {
     if (sFlyMap->state == 0)
     {
+        // POKE-CONFLUENCE: Cycle regions with L / R buttons when not moving cursor
+        if (sRegionMap->inputCallback == ProcessRegionMapInput_Full)
+        {
+            if (JOY_NEW(R_BUTTON))
+            {
+                u8 i;
+                u8 nextRegion = sFlyMapCycleRegions[0];
+                for (i = 0; i < ARRAY_COUNT(sFlyMapCycleRegions); i++)
+                {
+                    if (sFlyMapCycleRegions[i] == sFlyMap->selectedRegionMapType)
+                    {
+                        nextRegion = sFlyMapCycleRegions[(i + 1) % ARRAY_COUNT(sFlyMapCycleRegions)];
+                        break;
+                    }
+                }
+                m4aSongNumStart(SE_SELECT);
+                SwitchFlyMapRegion(nextRegion);
+                return;
+            }
+            else if (JOY_NEW(L_BUTTON))
+            {
+                u8 i;
+                u8 prevRegion = sFlyMapCycleRegions[ARRAY_COUNT(sFlyMapCycleRegions) - 1];
+                for (i = 0; i < ARRAY_COUNT(sFlyMapCycleRegions); i++)
+                {
+                    if (sFlyMapCycleRegions[i] == sFlyMap->selectedRegionMapType)
+                    {
+                        prevRegion = sFlyMapCycleRegions[(i + ARRAY_COUNT(sFlyMapCycleRegions) - 1) % ARRAY_COUNT(sFlyMapCycleRegions)];
+                        break;
+                    }
+                }
+                m4aSongNumStart(SE_SELECT);
+                SwitchFlyMapRegion(prevRegion);
+                return;
+            }
+        }
+
         switch (DoRegionMapInputCallback())
         {
         case MAP_INPUT_NONE:

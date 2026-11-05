@@ -35,14 +35,24 @@ def main() -> None:
     from mgba_client import Bridge
     from pkmn_decrypt import decrypt_pokemon_data
 
-    rom = project / "pokeconfluence.gba"
-    emu = subprocess.Popen([sys.executable, str(HERE.parent / "bin" / "poke-emulator"), "--rom", str(rom), "--port", str(a.port)],
+    for candidate in ("pokeconfluence.gba", "pokeemerald.gba", "pokemultiregion.gba"):
+        if (project / candidate).exists():
+            rom = project / candidate
+            break
+    else:
+        rom = project / "pokeemerald.gba"
+
+    emu_bin = HERE.parent / "bin" / "poke-emulator"
+    if not emu_bin.exists():
+        emu_bin = HERE.parent.parent / "tools" / "poke-migrator-pro" / "bin" / "poke-emulator"
+
+    emu = subprocess.Popen([sys.executable, str(emu_bin), "--rom", str(rom), "--port", str(a.port)],
                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     failures = []
     try:
         for _ in range(40):
             try:
-                b = Bridge()
+                b = Bridge(port=a.port)
                 break
             except OSError:
                 time.sleep(0.5)

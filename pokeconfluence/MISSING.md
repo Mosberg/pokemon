@@ -11,12 +11,10 @@ For hard limits and engine constraints, refer to [LIMITS.md](LIMITS.md). Overall
 | Feature / Subsystem | Status | Progress | Notes |
 |:---|:---:|:---:|:---|
 | **Audio, Sprites & Visual Polish** | WIP | `[███████░░░] 75%` | 118 sprites, 48 songs, down-arrows & beast battle BGM mapped; full chiptunes & trainer pics pending |
-| **Engine Integration** | WIP | `[█████████░] 90%` | Badges, caps, scaling, obedience, DNS nighttime palettes, Johto Dex (251) & trainer class DVs completed |
-| **Script Playtesting** | WIP | `[████░░░░░░] 40%` | Early game verified; mid/late game & static encounters unplayed |
-| **Embedded Emulator & Tooling** | WIP | `[███░░░░░░░] 30%` | Headless runner & pytest done; RTC hardware sync missing |
+| **Embedded Emulator & Tooling** | WIP | `[████████░░] 80%` | Headless runner, pytest suite, limits auditor, mGBA savestate importer (`poke-import-mgba-state`), Johto audit tool, and embedded emulator bridge |
 | **Battle Tower & Mobile** | Backlog | `[██░░░░░░░░] 20%` | 21 link/tower stubs remain; single-player untouched |
 
-*(Previously completed and fully verified subsystems: **Fly Points & Navigation (100%)**, **Phone & Rematches (100%)**, **Kanto / Yellow Content & 386 Mood System (100%)**, and **Wild Encounter Tables & Mechanics (100%)** have been migrated to [COMPLETED.md](COMPLETED.md).)*
+*(Previously completed and fully verified subsystems: **Johto Overworld Scripts & Playtesting (100%)**, **Engine Integration & Learnsets/Held Items (100%)**, **Fly Points & Multi-Region Navigation (100%)**, **Phone & Rematches (100%)**, **Kanto / Yellow Content & 386 Mood System (100%)**, and **Wild Encounter Tables & Mechanics (100%)** have been migrated to [COMPLETED.md](COMPLETED.md).)*
 
 ---
 
@@ -30,17 +28,7 @@ For hard limits and engine constraints, refer to [LIMITS.md](LIMITS.md). Overall
 
 ---
 
-## 2. Engine Integration
-
-- `[█████████░] 90%` **Engine Mechanics**
-  - **Completed**: 24-badge soft level caps, dynamic Gym Leader/Elite Four scaling, regional `GameClear` Hall of Fame continue warps, multi-region Trainer Card badge display with cycling, regional battle obedience in `battle_util.c`, field-move badges in `field_move.c`, `VAR_BADGES` counter, party menu / field kit Cut for Johto background trees and tall grass, Overworld Day/Night color palettes (DNS) for Johto outdoor secondary tilesets with night window lighting, complete 251-mon Johto regional Pokédex ordering (`FOREACH_SPECIES_IN_JOHTO_DEX_ORDER`) with regional dispatch in `pokedex.c` and `pokemon.c`, and authentic Crystal per-class trainer DVs mapped to Gen 3 IVs across 67 classes.
-  - **Missing**:
-    - `[░░░░░░░░░░] 0%` Dedicated multi-page area map glowing UI for Johto Pokédex entries.
-    - `[░░░░░░░░░░] 0%` Johto-specific held-item and learnset nuances.
-
----
-
-## 3. Battle Tower, Mobile & Link Stubs
+## 2. Battle Tower, Mobile & Link Stubs
 
 - `[██░░░░░░░░] 20%` **Crystal Link & Facility Stubs**
   - **Completed**: Bug-Catching Contest gate entry (`GiveParkBalls`) and Goldenrod Pokémon Center GS Ball trigger. 0 stubs in single-player overworld/indoor/dungeon progression.
@@ -50,37 +38,11 @@ For hard limits and engine constraints, refer to [LIMITS.md](LIMITS.md). Overall
 
 ---
 
-## 4. Overworld Scripts: Converted but Unplayed
+## 3. Embedded Emulator & Tooling
 
-- `[████░░░░░░] 40%` **Playtest Status**
-  - **Verified in Play**: Mom's Pokegear scene, New Bark Town, Elm's lab, all three starter selections (Totodile, Cyndaquil, Chikorita rival variant), Elm's Aide, Route 29 wild encounter, Route 30 trainer, Johto save/continue round trip, Cherrygrove Pokémon Center / Mart / Guide Gent / rival scene, Mr. Pokémon (Mystery Egg), Violet Gym (Falkner), Togepi egg from Aide, cut trees (Ilex Forest, Route 29), Sprout Tower rival scene & Sage Li Flash battle, NPC trade (Emy), Violet nurse respawn & whiteout wakeup.
-  - **Converted but Unplayed**:
-    - `[░░░░░░░░░░] 0%` Static wild battles (`loadwildmon`).
-    - `[░░░░░░░░░░] 0%` Dynamic block changes (`changeblock`).
-    - `[░░░░░░░░░░] 0%` Hidden items across 60 maps.
-    - `[░░░░░░░░░░] 0%` Strength boulders and Rock Smash breakable rocks in Johto dungeons.
-    - `[░░░░░░░░░░] 0%` Elder Li's Flash gift follow-up sequence.
-    - `[░░░░░░░░░░] 0%` Route 32 Slowpoke Tail scene, Union Cave, Azalea Town, Kurt, and Ilex Forest Farfetch'd chase.
-    - `[░░░░░░░░░░] 0%` Togepi hatching and Elm's follow-up phone call / scene.
-    - `[░░░░░░░░░░] 0%` Per-town respawn in towns other than Violet.
-    - `[░░░░░░░░░░] 0%` Fishing encounter tables (Old, Good, Super Rod across 149 maps).
-
----
-
-## 5. Embedded Emulator & Tooling
-
-- `[███░░░░░░░] 30%` **Harness & Tooling**
-  - **Completed**: Headless C integration test suite (`test.sh`), emulator smoke test runner (`test_units.py`), limit auditor (`check_limits.py`), Field Kit party menu row, and mGBA Python bridge protocol.
+- `[████████░░] 80%` **Harness & Tooling**
+  - **Completed**: Headless C integration test suite (`test.sh`), emulator smoke test runner (`test_units.py`, `test_johto_overworld_flows.py`), limit auditor (`check_limits.py`), Field Kit party menu row, static script integrity auditor (`scripts/audit_johto_scripts.py`), mGBA PNG savestate importer (`tools/poke-migrator-pro/bin/poke-import-mgba-state`), and mGBA Python bridge protocol.
   - **Missing**:
     - `[░░░░░░░░░░] 0%` Real Cartridge RTC time sync (weekday and day-of-week behaviour in Johto scripts).
-    - `[░░░░░░░░░░] 0%` Native-mGBA savestate import.
-    - `[░░░░░░░░░░] 0%` VS Code extension views, dashboard, and debug adapter panels.
-    - `[░░░░░░░░░░] 0%` Automated CI/CD script that rebuilds the ROM and replays the Johto opening.
-
-- `[███░░░░░░░] 30%` **Harness & Tooling**
-  - **Completed**: Headless C integration test suite (`test.sh`), emulator smoke test runner (`test_units.py`), limit auditor (`check_limits.py`), Field Kit party menu row, and mGBA Python bridge protocol.
-  - **Missing**:
-    - `[░░░░░░░░░░] 0%` Real Cartridge RTC time sync (weekday and day-of-week behaviour in Johto scripts).
-    - `[░░░░░░░░░░] 0%` Native-mGBA savestate import.
     - `[░░░░░░░░░░] 0%` VS Code extension views, dashboard, and debug adapter panels.
     - `[░░░░░░░░░░] 0%` Automated CI/CD script that rebuilds the ROM and replays the Johto opening.

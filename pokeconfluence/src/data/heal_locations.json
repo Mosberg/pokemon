@@ -579,6 +579,16 @@
       "respawn_npc": "1",
       "respawn_x": 3,
       "respawn_y": 6
+    },
+    {
+      "id": "HEAL_LOCATION_JOHTO_LAKE_OF_RAGE",
+      "map": "MAP_JOHTO_LAKE_OF_RAGE",
+      "x": 21,
+      "y": 29,
+      "respawn_map": "MAP_JOHTO_MAHOGANY_POKECENTER_1F",
+      "respawn_npc": "1",
+      "respawn_x": 3,
+      "respawn_y": 6
     }
   ]
 }

@@ -5,9 +5,12 @@
 #include "item.h"
 #include "pokemon.h"
 #include "pokedex.h"
+#include "random.h"
 #include "regions.h"
 #include "string_util.h"
+#include "constants/battle.h"
 #include "constants/field_move.h"
+#include "constants/johto_flags.h"
 #include "constants/map_types.h"
 #include "constants/species.h"
 #include "constants/weather.h"
@@ -231,3 +234,36 @@ void ConfluenceBufferProgress(void)
     ConvertIntToDecimalStringN(gStringVar2, Confluence_GetLevelCapForBadges(badges), STR_CONV_MODE_LEFT_ALIGN, 3);
     ConvertIntToDecimalStringN(gStringVar3, Confluence_CountResonanceCalmed(), STR_CONV_MODE_LEFT_ALIGN, 1);
 }
+
+// POKE-CONFLUENCE: Authentic GBC Crystal Shuckle Berry Juice fermentation
+void Johto_ConvertShuckleBerryJuice(void)
+{
+    u8 i;
+    u16 heldItem;
+
+    // In Crystal: requires having reached Goldenrod City at least once
+    if (!FlagGet(FLAG_JOHTO_ENGINE_REACHED_GOLDENROD))
+        return;
+
+    // 1 in 16 chance (6.25%) after a wild battle
+    if ((Random() % 16) != 0)
+        return;
+
+    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_EGG))
+            continue;
+
+        if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES) == SPECIES_SHUCKLE)
+        {
+            heldItem = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM);
+            if (heldItem == ITEM_ORAN_BERRY)
+            {
+                u16 juice = ITEM_BERRY_JUICE;
+                SetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM, &juice);
+                break;
+            }
+        }
+    }
+}
+

@@ -28,6 +28,7 @@
 #include "daycare.h"
 #include "overworld.h"
 #include "scanline_effect.h"
+#include "constants/johto_flags.h"
 #include "field_weather.h"
 #include "naming_screen.h"
 #include "pokemon_storage_system.h"
@@ -320,6 +321,12 @@ static void AddHatchedMonToParty(u8 id)
     species = GetMonData(mon, MON_DATA_SPECIES);
     StringCopy(name, GetSpeciesName(species));
     SetMonData(mon, MON_DATA_NICKNAME, name);
+
+    // POKE-CONFLUENCE: Authentic Johto Togepi egg hatch tracking
+    if (species == SPECIES_TOGEPI && FlagGet(FLAG_JOHTO_GOT_TOGEPI_EGG_FROM_ELMS_AIDE))
+    {
+        FlagSet(FLAG_JOHTO_TOGEPI_HATCHED);
+    }
 
     nationalDexNum = SpeciesToNationalPokedexNum(species);
     GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);

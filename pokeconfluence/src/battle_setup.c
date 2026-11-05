@@ -7,6 +7,7 @@
 #include "battle_pyramid.h"
 #include "battle_setup.h"
 #include "battle_special.h"
+#include "confluence.h"
 #include "battle_partner.h"
 #include "battle_tower.h"
 #include "battle_transition.h"
@@ -711,6 +712,7 @@ static void CB2_EndWildBattle(void)
     {
         SetMainCallback2(CB2_ReturnToField);
         DowngradeBadPoison();
+        Johto_ConvertShuckleBerryJuice(); // POKE-CONFLUENCE
         gFieldCallback = FieldCB_ReturnToFieldNoScriptCheckMusic;
     }
 }
@@ -730,6 +732,7 @@ static void CB2_EndScriptedWildBattle(void)
     else
     {
         DowngradeBadPoison();
+        Johto_ConvertShuckleBerryJuice(); // POKE-CONFLUENCE
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
 }

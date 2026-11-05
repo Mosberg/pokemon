@@ -354,6 +354,17 @@ static void FindMapsWithMon(enum Species species)
             case MAP_GROUP_SPECIAL_AREA_FRLG:
                 SetSpecialMapHasMon(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
                 break;
+            default:
+                // POKE-CONFLUENCE: Johto map groups (gMapGroup_Johto1..4)
+                if (GetRegionForSectionId(headerSectionId) == REGION_JOHTO)
+                {
+                    enum MapType mapType = GetMapTypeByGroupAndId(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
+                    if (IsMapTypeOutdoors(mapType))
+                        SetAreaHasMon(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
+                    else
+                        SetSpecialMapHasMon(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
+                }
+                break;
             }
         }
     }

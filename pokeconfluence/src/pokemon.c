@@ -5461,6 +5461,94 @@ static inline bool32 CanFirstMonBoostHeldItemRarity(void)
     return FALSE;
 }
 
+// POKE-CONFLUENCE: Authentic Johto Crystal wild Pokémon held items
+struct JohtoWildHeldItem
+{
+    u16 species;
+    u16 itemCommon;
+    u16 itemRare;
+};
+
+static const struct JohtoWildHeldItem sJohtoWildMonHeldItems[] =
+{
+    {SPECIES_ARCANINE,   ITEM_RAWST_BERRY,    ITEM_RAWST_BERRY},
+    {SPECIES_BEEDRILL,   ITEM_NONE,           ITEM_POISON_BARB},
+    {SPECIES_BLISSEY,    ITEM_NONE,           ITEM_LUCKY_EGG},
+    {SPECIES_BUTTERFREE, ITEM_NONE,           ITEM_SILVER_POWDER},
+    {SPECIES_CELEBI,     ITEM_NONE,           ITEM_LUM_BERRY},
+    {SPECIES_CHANSEY,    ITEM_NONE,           ITEM_LUCKY_EGG},
+    {SPECIES_CLEFABLE,   ITEM_LEPPA_BERRY,    ITEM_MOON_STONE},
+    {SPECIES_CLEFAIRY,   ITEM_LEPPA_BERRY,    ITEM_MOON_STONE},
+    {SPECIES_CLEFFA,     ITEM_LEPPA_BERRY,    ITEM_MOON_STONE},
+    {SPECIES_CLOYSTER,   ITEM_PEARL,          ITEM_BIG_PEARL},
+    {SPECIES_CUBONE,     ITEM_NONE,           ITEM_THICK_CLUB},
+    {SPECIES_DODRIO,     ITEM_NONE,           ITEM_SHARP_BEAK},
+    {SPECIES_DRAGONAIR,  ITEM_NONE,           ITEM_DRAGON_SCALE},
+    {SPECIES_DRAGONITE,  ITEM_NONE,           ITEM_DRAGON_SCALE},
+    {SPECIES_DRATINI,    ITEM_NONE,           ITEM_DRAGON_SCALE},
+    {SPECIES_FARFETCHD,  ITEM_NONE,           ITEM_LEEK},
+    {SPECIES_FEAROW,     ITEM_NONE,           ITEM_SHARP_BEAK},
+    {SPECIES_FURRET,     ITEM_ORAN_BERRY,     ITEM_SITRUS_BERRY},
+    {SPECIES_GEODUDE,    ITEM_NONE,           ITEM_EVERSTONE},
+    {SPECIES_GOLEM,      ITEM_NONE,           ITEM_EVERSTONE},
+    {SPECIES_GRAVELER,   ITEM_NONE,           ITEM_EVERSTONE},
+    {SPECIES_GRIMER,     ITEM_NONE,           ITEM_NUGGET},
+    {SPECIES_GROWLITHE,  ITEM_RAWST_BERRY,    ITEM_RAWST_BERRY},
+    {SPECIES_HO_OH,      ITEM_SACRED_ASH,     ITEM_SACRED_ASH},
+    {SPECIES_HORSEA,     ITEM_NONE,           ITEM_DRAGON_SCALE},
+    {SPECIES_JYNX,       ITEM_ASPEAR_BERRY,   ITEM_ASPEAR_BERRY},
+    {SPECIES_KINGDRA,    ITEM_NONE,           ITEM_DRAGON_SCALE},
+    {SPECIES_MAGBY,      ITEM_RAWST_BERRY,    ITEM_RAWST_BERRY},
+    {SPECIES_MAGMAR,     ITEM_RAWST_BERRY,    ITEM_RAWST_BERRY},
+    {SPECIES_MAGNEMITE,  ITEM_NONE,           ITEM_METAL_COAT},
+    {SPECIES_MAGNETON,   ITEM_NONE,           ITEM_METAL_COAT},
+    {SPECIES_MAROWAK,    ITEM_NONE,           ITEM_THICK_CLUB},
+    {SPECIES_MEW,        ITEM_NONE,           ITEM_LUM_BERRY},
+    {SPECIES_MEWTWO,     ITEM_NONE,           ITEM_BERSERK_GENE},
+    {SPECIES_MILTANK,    ITEM_MOOMOO_MILK,    ITEM_MOOMOO_MILK},
+    {SPECIES_MISDREAVUS, ITEM_NONE,           ITEM_SPELL_TAG},
+    {SPECIES_MR_MIME,    ITEM_NONE,           ITEM_LEPPA_BERRY},
+    {SPECIES_MUK,        ITEM_NONE,           ITEM_NUGGET},
+    {SPECIES_NINETALES,  ITEM_RAWST_BERRY,    ITEM_RAWST_BERRY},
+    {SPECIES_PARAS,      ITEM_TINY_MUSHROOM,  ITEM_BIG_MUSHROOM},
+    {SPECIES_PARASECT,   ITEM_TINY_MUSHROOM,  ITEM_BIG_MUSHROOM},
+    {SPECIES_PICHU,      ITEM_NONE,           ITEM_ORAN_BERRY},
+    {SPECIES_PIKACHU,    ITEM_NONE,           ITEM_ORAN_BERRY},
+    {SPECIES_POLITOED,   ITEM_NONE,           ITEM_KINGS_ROCK},
+    {SPECIES_POLIWHIRL,  ITEM_NONE,           ITEM_KINGS_ROCK},
+    {SPECIES_POLIWRATH,  ITEM_NONE,           ITEM_KINGS_ROCK},
+    {SPECIES_RAICHU,     ITEM_NONE,           ITEM_ORAN_BERRY},
+    {SPECIES_SEADRA,     ITEM_NONE,           ITEM_DRAGON_SCALE},
+    {SPECIES_SENTRET,    ITEM_NONE,           ITEM_ORAN_BERRY},
+    {SPECIES_SHELLDER,   ITEM_PEARL,          ITEM_BIG_PEARL},
+    {SPECIES_SHUCKLE,    ITEM_ORAN_BERRY,     ITEM_ORAN_BERRY},
+    {SPECIES_SLOWBRO,    ITEM_NONE,           ITEM_KINGS_ROCK},
+    {SPECIES_SLOWKING,   ITEM_NONE,           ITEM_KINGS_ROCK},
+    {SPECIES_SLOWPOKE,   ITEM_NONE,           ITEM_KINGS_ROCK},
+    {SPECIES_SMOOCHUM,   ITEM_ASPEAR_BERRY,   ITEM_ASPEAR_BERRY},
+    {SPECIES_SNEASEL,    ITEM_NONE,           ITEM_QUICK_CLAW},
+    {SPECIES_SNORLAX,    ITEM_LEFTOVERS,      ITEM_LEFTOVERS},
+    {SPECIES_STARMIE,    ITEM_STARDUST,       ITEM_STAR_PIECE},
+    {SPECIES_STARYU,     ITEM_STARDUST,       ITEM_STAR_PIECE},
+    {SPECIES_STEELIX,    ITEM_NONE,           ITEM_METAL_COAT},
+    {SPECIES_VULPIX,     ITEM_RAWST_BERRY,    ITEM_RAWST_BERRY},
+};
+
+static bool32 GetJohtoWildHeldItem(enum Species species, u16 *itemCommon, u16 *itemRare)
+{
+    u32 i;
+    for (i = 0; i < ARRAY_COUNT(sJohtoWildMonHeldItems); i++)
+    {
+        if (sJohtoWildMonHeldItems[i].species == species)
+        {
+            *itemCommon = sJohtoWildMonHeldItems[i].itemCommon;
+            *itemRare = sJohtoWildMonHeldItems[i].itemRare;
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
 void SetWildMonHeldItem(void)
 {
     u16 rnd;
@@ -5501,19 +5589,25 @@ void SetWildMonHeldItem(void)
         }
         else
         {
-            if (gSpeciesInfo[species].itemCommon == gSpeciesInfo[species].itemRare && gSpeciesInfo[species].itemCommon != ITEM_NONE)
+            u16 itemCommon = gSpeciesInfo[species].itemCommon;
+            u16 itemRare = gSpeciesInfo[species].itemRare;
+
+            if (GetCurrentRegion() == REGION_JOHTO)
+                GetJohtoWildHeldItem(species, &itemCommon, &itemRare);
+
+            if (itemCommon == itemRare && itemCommon != ITEM_NONE)
             {
                 // Both held items are the same, 100% chance to hold item
-                SetMonData(&gParties[B_TRAINER_OPPONENT_A][i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
+                SetMonData(&gParties[B_TRAINER_OPPONENT_A][i], MON_DATA_HELD_ITEM, &itemCommon);
             }
             else
             {
                 if (rnd < chanceNoItem)
                     continue;
                 if (rnd < chanceNotRare)
-                    SetMonData(&gParties[B_TRAINER_OPPONENT_A][i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
+                    SetMonData(&gParties[B_TRAINER_OPPONENT_A][i], MON_DATA_HELD_ITEM, &itemCommon);
                 else
-                    SetMonData(&gParties[B_TRAINER_OPPONENT_A][i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemRare);
+                    SetMonData(&gParties[B_TRAINER_OPPONENT_A][i], MON_DATA_HELD_ITEM, &itemRare);
             }
         }
     }

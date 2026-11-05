@@ -148,6 +148,7 @@ static const u8 sText_MomChat[] = _("MOM: Hi {PLAYER}! How are you doing?\nRemem
 
 static const u8 sText_ElmName[] = _("PROF. ELM");
 static const u8 sText_ElmChat[] = _("PROF. ELM: Hello {PLAYER}!\nHow is the POKéDEX coming along?\lDiscovering new species is research's thrill!");
+static const u8 sText_ElmTogepiHatchedCall[] = _("PROF. ELM: H-hello, {PLAYER}?\nDid something hatch from the EGG?\pWhat kind of POKéMON is it?\nPlease come show me now!");
 
 static const u8 sText_BillName[] = _("BILL");
 static const u8 sText_BillChat[] = _("BILL: Hey {PLAYER}! It's Bill!\nThe POKéMON Storage System is fully synced\lacross Hoenn, Kanto, and Johto!");
@@ -495,6 +496,14 @@ bool32 TryStartJohtoPhoneCall(void)
         return FALSE;
 
     sJohtoPhoneStepCounter = 0;
+
+    // POKE-CONFLUENCE: Authentic Crystal Elm Togepi hatch priority phone call
+    if (FlagGet(FLAG_JOHTO_TOGEPI_HATCHED) && !FlagGet(FLAG_JOHTO_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE) && !FlagGet(FLAG_JOHTO_SHOWED_TOGEPI_TO_ELM))
+    {
+        FlagSet(FLAG_JOHTO_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE);
+        StartJohtoPhoneCall(sText_ElmTogepiHatchedCall);
+        return TRUE;
+    }
 
     // 25% chance when step threshold is reached
     if ((Random() % 4) != 0)

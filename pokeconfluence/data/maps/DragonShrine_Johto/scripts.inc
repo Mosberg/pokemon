@@ -252,6 +252,13 @@ DragonShrine_Johto_DragonShrineElder1Script_GiveDratini:
 	playse SE_PIN
 	waitse
 	givemon SPECIES_DRATINI, 15
+	@ POKE-CONFLUENCE: Authentic Crystal ExtremeSpeed Dratini reward for honorable quiz answers
+	goto_if_set FLAG_JOHTO_ANSWERED_DRAGON_MASTER_QUIZ_WRONG, DragonShrine_Johto_DragonShrineElder1Script_SkipExtremeSpeed
+	setmonmove 255, 0, MOVE_WRAP
+	setmonmove 255, 1, MOVE_THUNDER_WAVE
+	setmonmove 255, 2, MOVE_TWISTER
+	setmonmove 255, 3, MOVE_EXTREME_SPEED
+DragonShrine_Johto_DragonShrineElder1Script_SkipExtremeSpeed:
 	setflag FLAG_JOHTO_GOT_DRATINI
 	setflag FLAG_TEMP_17
 	message DragonShrine_Johto_DragonShrineSymbolicDragonText
