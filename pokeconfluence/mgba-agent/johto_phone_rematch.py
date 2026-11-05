@@ -15,10 +15,11 @@ STATION = (78, 83)
 ARENA = (78, 84)
 BILLS_HOUSE = (78, 43)
 
-TRAINER_FLAGS_START = 0x500
-TRAINER_JOHTO_YOUNGSTER_JOEY1 = 1529
-
 FLAG_JOHTO_START = 3750
+FLAG_JOHTO_TRAINERS_START = FLAG_JOHTO_START + 1472
+JOHTO_TRAINER_BASE = 1488
+TRAINER_JOHTO_YOUNGSTER_JOEY1 = 1529
+JOEY1_TRAINER_FLAG = FLAG_JOHTO_TRAINERS_START + (TRAINER_JOHTO_YOUNGSTER_JOEY1 - JOHTO_TRAINER_BASE)
 FLAG_JOHTO_ROUTE_30_YOUNGSTER_JOEY = FLAG_JOHTO_START + 716
 FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH = FLAG_JOHTO_START + 1134
 FLAG_JOHTO_JOEY_ASKED_FOR_PHONE_NUMBER = FLAG_JOHTO_START + 1167
@@ -109,7 +110,7 @@ def main() -> None:
 
     # 2. Test Youngster Joey phone registration & rematch cycle on Route 30
     set_flag(b, FLAG_JOHTO_ROUTE_30_YOUNGSTER_JOEY, False)
-    set_flag(b, TRAINER_FLAGS_START + TRAINER_JOHTO_YOUNGSTER_JOEY1, True)
+    set_flag(b, JOEY1_TRAINER_FLAG, True)
     set_flag(b, FLAG_JOHTO_PHONE_YOUNGSTER_JOEY_REGISTERED, False)
     set_flag(b, FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH, False)
     set_flag(b, FLAG_JOHTO_JOEY_ASKED_FOR_PHONE_NUMBER, False)
@@ -134,7 +135,7 @@ def main() -> None:
     advance(6, stop_in_battle=True)
     check("Talking to Joey with READY_FOR_REMATCH starts rematch battle", wait_battle())
     check("Joey rematch battle can be won", win_battle())
-    advance(6, stop_in_battle=False)
+    b.step(120)
 
     check("Winning Joey rematch increments wJoeyFightCount to 1", get_var(VAR_JOHTO_MEM_WJOEYFIGHTCOUNT) == 1)
     check("Winning Joey rematch clears READY_FOR_REMATCH", not b.flag(FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH))
