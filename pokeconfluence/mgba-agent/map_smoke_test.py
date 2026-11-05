@@ -23,7 +23,7 @@ SHOT = os.path.join(tempfile.gettempdir(), "mgba_smoke.png")
 
 def load_maps(project: Path):
     groups = json.loads((project / "data/maps/map_groups.json").read_text(encoding="utf-8"))
-    layouts = {l["id"]: l for l in json.loads((project / "data/layouts/layouts.json").read_text(encoding="utf-8"))["layouts"]}
+    layouts = {lay["id"]: lay for lay in json.loads((project / "data/layouts/layouts.json").read_text(encoding="utf-8"))["layouts"]}
     for gi, g in enumerate(groups["group_order"]):
         for ni, name in enumerate(groups[g]):
             meta = json.loads((project / "data/maps" / name / "map.json").read_text(encoding="utf-8"))

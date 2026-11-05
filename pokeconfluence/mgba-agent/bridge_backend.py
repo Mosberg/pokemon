@@ -6,12 +6,10 @@ debugging and small experiments; use the headless core for large training runs.
 """
 import os
 import tempfile
-from typing import Optional
 
 import numpy as np
-from PIL import Image
-
 from mgba_client import Bridge
+from PIL import Image
 
 _SHOT = os.path.join(tempfile.gettempdir(), "mgba_bridge_frame.png")
 
@@ -23,7 +21,7 @@ class BridgeEnv:
     def set_keys(self, mask: int):
         self.bridge.send(f"SETKEYS {mask}")
 
-    def step(self, key_mask: int = 0, frame_skip: int = 4, render: bool = True) -> Optional[np.ndarray]:
+    def step(self, key_mask: int = 0, frame_skip: int = 4, render: bool = True) -> np.ndarray | None:
         self.set_keys(key_mask)
         self.bridge.step(frame_skip)
         return self.frame() if render else None

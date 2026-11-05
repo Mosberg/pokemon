@@ -7,9 +7,8 @@ FLAG_BADGE09_GET..FLAG_BADGE16_GET (Brock = BADGE09), separate from Hoenn's BADG
 Savestates are not shipped: record one per stage in the emulator (File > Save state file) into states/.
 """
 import numpy as np
-from stable_baselines3.common.callbacks import BaseCallback
-
 from addresses import FLAGS
+from stable_baselines3.common.callbacks import BaseCallback  # type: ignore
 
 STAGES = [
     {"stage": 0, "name": "Receive the Pokedex", "savestate": "states/stage0_start.ss1",

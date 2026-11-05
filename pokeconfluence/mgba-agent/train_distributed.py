@@ -9,16 +9,14 @@ Tuned values follow the reference document: gamma 0.995, 3-4 epochs, batch 256, 
 import argparse
 import multiprocessing as mp
 import os
-from typing import Callable
+from collections.abc import Callable
 
-import torch
-from stable_baselines3 import PPO
-from stable_baselines3.common.callbacks import BaseCallback, CheckpointCallback
-from stable_baselines3.common.vec_env import SubprocVecEnv, VecMonitor
-
-from vec_wrappers import ScreenFrameStack
-
+import torch  # type: ignore
 from mgba_gym_env import PokemonMultiRegionEnv
+from stable_baselines3 import PPO  # type: ignore
+from stable_baselines3.common.callbacks import BaseCallback, CheckpointCallback  # type: ignore
+from stable_baselines3.common.vec_env import SubprocVecEnv, VecMonitor  # type: ignore
+from vec_wrappers import ScreenFrameStack
 
 
 def linear_schedule(initial: float, final: float = 0.0) -> Callable[[float], float]:
@@ -36,7 +34,7 @@ class EntropyAnneal(BaseCallback):
         return True
 
 
-def make_env(rom_path: str, rank: int, state_path: str = None, frame_skip: int = 6):
+def make_env(rom_path: str, rank: int, state_path: str | None = None, frame_skip: int = 6):
     def _init():
         os.environ["OMP_NUM_THREADS"] = "1"
         os.environ["MKL_NUM_THREADS"] = "1"
@@ -46,7 +44,7 @@ def make_env(rom_path: str, rank: int, state_path: str = None, frame_skip: int =
     return _init
 
 
-def build_vec_env(rom: str, num_envs: int, frame_skip: int = 6, stack: int = 1, state_path: str = None):
+def build_vec_env(rom: str, num_envs: int, frame_skip: int = 6, stack: int = 1, state_path: str | None = None):
     vec = SubprocVecEnv([make_env(rom, i, state_path, frame_skip) for i in range(num_envs)], start_method="spawn")
     vec = VecMonitor(vec, filename="runs/monitor_logs")
     if stack > 1:
@@ -69,11 +67,11 @@ def main():
     stack = 4 if args.impala else 1
     vec = build_vec_env(args.rom, args.envs, stack=stack, state_path=args.state)
 
-    policy_kwargs = dict(net_arch=dict(pi=[256, 128], vf=[256, 128]), activation_fn=torch.nn.ReLU)
+    policy_kwargs = {"net_arch": {"pi": [256, 128], "vf": [256, 128]}, "activation_fn": torch.nn.ReLU}
     if args.impala:
         from custom_policy import GbaMultiInputExtractor
-        policy_kwargs = dict(features_extractor_class=GbaMultiInputExtractor,
-                             features_extractor_kwargs=dict(features_dim=512), net_arch=dict(pi=[128, 64], vf=[128, 64]))
+        policy_kwargs = {"features_extractor_class": GbaMultiInputExtractor,
+                             "features_extractor_kwargs": {"features_dim": 512}, "net_arch": {"pi": [128, 64], "vf": [128, 64]}}
 
     model = PPO(
         "MultiInputPolicy", vec,

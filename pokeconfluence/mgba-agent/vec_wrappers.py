@@ -1,7 +1,7 @@
 """VecEnv wrapper that stacks only the screen across time (SB3's VecFrameStack insists on stacking every key)."""
 import numpy as np
-from gymnasium import spaces
-from stable_baselines3.common.vec_env import VecEnvWrapper
+from gymnasium import spaces  # type: ignore
+from stable_baselines3.common.vec_env import VecEnvWrapper  # type: ignore
 
 
 class ScreenFrameStack(VecEnvWrapper):
@@ -21,6 +21,7 @@ class ScreenFrameStack(VecEnvWrapper):
     def reset(self):
         obs = self.venv.reset()
         self.buf[:] = 0
+        out = obs
         for _ in range(self.n_stack):
             out = self._push(obs)
         return out

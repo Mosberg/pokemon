@@ -7,14 +7,14 @@ Ubuntu libmgba-dev package does not include them) and `import mgba` works.
 
 Frames are only rendered when asked for, so stepping runs as fast as the CPU allows.
 """
-from typing import Optional
+from typing import Any
 
 import numpy as np
 
 try:
-    import mgba.core
-    import mgba.image
-    import mgba.log
+    import mgba.core  # type: ignore
+    import mgba.image  # type: ignore
+    import mgba.log  # type: ignore
     mgba.log.silence()
 except ImportError as exc:  # pragma: no cover - environment dependent
     raise ImportError("the `mgba` Python bindings are required (see module docstring)") from exc
@@ -25,9 +25,10 @@ KEY_MASK = {"A": 1, "B": 2, "SELECT": 4, "START": 8, "RIGHT": 16, "LEFT": 32, "U
 
 class HeadlessEnv:
     def __init__(self, rom_path: str):
-        self.core = mgba.core.load_path(rom_path)
-        if self.core is None:
+        core = mgba.core.load_path(rom_path)
+        if core is None:
             raise RuntimeError(f"mGBA could not load {rom_path}")
+        self.core: Any = core
         self.screen = mgba.image.Image(SCREEN_W, SCREEN_H)
         self.core.set_video_buffer(self.screen)
         self.core.reset()
@@ -38,7 +39,7 @@ class HeadlessEnv:
         self._keys = mask
         self.core._core.setKeys(self.core._core, mask)
 
-    def step(self, key_mask: int = 0, frame_skip: int = 4, render: bool = True) -> Optional[np.ndarray]:
+    def step(self, key_mask: int = 0, frame_skip: int = 4, render: bool = True) -> np.ndarray | None:
         """Holds key_mask for frame_skip frames; returns the last frame as (160, 240, 3) uint8 RGB."""
         self.set_keys(key_mask)
         for _ in range(frame_skip):
@@ -60,7 +61,7 @@ class HeadlessEnv:
         mem = self.core.memory.u8
         try:
             return bytes(mem[addr:addr + length])
-        except Exception:   # older bindings do not slice
+        except (TypeError, KeyError):   # older bindings do not slice
             return bytes(mem[addr + i] for i in range(length))
 
     # -- state ----------------------------------------------------------------------------

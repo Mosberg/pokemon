@@ -46,7 +46,8 @@
   "python.defaultInterpreterPath": "${workspaceFolder}/pokeconfluence/.venv/bin/python",
   "python.analysis.extraPaths": [
     "${workspaceFolder}/tools/poke-migrator-pro/bin",
-    "${workspaceFolder}/pokeconfluence/mgba-agent"
+    "${workspaceFolder}/pokeconfluence/mgba-agent",
+    "./tools/porypal"
   ],
 
   // Exclude Build Blobs and Temp Caches from Search
@@ -103,5 +104,5 @@
   ],
   "cmake.sourceDirectory": "C:/Projects/Games/Poke-Migrator/porytiles",
   "pokeemeraldAi.bridge.port": 8888,
-  "python-envs.defaultEnvManager": "ms-python.python:system"
+  "python-envs.defaultEnvManager": "ms-python.python:venv"
 }

@@ -7,10 +7,9 @@ import base64
 import json
 import time
 
-from openai import OpenAI
-
 from agent_common import SYSTEM_PROMPT, dispatch, extract_json, observe
 from mgba_client import Bridge
+from openai import OpenAI  # type: ignore
 from pathfinding import a_star_search, read_collision_map
 
 LM_STUDIO_URL = "http://localhost:1234/v1"

@@ -5,7 +5,6 @@
 Needs mGBA on a title screen with a fresh/empty save and lua/mgba_agent_bridge.lua loaded. Savestates are tied to one
 ROM build, so run this again after every rebuild of the ROM (refresh_addresses.py first).
 """
-import os
 import sys
 from pathlib import Path
 
@@ -40,15 +39,18 @@ for _ in range(10):                                       # the player starts fa
     hold(16, 24)
     if b.player_position()[0] != 2:
         break
-    b.press("B", 5); b.step(60)
+    b.press("B", 5)
+    b.step(60)
 for _ in range(3):
     hold(16, 30)
 # the region menu: Kanto / Johto / Hoenn, cursor starts on Hoenn. A dismisses the question text, then UP moves towards Kanto.
 ups = {"kanto": 2, "johto": 1, "hoenn": 0}[region]
 b.step(150)
-b.press("A", 4); b.step(90)
+b.press("A", 4)
+b.step(90)
 for _ in range(ups):
-    hold(64, 5); b.step(20)
+    hold(64, 5)
+    b.step(20)
 n = 0
 while b.player_position()[2:] == start and n < 40:
     b.press("A", 4)

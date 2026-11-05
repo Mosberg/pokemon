@@ -5,17 +5,22 @@ Requires `pip install mcp` (works with mcp 1.x and 2.x).
 """
 import os
 import tempfile
+from typing import Any
 
-try:                                           # mcp 2.x renamed FastMCP to MCPServer
-    from mcp.server.mcpserver import MCPServer as FastMCP
-except ImportError:                            # mcp 1.x
-    from mcp.server.fastmcp import FastMCP
-
-from addresses import FLAGS
+from addresses import FLAGS, MON_SIZE, SYMBOLS
 from battle_engine import get_battle_engine_state
 from mgba_client import Bridge
 from pkmn_decrypt import decrypt_pokemon_data
-from addresses import MON_SIZE, SYMBOLS
+
+FastMCP: Any = None
+try:
+    from mcp.server.fastmcp import FastMCP  # type: ignore
+except ImportError:
+    try:
+        from mcp.server.mcpserver import MCPServer as FastMCP  # type: ignore
+    except ImportError:
+        FastMCP = None
+
 
 mcp = FastMCP("mGBA Controller")
 _bridge = None

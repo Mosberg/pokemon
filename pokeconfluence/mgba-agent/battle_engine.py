@@ -1,8 +1,15 @@
 """Battle state extraction for pokeconfluence (pokeemerald-expansion layout)."""
 import struct
-from typing import Any, Callable, Dict
+from collections.abc import Callable
+from typing import Any
 
-from addresses import BATTLE_MON, BATTLE_MON_SIZE, MAIN_IN_BATTLE_BIT, MAIN_IN_BATTLE_BYTE, SYMBOLS
+from addresses import (
+    BATTLE_MON,
+    BATTLE_MON_SIZE,
+    MAIN_IN_BATTLE_BIT,
+    MAIN_IN_BATTLE_BYTE,
+    SYMBOLS,
+)
 
 OUTCOMES = {0: "ongoing", 1: "won", 2: "lost", 3: "drew", 4: "ran", 5: "teleported",
             6: "mon_fled", 7: "caught", 8: "no_safari_balls", 9: "forfeited", 10: "mon_teleported"}
@@ -13,7 +20,7 @@ STATUS1 = {"poison": 1 << 3, "burn": 1 << 4, "freeze": 1 << 5, "paralysis": 1 <<
 ReadFn = Callable[[int, int], bytes]
 
 
-def parse_battle_mon(raw: bytes, slot: int) -> Dict[str, Any]:
+def parse_battle_mon(raw: bytes, slot: int) -> dict[str, Any]:
     o = BATTLE_MON
     species = struct.unpack_from("<H", raw, o["species"])[0]
     moves = list(struct.unpack_from("<4H", raw, o["moves"]))
@@ -31,7 +38,7 @@ def parse_battle_mon(raw: bytes, slot: int) -> Dict[str, Any]:
     }
 
 
-def get_battle_engine_state(read: ReadFn) -> Dict[str, Any]:
+def get_battle_engine_state(read: ReadFn) -> dict[str, Any]:
     """`read(address, length) -> bytes`. Works with Bridge.read or the headless core."""
     in_battle = bool((read(SYMBOLS["gMain"] + MAIN_IN_BATTLE_BYTE, 1)[0] >> MAIN_IN_BATTLE_BIT) & 1)
     if not in_battle:

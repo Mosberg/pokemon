@@ -1,11 +1,10 @@
 """Export a trained PPO policy (actor head) to ONNX:  python export_onnx.py ppo_pokemon_impala.zip policy_pokemon.onnx [--stack 4]"""
 import argparse
 
-import torch
-import torch.nn as nn
-from stable_baselines3 import PPO
-
 import custom_policy  # noqa: F401  (makes the custom extractor importable when unpickling)
+import torch  # type: ignore
+from stable_baselines3 import PPO  # type: ignore
+from torch import nn  # type: ignore
 
 
 class OnnxDeployablePolicy(nn.Module):

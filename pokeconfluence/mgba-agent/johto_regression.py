@@ -11,7 +11,6 @@ cut (Route 29 tree is cut and stays cut after a reload), egg (Violet Aide gives 
 import argparse
 import json
 import os
-import struct
 import subprocess
 import sys
 import time
@@ -239,14 +238,14 @@ def main() -> None:
             check("whiteout wakes the player in Violet's Pokemon Center", pos()[2:] == (76, 73), str(pos()))
 
         if "smoke" in only:
-            r = subprocess.run([sys.executable, str(HERE / "map_smoke_test.py"), str(project), "--filter", "_Johto", "--out", str(HERE / "states" / "smoke_johto.json")],
-                               cwd=HERE, capture_output=True, text=True)
+            subprocess.run([sys.executable, str(HERE / "map_smoke_test.py"), str(project), "--filter", "_Johto", "--out", str(HERE / "states" / "smoke_johto.json")],
+                               check=False, cwd=HERE, capture_output=True, text=True)
             report = json.loads((HERE / "states" / "smoke_johto.json").read_text(encoding="utf-8"))
             bad = [m["name"] for m in report if m["status"] != "ok"]
             check(f"all {len(report)} Johto maps load", not bad, ", ".join(bad[:5]))
     finally:
         if sys.platform == "win32":        # the wrapper's child (node) would survive terminate(): kill the whole tree
-            subprocess.run(["taskkill", "/F", "/T", "/PID", str(emu.pid)], capture_output=True)
+            subprocess.run(["taskkill", "/F", "/T", "/PID", str(emu.pid)], check=False, capture_output=True)
         else:
             emu.terminate()
     print("ALL PASSED" if not failures else f"{len(failures)} FAILED: {', '.join(failures)}")

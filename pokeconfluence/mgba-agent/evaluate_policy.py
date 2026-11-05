@@ -5,12 +5,11 @@
 import argparse
 import time
 
-import cv2
+import cv2  # type: ignore
 import numpy as np
-import torch
-from stable_baselines3 import PPO
-
+import torch  # type: ignore
 from mgba_gym_env import PokemonMultiRegionEnv
+from stable_baselines3 import PPO  # type: ignore
 
 ACTION_NAMES = ["NOOP", "A", "B", "SELECT", "START", "RIGHT", "LEFT", "UP", "DOWN"]
 
@@ -21,13 +20,15 @@ def render_hud(frame_bgr, action, probs, value, fps):
     overlay = display.copy()
     cv2.rectangle(overlay, (w - 230, 0), (w, h), (20, 20, 20), -1)
     display = cv2.addWeighted(overlay, 0.75, display, 0.25, 0)
-    put = lambda text, y, color=(255, 255, 255), s=0.55: cv2.putText(display, text, (w - 215, y), cv2.FONT_HERSHEY_SIMPLEX, s, color, 1)
+
+    def put(text, y, color=(255, 255, 255), s=0.55):
+        return cv2.putText(display, text, (w - 215, y), cv2.FONT_HERSHEY_SIMPLEX, s, color, 1)
     put(f"FPS: {fps:.1f}", 30, (0, 255, 0))
     put(f"Critic V(s): {value:+.2f}", 60, (0, 220, 255))
     put(f"Selected: {ACTION_NAMES[action]}", 90)
     put("Action dist:", 125, (180, 180, 180), 0.5)
     y = 150
-    for i, (name, p) in enumerate(zip(ACTION_NAMES, probs)):
+    for i, (name, p) in enumerate(zip(ACTION_NAMES, probs, strict=False)):
         put(f"{name:<6}", y + 10, (220, 220, 220), 0.38)
         cv2.rectangle(display, (w - 145, y), (w - 145 + int(p * 100), y + 10), (0, 255, 128) if i == action else (120, 120, 120), -1)
         y += 24

@@ -27,7 +27,7 @@ def inject_item(b: Bridge, pocket: str, slot: int, item_id: int, quantity: int):
     print(f"[+] {pocket}[{slot}] = item {item_id} x{quantity}")
 
 
-def give_mon(b: Bridge, species: int, level: int, moves, slot: int = 0, hp: int = 150, otid: int = None, pid: int = 0x00ABCDEF):
+def give_mon(b: Bridge, species: int, level: int, moves, slot: int = 0, hp: int = 150, otid: int | None = None, pid: int = 0x00ABCDEF):
     """Writes a valid struct Pokemon into a party slot (checksum, encryption and party count included).
 
     Stats are written directly, so the Pokemon is a stat-block you choose, not one the game computed. By default the OT id

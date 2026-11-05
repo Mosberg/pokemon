@@ -1,7 +1,7 @@
 """Collision extraction from gBackupMapLayout and A* pathfinding over it."""
 import heapq
 import struct
-from typing import Callable, Dict, List, Optional, Set, Tuple
+from collections.abc import Callable
 
 from addresses import SYMBOLS
 
@@ -10,10 +10,10 @@ MAPGRID_COLLISION_MASK = 0x0C00
 MAPGRID_METATILE_MASK = 0x03FF
 
 ReadFn = Callable[[int, int], bytes]
-Tile = Tuple[int, int]
+Tile = tuple[int, int]
 
 
-def read_collision_map(read: ReadFn) -> Tuple[Set[Tile], Tuple[int, int]]:
+def read_collision_map(read: ReadFn) -> tuple[set[Tile], tuple[int, int]]:
     """Returns (blocked tiles in map coordinates, (width, height)).
 
     struct BackupMapLayout { s32 width; s32 height; u16 *map; } -- width/height already include the
@@ -51,16 +51,16 @@ def heuristic(a: Tile, b: Tile) -> int:
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 
-def a_star_search(start: Tile, goal: Tile, blocked_tiles: Set[Tile], map_bounds: Tuple[int, int]) -> Optional[List[str]]:
+def a_star_search(start: Tile, goal: Tile, blocked_tiles: set[Tile], map_bounds: tuple[int, int]) -> list[str] | None:
     """Shortest 4-connected path as a list of 'UP'/'DOWN'/'LEFT'/'RIGHT', or None. Coordinates are map
     coordinates (0..width-1). The goal is allowed to be a blocked tile (NPC, door, sign)."""
     max_x, max_y = map_bounds
     moves = {"UP": (0, -1), "DOWN": (0, 1), "LEFT": (-1, 0), "RIGHT": (1, 0)}
     frontier = PriorityQueue()
     frontier.put(start, 0)
-    came_from: Dict[Tile, Optional[Tile]] = {start: None}
-    cost: Dict[Tile, int] = {start: 0}
-    action: Dict[Tile, str] = {}
+    came_from: dict[Tile, Tile | None] = {start: None}
+    cost: dict[Tile, int] = {start: 0}
+    action: dict[Tile, str] = {}
 
     while not frontier.empty():
         current = frontier.get()
@@ -83,7 +83,12 @@ def a_star_search(start: Tile, goal: Tile, blocked_tiles: Set[Tile], map_bounds:
         return None
     path, cur = [], goal
     while cur != start:
-        path.append(action[cur])
-        cur = came_from[cur]
+        act = action.get(cur)
+        if act is not None:
+            path.append(act)
+        prev = came_from.get(cur)
+        if prev is None:
+            break
+        cur = prev
     path.reverse()
     return path

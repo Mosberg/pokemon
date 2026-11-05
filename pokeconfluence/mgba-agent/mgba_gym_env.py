@@ -1,13 +1,12 @@
 """Gymnasium environment over the headless mGBA core, targeting pokeconfluence.gba (Hoenn + Kanto)."""
-from typing import Any, Dict, Optional, Tuple
+from typing import ClassVar
 
-import gymnasium as gym
+import gymnasium as gym  # type: ignore
 import numpy as np
-from gymnasium import spaces
-from PIL import Image
-
-from addresses import FLAGS, SB1, SYMBOLS
+from addresses import SB1, SYMBOLS
 from battle_engine import get_battle_engine_state
+from gymnasium import spaces  # type: ignore
+from PIL import Image
 
 # 9 discrete actions -> GBA key masks
 GBA_KEYS = {0: 0, 1: 1, 2: 2, 3: 4, 4: 8, 5: 16, 6: 32, 7: 64, 8: 128}
@@ -15,9 +14,9 @@ SCREEN_SHAPE = (80, 120, 1)
 
 
 class PokemonMultiRegionEnv(gym.Env):
-    metadata = {"render_modes": ["rgb_array"], "render_fps": 60}
+    metadata: ClassVar[dict] = {"render_modes": ["rgb_array"], "render_fps": 60}
 
-    def __init__(self, rom_path: str = "", state_path: Optional[str] = None, frame_skip: int = 6,
+    def __init__(self, rom_path: str = "", state_path: str | None = None, frame_skip: int = 6,
                  max_episode_steps: int = 20_000, backend: str = "headless"):
         super().__init__()
         self.rom_path, self.state_path = rom_path, state_path
@@ -35,7 +34,7 @@ class PokemonMultiRegionEnv(gym.Env):
         })
         self.visited: set = set()
         self.prev_player_hp = self.prev_opp_hp = 1.0
-        self.target_flag: Optional[int] = None
+        self.target_flag: int | None = None
         self.curriculum_reward = 0.0
         self.steps = 0
         self._last_frame = np.zeros((160, 240, 3), np.uint8)
@@ -44,7 +43,7 @@ class PokemonMultiRegionEnv(gym.Env):
     def _sb1(self) -> int:
         return self.core.read_u32(SYMBOLS["gSaveBlock1Ptr"])
 
-    def _position(self) -> Tuple[int, int, int, int]:
+    def _position(self) -> tuple[int, int, int, int]:
         base = self._sb1()
         if not (0x02000000 <= base < 0x02040000):
             return 0, 0, 0, 0
@@ -64,9 +63,10 @@ class PokemonMultiRegionEnv(gym.Env):
         self.curriculum_reward = float(stage.get("reward_bonus", 0.0))
 
     # -- gym API --------------------------------------------------------------------------
-    def _obs(self, frame: np.ndarray) -> Dict[str, np.ndarray]:
+    def _obs(self, frame: np.ndarray) -> dict[str, np.ndarray]:
         self._last_frame = frame
-        gray = Image.fromarray(frame).convert("L").resize((120, 80), Image.BILINEAR)
+        resample = getattr(getattr(Image, "Resampling", None), "BILINEAR", 2)
+        gray = Image.fromarray(frame).convert("L").resize((120, 80), resample)
         screen = np.asarray(gray, np.uint8)[..., None]
         x, y, group, num = self._position()
         battle = get_battle_engine_state(self.core.read)
@@ -79,7 +79,7 @@ class PokemonMultiRegionEnv(gym.Env):
         self._outcome = int(vals[5])
         return {"screen": screen, "telemetry": telemetry}
 
-    def reset(self, seed: Optional[int] = None, options: Optional[dict] = None):
+    def reset(self, seed: int | None = None, options: dict | None = None):
         super().reset(seed=seed)
         self.core.reset()
         if self.state_path:
@@ -87,11 +87,14 @@ class PokemonMultiRegionEnv(gym.Env):
         self.visited.clear()
         self.prev_player_hp = self.prev_opp_hp = 1.0
         self.steps = 0
-        return self._obs(self.core.step(0, 10)), {}
+        frame = self.core.step(0, 10)
+        return self._obs(frame if frame is not None else np.zeros((160, 240, 3), dtype=np.uint8)), {}
 
     def step(self, action: int):
         self.core.step(GBA_KEYS.get(int(action), 0), self.frame_skip, render=False)
         frame = self.core.step(0, 2)
+        if frame is None:
+            frame = self._last_frame if self._last_frame is not None else np.zeros((160, 240, 3), dtype=np.uint8)
         self.steps += 1
         obs = self._obs(frame)
 

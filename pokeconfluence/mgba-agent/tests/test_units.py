@@ -6,10 +6,10 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from addresses import BATTLE_MON, BATTLE_MON_SIZE, FLAGS, KANTO_START, SYMBOLS  # noqa: E402
-from battle_engine import get_battle_engine_state, parse_battle_mon  # noqa: E402
-from pathfinding import MAP_OFFSET, a_star_search, read_collision_map  # noqa: E402
-from pkmn_decrypt import BLOCK_ORDERS, decrypt_pokemon_data, encrypt_for_tests  # noqa: E402
+from addresses import BATTLE_MON, BATTLE_MON_SIZE, FLAGS, KANTO_START, SYMBOLS
+from battle_engine import get_battle_engine_state, parse_battle_mon
+from pathfinding import MAP_OFFSET, a_star_search, read_collision_map
+from pkmn_decrypt import BLOCK_ORDERS, decrypt_pokemon_data, encrypt_for_tests
 
 
 class DecryptTests(unittest.TestCase):
@@ -66,6 +66,7 @@ class PathTests(unittest.TestCase):
     def test_straight_and_detour(self):
         self.assertEqual(a_star_search((0, 0), (3, 0), set(), (5, 5)), ["RIGHT"] * 3)
         path = a_star_search((0, 0), (2, 0), {(1, 0)}, (5, 5))
+        assert path is not None
         self.assertEqual(len(path), 4)
         self.assertIsNone(a_star_search((0, 0), (2, 0), {(1, 0), (1, 1), (1, 2), (1, 3), (1, 4)}, (3, 5)))
 

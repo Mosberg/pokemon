@@ -1,8 +1,8 @@
 """Shared pieces of the screenshot + RAM telemetry agent loops (Gemini and LM Studio)."""
 import json
 import os
+import struct
 import tempfile
-from typing import Optional
 
 from addresses import MON_SIZE, SYMBOLS
 from battle_engine import get_battle_engine_state
@@ -29,7 +29,7 @@ def telemetry(b: Bridge) -> dict:
         if 0 < count <= 6:
             lead = decrypt_pokemon_data(b.read(SYMBOLS["gPlayerParty"], MON_SIZE))
             state["lead"] = {k: lead[k] for k in ("species_id", "level", "current_hp", "max_hp")}
-    except Exception:
+    except (KeyError, ValueError, struct.error, OSError):
         pass
     if state["in_battle"]:
         state["battle"] = get_battle_engine_state(b.read)
@@ -49,7 +49,7 @@ def dispatch(b: Bridge, decision: dict) -> None:
         b.step(frames + 15)
 
 
-def extract_json(text: str) -> Optional[dict]:
+def extract_json(text: str) -> dict | None:
     start, end = text.find("{"), text.rfind("}") + 1
     if start < 0 or end <= start:
         return None

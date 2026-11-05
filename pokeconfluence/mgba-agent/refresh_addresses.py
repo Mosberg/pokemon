@@ -5,6 +5,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+
 from addresses import SYMBOLS
 
 ELF = Path(sys.argv[1] if len(sys.argv) > 1 else "../pokeconfluence.elf").resolve()

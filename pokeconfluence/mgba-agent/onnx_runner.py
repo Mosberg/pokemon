@@ -3,7 +3,7 @@ import sys
 import time
 
 import numpy as np
-import onnxruntime as ort
+import onnxruntime as ort  # type: ignore
 
 
 class FastPolicyRunner:
@@ -28,6 +28,7 @@ if __name__ == "__main__":
     screen = np.random.randint(0, 255, (80, 120, stack), dtype=np.uint8)
     telem = np.random.randn(9).astype(np.float32)
     t0 = time.perf_counter()
+    action, probs = 0, np.array([])
     for _ in range(1000):
         action, probs = runner.predict(screen, telem)
     print(f"[+] {(time.perf_counter() - t0):.3f} ms per step | action {action} | probs {np.round(probs, 3)}")

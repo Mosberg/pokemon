@@ -2,13 +2,12 @@
 import time
 from typing import Literal
 
-from google import genai
-from google.genai import types
+from agent_common import SYSTEM_PROMPT, dispatch, observe
+from google import genai  # type: ignore
+from google.genai import types  # type: ignore
+from mgba_client import Bridge
 from PIL import Image
 from pydantic import BaseModel, Field
-
-from agent_common import SYSTEM_PROMPT, dispatch, observe
-from mgba_client import Bridge
 
 
 class AgentAction(BaseModel):
