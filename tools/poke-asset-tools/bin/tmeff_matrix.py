@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -16,8 +16,8 @@ tmeff_matrix.py - TM/HM and Species Move Compatibility Matrix Engine.
 Generates validation reports and interactive visual compatibility matrices.
 """
 
-import re
 import argparse
+import re
 from pathlib import Path
 
 # Standard Gen 3 Core TM/HM Map

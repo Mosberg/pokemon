@@ -123,6 +123,87 @@ void MakePartnerGenerator(struct TrainerGenerator *trainerGen, const struct Trai
     trainerGen->levelBoost = 0;
 }
 
+// POKE-CONFLUENCE: Authentic Crystal trainer class DVs mapped to 31-point IVs
+static u32 GetTrainerClassDVs(u8 trainerClass)
+{
+    switch (trainerClass)
+    {
+    case TRAINER_CLASS_YOUNGSTER:
+    case TRAINER_CLASS_YOUNGSTER_FRLG:
+    case TRAINER_CLASS_BUG_CATCHER:
+    case TRAINER_CLASS_BUG_CATCHER_FRLG:
+    case TRAINER_CLASS_SAILOR:
+    case TRAINER_CLASS_SAILOR_FRLG:
+    case TRAINER_CLASS_CAMPER:
+    case TRAINER_CLASS_CAMPER_FRLG:
+    case TRAINER_CLASS_POKEMANIAC:
+    case TRAINER_CLASS_POKEMANIAC_FRLG:
+    case TRAINER_CLASS_SUPER_NERD_FRLG:
+    case TRAINER_CLASS_FISHERMAN:
+    case TRAINER_CLASS_FISHERMAN_FRLG:
+    case TRAINER_CLASS_SWIMMER_M:
+    case TRAINER_CLASS_SWIMMER_M_FRLG:
+    case TRAINER_CLASS_BIKER_FRLG:
+    case TRAINER_CLASS_BURGLAR_FRLG:
+    case TRAINER_CLASS_JUGGLER_FRLG:
+    case TRAINER_CLASS_BIRD_KEEPER:
+    case TRAINER_CLASS_BIRD_KEEPER_FRLG:
+    case TRAINER_CLASS_BLACK_BELT:
+    case TRAINER_CLASS_BLACK_BELT_FRLG:
+    case TRAINER_CLASS_SCIENTIST_FRLG:
+    case TRAINER_CLASS_GENTLEMAN:
+    case TRAINER_CLASS_GENTLEMAN_FRLG:
+    case TRAINER_CLASS_POKEFAN:
+    case TRAINER_CLASS_GUITARIST:
+    case TRAINER_CLASS_PSYCHIC:
+    case TRAINER_CLASS_PSYCHIC_FRLG:
+    case TRAINER_CLASS_SCHOOL_KID:
+        return 0x2318C671U; // DVs: Atk=9, Def=8, Spd=8, Spc=8
+    case TRAINER_CLASS_LASS:
+    case TRAINER_CLASS_LASS_FRLG:
+        return 0x2318C551U; // DVs: Atk=5, Def=8, Spd=8, Spc=8
+    case TRAINER_CLASS_SWIMMER_F:
+    case TRAINER_CLASS_SWIMMER_F_FRLG:
+        return 0x2318C5D1U; // DVs: Atk=7, Def=8, Spd=8, Spc=8
+    case TRAINER_CLASS_HIKER:
+    case TRAINER_CLASS_HIKER_FRLG:
+        return 0x2318C6A0U; // DVs: Atk=10, Def=8, Spd=8, Spc=8
+    case TRAINER_CLASS_PICNICKER:
+    case TRAINER_CLASS_PICNICKER_FRLG:
+        return 0x231AD580U; // DVs: Atk=6, Def=10, Spd=10, Spc=8
+    case TRAINER_CLASS_BEAUTY:
+    case TRAINER_CLASS_BEAUTY_FRLG:
+        return 0x231CCD88U; // DVs: Atk=6, Def=9, Spd=12, Spc=8
+    case TRAINER_CLASS_TWINS:
+    case TRAINER_CLASS_TWINS_FRLG:
+        return 0x231AC580U; // DVs: Atk=6, Def=8, Spd=10, Spc=8
+    case TRAINER_CLASS_COOLTRAINER:
+    case TRAINER_CLASS_COOLTRAINER_2:
+    case TRAINER_CLASS_COOLTRAINER_FRLG:
+        return 0x231CC771U; // DVs: Atk=13, Def=8, Spd=12, Spc=8
+    case TRAINER_CLASS_TEAM_ROCKET_FRLG:
+        return 0x231AC771U; // DVs: Atk=13, Def=8, Spd=10, Spc=8
+    case TRAINER_CLASS_LEADER:
+    case TRAINER_CLASS_LEADER_FRLG:
+        return 0x1CE75677U; // DVs: Atk=9, Def=10, Spd=7, Spc=7
+    case TRAINER_CLASS_ELITE_FOUR:
+    case TRAINER_CLASS_ELITE_FOUR_FRLG:
+        return 0x37BDE777U; // DVs: Atk=13, Def=12, Spd=13, Spc=13
+    case TRAINER_CLASS_CHAMPION:
+        return 0x37BDE777U; // DVs: Atk=13, Def=12, Spd=13, Spc=13
+    case TRAINER_CLASS_CHAMPION_FRLG:
+    case TRAINER_CLASS_BOSS_FRLG:
+        return 0x3BDDEFFDU; // DVs: Atk=15, Def=13, Spd=13, Spc=14
+    case TRAINER_CLASS_RIVAL:
+    case TRAINER_CLASS_RIVAL_EARLY_FRLG:
+        return 0x37BDEF7FU; // DVs: Atk=13, Def=13, Spd=13, Spc=13
+    case TRAINER_CLASS_RIVAL_LATE_FRLG:
+        return 0x37BDEE7FU; // DVs: Atk=9, Def=13, Spd=13, Spc=13
+    default:
+        return 0x2318C671U; // Default DVs (9, 8, 8, 8)
+    }
+}
+
 void GenerateMonFromTrainerMon(struct Pokemon *mon, const struct TrainerMon *trainerMon, struct TrainerGenerator *trainer)
 {
     u32 data;
@@ -151,7 +232,16 @@ void GenerateMonFromTrainerMon(struct Pokemon *mon, const struct TrainerMon *tra
         SetMonData(mon, MON_DATA_SPEED_EV, &trainerMon->ev[5]);
     }
 
-    SetMonData(mon, MON_DATA_IVS, &trainerMon->iv);
+    // POKE-CONFLUENCE: If trainerMon has no custom IVs set, apply authentic trainer class DVs
+    if (trainerMon->iv == 0)
+    {
+        u32 classIVs = GetTrainerClassDVs(trainer->trainerClass);
+        SetMonData(mon, MON_DATA_IVS, &classIVs);
+    }
+    else
+    {
+        SetMonData(mon, MON_DATA_IVS, &trainerMon->iv);
+    }
     CustomTrainerPartyAssignMoves(mon, trainerMon);
     SetMonData(mon, MON_DATA_HELD_ITEM, &trainerMon->heldItem);
 

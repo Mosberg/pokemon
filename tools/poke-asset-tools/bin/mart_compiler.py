@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -17,19 +17,32 @@ Converts structured vendor inventories into C shop tables, Poryscript macros,
 and validates price limits.
 """
 
-import json
 import argparse
+import json
 from pathlib import Path
 
 # Standard Fallback Item Base Prices (when items.h is not parsed)
 PRICE_LOOKUP_TABLE = {
-    "ITEM_POKE_BALL": 200,      "ITEM_GREAT_BALL": 600,     "ITEM_ULTRA_BALL": 1200,
-    "ITEM_POTION": 300,         "ITEM_SUPER_POTION": 700,   "ITEM_HYPER_POTION": 1200,
-    "ITEM_MAX_POTION": 2500,    "ITEM_FULL_RESTORE": 3000,  "ITEM_REVIVE": 1500,
-    "ITEM_ANTIDOTE": 100,       "ITEM_PARALYZE_HEAL": 200,  "ITEM_AWAKENING": 250,
-    "ITEM_REPEL": 350,          "ITEM_SUPER_REPEL": 500,    "ITEM_MAX_REPEL": 700,
-    "ITEM_ESCAPE_ROPE": 550,    "ITEM_POKE_DOLL": 1000,     "ITEM_NONE": 0
+    "ITEM_POKE_BALL": 200,
+    "ITEM_GREAT_BALL": 600,
+    "ITEM_ULTRA_BALL": 1200,
+    "ITEM_POTION": 300,
+    "ITEM_SUPER_POTION": 700,
+    "ITEM_HYPER_POTION": 1200,
+    "ITEM_MAX_POTION": 2500,
+    "ITEM_FULL_RESTORE": 3000,
+    "ITEM_REVIVE": 1500,
+    "ITEM_ANTIDOTE": 100,
+    "ITEM_PARALYZE_HEAL": 200,
+    "ITEM_AWAKENING": 250,
+    "ITEM_REPEL": 350,
+    "ITEM_SUPER_REPEL": 500,
+    "ITEM_MAX_REPEL": 700,
+    "ITEM_ESCAPE_ROPE": 550,
+    "ITEM_POKE_DOLL": 1000,
+    "ITEM_NONE": 0,
 }
+
 
 def compile_mart_tables(config_path: Path, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -37,9 +50,9 @@ def compile_mart_tables(config_path: Path, output_dir: Path):
 
     c_output = [
         "// Auto-generated Mart Inventories and Item Tables",
-        "#include \"global.h\"",
-        "#include \"constants/items.h\"",
-        ""
+        '#include "global.h"',
+        '#include "constants/items.h"',
+        "",
     ]
 
     pory_output = [
@@ -57,7 +70,7 @@ def compile_mart_tables(config_path: Path, output_dir: Path):
             item_name = item.upper()
             price = PRICE_LOOKUP_TABLE.get(item_name, "Dynamic")
             c_output.append(f"    {item_name},")
-        
+
         # Mandatory GBA hardware shop list terminator
         c_output.append("    ITEM_NONE")
         c_output.append("};\n")
@@ -66,9 +79,9 @@ def compile_mart_tables(config_path: Path, output_dir: Path):
         pory_output.append(f"script MartScript_{mart_id} {{")
         pory_output.append("    lock")
         pory_output.append("    faceplayer")
-        pory_output.append("    message(\"Welcome! How may I help you?$\")")
+        pory_output.append('    message("Welcome! How may I help you?$")')
         pory_output.append("    waitmessage")
-        
+
         if badge_required:
             pory_output.append(f"    if (flag({badge_required})) {{")
             pory_output.append(f"        pokemart({mart_label})")
@@ -77,7 +90,7 @@ def compile_mart_tables(config_path: Path, output_dir: Path):
             pory_output.append("    }")
         else:
             pory_output.append(f"    pokemart({mart_label})")
-            
+
         pory_output.append("    msgbox(\"Please come again!$\", MSGBOX_DEFAULT)")
         pory_output.append("    release")
         pory_output.append("    end")

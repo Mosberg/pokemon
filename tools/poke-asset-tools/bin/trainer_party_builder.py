@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,17 +6,18 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
 
 """
-trainer_party_builder.py - Compiles YAML/JSON Trainer configurations into 
+trainer_party_builder.py - Compiles YAML/JSON Trainer configurations into
 validated C structures for pokeemerald / pokeemerald-expansion.
 """
 
-import json
 import argparse
+import json
 from pathlib import Path
 
 # Common competitive AI script combinations
@@ -49,7 +49,7 @@ def format_trainer_c(trainer_data: dict) -> tuple[str, str]:
         item = mon.get("held_item", "ITEM_NONE").upper()
         ability = mon.get("ability", "0")
         ball = mon.get("ball", "ITEM_POKE_BALL").upper()
-        
+
         # IVs (0-31 per stat) and EVs (0-252 per stat)
         ivs = mon.get("ivs", [31, 31, 31, 31, 31, 31])
         evs = mon.get("evs", [0, 0, 0, 0, 0, 0])
@@ -59,16 +59,20 @@ def format_trainer_c(trainer_data: dict) -> tuple[str, str]:
         while len(moves) < 4:
             moves.append("MOVE_NONE")
 
-        party_lines.append(f"    {{")
+        party_lines.append("    {")
         party_lines.append(f"        .species = {species},")
         party_lines.append(f"        .lvl = {lvl},")
         party_lines.append(f"        .heldItem = {item},")
         party_lines.append(f"        .nature = {nature},")
-        party_lines.append(f"        .iv = TRAINER_PARTY_IVS({ivs[0]}, {ivs[1]}, {ivs[2]}, {ivs[3]}, {ivs[4]}, {ivs[5]}),")
-        party_lines.append(f"        .ev = TRAINER_PARTY_EVS({evs[0]}, {evs[1]}, {evs[2]}, {evs[3]}, {evs[4]}, {evs[5]}),")
+        party_lines.append(
+            f"        .iv = TRAINER_PARTY_IVS({ivs[0]}, {ivs[1]}, {ivs[2]}, {ivs[3]}, {ivs[4]}, {ivs[5]}),"
+        )
+        party_lines.append(
+            f"        .ev = TRAINER_PARTY_EVS({evs[0]}, {evs[1]}, {evs[2]}, {evs[3]}, {evs[4]}, {evs[5]}),"
+        )
         party_lines.append(f"        .moves = {{ {', '.join(moves)} }},")
         party_lines.append(f"        .ball = {ball},")
-        party_lines.append(f"    }},")
+        party_lines.append("    },")
 
     party_lines.append("};\n")
 
@@ -77,22 +81,23 @@ def format_trainer_c(trainer_data: dict) -> tuple[str, str]:
     trainer_entry = [
         f"    [{t_id}] = {{",
         f"        .trainerClass = {t_class},",
-        f"        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_MALE,",
+        "        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_MALE,",
         f"        .trainerPic = TRAINER_PIC_{t_id},",
-        f"        .trainerName = _(\"{t_name}\"),",
+        f'        .trainerName = _("{t_name}"),',
         f"        .aiFlags = {ai_flags_str},",
         f"        .doubleBattle = {double_battle},",
         f"        .partySize = ARRAY_COUNT({party_var}),",
         f"        .party = {{ .ItemCustomMoves = {party_var} }},",
-        f"    }},"
+        "    },",
     ]
 
     return "\n".join(party_lines), "\n".join(trainer_entry)
 
+
 def process_trainer_file(config_path: Path, out_dir: Path):
     out_dir.mkdir(parents=True, exist_ok=True)
     raw_cfg = json.loads(config_path.read_text())
-    
+
     all_parties = []
     all_trainers = []
 

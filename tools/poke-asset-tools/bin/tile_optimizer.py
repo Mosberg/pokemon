@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,14 +6,17 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
 
 import argparse
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def get_tile_transforms(tile: np.ndarray):
     """Returns the normal tile and its 3 hardware-supported reflections."""
@@ -22,22 +24,19 @@ def get_tile_transforms(tile: np.ndarray):
     x_flip = np.fliplr(tile)
     y_flip = np.flipud(tile)
     xy_flip = np.flipud(np.fliplr(tile))
-    return {
-        (False, False): normal,
-        (True, False): x_flip,
-        (False, True): y_flip,
-        (True, True): xy_flip
-    }
+    return {(False, False): normal, (True, False): x_flip, (False, True): y_flip, (True, True): xy_flip}
+
 
 def tile_diff(t1: np.ndarray, t2: np.ndarray) -> float:
     """Mean squared error difference between two tiles."""
     return float(np.mean((t1.astype(float) - t2.astype(float)) ** 2))
 
+
 def optimize_tileset(image_path: Path, output_tileset: Path, output_map: Path = None, tolerance: float = 0.0):
     img = Image.open(image_path)
-    is_indexed = (img.mode == "P")
+    is_indexed = img.mode == "P"
     palette = img.getpalette() if is_indexed else None
-    
+
     img_rgba = img.convert("RGBA") if not is_indexed else img
     arr = np.array(img_rgba)
     h, w = arr.shape[:2]

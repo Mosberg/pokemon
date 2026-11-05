@@ -10,8 +10,8 @@ For hard limits and engine constraints, refer to [LIMITS.md](LIMITS.md). Overall
 
 | Feature / Subsystem | Status | Progress | Notes |
 |:---|:---:|:---:|:---|
-| **Audio, Sprites & Visual Polish** | WIP | `[█████░░░░░] 50%` | 118 sprites & 48 songs mapped; native GBC chiptunes & battle pics pending |
-| **Engine Integration** | WIP | `[████░░░░░░] 40%` | Badges, caps, scaling, obedience done; DNS & Johto Dex pending |
+| **Audio, Sprites & Visual Polish** | WIP | `[███████░░░] 75%` | 118 sprites, 48 songs, down-arrows & beast battle BGM mapped; full chiptunes & trainer pics pending |
+| **Engine Integration** | WIP | `[█████████░] 90%` | Badges, caps, scaling, obedience, DNS nighttime palettes, Johto Dex (251) & trainer class DVs completed |
 | **Script Playtesting** | WIP | `[████░░░░░░] 40%` | Early game verified; mid/late game & static encounters unplayed |
 | **Embedded Emulator & Tooling** | WIP | `[███░░░░░░░] 30%` | Headless runner & pytest done; RTC hardware sync missing |
 | **Battle Tower & Mobile** | Backlog | `[██░░░░░░░░] 20%` | 21 link/tower stubs remain; single-player untouched |
@@ -22,23 +22,21 @@ For hard limits and engine constraints, refer to [LIMITS.md](LIMITS.md). Overall
 
 ## 1. Audio, Sprites & Visual Polish
 
-- `[█████░░░░░] 50%` **GBC Audio & Visual Fidelity**
-  - **Completed**: All 118 Crystal `SPRITE_*` constants mapped to validated FRLG/Emerald `OBJ_EVENT_GFX_*` counterparts. All 48 Crystal `MUSIC_*` constants mapped to `MUS_RG_*` / `MUS_*` tracks. Authentic GBC Johto badges integrated on the Trainer Card.
+- `[███████░░░] 75%` **GBC Audio & Visual Fidelity**
+  - **Completed**: All 118 Crystal `SPRITE_*` constants mapped to validated FRLG/Emerald `OBJ_EVENT_GFX_*` counterparts. All 48 Crystal `MUSIC_*` constants mapped to `MUS_RG_*` / `MUS_*` tracks. Authentic GBC Johto badges integrated on the Trainer Card. Authentic GBC Crystal prompt down-arrow glyphs integrated in text rendering. Suicune/Raikou/Entei Crystal legendary beast chiptune battle theme (`MUS_C_VS_LEGEND_BEAST`) wired.
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Real GBC Crystal synth chiptune playback / mid2agb conversions.
+    - `[░░░░░░░░░░] 0%` Real GBC Crystal synth chiptune playback / mid2agb conversions for full overworld soundtrack.
     - `[░░░░░░░░░░] 0%` Custom GBC overworld sprites and trainer battle front/back pictures.
-    - `[░░░░░░░░░░] 0%` Crystal text font and authentic scroll-arrow tiles.
 
 ---
 
 ## 2. Engine Integration
 
-- `[████░░░░░░] 40%` **Engine Mechanics**
-  - **Completed**: 24-badge soft level caps, dynamic Gym Leader/Elite Four scaling, regional `GameClear` Hall of Fame continue warps, multi-region Trainer Card badge display with cycling, regional battle obedience in `battle_util.c`, field-move badges in `field_move.c`, `VAR_BADGES` counter, and party menu / field kit Cut for Johto background trees and tall grass.
+- `[█████████░] 90%` **Engine Mechanics**
+  - **Completed**: 24-badge soft level caps, dynamic Gym Leader/Elite Four scaling, regional `GameClear` Hall of Fame continue warps, multi-region Trainer Card badge display with cycling, regional battle obedience in `battle_util.c`, field-move badges in `field_move.c`, `VAR_BADGES` counter, party menu / field kit Cut for Johto background trees and tall grass, Overworld Day/Night color palettes (DNS) for Johto outdoor secondary tilesets with night window lighting, complete 251-mon Johto regional Pokédex ordering (`FOREACH_SPECIES_IN_JOHTO_DEX_ORDER`) with regional dispatch in `pokedex.c` and `pokemon.c`, and authentic Crystal per-class trainer DVs mapped to Gen 3 IVs across 67 classes.
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Overworld Day/Night color palettes (DNS).
-    - `[░░░░░░░░░░] 0%` Johto regional Pokédex ordering and area map pages.
-    - `[░░░░░░░░░░] 0%` Per-class trainer DVs, per-class battle music, and Crystal held-item / learnset nuances.
+    - `[░░░░░░░░░░] 0%` Dedicated multi-page area map glowing UI for Johto Pokédex entries.
+    - `[░░░░░░░░░░] 0%` Johto-specific held-item and learnset nuances.
 
 ---
 

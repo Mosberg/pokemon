@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -16,34 +16,30 @@ verify_map_matrix.py - Porymap / pokeemerald Map Layout & Elevation Verifier.
 Validates metatile collisions, Z-height elevation boundaries, and warp coordinates.
 """
 
+import argparse
 import json
 import struct
-import argparse
 from pathlib import Path
 
 # Standard Gen 3 Metatile Collision & Behavior Flags
 COLLISION_PASSABLE = 0x00
-COLLISION_SOLID    = 0x01
+COLLISION_SOLID = 0x01
 
 # Standard Gen 3 Overworld Elevation Levels
-ELEVATION_ANY      = 0  # Ignores height checks (e.g. ladders)
-ELEVATION_SURF     = 1  # Water body
-ELEVATION_GROUND   = 3  # Standard walking layer
-ELEVATION_BRIDGE   = 4  # Overhead walkable bridge
+ELEVATION_ANY = 0  # Ignores height checks (e.g. ladders)
+ELEVATION_SURF = 1  # Water body
+ELEVATION_GROUND = 3  # Standard walking layer
+ELEVATION_BRIDGE = 4  # Overhead walkable bridge
 
-def verify_map_layout(
-    map_dir: Path,
-    layouts_json: Path,
-    all_maps_dir: Path = None,
-    strict_elevation: bool = True
-):
+
+def verify_map_layout(map_dir: Path, layouts_json: Path, all_maps_dir: Path = None, strict_elevation: bool = True):
     map_json_path = map_dir / "map.json"
     if not map_json_path.exists():
         raise FileNotFoundError(f"Missing map.json in: {map_dir}")
 
     map_meta = json.loads(map_json_path.read_text())
     layout_id = map_meta.get("layout")
-    
+
     # Locate layout metrics in layouts.json
     all_layouts = json.loads(layouts_json.read_text()).get("layouts", [])
     layout_data = next((l for l in all_layouts if l.get("id") == layout_id), None)
@@ -53,7 +49,7 @@ def verify_map_layout(
     width = layout_data["width"]
     height = layout_data["height"]
     blockdata_path = Path(layout_data["blockdata_filepath"])
-    
+
     # Resolve relative path if needed
     if not blockdata_path.exists():
         blockdata_path = layouts_json.parent / blockdata_path

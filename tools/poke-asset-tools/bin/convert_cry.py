@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -16,10 +16,11 @@ convert_cry.py - Batch Pokémon Cry Resampler and GBA PCM Formatter
 Converts audio samples into GBA-compatible signed 8-bit mono binary PCM.
 """
 
+import argparse
 import math
 import struct
-import argparse
 from pathlib import Path
+
 
 def apply_high_pass_filter(samples: list[float], sample_rate: int, cutoff_freq: float = 120.0) -> list[float]:
     """Single-pole high-pass filter to remove DC bias and speaker-damaging sub-bass."""

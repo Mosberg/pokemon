@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -17,9 +17,9 @@ Audits wild_encounters.json for rate anomalies, inverted levels, slot mismatches
 and undefined species IDs.
 """
 
+import argparse
 import json
 import re
-import argparse
 from pathlib import Path
 
 # Standard Gen 3 slot distributions and probability allocations
@@ -27,14 +27,15 @@ EXPECTED_SLOT_RATES = {
     "land_mons": [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1],
     "water_mons": [60, 30, 5, 4, 1],
     "rock_smash_mons": [60, 30, 5, 4, 1],
-    "fishing_mons": [70, 30, 60, 20, 20, 40, 40, 15, 4, 1]
+    "fishing_mons": [70, 30, 60, 20, 20, 40, 40, 15, 4, 1],
 }
+
 
 def load_valid_species(species_header: Path) -> set[str]:
     """Extracts valid species constants from species.h or species_info.h."""
     if not species_header or not species_header.exists():
         return set()
-    
+
     content = species_header.read_text()
     # Match both enum definitions and #defines
     species = set(re.findall(r'(SPECIES_[A-Z0-9_]+)', content))
@@ -43,30 +44,30 @@ def load_valid_species(species_header: Path) -> set[str]:
 def validate_encounter_table(encounters_json: Path, species_header: Path = None):
     data = json.loads(encounters_json.read_text())
     valid_species = load_valid_species(species_header) if species_header else set()
-    
+
     errors = []
     warnings = []
     total_maps = 0
     total_slots_checked = 0
 
     wild_encounter_groups = data.get("wild_encounter_groups", [])
-    
+
     for group in wild_encounter_groups:
         group_label = group.get("label", "Unknown Group")
         fields = group.get("encounters", [])
-        
+
         for map_entry in fields:
             total_maps += 1
             map_name = map_entry.get("map", "UNKNOWN_MAP")
-            
+
             for terrain_type, expected_rates in EXPECTED_SLOT_RATES.items():
                 terrain_data = map_entry.get(terrain_type)
                 if not terrain_data:
                     continue
-                
+
                 mons = terrain_data.get("mons", [])
                 total_slots_checked += len(mons)
-                
+
                 # 1. Slot Count Check
                 if len(mons) != len(expected_rates):
                     errors.append(

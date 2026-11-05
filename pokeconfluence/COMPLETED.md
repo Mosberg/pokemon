@@ -169,4 +169,27 @@ This document tracks all fully converted, integrated, and verified features in *
   - Progressive letter unlock evaluating puzzle completion flags (`FLAG_JOHTO_SOLVED_*_PUZZLE`): Kabuto (A-K), Omanyte (L-R), Aerodactyl (S-W), Ho-Oh (X-Z), All 4 (rare ? and ! unlocked).
   - Exact Unown letter generation hooked into `CreateWildMon` in [src/wild_encounter.c](src/wild_encounter.c) via `GetMonPersonality`.
 
+---
+
+## 9. Engine Integration & Audio-Visual Fidelity
+
+- **Overworld Day/Night System (DNS) Palettes for Johto**:
+  - Extracted authentic GBC Crystal nighttime palette values from `games/gbc/pokecrystal/gfx/tilesets/bg_tiles.pal` across morn, day, and nite.
+  - Implemented and mapped nighttime palettes (slots 15, 00, 01, 02, 03, 04, 05) via `(day + 9) % 16` for secondary tilesets `crystal_johto` and `crystal_johto_modern`.
+  - Configured `.swapPalettes = SWAP_PAL(6) | SWAP_PAL(7) | SWAP_PAL(8) | SWAP_PAL(9) | SWAP_PAL(10) | SWAP_PAL(11) | SWAP_PAL(12)` in [src/data/tilesets/headers.h](src/data/tilesets/headers.h).
+  - Window lighting animation masks (`10.pla`) added to blend illuminated windows at night.
+- **Johto Regional Pokédex Ordering**:
+  - Defined 251 species in authentic Crystal New Pokédex order (`FOREACH_SPECIES_IN_JOHTO_DEX_ORDER(F)` from Chikorita #001 to Celebi #251) and `enum JohtoDexOrder` in [include/constants/pokedex.h](include/constants/pokedex.h).
+  - Created `sJohtoToNationalOrder[JOHTO_REGIONAL_DEX_COUNT]` lookup table in [src/pokemon.c](src/pokemon.c).
+  - Implemented `NationalToJohtoOrder()`, `SpeciesToJohtoPokedexNum()`, `JohtoToNationalOrder()`, and `GetRegionalDexCount()` in [src/pokemon.c](src/pokemon.c) and [include/pokemon.h](include/pokemon.h).
+  - Implemented `GetJohtoPokedexCount()` and `HasAllJohtoMons()` in [src/pokedex.c](src/pokedex.c) and [include/pokedex.h](include/pokedex.h).
+  - Dynamic regional routing in `SpeciesToRegionalPokedexNum`, `RegionalToNationalOrder`, `GetRegionalPokedexCount`, `HasAllRegionalMons`, and `CreatePokedexList` based on `GetCurrentRegion() == REGION_JOHTO`.
+- **Authentic Trainer Class DVs & Battle Audio**:
+  - Mapped all 67 Crystal trainer classes to Gen 3 IV bitfields in `GetTrainerClassDVs()` in [src/trainer_util.c](src/trainer_util.c), applied automatically to trainer Pokémon with default IVs.
+  - Wired authentic GBC legendary beast battle BGM `MUS_C_VS_LEGEND_BEAST` in `GetBattleBGM()` in [src/pokemon.c](src/pokemon.c) for Suicune, Raikou, and Entei.
+  - Contextual regional battle music dispatch for Johto wild and trainer battles (`MUS_RG_VS_WILD`, `MUS_RG_VS_TRAINER`).
+- **GBC Visual Polish & Scroll Arrows**:
+  - Replaced prompt down-arrow graphics with authentic GBC Crystal down-arrow glyphs in [graphics/fonts/down_arrow.png](graphics/fonts/down_arrow.png) and [graphics/fonts/down_arrow_alt.png](graphics/fonts/down_arrow_alt.png).
+
+
 

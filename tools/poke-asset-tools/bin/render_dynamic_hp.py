@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -18,8 +17,9 @@ Outputs 4bpp-indexed HP fill sheets, multi-tier status palettes, and C math driv
 
 import argparse
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
 
 BAR_WIDTH = 48
 BAR_HEIGHT = 4
@@ -89,7 +89,7 @@ def generate_hp_assets(output_dir: Path):
     out_img.save(output_dir / "hp_fill_sheet.png")
 
     # 3. Export C Healthbar Controller Logic
-    c_logic = f"""
+    c_logic = """
 // Auto-generated GBA Dynamic Health Bar Driver
 #include "global.h"
 #include "battle.h"
@@ -98,7 +98,7 @@ def generate_hp_assets(output_dir: Path):
 
 // Returns the pixel fill width (0 to 48) based on current/max HP
 u8 CalculateHpBarPixels(s32 currentHp, s32 maxHp)
-{{
+{
     if (currentHp <= 0)
         return 0;
     if (currentHp >= maxHp)
@@ -109,12 +109,12 @@ u8 CalculateHpBarPixels(s32 currentHp, s32 maxHp)
     if (pixels == 0 && currentHp > 0)
         pixels = 1; // Always show at least 1 pixel if alive
     return pixels;
-}}
+}
 
 // Returns the active palette ID based on health percentage
 // 0 = Green (>50%), 1 = Yellow (20-50%), 2 = Red (<=20%)
 u8 GetHpBarPaletteTag(s32 currentHp, s32 maxHp)
-{{
+{
     s32 doubleHp = currentHp * 2;
     s32 fiveHp   = currentHp * 5;
 
@@ -123,14 +123,14 @@ u8 GetHpBarPaletteTag(s32 currentHp, s32 maxHp)
     if (fiveHp > maxHp)
         return 1; // Yellow
     return 2;     // Red
-}}
+}
 """
     (output_dir / "battle_hp_controls.c").write_text(c_logic)
 
     print("=" * 65)
     print(f"[✓] Dynamic Health Bar Assets Compiled: {output_dir}")
     print(f"  - Spritesheet: {output_dir / 'hp_fill_sheet.png'} (48x196 px, 49 states)")
-    print(f"  - Palettes:    hp_green.pal, hp_yellow.pal, hp_red.pal")
+    print("  - Palettes:    hp_green.pal, hp_yellow.pal, hp_red.pal")
     print(f"  - Driver Code: {output_dir / 'battle_hp_controls.c'}")
     print("=" * 65)
 

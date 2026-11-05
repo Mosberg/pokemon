@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -21,15 +20,14 @@ Supports:
   - Modern engine JSON/CSV level export
 """
 
-import os
-import sys
-import json
-import math
-import struct
 import argparse
+import json
+import struct
+import sys
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
 
 # ---------------------------------------------------------------------------
 # COLOR CONVERSION & PALETTE TOOLS
@@ -263,7 +261,7 @@ def package_porymap_tileset(
     print(f"[✓] Porymap Tileset Created: {output_dir}")
     print(f"  - Metatiles Generated: {total_metatiles} (16x16)")
     print(f"  - Deduplicated Tiles:  {len(tiles_list)} / {total_metatiles * 4} 8x8 tiles")
-    print(f"  - Palettes Saved:      16 individual .pal files in /palettes")
+    print("  - Palettes Saved:      16 individual .pal files in /palettes")
     print("=" * 65)
 
 # ---------------------------------------------------------------------------

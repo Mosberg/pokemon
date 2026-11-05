@@ -6,16 +6,17 @@ tile transformations, MSE diffing, and environment bootstrapping.
 """
 
 import os
-import sys
 import struct
+import sys
 from pathlib import Path
+
 
 # --- BOOTSTRAP ENVIRONMENT ---
 def ensure_dependencies():
     """Ensure Pillow and NumPy are imported, re-executing with workspace venv if needed."""
     try:
-        import PIL
         import numpy
+        import PIL
     except ImportError:
         ws_root = Path(__file__).resolve().parents[3]
         venv_candidates = [

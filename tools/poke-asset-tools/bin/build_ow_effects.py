@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,14 +6,17 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
 
 import argparse
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def generate_shadow(size: str = "medium") -> Image.Image:
     """Generates standard GBA oval drop shadows (16x8 or 32x8)."""
@@ -37,13 +39,14 @@ def generate_shadow(size: str = "medium") -> Image.Image:
                     arr[y, x] = 0
 
     # Palette: 0=Key (Magenta), 1=Outer Dither, 2=Core Shadow
-    pal = [255, 0, 255,  80, 80, 96,  32, 32, 48]
+    pal = [255, 0, 255, 80, 80, 96, 32, 32, 48]
     while len(pal) < 768:
         pal.extend([0, 0, 0])
 
     img = Image.fromarray(arr, mode="P")
     img.putpalette(pal)
     return img
+
 
 def build_reflection_sheet(sheet_path: Path, output_path: Path, frame_w=16, frame_h=32):
     src = Image.open(sheet_path).convert("RGBA")
@@ -70,10 +73,10 @@ def build_reflection_sheet(sheet_path: Path, output_path: Path, frame_w=16, fram
 
             # 2. Apply underwater color matrix: Tint towards cyan/navy and soften opacity
             mask = f_arr[:, :, 3] >= 128
-            f_arr[mask, 0] = f_arr[mask, 0] * 0.40          # Red attenuation
-            f_arr[mask, 1] = f_arr[mask, 1] * 0.70 + 30.0   # Green tint
-            f_arr[mask, 2] = f_arr[mask, 2] * 0.90 + 60.0   # Blue boost
-            f_arr[mask, 3] = 160.0                          # Alpha blending baseline
+            f_arr[mask, 0] = f_arr[mask, 0] * 0.40  # Red attenuation
+            f_arr[mask, 1] = f_arr[mask, 1] * 0.70 + 30.0  # Green tint
+            f_arr[mask, 2] = f_arr[mask, 2] * 0.90 + 60.0  # Blue boost
+            f_arr[mask, 3] = 160.0  # Alpha blending baseline
 
             res_frame = Image.fromarray(np.clip(f_arr, 0, 255).astype(np.uint8), "RGBA")
             out_img.paste(res_frame, (c * frame_w, r * ref_h))
@@ -86,7 +89,7 @@ def build_reflection_sheet(sheet_path: Path, output_path: Path, frame_w=16, fram
 
     pal = [255, 0, 255]
     for i in range(0, 45, 3):
-        pal.extend([raw_pal[i], raw_pal[i+1], raw_pal[i+2]])
+        pal.extend([raw_pal[i], raw_pal[i + 1], raw_pal[i + 2]])
     while len(pal) < 768:
         pal.extend([0, 0, 0])
 
@@ -98,9 +101,10 @@ def build_reflection_sheet(sheet_path: Path, output_path: Path, frame_w=16, fram
     final_ref.save(output_path)
     print(f"[✓] Reflection sheet saved to: {output_path} ({w}x{rows * ref_h} px)")
 
+
 def process_ow_effects(sheet_path: Path, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
-    
+
     # 1. Reflections
     build_reflection_sheet(sheet_path, output_dir / "water_reflections.png")
 
@@ -109,7 +113,7 @@ def process_ow_effects(sheet_path: Path, output_dir: Path):
     sh_sm.save(output_dir / "shadow_small.png")
     sh_med = generate_shadow("medium")
     sh_med.save(output_dir / "shadow_medium.png")
-    print(f"[✓] GBA Shadow assets generated: shadow_small.png (16x8), shadow_medium.png (32x8)")
+    print("[✓] GBA Shadow assets generated: shadow_small.png (16x8), shadow_medium.png (32x8)")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate water reflection sheets and shadow sprites for GBA overworlds.")

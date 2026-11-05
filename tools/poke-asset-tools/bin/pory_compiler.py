@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -16,9 +16,10 @@ pory_compiler.py - Automated Poryscript to Decomp ASM (.inc) and XSE Bytecode Tr
 Supports nested branching, movement blocks, string extraction, and macro synthesis.
 """
 
-import re
 import argparse
+import re
 from pathlib import Path
+
 
 class PoryscriptParser:
     def __init__(self, source_code: str):

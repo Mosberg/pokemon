@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,31 +6,34 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
 
 import argparse
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def quantize_indexed(img: Image.Image, num_colors: int = 15) -> tuple[Image.Image, list]:
     """Quantizes an image to 15 visible colors with slot 0 as transparency key."""
     rgb_img = img.convert("RGB")
     q = rgb_img.quantize(colors=num_colors, method=Image.Quantize.MEDIANCUT)
     raw = q.getpalette()[: num_colors * 3]
-    
-    pal = [(255, 0, 255)] # Slot 0
+
+    pal = [(255, 0, 255)]  # Slot 0
     for i in range(0, len(raw), 3):
-        pal.append((raw[i], raw[i+1], raw[i+2]))
-    
+        pal.append((raw[i], raw[i + 1], raw[i + 2]))
+
     pal_buf = []
     for c in pal:
         pal_buf.extend(c)
     while len(pal_buf) < 768:
         pal_buf.extend([0, 0, 0])
-        
+
     out = Image.fromarray(np.array(q) + 1, mode="P")
     out.putpalette(pal_buf)
     return out, pal
@@ -103,10 +105,10 @@ def process_battle_background(scene_path: Path, output_dir: Path):
 
     print("=" * 60)
     print(f"[✓] Battle Arena Split Completed: {output_dir}")
-    print(f"  - Player Base:    128x48 (saved to player_base.png)")
-    print(f"  - Opponent Base:  128x48 (saved to opponent_base.png)")
+    print("  - Player Base:    128x48 (saved to player_base.png)")
+    print("  - Opponent Base:  128x48 (saved to opponent_base.png)")
     print(f"  - Unique BG Tiles: {len(tile_list)} / 600 total (saved to battle_bg_tiles.png)")
-    print(f"  - Binary Tilemap: 30x20 entries (saved to battle_bg_tilemap.bin)")
+    print("  - Binary Tilemap: 30x20 entries (saved to battle_bg_tilemap.bin)")
     print("=" * 60)
 
 if __name__ == "__main__":

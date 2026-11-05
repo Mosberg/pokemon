@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -14,8 +14,10 @@ except ImportError:
 import argparse
 import json
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def build_porymap_tileset(
     metatile_sheet_path: Path,
@@ -51,7 +53,7 @@ def build_porymap_tileset(
         sub_colors = all_colors[pal_idx*16:(pal_idx+1)*16]
         while len(sub_colors) < 16:
             sub_colors.append((0, 0, 0))
-        
+
         jasc = ["JASC-PAL", "0100", "16"]
         for r, g, b in sub_colors:
             jasc.append(f"{r} {g} {b}")
@@ -72,16 +74,16 @@ def build_porymap_tileset(
         for mx in range(metatiles_x):
             # A 16x16 metatile consists of four 8x8 quadrants: Top-Left, Top-Right, Bottom-Left, Bottom-Right
             sub_boxes = [
-                (mx*16, my*16),       # TL
-                (mx*16 + 8, my*16),   # TR
-                (mx*16, my*16 + 8),   # BL
-                (mx*16 + 8, my*16 + 8)# BR
+                (mx * 16, my * 16),  # TL
+                (mx * 16 + 8, my * 16),  # TR
+                (mx * 16, my * 16 + 8),  # BL
+                (mx * 16 + 8, my * 16 + 8),  # BR
             ]
 
             # Bottom layer: 4 tiles
             for sx, sy in sub_boxes:
-                tile_data = sheet_arr[sy:sy+8, sx:sx+8]
-                
+                tile_data = sheet_arr[sy : sy + 8, sx : sx + 8]
+
                 # Check tile list for index matching
                 tile_bytes = tile_data.tobytes()
                 found_id = -1
@@ -143,7 +145,7 @@ def build_porymap_tileset(
     print(f"[✓] Created Porymap tileset '{tileset_name}' in: {dest_dir}")
     print(f"    - Metatiles created: {total_metatiles}")
     print(f"    - Unique 8x8 tiles: {len(tiles_list)}")
-    print(f"    - Palettes saved: 16 individual files")
+    print("    - Palettes saved: 16 individual files")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Package indexed metatiles into a complete Porymap tileset.")

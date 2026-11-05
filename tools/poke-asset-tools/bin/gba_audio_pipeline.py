@@ -17,11 +17,9 @@ Supports: WAV sample downsampling, 8-bit PCM conversion, looping, M4A voicegroup
 and MIDI sequence track transcription.
 """
 
-import os
-import sys
-import math
-import struct
 import argparse
+import struct
+import sys
 from pathlib import Path
 
 # Common GBA hardware sample rates (clock prescaler multiples)
@@ -142,7 +140,7 @@ class GBAWaveSample:
         """Exports 8-bit signed PCM array and GBA WaveData structure."""
         with open(out_file, "w") as f:
             f.write(f"// Generated GBA WaveData: {self.name}\n")
-            f.write(f"#include \"gba/gba.h\"\n\n")
+            f.write('#include "gba/gba.h"\n\n')
             f.write(f"const s8 {self.name}_SampleData[{len(self.data)}] = {{\n    ")
             for i, byte in enumerate(self.data):
                 signed_val = struct.unpack("b", bytes([byte]))[0]
@@ -153,7 +151,7 @@ class GBAWaveSample:
             f.write("struct WaveData {\n")
             f.write("    u16 type;\n    u16 status;\n    u32 freq;\n    u32 loop;\n    u32 size;\n    const s8 *data;\n};\n\n")
             f.write(f"const struct WaveData {self.name}_Wave = {{\n")
-            f.write(f"    .type = 0x0000,\n")
+            f.write("    .type = 0x0000,\n")
             f.write(f"    .status = {'0x4000' if self.is_looped else '0x0000'},\n")
             f.write(f"    .freq = {self.sample_rate * 1024},\n")  # GBA internal fixed point
             f.write(f"    .loop = {self.loop_start},\n")
@@ -164,11 +162,11 @@ class GBAWaveSample:
     def export_assembly(self, out_file: Path):
         """Exports GNU Assembly .s file for pokeemerald sound/directsound/."""
         with open(out_file, "w") as f:
-            f.write(f"\t.section .rodata\n")
+            f.write("\t.section .rodata\n")
             f.write(f"\t.global {self.name}_Wave\n")
-            f.write(f"\t.align 2\n")
+            f.write("\t.align 2\n")
             f.write(f"{self.name}_Wave:\n")
-            f.write(f"\t.short 0x0000\n")
+            f.write("\t.short 0x0000\n")
             f.write(f"\t.short {'0x4000' if self.is_looped else '0x0000'}\n")
             f.write(f"\t.word {self.sample_rate * 1024}\n")
             f.write(f"\t.word {self.loop_start}\n")
@@ -179,7 +177,7 @@ class GBAWaveSample:
                 chunk = self.data[i:i+16]
                 vals = [str(struct.unpack("b", bytes([b]))[0]) for b in chunk]
                 f.write(f"\t.byte {', '.join(vals)}\n")
-            f.write(f"\t.align 2\n")
+            f.write("\t.align 2\n")
 
 class GBASoundfontCompiler:
     """Compiles multi-instrument soundfonts and generates M4A voicegroup structures."""
@@ -214,9 +212,9 @@ class GBASoundfontCompiler:
     def export_voicegroup_s(self, out_file: Path):
         with open(out_file, "w") as f:
             f.write(f"// Soundfont Voicegroup: {self.voicegroup_name}\n")
-            f.write(f"\t.section .rodata\n")
+            f.write("\t.section .rodata\n")
             f.write(f"\t.global {self.voicegroup_name}\n")
-            f.write(f"\t.align 2\n")
+            f.write("\t.align 2\n")
             f.write(f"{self.voicegroup_name}:\n")
             for prog in range(128):
                 if prog in self.voices:
@@ -254,7 +252,7 @@ if __name__ == "__main__":
         vg.export_voicegroup_s(args.out_dir / f"{args.vg_name}.s")
 
         print("=" * 60)
-        print(f"[✓] GBA Audio Compilation Completed:")
+        print("[✓] GBA Audio Compilation Completed:")
         print(f"  - Target Rate: {sample_hz} Hz (Signed 8-bit PCM)")
         print(f"  - Header:      {args.out_dir / f'{sample.name}.h'}")
         print(f"  - Assembly:    {args.out_dir / f'{sample.name}.s'}")

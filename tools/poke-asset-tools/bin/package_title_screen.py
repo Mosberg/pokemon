@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,17 +6,21 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
 
 import argparse
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def to_gba_color(rgb):
     return tuple(int(round(c * 31 / 255) * 255 / 31) for c in rgb[:3])
+
 
 def write_jasc_pal(path: Path, colors: list):
     lines = ["JASC-PAL", "0100", "16"]
@@ -25,12 +28,13 @@ def write_jasc_pal(path: Path, colors: list):
         lines.append(f"{r} {g} {b}")
     path.write_text("\n".join(lines) + "\n")
 
+
 def process_tile_layer(img: Image.Image, output_tiles: Path, output_map: Path, output_pal: Path):
     """Processes an image into a 16-color indexed tile sheet and tilemap."""
     arr = np.array(img.convert("RGBA"))
     h, w = arr.shape[:2]
     vis = arr[arr[:, :, 3] >= 128][:, :3]
-    
+
     temp = Image.fromarray(vis.reshape(-1, 1, 3).astype(np.uint8), "RGB")
     q = temp.quantize(colors=15, method=Image.Quantize.MEDIANCUT)
     raw_pal = q.getpalette()[:45]
@@ -135,8 +139,8 @@ static const u16 sTitleLogoPalette[] = INCBIN_U16("graphics/title_screen/title_l
     print(f"[✓] Title Screen Sequence Packaged: {output_dir}")
     print(f"  - BG Landscape: {bg_tiles} tiles -> title_bg_tiles.png")
     print(f"  - Logo Layer:   {logo_tiles} tiles -> title_logo_tiles.png")
-    print(f"  - Palettes:     title_bg.pal & title_logo.pal (16 colors each)")
-    print(f"  - Code Snippet: title_screen_entries.txt")
+    print("  - Palettes:     title_bg.pal & title_logo.pal (16 colors each)")
+    print("  - Code Snippet: title_screen_entries.txt")
     print("=" * 60)
 
 if __name__ == "__main__":

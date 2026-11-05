@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -16,13 +16,15 @@ dns_tint_engine.py - 24-Hour Day, Night & Season Palette Transformation Engine
 Calculates RGB color curves and exports GBA BGR555 transition tables for pokeemerald.
 """
 
-import math
 import argparse
 from pathlib import Path
+
 from PIL import Image
+
 
 def clamp(val, low=0, high=31):
     return max(low, min(high, int(round(val))))
+
 
 def rgb888_to_bgr555(r, g, b):
     r5 = (r >> 3) & 0x1F
@@ -30,37 +32,55 @@ def rgb888_to_bgr555(r, g, b):
     b5 = (b >> 3) & 0x1F
     return (b5 << 10) | (g5 << 5) | r5
 
+
 def bgr555_to_rgb888(bgr):
     r = (bgr & 0x1F) << 3
     g = ((bgr >> 5) & 0x1F) << 3
     b = ((bgr >> 10) & 0x1F) << 3
     return (r, g, b)
 
+
 # 24-Hour Target Tint Curves (Hourly Multipliers: R_mult, G_mult, B_mult, Brightness_Offset)
 HOURLY_PROFILES = [
     # 00:00 - 04:00: Deep Night
-    (0.40, 0.45, 0.75, -4), (0.38, 0.42, 0.72, -5), (0.35, 0.40, 0.70, -5),
-    (0.35, 0.40, 0.70, -5), (0.42, 0.45, 0.75, -4),
+    (0.40, 0.45, 0.75, -4),
+    (0.38, 0.42, 0.72, -5),
+    (0.35, 0.40, 0.70, -5),
+    (0.35, 0.40, 0.70, -5),
+    (0.42, 0.45, 0.75, -4),
     # 05:00 - 07:00: Dawn / Sunrise Transition
-    (0.60, 0.55, 0.80, -2), (0.95, 0.70, 0.65, 0),  (1.10, 0.85, 0.65, 1),
+    (0.60, 0.55, 0.80, -2),
+    (0.95, 0.70, 0.65, 0),
+    (1.10, 0.85, 0.65, 1),
     # 08:00 - 16:00: Neutral Midday
-    (1.00, 1.00, 1.00, 0),  (1.00, 1.00, 1.00, 0),  (1.00, 1.00, 1.00, 0),
-    (1.00, 1.00, 1.00, 0),  (1.00, 1.00, 1.00, 0),  (1.00, 1.00, 1.00, 0),
-    (1.00, 1.00, 1.00, 0),  (1.00, 1.00, 1.00, 0),  (1.00, 0.98, 0.95, 0),
+    (1.00, 1.00, 1.00, 0),
+    (1.00, 1.00, 1.00, 0),
+    (1.00, 1.00, 1.00, 0),
+    (1.00, 1.00, 1.00, 0),
+    (1.00, 1.00, 1.00, 0),
+    (1.00, 1.00, 1.00, 0),
+    (1.00, 1.00, 1.00, 0),
+    (1.00, 1.00, 1.00, 0),
+    (1.00, 0.98, 0.95, 0),
     # 17:00 - 19:00: Sunset / Dusk
-    (1.15, 0.82, 0.60, 1),  (1.20, 0.70, 0.55, 0),  (0.90, 0.55, 0.70, -2),
+    (1.15, 0.82, 0.60, 1),
+    (1.20, 0.70, 0.55, 0),
+    (0.90, 0.55, 0.70, -2),
     # 20:00 - 23:00: Twilight to Night
-    (0.65, 0.50, 0.75, -3), (0.50, 0.48, 0.75, -4), (0.45, 0.45, 0.75, -4),
-    (0.40, 0.45, 0.75, -4)
+    (0.65, 0.50, 0.75, -3),
+    (0.50, 0.48, 0.75, -4),
+    (0.45, 0.45, 0.75, -4),
+    (0.40, 0.45, 0.75, -4),
 ]
+
 
 def apply_tint(r5: int, g5: int, b5: int, hour: int) -> tuple[int, int, int]:
     """Transforms a 5-bit channel RGB pixel according to the hour profile."""
     r_mult, g_mult, b_mult, offset = HOURLY_PROFILES[hour]
-    
+
     # Calculate luminance for saturation protection
     lum = 0.299 * r5 + 0.587 * g5 + 0.114 * b5
-    
+
     new_r = clamp(r5 * r_mult + offset)
     new_g = clamp(g5 * g_mult + offset)
     new_b = clamp(b5 * b_mult + offset)

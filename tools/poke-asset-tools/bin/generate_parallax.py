@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -16,20 +16,23 @@ generate_parallax.py - GBA Multi-Layer Parallax Background & HBlank Engine.
 Extracts depth bands, deduplicates 8x8 tiles, and computes scanline scroll LUTs.
 """
 
-import math
 import argparse
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def to_gba_color(rgb):
     return tuple(int(round(c * 31 / 255) * 255 / 31) for c in rgb[:3])
+
 
 def write_jasc_pal(path: Path, colors: list):
     lines = ["JASC-PAL", "0100", "16"]
     for r, g, b in colors[:16]:
         lines.append(f"{r} {g} {b}")
     path.write_text("\n".join(lines) + "\n")
+
 
 def compute_parallax_lut(bands: list[dict], total_lines: int = 160) -> list[int]:
     """
@@ -40,8 +43,8 @@ def compute_parallax_lut(bands: list[dict], total_lines: int = 160) -> list[int]
     for band in bands:
         start = band["start_y"]
         end = min(total_lines, band["end_y"])
-        speed = band["speed"] # Pixels per frame
-        
+        speed = band["speed"]  # Pixels per frame
+
         # Linear or perspective velocity gradient within band
         grad = band.get("gradient", False)
         for y in range(start, end):
@@ -154,8 +157,8 @@ def process_parallax_scenery(image_path: Path, output_dir: Path, bands_config: l
     print("=" * 60)
     print(f"[✓] GBA Parallax Scenery Engine Generated: {output_dir}")
     print(f"  - Tiles Deduped: {len(tile_list)} / 600 total (parallax_tiles.png)")
-    print(f"  - Binary Map:    30x20 entries (parallax_tilemap.bin)")
-    print(f"  - HBlank C Code: parallax_hblank.c")
+    print("  - Binary Map:    30x20 entries (parallax_tilemap.bin)")
+    print("  - HBlank C Code: parallax_hblank.c")
     print("=" * 60)
 
 if __name__ == "__main__":

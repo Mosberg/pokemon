@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -18,8 +18,10 @@ Converts raw line art into 16x16 1bpp footprints and builds height-comparison as
 
 import argparse
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def generate_footprint(input_path: Path, output_png: Path):
     """Processes paw/foot line art into a 16x16 4bpp footprint image with slot 0 transparency."""
@@ -33,11 +35,11 @@ def generate_footprint(input_path: Path, output_png: Path):
     for y in range(16):
         for x in range(16):
             if alpha[y, x] >= 128 and lum[y, x] < 180:
-                out_arr[y, x] = 1 # Solid footprint ink
+                out_arr[y, x] = 1  # Solid footprint ink
             else:
-                out_arr[y, x] = 0 # Transparent
+                out_arr[y, x] = 0  # Transparent
 
-    pal = [255, 0, 255,   48, 48, 56] # Slot 0 = Key, Slot 1 = Ink
+    pal = [255, 0, 255, 48, 48, 56]  # Slot 0 = Key, Slot 1 = Ink
     while len(pal) < 768:
         pal.extend([0, 0, 0])
 
@@ -52,11 +54,12 @@ def generate_footprint(input_path: Path, output_png: Path):
         row_val = 0
         for x in range(16):
             if out_arr[y, x] == 1:
-                row_val |= (1 << (15 - x))
+                row_val |= 1 << (15 - x)
         bin_bytes.extend(int(row_val).to_bytes(2, byteorder="big"))
 
     (output_png.with_suffix(".1bpp")).write_bytes(bin_bytes)
     print(f"[✓] Footprint generated: {output_png} (and {output_png.with_suffix('.1bpp')})")
+
 
 def build_height_comparison(mon_front: Path, output_png: Path, height_dm: int):
     """
@@ -76,14 +79,14 @@ def build_height_comparison(mon_front: Path, output_png: Path, height_dm: int):
     # 2. Render Scaled Pokémon Silhouette
     mon_img = Image.open(mon_front).convert("RGBA")
     target_px_h = int(round(height_dm * 4.0))
-    target_px_h = max(8, min(target_px_h, 64)) # Clamped to GBA screen limits
-    
+    target_px_h = max(8, min(target_px_h, 64))  # Clamped to GBA screen limits
+
     # Preserve aspect ratio
     aspect = mon_img.width / mon_img.height
     target_px_w = int(round(target_px_h * aspect))
-    
+
     mon_scaled = mon_img.resize((target_px_w, target_px_h), Image.Resampling.LANCZOS)
-    
+
     # Convert Pokémon into a solid amber Pokédex silhouette
     mon_arr = np.array(mon_scaled)
     mask = mon_arr[:, :, 3] >= 128

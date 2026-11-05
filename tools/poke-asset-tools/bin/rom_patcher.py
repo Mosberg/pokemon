@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -19,10 +18,10 @@ Supports:
   - Legacy IPS creation and application with RLE run optimization
 """
 
+import argparse
+import struct
 import sys
 import zlib
-import struct
-import argparse
 from pathlib import Path
 
 # --- VARIABLE-LENGTH INTEGER (VLQ) UTILITIES FOR BPS ---

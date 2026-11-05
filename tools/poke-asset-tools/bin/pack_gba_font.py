@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,14 +6,17 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
 
 import argparse
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def pack_font_sheet(
     font_png: Path,
@@ -22,8 +24,8 @@ def pack_font_sheet(
     cell_w: int = 8,
     cell_h: int = 16,
     bpp: int = 1,
-    start_char: int = 32, # ASCII 32 = Space
-    tracking_padding: int = 1
+    start_char: int = 32,  # ASCII 32 = Space
+    tracking_padding: int = 1,
 ):
     output_dir.mkdir(parents=True, exist_ok=True)
     img = Image.open(font_png).convert("RGBA")
@@ -43,9 +45,9 @@ def pack_font_sheet(
     for idx in range(total_glyphs):
         col = idx % cols
         row = idx // cols
-        
-        box = alpha[row * cell_h:(row + 1) * cell_h, col * cell_w:(col + 1) * cell_w]
-        
+
+        box = alpha[row * cell_h : (row + 1) * cell_h, col * cell_w : (col + 1) * cell_w]
+
         # Calculate visual glyph width
         active_cols = np.where(box >= 128)[1]
         if len(active_cols) == 0:
@@ -65,13 +67,13 @@ def pack_font_sheet(
                 row_bits = 0
                 for x in range(cell_w):
                     is_ink = 1 if box[y, x] >= 128 else 0
-                    row_bits |= (is_ink << (7 - x))
+                    row_bits |= is_ink << (7 - x)
                 glyph_bin.append(row_bits)
         elif bpp == 2:
             # 2bpp allows 4 levels (anti-aliased font)
             lum = 0.299 * rgb[:, :, 0] + 0.587 * rgb[:, :, 1] + 0.114 * rgb[:, :, 2]
-            cell_lum = lum[row * cell_h:(row + 1) * cell_h, col * cell_w:(col + 1) * cell_w]
-            
+            cell_lum = lum[row * cell_h : (row + 1) * cell_h, col * cell_w : (col + 1) * cell_w]
+
             for y in range(cell_h):
                 for x_pair in range(0, cell_w, 4):
                     byte_val = 0

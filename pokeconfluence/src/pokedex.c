@@ -13,6 +13,7 @@
 #include "menu.h"
 #include "m4a.h"
 #include "overworld.h"
+#include "regions.h"
 #include "palette.h"
 #include "pokedex.h"
 #include "pokedex_area_screen.h"
@@ -2091,7 +2092,7 @@ void CreatePokedexList(u8 dexMode, u8 order)
     {
     default:
     case DEX_MODE_HOENN:
-        temp_dexCount = REGIONAL_DEX_COUNT;
+        temp_dexCount = GetRegionalDexCount();
         temp_isHoennDex = TRUE;
         break;
     case DEX_MODE_NATIONAL:
@@ -2102,7 +2103,7 @@ void CreatePokedexList(u8 dexMode, u8 order)
         }
         else
         {
-            temp_dexCount = REGIONAL_DEX_COUNT;
+            temp_dexCount = GetRegionalDexCount();
             temp_isHoennDex = TRUE;
         }
         break;
@@ -4537,6 +4538,8 @@ u16 GetNationalPokedexCount(u8 caseID)
 
 u32 GetRegionalPokedexCount(u8 caseID)
 {
+    if (GetCurrentRegion() == REGION_JOHTO)
+        return GetJohtoPokedexCount(caseID);
     if (IS_FRLG)
         return GetKantoPokedexCount(caseID);
     return GetHoennPokedexCount(caseID);
@@ -4586,8 +4589,33 @@ u16 GetKantoPokedexCount(u8 caseID)
     return count;
 }
 
+// POKE-CONFLUENCE: Johto Regional Pokédex count
+u16 GetJohtoPokedexCount(u8 caseID)
+{
+    u16 count = 0;
+    u16 i;
+
+    for (i = 0; i < JOHTO_REGIONAL_DEX_COUNT - 1; i++)
+    {
+        switch (caseID)
+        {
+        case FLAG_GET_SEEN:
+            if (GetSetPokedexFlag(JohtoToNationalOrder(i + 1), FLAG_GET_SEEN))
+                count++;
+            break;
+        case FLAG_GET_CAUGHT:
+            if (GetSetPokedexFlag(JohtoToNationalOrder(i + 1), FLAG_GET_CAUGHT))
+                count++;
+            break;
+        }
+    }
+    return count;
+}
+
 bool16 HasAllRegionalMons(void)
 {
+    if (GetCurrentRegion() == REGION_JOHTO)
+        return HasAllJohtoMons();
     if (IS_FRLG)
         return HasAllKantoMons();
     return HasAllHoennMons();
@@ -4614,6 +4642,21 @@ bool16 HasAllKantoMons(void)
     for (i = 0; i < KANTO_DEX_COUNT - 1; i++)
     {
         j = KantoToNationalOrder(i + 1);
+        if (!(gSpeciesInfo[j].isMythical && !gSpeciesInfo[j].dexForceRequired) && !GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
+            return FALSE;
+    }
+    return TRUE;
+}
+
+// POKE-CONFLUENCE: Check if player has caught all Johto Regional Mons (excluding Celebi)
+bool16 HasAllJohtoMons(void)
+{
+    u32 i, j;
+
+    // -1 excludes Celebi
+    for (i = 0; i < JOHTO_REGIONAL_DEX_COUNT - 1; i++)
+    {
+        j = JohtoToNationalOrder(i + 1);
         if (!(gSpeciesInfo[j].isMythical && !gSpeciesInfo[j].dexForceRequired) && !GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
             return FALSE;
     }

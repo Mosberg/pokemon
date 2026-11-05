@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,19 +6,20 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
 
 """
 gba_save_analyzer.py - GBA Pokemon Save & RTC State Inspection/Validation Engine
-Validates CRC checksums, extracts active slot, inspects save counters, 
+Validates CRC checksums, extracts active slot, inspects save counters,
 and decodes in-game RTC timer structures.
 """
 
-import sys
-import struct
 import argparse
+import struct
+import sys
 from pathlib import Path
 
 SAVE_MAGIC = 0x08012025
@@ -62,16 +62,16 @@ def parse_slot(data: bytes, offset: int, slot_name: str):
     for i in range(SECTORS_PER_SLOT):
         sec_offset = offset + (i * SECTOR_SIZE)
         sec_bytes = data[sec_offset:sec_offset + SECTOR_SIZE]
-        
+
         # Read footer (last 12 bytes)
         sec_id, stored_csum, magic, counter = struct.unpack("<HHII", sec_bytes[0x0FF4:0x1000])
-        
+
         if magic != SAVE_MAGIC:
             continue
 
         calc_csum = calculate_sector_checksum(sec_bytes, sec_id)
         is_valid = (calc_csum == stored_csum)
-        
+
         if is_valid:
             valid_sectors += 1
             save_counter = max(save_counter, counter)
@@ -82,7 +82,7 @@ def parse_slot(data: bytes, offset: int, slot_name: str):
             "calc_csum": calc_csum,
             "stored_csum": stored_csum,
             "counter": counter,
-            "data": sec_bytes
+            "data": sec_bytes,
         }
 
     return {
@@ -90,8 +90,9 @@ def parse_slot(data: bytes, offset: int, slot_name: str):
         "offset": hex(offset),
         "valid_sectors": valid_sectors,
         "save_counter": save_counter,
-        "sectors": sectors
+        "sectors": sectors,
     }
+
 
 def decode_trainer_info(sec0_data: bytes):
     """Decodes Player Name, Trainer ID, Secret ID, and Playtime from Sector 0."""
@@ -100,24 +101,25 @@ def decode_trainer_info(sec0_data: bytes):
     name = "".join([chr(b) if 32 <= b <= 126 else "?" for b in raw_name])
     gender = "Female" if sec0_data[0x0008] == 1 else "Male"
     trainer_id, secret_id = struct.unpack("<HH", sec0_data[0x000A:0x000E])
-    
+
     # Playtime: Hours (2 bytes), Minutes (1 byte), Seconds (1 byte), VBlanks (1 byte)
     hours, minutes, seconds, vblanks = struct.unpack("<HBBB", sec0_data[0x000E:0x0013])
-    
+
     return {
         "player_name": name.strip(),
         "gender": gender,
         "trainer_id": trainer_id,
         "secret_id": secret_id,
-        "playtime": f"{hours:02d}:{minutes:02d}:{seconds:02d} (VBlanks: {vblanks})"
+        "playtime": f"{hours:02d}:{minutes:02d}:{seconds:02d} (VBlanks: {vblanks})",
     }
+
 
 def decode_rtc(sec0_data: bytes, sec2_data: bytes):
     """Decodes RTC calibration and elapsed time tracking."""
     # Sector 0 contains RTC initial time and offsets in Emerald/Ruby/Sapphire
     # LocalTime offset at 0x0098 in Emerald Sector 0
     days, hours, minutes, seconds = struct.unpack("<HHHH", sec0_data[0x0098:0x00A0])
-    
+
     return {
         "rtc_days": days,
         "rtc_time": f"{hours:02d}:{minutes:02d}:{seconds:02d}",

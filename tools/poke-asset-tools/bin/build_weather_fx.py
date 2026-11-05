@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -16,11 +16,13 @@ build_weather_fx.py - GBA Environmental Weather & Fog Effect Generator.
 Synthesizes 4bpp particle sheets, scrolling fog backgrounds, and BLDCNT blending arrays.
 """
 
-import math
 import argparse
+import math
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def write_jasc_pal(path: Path, colors: list):
     lines = ["JASC-PAL", "0100", "16"]

@@ -1697,6 +1697,8 @@ const struct Tileset gTileset_CrystalJohto =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    // POKE-CONFLUENCE: Authentic Johto DNS nighttime palette swapping
+    .swapPalettes = SWAP_PAL(6) | SWAP_PAL(7) | SWAP_PAL(8) | SWAP_PAL(9) | SWAP_PAL(10) | SWAP_PAL(11) | SWAP_PAL(12),
     .tiles = gTilesetTiles_CrystalJohto,
     .palettes = gTilesetPalettes_CrystalJohto,
     .metatiles = gMetatiles_CrystalJohto,
@@ -1708,6 +1710,8 @@ const struct Tileset gTileset_CrystalJohtoModern =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
+    // POKE-CONFLUENCE: Authentic Johto DNS nighttime palette swapping
+    .swapPalettes = SWAP_PAL(6) | SWAP_PAL(7) | SWAP_PAL(8) | SWAP_PAL(9) | SWAP_PAL(10) | SWAP_PAL(11) | SWAP_PAL(12),
     .tiles = gTilesetTiles_CrystalJohtoModern,
     .palettes = gTilesetPalettes_CrystalJohtoModern,
     .metatiles = gMetatiles_CrystalJohtoModern,

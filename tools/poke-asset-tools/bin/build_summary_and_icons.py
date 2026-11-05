@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,44 +6,89 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
 
 import argparse
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
 
 # Standard Gen 3 Pokémon Party Box Icon Palettes (15-bit BGR555 native values)
 GEN3_ICON_PALETTES = [
     # Palette 0: Normal / Grass / Bug / Neutral
-    [(255, 0, 255), (128, 128, 128), (248, 248, 248), (32, 32, 32),
-     (80, 168, 72), (136, 216, 128), (200, 120, 88), (248, 192, 160),
-     (168, 56, 56), (232, 120, 120), (120, 80, 56), (184, 144, 112),
-     (80, 112, 168), (136, 168, 224), (224, 208, 72), (248, 240, 152)],
+    [
+        (255, 0, 255),
+        (128, 128, 128),
+        (248, 248, 248),
+        (32, 32, 32),
+        (80, 168, 72),
+        (136, 216, 128),
+        (200, 120, 88),
+        (248, 192, 160),
+        (168, 56, 56),
+        (232, 120, 120),
+        (120, 80, 56),
+        (184, 144, 112),
+        (80, 112, 168),
+        (136, 168, 224),
+        (224, 208, 72),
+        (248, 240, 152),
+    ],
     # Palette 1: Fire / Fighting / Electric
-    [(255, 0, 255), (128, 128, 128), (248, 248, 248), (32, 32, 32),
-     (208, 64, 48), (248, 136, 120), (224, 136, 40), (248, 192, 112),
-     (176, 40, 40), (240, 104, 88), (144, 88, 32), (216, 160, 88),
-     (112, 80, 160), (168, 136, 216), (232, 200, 32), (248, 232, 120)],
+    [
+        (255, 0, 255),
+        (128, 128, 128),
+        (248, 248, 248),
+        (32, 32, 32),
+        (208, 64, 48),
+        (248, 136, 120),
+        (224, 136, 40),
+        (248, 192, 112),
+        (176, 40, 40),
+        (240, 104, 88),
+        (144, 88, 32),
+        (216, 160, 88),
+        (112, 80, 160),
+        (168, 136, 216),
+        (232, 200, 32),
+        (248, 232, 120),
+    ],
     # Palette 2: Water / Ice / Psychic / Dark
-    [(255, 0, 255), (128, 128, 128), (248, 248, 248), (32, 32, 32),
-     (48, 104, 208), (120, 168, 248), (64, 168, 160), (144, 224, 216),
-     (136, 48, 160), (200, 120, 224), (72, 72, 120), (128, 128, 184),
-     (160, 56, 80), (224, 120, 144), (224, 192, 64), (248, 232, 144)]
+    [
+        (255, 0, 255),
+        (128, 128, 128),
+        (248, 248, 248),
+        (32, 32, 32),
+        (48, 104, 208),
+        (120, 168, 248),
+        (64, 168, 160),
+        (144, 224, 216),
+        (136, 48, 160),
+        (200, 120, 224),
+        (72, 72, 120),
+        (128, 128, 184),
+        (160, 56, 80),
+        (224, 120, 144),
+        (224, 192, 64),
+        (248, 232, 144),
+    ],
 ]
+
 
 def map_to_palette(img: Image.Image, pal_idx: int) -> Image.Image:
     """Maps RGBA image directly to a selected Gen 3 icon palette."""
     palette = GEN3_ICON_PALETTES[pal_idx]
     pal_arr = np.array(palette[1:])  # 15 colors
-    
+
     arr = np.array(img.convert("RGBA"))
     h, w = arr.shape[:2]
     alpha = arr[:, :, 3]
     rgb = arr[:, :, :3]
-    
+
     out_arr = np.zeros((h, w), dtype=np.uint8)
     for y in range(h):
         for x in range(w):
@@ -64,9 +108,10 @@ def map_to_palette(img: Image.Image, pal_idx: int) -> Image.Image:
     res.putpalette(pal_buf)
     return res
 
+
 def build_party_icon_sheet(icon_path: Path, output_path: Path, pal_idx: int = 0):
     icon = Image.open(icon_path).convert("RGBA").resize((32, 32), Image.Resampling.LANCZOS)
-    
+
     # Frame 0: Standard position
     f0 = Image.new("RGBA", (32, 32), (0, 0, 0, 0))
     f0.paste(icon, (0, 0))
@@ -143,7 +188,7 @@ def process_summary_screen(screen_path: Path, output_dir: Path):
     print("=" * 60)
     print(f"[✓] Summary Screen Processed into: {output_dir}")
     print(f"  - Tiles Deduped: {len(tile_list)} / 600 total (summary_tiles.png)")
-    print(f"  - Binary Tilemap: 30x20 entries (summary_tilemap.bin)")
+    print("  - Binary Tilemap: 30x20 entries (summary_tilemap.bin)")
     print("=" * 60)
 
 if __name__ == "__main__":

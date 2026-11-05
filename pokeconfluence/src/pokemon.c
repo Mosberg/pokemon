@@ -131,12 +131,18 @@ static const struct CombinedMove sCombinedMoves[2] =
 
 #define KANTO_TO_NATIONAL(name)     [KANTO_DEX_##name - 1] = NATIONAL_DEX_##name,
 #define HOENN_TO_NATIONAL(name)     [HOENN_DEX_##name - 1] = NATIONAL_DEX_##name,
+#define JOHTO_TO_NATIONAL(name)     [JOHTO_DEX_##name - 1] = NATIONAL_DEX_##name,
 
 static const enum NationalDexOrder sKantoToNationalOrder[KANTO_DEX_COUNT] =
 {
     FOREACH_SPECIES_IN_KANTO_DEX_ORDER(KANTO_TO_NATIONAL)
 };
 
+// POKE-CONFLUENCE: Johto Regional Dex Order mapping to National Dex
+static const enum NationalDexOrder sJohtoToNationalOrder[JOHTO_REGIONAL_DEX_COUNT] =
+{
+    FOREACH_SPECIES_IN_JOHTO_DEX_ORDER(JOHTO_TO_NATIONAL)
+};
 
 // Assigns all Hoenn Dex Indexes to a National Dex Index
 static const enum NationalDexOrder sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
@@ -4655,6 +4661,8 @@ enum Species NationalPokedexNumToSpecies(enum NationalDexOrder nationalNum)
 
 u32 NationalToRegionalOrder(enum NationalDexOrder nationalNum)
 {
+    if (GetCurrentRegion() == REGION_JOHTO)
+        return NationalToJohtoOrder(nationalNum);
     if (IS_FRLG)
         return NationalToKantoOrder(nationalNum);
     return NationalToHoennOrder(nationalNum);
@@ -4696,6 +4704,35 @@ enum HoennDexOrder NationalToHoennOrder(enum NationalDexOrder nationalNum)
     return hoennNum + 1;
 }
 
+// POKE-CONFLUENCE: Johto Pokédex conversion functions
+enum JohtoDexOrder NationalToJohtoOrder(enum NationalDexOrder nationalNum)
+{
+    u16 johtoNum;
+
+    if (!nationalNum)
+        return 0;
+
+    johtoNum = 0;
+
+    while (johtoNum < JOHTO_REGIONAL_DEX_COUNT && sJohtoToNationalOrder[johtoNum] != nationalNum)
+        johtoNum++;
+
+    if (johtoNum >= JOHTO_REGIONAL_DEX_COUNT)
+        return 0;
+
+    return johtoNum + 1;
+}
+
+// POKE-CONFLUENCE: Get regional dex count dynamically based on active region
+u32 GetRegionalDexCount(void)
+{
+    if (GetCurrentRegion() == REGION_JOHTO)
+        return JOHTO_REGIONAL_DEX_COUNT;
+    if (IS_FRLG)
+        return KANTO_DEX_COUNT;
+    return HOENN_DEX_COUNT;
+}
+
 enum NationalDexOrder SpeciesToNationalPokedexNum(enum Species species)
 {
     species = SanitizeSpeciesId(species);
@@ -4707,6 +4744,8 @@ enum NationalDexOrder SpeciesToNationalPokedexNum(enum Species species)
 
 u32 SpeciesToRegionalPokedexNum(enum Species species)
 {
+    if (GetCurrentRegion() == REGION_JOHTO)
+        return SpeciesToJohtoPokedexNum(species);
     if (IS_FRLG)
         return SpeciesToKantoPokedexNum(species);
     return SpeciesToHoennPokedexNum(species);
@@ -4726,8 +4765,17 @@ enum HoennDexOrder SpeciesToHoennPokedexNum(enum Species species)
     return NationalToHoennOrder(gSpeciesInfo[species].natDexNum);
 }
 
+enum JohtoDexOrder SpeciesToJohtoPokedexNum(enum Species species)
+{
+    if (!species)
+        return 0;
+    return NationalToJohtoOrder(gSpeciesInfo[species].natDexNum);
+}
+
 enum NationalDexOrder RegionalToNationalOrder(u32 regionalNum)
 {
+    if (GetCurrentRegion() == REGION_JOHTO)
+        return JohtoToNationalOrder(regionalNum);
     if (IS_FRLG)
         return KantoToNationalOrder(regionalNum);
     return HoennToNationalOrder(regionalNum);
@@ -4747,6 +4795,14 @@ enum NationalDexOrder HoennToNationalOrder(enum HoennDexOrder hoennNum)
         return 0;
 
     return sHoennToNationalOrder[hoennNum - 1];
+}
+
+enum NationalDexOrder JohtoToNationalOrder(enum JohtoDexOrder johtoNum)
+{
+    if (!johtoNum || johtoNum >= (JOHTO_REGIONAL_DEX_COUNT + 1))
+        return 0;
+
+    return sJohtoToNationalOrder[johtoNum - 1];
 }
 
 void EvolutionRenameMon(struct Pokemon *mon, enum Species oldSpecies, enum Species newSpecies)
@@ -5093,6 +5149,11 @@ u16 GetBattleBGM(void)
     {
         switch (GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_SPECIES))
         {
+        // POKE-CONFLUENCE: Authentic GBC Crystal Legendary Beast Battle Theme
+        case SPECIES_SUICUNE:
+        case SPECIES_RAIKOU:
+        case SPECIES_ENTEI:
+            return MUS_C_VS_LEGEND_BEAST;
         case SPECIES_RAYQUAZA:
             return MUS_VS_RAYQUAZA;
         case SPECIES_KYOGRE:
@@ -5160,7 +5221,8 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_PYRAMID_KING:
             return MUS_VS_FRONTIER_BRAIN;
         default:
-            if (GetCurrentRegion() == REGION_KANTO)
+            // POKE-CONFLUENCE: Authentic battle themes based on current region
+            if (GetCurrentRegion() == REGION_JOHTO || GetCurrentRegion() == REGION_KANTO)
                 return MUS_RG_VS_TRAINER;
             else
                 return MUS_VS_TRAINER;
@@ -5168,7 +5230,8 @@ u16 GetBattleBGM(void)
     }
     else
     {
-        if (GetCurrentRegion() == REGION_KANTO)
+        // POKE-CONFLUENCE: Authentic wild battle themes based on current region
+        if (GetCurrentRegion() == REGION_JOHTO || GetCurrentRegion() == REGION_KANTO)
             return MUS_RG_VS_WILD;
         else
             return MUS_VS_WILD;

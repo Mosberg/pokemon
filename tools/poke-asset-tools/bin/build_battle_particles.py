@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -17,11 +17,13 @@ Generates 4bpp sprite sheets, OAM affine transformation tables,
 and battle animation script commands for pokeemerald/pokefirered.
 """
 
-import math
 import argparse
+import math
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def to_gba_color(rgb):
     return tuple(int(round(c * 31 / 255) * 255 / 31) for c in rgb[:3])
@@ -112,22 +114,22 @@ def build_particle_system(image_path: Path, output_dir: Path, anim_name: str, ti
     # Generate C and Decomp Battle Animation Script
     c_out = [
         f"// Auto-generated Battle Anim Particle: {anim_name}",
-        f"#include \"global.h\"",
-        f"#include \"battle_anim.h\"",
+        '#include "global.h"',
+        '#include "battle_anim.h"',
         "",
-        f"const u32 gBattleAnimSprite_{anim_name}[] = INCBIN_U32(\"graphics/battle_anims/{anim_name}.4bpp.lz\");",
-        f"const u16 gBattleAnimPalette_{anim_name}[] = INCBIN_U16(\"graphics/battle_anims/{anim_name}.gbapal.lz\");",
+        f'const u32 gBattleAnimSprite_{anim_name}[] = INCBIN_U32("graphics/battle_anims/{anim_name}.4bpp.lz");',
+        f'const u16 gBattleAnimPalette_{anim_name}[] = INCBIN_U16("graphics/battle_anims/{anim_name}.gbapal.lz");',
         "",
         f"static const struct OamData sOamData_{anim_name} = {{",
-        f"    .affineMode = ST_OAM_AFFINE_DOUBLE,",
-        f"    .objMode = ST_OAM_OBJ_NORMAL,",
-        f"    .mosaic = FALSE,",
-        f"    .bpp = ST_OAM_4BPP,",
-        f"    .shape = SPRITE_SHAPE_SQUARE,",
+        "    .affineMode = ST_OAM_AFFINE_DOUBLE,",
+        "    .objMode = ST_OAM_OBJ_NORMAL,",
+        "    .mosaic = FALSE,",
+        "    .bpp = ST_OAM_4BPP,",
+        "    .shape = SPRITE_SHAPE_SQUARE,",
         f"    .size = SPRITE_SIZE({tile_size}x{tile_size}),",
-        f"}};",
+        "};",
         "",
-        f"static const struct AffineAnimCmd sAffineAnim_{anim_name}[] = {{"
+        f"static const struct AffineAnimCmd sAffineAnim_{anim_name}[] = {{",
     ]
 
     for pa, pb, pc, pd in affine_table:
@@ -143,25 +145,27 @@ def build_particle_system(image_path: Path, output_dir: Path, anim_name: str, ti
     for i in range(num_particles):
         c_out.append(f"    ANIMCMD_FRAME({i * (tile_size // 8) * (tile_size // 8)}, 2),")
 
-    c_out.extend([
-        "    ANIMCMD_JUMP(0),",
-        "};",
-        "",
-        f"const struct SpriteTemplate gBattleAnim_{anim_name}_Template = {{",
-        f"    .tileTag = ANIM_TAG_{anim_name.upper()},",
-        f"    .paletteTag = ANIM_TAG_{anim_name.upper()},",
-        f"    .oam = &sOamData_{anim_name},",
-        f"    .anims = (const union AnimCmd *const[]) {{ sAnim_{anim_name}_Frames }},",
-        f"    .images = NULL,",
-        f"    .affineAnims = (const union AffineAnimCmd *const[]) {{ sAffineAnim_{anim_name} }},",
-        f"    .callback = AnimMoveParticleTask,",
-        f"}};"
-    ])
+    c_out.extend(
+        [
+            "    ANIMCMD_JUMP(0),",
+            "};",
+            "",
+            f"const struct SpriteTemplate gBattleAnim_{anim_name}_Template = {{",
+            f"    .tileTag = ANIM_TAG_{anim_name.upper()},",
+            f"    .paletteTag = ANIM_TAG_{anim_name.upper()},",
+            f"    .oam = &sOamData_{anim_name},",
+            f"    .anims = (const union AnimCmd *const[]) {{ sAnim_{anim_name}_Frames }},",
+            "    .images = NULL,",
+            f"    .affineAnims = (const union AffineAnimCmd *const[]) {{ sAffineAnim_{anim_name} }},",
+            "    .callback = AnimMoveParticleTask,",
+            "};",
+        ]
+    )
 
     (output_dir / f"{anim_name}_anim.c").write_text("\n".join(c_out) + "\n")
 
     print("=" * 60)
-    print(f"[✓] Battle Animation Particle System Created:")
+    print("[✓] Battle Animation Particle System Created:")
     print(f"  - Particle Sheet: {output_dir / f'{anim_name}.png'} ({tile_size}x{tile_size * num_particles} px)")
     print(f"  - Palette:        {output_dir / f'{anim_name}.pal'}")
     print(f"  - C Animation:    {output_dir / f'{anim_name}_anim.c'}")

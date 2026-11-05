@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-import os
-import sys
 import subprocess
+import sys
 from pathlib import Path
 
 # Add tool directory to path and bootstrap dependencies
@@ -9,6 +8,7 @@ TOOL_BIN = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOL_BIN))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -26,26 +26,62 @@ Unifies all 38 production tools across:
 
 TOOL_MAP = {
     # Sprites & Shinies
-    "sprite": ("gba_asset_tool.py", "Enforces 15-bit color, 15-color quantization, and generates indexed PNG/JASC-PAL/4bpp header"),
-    "split-ow": ("split_overworld.py", "Automated overworld sprite sheet frame splitter and horizontal strip generator"),
+    "sprite": (
+        "gba_asset_tool.py",
+        "Enforces 15-bit color, 15-color quantization, and generates indexed PNG/JASC-PAL/4bpp header",
+    ),
+    "split-ow": (
+        "split_overworld.py",
+        "Automated overworld sprite sheet frame splitter and horizontal strip generator",
+    ),
     "harmonize": ("harmonize_palette.py", "Harmonizes multiple sprites into a shared 15-color palette"),
-    "pal-convert": ("pal_converter.py", "Lossless format converter between JASC-PAL, Adobe ACT, GBA binary .gbapal, and C .h"),
+    "pal-convert": (
+        "pal_converter.py",
+        "Lossless format converter between JASC-PAL, Adobe ACT, GBA binary .gbapal, and C .h",
+    ),
     "shiny": ("generate_shiny.py", "Generates hue-rotated shiny palette preserving luminance & shadow contrast"),
-    "species-import": ("species_batch_importer.py", "Batch-imports front/back/shiny sprites, footprints, and generates C structs"),
-    "check-conflicts": ("check_palette_conflicts.py", "Detects metatiles/tiles with >16 colors and outputs debug collision heatmap"),
+    "species-import": (
+        "species_batch_importer.py",
+        "Batch-imports front/back/shiny sprites, footprints, and generates C structs",
+    ),
+    "check-conflicts": (
+        "check_palette_conflicts.py",
+        "Detects metatiles/tiles with >16 colors and outputs debug collision heatmap",
+    ),
     "tile-opt": ("tile_optimizer.py", "Lossless 8x8 tile deduplicator with hardware X/Y/XY flip matching"),
-    "porymap-tileset": ("package_porymap_tileset.py", "Packages raw tilesets into tiles.png, metatiles.bin, and 16 JASC palettes"),
-    "anim-sprite": ("assemble_anim_sprite.py", "Compiles multi-frame front animation sheets with frame delays for pokeemerald"),
+    "porymap-tileset": (
+        "package_porymap_tileset.py",
+        "Packages raw tilesets into tiles.png, metatiles.bin, and 16 JASC palettes",
+    ),
+    "anim-sprite": (
+        "assemble_anim_sprite.py",
+        "Compiles multi-frame front animation sheets with frame delays for pokeemerald",
+    ),
     "battle-bg": ("slice_battle_bg.py", "Slices battle terrain into entry bars, player bases, and enemy platforms"),
-    "trainer-sprites": ("package_trainer_sprites.py", "Packages 64x64 trainer front and back sprites with palette quantization"),
+    "trainer-sprites": (
+        "package_trainer_sprites.py",
+        "Packages 64x64 trainer front and back sprites with palette quantization",
+    ),
     "battle-ui": ("package_battle_ui.py", "Compiles HP boxes, battle text windows, and action selector menus"),
     "ow-effects": ("build_ow_effects.py", "Generates water reflections and shadow sprites for overworld characters"),
-    "summary-icons": ("build_summary_and_icons.py", "Compiles 32x32 party menu icons and summary screen layout mockups"),
+    "summary-icons": (
+        "build_summary_and_icons.py",
+        "Compiles 32x32 party menu icons and summary screen layout mockups",
+    ),
     "font": ("pack_gba_font.py", "Compiles variable or fixed-width font sheets into 1bpp or 2bpp binary font tables"),
-    "region-map": ("package_region_map.py", "Packages 240x160 PokéNav/Town Map tiles, metatiles, and player cursor icons"),
-    "title-screen": ("package_title_screen.py", "Packages 240x160 title background with compressed tilemaps and logo sprites"),
+    "region-map": (
+        "package_region_map.py",
+        "Packages 240x160 PokéNav/Town Map tiles, metatiles, and player cursor icons",
+    ),
+    "title-screen": (
+        "package_title_screen.py",
+        "Packages 240x160 title background with compressed tilemaps and logo sprites",
+    ),
     "audio": ("gba_audio_pipeline.py", "DirectSound and MIDI soundfont resampler and .s voicegroup compiler"),
-    "particle": ("build_battle_particles.py", "Compiles battle animation particle sheets and 16-step affine rotation tables"),
+    "particle": (
+        "build_battle_particles.py",
+        "Compiles battle animation particle sheets and 16-step affine rotation tables",
+    ),
     "cry": ("convert_cry.py", "Resamples and normalizes Pokémon cries into signed 8-bit PCM GBA binary"),
     "save": ("gba_save_analyzer.py", "Analyzes GBA save files, saveblocks, checksums, and RTC day/time states"),
     "dns": ("dns_tint_engine.py", "Calculates 24-hour day/night/dusk/dawn and seasonal palette transformation LUTs"),
@@ -55,42 +91,82 @@ TOOL_MAP = {
     "weather": ("build_weather_fx.py", "Generates animated weather particles and transparency fog sheets for GBA"),
     "encounters": ("validate_encounters.py", "Validates wild encounter rates, mapsec groups, and species ID integrity"),
     "trainers": ("trainer_party_builder.py", "Compiles YAML/JSON trainer configurations into C structs and AI flags"),
-    "parallax": ("generate_parallax.py", "Slices multi-layer parallax battle backgrounds and generates HBlank C drivers"),
+    "parallax": (
+        "generate_parallax.py",
+        "Slices multi-layer parallax battle backgrounds and generates HBlank C drivers",
+    ),
     "rom-map": ("inspect_rom_map.py", "Inspects GNU linker .map files and reports section/symbol memory consumption"),
     "mart": ("mart_compiler.py", "Compiles JSON/YAML mart inventory tables into decomp item list arrays"),
     "charmap": ("charmap_converter.py", "Converts plain UTF-8 text into proprietary GBA Pokémon character encodings"),
     "patch": ("rom_patcher.py", "Production-grade BPS and IPS patch creator and applier with CRC32 verification"),
     "verify-map": ("verify_map_matrix.py", "Audits map layouts for warp softlocks, elevation bugs, and boundary traps"),
-    "hp-bar": ("render_dynamic_hp.py", "Generates dynamic 48px multi-palette battle HUD health bar fill sheets and C drivers"),
-    "map-pipeline": ("map_asset_pipeline.py", "Complete automated map, layout, metatile compilation, and collision auditor suite"),
+    "hp-bar": (
+        "render_dynamic_hp.py",
+        "Generates dynamic 48px multi-palette battle HUD health bar fill sheets and C drivers",
+    ),
+    "map-pipeline": (
+        "map_asset_pipeline.py",
+        "Complete automated map, layout, metatile compilation, and collision auditor suite",
+    ),
 }
 
 BANNER = r"""
 ================================================================
    ______ ____   ___     ____   ____   __  ___   __  _____   ________ __
   / ____// __ ) /   |   / __ \ / __ \ /  |/  /  / / / /   | / ____/ //_/
- / / __ / __  |/ /| |  / /_/ // / / // /|_/ /  / /_/ / /| |/ /   / ,<   
-/ /_/ // /_/ // ___ | / _, _// /_/ // /  / /  / __  / ___ / /___/ /| |  
-\____//_____//_/  |_|/_/ |_| \____//_/  /_/  /_/ /_/_/  |_\____/_/ |_|  
+ / / __ / __  |/ /| |  / /_/ // / / // /|_/ /  / /_/ / /| |/ /   / ,<
+/ /_/ // /_/ // ___ | / _, _// /_/ // /  / /  / __  / ___ / /___/ /| |
+\____//_____//_/  |_|/_/ |_| \____//_/  /_/  /_/ /_/_/  |_\____/_/ |_|
                GBA ASSET PIPELINE & COMPILATION SUITE
 ================================================================
 """
+
 
 def print_help():
     print(BANNER)
     print("Usage: gba_romhack_toolkit.py <command> [args...]")
     print("       python -m gba_romhack_toolkit <command> [args...]\n")
     print("Available Commands:")
-    
+
     categories = [
-        ("Sprites & Shinies", ["sprite", "split-ow", "harmonize", "pal-convert", "shiny", "species-import", "check-conflicts", "anim-sprite", "trainer-sprites", "pokedex"]),
+        (
+            "Sprites & Shinies",
+            [
+                "sprite",
+                "split-ow",
+                "harmonize",
+                "pal-convert",
+                "shiny",
+                "species-import",
+                "check-conflicts",
+                "anim-sprite",
+                "trainer-sprites",
+                "pokedex",
+            ],
+        ),
         ("Tilesets & Maps", ["tile-opt", "porymap-tileset", "map-pipeline", "verify-map", "parallax"]),
-        ("Battle & UI", ["battle-bg", "battle-ui", "particle", "summary-icons", "font", "region-map", "title-screen", "ow-effects", "hp-bar"]),
+        (
+            "Battle & UI",
+            [
+                "battle-bg",
+                "battle-ui",
+                "particle",
+                "summary-icons",
+                "font",
+                "region-map",
+                "title-screen",
+                "ow-effects",
+                "hp-bar",
+            ],
+        ),
         ("Audio & Sound", ["audio", "cry"]),
         ("Shaders & Environment", ["dns", "weather"]),
-        ("Engine & Automation", ["save", "pory-compile", "tm-matrix", "encounters", "trainers", "rom-map", "mart", "charmap", "patch"])
+        (
+            "Engine & Automation",
+            ["save", "pory-compile", "tm-matrix", "encounters", "trainers", "rom-map", "mart", "charmap", "patch"],
+        ),
     ]
-    
+
     for cat_name, cmds in categories:
         print(f"\n  [{cat_name}]")
         for cmd in cmds:

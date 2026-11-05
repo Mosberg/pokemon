@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,14 +6,17 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
 
 import argparse
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def to_gba_color(rgb):
     return tuple(int(round(c * 31 / 255) * 255 / 31) for c in rgb[:3])
@@ -131,9 +133,9 @@ def package_battle_ui(ui_mockup_path: Path, output_dir: Path):
     print("=" * 60)
     print(f"[✓] Battle UI Packaged Successfully into: {output_dir}")
     print(f"  - Message Box:  240x48 (Tiles: {len(tile_list)} / 180 total)")
-    print(f"  - Player Box:   104x32 -> player_hp_box.png")
-    print(f"  - Opponent Box: 104x32 -> opponent_hp_box.png")
-    print(f"  - HP Fill:      64x8 (8 steps) -> hp_bar_fill.png")
+    print("  - Player Box:   104x32 -> player_hp_box.png")
+    print("  - Opponent Box: 104x32 -> opponent_hp_box.png")
+    print("  - HP Fill:      64x8 (8 steps) -> hp_bar_fill.png")
     print("=" * 60)
 
 if __name__ == "__main__":

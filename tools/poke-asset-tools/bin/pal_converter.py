@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,13 +6,15 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
 
-import sys
 import struct
+import sys
 from pathlib import Path
+
 
 def rgb888_to_bgr555(r: int, g: int, b: int) -> int:
     """Converts 8-bit RGB channels to 15-bit GBA BGR555 integer."""

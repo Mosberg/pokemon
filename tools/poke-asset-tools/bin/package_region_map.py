@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import os
 import sys
 from pathlib import Path
 
@@ -7,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import asset_common
+
     asset_common.ensure_dependencies()
 except ImportError:
     pass
@@ -14,8 +14,10 @@ except ImportError:
 import argparse
 import json
 from pathlib import Path
-from PIL import Image
+
 import numpy as np
+from PIL import Image
+
 
 def to_gba_color(rgb):
     return tuple(int(round(c * 31 / 255) * 255 / 31) for c in rgb[:3])
@@ -29,7 +31,7 @@ def write_jasc_pal(path: Path, colors: list):
 def package_region_map(map_image: Path, cursor_image: Path, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
     map_raw = Image.open(map_image).convert("RGBA").resize((240, 160), Image.Resampling.LANCZOS)
-    
+
     # 1. Quantize Background to 16 Colors (Slot 0 = #FF00FF)
     arr = np.array(map_raw)
     vis = arr[arr[:, :, 3] >= 128][:, :3]
@@ -37,7 +39,7 @@ def package_region_map(map_image: Path, cursor_image: Path, output_dir: Path):
     q = temp.quantize(colors=15, method=Image.Quantize.MEDIANCUT)
     raw_pal = q.getpalette()[:45]
 
-    master_pal = [(255, 0, 255)] + [to_gba_color(raw_pal[i:i+3]) for i in range(0, 45, 3)]
+    master_pal = [(255, 0, 255)] + [to_gba_color(raw_pal[i : i + 3]) for i in range(0, 45, 3)]
     write_jasc_pal(output_dir / "region_map.pal", master_pal)
 
     pal_buf = []
@@ -56,7 +58,7 @@ def package_region_map(map_image: Path, cursor_image: Path, output_dir: Path):
 
     for ty in range(20):
         for tx in range(30):
-            tile = map_arr[ty*8:(ty+1)*8, tx*8:(tx+1)*8].tobytes()
+            tile = map_arr[ty * 8 : (ty + 1) * 8, tx * 8 : (tx + 1) * 8].tobytes()
             if tile in tile_list:
                 tilemap.append(tile_list.index(tile))
             else:
@@ -71,7 +73,7 @@ def package_region_map(map_image: Path, cursor_image: Path, output_dir: Path):
         t_arr = np.frombuffer(t_bytes, dtype=np.uint8).reshape((8, 8))
         cx = (i % cols) * 8
         cy = (i // cols) * 8
-        tile_sheet[cy:cy+8, cx:cx+8] = t_arr
+        tile_sheet[cy : cy + 8, cx : cx + 8] = t_arr
 
     dedup_img = Image.fromarray(tile_sheet, mode="P")
     dedup_img.putpalette(pal_buf)
@@ -88,7 +90,7 @@ def package_region_map(map_image: Path, cursor_image: Path, output_dir: Path):
     c_arr = np.array(cursor_raw)
     c_alpha = c_arr[:, :, 3]
     c_rgb = c_arr[:, :, :3]
-    
+
     pal_arr = np.array(master_pal[1:])
     c_idx = np.zeros((16, 16), dtype=np.uint8)
 
@@ -119,9 +121,9 @@ def package_region_map(map_image: Path, cursor_image: Path, output_dir: Path):
     print("=" * 60)
     print(f"[✓] Region Map Packaged: {output_dir}")
     print(f"  - Tiles Deduped: {len(tile_list)} / 600 total (region_map_tiles.png)")
-    print(f"  - Tilemap:       30x20 binary (region_map_tilemap.bin)")
-    print(f"  - Cursor:        16x16 sprite (map_cursor.png)")
-    print(f"  - Config:        region_map_coords.json")
+    print("  - Tilemap:       30x20 binary (region_map_tilemap.bin)")
+    print("  - Cursor:        16x16 sprite (map_cursor.png)")
+    print("  - Config:        region_map_coords.json")
     print("=" * 60)
 
 if __name__ == "__main__":
