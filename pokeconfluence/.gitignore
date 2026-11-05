@@ -23,7 +23,6 @@
 sound/**/*.bin
 sound/songs/midi/*.s
 tools/agbcc
-tools/compresSmol/
 *.map
 *.bat
 *.dump
@@ -67,3 +66,9 @@ tools/aif2pcm/aif2pcm
 *.smolTM
 __pycache__
 .map_version
+
+# Pokemon Confluence
+.venv/
+__pycache__/
+*.pyc
+mgba-agent/states/*.ss1

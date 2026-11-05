@@ -1,4 +1,4 @@
-"""Battle state extraction for pokemultiregion (pokeemerald-expansion layout)."""
+"""Battle state extraction for pokeconfluence (pokeemerald-expansion layout)."""
 import struct
 from typing import Any, Callable, Dict
 

@@ -1,6 +1,6 @@
 """Warp into every map of a project and check the game survives it.
 
-    python map_smoke_test.py ../pokemultiregion [--filter _Frlg] [--out report.json] [--state states/stage0_start.ss1]
+    python map_smoke_test.py .. [--filter _Frlg] [--out report.json] [--state states/stage0_start.ss1]
 
 Needs mGBA running the ROM with lua/mgba_agent_bridge.lua loaded. For each map it warps to the first warp tile
 (or the map centre), runs 90 frames and records: whether the player really ended up on that map, whether the

@@ -12,6 +12,7 @@
 #include "decompress.h"
 #include "decoration.h"
 #include "decoration_inventory.h"
+#include "confluence.h"
 #include "event_data.h"
 #include "field_door.h"
 #include "field_effect.h"
@@ -2314,6 +2315,17 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
             gSpecialVar_Result = i;
             gSpecialVar_0x8004 = species;
             break;
+        }
+    }
+
+    if (gSpecialVar_Result == PARTY_SIZE)
+    {
+        u32 kitMon = Confluence_GetFieldKitMon(fieldMove); // POKE-CONFLUENCE: Field Kit
+
+        if (kitMon != PARTY_SIZE)
+        {
+            gSpecialVar_Result = kitMon;
+            gSpecialVar_0x8004 = GetMonData(&gParties[B_TRAINER_PLAYER][kitMon], MON_DATA_SPECIES);
         }
     }
 

@@ -16459,6 +16459,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_QuestionMark,
     },
     // POKE-CRYSTAL-END
+
+    // POKE-CONFLUENCE
+    [ITEM_FIELD_KIT] =
+    {
+        .name = ITEM_NAME("Field Kit"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Lets your team use\n"
+            "Cut, Surf, Strength,\n"
+            "Rock Smash and more\n"
+            "without HM moves."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_DevonScope,
+        .iconPalette = gItemIconPalette_DevonScope,
+    },
 };
 
 #undef ITEM_NAME

@@ -138,3 +138,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 - [Data Files](https://www.pokecommunity.com/showthread.php?t=417909)
 - [Complete FireRed Upgrade](https://github.com/Skeli789/Complete-Fire-Red-Upgrade)
 - [pokeemerald](https://github.com/pret/pokeemerald/)
+
+# Pokémon Confluence
+
+Pokémon Confluence is based on `pokemultiregion`, a pokeemerald-expansion hack that merges the pret pokeemerald, pokefirered, pokecrystal and pokeyellow decompilations. Please credit RHH (pokeemerald-expansion) and the pret contributors when redistributing it.

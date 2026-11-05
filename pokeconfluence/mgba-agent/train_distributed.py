@@ -1,6 +1,6 @@
 """Parallel PPO training: one headless mGBA core per worker process (SubprocVecEnv).
 
-    python train_distributed.py --rom ../pokemultiregion/pokemultiregion.gba --steps 10000000 [--impala] [--curriculum]
+    python train_distributed.py --rom ../pokeconfluence.gba --steps 10000000 [--impala] [--curriculum]
 
 --impala   uses the residual CNN extractor with a 4-frame stack on the screen only
 --curriculum  moves workers through the stages in curriculum_engine.py (needs savestates in states/)
@@ -56,7 +56,7 @@ def build_vec_env(rom: str, num_envs: int, frame_skip: int = 6, stack: int = 1, 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--rom", default="../pokemultiregion/pokemultiregion.gba")
+    ap.add_argument("--rom", default="../pokeconfluence.gba")
     ap.add_argument("--envs", type=int, default=max(1, mp.cpu_count() - 1))
     ap.add_argument("--steps", type=int, default=10_000_000)
     ap.add_argument("--impala", action="store_true")

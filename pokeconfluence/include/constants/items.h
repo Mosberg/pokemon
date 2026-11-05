@@ -1081,6 +1081,7 @@ enum __attribute__((packed)) Item
     ITEM_FLOWER_MAIL,
     ITEM_SURF_MAIL,
     // POKE-CRYSTAL-END
+    ITEM_FIELD_KIT, // POKE-CONFLUENCE: lets any party Pokemon use the HM field moves
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,
 };

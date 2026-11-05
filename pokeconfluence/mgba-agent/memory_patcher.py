@@ -1,4 +1,4 @@
-"""Cheat-style memory patching for pokemultiregion through the Lua bridge.
+"""Cheat-style memory patching for pokeconfluence through the Lua bridge.
 
 Everything is derived from the real build (see addresses.py). Unlike vanilla FireRed the SaveBlocks are
 reached through pointers, money uses SaveBlock2.encryptionKey, and the bag is five pockets inside

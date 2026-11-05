@@ -5,9 +5,9 @@
   "C_Cpp.default.cppStandard": "c++17",
   "C_Cpp.default.intelliSenseMode": "gcc-arm",
   "C_Cpp.default.includePath": [
-    "${workspaceFolder}/include",
-    "${workspaceFolder}/src",
-    "${workspaceFolder}/tools/**"
+    "${workspaceFolder}/pokeconfluence/include",
+    "${workspaceFolder}/pokeconfluence/src",
+    "${workspaceFolder}/pokeconfluence/tools/**"
   ],
   "C_Cpp.default.defines": [
     "MODERN=1",
@@ -43,9 +43,10 @@
   "poryscript.emitExpansionStringEncoding": true,
 
   // Python Toolchain Environment
+  "python.defaultInterpreterPath": "${workspaceFolder}/pokeconfluence/.venv/bin/python",
   "python.analysis.extraPaths": [
-    "${workspaceFolder}/poke-migrator/scripts",
-    "${workspaceFolder}/poke-migrator/bin"
+    "${workspaceFolder}/tools/poke-migrator-pro/bin",
+    "${workspaceFolder}/pokeconfluence/mgba-agent"
   ],
 
   // Exclude Build Blobs and Temp Caches from Search
@@ -53,8 +54,8 @@
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/build/**": true,
-    "**/pokeemerald.gba": true,
-    "**/pokeemerald.elf": true
+    "**/*.gba": true,
+    "**/*.elf": true
   },
   "search.exclude": {
     "**/build/**": true,

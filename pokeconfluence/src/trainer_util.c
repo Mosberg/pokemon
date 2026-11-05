@@ -5,6 +5,7 @@
 #include "random.h"
 #include "string_util.h"
 #include "trainer_util.h"
+#include "confluence.h"
 #include "text.h"
 
 #include "constants/battle_ai.h"
@@ -104,6 +105,7 @@ void MakeTrainerGenerator(struct TrainerGenerator *trainerGen, const struct Trai
     trainerGen->trainerClass = trainer->trainerClass;
     trainerGen->otID = OTID_STRUCT_RANDOM_NO_SHINY;
     trainerGen->localRngState = GeneratePartySeed(trainer);
+    trainerGen->levelBoost = Confluence_GetTrainerLevelBoost(trainer);
 }
 
 void MakePartnerGenerator(struct TrainerGenerator *trainerGen, const struct Trainer *partner)
@@ -118,6 +120,7 @@ void MakePartnerGenerator(struct TrainerGenerator *trainerGen, const struct Trai
     otID = Crc32B((const u8 *)partner, sizeof(struct Trainer));
     trainerGen->otID = OTID_STRUCT_PRESET(otID);
     trainerGen->localRngState = LocalRandomSeed(otID);
+    trainerGen->levelBoost = 0;
 }
 
 void GenerateMonFromTrainerMon(struct Pokemon *mon, const struct TrainerMon *trainerMon, struct TrainerGenerator *trainer)
@@ -135,7 +138,7 @@ void GenerateMonFromTrainerMon(struct Pokemon *mon, const struct TrainerMon *tra
         errorf("Unkwown trainer mon gender value %d", trainerMon->gender);
     personality |= genderValue;
     ModifyPersonalityForNature(&personality, trainerMon->nature);
-    CreateMon(mon, trainerMon->species, trainerMon->lvl, personality, trainer->otID);
+    CreateMon(mon, trainerMon->species, min(trainerMon->lvl + trainer->levelBoost, MAX_LEVEL), personality, trainer->otID);
     if (trainerMon->nickname != NULL)
         SetMonData(mon, MON_DATA_NICKNAME, trainerMon->nickname);
     if (trainerMon->ev) //ev in struct TrainerMon are stored in Showdown order not vanilla Emerald order

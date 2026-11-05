@@ -3,70 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pokémon Triad Version | The Triad Convergence</title>
-    <link rel="stylesheet" href="src/css/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Rajdhani:wght@500;600;700&family=Rubik:wght@400;500;600&display=swap"
-      rel="stylesheet"
+    <title>Pokémon Confluence Version | Three Continents. One Fractured Balance.</title>
+    <meta
+      name="description"
+      content="An expansive Generation III ROM hack combining Kanto, Johto, and Hoenn into a single 32MB seamless world powered by pokeemerald-expansion."
     />
+    <meta name="theme-color" content="#0b0f19" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Pokémon Confluence Version" />
+    <meta
+      property="og:description"
+      content="Three continents, 24 gym badges, and the Great Meridian Transit. Built on pokeemerald-expansion."
+    />
+
+    <link rel="stylesheet" href="src/css/styles.css" />
   </head>
   <body>
-    <div class="triad-bg-glow"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="triad-bg-glow" aria-hidden="true"></div>
 
     <header class="hero">
       <div class="container hero-content">
-        <div class="badge-pill">Generation III Expansion Project</div>
+        <div class="badge-pill">GBA Multi-Region Decompilation</div>
         <h1 class="game-title">
           <span class="pkmn">Pokémon</span>
-          <span class="version">Triad Version</span>
+          <span class="version">Confluence Version</span>
         </h1>
-        <p class="tagline">Embark on the Ultimate Regional Journey.</p>
+        <p class="tagline">Three continents. One fractured balance. An interconnected 24-badge journey.</p>
         <div class="hero-actions">
-          <a href="#regions" class="btn btn-primary">Explore The Triad</a>
-          <a href="#features" class="btn btn-secondary">Key Features</a>
+          <a href="#regions" class="btn btn-secondary">Explore Regions</a>
+          <a href="#features" class="btn btn-secondary">Core Mechanics</a>
+          <button type="button" class="btn btn-primary" id="open-terminal-btn">Deployment Intel</button>
         </div>
       </div>
     </header>
 
-    <main>
-      <section class="convergence-banner">
+    <main id="main-content">
+      <!-- Crisis Anomaly Banner -->
+      <section class="convergence-banner" aria-label="Crisis Introduction">
         <div class="container">
           <div class="convergence-card">
-            <div class="lore-tag">Critical Anomaly</div>
-            <h2>The Triad Convergence</h2>
+            <div class="lore-tag">Tectonic Anomaly Active</div>
+            <h2>The Convergence Crisis</h2>
             <p>
-              The legendary birds, beasts, and titans have begun reacting to a mysterious
-              phenomenon. The balance of power among the realms is shifting, drawing trainers into
-              an unprecedented crisis.
+              The completion of the deep-sea <strong>Great Meridian Transit</strong> has disturbed ancient subterranean fault
+              lines. From Kanto's turbulent roosts to Johto's sacred spires and Hoenn's sealed chambers, primeval leylines
+              threaten total regional collapse as rival syndicates vie for dominion.
             </p>
           </div>
         </div>
       </section>
 
+      <!-- Regions Section -->
       <section id="regions" class="section regions-section">
         <div class="container">
           <div class="section-header">
-            <span class="sub-heading">Three Regions • One Connected World</span>
-            <h2>A Unified Frontier</h2>
+            <span class="sub-heading">Non-Linear Interconnected Continents</span>
+            <h2>Three Lands. One Horizon.</h2>
             <p>
-              For the first time in recorded history, a new high-speed transit corridor directly
-              interlinks the mainland and the archipelago. Travel freely across borders, but beware:
-              ancient forces are awakening as balance dissolves.
+              Select your origin province, earn your initial two gym honors, and board the high-speed Meridian line to
+              challenge remaining gyms in any order.
             </p>
           </div>
 
           <div class="region-grid">
             <article class="region-card kanto">
-              <div class="card-glow"></div>
+              <div class="card-glow" aria-hidden="true"></div>
               <div class="region-badge">Kanto</div>
-              <h3>The Ancient Cradle</h3>
+              <h3>The Ancient Origin</h3>
               <p>
-                Home of Indigo Plateau and the legendary winged trio. The origin point facing sudden
-                seismic disturbances.
+                From Indigo Plateau to the heights of the Power Plant, skies churn with untamed storms as the Legendary
+                Birds abandon their ancestral roosts.
               </p>
-              <ul class="legendary-tags">
+              <ul class="legendary-tags" aria-label="Kanto Legendary Entities">
                 <li>Articuno</li>
                 <li>Zapdos</li>
                 <li>Moltres</li>
@@ -74,14 +85,14 @@
             </article>
 
             <article class="region-card johto">
-              <div class="card-glow"></div>
+              <div class="card-glow" aria-hidden="true"></div>
               <div class="region-badge">Johto</div>
-              <h3>The Sacred Heartland</h3>
+              <h3>The Sacred Realm</h3>
               <p>
-                Steeped in myth, ancient bell towers, and roaming mythical beasts whose instincts
-                are now running wild.
+                Historic bell towers resonate with tectonic tremor echoes. The roaming Legendary Beasts run wild across the
+                provinces in panic.
               </p>
-              <ul class="legendary-tags">
+              <ul class="legendary-tags" aria-label="Johto Legendary Entities">
                 <li>Raikou</li>
                 <li>Entei</li>
                 <li>Suicune</li>
@@ -89,14 +100,14 @@
             </article>
 
             <article class="region-card hoenn">
-              <div class="card-glow"></div>
+              <div class="card-glow" aria-hidden="true"></div>
               <div class="region-badge">Hoenn</div>
-              <h3>The Wild Elements</h3>
+              <h3>The Primeval Elements</h3>
               <p>
-                Land, sea, and subterranean chambers sealed by ancient braille inscriptions. The
-                primeval giants are stirring.
+                Land, sea, and cryptic braille vaults stir violently. The seal binding the Ancient Titans begins to fracture
+                under tectonic stress.
               </p>
-              <ul class="legendary-tags">
+              <ul class="legendary-tags" aria-label="Hoenn Legendary Entities">
                 <li>Regirock</li>
                 <li>Regice</li>
                 <li>Registeel</li>
@@ -106,83 +117,121 @@
         </div>
       </section>
 
+      <!-- Engine & Gameplay Innovations -->
       <section id="features" class="section features-section">
         <div class="container">
           <div class="section-header">
-            <span class="sub-heading">Engine & Gameplay Innovations</span>
-            <h2>Key Features</h2>
+            <span class="sub-heading">Engine & System Architecture</span>
+            <h2>Engineering Highlights</h2>
+            <p>Built directly atop the decompilation ecosystem with custom expansion memory structures.</p>
           </div>
 
           <div class="features-grid">
             <div class="feature-item">
               <div class="feature-num">01</div>
-              <h3>Tri-Region Mastery</h3>
+              <h3>Unified 24-Badge Circuit</h3>
               <p>
-                Explore Kanto, Johto, and Hoenn seamlessly within a single unified campaign engine.
+                Tackle 24 gym leaders across three territories with adaptive soft caps scaling to total badges collected.
               </p>
             </div>
             <div class="feature-item">
               <div class="feature-num">02</div>
-              <h3>Titans & Legends</h3>
+              <h3>The Meridian Transit</h3>
               <p>
-                Encounter all primary Generation I–III mythical entities tied directly to emergent
-                regional crises.
+                Seamless inter-continental rail linking mainland transit stations directly via deep-sea tectonic lines.
               </p>
             </div>
             <div class="feature-item">
               <div class="feature-num">03</div>
-              <h3>The Convergence Lore</h3>
+              <h3>Modern Battle Mechanics</h3>
               <p>
-                Uncover the cataclysmic science and mythos behind why the boundaries between lands
-                are falling.
+                Complete Gen 9 combat engine: Physical/Special split, Fairy type, revised movepools, and modern abilities.
               </p>
             </div>
             <div class="feature-item">
               <div class="feature-num">04</div>
-              <h3>Integrated Transit</h3>
+              <h3>Tri-Syndicate Collision</h3>
               <p>
-                Navigate a modern transit network enabling tactical travel between all three regions
-                without barriers.
+                Rocket, Magma, and Aqua splinter cells wage war across ports, transit tunnels, and research centers.
               </p>
             </div>
             <div class="feature-item">
               <div class="feature-num">05</div>
-              <h3>High-Tier Gauntlets</h3>
+              <h3>The Apex Summit</h3>
               <p>
-                Challenge elite gym networks, champion cadres, and roving master tacticians across
-                all territories.
+                Prove tactical mastery atop Mt. Silver against all three Regional Wardens and the ultimate Summit Champion.
+              </p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-num">06</div>
+              <h3>Engine Optimization</h3>
+              <p>
+                32MB ROM architecture with custom banked save blocks, dynamic palettes, and follower mechanics.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Callout / Action Section -->
       <section class="callout-section">
         <div class="container">
           <div class="callout-box">
-            <h2>Restore Harmony or Fall to Chaos</h2>
+            <h2>Halt the Leyline Collapse</h2>
             <p>
-              The fate of Kanto, Johto, and Hoenn rests in your hands. Will you confront the
-              anomalies before total collapse?
+              Will you calm the Resonance Encounters, unmask the syndicate conspiracy, and conquer the Apex Summit?
             </p>
-            <a href="#" class="btn btn-primary" id="cta-button">Initiate Journey</a>
+            <button type="button" class="btn btn-primary" id="inspect-limits-btn">Inspect Hardware Specifications</button>
           </div>
         </div>
       </section>
     </main>
 
+    <!-- Modal Dialog for Deployment & Spec Intel -->
+    <dialog id="info-modal" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-title">System Deployment & ROM Architecture</h3>
+          <button type="button" class="modal-close" id="modal-close-btn" aria-label="Close dialog">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-lead">
+            Pokémon Confluence unites Kanto, Johto, and Hoenn within a 32MB GBA address space.
+          </p>
+          <div class="spec-matrix">
+            <div class="spec-row">
+              <span class="spec-label">Target Architecture</span>
+              <span class="spec-val">GBA 32 MB ROM (~29.3 MB Allocated)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Engine Base</span>
+              <span class="spec-val">pokeemerald-expansion + Crystal/FRLG Maps</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Build Pipeline</span>
+              <span class="spec-val">arm-none-eabi-gcc (WSL / Native Linux)</span>
+            </div>
+          </div>
+          <div class="terminal-box">
+            <span class="terminal-cmd">scripts/build.sh # compiles pokeconfluence.gba</span>
+            <button type="button" class="copy-btn" id="copy-cmd-btn" aria-label="Copy build command">Copy</button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
     <footer class="footer">
       <div class="container">
         <p>
-          Pokémon Triad Version is an independent fan recreation built for testing and research.
+          Pokémon Confluence Version is an open-source technical decompilation and research project.
         </p>
         <p class="copyright">
-          Pokémon and its characters are trademarks of Nintendo, Creatures Inc., and Game Freak.
+          Pokémon and related entities are trademarks of Nintendo, Game Freak, and Creatures Inc.
         </p>
-        <p class="copyright">© 2026 Pokémon Triad Version. All rights reserved. Author: Mosberg</p>
+        <p class="copyright">© 2026 Confluence Project. Built on pokeemerald-expansion.</p>
       </div>
     </footer>
 
-    <script src="src/js/scripts.js"></script>
+    <script src="src/js/scripts.js" defer></script>
   </body>
 </html>

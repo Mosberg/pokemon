@@ -30,3 +30,13 @@ As an ambitious trainer embarking on an unprecedented inter-regional League chal
 
 - **Interconnected Lore & Villainous Alliance:**
   Witness the power struggle as the remnants of Team Rocket, Team Magma, and Team Aqua collide in an escalating turf war over who controls the cross-continental hub.
+
+---
+
+## Repository layout
+
+- [`pokeconfluence/`](pokeconfluence/) – the game: source tree, build (`make -j$(nproc) confluence`), tests and helper scripts. Start with [`pokeconfluence/docs/CONFLUENCE.md`](pokeconfluence/docs/CONFLUENCE.md).
+- `tools/` – the toolchain the base hack was made with (poke-migrator-pro, pokeemerald-ai-bridge, porymap, porytiles, poryscript, porypal, agbcc).
+- `games/` – reference projects (pokemultiregion, pokeemerald-expansion, pokeemerald, pokefirered, pokecrystal, pokeyellow); not tracked.
+
+Quick start: `cd pokeconfluence && scripts/setup.sh --extras && scripts/build.sh && scripts/test.sh`.

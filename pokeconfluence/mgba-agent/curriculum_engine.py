@@ -1,4 +1,4 @@
-"""Curriculum learning keyed to pokemultiregion event flags.
+"""Curriculum learning keyed to pokeconfluence event flags.
 
 The reference document used FireRed v1.0 flag ids and a fixed flag base address. In this ROM the flag
 array lives inside SaveBlock1 (reached through gSaveBlock1Ptr, see addresses.py) and the Kanto badges are

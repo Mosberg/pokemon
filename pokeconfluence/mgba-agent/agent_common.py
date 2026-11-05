@@ -10,11 +10,11 @@ from mgba_client import Bridge
 from pkmn_decrypt import decrypt_pokemon_data
 
 SCREEN_PATH = os.path.join(tempfile.gettempdir(), "mgba_agent_view.png")
-BUTTONS = ["A", "B", "START", "SELECT", "UP", "DOWN", "LEFT", "RIGHT", "NONE"]
+BUTTONS = ["A", "B", "START", "SELECT", "UP", "DOWN", "LEFT", "RIGHT", "L", "R", "NONE"]
 
 SYSTEM_PROMPT = (
     "You are an agent playing a Pokemon game on a Game Boy Advance emulator. The ROM is a single cartridge "
-    "that contains both the Hoenn and Kanto regions. You see a screenshot plus RAM telemetry. Choose exactly one "
+    "that contains Kanto, Johto, and Hoenn regions. You see a screenshot plus RAM telemetry. Choose exactly one "
     "button. Advance text with A, leave menus with B, walk with the directions, and in battle pick moves with "
     "A and the directions. Reply only with JSON: "
     '{"reasoning": str, "button": one of ' + json.dumps(BUTTONS) + ', "hold_frames": int}'

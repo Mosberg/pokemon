@@ -1,4 +1,4 @@
-"""Decode a 100-byte struct Pokemon as laid out by pokeemerald-expansion (the pokemultiregion ROM).
+"""Decode a 100-byte struct Pokemon as laid out by pokeemerald-expansion (the pokeconfluence ROM).
 
 Differences from the vanilla layout the reference document assumed: species, moves, held item and
 experience are bit-packed (11/11/10/21 bits), and the plaintext party stats start at byte 80 with a

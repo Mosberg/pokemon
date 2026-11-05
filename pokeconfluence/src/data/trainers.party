@@ -17113,3 +17113,211 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Beam
 - Flash Cannon
 - Rapid Spin
+
+=== TRAINER_SYNDICATE_KANTO ===
+Name: VESPER
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Suspicious
+Items: Hyper Potion / Hyper Potion
+Double Battle: No
+AI: Basic Trainer
+
+Houndoom @ Leftovers
+Level: 46
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flamethrower
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
+
+Weezing @ Black Sludge
+Level: 46
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Bomb
+- Will O Wisp
+- Fire Blast
+- Pain Split
+
+Muk @ Sitrus Berry
+Level: 47
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Poison Jab
+- Shadow Sneak
+- Drain Punch
+- Curse
+
+Crobat @ Life Orb
+Level: 47
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Cross Poison
+- Brave Bird
+- Taunt
+- Roost
+
+Arbok @ Lum Berry
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Gunk Shot
+- Earthquake
+- Glare
+- Coil
+
+=== TRAINER_SYNDICATE_JOHTO ===
+Name: CINDER
+Class: Magma Admin
+Pic: Magma Admin
+Gender: Male
+Music: Magma
+Items: Hyper Potion / Hyper Potion
+Double Battle: No
+AI: Basic Trainer
+
+Camerupt @ Leftovers
+Level: 47
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Eruption
+- Earth Power
+- Fire Blast
+- Stone Edge
+
+Torkoal @ Heat Rock
+Level: 47
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flamethrower
+- Earth Power
+- Stealth Rock
+- Rapid Spin
+
+Magcargo @ Sitrus Berry
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Lava Plume
+- Earth Power
+- Recover
+- Stealth Rock
+
+Mightyena @ Life Orb
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Crunch
+- Sucker Punch
+- Fire Fang
+- Howl
+
+Houndoom @ Choice Specs
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flamethrower
+- Dark Pulse
+- Sludge Bomb
+- Solar Beam
+
+=== TRAINER_SYNDICATE_HOENN ===
+Name: TIDE
+Class: Aqua Admin
+Pic: Aqua Admin M
+Gender: Male
+Music: Aqua
+Items: Hyper Potion / Hyper Potion
+Double Battle: No
+AI: Basic Trainer
+
+Sharpedo @ Life Orb
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Waterfall
+- Crunch
+- Protect
+- Ice Fang
+
+Crawdaunt @ Choice Band
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Crabhammer
+- Knock Off
+- Aqua Jet
+- Dragon Dance
+
+Walrein @ Leftovers
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Ice Beam
+- Earthquake
+- Protect
+
+Tentacruel @ Black Sludge
+Level: 49
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Bomb
+- Surf
+- Toxic Spikes
+- Rapid Spin
+
+Whiscash @ Sitrus Berry
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Waterfall
+- Dragon Dance
+- Rest
+
+=== TRAINER_SYNDICATE_CHAIRMAN ===
+Name: CHAIRMAN
+Class: Magma Leader
+Pic: Magma Leader Maxie
+Gender: Male
+Music: Intense
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: No
+AI: Basic Trainer
+
+Tyranitar @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Crunch
+- Stone Edge
+- Earthquake
+- Fire Blast
+
+Gyarados @ Lum Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Waterfall
+- Crunch
+- Dragon Dance
+- Earthquake
+
+Honchkrow @ Life Orb
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Brave Bird
+- Sucker Punch
+- Heat Wave
+- Night Slash
+
+Houndoom @ Choice Specs
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flamethrower
+- Dark Pulse
+- Sludge Bomb
+- Solar Beam
+
+Aggron @ Leftovers
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Iron Head
+- Earthquake
+- Stealth Rock
+- Rock Slide
+
+Salamence @ Sitrus Berry
+Level: 63
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Dance
+- Outrage
+- Earthquake
+- Fire Fang

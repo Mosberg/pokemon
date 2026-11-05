@@ -11,4 +11,16 @@ u32 Confluence_CountResonanceCalmed(void);
 // Level cap for a number of badges; the Apex Summit champion lifts it completely.
 u32 Confluence_GetLevelCapForBadges(u32 badges);
 
+#include "constants/field_move.h"
+#include "constants/weather.h"
+
+// Weather that replaces clear weather while a region's Resonance is uncalmed (see the Convergence Crisis).
+enum OverworldWeather Confluence_GetAnomalyWeather(enum OverworldWeather weather);
+// The Field Kit lets the first non-egg party Pokemon use the HM field moves; PARTY_SIZE when it does not apply.
+u32 Confluence_GetFieldKitMon(enum FieldMove fieldMove);
+
+struct Trainer;
+// Levels to add to a gym leader's party so that, whatever order the circuit is played in, the leader matches the player's level cap.
+u32 Confluence_GetTrainerLevelBoost(const struct Trainer *trainer);
+
 #endif // GUARD_CONFLUENCE_H

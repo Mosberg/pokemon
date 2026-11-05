@@ -5,15 +5,15 @@
       "name": "Debug ROM with mGBA (GDB Stub)",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/pokeemerald.elf",
-      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/pokeconfluence/pokeconfluence.elf",
+      "cwd": "${workspaceFolder}/pokeconfluence",
       "MIMode": "gdb",
       "miDebuggerPath": "/usr/bin/arm-none-eabi-gdb",
       "miDebuggerServerAddress": "localhost:2345",
       "setupCommands": [
         {
           "description": "Load ELF symbols",
-          "text": "file ${workspaceFolder}/pokeemerald.elf",
+          "text": "file ${workspaceFolder}/pokeconfluence/pokeconfluence.elf",
           "ignoreFailures": false
         },
         {
@@ -22,7 +22,7 @@
           "ignoreFailures": true
         }
       ],
-      "preLaunchTask": "Build ROM (Parallel)",
+      "preLaunchTask": "Build Pokemon Confluence",
       "windows": {
         "miDebuggerPath": "C:/devkitPro/devkitARM/bin/arm-none-eabi-gdb.exe"
       }
@@ -31,8 +31,8 @@
       "name": "Attach to External GBA GDB Server",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/pokeemerald.elf",
-      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/pokeconfluence/pokeconfluence.elf",
+      "cwd": "${workspaceFolder}/pokeconfluence",
       "MIMode": "gdb",
       "miDebuggerPath": "/usr/bin/arm-none-eabi-gdb",
       "miDebuggerServerAddress": "127.0.0.1:2345",
@@ -41,7 +41,7 @@
           "text": "target remote 127.0.0.1:2345"
         },
         {
-          "text": "symbol-file ${workspaceFolder}/pokeemerald.elf"
+          "text": "symbol-file ${workspaceFolder}/pokeconfluence/pokeconfluence.elf"
         }
       ]
     }

@@ -36,7 +36,7 @@ def main() -> None:
     from mgba_client import Bridge
     from pkmn_decrypt import decrypt_pokemon_data
 
-    rom = project / "pokemultiregion.gba"
+    rom = project / "pokeconfluence.gba"
     emu = subprocess.Popen([sys.executable, str(HERE.parent / "bin" / "poke-emulator"), "--rom", str(rom), "--port", str(a.port)],
                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     failures = []

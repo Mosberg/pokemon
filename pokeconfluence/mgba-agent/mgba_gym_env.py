@@ -1,4 +1,4 @@
-"""Gymnasium environment over the headless mGBA core, targeting pokemultiregion.gba (Hoenn + Kanto)."""
+"""Gymnasium environment over the headless mGBA core, targeting pokeconfluence.gba (Hoenn + Kanto)."""
 from typing import Any, Dict, Optional, Tuple
 
 import gymnasium as gym

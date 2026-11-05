@@ -1,7 +1,7 @@
-# mgba-agent: AI control and RL toolkit for pokemultiregion.gba
+# mgba-agent: AI control and RL toolkit for pokeconfluence.gba
 
 Everything from `.docs/To give LLM tools and coding agents like.md`, rebuilt for **this** ROM
-(`../pokemultiregion/pokemultiregion.gba`, Emerald-based pokeemerald-expansion with Kanto added).
+(`../pokeconfluence.gba`, Emerald-based pokeemerald-expansion with Kanto added).
 
 The document used vanilla FireRed v1.0 addresses. Those are wrong for this ROM, so every address and
 struct offset here comes from the real build (`addresses.py`; `refresh_addresses.py` regenerates the
@@ -48,7 +48,7 @@ One line per command, one line back (`OK ...` or `ERR ...`): `READ8|16|32 addr`,
 `READBLOCK addr len`, `WRITEBLOCK addr hex`, `PRESS button [frames]`, `SETKEYS mask`, `STEP frames`,
 `SCREENSHOT path`, `SAVESTATE n`, `LOADSTATE n`, `SAVEFILE path`, `LOADFILE path`, `FRAME`, `TITLE`.
 
-## Memory map highlights (pokemultiregion)
+## Memory map highlights (pokeconfluence)
 
 - `gSaveBlock1Ptr` 0x030051D4 and `gSaveBlock2Ptr` 0x030051D0 are pointers; always dereference.
 - SaveBlock1: x/y at +0/+2, map group/num at +4/+5, money +0x490, bag +0x560, flags +0x1270 (392 bytes), vars +0x13F8.
@@ -86,13 +86,13 @@ runs. Use `backend="bridge"` for the Gym env until the bindings are built:
 
 ## Map smoke test
 
-`python map_smoke_test.py ../pokemultiregion --filter _Frlg` warps into every Kanto map and checks the player
+`python map_smoke_test.py .. --filter _Frlg` warps into every Kanto map and checks the player
 arrives and the overworld callback is still running. Result on the current ROM: **414 of 417 clean**. Union Room
 shows the expected "no link adapter" error screen; Five Island and Viridian Pokemon Center 1F tripped once
 (summary-screen callback) but loaded fine when warped to again, so they look like leftover state from the
 previous map rather than map bugs. This proves the maps load; it does not prove their scripts play correctly.
 
-## Playtest log (pokemultiregion)
+## Playtest log (pokeconfluence)
 
 Played through the bridge: Kanto start -> Pallet Town -> Oak's scene and lab -> Pewter Gym. Camper Liam fights with
 his real FireRed team (Geodude lv10 with Tackle/Defense Curl) and sets a flag in the Kanto trainer block, not Hoenn's;

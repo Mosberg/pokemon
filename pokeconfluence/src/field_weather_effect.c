@@ -2,6 +2,7 @@
 #include "battle_anim.h"
 #include "event_object_movement.h"
 #include "fieldmap.h"
+#include "confluence.h"
 #include "field_weather.h"
 #include "overworld.h"
 #include "random.h"
@@ -2527,7 +2528,7 @@ u8 GetSavedWeather(void)
 void SetSavedWeatherFromCurrMapHeader(void)
 {
     enum OverworldWeather oldWeather = gSaveBlock1Ptr->weather;
-    gSaveBlock1Ptr->weather = TranslateWeatherNum(gMapHeader.weather);
+    gSaveBlock1Ptr->weather = TranslateWeatherNum(Confluence_GetAnomalyWeather(gMapHeader.weather));
     UpdateRainCounter(gSaveBlock1Ptr->weather, oldWeather);
 }
 

@@ -1,4 +1,4 @@
--- watcher.lua: on-screen RAM overlay for pokemultiregion.gba (load via Tools -> Scripting).
+-- watcher.lua: on-screen RAM overlay for pokeconfluence.gba (load via Tools -> Scripting).
 -- Shows map, player tile, battle flag and the lead Pokemon's HP, using this ROM's real addresses
 -- (see ../addresses.py; regenerate them with refresh_addresses.py after rebuilding the ROM).
 local GMAIN, SB1PTR, PARTY = 0x030066D0, 0x030051D4, 0x02031C40

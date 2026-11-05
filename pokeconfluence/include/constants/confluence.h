@@ -25,4 +25,11 @@
 #define FLAG_CONFLUENCE_APEX_CHAMPION   FLAG_UNUSED_0x021 // The Apex Summit was cleared
 #define FLAG_CONFLUENCE_MERIDIAN_USED   FLAG_UNUSED_0x022 // The player has ridden the Meridian line at least once
 
+#define FLAG_CONFLUENCE_CRISIS_RESOLVED FLAG_UNUSED_0x023 // The syndicate chairman was beaten: the Resonance anomalies stop
+#define FLAG_CONFLUENCE_GOT_FIELD_KIT   FLAG_UNUSED_0x024 // The conductors handed out the Field Kit
+
+// The Convergence Crisis: the syndicate enforcers wait at the Meridian terminals once enough badges are held.
+#define CONFLUENCE_SYNDICATE_MIN_BADGES 6
+#define CONFLUENCE_CHAIRMAN_MIN_BADGES  12
+
 #endif // GUARD_CONSTANTS_CONFLUENCE_H

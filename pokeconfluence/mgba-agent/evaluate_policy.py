@@ -1,6 +1,6 @@
 """Live evaluation window: runs a trained PPO policy at 60 FPS and overlays V(s) and pi(a|s).
 
-    python evaluate_policy.py ppo_pokemon_impala.zip ../pokemultiregion/pokemultiregion.gba [state.ss1] [--stack 4]
+    python evaluate_policy.py ppo_pokemon_impala.zip ../pokeconfluence.gba [state.ss1] [--stack 4]
 """
 import argparse
 import time
@@ -67,7 +67,7 @@ def run(model_path, rom_path, state_path=None, stack=1):
             obs = stacker(obs)
             frame_bgr = cv2.cvtColor(env.render(), cv2.COLOR_RGB2BGR)
             dt = time.perf_counter() - t0
-            cv2.imshow("pokemultiregion policy", render_hud(frame_bgr, action, probs, value, 1 / dt if dt else 60))
+            cv2.imshow("pokeconfluence policy", render_hud(frame_bgr, action, probs, value, 1 / dt if dt else 60))
             if cv2.waitKey(max(1, int((1 / 60 - dt) * 1000))) & 0xFF in (ord("q"), 27):
                 break
             if terminated or truncated:

@@ -1,20 +1,26 @@
 {
   "version": "2.0.0",
+  "options": {
+    "cwd": "${workspaceFolder}/pokeconfluence"
+  },
   "tasks": [
-    // -------------------------------------------------------------
-    // GBA ROM BUILD TASKS
-    // -------------------------------------------------------------
     {
-      "label": "Build ROM (Parallel)",
+      "label": "Setup Environment",
       "type": "shell",
-      "command": "make -j$(nproc) MODERN=0",
+      "command": "scripts/setup.sh --extras",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Pokemon Confluence",
+      "type": "shell",
+      "command": "scripts/build.sh",
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "problemMatcher": {
         "owner": "c",
-        "fileLocation": ["relative", "${workspaceFolder}"],
+        "fileLocation": ["relative", "${workspaceFolder}/pokeconfluence"],
         "pattern": {
           "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
           "file": 1,
@@ -26,66 +32,46 @@
       }
     },
     {
-      "label": "Build ROM (Modern GCC / LTO)",
+      "label": "Build Release ROM",
       "type": "shell",
-      "command": "make -j$(nproc) MODERN=1",
+      "command": "scripts/build.sh release",
       "group": "build",
       "problemMatcher": ["$gcc"]
     },
     {
       "label": "Clean Build Artifacts",
       "type": "shell",
-      "command": "make clean",
+      "command": "scripts/build.sh clean",
       "problemMatcher": []
     },
-
-    // -------------------------------------------------------------
-    // HARDWARE & MEMORY ORACLE CHECKS
-    // -------------------------------------------------------------
     {
-      "label": "Audit RAM Boundaries (ram_check)",
+      "label": "Run Confluence Tests",
       "type": "shell",
-      "command": "${workspaceFolder}/tools/ram_check/ram_check ${workspaceFolder}/pokeemerald.elf",
-      "dependsOn": "Build ROM (Parallel)",
+      "command": "scripts/test.sh",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Run Full Test Suite",
+      "type": "shell",
+      "command": "scripts/test.sh --all",
+      "group": "test",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Start Emulator Bridge (8888)",
+      "type": "shell",
+      "command": "scripts/play.sh 8888",
+      "isBackground": true,
       "problemMatcher": []
     },
     {
       "label": "Audit Warps & Softlocks",
       "type": "shell",
-      "command": "python3 poke-migrator/scripts/poke_audit_warps.py ${workspaceFolder}",
-      "problemMatcher": []
-    },
-
-    // -------------------------------------------------------------
-    // TOOLCHAIN PIPELINES (PORYTILES & PORYSCRIPT)
-    // -------------------------------------------------------------
-    {
-      "label": "Compile Secondary Tilesets (Porytiles)",
-      "type": "shell",
-      "command": "python3 poke-migrator/scripts/compile_tilesets_porytiles.py ../pokefirered ${workspaceFolder}",
-      "problemMatcher": []
-    },
-    {
-      "label": "Compile All Poryscripts",
-      "type": "shell",
-      "command": "python3 poke-migrator/scripts/poryscript_transpiler.py ${workspaceFolder}",
-      "problemMatcher": []
-    },
-
-    // -------------------------------------------------------------
-    // POKE-MIGRATOR MASTER AUTOMATION
-    // -------------------------------------------------------------
-    {
-      "label": "Run Poke-Migrator Pipeline",
-      "type": "shell",
-      "command": "make -C poke-migrator migrate FRLG=../pokefirered EMERALD=${workspaceFolder}",
-      "group": "build",
-      "problemMatcher": ["$gcc"]
-    },
-    {
-      "label": "Create Rollback Snapshot",
-      "type": "shell",
-      "command": "python3 poke-migrator/scripts/backup_manager.py create ${workspaceFolder}",
+      "command": "python3 ../tools/poke-migrator-pro/bin/poke-audit-warps ${workspaceFolder}/pokeconfluence",
       "problemMatcher": []
     }
   ]

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "main.h"
 #include "bike.h"
+#include "confluence.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "field_camera.h"
@@ -1627,6 +1628,8 @@ bool8 PartyHasMonWithSurf(void)
             if (MonKnowsMove(&gParties[B_TRAINER_PLAYER][i], MOVE_SURF))
                 return TRUE;
         }
+        if (Confluence_GetFieldKitMon(FIELD_MOVE_SURF) != PARTY_SIZE) // POKE-CONFLUENCE: Field Kit
+            return TRUE;
     }
     return FALSE;
 }

@@ -5,9 +5,18 @@
 #include "confluence.h"
 #include "data.h"
 #include "event_data.h"
+#include "item.h"
+#include "pokemon.h"
 #include "pokedex.h"
 #include "regions.h"
+#include "constants/field_move.h"
+#include "constants/items.h"
+#include "constants/map_types.h"
+#include "constants/maps.h"
 #include "constants/opponents.h"
+#include "constants/region_map_sections.h"
+#include "constants/trainers.h"
+#include "constants/weather.h"
 #include "constants/species.h"
 
 static void ClearAllBadges(void)
@@ -112,11 +121,89 @@ TEST("Confluence: Resonance legends are calmed once caught")
     EXPECT_GE(Confluence_CountResonanceCalmed(), before);
 }
 
-TEST("Confluence: the Apex Summit trainers exist with full parties")
+TEST("Confluence: the Apex Summit trainer ids fit in the trainer flag space")
 {
-    EXPECT_EQ(GetTrainerStructFromId(TRAINER_APEX_KANTO)->partySize, 6);
-    EXPECT_EQ(GetTrainerStructFromId(TRAINER_APEX_JOHTO)->partySize, 6);
-    EXPECT_EQ(GetTrainerStructFromId(TRAINER_APEX_HOENN)->partySize, 6);
-    EXPECT_EQ(GetTrainerStructFromId(TRAINER_APEX_CHAMPION)->partySize, 6);
+    // gTrainers is replaced by test trainers in test builds, so only the id layout is checked here.
+    EXPECT_GE(TRAINER_APEX_KANTO, TRAINERS_COUNT_EMERALD - 8);
+    EXPECT_LT(TRAINER_SYNDICATE_CHAIRMAN, MAX_TRAINERS_COUNT);
     EXPECT_LT(TRAINER_APEX_CHAMPION, MAX_TRAINERS_COUNT);
+    EXPECT_LT(TRAINER_APEX_CHAMPION, KANTO_TRAINER_BASE);
+}
+
+static const struct TrainerMon sBoostParty[] =
+{
+    { .species = SPECIES_GEODUDE, .lvl = 12 },
+    { .species = SPECIES_ONIX, .lvl = 14 },
+};
+
+TEST("Confluence: gym leaders are lifted to the level cap, never lowered")
+{
+    struct Trainer leader = { .trainerClass = TRAINER_CLASS_LEADER, .party = sBoostParty, .partySize = ARRAY_COUNT(sBoostParty) };
+    struct Trainer grunt = leader;
+
+    ClearAllBadges();
+    // 14 is the strongest member; the first cap is 15
+    EXPECT_EQ(Confluence_GetTrainerLevelBoost(&leader), Confluence_GetLevelCapForBadges(0) - 14);
+
+    for (u32 i = 0; i < CONFLUENCE_BADGES_PER_REGION; i++)
+        FlagSet(GetBadgeFlagForRegion(REGION_JOHTO, i));
+    EXPECT_EQ(Confluence_GetTrainerLevelBoost(&leader), Confluence_GetLevelCapForBadges(8) - 14);
+
+    grunt.trainerClass = TRAINER_CLASS_PKMN_TRAINER_1;
+    EXPECT_EQ(Confluence_GetTrainerLevelBoost(&grunt), 0);
+    ClearAllBadges();
+}
+
+TEST("Confluence: Resonance anomalies replace clear weather outdoors")
+{
+    ClearAllBadges();
+    FlagClear(FLAG_CONFLUENCE_CRISIS_RESOLVED);
+    gMapHeader.mapType = MAP_TYPE_ROUTE;
+    gSaveBlock1Ptr->location.mapGroup = 0;
+    gMapHeader.regionMapSectionId = MAPSEC_LITTLEROOT_TOWN;
+
+    // no anomaly before the Meridian line opens
+    EXPECT_EQ(Confluence_GetAnomalyWeather(WEATHER_SUNNY), WEATHER_SUNNY);
+
+    FlagSet(GetBadgeFlagForRegion(REGION_HOENN, 0));
+    FlagSet(GetBadgeFlagForRegion(REGION_HOENN, 1));
+    EXPECT_EQ(Confluence_GetAnomalyWeather(WEATHER_SUNNY), WEATHER_DOWNPOUR);
+    EXPECT_EQ(Confluence_GetAnomalyWeather(WEATHER_NONE), WEATHER_DOWNPOUR);
+    EXPECT_EQ(Confluence_GetAnomalyWeather(WEATHER_SNOW), WEATHER_SNOW);
+
+    gMapHeader.mapType = MAP_TYPE_INDOOR;
+    EXPECT_EQ(Confluence_GetAnomalyWeather(WEATHER_NONE), WEATHER_NONE);
+
+    gMapHeader.mapType = MAP_TYPE_ROUTE;
+    gMapHeader.regionMapSectionId = MAPSEC_PALLET_TOWN;
+    EXPECT_EQ(Confluence_GetAnomalyWeather(WEATHER_NONE), WEATHER_RAIN_THUNDERSTORM);
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_JOHTO_OLIVINE_POKECENTER_1F);
+    EXPECT_EQ(Confluence_GetAnomalyWeather(WEATHER_NONE), WEATHER_FOG_HORIZONTAL);
+
+    FlagSet(FLAG_CONFLUENCE_CRISIS_RESOLVED);
+    EXPECT_EQ(Confluence_GetAnomalyWeather(WEATHER_NONE), WEATHER_NONE);
+    FlagClear(FLAG_CONFLUENCE_CRISIS_RESOLVED);
+    ClearAllBadges();
+}
+
+TEST("Confluence: the Field Kit lets the first non-egg Pokemon use HM field moves")
+{
+    for (u32 i = 0; i < PARTY_SIZE; i++)
+        ZeroMonData(&gParties[B_TRAINER_PLAYER][i]);
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_WOBBUFFET, 20, 0, OTID_STRUCT_PRESET(0));
+    CreateMon(&gParties[B_TRAINER_PLAYER][1], SPECIES_PIKACHU, 20, 0, OTID_STRUCT_PRESET(0));
+
+    RemoveBagItem(ITEM_FIELD_KIT, 99);
+    EXPECT_EQ(Confluence_GetFieldKitMon(FIELD_MOVE_CUT), PARTY_SIZE);
+
+    ASSUME(AddBagItem(ITEM_FIELD_KIT, 1));
+    EXPECT_EQ(Confluence_GetFieldKitMon(FIELD_MOVE_CUT), 0);
+    EXPECT_EQ(Confluence_GetFieldKitMon(FIELD_MOVE_SURF), 0);
+    EXPECT_EQ(Confluence_GetFieldKitMon(FIELD_MOVE_FLY), PARTY_SIZE);
+
+    u32 isEgg = TRUE;
+    SetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_IS_EGG, &isEgg);
+    EXPECT_EQ(Confluence_GetFieldKitMon(FIELD_MOVE_STRENGTH), 1);
+    RemoveBagItem(ITEM_FIELD_KIT, 1);
 }

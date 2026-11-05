@@ -1,4 +1,4 @@
-"""Refresh addresses.json from a freshly built ELF.  usage: python refresh_addresses.py [path/to/pokemultiregion.elf]
+"""Refresh addresses.json from a freshly built ELF.  usage: python refresh_addresses.py [path/to/pokeconfluence.elf]
 Runs arm-none-eabi-nm inside WSL when it is not on PATH (the toolchain lives in WSL here)."""
 import json
 import shutil
@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 from addresses import SYMBOLS
 
-ELF = Path(sys.argv[1] if len(sys.argv) > 1 else "../pokemultiregion/pokemultiregion.elf").resolve()
+ELF = Path(sys.argv[1] if len(sys.argv) > 1 else "../pokeconfluence.elf").resolve()
 # names in addresses.py -> real symbol names (the party/enemy symbols are named differently)
 ALIAS = {"gPlayerParty": "gPlayerPartyPtr", "gEnemyParty": "gEnemyPartyPtr",
          "gPlayerPartyCount": "gPlayerPartyCountPtr", "gEnemyPartyCount": "gEnemyPartyCountPtr"}

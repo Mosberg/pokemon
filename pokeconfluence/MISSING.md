@@ -1,5 +1,7 @@
 # MISSING
 
+The Confluence layer (Meridian Transit, 24-badge level cap, Apex Summit) is tracked in [docs/CONFLUENCE.md](docs/CONFLUENCE.md). The lists below are inherited from `pokemultiregion`.
+
 Everything known to be unfinished, unconverted or untested. Items are removed when done and verified, and appended when found.
 Hard caps and approximations live in LIMITS.md. Status of the Johto conversion: all 383 maps load in the emulator smoke test (0 failures),
 290 script commands still end in "This JOHTO event has not been converted yet" (`poke-crystal-scripts <crystal> <project>` prints the live list).

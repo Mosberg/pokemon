@@ -1,7 +1,7 @@
-"""Memory map of pokemultiregion.gba (Emerald-based pokeemerald-expansion build, EMERALD mode).
+"""Memory map of pokeconfluence.gba (Emerald-based pokeemerald-expansion build, EMERALD mode).
 
 The reference document used vanilla FireRed v1.0 offsets. Those do not match this ROM, so every
-value below was taken from the real build: symbol addresses from `arm-none-eabi-nm pokemultiregion.elf`
+value below was taken from the real build: symbol addresses from `arm-none-eabi-nm pokeconfluence.elf`
 and struct offsets from a probe compiled with the build's own flags. Re-run `refresh_addresses.py`
 after rebuilding the ROM; it rewrites addresses.json, which overrides the defaults here.
 """
@@ -23,7 +23,7 @@ SYMBOLS = {
     "gBackupMapLayout": 0x03002510,    # {s32 width; s32 height; u16 *map}
     "sWarpDestination": 0x02031348,    # {s8 group; s8 num; s8 warpId; s16 x; s16 y}
     "gSpecialVar_Result": 0x0200156E,
-    "gAiBridgeMailbox": 0x02000004,    # struct AiBridgeMailbox, see pokemultiregion/include/ai_bridge.h
+    "gAiBridgeMailbox": 0x02000004,    # struct AiBridgeMailbox, see include/ai_bridge.h
     "CB2_LoadMap": 0x08190B38,
     "CB2_Overworld": 0x08193CD0,
 }
