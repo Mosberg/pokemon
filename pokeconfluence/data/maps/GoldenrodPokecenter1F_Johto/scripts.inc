@@ -67,11 +67,34 @@ GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanF:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanF_NoEonMail
-	@ TODO unsupported: takeitem EON_MAIL
-	goto Johto_EventScript_Unimplemented
+	removeitem ITEM_DREAM_MAIL
+	goto_if_eq VAR_RESULT, 0, GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanF_NoEonMail
+	message GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText
+	waitmessage
+	waitbuttonpress
+	message GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanFThisIsForYouText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_REVIVE
+	goto_if_eq VAR_RESULT, 0, GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanF_NoRoom
+	message GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanFDaughterWillBeDelightedText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanF_NoEonMail:
 	message GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanFTooBadText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanF_NoRoom:
+	additem ITEM_DREAM_MAIL
+	message GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanFAnotherTimeThenText
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -114,6 +137,24 @@ GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FAskGiveAwayAnEonMailText:
 	.string "Give away an EON\n"
 	.string "MAIL?$"
 
+GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanFThisIsForYouText:
+	.string "Oh, that's great!\n"
+	.string "Thank you, honey!"
+	.string "\pHere, this is for\n"
+	.string "you in return!$"
+
+GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanFDaughterWillBeDelightedText:
+	.string "My daughter will\n"
+	.string "be delighted!$"
+
 GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanFTooBadText:
 	.string "Oh? You don't have\n"
 	.string "one? Too bad.$"
+
+GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPokefanFAnotherTimeThenText:
+	.string "Oh… Well, another\n"
+	.string "time, then.$"
+
+GoldenrodPokecenter1F_Johto_GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText:
+	.string "{PLAYER} gave away\n"
+	.string "the EON MAIL.$"

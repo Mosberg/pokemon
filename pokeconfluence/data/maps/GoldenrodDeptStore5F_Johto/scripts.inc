@@ -128,8 +128,22 @@ GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript_Done:
 
 GoldenrodDeptStore5F_Johto_Carrie:
 	faceplayer
-	@ TODO unsupported: special GameboyCheck
+	setvar VAR_RESULT, 2
+	goto_if_ne VAR_RESULT, 2, GoldenrodDeptStore5F_Johto_Carrie_NotGBC
+	message GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FCarrieMysteryGiftExplanationText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	@ TODO unsupported: special UnlockMysteryGift
 	goto Johto_EventScript_Unimplemented
+
+GoldenrodDeptStore5F_Johto_Carrie_NotGBC:
+	message GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FCarrieMysteryGiftRequiresGBCText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FLassScript:
 	faceplayer
@@ -200,6 +214,17 @@ GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistThereAreTMsPerfectFor
 	.string "be TMs that are"
 	.string "\pjust perfect for\n"
 	.string "your POKéMON.$"
+
+GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FCarrieMysteryGiftExplanationText:
+	.string "MYSTERY GIFT."
+	.string "\pWith just a\n"
+	.string "little beep, you\l"
+	.string "get a gift.$"
+
+GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FCarrieMysteryGiftRequiresGBCText:
+	.string "The MYSTERY GIFT\n"
+	.string "option requires a\l"
+	.string "Game Boy Color.$"
 
 GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FLassText:
 	.string "On Sundays, a lady\n"

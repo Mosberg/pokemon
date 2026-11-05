@@ -34,8 +34,8 @@ Route35GoldenrodGate_Johto_RandyScript:
 	playfanfare MUS_OBTAIN_ITEM
 	waitfanfare
 	waitse
-	@ TODO unsupported: givepoke SPEAROW, 10, NO_ITEM, GiftSpearowName, GiftSpearowOTName
-	goto Johto_EventScript_Unimplemented
+	givemon SPECIES_SPEAROW, 10
+	setflag FLAG_JOHTO_GOT_KENYA
 
 Route35GoldenrodGate_Johto_RandyScript_alreadyhavekenya:
 	message Route35GoldenrodGate_Johto_Route35GoldenrodGateRandyWeirdTreeBlockingRoadText

@@ -140,11 +140,55 @@ KurtsHouse_Johto_Kurt1_AskApricorn:
 	waitmessage
 	waitbuttonpress
 	setflag FLAG_TEMP_13
-	@ TODO unsupported: special SelectApricornForKurt
-	goto Johto_EventScript_Unimplemented
+	special JohtoSelectApricornForKurt
+	goto_if_eq VAR_RESULT, FALSE, KurtsHouse_Johto_Kurt1_Cancel
+	goto_if_eq VAR_RESULT, ITEM_BLU_APRICORN, KurtsHouse_Johto_Kurt1_Blu
+	goto_if_eq VAR_RESULT, ITEM_YLW_APRICORN, KurtsHouse_Johto_Kurt1_Ylw
+	goto_if_eq VAR_RESULT, ITEM_GRN_APRICORN, KurtsHouse_Johto_Kurt1_Grn
+	goto_if_eq VAR_RESULT, ITEM_WHT_APRICORN, KurtsHouse_Johto_Kurt1_Wht
+	goto_if_eq VAR_RESULT, ITEM_BLK_APRICORN, KurtsHouse_Johto_Kurt1_Blk
+	goto_if_eq VAR_RESULT, ITEM_PNK_APRICORN, KurtsHouse_Johto_Kurt1_Pnk
+	setflag FLAG_JOHTO_GAVE_KURT_RED_APRICORN
+	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+
+KurtsHouse_Johto_Kurt1_Blu:
+	setflag FLAG_JOHTO_GAVE_KURT_BLU_APRICORN
+	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+
+KurtsHouse_Johto_Kurt1_Ylw:
+	setflag FLAG_JOHTO_GAVE_KURT_YLW_APRICORN
+	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+
+KurtsHouse_Johto_Kurt1_Grn:
+	setflag FLAG_JOHTO_GAVE_KURT_GRN_APRICORN
+	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+
+KurtsHouse_Johto_Kurt1_Wht:
+	setflag FLAG_JOHTO_GAVE_KURT_WHT_APRICORN
+	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+
+KurtsHouse_Johto_Kurt1_Blk:
+	setflag FLAG_JOHTO_GAVE_KURT_BLK_APRICORN
+	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+
+KurtsHouse_Johto_Kurt1_Pnk:
+	setflag FLAG_JOHTO_GAVE_KURT_PNK_APRICORN
+	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+
+KurtsHouse_Johto_Kurt1_GaveKurtApricorns:
+	setflag FLAG_TEMP_11
+	setflag FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS
 
 KurtsHouse_Johto_Kurt1_WaitForApricorns:
 	message KurtsHouse_Johto_KurtsHouseKurtItWillTakeADayText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+KurtsHouse_Johto_Kurt1_Cancel:
+	message KurtsHouse_Johto_KurtsHouseKurtThatsALetdownText
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -539,6 +583,10 @@ KurtsHouse_Johto_KurtsHouseKurtItWillTakeADayText:
 	.string "day to make you a"
 	.string "\pBALL. Come back\n"
 	.string "for it later.$"
+
+KurtsHouse_Johto_KurtsHouseKurtThatsALetdownText:
+	.string "KURT: Oh…\n"
+	.string "That's a letdown.$"
 
 KurtsHouse_Johto_KurtsHouseKurtDontBotherMeText:
 	.string "KURT: I'm working!\n"

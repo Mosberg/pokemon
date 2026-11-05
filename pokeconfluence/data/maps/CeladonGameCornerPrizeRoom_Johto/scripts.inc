@@ -47,8 +47,83 @@ CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomTMVendor:
 	waitmessage
 
 CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_tmcounterloop:
-	@ TODO unsupported: loadmenu CeladonPrizeRoom_TMMenuHeader
-	goto Johto_EventScript_Unimplemented
+	dynmultipush Johto_Menu_CeladonGameCornerPrizeRoom_CeladonPrizeRoom_TMMenuHeader_Opt1, 1
+	dynmultipush Johto_Menu_CeladonGameCornerPrizeRoom_CeladonPrizeRoom_TMMenuHeader_Opt2, 2
+	dynmultipush Johto_Menu_CeladonGameCornerPrizeRoom_CeladonPrizeRoom_TMMenuHeader_Opt3, 3
+	dynmultipush Johto_Menu_CeladonGameCornerPrizeRoom_CeladonPrizeRoom_TMMenuHeader_Opt4, 4
+	dynmultistack 0, 0, FALSE, 4, FALSE, 1, DYN_MULTICHOICE_CB_NONE
+	goto_if_eq VAR_RESULT, 1, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_tmcounterloop_DoubleTeam
+	goto_if_eq VAR_RESULT, 2, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_tmcounterloop_Psychic
+	goto_if_eq VAR_RESULT, 3, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_tmcounterloop_HyperBeam
+	goto CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_CancelPurchaseScript
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_tmcounterloop_DoubleTeam:
+	setvar VAR_0x8004, 1500
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughcoins
+	bufferitemname STR_VAR_1, ITEM_TM_DOUBLE_TEAM
+	call CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_askbuy_Sub
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_CancelPurchaseScript
+	additem ITEM_TM_DOUBLE_TEAM
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughroom
+	removecoins 1500
+	goto CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_purchased
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_tmcounterloop_Psychic:
+	setvar VAR_0x8004, 3500
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughcoins
+	bufferitemname STR_VAR_1, ITEM_NUGGET
+	call CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_askbuy_Sub
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_CancelPurchaseScript
+	additem ITEM_NUGGET
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughroom
+	removecoins 3500
+	goto CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_purchased
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_tmcounterloop_HyperBeam:
+	setvar VAR_0x8004, 7500
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughcoins
+	bufferitemname STR_VAR_1, ITEM_TM_HYPER_BEAM
+	call CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_askbuy_Sub
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_CancelPurchaseScript
+	additem ITEM_TM_HYPER_BEAM
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughroom
+	removecoins 7500
+	goto CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_purchased
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_purchased:
+	waitse
+	playse SE_PIN
+	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_HereYouGoText
+	waitmessage
+	waitbuttonpress
+	goto CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_tmcounterloop
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughcoins:
+	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_NotEnoughCoinsText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughroom:
+	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_NotEnoughRoomText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_CancelPurchaseScript:
+	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_ComeAgainText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_NoCoinCase:
 	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_NoCoinCaseText
@@ -69,8 +144,78 @@ CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor:
 CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_loop:
 	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_AskWhichPrizeText
 	waitmessage
-	@ TODO unsupported: loadmenu .MenuHeader
-	goto Johto_EventScript_Unimplemented
+	dynmultipush Johto_Menu_CeladonGameCornerPrizeRoom_CeladonGameCornerPrizeRoomPokemonVendor_MenuHeader_Opt1, 1
+	dynmultipush Johto_Menu_CeladonGameCornerPrizeRoom_CeladonGameCornerPrizeRoomPokemonVendor_MenuHeader_Opt2, 2
+	dynmultipush Johto_Menu_CeladonGameCornerPrizeRoom_CeladonGameCornerPrizeRoomPokemonVendor_MenuHeader_Opt3, 3
+	dynmultipush Johto_Menu_CeladonGameCornerPrizeRoom_CeladonGameCornerPrizeRoomPokemonVendor_MenuHeader_Opt4, 4
+	dynmultistack 0, 0, FALSE, 4, FALSE, 1, DYN_MULTICHOICE_CB_NONE
+	goto_if_eq VAR_RESULT, 1, CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_Pikachu
+	goto_if_eq VAR_RESULT, 2, CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_Porygon
+	goto_if_eq VAR_RESULT, 3, CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_Larvitar
+	goto CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_CancelPurchaseScript
+
+CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_Pikachu:
+	setvar VAR_0x8004, 2222
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughcoins
+	getpartysize
+	goto_if_eq VAR_RESULT, 6, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughroom
+	bufferspeciesname STR_VAR_1, SPECIES_PIKACHU
+	call CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_askbuy_Sub
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_CancelPurchaseScript
+	waitse
+	playse SE_PIN
+	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_HereYouGoText
+	waitmessage
+	waitbuttonpress
+	setvar VAR_0x8004, SPECIES_PIKACHU
+	givemon SPECIES_PIKACHU, 25
+	removecoins 2222
+	goto CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_loop
+
+CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_Porygon:
+	setvar VAR_0x8004, 5555
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughcoins
+	getpartysize
+	goto_if_eq VAR_RESULT, 6, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughroom
+	bufferspeciesname STR_VAR_1, SPECIES_PORYGON
+	call CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_askbuy_Sub
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_CancelPurchaseScript
+	waitse
+	playse SE_PIN
+	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_HereYouGoText
+	waitmessage
+	waitbuttonpress
+	setvar VAR_0x8004, SPECIES_PORYGON
+	givemon SPECIES_PORYGON, 15
+	removecoins 5555
+	goto CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_loop
+
+CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_Larvitar:
+	setvar VAR_0x8004, 8888
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughcoins
+	getpartysize
+	goto_if_eq VAR_RESULT, 6, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughroom
+	bufferspeciesname STR_VAR_1, SPECIES_LARVITAR
+	call CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_askbuy_Sub
+	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_CancelPurchaseScript
+	waitse
+	playse SE_PIN
+	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_HereYouGoText
+	waitmessage
+	waitbuttonpress
+	setvar VAR_0x8004, SPECIES_LARVITAR
+	givemon SPECIES_LARVITAR, 40
+	removecoins 8888
+	goto CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_loop
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_askbuy_Sub:
+	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_ConfirmPurchaseText
+	waitmessage
+	yesnobox 20, 8
+	return
 
 CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomGentlemanText:
 	.string "I wanted PORYGON,\n"
@@ -94,6 +239,25 @@ CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_PrizeVendorIntroText:
 CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_AskWhichPrizeText:
 	.string "Which prize would\n"
 	.string "you like?$"
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_ConfirmPurchaseText:
+	.string "OK, so you wanted\n"
+	.string "a {STR_VAR_1}?$"
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_HereYouGoText:
+	.string "Here you go!$"
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_NotEnoughCoinsText:
+	.string "You don't have\n"
+	.string "enough coins.$"
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_NotEnoughRoomText:
+	.string "You have no room\n"
+	.string "for it.$"
+
+CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_ComeAgainText:
+	.string "Oh. Please come\n"
+	.string "back with coins!$"
 
 CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_NoCoinCaseText:
 	.string "Oh? You don't have\n"

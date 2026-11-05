@@ -172,8 +172,40 @@ PowerPlant_Johto_PowerPlantGymGuide4Script_ReturnedMachinePart:
 PowerPlant_Johto_PowerPlantManager:
 	faceplayer
 	goto_if_set FLAG_JOHTO_RETURNED_MACHINE_PART, PowerPlant_Johto_PowerPlantManager_ReturnedMachinePart
-	@ TODO unsupported: checkitem MACHINE_PART
-	goto Johto_EventScript_Unimplemented
+	checkitem ITEM_DEVON_PARTS, 1
+	goto_if_ne VAR_RESULT, 0, PowerPlant_Johto_PowerPlantManager_FoundMachinePart
+	goto_if_set FLAG_JOHTO_MET_MANAGER_AT_POWER_PLANT, PowerPlant_Johto_PowerPlantManager_MetManager
+	message PowerPlant_Johto_PowerPlantManagerWhoWouldRuinMyGeneratorText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	setflag FLAG_JOHTO_MET_MANAGER_AT_POWER_PLANT
+	clearflag FLAG_JOHTO_CERULEAN_GYM_ROCKET
+	clearflag FLAG_JOHTO_FOUND_MACHINE_PART_IN_CERULEAN_GYM
+	setvar VAR_JOHTO_SCENE_CERULEAN_GYM, 1
+	setvar VAR_JOHTO_SCENE_POWER_PLANT, 1
+	releaseall
+	end
+
+PowerPlant_Johto_PowerPlantManager_MetManager:
+	message PowerPlant_Johto_PowerPlantManagerIWontForgiveCulpritText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+PowerPlant_Johto_PowerPlantManager_FoundMachinePart:
+	message PowerPlant_Johto_PowerPlantManagerThatsThePartText
+	waitmessage
+	waitbuttonpress
+	removeitem ITEM_DEVON_PARTS
+	setflag FLAG_JOHTO_RETURNED_MACHINE_PART
+	clearflag FLAG_JOHTO_SAFFRON_TRAIN_STATION_POPULATION
+	setflag FLAG_JOHTO_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	setflag FLAG_JOHTO_ROUTE_24_ROCKET
+	setflag FLAG_JOHTO_RESTORED_POWER_TO_KANTO
+	clearflag FLAG_JOHTO_GOLDENROD_TRAIN_STATION_GENTLEMAN
 
 PowerPlant_Johto_PowerPlantManager_ReturnedMachinePart:
 	goto_if_set FLAG_JOHTO_GOT_TM07_ZAP_CANNON, PowerPlant_Johto_PowerPlantManager_GotZapCannon
@@ -302,6 +334,35 @@ PowerPlant_Johto_PowerPlantGymGuide4WeCanGetMagnetTrainRunningText:
 	.string "finally get the"
 	.string "\pMAGNET TRAIN\n"
 	.string "running again.$"
+
+PowerPlant_Johto_PowerPlantManagerWhoWouldRuinMyGeneratorText:
+	.string "MANAGER: I, I, I'm\n"
+	.string "ready to blast\l"
+	.string "someone!"
+	.string "\pWho would dare\n"
+	.string "ruin my generator?"
+	.string "\pI spent so much\n"
+	.string "time on it!"
+	.string "\pIf I catch him,\n"
+	.string "he's going to get"
+	.string "\pa taste of my ZAP\n"
+	.string "CANNON!$"
+
+PowerPlant_Johto_PowerPlantManagerIWontForgiveCulpritText:
+	.string "MANAGER: I won't\n"
+	.string "forgive him!"
+	.string "\pThe culprit can\n"
+	.string "cry and apologize,"
+	.string "\pbut I'll still\n"
+	.string "hammer him!"
+	.string "\pGahahahah!$"
+
+PowerPlant_Johto_PowerPlantManagerThatsThePartText:
+	.string "MANAGER: Ah! Yeah!"
+	.string "\pThat's the missing\n"
+	.string "PART from my be-\l"
+	.string "loved generator!\l"
+	.string "You found it?$"
 
 PowerPlant_Johto_PowerPlantManagerTakeThisTMText:
 	.string "Wahah! Thanks!"

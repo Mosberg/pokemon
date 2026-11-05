@@ -92,8 +92,83 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendorScript:
 	waitmessage
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_LoopScript:
-	@ TODO unsupported: loadmenu GoldenrodGameCornerTMVendorMenuHeader
-	goto Johto_EventScript_Unimplemented
+	dynmultipush Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerTMVendorMenuHeader_Opt1, 1
+	dynmultipush Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerTMVendorMenuHeader_Opt2, 2
+	dynmultipush Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerTMVendorMenuHeader_Opt3, 3
+	dynmultipush Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerTMVendorMenuHeader_Opt4, 4
+	dynmultistack 0, 0, FALSE, 4, FALSE, 1, DYN_MULTICHOICE_CB_NONE
+	goto_if_eq VAR_RESULT, 1, GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_LoopScript_Thunder
+	goto_if_eq VAR_RESULT, 2, GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_LoopScript_Blizzard
+	goto_if_eq VAR_RESULT, 3, GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_LoopScript_FireBlast
+	goto GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_LoopScript_Thunder:
+	setvar VAR_0x8004, 5500
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	bufferitemname STR_VAR_1, ITEM_TM_THUNDER
+	call GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript_Sub
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+	additem ITEM_TM_THUNDER
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	removecoins 5500
+	goto GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_FinishScript
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_LoopScript_Blizzard:
+	setvar VAR_0x8004, 5500
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	bufferitemname STR_VAR_1, ITEM_TM_BLIZZARD
+	call GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript_Sub
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+	additem ITEM_TM_BLIZZARD
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	removecoins 5500
+	goto GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_FinishScript
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_LoopScript_FireBlast:
+	setvar VAR_0x8004, 5500
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	bufferitemname STR_VAR_1, ITEM_TM_FIRE_BLAST
+	call GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript_Sub
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+	additem ITEM_TM_FIRE_BLAST
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	removecoins 5500
+	goto GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_FinishScript
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_FinishScript:
+	waitse
+	playse SE_PIN
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorHereYouGoText
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_LoopScript
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript:
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorNeedMoreCoinsText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript:
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorNoMoreRoomText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_CancelPurchaseScript:
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorQuitText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_NoCoinCaseScript:
 	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorNoCoinCaseText
@@ -114,8 +189,72 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript:
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_loop:
 	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorWhichPrizeText
 	waitmessage
-	@ TODO unsupported: loadmenu .MenuHeader
-	goto Johto_EventScript_Unimplemented
+	dynmultipush Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerPrizeMonVendorScript_MenuHeader_Opt1, 1
+	dynmultipush Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerPrizeMonVendorScript_MenuHeader_Opt2, 2
+	dynmultipush Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerPrizeMonVendorScript_MenuHeader_Opt3, 3
+	dynmultipush Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerPrizeMonVendorScript_MenuHeader_Opt4, 4
+	dynmultistack 0, 0, FALSE, 4, FALSE, 1, DYN_MULTICHOICE_CB_NONE
+	goto_if_eq VAR_RESULT, 1, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_Abra
+	goto_if_eq VAR_RESULT, 2, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_Cubone
+	goto_if_eq VAR_RESULT, 3, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_Wobbuffet
+	goto GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_Abra:
+	setvar VAR_0x8004, 100
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	getpartysize
+	goto_if_eq VAR_RESULT, 6, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	bufferspeciesname STR_VAR_1, SPECIES_ABRA
+	call GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript_Sub
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+	waitse
+	playse SE_PIN
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorHereYouGoText
+	waitmessage
+	waitbuttonpress
+	setvar VAR_0x8004, SPECIES_ABRA
+	givemon SPECIES_ABRA, 5
+	removecoins 100
+	goto GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_loop
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_Cubone:
+	setvar VAR_0x8004, 800
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	getpartysize
+	goto_if_eq VAR_RESULT, 6, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	bufferspeciesname STR_VAR_1, SPECIES_CUBONE
+	call GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript_Sub
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+	waitse
+	playse SE_PIN
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorHereYouGoText
+	waitmessage
+	waitbuttonpress
+	setvar VAR_0x8004, SPECIES_CUBONE
+	givemon SPECIES_CUBONE, 15
+	removecoins 800
+	goto GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_loop
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_Wobbuffet:
+	setvar VAR_0x8004, 1500
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	getpartysize
+	goto_if_eq VAR_RESULT, 6, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	bufferspeciesname STR_VAR_1, SPECIES_WOBBUFFET
+	call GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript_Sub
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+	waitse
+	playse SE_PIN
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorHereYouGoText
+	waitmessage
+	waitbuttonpress
+	setvar VAR_0x8004, SPECIES_WOBBUFFET
+	givemon SPECIES_WOBBUFFET, 15
+	removecoins 1500
+	goto GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_loop
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPharmacistScript:
 	faceplayer
@@ -220,6 +359,12 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript:
 	releaseall
 	end
 
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript_Sub:
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorConfirmPrizeText
+	waitmessage
+	yesnobox 20, 8
+	return
+
 GoldenrodGameCorner_Johto_GoldenrodGameCornerMoveTutorCallback_Cb:
 	goto_if_unset FLAG_JOHTO_BEAT_ELITE_FOUR, GoldenrodGameCorner_Johto_GoldenrodGameCornerMoveTutorCallback_finish_Cb
 	checkitem ITEM_COIN_CASE, 1
@@ -248,6 +393,26 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorIntroText:
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorWhichPrizeText:
 	.string "Which prize would\n"
 	.string "you like?$"
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorConfirmPrizeText:
+	.string "{STR_VAR_1}.\n"
+	.string "Is that right?$"
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorHereYouGoText:
+	.string "Here you go!$"
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorNeedMoreCoinsText:
+	.string "Sorry! You need\n"
+	.string "more coins.$"
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorNoMoreRoomText:
+	.string "Sorry. You can't\n"
+	.string "carry any more.$"
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorQuitText:
+	.string "OK. Please save\n"
+	.string "your coins and\l"
+	.string "come again!$"
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorNoCoinCaseText:
 	.string "Oh? You don't have\n"

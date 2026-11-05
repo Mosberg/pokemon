@@ -198,8 +198,9 @@ RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterPrinter_PrinterAvailabl
 	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterUnownPrinterText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: special UnownPrinter
-	goto Johto_EventScript_Unimplemented
+	closemessage
+	releaseall
+	end
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterBookshelf:
 	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterAcademicBooksText
@@ -211,7 +212,12 @@ RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterBookshelf:
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientistCallback_Cb:
 	copyvar VAR_RESULT, VAR_JOHTO_SCENE_RUINS_OF_ALPH_RESEARCH_CENTER
-	@ TODO unsupported: ifequal SCENE_RUINSOFALPHRESEARCHCENTER_GET_UNOWN_DEX, .ShowScientist
+	goto_if_eq VAR_RESULT, 1, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientistCallback_ShowScientist_Cb
+	return
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientistCallback_ShowScientist_Cb:
+	setobjectxyperm 3, 3, 7
+	clearflag FLAG_JOHTO_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	return
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterApproachesComputerMovement:
@@ -331,7 +337,10 @@ RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputerText:
 	.string "Year 10$"
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputerText_GotAllUnown:
-	.string "(text not converted)$"
+	.string "Mystery POKéMON\n"
+	.string "Name: UNOWN"
+	.string "\pA total of NUM_UNOWN\n"
+	.string "kinds found.$"
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterPrinterText_DoesntWork:
 	.string "This doesn't seem\n"

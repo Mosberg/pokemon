@@ -112,8 +112,51 @@ EarlsPokemonAcademy_Johto_AcademyBlackboard:
 	waitmessage
 
 EarlsPokemonAcademy_Johto_AcademyBlackboard_Loop:
-	@ TODO unsupported: loadmenu .BlackboardMenuHeader
-	goto Johto_EventScript_Unimplemented
+	dynmultipush Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt1, 1
+	dynmultipush Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt2, 2
+	dynmultipush Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt3, 3
+	dynmultipush Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt4, 4
+	dynmultipush Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt5, 5
+	dynmultipush Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt6, 6
+	dynmultistack 0, 0, FALSE, 6, FALSE, 1, DYN_MULTICHOICE_CB_NONE
+	goto_if_eq VAR_RESULT, 1, EarlsPokemonAcademy_Johto_AcademyBlackboard_Poison
+	goto_if_eq VAR_RESULT, 2, EarlsPokemonAcademy_Johto_AcademyBlackboard_Paralysis
+	goto_if_eq VAR_RESULT, 3, EarlsPokemonAcademy_Johto_AcademyBlackboard_Sleep
+	goto_if_eq VAR_RESULT, 4, EarlsPokemonAcademy_Johto_AcademyBlackboard_Burn
+	goto_if_eq VAR_RESULT, 5, EarlsPokemonAcademy_Johto_AcademyBlackboard_Freeze
+	closemessage
+	releaseall
+	end
+
+EarlsPokemonAcademy_Johto_AcademyBlackboard_Poison:
+	message EarlsPokemonAcademy_Johto_AcademyPoisonText
+	waitmessage
+	waitbuttonpress
+	goto EarlsPokemonAcademy_Johto_AcademyBlackboard_Loop
+
+EarlsPokemonAcademy_Johto_AcademyBlackboard_Paralysis:
+	message EarlsPokemonAcademy_Johto_AcademyParalysisText
+	waitmessage
+	waitbuttonpress
+	goto EarlsPokemonAcademy_Johto_AcademyBlackboard_Loop
+
+EarlsPokemonAcademy_Johto_AcademyBlackboard_Sleep:
+	message EarlsPokemonAcademy_Johto_AcademySleepText
+	waitmessage
+	waitbuttonpress
+	goto EarlsPokemonAcademy_Johto_AcademyBlackboard_Loop
+
+EarlsPokemonAcademy_Johto_AcademyBlackboard_Burn:
+	message EarlsPokemonAcademy_Johto_AcademyBurnText
+	waitmessage
+	waitbuttonpress
+	goto EarlsPokemonAcademy_Johto_AcademyBlackboard_Loop
+
+EarlsPokemonAcademy_Johto_AcademyBlackboard_Freeze:
+	message EarlsPokemonAcademy_Johto_AcademyFreezeText
+	waitmessage
+	waitbuttonpress
+	goto EarlsPokemonAcademy_Johto_AcademyBlackboard_Loop
 
 EarlsPokemonAcademy_Johto_AcademyNotebook:
 	message EarlsPokemonAcademy_Johto_AcademyNotebookText
@@ -239,6 +282,54 @@ EarlsPokemonAcademy_Johto_AcademyBlackboardText:
 	.string "describes POKéMON"
 	.string "\pstatus changes in\n"
 	.string "battle.$"
+
+EarlsPokemonAcademy_Johto_AcademyPoisonText:
+	.string "If poisoned, a\n"
+	.string "POKéMON steadily\l"
+	.string "loses HP."
+	.string "\pPoison lingers\n"
+	.string "after the battle,"
+	.string "\pand HP is lost as\n"
+	.string "you walk."
+	.string "\pTo cure it, use an\n"
+	.string "ANTIDOTE.$"
+
+EarlsPokemonAcademy_Johto_AcademyParalysisText:
+	.string "Paralysis reduces\n"
+	.string "speed and may\l"
+	.string "prevent movement."
+	.string "\pIt remains after\n"
+	.string "battle, so use\l"
+	.string "a PARLYZ HEAL.$"
+
+EarlsPokemonAcademy_Johto_AcademySleepText:
+	.string "If asleep, your\n"
+	.string "POKéMON can't make\l"
+	.string "a move."
+	.string "\pA sleeping POKéMON\n"
+	.string "doesn't wake up\l"
+	.string "after battle."
+	.string "\pWake it up with\n"
+	.string "an AWAKENING.$"
+
+EarlsPokemonAcademy_Johto_AcademyBurnText:
+	.string "A burn steadily\n"
+	.string "consumes HP."
+	.string "\pIt also reduces\n"
+	.string "attack power."
+	.string "\pA burn lingers\n"
+	.string "after battle."
+	.string "\pUse a BURN HEAL as\n"
+	.string "the cure.$"
+
+EarlsPokemonAcademy_Johto_AcademyFreezeText:
+	.string "If your POKéMON is\n"
+	.string "frozen, it can't\l"
+	.string "do a thing."
+	.string "\pIt remains frozen\n"
+	.string "after battle."
+	.string "\pThaw it out with\n"
+	.string "an ICE HEAL.$"
 
 EarlsPokemonAcademy_Johto_AcademyNotebookText:
 	.string "It's this kid's\n"

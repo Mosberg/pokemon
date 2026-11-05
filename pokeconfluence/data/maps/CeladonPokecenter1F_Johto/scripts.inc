@@ -53,8 +53,54 @@ CeladonPokecenter1F_Johto_CeladonEusine:
 	waitmessage
 	waitbuttonpress
 	setvar VAR_0x8004, SPECIES_SUICUNE
-	@ TODO unsupported: special MonCheck
-	goto Johto_EventScript_Unimplemented
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
+	goto_if_eq VAR_RESULT, 0, CeladonPokecenter1F_Johto_CeladonEusine_NoSuicune
+	goto_if_set FLAG_JOHTO_FOUGHT_SUICUNE, CeladonPokecenter1F_Johto_CeladonEusine_HoOh
+	message CeladonPokecenter1F_Johto_NoBeastsText
+	waitmessage
+	waitbuttonpress
+
+CeladonPokecenter1F_Johto_CeladonEusine_NoSuicune:
+	closemessage
+	releaseall
+	end
+
+CeladonPokecenter1F_Johto_CeladonEusine_HoOh:
+	message CeladonPokecenter1F_Johto_EusineLeavesCeladonText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	goto_if_eq VAR_RESULT, DIR_NORTH, CeladonPokecenter1F_Johto_CeladonEusine_Location1
+	applymovement 5, CeladonPokecenter1F_Johto_CeladonEusine_Movement1
+	waitmovement 5
+	goto CeladonPokecenter1F_Johto_CeladonEusine_Continue
+
+CeladonPokecenter1F_Johto_CeladonEusine_Location1:
+	applymovement 5, CeladonPokecenter1F_Johto_CeladonEusine_Movement2
+	waitmovement 5
+
+CeladonPokecenter1F_Johto_CeladonEusine_Continue:
+	removeobject 5
+	playse SE_EXIT
+	waitse
+	releaseall
+	end
+
+CeladonPokecenter1F_Johto_CeladonEusine_Movement2:
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+CeladonPokecenter1F_Johto_CeladonEusine_Movement1:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
 
 CeladonPokecenter1F_Johto_CeladonPokecenter1FCooltrainerFText:
 	.string "ERIKA is a master\n"
@@ -77,3 +123,33 @@ CeladonPokecenter1F_Johto_CeladonEusineText1:
 	.string "my hometown."
 	.string "\pIt's been quite a\n"
 	.string "while.$"
+
+CeladonPokecenter1F_Johto_EusineLeavesCeladonText:
+	.string "{PLAYER}, have you\n"
+	.string "heard?"
+	.string "\pThere have been\n"
+	.string "fresh rumors of a"
+	.string "\prainbow-colored\n"
+	.string "POKéMON appearing\l"
+	.string "at TIN TOWER."
+	.string "\pI've just had my\n"
+	.string "party healed, so"
+	.string "\pnow I'm headed to\n"
+	.string "ECRUTEAK."
+	.string "\pI'll be seeing\n"
+	.string "you, {PLAYER}!$"
+
+CeladonPokecenter1F_Johto_NoBeastsText:
+	.string "Oh, by the way,\n"
+	.string "{PLAYER}."
+	.string "\pHave you caught\n"
+	.string "the legendary"
+	.string "\pPOKéMON RAIKOU and\n"
+	.string "ENTEI?"
+	.string "\p………"
+	.string "\pOkay…"
+	.string "\pIf you catch even\n"
+	.string "one, I hope that\l"
+	.string "you'll inform me."
+	.string "\pI'm counting on\n"
+	.string "you, {PLAYER}!$"

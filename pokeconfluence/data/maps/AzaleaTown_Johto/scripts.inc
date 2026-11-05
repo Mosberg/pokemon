@@ -448,10 +448,10 @@ AzaleaTown_Johto_AzaleaTownYoungsterText:
 
 AzaleaTown_Johto_AzaleaTownSlowpokeText1:
 	.string "SLOWPOKE: …"
-	.string "\p<……> <……> <……>$"
+	.string "\p… … …$"
 
 AzaleaTown_Johto_AzaleaTownSlowpokeText2:
-	.string "<……> <……>Yawn?$"
+	.string "… …Yawn?$"
 
 AzaleaTown_Johto_AzaleaTownKurtText1:
 	.string "ILEX FOREST is\n"

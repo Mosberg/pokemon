@@ -14,12 +14,33 @@ ManiasHouse_Johto_ManiaScript:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, ManiasHouse_Johto_ManiaScript_refusetotakeshuckie
-	@ TODO unsupported: special GiveShuckle
-	goto Johto_EventScript_Unimplemented
+	givemon SPECIES_SHUCKLE, 15, ITEM_ORAN_BERRY
+	goto_if_eq VAR_RESULT, 0, ManiasHouse_Johto_ManiaScript_partyfull
+	message ManiasHouse_Johto_ManiaText_TakeCareOfShuckle
+	waitmessage
+	waitbuttonpress
+	waitse
+	message ManiasHouse_Johto_ManiaText_GotShuckle
+	waitmessage
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
+	waitse
+	closemessage
+	setflag FLAG_JOHTO_GOT_SHUCKIE
+	releaseall
+	end
 
 ManiasHouse_Johto_ManiaScript_alreadyhaveshuckie:
 	goto_if_unset FLAG_JOHTO_ENGINE_GOT_SHUCKIE_TODAY, ManiasHouse_Johto_ManiaScript_returnshuckie
 	message ManiasHouse_Johto_ManiaText_TakeCareOfShuckle
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+ManiasHouse_Johto_ManiaScript_partyfull:
+	message ManiasHouse_Johto_ManiaText_PartyFull
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -39,8 +60,36 @@ ManiasHouse_Johto_ManiaScript_returnshuckie:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, ManiasHouse_Johto_ManiaScript_refused
-	@ TODO unsupported: special ReturnShuckie
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_0x8004, SPECIES_SHUCKLE
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
+	goto_if_eq VAR_RESULT, 0, ManiasHouse_Johto_ManiaScript_wrong
+	goto_if_eq VAR_RESULT, 1, ManiasHouse_Johto_ManiaScript_refused
+	goto_if_eq VAR_RESULT, 3, ManiasHouse_Johto_ManiaScript_superhappy
+	goto_if_eq VAR_RESULT, 4, ManiasHouse_Johto_ManiaScript_default_postevent
+	message ManiasHouse_Johto_ManiaText_ThankYou
+	waitmessage
+	waitbuttonpress
+	closemessage
+	setflag FLAG_JOHTO_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
+	releaseall
+	end
+
+ManiasHouse_Johto_ManiaScript_wrong:
+	message ManiasHouse_Johto_ManiaText_ShuckleNotThere
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+ManiasHouse_Johto_ManiaScript_superhappy:
+	message ManiasHouse_Johto_ManiaText_ShuckleLikesYou
+	waitmessage
+	waitbuttonpress
+	closemessage
+	setflag FLAG_JOHTO_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
+	releaseall
+	end
 
 ManiasHouse_Johto_ManiaScript_refused:
 	message ManiasHouse_Johto_ManiaText_SameAsBeingRobbed
@@ -80,6 +129,14 @@ ManiasHouse_Johto_ManiaText_TakeCareOfShuckle:
 	.string "\pTake good care of\n"
 	.string "it, please!$"
 
+ManiasHouse_Johto_ManiaText_GotShuckle:
+	.string "{PLAYER} received a\n"
+	.string "POKéMON.$"
+
+ManiasHouse_Johto_ManiaText_PartyFull:
+	.string "Your POKéMON party\n"
+	.string "is full.$"
+
 ManiasHouse_Johto_ManiaText_IfHeComesBack:
 	.string "Oh, no… What'll\n"
 	.string "I do if he comes\l"
@@ -91,6 +148,22 @@ ManiasHouse_Johto_ManiaText_CanIHaveMyMonBack:
 	.string "\pI think I'm safe\n"
 	.string "now, so may I have\l"
 	.string "it back?$"
+
+ManiasHouse_Johto_ManiaText_ThankYou:
+	.string "Thank you!$"
+
+ManiasHouse_Johto_ManiaText_ShuckleNotThere:
+	.string "Hey, you don't\n"
+	.string "have my POKéMON\l"
+	.string "with you.$"
+
+ManiasHouse_Johto_ManiaText_ShuckleLikesYou:
+	.string "My POKéMON has\n"
+	.string "come to like you."
+	.string "\pAll right, you\n"
+	.string "should keep it."
+	.string "\pBut promise to\n"
+	.string "be good to it!$"
 
 ManiasHouse_Johto_ManiaText_SameAsBeingRobbed:
 	.string "Oh, no, no… That's\n"

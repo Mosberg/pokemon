@@ -73,7 +73,7 @@ MountMoon_Johto_MountMoonRivalMovementAfter:
 	step_end
 
 MountMoon_Johto_MountMoonRivalTextBefore:
-	.string "<……> <……> <……>"
+	.string "… … …"
 	.string "\pIt's been a while,\n"
 	.string "{PLAYER}."
 	.string "\p…Since I lost to\n"
@@ -87,7 +87,7 @@ MountMoon_Johto_MountMoonRivalTextBefore:
 	.string "show you!$"
 
 MountMoon_Johto_MountMoonRivalTextWin:
-	.string "<……> <……> <……>"
+	.string "… … …"
 	.string "\pI thought I raised\n"
 	.string "my POKéMON to be"
 	.string "\pthe best they\n"
@@ -96,7 +96,7 @@ MountMoon_Johto_MountMoonRivalTextWin:
 	.string "wasn't enough…$"
 
 MountMoon_Johto_MountMoonRivalTextAfter:
-	.string "<……> <……> <……>"
+	.string "… … …"
 	.string "\p…You won, fair\n"
 	.string "and square."
 	.string "\pI admit it. But\n"

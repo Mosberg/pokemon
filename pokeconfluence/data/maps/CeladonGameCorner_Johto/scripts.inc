@@ -115,8 +115,13 @@ CeladonGameCorner_Johto_CeladonGameCornerFisherScript:
 	waitbuttonpress
 	checkitem ITEM_COIN_CASE, 1
 	goto_if_eq VAR_RESULT, 0, CeladonGameCorner_Johto_CeladonGameCornerFisherScript_NoCoinCase
-	@ TODO unsupported: checkcoins MAX_COINS - 1
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_0x8004, 9998
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 1, CeladonGameCorner_Johto_CeladonGameCornerFisherScript_FullCoinCase
+	bufferstring STR_VAR_2, CeladonGameCorner_Johto_CeladonGameCornerFisherScript_coinname
+	call CeladonGameCorner_Johto_CeladonGameCornerFisherScript_GiveCoins_Sub
+	addcoins 18
+	setflag FLAG_JOHTO_GOT_COINS_FROM_GAMBLER_AT_CELADON
 
 CeladonGameCorner_Johto_CeladonGameCornerFisherScript_GotCoins:
 	message CeladonGameCorner_Johto_CeladonGameCornerFisherText2
@@ -130,6 +135,16 @@ CeladonGameCorner_Johto_CeladonGameCornerFisherScript_GotCoins:
 
 CeladonGameCorner_Johto_CeladonGameCornerFisherScript_NoCoinCase:
 	message CeladonGameCorner_Johto_CeladonGameCornerFisherNoCoinCaseText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement VAR_LAST_TALKED, Johto_Movement_Face_Left
+	waitmovement VAR_LAST_TALKED
+	releaseall
+	end
+
+CeladonGameCorner_Johto_CeladonGameCornerFisherScript_FullCoinCase:
+	message CeladonGameCorner_Johto_CeladonGameCornerFisherFullCoinCaseText
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -213,6 +228,12 @@ CeladonGameCorner_Johto_CeladonGameCornerSodaCanScript:
 	releaseall
 	end
 
+CeladonGameCorner_Johto_CeladonGameCornerFisherScript_GiveCoins_Sub:
+	goto Johto_Std_ReceiveItemScript_Sub
+
+CeladonGameCorner_Johto_CeladonGameCornerFisherScript_coinname:
+	.string "COIN$"
+
 CeladonGameCorner_Johto_CeladonGameCornerReceptionistText:
 	.string "Welcome!"
 	.string "\pYou may exchange\n"
@@ -262,6 +283,13 @@ CeladonGameCorner_Johto_CeladonGameCornerFisherNoCoinCaseText:
 	.string "\pHow am I supposed\n"
 	.string "to give you any\l"
 	.string "coins, kid?$"
+
+CeladonGameCorner_Johto_CeladonGameCornerFisherFullCoinCaseText:
+	.string "Hey, your COIN\n"
+	.string "CASE is full, kid."
+	.string "\pYou must be riding\n"
+	.string "a winning streak\l"
+	.string "too.$"
 
 CeladonGameCorner_Johto_CeladonGymGuideText:
 	.string "Hey! CHAMP in\n"

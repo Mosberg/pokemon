@@ -54,8 +54,110 @@ TinTower1F_Johto_TinTower1FSuicuneBattleScript:
 	waitmovement OBJ_EVENT_ID_PLAYER
 	delay 15
 	setvar VAR_0x8004, SPECIES_RAIKOU
-	@ TODO unsupported: special MonCheck
-	goto Johto_EventScript_Unimplemented
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
+	goto_if_ne VAR_RESULT, 0, TinTower1F_Johto_TinTower1FSuicuneBattleScript_Next1
+	applymovement 2, TinTower1F_Johto_TinTower1FRaikouApproachesMovement
+	waitmovement 2
+	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Face_Left
+	waitmovement OBJ_EVENT_ID_PLAYER
+	playmoncry SPECIES_RAIKOU, CRY_MODE_NORMAL
+	waitmoncry
+	delay 10
+	playse SE_WARP_OUT
+	applymovement 2, TinTower1F_Johto_TinTower1FRaikouLeavesMovement
+	waitmovement 2
+	removeobject 2
+	playse SE_EXIT
+	waitse
+
+TinTower1F_Johto_TinTower1FSuicuneBattleScript_Next1:
+	setvar VAR_0x8004, SPECIES_ENTEI
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
+	goto_if_ne VAR_RESULT, 0, TinTower1F_Johto_TinTower1FSuicuneBattleScript_Next2
+	applymovement 3, TinTower1F_Johto_TinTower1FEnteiApproachesMovement
+	waitmovement 3
+	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Face_Right
+	waitmovement OBJ_EVENT_ID_PLAYER
+	playmoncry SPECIES_ENTEI, CRY_MODE_NORMAL
+	waitmoncry
+	delay 10
+	playse SE_WARP_OUT
+	applymovement 3, TinTower1F_Johto_TinTower1FEnteiLeavesMovement
+	waitmovement 3
+	removeobject 3
+	playse SE_EXIT
+	waitse
+
+TinTower1F_Johto_TinTower1FSuicuneBattleScript_Next2:
+	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Face_Up
+	waitmovement OBJ_EVENT_ID_PLAYER
+	delay 10
+	applymovement OBJ_EVENT_ID_PLAYER, TinTower1F_Johto_TinTower1FPlayerBacksUpMovement
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 1, TinTower1F_Johto_TinTower1FSuicuneApproachesMovement
+	waitmovement 1
+	playmoncry SPECIES_SUICUNE, CRY_MODE_NORMAL
+	waitmoncry
+	delay 20
+	setwildbattle SPECIES_SUICUNE, 40
+	dowildbattle
+	removeobject 1
+	setflag FLAG_JOHTO_FOUGHT_SUICUNE
+	setflag FLAG_JOHTO_SAW_SUICUNE_ON_ROUTE_42
+	setvar VAR_JOHTO_SCENE_ROUTE_42, 0
+	setflag FLAG_JOHTO_SAW_SUICUNE_ON_ROUTE_36
+	setvar VAR_JOHTO_SCENE_ROUTE_36, 0
+	setflag FLAG_JOHTO_SAW_SUICUNE_AT_CIANWOOD_CITY
+	setvar VAR_JOHTO_SCENE_CIANWOOD_CITY, 0
+	setvar VAR_JOHTO_SCENE_TIN_TOWER_1F, 1
+	clearflag FLAG_JOHTO_SET_WHEN_FOUGHT_HO_OH
+	delay 20
+	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Face_Down
+	waitmovement OBJ_EVENT_ID_PLAYER
+	playbgm MUS_DUMMY, FALSE
+	playse SE_DOOR
+	setobjectxyperm 4, 10, 15
+	clearflag FLAG_JOHTO_TIN_TOWER_1F_EUSINE
+	addobject 4
+	applymovement 4, TinTower1F_Johto_TinTower1FEusineEntersMovement
+	waitmovement 4
+	playse SE_DOOR
+	setobjectxyperm 5, 9, 15
+	clearflag FLAG_JOHTO_TIN_TOWER_1F_WISE_TRIO_1
+	addobject 5
+	applymovement 5, TinTower1F_Johto_TinTower1FSage1EntersMovement
+	waitmovement 5
+	playse SE_DOOR
+	setobjectxyperm 6, 9, 15
+	clearflag FLAG_JOHTO_TIN_TOWER_1F_WISE_TRIO_1
+	addobject 6
+	applymovement 6, TinTower1F_Johto_TinTower1FSage2EntersMovement
+	waitmovement 6
+	playse SE_DOOR
+	setobjectxyperm 7, 9, 15
+	clearflag FLAG_JOHTO_TIN_TOWER_1F_WISE_TRIO_1
+	addobject 7
+	applymovement 7, TinTower1F_Johto_TinTower1FSage3EntersMovement
+	waitmovement 7
+	setobjectxyperm 5, 7, 13
+	setobjectxyperm 6, 9, 13
+	setobjectxyperm 7, 11, 13
+	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Face_Right
+	waitmovement OBJ_EVENT_ID_PLAYER
+	message TinTower1F_Johto_TinTower1FEusineSuicuneText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement 4, TinTower1F_Johto_TinTower1FEusineLeavesMovement
+	waitmovement 4
+	playse SE_EXIT
+	removeobject 4
+	waitse
+	fadeoutbgm 4
+	delay 20
+	fadedefaultbgm
+	releaseall
+	end
 
 TinTower1F_Johto_TinTower1FSage1Script:
 	faceplayer
@@ -169,8 +271,9 @@ TinTower1F_Johto_TinTower1FEusine:
 TinTower1F_Johto_TinTower1FNPCsCallback_Cb:
 	goto_if_set FLAG_JOHTO_GOT_RAINBOW_WING, TinTower1F_Johto_TinTower1FNPCsCallback_GotRainbowWing_Cb
 	goto_if_unset FLAG_JOHTO_BEAT_ELITE_FOUR, TinTower1F_Johto_TinTower1FNPCsCallback_FaceBeasts_Cb
-	@ TODO unsupported: special BeastsCheck
-	return
+	goto_if_unset FLAG_JOHTO_FOUGHT_SUICUNE, TinTower1F_Johto_TinTower1FNPCsCallback_FaceBeasts_Cb
+	clearflag FLAG_JOHTO_TIN_TOWER_1F_WISE_TRIO_2
+	setflag FLAG_JOHTO_TIN_TOWER_1F_WISE_TRIO_1
 
 TinTower1F_Johto_TinTower1FNPCsCallback_GotRainbowWing_Cb:
 	goto_if_unset FLAG_JOHTO_FOUGHT_HO_OH, TinTower1F_Johto_TinTower1FNPCsCallback_Done_Cb
@@ -183,7 +286,25 @@ TinTower1F_Johto_TinTower1FNPCsCallback_FaceBeasts_Cb:
 	goto_if_set FLAG_JOHTO_FOUGHT_SUICUNE, TinTower1F_Johto_TinTower1FNPCsCallback_FoughtSuicune_Cb
 	clearflag FLAG_JOHTO_TIN_TOWER_1F_SUICUNE
 	setvar VAR_0x8004, SPECIES_RAIKOU
-	@ TODO unsupported: special MonCheck
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
+	goto_if_ne VAR_RESULT, 0, TinTower1F_Johto_TinTower1FNPCsCallback_NoRaikou_Cb
+	clearflag FLAG_JOHTO_TIN_TOWER_1F_RAIKOU
+	goto TinTower1F_Johto_TinTower1FNPCsCallback_CheckEntei_Cb
+
+TinTower1F_Johto_TinTower1FNPCsCallback_NoRaikou_Cb:
+	setflag FLAG_JOHTO_TIN_TOWER_1F_RAIKOU
+
+TinTower1F_Johto_TinTower1FNPCsCallback_CheckEntei_Cb:
+	setvar VAR_0x8004, SPECIES_ENTEI
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
+	goto_if_ne VAR_RESULT, 0, TinTower1F_Johto_TinTower1FNPCsCallback_NoEntei_Cb
+	clearflag FLAG_JOHTO_TIN_TOWER_1F_ENTEI
+	goto TinTower1F_Johto_TinTower1FNPCsCallback_BeastsDone_Cb
+
+TinTower1F_Johto_TinTower1FNPCsCallback_NoEntei_Cb:
+	setflag FLAG_JOHTO_TIN_TOWER_1F_ENTEI
+
+TinTower1F_Johto_TinTower1FNPCsCallback_BeastsDone_Cb:
 	return
 
 TinTower1F_Johto_TinTower1FNPCsCallback_FoughtSuicune_Cb:
@@ -211,6 +332,95 @@ TinTower1F_Johto_TinTower1FPlayerEntersMovement:
 	walk_slow_up
 	walk_slow_up
 	step_end
+
+TinTower1F_Johto_TinTower1FRaikouApproachesMovement:
+	jump_down
+	step_end
+
+TinTower1F_Johto_TinTower1FRaikouLeavesMovement:
+	jump_down
+	jump_right
+	jump_down
+	step_end
+
+TinTower1F_Johto_TinTower1FEnteiApproachesMovement:
+	jump_down
+	step_end
+
+TinTower1F_Johto_TinTower1FEnteiLeavesMovement:
+	jump_down
+	jump_left
+	jump_down
+	step_end
+
+TinTower1F_Johto_TinTower1FSuicuneApproachesMovement:
+	jump_down
+	step_end
+
+TinTower1F_Johto_TinTower1FPlayerBacksUpMovement:
+	lock_facing_direction
+	walk_fast_down
+	unlock_facing_direction
+	step_end
+
+TinTower1F_Johto_TinTower1FEusineEntersMovement:
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+TinTower1F_Johto_TinTower1FEusineLeavesMovement:
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+TinTower1F_Johto_TinTower1FSage1EntersMovement:
+	walk_up
+	walk_up
+	walk_left
+	walk_left
+	face_up
+	step_end
+
+TinTower1F_Johto_TinTower1FSage2EntersMovement:
+	walk_up
+	walk_up
+	step_end
+
+TinTower1F_Johto_TinTower1FSage3EntersMovement:
+	walk_up
+	walk_right
+	walk_right
+	walk_up
+	step_end
+
+TinTower1F_Johto_TinTower1FEusineSuicuneText:
+	.string "EUSINE: Awesome!\n"
+	.string "Too awesome, even!"
+	.string "\pI've never seen a\n"
+	.string "battle that great."
+	.string "\pThat was truly\n"
+	.string "inspiring to see."
+	.string "\pSUICUNE was tough,\n"
+	.string "but you were even"
+	.string "\pmore incredible,\n"
+	.string "{PLAYER}."
+	.string "\pI heard SUICUNE's\n"
+	.string "mystic power"
+	.string "\psummons a rainbow-\n"
+	.string "colored POKéMON."
+	.string "\pMaybe, just maybe,\n"
+	.string "what went on today"
+	.string "\pwill cause that\n"
+	.string "POKéMON to appear."
+	.string "\pI'm going to study\n"
+	.string "the legends more."
+	.string "\pThanks for showing\n"
+	.string "me that fantastic\l"
+	.string "battle."
+	.string "\pLater, {PLAYER}!$"
 
 TinTower1F_Johto_TinTower1FSage1Text:
 	.string "According to\n"

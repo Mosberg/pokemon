@@ -57,8 +57,12 @@ OaksLab_Johto_Oak_CheckPokedex:
 	message OaksLab_Johto_OakLabDexCheckText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: special ProfOaksPCBoot
-	goto Johto_EventScript_Unimplemented
+	message OaksLab_Johto_OakLabGoodbyeText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 OaksLab_Johto_Oak_OpenMtSilver:
 	message OaksLab_Johto_OakOpenMtSilverText
@@ -155,6 +159,11 @@ OaksLab_Johto_OakLabDexCheckText:
 	.string "How is your POKé-\n"
 	.string "DEX coming?"
 	.string "\pLet's see…$"
+
+OaksLab_Johto_OakLabGoodbyeText:
+	.string "If you're in the\n"
+	.string "area, I hope you\l"
+	.string "come visit again.$"
 
 OaksLab_Johto_OakOpenMtSilverText:
 	.string "OAK: Wow! That's\n"

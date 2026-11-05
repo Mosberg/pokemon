@@ -7,6 +7,11 @@
 #include "new_game.h"
 #include "pokemon.h"
 #include "string_util.h"
+#include "coins.h"
+#include "item.h"
+#include "pokedex.h"
+#include "battle.h"
+#include "constants/items.h"
 #include "constants/species.h"
 
 // Crystal's time-of-day slots: MORN 4-9, DAY 10-17, NITE 18-3. VAR_0x8004 holds a mask (1 MORN, 2 DAY, 4 NITE);
@@ -142,4 +147,49 @@ void JohtoFindPartyMonSpecies(void)
             return;
         }
     }
+}
+
+void JohtoCheckCoins(void)
+{
+    gSpecialVar_Result = (GetCoins() >= gSpecialVar_0x8004) ? 1 : 0;
+}
+
+void JohtoSelectApricornForKurt(void)
+{
+    static const u16 sApricorns[] = {
+        ITEM_RED_APRICORN, ITEM_BLU_APRICORN, ITEM_YLW_APRICORN,
+        ITEM_GRN_APRICORN, ITEM_WHT_APRICORN, ITEM_BLK_APRICORN, ITEM_PNK_APRICORN
+    };
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sApricorns); i++)
+    {
+        if (CheckBagHasItem(sApricorns[i], 1))
+        {
+            RemoveBagItem(sApricorns[i], 1);
+            gSpecialVar_Result = sApricorns[i];
+            return;
+        }
+    }
+    gSpecialVar_Result = FALSE;
+}
+
+void JohtoGetDexCaught(void)
+{
+    gSpecialVar_Result = GetNationalPokedexCount(FLAG_GET_CAUGHT);
+}
+
+void JohtoCheckFirstMonIsEgg(void)
+{
+    gSpecialVar_Result = (gPlayerPartyCount > 0 && GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG));
+}
+
+void JohtoCheckCaughtCelebi(void)
+{
+    gSpecialVar_Result = (gBattleOutcome == B_OUTCOME_CAUGHT);
+}
+
+void JohtoInvertResult(void)
+{
+    gSpecialVar_Result = (gSpecialVar_Result == 0);
 }

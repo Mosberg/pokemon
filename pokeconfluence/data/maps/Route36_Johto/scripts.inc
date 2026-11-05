@@ -103,11 +103,20 @@ Route36_Johto_WateredWeirdTreeScript:
 	setwildbattle SPECIES_SUDOWOODO, 20
 	dowildbattle
 	setflag FLAG_JOHTO_FOUGHT_SUDOWOODO
-	@ TODO unsupported: ifequal DRAW, DidntCatchSudowoodo
-	goto Johto_EventScript_Unimplemented
+	goto_if_eq VAR_RESULT, 2, Route36_Johto_DidntCatchSudowoodo
+	removeobject 3
+	releaseall
+	end
 
 Route36_Johto_DidntUseSquirtbottleScript:
 	closemessage
+	releaseall
+	end
+
+Route36_Johto_DidntCatchSudowoodo:
+	applymovement 3, Route36_Johto_WeirdTreeMovement_Flee
+	waitmovement 3
+	removeobject 3
 	releaseall
 	end
 
@@ -428,6 +437,11 @@ Route36_Johto_Route36ArthurCallback_ArthurAppears_Cb:
 	return
 
 Route36_Johto_SudowoodoShakeMovement:
+	step_end
+
+Route36_Johto_WeirdTreeMovement_Flee:
+	jump_up
+	jump_up
 	step_end
 
 Route36_Johto_FloriaMovement1:

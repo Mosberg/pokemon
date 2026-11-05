@@ -521,8 +521,28 @@ IlexForest_Johto_IlexForestShrineScript_CelebiEvent:
 	waitmovement OBJ_EVENT_ID_PLAYER
 	delay 20
 	clearflag FLAG_JOHTO_ENGINE_FOREST_IS_RESTLESS
-	@ TODO unsupported: special CelebiShrineEvent
-	goto Johto_EventScript_Unimplemented
+	setwildbattle SPECIES_CELEBI, 30
+	dowildbattle
+	setwildbattle SPECIES_CELEBI, 30
+	dowildbattle
+	delay 20
+	special JohtoCheckCaughtCelebi
+	goto_if_eq VAR_RESULT, 0, IlexForest_Johto_IlexForestShrineScript_DidntCatchCelebi
+	clearflag FLAG_JOHTO_ILEX_FOREST_KURT
+	addobject 6
+	applymovement 6, IlexForest_Johto_IlexForestKurtStepsUpMovement
+	waitmovement 6
+	message IlexForest_Johto_Text_KurtCaughtCelebi
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement 6, IlexForest_Johto_IlexForestKurtStepsDownMovement
+	waitmovement 6
+	removeobject 6
+
+IlexForest_Johto_IlexForestShrineScript_DidntCatchCelebi:
+	releaseall
+	end
 
 IlexForest_Johto_IlexForestFarfetchdScript_CryAndCheckFacing_Sub:
 	faceplayer
@@ -837,6 +857,20 @@ IlexForest_Johto_MovementData_Farfetched_Pos9_Pos8_Down:
 	walk_fast_up
 	step_end
 
+IlexForest_Johto_IlexForestKurtStepsUpMovement:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+IlexForest_Johto_IlexForestKurtStepsDownMovement:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
 IlexForest_Johto_IlexForestPlayerStepsDownMovement:
 	lock_facing_direction
 	walk_slow_down
@@ -955,6 +989,20 @@ IlexForest_Johto_Text_ShrineCelebiEvent:
 IlexForest_Johto_Text_InsertGSBall:
 	.string "{PLAYER} put in the\n"
 	.string "GS BALL.$"
+
+IlexForest_Johto_Text_KurtCaughtCelebi:
+	.string "Whew, wasn't that\n"
+	.string "something!"
+	.string "\p{PLAYER}, that was\n"
+	.string "fantastic. Thanks!"
+	.string "\pThe legends about\n"
+	.string "that SHRINE were\l"
+	.string "real after all."
+	.string "\pI feel inspired by\n"
+	.string "what I just saw."
+	.string "\pIt motivates me to\n"
+	.string "make better BALLS!"
+	.string "\pI'm going!$"
 
 IlexForest_Johto_BugCatcherWayneSeenText:
 	.string "Don't sneak up on\n"

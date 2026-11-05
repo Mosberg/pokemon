@@ -13,5 +13,8 @@ BattleTowerBattleRoom_Johto_BattleTowerBattleRoomEnterScene_Entry::
 
 BattleTowerBattleRoom_Johto_BattleTowerBattleRoomEnterScene:
 	removeobject 1
-	@ TODO unsupported: sdefer Script_BattleRoom
+	goto BattleTowerBattleRoom_Johto_Script_BattleRoom
+
+BattleTowerBattleRoom_Johto_Script_BattleRoom:
+	@ TODO unsupported: applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerWalksIn
 	goto Johto_EventScript_Unimplemented

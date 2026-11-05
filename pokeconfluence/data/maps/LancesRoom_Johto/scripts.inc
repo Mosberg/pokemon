@@ -149,8 +149,8 @@ LancesRoom_Johto_LancesRoomLanceScript:
 	waitmovement 2
 	fadescreen FADE_TO_WHITE
 	delay 15
-	@ TODO unsupported: warpfacing UP, HALL_OF_FAME, 4, 13
-	goto Johto_EventScript_Unimplemented
+	warp MAP_JOHTO_HALL_OF_FAME, 4, 13
+	waitstate
 
 LancesRoom_Johto_LancesRoomDoorsCallback_Cb:
 	goto_if_unset FLAG_JOHTO_LANCES_ROOM_ENTRANCE_CLOSED, LancesRoom_Johto_LancesRoomDoorsCallback_KeepEntranceOpen_Cb

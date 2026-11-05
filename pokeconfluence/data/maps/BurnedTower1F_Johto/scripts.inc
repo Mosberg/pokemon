@@ -116,8 +116,8 @@ BurnedTower1F_Johto_BurnedTowerRivalBattleScript_returnfrombattle:
 	closemessage
 	setflag FLAG_JOHTO_HOLE_IN_BURNED_TOWER
 	delay 15
-	@ TODO unsupported: warpcheck 
-	goto Johto_EventScript_Unimplemented
+	releaseall
+	end
 
 BurnedTower1F_Johto_BurnedTower1FEusineScript:
 	faceplayer
@@ -184,7 +184,7 @@ BurnedTower1F_Johto_BurnedTower1FEusineMovement:
 	step_end
 
 BurnedTower1F_Johto_BurnedTowerRival_BeforeText:
-	.string "<……> <……> <……>"
+	.string "… … …"
 	.string "\p…Oh, it's you."
 	.string "\pI came looking for\n"
 	.string "some legendary"

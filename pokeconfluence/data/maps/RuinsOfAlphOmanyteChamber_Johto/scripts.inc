@@ -37,13 +37,68 @@ RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberCheckWallScene_Entry::
 
 
 RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberCheckWallScene:
-	@ TODO unsupported: special OmanyteChamber
-	goto Johto_EventScript_Unimplemented
+	checkitem ITEM_WATER_STONE, 1
+	goto_if_eq VAR_RESULT, 0, RuinsOfAlphOmanyteChamber_Johto_OmanyteChamber_Skip
+	setflag FLAG_JOHTO_WALL_OPENED_IN_OMANYTE_CHAMBER
+	RuinsOfAlphOmanyteChamber_Johto_OmanyteChamber_Skip:
+	goto_if_set FLAG_JOHTO_WALL_OPENED_IN_OMANYTE_CHAMBER, RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberCheckWallScene_OpenWall
+	releaseall
+	end
+
+RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberCheckWallScene_OpenWall:
+	goto RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallOpenScript
+
+RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallOpenScript:
+	delay 30
+	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Emote_exclamation_mark
+	waitmovement OBJ_EVENT_ID_PLAYER
+	delay 30
+	playse SE_M_STRENGTH
+	setmetatile 4, 0, 553, 0
+	setmetatile 5, 0, 529, 1
+	setmetatile 4, 1, 521, 0
+	setmetatile 5, 1, 521, 0
+	special DrawWholeMapView
+	setvar VAR_JOHTO_SCENE_RUINS_OF_ALPH_OMANYTE_CHAMBER, 1
+	closemessage
+	releaseall
+	end
 
 RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberPuzzle:
 	setvar VAR_RESULT, 0
-	@ TODO unsupported: special UnownPuzzle
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 1
+	closemessage
+	goto_if_ne VAR_RESULT, 0, RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberPuzzle_PuzzleComplete
+	releaseall
+	end
+
+RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberPuzzle_PuzzleComplete:
+	setflag FLAG_JOHTO_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
+	setflag FLAG_JOHTO_SOLVED_OMANYTE_PUZZLE
+	setflag FLAG_JOHTO_ENGINE_UNLOCKED_UNOWNS_L_TO_R
+	setvar VAR_JOHTO_SCENE_RUINS_OF_ALPH_INNER_CHAMBER, 1
+	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Emote_exclamation_mark
+	waitmovement OBJ_EVENT_ID_PLAYER
+	setmetatile 2, 2, 513, 1
+	setmetatile 3, 2, 514, 1
+	setmetatile 2, 3, 515, 1
+	setmetatile 3, 3, 539, 1
+	special DrawWholeMapView
+	setmetatile 4, 2, 517, 1
+	setmetatile 5, 2, 513, 1
+	setmetatile 4, 3, 539, 1
+	setmetatile 5, 3, 515, 1
+	special DrawWholeMapView
+	playse SE_M_STRENGTH
+	applymovement OBJ_EVENT_ID_PLAYER, RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberSkyfallTopMovement
+	waitmovement OBJ_EVENT_ID_PLAYER
+	playse SE_PIN
+	waitse
+	delay 20
+	warp MAP_JOHTO_RUINS_OF_ALPH_INNER_CHAMBER, 10, 13
+	waitstate
+	releaseall
+	end
 
 RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberAncientReplica:
 	message RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberAncientReplicaText
@@ -65,16 +120,18 @@ RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallPatternLeft:
 	message RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallPatternLeftText
 	waitmessage
 	setvar VAR_RESULT, 0
-	@ TODO unsupported: special DisplayUnownWords
-	goto Johto_EventScript_Unimplemented
+	closemessage
+	releaseall
+	end
 
 RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallPatternRight:
 	goto_if_set FLAG_JOHTO_WALL_OPENED_IN_OMANYTE_CHAMBER, RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallPatternRight_WallOpen
 	message RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallPatternRightText
 	waitmessage
 	setvar VAR_RESULT, 0
-	@ TODO unsupported: special DisplayUnownWords
-	goto Johto_EventScript_Unimplemented
+	closemessage
+	releaseall
+	end
 
 RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallPatternRight_WallOpen:
 	message RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallHoleText
@@ -108,6 +165,9 @@ RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberHiddenDoorsCallback_Flo
 	setmetatile 5, 3, 515, 1
 	special DrawWholeMapView
 	return
+
+RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberSkyfallTopMovement:
+	step_end
 
 RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallPatternLeftText:
 	.string "Patterns appeared\n"

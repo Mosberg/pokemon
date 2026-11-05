@@ -952,7 +952,7 @@ ElmsLab_Johto_ElmText_ResearchAmbitions:
 ElmsLab_Johto_ElmText_GotAnEmail:
 	.string "Oh, hey! I got an\n"
 	.string "e-mail!"
-	.string "\p<……><……><……>\n"
+	.string "\p………\n"
 	.string "Hm… Uh-huh…"
 	.string "\pOkay…$"
 

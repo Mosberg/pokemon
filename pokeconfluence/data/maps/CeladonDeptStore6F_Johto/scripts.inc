@@ -46,8 +46,64 @@ CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine:
 	waitmessage
 
 CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_Start:
-	@ TODO unsupported: loadmenu .MenuHeader
-	goto Johto_EventScript_Unimplemented
+	dynmultipush Johto_Menu_CeladonDeptStore6F_CeladonDeptStore6FVendingMachine_MenuHeader_Opt1, 1
+	dynmultipush Johto_Menu_CeladonDeptStore6F_CeladonDeptStore6FVendingMachine_MenuHeader_Opt2, 2
+	dynmultipush Johto_Menu_CeladonDeptStore6F_CeladonDeptStore6FVendingMachine_MenuHeader_Opt3, 3
+	dynmultipush Johto_Menu_CeladonDeptStore6F_CeladonDeptStore6FVendingMachine_MenuHeader_Opt4, 4
+	dynmultistack 0, 0, FALSE, 4, FALSE, 1, DYN_MULTICHOICE_CB_NONE
+	goto_if_eq VAR_RESULT, 1, CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_FreshWater
+	goto_if_eq VAR_RESULT, 2, CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_SodaPop
+	goto_if_eq VAR_RESULT, 3, CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_Lemonade
+	closemessage
+	releaseall
+	end
+
+CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_FreshWater:
+	checkmoney 200
+	goto_if_eq VAR_RESULT, 0, CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_NotEnoughMoney
+	additem ITEM_FRESH_WATER
+	goto_if_eq VAR_RESULT, 0, CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_NotEnoughSpace
+	removemoney 200
+	bufferitemname STR_VAR_1, ITEM_FRESH_WATER
+	goto CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_VendItem
+
+CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_SodaPop:
+	checkmoney 300
+	goto_if_eq VAR_RESULT, 0, CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_NotEnoughMoney
+	additem ITEM_SODA_POP
+	goto_if_eq VAR_RESULT, 0, CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_NotEnoughSpace
+	removemoney 300
+	bufferitemname STR_VAR_1, ITEM_SODA_POP
+	goto CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_VendItem
+
+CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_Lemonade:
+	checkmoney 350
+	goto_if_eq VAR_RESULT, 0, CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_NotEnoughMoney
+	additem ITEM_LEMONADE
+	goto_if_eq VAR_RESULT, 0, CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_NotEnoughSpace
+	removemoney 350
+	bufferitemname STR_VAR_1, ITEM_LEMONADE
+	goto CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_VendItem
+
+CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_VendItem:
+	delay 10
+	playse SE_DOOR
+	message CeladonDeptStore6F_Johto_CeladonClangText
+	waitmessage
+	waitbuttonpress
+	goto CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_Start
+
+CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_NotEnoughMoney:
+	message CeladonDeptStore6F_Johto_CeladonVendingNoMoneyText
+	waitmessage
+	waitbuttonpress
+	goto CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_Start
+
+CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_NotEnoughSpace:
+	message CeladonDeptStore6F_Johto_CeladonVendingNoSpaceText
+	waitmessage
+	waitbuttonpress
+	goto CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_Start
 
 CeladonDeptStore6F_Johto_CeladonDeptStore6FDirectory:
 	message CeladonDeptStore6F_Johto_CeladonDeptStore6FDirectoryText
@@ -68,6 +124,19 @@ CeladonDeptStore6F_Johto_CeladonDeptStore6FHideRooftopStairsCallback_Cb:
 CeladonDeptStore6F_Johto_CeladonVendingText:
 	.string "A vending machine!\n"
 	.string "Here's the menu.$"
+
+CeladonDeptStore6F_Johto_CeladonClangText:
+	.string "Clang!"
+	.string "\p{STR_VAR_1}\n"
+	.string "popped out.$"
+
+CeladonDeptStore6F_Johto_CeladonVendingNoMoneyText:
+	.string "Oops, not enough\n"
+	.string "money…$"
+
+CeladonDeptStore6F_Johto_CeladonVendingNoSpaceText:
+	.string "There's no more\n"
+	.string "room for stuff…$"
 
 CeladonDeptStore6F_Johto_CeladonDeptStore6FSuperNerdText:
 	.string "A vending machine\n"

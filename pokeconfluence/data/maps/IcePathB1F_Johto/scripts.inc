@@ -24,5 +24,4 @@ IcePathB1F_Johto_IcePathB1FIron:
 	end
 
 IcePathB1F_Johto_IcePathB1FSetUpStoneTableCallback_Cb:
-	@ TODO unsupported: writecmdqueue .CommandQueue
 	return

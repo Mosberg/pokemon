@@ -323,6 +323,274 @@ Johto_Std_AskPhone_No:
 	setvar VAR_RESULT, 2
 	return
 
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor1:
+	.string "1F$"
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor2:
+	.string "2F$"
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor3:
+	.string "3F$"
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor4:
+	.string "4F$"
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor5:
+	.string "5F$"
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor6:
+	.string "6F$"
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp1:
+	closemessage
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_CELADON_DEPT_STORE_1F, 3
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp2:
+	closemessage
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_CELADON_DEPT_STORE_2F, 2
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp3:
+	closemessage
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_CELADON_DEPT_STORE_3F, 2
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp4:
+	closemessage
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_CELADON_DEPT_STORE_4F, 2
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp5:
+	closemessage
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_CELADON_DEPT_STORE_5F, 2
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp6:
+	closemessage
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_CELADON_DEPT_STORE_6F, 1
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Floor1:
+	.string "B1F$"
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Floor2:
+	.string "1F$"
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Floor3:
+	.string "2F$"
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Floor4:
+	.string "3F$"
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Floor5:
+	.string "4F$"
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Floor6:
+	.string "5F$"
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Floor7:
+	.string "6F$"
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp1:
+	closemessage
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp1_L2
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp1_L3
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp1_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp1_L2:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp1_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp1_L3:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp1_Go:
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_GOLDENROD_DEPT_STORE_B1F, 1
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp2:
+	closemessage
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp2_L2
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp2_L3
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp2_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp2_L2:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp2_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp2_L3:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp2_Go:
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_GOLDENROD_DEPT_STORE_1F, 3
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp3:
+	closemessage
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp3_L2
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp3_L3
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp3_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp3_L2:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp3_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp3_L3:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp3_Go:
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_GOLDENROD_DEPT_STORE_2F, 2
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp4:
+	closemessage
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp4_L2
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp4_L3
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp4_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp4_L2:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp4_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp4_L3:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp4_Go:
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_GOLDENROD_DEPT_STORE_3F, 2
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp5:
+	closemessage
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp5_L2
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp5_L3
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp5_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp5_L2:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp5_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp5_L3:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp5_Go:
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_GOLDENROD_DEPT_STORE_4F, 2
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp6:
+	closemessage
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp6_L2
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp6_L3
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp6_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp6_L2:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp6_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp6_L3:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp6_Go:
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_GOLDENROD_DEPT_STORE_5F, 2
+	waitstate
+	releaseall
+	end
+
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp7:
+	closemessage
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp7_L2
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2, Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp7_L3
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp7_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp7_L2:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+	goto Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp7_Go
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp7_L3:
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
+	clearflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
+	setflag FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+Johto_Elev_GoldenrodDeptStoreElevator_GoldenrodDeptStoreElevatorData_Warp7_Go:
+	playse SE_ELEVATOR
+	waitse
+	warp MAP_JOHTO_GOLDENROD_DEPT_STORE_6F, 1
+	waitstate
+	releaseall
+	end
+
 	.align 2
 Johto_Mart_AZALEA:
 	.2byte ITEM_CHARCOAL
@@ -334,6 +602,15 @@ Johto_Mart_AZALEA:
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARLYZ_HEAL
 	.2byte ITEM_FLOWER_MAIL
+	.2byte ITEM_NONE
+
+	.align 2
+Johto_Mart_BARGAIN:
+	.2byte ITEM_NUGGET
+	.2byte ITEM_PEARL
+	.2byte ITEM_BIG_PEARL
+	.2byte ITEM_STARDUST
+	.2byte ITEM_STAR_PIECE
 	.2byte ITEM_NONE
 
 	.align 2
@@ -386,6 +663,7 @@ Johto_Mart_CELADON_3F:
 	.align 2
 Johto_Mart_CELADON_4F:
 	.2byte ITEM_POKE_DOLL
+	.2byte ITEM_GLITTER_MAIL
 	.2byte ITEM_SURF_MAIL
 	.2byte ITEM_NONE
 
@@ -587,6 +865,7 @@ Johto_Mart_MT_MOON:
 	.2byte ITEM_SODA_POP
 	.2byte ITEM_LEMONADE
 	.2byte ITEM_REPEL
+	.2byte ITEM_SHADOW_MAIL
 	.2byte ITEM_NONE
 
 	.align 2
@@ -611,6 +890,19 @@ Johto_Mart_PEWTER:
 	.2byte ITEM_PARLYZ_HEAL
 	.2byte ITEM_AWAKENING
 	.2byte ITEM_BURN_HEAL
+	.2byte ITEM_NONE
+
+	.align 2
+Johto_Mart_ROOFTOP:
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_ULTRA_BALL
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_FULL_RESTORE
+	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_REVIVE
+	.2byte ITEM_PROTEIN
 	.2byte ITEM_NONE
 
 	.align 2
@@ -642,6 +934,7 @@ Johto_Mart_VERMILION:
 	.2byte ITEM_PARLYZ_HEAL
 	.2byte ITEM_AWAKENING
 	.2byte ITEM_BURN_HEAL
+	.2byte ITEM_WAVE_MAIL
 	.2byte ITEM_NONE
 
 	.align 2
@@ -670,6 +963,180 @@ Johto_Mart_VIRIDIAN:
 	.2byte ITEM_BURN_HEAL
 	.2byte ITEM_FLOWER_MAIL
 	.2byte ITEM_NONE
+
+Johto_Menu_CeladonDeptStore6F_CeladonDeptStore6FVendingMachine_MenuHeader_Opt1:
+	.string "FRESH WATER  ¥200$"
+
+Johto_Menu_CeladonDeptStore6F_CeladonDeptStore6FVendingMachine_MenuHeader_Opt2:
+	.string "SODA POP     ¥300$"
+
+Johto_Menu_CeladonDeptStore6F_CeladonDeptStore6FVendingMachine_MenuHeader_Opt3:
+	.string "LEMONADE     ¥350$"
+
+Johto_Menu_CeladonDeptStore6F_CeladonDeptStore6FVendingMachine_MenuHeader_Opt4:
+	.string "CANCEL$"
+
+Johto_Menu_CeladonGameCornerPrizeRoom_CeladonGameCornerPrizeRoomPokemonVendor_MenuHeader_Opt1:
+	.string "PIKACHU    2222$"
+
+Johto_Menu_CeladonGameCornerPrizeRoom_CeladonGameCornerPrizeRoomPokemonVendor_MenuHeader_Opt2:
+	.string "PORYGON    5555$"
+
+Johto_Menu_CeladonGameCornerPrizeRoom_CeladonGameCornerPrizeRoomPokemonVendor_MenuHeader_Opt3:
+	.string "LARVITAR   8888$"
+
+Johto_Menu_CeladonGameCornerPrizeRoom_CeladonGameCornerPrizeRoomPokemonVendor_MenuHeader_Opt4:
+	.string "CANCEL$"
+
+Johto_Menu_CeladonGameCornerPrizeRoom_CeladonPrizeRoom_TMMenuHeader_Opt1:
+	.string "TM32    1500$"
+
+Johto_Menu_CeladonGameCornerPrizeRoom_CeladonPrizeRoom_TMMenuHeader_Opt2:
+	.string "TM29    3500$"
+
+Johto_Menu_CeladonGameCornerPrizeRoom_CeladonPrizeRoom_TMMenuHeader_Opt3:
+	.string "TM15    7500$"
+
+Johto_Menu_CeladonGameCornerPrizeRoom_CeladonPrizeRoom_TMMenuHeader_Opt4:
+	.string "CANCEL$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion1_MenuHeader_Opt1:
+	.string "Pal$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion1_MenuHeader_Opt2:
+	.string "Underling$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion1_MenuHeader_Opt3:
+	.string "Friend$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion2_MenuHeader_Opt1:
+	.string "Strategy$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion2_MenuHeader_Opt2:
+	.string "Raising$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion2_MenuHeader_Opt3:
+	.string "Cheating$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion3_MenuHeader_Opt1:
+	.string "Weak person$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion3_MenuHeader_Opt2:
+	.string "Tough person$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion3_MenuHeader_Opt3:
+	.string "Anybody$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion4_MenuHeader_Opt1:
+	.string "Love$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion4_MenuHeader_Opt2:
+	.string "Violence$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion4_MenuHeader_Opt3:
+	.string "Knowledge$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion5_MenuHeader_Opt1:
+	.string "Tough$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion5_MenuHeader_Opt2:
+	.string "Both$"
+
+Johto_Menu_DragonShrine_DragonShrineQuestion5_MenuHeader_Opt3:
+	.string "Weak$"
+
+Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt1:
+	.string "PSN$"
+
+Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt2:
+	.string "PAR$"
+
+Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt3:
+	.string "SLP$"
+
+Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt4:
+	.string "BRN$"
+
+Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt5:
+	.string "FRZ$"
+
+Johto_Menu_EarlsPokemonAcademy_AcademyBlackboard_BlackboardMenuHeader_Opt6:
+	.string "QUIT$"
+
+Johto_Menu_GoldenrodCity_MoveTutorScript_MoveMenuHeader_Opt1:
+	.string "FLAMETHROWER$"
+
+Johto_Menu_GoldenrodCity_MoveTutorScript_MoveMenuHeader_Opt2:
+	.string "THUNDERBOLT$"
+
+Johto_Menu_GoldenrodCity_MoveTutorScript_MoveMenuHeader_Opt3:
+	.string "ICE BEAM$"
+
+Johto_Menu_GoldenrodCity_MoveTutorScript_MoveMenuHeader_Opt4:
+	.string "CANCEL$"
+
+Johto_Menu_GoldenrodDeptStore6F_GoldenrodVendingMachine_MenuHeader_Opt1:
+	.string "FRESH WATER  ¥200$"
+
+Johto_Menu_GoldenrodDeptStore6F_GoldenrodVendingMachine_MenuHeader_Opt2:
+	.string "SODA POP     ¥300$"
+
+Johto_Menu_GoldenrodDeptStore6F_GoldenrodVendingMachine_MenuHeader_Opt3:
+	.string "LEMONADE     ¥350$"
+
+Johto_Menu_GoldenrodDeptStore6F_GoldenrodVendingMachine_MenuHeader_Opt4:
+	.string "CANCEL$"
+
+Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerPrizeMonVendorScript_MenuHeader_Opt1:
+	.string "ABRA       100$"
+
+Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerPrizeMonVendorScript_MenuHeader_Opt2:
+	.string "CUBONE     800$"
+
+Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerPrizeMonVendorScript_MenuHeader_Opt3:
+	.string "WOBBUFFET  1500$"
+
+Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerPrizeMonVendorScript_MenuHeader_Opt4:
+	.string "CANCEL$"
+
+Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerTMVendorMenuHeader_Opt1:
+	.string "TM25    5500$"
+
+Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerTMVendorMenuHeader_Opt2:
+	.string "TM14    5500$"
+
+Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerTMVendorMenuHeader_Opt3:
+	.string "TM38    5500$"
+
+Johto_Menu_GoldenrodGameCorner_GoldenrodGameCornerTMVendorMenuHeader_Opt4:
+	.string "CANCEL$"
+
+Johto_Menu_PokecomCenterAdminOfficeMobile_PokecomCenterAdminOfficeMobileComputer1_Computer1MenuHeader_Opt1:
+	.string "POKéCOM CLUB$"
+
+Johto_Menu_PokecomCenterAdminOfficeMobile_PokecomCenterAdminOfficeMobileComputer1_Computer1MenuHeader_Opt2:
+	.string "MOBILE CENTER$"
+
+Johto_Menu_PokecomCenterAdminOfficeMobile_PokecomCenterAdminOfficeMobileComputer1_Computer1MenuHeader_Opt3:
+	.string "QUIT$"
+
+Johto_Menu_PokecomCenterAdminOfficeMobile_PokecomCenterAdminOfficeMobileComputer2_Computer2MenuHeader_Opt1:
+	.string "USE PHONE$"
+
+Johto_Menu_PokecomCenterAdminOfficeMobile_PokecomCenterAdminOfficeMobileComputer2_Computer2MenuHeader_Opt2:
+	.string "NO SIGNAL$"
+
+Johto_Menu_PokecomCenterAdminOfficeMobile_PokecomCenterAdminOfficeMobileComputer2_Computer2MenuHeader_Opt3:
+	.string "QUIT$"
+
+Johto_Menu_Std_CoinVendor_IntroScript_MenuHeader_Opt1:
+	.string " 50 :  ¥1000$"
+
+Johto_Menu_Std_CoinVendor_IntroScript_MenuHeader_Opt2:
+	.string "500 : ¥10000$"
+
+Johto_Menu_Std_CoinVendor_IntroScript_MenuHeader_Opt3:
+	.string "CANCEL$"
 
 Johto_Std_AlanAskNumber1Text:
 	.string "Reading textbooks\n"
@@ -1332,13 +1799,88 @@ Johto_Std_ChadRematchText:
 	.string "I've been waiting!\n"
 	.string "Let's battle now!$"
 
+Johto_Std_CoinVendor_Buy500CoinsText:
+	.string "Thank you! Here\n"
+	.string "are 500 coins.$"
+
+Johto_Std_CoinVendor_Buy50CoinsText:
+	.string "Thank you!\n"
+	.string "Here are 50 coins.$"
+
+Johto_Std_CoinVendor_CancelText:
+	.string "No coins for you?\n"
+	.string "Come again!$"
+
+Johto_Std_CoinVendor_CoinCaseFullText:
+	.string "Whoops! Your COIN\n"
+	.string "CASE is full.$"
+
 Johto_Std_CoinVendor_IntroScript:
 	message Johto_Std_CoinVendor_IntroText
 	waitmessage
 
+Johto_Std_CoinVendor_IntroScript_Buy50:
+	setvar VAR_0x8004, 9949
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 1, Johto_Std_CoinVendor_IntroScript_CoinCaseFull
+	checkmoney 1000
+	goto_if_eq VAR_RESULT, 0, Johto_Std_CoinVendor_IntroScript_NotEnoughMoney
+	addcoins 50
+	removemoney 1000
+	waitse
+	playse SE_PIN
+	message Johto_Std_CoinVendor_Buy50CoinsText
+	waitmessage
+	waitbuttonpress
+	goto Johto_Std_CoinVendor_IntroScript_loop
+
+Johto_Std_CoinVendor_IntroScript_Buy500:
+	setvar VAR_0x8004, 9499
+	special JohtoCheckCoins
+	goto_if_eq VAR_RESULT, 1, Johto_Std_CoinVendor_IntroScript_CoinCaseFull
+	checkmoney 10000
+	goto_if_eq VAR_RESULT, 0, Johto_Std_CoinVendor_IntroScript_NotEnoughMoney
+	addcoins 500
+	removemoney 10000
+	waitse
+	playse SE_PIN
+	message Johto_Std_CoinVendor_Buy500CoinsText
+	waitmessage
+	waitbuttonpress
+	goto Johto_Std_CoinVendor_IntroScript_loop
+
+Johto_Std_CoinVendor_IntroScript_Cancel:
+	message Johto_Std_CoinVendor_CancelText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Johto_Std_CoinVendor_IntroScript_CoinCaseFull:
+	message Johto_Std_CoinVendor_CoinCaseFullText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Johto_Std_CoinVendor_IntroScript_NotEnoughMoney:
+	message Johto_Std_CoinVendor_NotEnoughMoneyText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
 Johto_Std_CoinVendor_IntroScript_loop:
-	@ TODO unsupported: loadmenu .MenuHeader
-	goto Johto_EventScript_Unimplemented
+	dynmultipush Johto_Menu_Std_CoinVendor_IntroScript_MenuHeader_Opt1, 1
+	dynmultipush Johto_Menu_Std_CoinVendor_IntroScript_MenuHeader_Opt2, 2
+	dynmultipush Johto_Menu_Std_CoinVendor_IntroScript_MenuHeader_Opt3, 3
+	dynmultistack 0, 0, FALSE, 3, FALSE, 1, DYN_MULTICHOICE_CB_NONE
+	goto_if_eq VAR_RESULT, 1, Johto_Std_CoinVendor_IntroScript_Buy50
+	goto_if_eq VAR_RESULT, 2, Johto_Std_CoinVendor_IntroScript_Buy500
+	goto Johto_Std_CoinVendor_IntroScript_Cancel
 
 Johto_Std_CoinVendor_IntroText:
 	.string "Do you need some\n"
@@ -1353,6 +1895,10 @@ Johto_Std_CoinVendor_NoCoinCaseText:
 	.string "\pOh, you don't have\n"
 	.string "a COIN CASE for\l"
 	.string "your coins.$"
+
+Johto_Std_CoinVendor_NotEnoughMoneyText:
+	.string "You don't have\n"
+	.string "enough money.$"
 
 Johto_Std_CoinVendor_WelcomeText:
 	.string "Welcome to the\n"
@@ -4118,4 +4664,7 @@ Johto_Std_WiltonRematchText:
 	.string "Argh! You startled\n"
 	.string "POLIWAG into\l"
 	.string "fleeing again!$"
+
+Johto_Text_DecorationDesc:
+	.string "It's a nice decoration for\nyour room!\p$"
 

@@ -474,7 +474,13 @@ NationalPark_Johto_SchoolboyJack1BeatenText:
 	.string "Wha-wha-what?$"
 
 NationalPark_Johto_SchoolboyJackTradeMonText:
-	.string "(text not converted)$"
+	.string "There is a lot\n"
+	.string "to learn."
+	.string "\pFor example…"
+	.string "\pThere are NUM_TMS kinds\n"
+	.string "of TMs."
+	.string "\pTraded POKéMON\n"
+	.string "level up faster.$"
 
 NationalPark_Johto_PokefanfBeverly1SeenText:
 	.string "My POKéMON are\n"

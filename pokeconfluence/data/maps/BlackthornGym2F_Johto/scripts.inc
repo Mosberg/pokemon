@@ -45,7 +45,6 @@ BlackthornGym2F_Johto_TrainerCooltrainerfFran_Script:
 	end
 
 BlackthornGym2F_Johto_BlackthornGym2FSetUpStoneTableCallback_Cb:
-	@ TODO unsupported: writecmdqueue .CommandQueue
 	return
 
 BlackthornGym2F_Johto_CooltrainermCodySeenText:

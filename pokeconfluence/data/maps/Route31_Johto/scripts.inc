@@ -192,9 +192,21 @@ Route31_Johto_Route31MailRecipientScript_TryGiveKenya:
 	message Route31_Johto_Text_Route31SleepyManGotMail
 	waitmessage
 	waitbuttonpress
-	setvar VAR_RESULT, 0
-	@ TODO unsupported: ifequal POKEMAIL_WRONG_MAIL, .WrongMail
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 1
+	goto_if_eq VAR_RESULT, 0, Route31_Johto_Route31MailRecipientScript_WrongMail
+	goto_if_eq VAR_RESULT, 2, Route31_Johto_Route31MailRecipientScript_Refused
+	goto_if_eq VAR_RESULT, 3, Route31_Johto_Route31MailRecipientScript_NoMail
+	goto_if_eq VAR_RESULT, 4, Route31_Johto_Route31MailRecipientScript_LastMon
+	message Route31_Johto_Text_Route31HandOverMailMon
+	waitmessage
+	waitbuttonpress
+	message Route31_Johto_Text_Route31ReadingMail
+	waitmessage
+	waitbuttonpress
+	setflag FLAG_JOHTO_GAVE_KENYA
+	giveitem ITEM_NUGGET
+	goto_if_eq VAR_RESULT, 0, Route31_Johto_Route31MailRecipientScript_NoRoomForItems
+	setflag FLAG_JOHTO_GOT_TM50_NIGHTMARE
 
 Route31_Johto_Route31MailRecipientScript_DescribeNightmare:
 	message Route31_Johto_Text_Route31DescribeNightmare
@@ -202,6 +214,38 @@ Route31_Johto_Route31MailRecipientScript_DescribeNightmare:
 	waitbuttonpress
 
 Route31_Johto_Route31MailRecipientScript_NoRoomForItems:
+	closemessage
+	releaseall
+	end
+
+Route31_Johto_Route31MailRecipientScript_WrongMail:
+	message Route31_Johto_Text_Route31WrongMail
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route31_Johto_Route31MailRecipientScript_NoMail:
+	message Route31_Johto_Text_Route31MissingMail
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route31_Johto_Route31MailRecipientScript_Refused:
+	message Route31_Johto_Text_Route31DeclinedToHandOverMail
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route31_Johto_Route31MailRecipientScript_LastMon:
+	message Route31_Johto_Text_Route31CantTakeLastMon
+	waitmessage
+	waitbuttonpress
 	closemessage
 	releaseall
 	end
@@ -319,6 +363,28 @@ Route31_Johto_Text_Route31SleepyManGotMail:
 	.string "\pWhat's that? You\n"
 	.string "have MAIL for me?$"
 
+Route31_Johto_Text_Route31HandOverMailMon:
+	.string "{PLAYER} handed\n"
+	.string "over the POKéMON\l"
+	.string "holding the MAIL.$"
+
+Route31_Johto_Text_Route31ReadingMail:
+	.string "Let's see…"
+	.string "\p…DARK CAVE leads\n"
+	.string "to another road…"
+	.string "\pThat's good to\n"
+	.string "know."
+	.string "\pThanks for bring-\n"
+	.string "ing this to me."
+	.string "\pMy friend's a good\n"
+	.string "guy, and you're\l"
+	.string "swell too!"
+	.string "\pI'd like to do\n"
+	.string "something good in\l"
+	.string "return too!"
+	.string "\pI know! I want you\n"
+	.string "to have this!$"
+
 Route31_Johto_Text_Route31DescribeNightmare:
 	.string "TM50 is NIGHTMARE."
 	.string "\pIt's a wicked move\n"
@@ -329,6 +395,26 @@ Route31_Johto_Text_Route31DescribeNightmare:
 	.string "That's scary…"
 	.string "\pI don't want to\n"
 	.string "have bad dreams.$"
+
+Route31_Johto_Text_Route31WrongMail:
+	.string "This MAIL isn't\n"
+	.string "for me.$"
+
+Route31_Johto_Text_Route31MissingMail:
+	.string "Why is this POKé-\n"
+	.string "MON so special?"
+	.string "\pIt doesn't have\n"
+	.string "any MAIL.$"
+
+Route31_Johto_Text_Route31DeclinedToHandOverMail:
+	.string "What? You don't\n"
+	.string "want anything?$"
+
+Route31_Johto_Text_Route31CantTakeLastMon:
+	.string "If I take that\n"
+	.string "POKéMON from you,"
+	.string "\pwhat are you going\n"
+	.string "to use in battle?$"
 
 Route31_Johto_Route31YoungsterText:
 	.string "I found a good\n"

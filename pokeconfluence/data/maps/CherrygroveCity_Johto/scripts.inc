@@ -463,12 +463,12 @@ CherrygroveCity_Johto_GuideGentNoText:
 	.string "when you like.$"
 
 CherrygroveCity_Johto_CherrygroveRivalText_Seen:
-	.string "<……> <……> <……>"
+	.string "… … …"
 	.string "\pYou got a POKéMON\n"
 	.string "at the LAB."
 	.string "\pWhat a waste.\n"
 	.string "A wimp like you."
-	.string "\p<……> <……> <……>"
+	.string "\p… … …"
 	.string "\pDon't you get what\n"
 	.string "I'm saying?"
 	.string "\pWell, I too, have\n"
@@ -481,7 +481,7 @@ CherrygroveCity_Johto_RivalCherrygroveWinText:
 	.string "happy you won?$"
 
 CherrygroveCity_Johto_CherrygroveRivalText_YouLost:
-	.string "<……> <……> <……>"
+	.string "… … …"
 	.string "\pMy name's ???."
 	.string "\pI'm going to be\n"
 	.string "the world's great-\l"
@@ -489,7 +489,7 @@ CherrygroveCity_Johto_CherrygroveRivalText_YouLost:
 	.string "trainer.$"
 
 CherrygroveCity_Johto_CherrygroveRivalText_YouWon:
-	.string "<……> <……> <……>"
+	.string "… … …"
 	.string "\pMy name's ???."
 	.string "\pI'm going to be\n"
 	.string "the world's great-\l"

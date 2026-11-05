@@ -8,5 +8,7 @@ PokeSeersHouse_Johto_SeerScript_Entry::
 
 PokeSeersHouse_Johto_SeerScript:
 	faceplayer
-	@ TODO unsupported: special PokeSeer
-	goto Johto_EventScript_Unimplemented
+	waitbuttonpress
+	closemessage
+	releaseall
+	end

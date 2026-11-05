@@ -7,5 +7,26 @@ CeladonDeptStoreElevator_Johto_CeladonDeptStoreElevatorScript_Entry::
 
 
 CeladonDeptStoreElevator_Johto_CeladonDeptStoreElevatorScript:
-	@ TODO unsupported: elevator CeladonDeptStoreElevatorData
-	goto Johto_EventScript_Unimplemented
+	dynmultipush Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor1, 1
+	dynmultipush Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor2, 2
+	dynmultipush Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor3, 3
+	dynmultipush Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor4, 4
+	dynmultipush Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor5, 5
+	dynmultipush Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Floor6, 6
+	dynmultistack 0, 0, FALSE, 6, FALSE, 1, DYN_MULTICHOICE_CB_NONE
+	goto_if_eq VAR_RESULT, 1, Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp1
+	goto_if_eq VAR_RESULT, 2, Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp2
+	goto_if_eq VAR_RESULT, 3, Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp3
+	goto_if_eq VAR_RESULT, 4, Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp4
+	goto_if_eq VAR_RESULT, 5, Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp5
+	goto_if_eq VAR_RESULT, 6, Johto_Elev_CeladonDeptStoreElevator_CeladonDeptStoreElevatorData_Warp6
+	setvar VAR_RESULT, 0
+	closemessage
+	goto_if_eq VAR_RESULT, 0, CeladonDeptStoreElevator_Johto_CeladonDeptStoreElevatorScript_Done
+	delay 5
+	playse SE_PIN
+	waitse
+
+CeladonDeptStoreElevator_Johto_CeladonDeptStoreElevatorScript_Done:
+	releaseall
+	end

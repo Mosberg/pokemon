@@ -102,8 +102,27 @@ VermilionCity_Johto_VermilionCitySuperNerdScript:
 	end
 
 VermilionCity_Johto_VermilionSnorlax:
-	@ TODO unsupported: special SnorlaxAwake
-	goto Johto_EventScript_Unimplemented
+	goto_if_set FLAG_JOHTO_ENGINE_EXPN_CARD, VermilionCity_Johto_VermilionSnorlax_Awake
+	message VermilionCity_Johto_VermilionCitySnorlaxSleepingText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+VermilionCity_Johto_VermilionSnorlax_Awake:
+	message VermilionCity_Johto_VermilionCityRadioNearSnorlaxText
+	waitmessage
+	delay 15
+	playmoncry SPECIES_SNORLAX, CRY_MODE_NORMAL
+	waitmoncry
+	closemessage
+	setwildbattle SPECIES_SNORLAX, 50
+	dowildbattle
+	removeobject 5
+	setflag FLAG_JOHTO_FOUGHT_SNORLAX
+	releaseall
+	end
 
 VermilionCity_Johto_VermilionGymBadgeGuy:
 	faceplayer
@@ -234,6 +253,17 @@ VermilionCity_Johto_VermilionCitySuperNerdText:
 	.string "\pThat big building\n"
 	.string "is VERMILION's\l"
 	.string "POKéMON GYM.$"
+
+VermilionCity_Johto_VermilionCitySnorlaxSleepingText:
+	.string "SNORLAX is snoring\n"
+	.string "peacefully…$"
+
+VermilionCity_Johto_VermilionCityRadioNearSnorlaxText:
+	.string "The POKéGEAR was\n"
+	.string "placed near the\l"
+	.string "sleeping SNORLAX…"
+	.string "\p…"
+	.string "\pSNORLAX woke up!$"
 
 VermilionCity_Johto_VermilionCityBadgeGuyTrainerText:
 	.string "Skilled trainers\n"

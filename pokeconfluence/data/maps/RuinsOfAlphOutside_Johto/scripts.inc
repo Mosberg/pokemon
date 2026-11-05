@@ -73,8 +73,10 @@ RuinsOfAlphOutside_Johto_RuinsOfAlphOutsideScientistSceneContinue:
 	applymovement OBJ_EVENT_ID_PLAYER, RuinsOfAlphOutside_Johto_RuinsOfAlphOutsidePlayerEnterLabMovement
 	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_JOHTO_SCENE_RUINS_OF_ALPH_RESEARCH_CENTER, 1
-	@ TODO unsupported: warpcheck 
-	goto Johto_EventScript_Unimplemented
+	warp MAP_JOHTO_RUINS_OF_ALPH_INNER_CHAMBER, 10, 13
+	waitstate
+	releaseall
+	end
 
 RuinsOfAlphOutside_Johto_RuinsOfAlphOutsideFisherScript:
 	faceplayer

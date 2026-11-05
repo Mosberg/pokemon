@@ -68,7 +68,9 @@ Route36NationalParkGate_Johto_Route36NationalParkGateLeavingContestEarlyScript_E
 Route36NationalParkGate_Johto_Route36NationalParkGateLeavingContestEarlyScript:
 	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Face_Up
 	waitmovement OBJ_EVENT_ID_PLAYER
-	@ TODO unsupported: readvar VAR_CONTESTMINUTES
+	setvar VAR_RESULT, 10
+	addvar VAR_RESULT, 1
+	@ TODO unsupported: getnum STRING_BUFFER_3
 	goto Johto_EventScript_Unimplemented
 
 Route36NationalParkGate_Johto_Route36OfficerScriptContest:
@@ -86,7 +88,25 @@ Route36NationalParkGate_Johto_Route36OfficerScriptContest:
 	goto_if_eq VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36OfficerScriptContest_DecidedNotToJoinContest
 	getpartysize
 	goto_if_gt VAR_RESULT, 1, Route36NationalParkGate_Johto_Route36OfficerScriptContest_LeaveMonsWithOfficer
-	@ TODO unsupported: special ContestDropOffMons
+	clearflag FLAG_JOHTO_LEFT_MONS_WITH_CONTEST_OFFICER
+
+Route36NationalParkGate_Johto_Route36OfficerScriptContest_ResumeStartingContest:
+	setflag FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER
+	fadedefaultbgm
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1GiveParkBallsText
+	waitmessage
+	waitbuttonpress
+	waitse
+	message Route36NationalParkGate_Johto_Route36NationalParkGatePlayerReceivedParkBallsText
+	waitmessage
+	playse SE_PIN
+	waitse
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1ExplainsRulesText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	setflag FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER
+	@ TODO unsupported: special GiveParkBalls
 	goto Johto_EventScript_Unimplemented
 
 Route36NationalParkGate_Johto_Route36OfficerScriptContest_LeaveMonsWithOfficer:
@@ -96,8 +116,23 @@ Route36NationalParkGate_Johto_Route36OfficerScriptContest_LeaveMonsWithOfficer:
 	goto_if_eq VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36OfficerScriptContest_BoxFull
 
 Route36NationalParkGate_Johto_Route36OfficerScriptContest_ContinueLeavingMons:
-	@ TODO unsupported: special CheckFirstMonIsEgg
-	goto Johto_EventScript_Unimplemented
+	special JohtoCheckFirstMonIsEgg
+	goto_if_eq VAR_RESULT, TRUE, Route36NationalParkGate_Johto_Route36OfficerScriptContest_FirstMonIsEgg
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1AskToUseFirstMonText
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36OfficerScriptContest_RefusedToLeaveMons
+	goto_if_ne VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36OfficerScriptContest_FirstMonIsFainted
+	setflag FLAG_JOHTO_LEFT_MONS_WITH_CONTEST_OFFICER
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1WellHoldYourMonText
+	waitmessage
+	waitbuttonpress
+	message Route36NationalParkGate_Johto_Route36NationalParkGatePlayersMonLeftWithHelperText
+	waitmessage
+	playse SE_PIN
+	waitse
+	waitbuttonpress
+	goto Route36NationalParkGate_Johto_Route36OfficerScriptContest_ResumeStartingContest
 
 Route36NationalParkGate_Johto_Route36OfficerScriptContest_DecidedNotToJoinContest:
 	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1TakePartInFutureText
@@ -107,8 +142,32 @@ Route36NationalParkGate_Johto_Route36OfficerScriptContest_DecidedNotToJoinContes
 	releaseall
 	end
 
+Route36NationalParkGate_Johto_Route36OfficerScriptContest_RefusedToLeaveMons:
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1ChooseMonAndComeBackText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route36NationalParkGate_Johto_Route36OfficerScriptContest_FirstMonIsFainted:
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1FirstMonCantBattleText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
 Route36NationalParkGate_Johto_Route36OfficerScriptContest_BoxFull:
 	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1MakeRoomText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route36NationalParkGate_Johto_Route36OfficerScriptContest_FirstMonIsEgg:
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1EggAsFirstMonText
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -422,10 +481,74 @@ Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1AskToParticipateTex
 	.string "\pWould you like to\n"
 	.string "give it a try?$"
 
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1GiveParkBallsText:
+	.string "Here are the PARK\n"
+	.string "BALLS for the\l"
+	.string "Contest.$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGatePlayerReceivedParkBallsText:
+	.string "{PLAYER} received\n"
+	.string "BUG_CONTEST_BALLS PARK BALLS.$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1ExplainsRulesText:
+	.string "The person who\n"
+	.string "gets the strong-\l"
+	.string "est bug POKéMON\l"
+	.string "is the winner."
+	.string "\pYou have BUG_CONTEST_MINUTES\n"
+	.string "minutes."
+	.string "\pIf you run out of\n"
+	.string "PARK BALLS, you're\l"
+	.string "done."
+	.string "\pYou can keep the\n"
+	.string "last POKéMON you\l"
+	.string "catch as your own."
+	.string "\pGo out and catch\n"
+	.string "the strongest bug"
+	.string "\pPOKéMON you can\n"
+	.string "find!$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1AskToUseFirstMonText:
+	.string "Uh-oh…"
+	.string "\pYou have more than\n"
+	.string "one POKéMON."
+	.string "\pYou'll have to use\n"
+	.string "{STR_VAR_1}, the"
+	.string "\pfirst POKéMON in\n"
+	.string "your party."
+	.string "\pIs that OK with\n"
+	.string "you?$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1WellHoldYourMonText:
+	.string "Fine, we'll hold\n"
+	.string "your other POKéMON\l"
+	.string "while you compete.$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGatePlayersMonLeftWithHelperText:
+	.string "{PLAYER}'s POKéMON\n"
+	.string "were left with the\l"
+	.string "CONTEST HELPER.$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1ChooseMonAndComeBackText:
+	.string "Please choose the\n"
+	.string "POKéMON to be used"
+	.string "\pin the Contest,\n"
+	.string "then come see me.$"
+
 Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1TakePartInFutureText:
 	.string "OK. We hope you'll\n"
 	.string "take part in the\l"
 	.string "future.$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1FirstMonCantBattleText:
+	.string "Uh-oh…\n"
+	.string "The first POKéMON"
+	.string "\pin your party\n"
+	.string "can't battle."
+	.string "\pPlease switch it\n"
+	.string "with the POKéMON"
+	.string "\pyou want to use,\n"
+	.string "then come see me.$"
 
 Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1MakeRoomText:
 	.string "Uh-oh…\n"
@@ -439,6 +562,16 @@ Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1MakeRoomText:
 	.string "in your party or"
 	.string "\pyour PC BOX, then\n"
 	.string "come see me.$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1EggAsFirstMonText:
+	.string "Uh-oh…\n"
+	.string "You have an EGG as"
+	.string "\pthe first POKéMON\n"
+	.string "in your party."
+	.string "\pPlease switch it\n"
+	.string "with the POKéMON"
+	.string "\pyou want to use,\n"
+	.string "then come see me.$"
 
 Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1ContestIsOverText:
 	.string "Today's Contest is\n"

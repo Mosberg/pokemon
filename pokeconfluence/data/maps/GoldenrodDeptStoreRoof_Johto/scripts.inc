@@ -61,8 +61,10 @@ GoldenrodDeptStoreRoof_Johto_PokeDollVendingMachine_Entry::
 
 
 GoldenrodDeptStoreRoof_Johto_GoldenrodDeptStoreRoofClerkScript:
-	@ TODO unsupported: pokemart MARTTYPE_ROOFTOP, 0
-	goto Johto_EventScript_Unimplemented
+	pokemart Johto_Mart_ROOFTOP
+	closemessage
+	releaseall
+	end
 
 GoldenrodDeptStoreRoof_Johto_GoldenrodDeptStoreRoofPokefanFScript:
 	faceplayer

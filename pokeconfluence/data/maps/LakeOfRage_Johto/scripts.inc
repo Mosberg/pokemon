@@ -101,8 +101,22 @@ LakeOfRage_Johto_RedGyarados:
 	closemessage
 	setwildbattle SPECIES_GYARADOS, 30
 	dowildbattle
-	@ TODO unsupported: ifequal LOSE, .NotBeaten
-	goto Johto_EventScript_Unimplemented
+	goto_if_eq VAR_RESULT, 0, LakeOfRage_Johto_RedGyarados_NotBeaten
+	removeobject 9
+
+LakeOfRage_Johto_RedGyarados_NotBeaten:
+	additem ITEM_RED_SCALE
+	waitse
+	message LakeOfRage_Johto_LakeOfRageGotRedScaleText
+	waitmessage
+	playse SE_PIN
+	waitse
+	closemessage
+	setvar VAR_JOHTO_SCENE_LAKE_OF_RAGE, 0
+	clearflag FLAG_JOHTO_LAKE_OF_RAGE_LANCE
+	addobject 1
+	releaseall
+	end
 
 LakeOfRage_Johto_LakeOfRageGrampsScript:
 	faceplayer
@@ -159,8 +173,9 @@ LakeOfRage_Johto_MagikarpHouseSignScript:
 
 LakeOfRage_Johto_MagikarpHouseSignScript_MagikarpLengthRecord:
 	waitbuttonpress
-	@ TODO unsupported: special MagikarpHouseSign
-	goto Johto_EventScript_Unimplemented
+	closemessage
+	releaseall
+	end
 
 LakeOfRage_Johto_TrainerFisherAndre::
 	trainerbattle_single TRAINER_JOHTO_FISHER_ANDRE, LakeOfRage_Johto_FisherAndreSeenText, LakeOfRage_Johto_FisherAndreBeatenText
@@ -346,6 +361,10 @@ LakeOfRage_Johto_LakeOfRageLanceAskHelpText:
 
 LakeOfRage_Johto_LakeOfRageGyaradosCryText:
 	.string "GYARADOS: Gyashaa!$"
+
+LakeOfRage_Johto_LakeOfRageGotRedScaleText:
+	.string "{PLAYER} obtained a\n"
+	.string "RED SCALE.$"
 
 LakeOfRage_Johto_LakeOfRageGrampsText:
 	.string "The GYARADOS are\n"

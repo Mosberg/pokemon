@@ -124,7 +124,14 @@ Route39Farmhouse_Johto_FarmerMText_SickCow:
 	.string "BERRIES, I reckon.$"
 
 Route39Farmhouse_Johto_FarmerMText_BuyMilk:
-	.string "(text not converted)$"
+	.string "How'd you like my\n"
+	.string "MOOMOO MILK?"
+	.string "\pIt's my pride and\n"
+	.string "joy, there."
+	.string "\pGive it to POKéMON\n"
+	.string "to restore HP!"
+	.string "\pI'll give it to ya\n"
+	.string "fer just ¥500.$"
 
 Route39Farmhouse_Johto_FarmerMText_GotMilk:
 	.string "Here ya go!\n"

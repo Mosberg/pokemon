@@ -25,16 +25,19 @@ SilverCaveRoom3_Johto_Red:
 	fadescreen FADE_FROM_BLACK
 	delay 30
 	special HealPlayerParty
-	@ TODO unsupported: credits 
-	goto Johto_EventScript_Unimplemented
+	setflag FLAG_JOHTO_RED_IN_MT_SILVER
+	fadescreen FADE_TO_BLACK
+	special GameClear
+	releaseall
+	end
 
 SilverCaveRoom3_Johto_RedSeenText:
-	.string "<……>\n"
-	.string "<……>$"
+	.string "…\n"
+	.string "…$"
 
 SilverCaveRoom3_Johto_RedWinLossText:
 	.string "…$"
 
 SilverCaveRoom3_Johto_RedLeavesText:
-	.string "<……>\n"
-	.string "<……>$"
+	.string "…\n"
+	.string "…$"

@@ -43,7 +43,12 @@ LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_ClearedRocketHideout:
 
 LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_AskedForMagikarp:
 	setvar VAR_0x8004, SPECIES_MAGIKARP
-	@ TODO unsupported: special FindPartyMonThatSpecies
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
+	goto_if_eq VAR_RESULT, 0, LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_ClearedRocketHideout
+	message LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_YouHaveAMagikarp
+	waitmessage
+	waitbuttonpress
+	@ TODO unsupported: special CheckMagikarpLength
 	goto Johto_EventScript_Unimplemented
 
 LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_GetReward:
@@ -107,6 +112,12 @@ LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_WorldsLargestMagikarp:
 	.string "\pDo you have a ROD?\n"
 	.string "Please help me if\l"
 	.string "you do.$"
+
+LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_YouHaveAMagikarp:
+	.string "Ah, you have a\n"
+	.string "MAGIKARP! Let's"
+	.string "\psee how big that\n"
+	.string "baby is.$"
 
 LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_Memento:
 	.string "Wow! This one is\n"

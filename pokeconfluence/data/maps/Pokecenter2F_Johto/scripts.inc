@@ -138,8 +138,11 @@ Pokecenter2F_Johto_LinkReceptionistScript_TimeCapsule:
 	goto Johto_EventScript_Unimplemented
 
 Pokecenter2F_Johto_Script_LeftCableTradeCenter:
-	@ TODO unsupported: special WaitForOtherPlayerToExit
-	goto Johto_EventScript_Unimplemented
+	call Pokecenter2F_Johto_Script_WalkOutOfLinkTradeRoom_Sub
+	setvar VAR_JOHTO_SCENE_POKECENTER_2F, 0
+	setvar VAR_JOHTO_SCENE_TRADE_CENTER, 0
+	releaseall
+	end
 
 Pokecenter2F_Johto_Script_LeftMobileTradeRoom:
 	call Pokecenter2F_Johto_Script_WalkOutOfMobileTradeRoom_Sub
@@ -149,8 +152,11 @@ Pokecenter2F_Johto_Script_LeftMobileTradeRoom:
 	end
 
 Pokecenter2F_Johto_Script_LeftCableColosseum:
-	@ TODO unsupported: special WaitForOtherPlayerToExit
-	goto Johto_EventScript_Unimplemented
+	call Pokecenter2F_Johto_Script_WalkOutOfLinkBattleRoom_Sub
+	setvar VAR_JOHTO_SCENE_POKECENTER_2F, 0
+	setvar VAR_JOHTO_SCENE_COLOSSEUM, 0
+	releaseall
+	end
 
 Pokecenter2F_Johto_Script_LeftMobileBattleRoom:
 	call Pokecenter2F_Johto_Script_WalkOutOfMobileBattleRoom_Sub
@@ -160,8 +166,33 @@ Pokecenter2F_Johto_Script_LeftMobileBattleRoom:
 	end
 
 Pokecenter2F_Johto_Script_LeftTimeCapsule:
-	@ TODO unsupported: special WaitForOtherPlayerToExit
+	goto_if_set FLAG_JOHTO_ENGINE_KRIS_IN_CABLE_CLUB, Pokecenter2F_Johto_Script_LeftTimeCapsule_Female
+	applymovement 3, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight
+	waitmovement 3
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesTwoStepsDown
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 3, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2
+	waitmovement 3
+	goto Pokecenter2F_Johto_Script_LeftTimeCapsule_Done
+
+Pokecenter2F_Johto_Script_LeftTimeCapsule_Female:
+	applymovement 3, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight
+	waitmovement 3
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesOneStepDown
+	waitmovement OBJ_EVENT_ID_PLAYER
+	clearflag FLAG_JOHTO_ENGINE_KRIS_IN_CABLE_CLUB
+	playse SE_PIN
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
+	waitmovement OBJ_EVENT_ID_PLAYER
+	setvar VAR_RESULT, 0
+	@ TODO unsupported: special SetPlayerPalette
 	goto Johto_EventScript_Unimplemented
+
+Pokecenter2F_Johto_Script_LeftTimeCapsule_Done:
+	setvar VAR_JOHTO_SCENE_POKECENTER_2F, 0
+	setvar VAR_JOHTO_SCENE_TIME_CAPSULE, 0
+	releaseall
+	end
 
 Pokecenter2F_Johto_Pokecenter2FLinkRecordSign:
 	@ TODO unsupported: special DisplayLinkRecord
@@ -215,6 +246,88 @@ Pokecenter2F_Johto_Script_WalkOutOfMobileBattleRoom_Sub:
 	waitmovement 2
 	return
 
+Pokecenter2F_Johto_Script_WalkOutOfLinkTradeRoom_Sub:
+	goto_if_set FLAG_JOHTO_ENGINE_KRIS_IN_CABLE_CLUB, Pokecenter2F_Johto_Script_WalkOutOfLinkTradeRoom_Female_Sub
+	applymovement 1, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_3
+	waitmovement 1
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesThreeStepsDown
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 1, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightAndDown
+	waitmovement 1
+	return
+
+Pokecenter2F_Johto_Script_WalkOutOfLinkTradeRoom_Female_Sub:
+	applymovement 1, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_3
+	waitmovement 1
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesOneStepDown_2
+	waitmovement OBJ_EVENT_ID_PLAYER
+	clearflag FLAG_JOHTO_ENGINE_KRIS_IN_CABLE_CLUB
+	playse SE_PIN
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
+	waitmovement OBJ_EVENT_ID_PLAYER
+	setvar VAR_RESULT, 0
+	@ TODO unsupported: special SetPlayerPalette
+	return
+
+Pokecenter2F_Johto_Script_WalkOutOfLinkBattleRoom_Sub:
+	goto_if_set FLAG_JOHTO_ENGINE_KRIS_IN_CABLE_CLUB, Pokecenter2F_Johto_Script_WalkOutOfLinkBattleRoom_Female_Sub
+	applymovement 2, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_3
+	waitmovement 2
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesThreeStepsDown
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 2, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightAndDown
+	waitmovement 2
+	return
+
+Pokecenter2F_Johto_Script_WalkOutOfLinkBattleRoom_Female_Sub:
+	applymovement 2, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_3
+	waitmovement 2
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesOneStepDown_2
+	waitmovement OBJ_EVENT_ID_PLAYER
+	clearflag FLAG_JOHTO_ENGINE_KRIS_IN_CABLE_CLUB
+	playse SE_PIN
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
+	waitmovement OBJ_EVENT_ID_PLAYER
+	setvar VAR_RESULT, 0
+	@ TODO unsupported: special SetPlayerPalette
+	return
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesThreeStepsDown:
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesTwoStepsDown:
+	walk_down
+	walk_down
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesOneStepDown:
+	walk_down
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightAndDown:
+	walk_slow_right
+	walk_slow_down
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2:
+	walk_slow_right
+	face_down
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_3:
+	walk_slow_up
+	walk_slow_left
+	face_right
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight:
+	walk_slow_left
+	face_right
+	step_end
+
 Pokecenter2F_Johto_Pokecenter2FMobileMovementData_ReceptionistWalksUpAndLeft:
 	walk_slow_up
 	walk_slow_left
@@ -231,6 +344,17 @@ Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerWalksOutOfMobileRoom:
 Pokecenter2F_Johto_Pokecenter2FMobileMovementData_ReceptionistWalksRightAndDown:
 	walk_slow_right
 	walk_slow_down
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight:
+	face_down
+	face_left
+	face_up
+	face_right
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesOneStepDown_2:
+	walk_down
 	step_end
 
 Pokecenter2F_Johto_Text_BattleReceptionistMobile:

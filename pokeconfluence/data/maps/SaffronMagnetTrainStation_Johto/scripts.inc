@@ -48,8 +48,12 @@ SaffronMagnetTrainStation_Johto_SaffronMagnetTrainStationOfficerScript_MagnetTra
 	applymovement OBJ_EVENT_ID_PLAYER, SaffronMagnetTrainStation_Johto_SaffronMagnetTrainStationPlayerApproachAndEnterTrainMovement
 	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_RESULT, TRUE
-	@ TODO unsupported: special MagnetTrain
-	goto Johto_EventScript_Unimplemented
+	warp MAP_JOHTO_GOLDENROD_MAGNET_TRAIN_STATION, 11, 5
+	waitstate
+	applymovement OBJ_EVENT_ID_PLAYER, SaffronMagnetTrainStation_Johto_SaffronMagnetTrainStationOfficerScript_MovementBoardTheTrain
+	waitmovement OBJ_EVENT_ID_PLAYER
+	releaseall
+	end
 
 SaffronMagnetTrainStation_Johto_SaffronMagnetTrainStationOfficerScript_PassNotInBag:
 	message SaffronMagnetTrainStation_Johto_SaffronMagnetTrainStationOfficerYouDontHaveAPassText
@@ -116,6 +120,10 @@ SaffronMagnetTrainStation_Johto_SaffronMagnetTrainStationLassScript:
 	closemessage
 	releaseall
 	end
+
+SaffronMagnetTrainStation_Johto_SaffronMagnetTrainStationOfficerScript_MovementBoardTheTrain:
+	face_down
+	step_end
 
 SaffronMagnetTrainStation_Johto_SaffronMagnetTrainStationOfficerApproachTrainDoorMovement:
 	walk_up

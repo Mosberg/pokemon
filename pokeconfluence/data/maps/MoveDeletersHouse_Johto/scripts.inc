@@ -12,8 +12,11 @@ MoveDeletersHouse_Johto_MoveDeletersHouseBookshelf_Entry::
 
 MoveDeletersHouse_Johto_MoveDeleter:
 	faceplayer
-	@ TODO unsupported: special MoveDeletion
-	goto Johto_EventScript_Unimplemented
+	goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 MoveDeletersHouse_Johto_MoveDeletersHouseBookshelf:
 	goto Johto_Std_DifficultBookshelfScript

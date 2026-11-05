@@ -649,6 +649,12 @@ gSpecials::
 	def_special JohtoBufferLandmarkName
 	def_special JohtoFindPartyMonSpecies
 	def_special JohtoGetFirstMonHappiness
+	def_special JohtoCheckCoins
+	def_special JohtoSelectApricornForKurt
+	def_special JohtoGetDexCaught
+	def_special JohtoCheckFirstMonIsEgg
+	def_special JohtoCheckCaughtCelebi
+	def_special JohtoInvertResult
 	def_special ConfluenceCountBadges
 	def_special ConfluenceCountResonance
 	def_special ConfluenceCheckMeridianAccess

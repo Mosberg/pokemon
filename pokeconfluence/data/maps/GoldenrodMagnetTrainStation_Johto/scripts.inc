@@ -40,8 +40,12 @@ GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationOfficerScript_Magne
 	applymovement OBJ_EVENT_ID_PLAYER, GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationPlayerApproachAndEnterTrainMovement
 	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_RESULT, FALSE
-	@ TODO unsupported: special MagnetTrain
-	goto Johto_EventScript_Unimplemented
+	warp MAP_JOHTO_SAFFRON_MAGNET_TRAIN_STATION, 11, 5
+	waitstate
+	applymovement OBJ_EVENT_ID_PLAYER, GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationOfficerScript_MovementBoardTheTrain
+	waitmovement OBJ_EVENT_ID_PLAYER
+	releaseall
+	end
 
 GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationOfficerScript_PassNotInBag:
 	message GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationOfficerYouDontHaveARailPassText
@@ -81,6 +85,10 @@ GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationGentlemanScript:
 	closemessage
 	releaseall
 	end
+
+GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationOfficerScript_MovementBoardTheTrain:
+	face_down
+	step_end
 
 GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationOfficerApproachTrainDoorMovement:
 	walk_up

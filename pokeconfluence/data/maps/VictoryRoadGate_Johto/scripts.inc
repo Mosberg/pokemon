@@ -31,8 +31,24 @@ VictoryRoadGate_Johto__VictoryRoadGateBadgeCheckScript:
 	waitmessage
 	waitbuttonpress
 	special JohtoCountBadges
-	@ TODO unsupported: ifgreater NUM_JOHTO_BADGES - 1, .AllEightBadges
-	goto Johto_EventScript_Unimplemented
+	goto_if_gt VAR_RESULT, 7, VictoryRoadGate_Johto__VictoryRoadGateBadgeCheckScript_AllEightBadges
+	message VictoryRoadGate_Johto_VictoryRoadGateNotEnoughBadgesText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, VictoryRoadGate_Johto_VictoryRoadGateStepDownMovement
+	waitmovement OBJ_EVENT_ID_PLAYER
+	releaseall
+	end
+
+VictoryRoadGate_Johto__VictoryRoadGateBadgeCheckScript_AllEightBadges:
+	message VictoryRoadGate_Johto_VictoryRoadGateEightBadgesText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	setvar VAR_JOHTO_SCENE_VICTORY_ROAD_GATE, 1
+	releaseall
+	end
 
 VictoryRoadGate_Johto_VictoryRoadGateLeftBlackBeltScript:
 	faceplayer
@@ -52,10 +68,28 @@ VictoryRoadGate_Johto_VictoryRoadGateRightBlackBeltScript:
 	releaseall
 	end
 
+VictoryRoadGate_Johto_VictoryRoadGateStepDownMovement:
+	walk_down
+	step_end
+
 VictoryRoadGate_Johto_VictoryRoadGateOfficerText:
 	.string "Only trainers who\n"
 	.string "have proven them-\l"
 	.string "selves may pass.$"
+
+VictoryRoadGate_Johto_VictoryRoadGateNotEnoughBadgesText:
+	.string "You don't have all\n"
+	.string "the GYM BADGES of\l"
+	.string "JOHTO."
+	.string "\pI'm sorry, but I\n"
+	.string "can't let you go\l"
+	.string "through.$"
+
+VictoryRoadGate_Johto_VictoryRoadGateEightBadgesText:
+	.string "Oh! The eight\n"
+	.string "BADGES of JOHTO!"
+	.string "\pPlease, go right\n"
+	.string "on through!$"
 
 VictoryRoadGate_Johto_VictoryRoadGateLeftBlackBeltText:
 	.string "This way leads to\n"

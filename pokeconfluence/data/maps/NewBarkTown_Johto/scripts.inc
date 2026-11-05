@@ -303,7 +303,7 @@ NewBarkTown_Johto_Text_ElmDiscoveredNewMon:
 	.string "new POKéMON.$"
 
 NewBarkTown_Johto_NewBarkTownRivalText1:
-	.string "<……>"
+	.string "…"
 	.string "\pSo this is the\n"
 	.string "famous ELM POKéMON\l"
 	.string "LAB…$"

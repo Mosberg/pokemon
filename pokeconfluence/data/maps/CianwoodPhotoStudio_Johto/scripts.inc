@@ -15,8 +15,10 @@ CianwoodPhotoStudio_Johto_CianwoodPhotoStudioFishingGuruScript:
 	message CianwoodPhotoStudio_Johto_CianwoodPhotoStudioFishingGuruText_Yes
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: special PhotoStudio
-	goto Johto_EventScript_Unimplemented
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 CianwoodPhotoStudio_Johto_CianwoodPhotoStudioFishingGuruScript_Refused:
 	message CianwoodPhotoStudio_Johto_CianwoodPhotoStudioFishingGuruText_No

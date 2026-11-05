@@ -41,19 +41,19 @@ PlayersHouse2F_Johto_PlayersHouseBookshelfScript_Entry::
 
 
 PlayersHouse2F_Johto_PlayersHouseDoll1Script:
-	@ TODO unsupported: describedecoration DECODESC_LEFT_DOLL
-	goto Johto_EventScript_Unimplemented
+	msgbox Johto_Text_DecorationDesc, MSGBOX_DEFAULT
 
 PlayersHouse2F_Johto_PlayersHouseDoll2Script:
-	@ TODO unsupported: describedecoration DECODESC_RIGHT_DOLL
-	goto Johto_EventScript_Unimplemented
+	msgbox Johto_Text_DecorationDesc, MSGBOX_DEFAULT
 
 PlayersHouse2F_Johto_PlayersHouseBigDollScript:
-	@ TODO unsupported: describedecoration DECODESC_BIG_DOLL
-	goto Johto_EventScript_Unimplemented
+	msgbox Johto_Text_DecorationDesc, MSGBOX_DEFAULT
 
 PlayersHouse2F_Johto_PlayersHouseGameConsoleScript:
-	@ TODO unsupported: describedecoration DECODESC_CONSOLE
+	msgbox Johto_Text_DecorationDesc, MSGBOX_DEFAULT
+
+PlayersHouse2F_Johto_PlayersHousePosterScript:
+	@ TODO unsupported: conditional_event EVENT_PLAYERS_ROOM_POSTER, .Script
 	goto Johto_EventScript_Unimplemented
 
 PlayersHouse2F_Johto_PlayersHouseRadioScript:
@@ -99,8 +99,8 @@ PlayersHouse2F_Johto_PlayersHousePCScript:
 	end
 
 PlayersHouse2F_Johto_PlayersHousePCScript_Warp:
-	@ TODO unsupported: warp NONE, 0, 0
-	goto Johto_EventScript_Unimplemented
+	releaseall
+	end
 
 PlayersHouse2F_Johto_PlayersHouse2FInitializeRoomCallback_Cb:
 	setflag FLAG_TEMP_18

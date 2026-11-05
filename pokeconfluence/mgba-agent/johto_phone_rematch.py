@@ -13,7 +13,8 @@ from mgba_client import Bridge
 ROUTE_30 = (78, 72)
 STATION = (78, 83)
 ARENA = (78, 84)
-BILLS_HOUSE = (78, 43)
+DRAGON_SHRINE = (75, 97)
+VICTORY_ROAD_GATE = (78, 43)
 
 FLAG_JOHTO_START = 3750
 FLAG_JOHTO_TRAINERS_START = FLAG_JOHTO_START + 1472
@@ -24,10 +25,23 @@ FLAG_JOHTO_ROUTE_30_YOUNGSTER_JOEY = FLAG_JOHTO_START + 716
 FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH = FLAG_JOHTO_START + 1134
 FLAG_JOHTO_JOEY_ASKED_FOR_PHONE_NUMBER = FLAG_JOHTO_START + 1167
 FLAG_JOHTO_PHONE_YOUNGSTER_JOEY_REGISTERED = FLAG_JOHTO_START + 1351
-FLAG_JOHTO_ENGINE_FLYPOINT_GOLDENROD = FLAG_JOHTO_START + 258
+FLAG_JOHTO_DRAGON_SHRINE_CLAIR = FLAG_JOHTO_START + 313
+FLAG_JOHTO_ENGINE_RISINGBADGE = FLAG_JOHTO_START + 358
+JOHTO_BADGE_FLAGS = [
+    FLAG_JOHTO_START + 464,  # ZEPHYRBADGE
+    FLAG_JOHTO_START + 432,  # HIVEBADGE
+    FLAG_JOHTO_START + 532,  # PLAINBADGE
+    FLAG_JOHTO_START + 332,  # FOGBADGE
+    FLAG_JOHTO_START + 655,  # STORMBADGE
+    FLAG_JOHTO_START + 3,    # MINERALBADGE
+    FLAG_JOHTO_START + 15,   # GLACIERBADGE
+    FLAG_JOHTO_START + 358,  # RISINGBADGE
+]
 
 VARS_START = 0x4000
 VAR_JOHTO_START = 0x4140
+VAR_JOHTO_SCENE_DRAGON_SHRINE = VAR_JOHTO_START + 20
+VAR_JOHTO_SCENE_VICTORY_ROAD_GATE = VAR_JOHTO_START + 67
 VAR_JOHTO_MEM_WJOEYFIGHTCOUNT = VAR_JOHTO_START + 100
 
 b = Bridge()
@@ -145,6 +159,40 @@ def main() -> None:
     b.step(100)
     advance(6, stop_in_battle=False)
     check("Talking to registered Joey re-arms READY_FOR_REMATCH for next visit", b.flag(FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH))
+
+    # 3. Test Dragon Shrine loadmenu quiz -> Clair awards 8th Johto badge (RISINGBADGE)
+    for bf in JOHTO_BADGE_FLAGS[:7]:
+        set_flag(b, bf, True)
+    set_flag(b, FLAG_JOHTO_ENGINE_RISINGBADGE, False)
+    set_flag(b, FLAG_JOHTO_DRAGON_SHRINE_CLAIR, True)
+    set_var(VAR_JOHTO_SCENE_DRAGON_SHRINE, 0)
+    warp_player(b, DRAGON_SHRINE[0], DRAGON_SHRINE[1], 4, 9)
+    b.step(360)
+    b.screenshot(str(scratch / "dragon_shrine_quiz.png"))
+    for _ in range(60):
+        if b.flag(FLAG_JOHTO_ENGINE_RISINGBADGE):
+            break
+        res = b.u16(SYMBOLS["gSpecialVar_Result"])
+        if res == 0xFF and ((b.flag(0x14) and not b.flag(0x15)) or b.flag(0x16)):
+            b.press("DOWN", 4)
+            b.step(20)
+        b.press("A", 4)
+        b.step(140)
+    check("Dragon Shrine loadmenu quiz awards Rising Badge (8th Johto badge)", b.flag(FLAG_JOHTO_ENGINE_RISINGBADGE))
+    advance(10, stop_in_battle=False)
+
+    # 4. Test Victory Road Gate badge check with all 8 Johto badges
+    for bf in JOHTO_BADGE_FLAGS:
+        set_flag(b, bf, True)
+    set_var(VAR_JOHTO_SCENE_VICTORY_ROAD_GATE, 0)
+    warp_player(b, VICTORY_ROAD_GATE[0], VICTORY_ROAD_GATE[1], 9, 11)
+    b.step(240)
+    b.press("LEFT", 10)
+    b.step(20)
+    b.press("A", 4)
+    b.step(100)
+    advance(8, stop_in_battle=False)
+    check("Victory Road Gate Officer unlocks gate when player has 8 Johto badges", get_var(VAR_JOHTO_SCENE_VICTORY_ROAD_GATE) == 1)
 
     sys.exit(1 if failures else 0)
 

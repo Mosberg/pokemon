@@ -21,7 +21,15 @@ Route16_Johto_CyclingRoadSign:
 	end
 
 Route16_Johto_Route16AlwaysOnBikeCallback_Cb:
-	@ TODO unsupported: readvar VAR_YCOORD
+	getplayerxy VAR_0x8004, VAR_RESULT
+	goto_if_lt VAR_RESULT, 5, Route16_Johto_Route16AlwaysOnBikeCallback_CanWalk_Cb
+	getplayerxy VAR_RESULT, VAR_0x8004
+	goto_if_gt VAR_RESULT, 13, Route16_Johto_Route16AlwaysOnBikeCallback_CanWalk_Cb
+	setflag FLAG_JOHTO_ENGINE_ALWAYS_ON_BIKE
+	return
+
+Route16_Johto_Route16AlwaysOnBikeCallback_CanWalk_Cb:
+	clearflag FLAG_JOHTO_ENGINE_ALWAYS_ON_BIKE
 	return
 
 Route16_Johto_CyclingRoadSignText:

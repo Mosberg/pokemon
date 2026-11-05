@@ -153,11 +153,11 @@ Route43Gate_Johto_OfficerScript_GuardWithSludgeBomb_NoRoomForSludgeBomb:
 
 Route43Gate_Johto_Route43GateCheckIfRocketsCallback_Cb:
 	goto_if_set FLAG_JOHTO_CLEARED_ROCKET_HIDEOUT, Route43Gate_Johto_Route43GateCheckIfRocketsCallback_NoRockets_Cb
-	@ TODO unsupported: setmapscene ROUTE_43, 0
+	setvar VAR_JOHTO_SCENE_ROUTE_43, 0
 	return
 
 Route43Gate_Johto_Route43GateCheckIfRocketsCallback_NoRockets_Cb:
-	@ TODO unsupported: setmapscene ROUTE_43, 1
+	setvar VAR_JOHTO_SCENE_ROUTE_43, 1
 	return
 
 Route43Gate_Johto_PlayerStepsIn:
@@ -227,7 +227,10 @@ Route43Gate_Johto_Rocket2Script_LetsYouPassNorth:
 	step_end
 
 Route43Gate_Johto_RocketText_TollFee:
-	.string "(text not converted)$"
+	.string "Hold it there,\n"
+	.string "kiddo!"
+	.string "\pThe toll is ¥1000\n"
+	.string "to go through.$"
 
 Route43Gate_Johto_RocketText_ThankYou:
 	.string "Thank you very\n"

@@ -75,8 +75,18 @@ Route29_Johto_Route29Tutorial1:
 	applymovement 1, Route29_Johto_DudeMovementData1b
 	waitmovement 1
 	setwildbattle SPECIES_RATTATA, 5
-	@ TODO unsupported: catchtutorial BATTLETYPE_TUTORIAL
-	goto Johto_EventScript_Unimplemented
+	setwildbattle SPECIES_RATTATA, 2
+	special StartWallyTutorialBattle
+	applymovement 1, Johto_Movement_Face_Up
+	waitmovement 1
+	message Route29_Johto_CatchingTutorialDebriefText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	setvar VAR_JOHTO_SCENE_ROUTE_29, 0
+	setflag FLAG_JOHTO_LEARNED_TO_CATCH_POKEMON
+	releaseall
+	end
 
 Route29_Johto_Route29Tutorial2:
 	applymovement 1, Johto_Movement_Face_Up
@@ -97,8 +107,18 @@ Route29_Johto_Route29Tutorial2:
 	applymovement 1, Route29_Johto_DudeMovementData2b
 	waitmovement 1
 	setwildbattle SPECIES_RATTATA, 5
-	@ TODO unsupported: catchtutorial BATTLETYPE_TUTORIAL
-	goto Johto_EventScript_Unimplemented
+	setwildbattle SPECIES_RATTATA, 2
+	special StartWallyTutorialBattle
+	applymovement 1, Johto_Movement_Face_Up
+	waitmovement 1
+	message Route29_Johto_CatchingTutorialDebriefText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	setvar VAR_JOHTO_SCENE_ROUTE_29, 0
+	setflag FLAG_JOHTO_LEARNED_TO_CATCH_POKEMON
+	releaseall
+	end
 
 Route29_Johto_Script_RefusedTutorial1:
 	message Route29_Johto_CatchingTutorialDeclinedText
@@ -134,8 +154,15 @@ Route29_Johto_CatchingTutorialDudeScript:
 	goto_if_eq VAR_RESULT, 0, Route29_Johto_CatchingTutorialDudeScript_Declined
 	closemessage
 	setwildbattle SPECIES_RATTATA, 5
-	@ TODO unsupported: catchtutorial BATTLETYPE_TUTORIAL
-	goto Johto_EventScript_Unimplemented
+	setwildbattle SPECIES_RATTATA, 2
+	special StartWallyTutorialBattle
+	message Route29_Johto_CatchingTutorialDebriefText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	setflag FLAG_JOHTO_LEARNED_TO_CATCH_POKEMON
+	releaseall
+	end
 
 Route29_Johto_CatchingTutorialDudeScript_BoxFull:
 	message Route29_Johto_CatchingTutorialBoxFullText
@@ -337,6 +364,13 @@ Route29_Johto_CatchingTutorialIntroText:
 	.string "\pWould you like me\n"
 	.string "to show you how to\l"
 	.string "catch POKéMON?$"
+
+Route29_Johto_CatchingTutorialDebriefText:
+	.string "That's how you do\n"
+	.string "it."
+	.string "\pIf you weaken them\n"
+	.string "first, POKéMON are\l"
+	.string "easier to catch.$"
 
 Route29_Johto_CatchingTutorialDeclinedText:
 	.string "Oh. Fine, then."

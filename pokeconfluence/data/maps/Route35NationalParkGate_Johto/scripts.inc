@@ -38,7 +38,9 @@ Route35NationalParkGate_Johto_Route35NationalParkGateLeavingContestEarlyScript:
 	waitmovement OBJ_EVENT_ID_PLAYER
 	applymovement 1, Johto_Movement_Face_Right
 	waitmovement 1
-	@ TODO unsupported: readvar VAR_CONTESTMINUTES
+	setvar VAR_RESULT, 10
+	addvar VAR_RESULT, 1
+	@ TODO unsupported: getnum STRING_BUFFER_3
 	goto Johto_EventScript_Unimplemented
 
 Route35NationalParkGate_Johto_Route35OfficerScriptContest:
@@ -56,7 +58,23 @@ Route35NationalParkGate_Johto_Route35OfficerScriptContest:
 	goto_if_eq VAR_RESULT, 0, Route35NationalParkGate_Johto_Route35NationalParkGate_DeclinedToParticipate
 	getpartysize
 	goto_if_gt VAR_RESULT, 1, Route35NationalParkGate_Johto_Route35NationalParkGate_LeaveTheRestBehind
-	@ TODO unsupported: special ContestDropOffMons
+	clearflag FLAG_JOHTO_LEFT_MONS_WITH_CONTEST_OFFICER
+
+Route35NationalParkGate_Johto_Route35NationalParkGate_OkayToProceed:
+	setflag FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER
+	fadedefaultbgm
+	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1GiveParkBallsText
+	waitmessage
+	waitbuttonpress
+	message Route35NationalParkGate_Johto_Route35NationalParkGatePlayerReceivedParkBallsText
+	waitmessage
+	playse SE_PIN
+	waitse
+	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1ExplainsRulesText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	@ TODO unsupported: special GiveParkBalls
 	goto Johto_EventScript_Unimplemented
 
 Route35NationalParkGate_Johto_Route35NationalParkGate_LeaveTheRestBehind:
@@ -66,8 +84,23 @@ Route35NationalParkGate_Johto_Route35NationalParkGate_LeaveTheRestBehind:
 	goto_if_eq VAR_RESULT, 0, Route35NationalParkGate_Johto_Route35NationalParkGate_NoRoomInBox
 
 Route35NationalParkGate_Johto_Route35NationalParkGate_LessThanFullParty:
-	@ TODO unsupported: special CheckFirstMonIsEgg
-	goto Johto_EventScript_Unimplemented
+	special JohtoCheckFirstMonIsEgg
+	goto_if_eq VAR_RESULT, TRUE, Route35NationalParkGate_Johto_Route35NationalParkGate_FirstMonIsEgg
+	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1AskToUseFirstMonText
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, Route35NationalParkGate_Johto_Route35NationalParkGate_DeclinedToLeaveMonsBehind
+	goto_if_ne VAR_RESULT, 0, Route35NationalParkGate_Johto_Route35NationalParkGate_FirstMonIsFainted
+	setflag FLAG_JOHTO_LEFT_MONS_WITH_CONTEST_OFFICER
+	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1WellHoldYourMonText
+	waitmessage
+	waitbuttonpress
+	message Route35NationalParkGate_Johto_Route35NationalParkGatePlayersMonLeftWithHelperText
+	waitmessage
+	playse SE_PIN
+	waitse
+	waitbuttonpress
+	goto Route35NationalParkGate_Johto_Route35NationalParkGate_OkayToProceed
 
 Route35NationalParkGate_Johto_Route35NationalParkGate_DeclinedToParticipate:
 	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1TakePartInFutureText
@@ -77,8 +110,32 @@ Route35NationalParkGate_Johto_Route35NationalParkGate_DeclinedToParticipate:
 	releaseall
 	end
 
+Route35NationalParkGate_Johto_Route35NationalParkGate_DeclinedToLeaveMonsBehind:
+	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1ChooseMonAndComeBackText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route35NationalParkGate_Johto_Route35NationalParkGate_FirstMonIsFainted:
+	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1FirstMonCantBattleText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
 Route35NationalParkGate_Johto_Route35NationalParkGate_NoRoomInBox:
 	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1MakeRoomText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route35NationalParkGate_Johto_Route35NationalParkGate_FirstMonIsEgg:
+	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1EggAsFirstMonText
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -177,10 +234,74 @@ Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1AskToParticipateTex
 	.string "\pWould you like to\n"
 	.string "give it a try?$"
 
+Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1GiveParkBallsText:
+	.string "Here are the PARK\n"
+	.string "BALLS for the\l"
+	.string "Contest.$"
+
+Route35NationalParkGate_Johto_Route35NationalParkGatePlayerReceivedParkBallsText:
+	.string "{PLAYER} received\n"
+	.string "BUG_CONTEST_BALLS PARK BALLS.$"
+
+Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1ExplainsRulesText:
+	.string "The person who\n"
+	.string "gets the strong-\l"
+	.string "est bug POKéMON\l"
+	.string "is the winner."
+	.string "\pYou have BUG_CONTEST_MINUTES\n"
+	.string "minutes."
+	.string "\pIf you run out of\n"
+	.string "PARK BALLS, you're\l"
+	.string "done."
+	.string "\pYou can keep the\n"
+	.string "last POKéMON you\l"
+	.string "catch as your own."
+	.string "\pGo out and catch\n"
+	.string "the strongest bug"
+	.string "\pPOKéMON you can\n"
+	.string "find!$"
+
+Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1AskToUseFirstMonText:
+	.string "Uh-oh…"
+	.string "\pYou have more than\n"
+	.string "one POKéMON."
+	.string "\pYou'll have to use\n"
+	.string "{STR_VAR_1}, the"
+	.string "\pfirst POKéMON in\n"
+	.string "your party."
+	.string "\pIs that OK with\n"
+	.string "you?$"
+
+Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1WellHoldYourMonText:
+	.string "Fine, we'll hold\n"
+	.string "your other POKéMON\l"
+	.string "while you compete.$"
+
+Route35NationalParkGate_Johto_Route35NationalParkGatePlayersMonLeftWithHelperText:
+	.string "{PLAYER}'s POKéMON\n"
+	.string "were left with the\l"
+	.string "CONTEST HELPER.$"
+
+Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1ChooseMonAndComeBackText:
+	.string "Please choose the\n"
+	.string "POKéMON to be used"
+	.string "\pin the Contest,\n"
+	.string "then come see me.$"
+
 Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1TakePartInFutureText:
 	.string "OK. We hope you'll\n"
 	.string "take part in the\l"
 	.string "future.$"
+
+Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1FirstMonCantBattleText:
+	.string "Uh-oh…\n"
+	.string "The first POKéMON"
+	.string "\pin your party\n"
+	.string "can't battle."
+	.string "\pPlease switch it\n"
+	.string "with the POKéMON"
+	.string "\pyou want to use,\n"
+	.string "then come see me.$"
 
 Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1MakeRoomText:
 	.string "Uh-oh…\n"
@@ -194,6 +315,16 @@ Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1MakeRoomText:
 	.string "in your party or"
 	.string "\pyour PC BOX, then\n"
 	.string "come see me.$"
+
+Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1EggAsFirstMonText:
+	.string "Uh-oh…\n"
+	.string "You have an EGG as"
+	.string "\pthe first POKéMON\n"
+	.string "in your party."
+	.string "\pPlease switch it\n"
+	.string "with the POKéMON"
+	.string "\pyou want to use,\n"
+	.string "then come see me.$"
 
 Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1ContestIsOverText:
 	.string "Today's Contest is\n"

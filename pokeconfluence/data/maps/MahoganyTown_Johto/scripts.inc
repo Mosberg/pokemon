@@ -210,7 +210,16 @@ MahoganyTown_Johto_MahoganyTownRageCandyBarMerchantReturnsMovement:
 	step_end
 
 MahoganyTown_Johto_RageCandyBarMerchantTryOneText:
-	.string "(text not converted)$"
+	.string "Hiya, kid!"
+	.string "\pI see you're new\n"
+	.string "in MAHOGANY TOWN."
+	.string "\pSince you're new,\n"
+	.string "you should try a"
+	.string "\pyummy RAGECANDY-\n"
+	.string "BAR!"
+	.string "\pRight now, it can\n"
+	.string "be yours for just\l"
+	.string "¥300! Want one?$"
 
 MahoganyTown_Johto_RageCandyBarMerchantSavorItText:
 	.string "Good! Savor it!$"

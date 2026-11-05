@@ -123,8 +123,10 @@ GoldenrodUnderground_Johto_BargainMerchantScript_CheckMorn:
 	setvar VAR_0x8004, 1
 	special JohtoCheckTime
 	goto_if_eq VAR_RESULT, 0, GoldenrodUnderground_Johto_GoldenrodUndergroundScript_ShopClosed
-	@ TODO unsupported: pokemart MARTTYPE_BARGAIN, 0
-	goto Johto_EventScript_Unimplemented
+	pokemart Johto_Mart_BARGAIN
+	closemessage
+	releaseall
+	end
 
 GoldenrodUnderground_Johto_OlderHaircutBrotherScript:
 	special JohtoGetWeekday
@@ -559,7 +561,17 @@ GoldenrodUnderground_Johto_GoldenrodUndergroundBasementKeyOpenedDoorText:
 	.string "opened the door.$"
 
 GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherOfferHaircutText:
-	.string "(text not converted)$"
+	.string "Welcome!"
+	.string "\pI run the POKéMON\n"
+	.string "SALON!"
+	.string "\pI'm the older and\n"
+	.string "better of the two\l"
+	.string "HAIRCUT BROTHERS."
+	.string "\pI can make your\n"
+	.string "POKéMON beautiful\l"
+	.string "for just ¥500."
+	.string "\pWould you like me\n"
+	.string "to do that?$"
 
 GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherAskWhichMonText:
 	.string "Which POKéMON\n"
@@ -586,7 +598,16 @@ GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherOneHaircutADay
 	.string "done for today.$"
 
 GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherOfferHaircutText:
-	.string "(text not converted)$"
+	.string "Welcome to the\n"
+	.string "POKéMON SALON!"
+	.string "\pI'm the younger\n"
+	.string "and less expen-\l"
+	.string "sive of the two\l"
+	.string "HAIRCUT BROTHERS."
+	.string "\pI'll spiff up your\n"
+	.string "POKéMON for just\l"
+	.string "¥300."
+	.string "\pSo? How about it?$"
 
 GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherAskWhichMonText:
 	.string "OK, which POKéMON\n"

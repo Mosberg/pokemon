@@ -213,7 +213,7 @@ EcruteakTinTowerEntrance_Johto_EcruteakTinTowerEntranceSageText_HearsClearBell:
 	.string "\pI beg your pardon,\n"
 	.string "but I must ask you\l"
 	.string "to leave."
-	.string "\p<……><……><……>"
+	.string "\p………"
 	.string "\pAh!"
 	.string "\pThe sound of that\n"
 	.string "CLEAR BELL!"

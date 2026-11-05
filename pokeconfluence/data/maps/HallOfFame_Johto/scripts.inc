@@ -39,8 +39,10 @@ HallOfFame_Johto_HallOfFameEnterScript:
 	goto_if_set FLAG_JOHTO_GOT_SS_TICKET_FROM_ELM, HallOfFame_Johto_HallOfFameEnterScript_SkipPhoneCall
 
 HallOfFame_Johto_HallOfFameEnterScript_SkipPhoneCall:
-	@ TODO unsupported: halloffame 
-	goto Johto_EventScript_Unimplemented
+	special HealPlayerParty
+	special GameClear
+	releaseall
+	end
 
 HallOfFame_Johto_HallOfFame_WalkUpWithLance:
 	walk_up
