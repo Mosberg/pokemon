@@ -184,6 +184,7 @@ CeruleanGym_Johto_CeruleanGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 CeruleanGym_Johto_CeruleanGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_MISTY_MISTY1
 	goto Johto_Std_GymStatue2Script
 
 CeruleanGym_Johto_CeruleanGymGruntRunsDownMovement:

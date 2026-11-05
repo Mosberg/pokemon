@@ -84,7 +84,15 @@ Pokecenter2F_Johto_LinkReceptionistScript_Trade:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, Pokecenter2F_Johto_LinkReceptionistScript_Trade_Cancel
-	@ TODO unsupported: special CheckMobileAdapterStatusSpecial
+	setvar VAR_RESULT, 0
+	goto_if_eq VAR_RESULT, 0, Pokecenter2F_Johto_LinkReceptionistScript_Trade_NoMobile
+	message Pokecenter2F_Johto_Text_TradeReceptionistMobile
+	waitmessage
+	@ TODO unsupported: special AskMobileOrCable
+	goto Johto_EventScript_Unimplemented
+
+Pokecenter2F_Johto_LinkReceptionistScript_Trade_NoMobile:
+	@ TODO unsupported: special SetBitsForLinkTradeRequest
 	goto Johto_EventScript_Unimplemented
 
 Pokecenter2F_Johto_LinkReceptionistScript_Trade_Cancel:
@@ -98,7 +106,15 @@ Pokecenter2F_Johto_LinkReceptionistScript_Battle:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, Pokecenter2F_Johto_LinkReceptionistScript_Battle_Cancel
-	@ TODO unsupported: special CheckMobileAdapterStatusSpecial
+	setvar VAR_RESULT, 0
+	goto_if_eq VAR_RESULT, 0, Pokecenter2F_Johto_LinkReceptionistScript_Battle_NoMobile
+	message Pokecenter2F_Johto_Text_BattleReceptionistMobile
+	waitmessage
+	@ TODO unsupported: special AskMobileOrCable
+	goto Johto_EventScript_Unimplemented
+
+Pokecenter2F_Johto_LinkReceptionistScript_Battle_NoMobile:
+	@ TODO unsupported: special SetBitsForBattleRequest
 	goto Johto_EventScript_Unimplemented
 
 Pokecenter2F_Johto_LinkReceptionistScript_Battle_Cancel:
@@ -126,16 +142,22 @@ Pokecenter2F_Johto_Script_LeftCableTradeCenter:
 	goto Johto_EventScript_Unimplemented
 
 Pokecenter2F_Johto_Script_LeftMobileTradeRoom:
-	@ TODO unsupported: special Function101220
-	goto Johto_EventScript_Unimplemented
+	call Pokecenter2F_Johto_Script_WalkOutOfMobileTradeRoom_Sub
+	setvar VAR_JOHTO_SCENE_POKECENTER_2F, 0
+	setvar VAR_JOHTO_SCENE_MOBILE_TRADE_ROOM, 0
+	releaseall
+	end
 
 Pokecenter2F_Johto_Script_LeftCableColosseum:
 	@ TODO unsupported: special WaitForOtherPlayerToExit
 	goto Johto_EventScript_Unimplemented
 
 Pokecenter2F_Johto_Script_LeftMobileBattleRoom:
-	@ TODO unsupported: special Function101220
-	goto Johto_EventScript_Unimplemented
+	call Pokecenter2F_Johto_Script_WalkOutOfMobileBattleRoom_Sub
+	setvar VAR_JOHTO_SCENE_POKECENTER_2F, 0
+	setvar VAR_JOHTO_SCENE_MOBILE_BATTLE_ROOM, 0
+	releaseall
+	end
 
 Pokecenter2F_Johto_Script_LeftTimeCapsule:
 	@ TODO unsupported: special WaitForOtherPlayerToExit
@@ -174,6 +196,54 @@ Pokecenter2F_Johto_Pokecenter2FOfficerScript_RefusedGift:
 	closemessage
 	releaseall
 	end
+
+Pokecenter2F_Johto_Script_WalkOutOfMobileTradeRoom_Sub:
+	applymovement 1, Pokecenter2F_Johto_Pokecenter2FMobileMovementData_ReceptionistWalksUpAndLeft
+	waitmovement 1
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerWalksOutOfMobileRoom
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 1, Pokecenter2F_Johto_Pokecenter2FMobileMovementData_ReceptionistWalksRightAndDown
+	waitmovement 1
+	return
+
+Pokecenter2F_Johto_Script_WalkOutOfMobileBattleRoom_Sub:
+	applymovement 2, Pokecenter2F_Johto_Pokecenter2FMobileMovementData_ReceptionistWalksUpAndLeft
+	waitmovement 2
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerWalksOutOfMobileRoom
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 2, Pokecenter2F_Johto_Pokecenter2FMobileMovementData_ReceptionistWalksRightAndDown
+	waitmovement 2
+	return
+
+Pokecenter2F_Johto_Pokecenter2FMobileMovementData_ReceptionistWalksUpAndLeft:
+	walk_slow_up
+	walk_slow_left
+	face_right
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerWalksOutOfMobileRoom:
+	walk_down
+	walk_left
+	walk_down
+	walk_down
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMobileMovementData_ReceptionistWalksRightAndDown:
+	walk_slow_right
+	walk_slow_down
+	step_end
+
+Pokecenter2F_Johto_Text_BattleReceptionistMobile:
+	.string "Would you like to\n"
+	.string "battle over a GAME"
+	.string "\pLINK cable or by\n"
+	.string "mobile phone?$"
+
+Pokecenter2F_Johto_Text_TradeReceptionistMobile:
+	.string "Would you like to\n"
+	.string "trade over a GAME"
+	.string "\pLINK cable or by\n"
+	.string "mobile phone?$"
 
 Pokecenter2F_Johto_Text_BattleReceptionistIntro:
 	.string "Welcome to CABLE\n"

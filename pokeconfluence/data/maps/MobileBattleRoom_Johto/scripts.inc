@@ -22,5 +22,10 @@ MobileBattleRoom_Johto_MobileBattleRoomInitializeAndPreparePokecenter2FScript:
 	end
 
 MobileBattleRoom_Johto_MobileBattleRoomConsoleScript:
-	@ TODO unsupported: special Function1037c2
+	goto_if_eq VAR_RESULT, 0x1, MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_one
+	@ TODO unsupported: special Function1037eb
+	goto Johto_EventScript_Unimplemented
+
+MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_one:
+	@ TODO unsupported: special Function10387b
 	goto Johto_EventScript_Unimplemented

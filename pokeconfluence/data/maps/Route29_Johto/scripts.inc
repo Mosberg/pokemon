@@ -124,8 +124,34 @@ Route29_Johto_Script_RefusedTutorial2:
 
 Route29_Johto_CatchingTutorialDudeScript:
 	faceplayer
-	@ TODO unsupported: readvar VAR_BOXSPACE
+	setvar VAR_RESULT, 20
+	goto_if_eq VAR_RESULT, 0, Route29_Johto_CatchingTutorialDudeScript_BoxFull
+	goto_if_set FLAG_JOHTO_LEARNED_TO_CATCH_POKEMON, Route29_Johto_CatchingTutorialDudeScript_BoxFull
+	goto_if_unset FLAG_JOHTO_GAVE_MYSTERY_EGG_TO_ELM, Route29_Johto_CatchingTutorialDudeScript_BoxFull
+	message Route29_Johto_CatchingTutorialRepeatText
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, Route29_Johto_CatchingTutorialDudeScript_Declined
+	closemessage
+	setwildbattle SPECIES_RATTATA, 5
+	@ TODO unsupported: catchtutorial BATTLETYPE_TUTORIAL
 	goto Johto_EventScript_Unimplemented
+
+Route29_Johto_CatchingTutorialDudeScript_BoxFull:
+	message Route29_Johto_CatchingTutorialBoxFullText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route29_Johto_CatchingTutorialDudeScript_Declined:
+	message Route29_Johto_CatchingTutorialDeclinedText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 Route29_Johto_Route29YoungsterScript:
 	faceplayer
@@ -297,6 +323,12 @@ Route29_Johto_DudeMovementData2b:
 	walk_down
 	step_end
 
+Route29_Johto_CatchingTutorialBoxFullText:
+	.string "POKéMON hide in\n"
+	.string "the grass. Who"
+	.string "\pknows when they'll\n"
+	.string "pop out…$"
+
 Route29_Johto_CatchingTutorialIntroText:
 	.string "I've seen you a\n"
 	.string "couple times. How"
@@ -312,6 +344,11 @@ Route29_Johto_CatchingTutorialDeclinedText:
 	.string "want to catch"
 	.string "\pPOKéMON, you have\n"
 	.string "to walk a lot.$"
+
+Route29_Johto_CatchingTutorialRepeatText:
+	.string "Huh? You want me\n"
+	.string "to show you how to\l"
+	.string "catch POKéMON?$"
 
 Route29_Johto_Route29YoungsterText:
 	.string "Yo. How are your\n"

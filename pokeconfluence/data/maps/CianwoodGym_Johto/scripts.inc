@@ -145,6 +145,7 @@ CianwoodGym_Johto_CianwoodGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 CianwoodGym_Johto_CianwoodGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_CHUCK_CHUCK1
 	goto Johto_Std_GymStatue2Script
 
 CianwoodGym_Johto_CianwoodGymActivateRockets_Sub:

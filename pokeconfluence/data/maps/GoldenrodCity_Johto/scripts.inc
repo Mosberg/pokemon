@@ -122,11 +122,23 @@ GoldenrodCity_Johto_MoveTutorScript:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, GoldenrodCity_Johto_MoveTutorScript_Refused
-	@ TODO unsupported: special DisplayCoinCaseBalance
+	message GoldenrodCity_Johto_GoldenrodCityMoveTutorAsk4000CoinsOkayText
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, GoldenrodCity_Johto_MoveTutorScript_Refused2
+	@ TODO unsupported: checkcoins 4000
 	goto Johto_EventScript_Unimplemented
 
 GoldenrodCity_Johto_MoveTutorScript_Refused:
 	message GoldenrodCity_Johto_GoldenrodCityMoveTutorAwwButTheyreAmazingText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodCity_Johto_MoveTutorScript_Refused2:
+	message GoldenrodCity_Johto_GoldenrodCityMoveTutorHmTooBadText
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -562,6 +574,15 @@ GoldenrodCity_Johto_GoldenrodCityMoveTutorAskTeachAMoveText:
 	.string "\pShould I teach a\n"
 	.string "new move?$"
 
+GoldenrodCity_Johto_GoldenrodCityMoveTutorAsk4000CoinsOkayText:
+	.string "It will cost you\n"
+	.string "4000 coins. Okay?$"
+
 GoldenrodCity_Johto_GoldenrodCityMoveTutorAwwButTheyreAmazingText:
 	.string "Aww… But they're\n"
 	.string "amazing…$"
+
+GoldenrodCity_Johto_GoldenrodCityMoveTutorHmTooBadText:
+	.string "Hm, too bad. I'll\n"
+	.string "have to get some\l"
+	.string "cash from home…$"

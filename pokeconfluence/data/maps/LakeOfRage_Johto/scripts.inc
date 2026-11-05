@@ -290,6 +290,7 @@ LakeOfRage_Johto_LakeOfRageWesleyCallback_WesleyAppears_Cb:
 	return
 
 LakeOfRage_Johto_LakeOfRageLanceTeleportIntoSkyMovement:
+	set_invisible
 	step_end
 
 LakeOfRage_Johto_LakeOfRageLanceForcedToEvolveText:

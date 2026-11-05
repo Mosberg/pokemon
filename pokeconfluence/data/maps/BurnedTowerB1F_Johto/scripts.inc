@@ -1,5 +1,10 @@
 BurnedTowerB1F_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, BurnedTowerB1F_Johto_OnLoad
 	.byte 0
+
+BurnedTowerB1F_Johto_OnLoad:
+	call BurnedTowerB1F_Johto_BurnedTowerB1FLadderCallback_Cb
+	end
 
 BurnedTowerB1F_Johto_BurnedTowerB1FBoulder_Entry::
 	lockall
@@ -90,8 +95,24 @@ BurnedTowerB1F_Johto_ReleaseTheBeasts:
 	fadedefaultbgm
 	setvar VAR_JOHTO_SCENE_BURNED_TOWER_B1F, 1
 	setflag FLAG_JOHTO_RELEASED_THE_BEASTS
-	@ TODO unsupported: special InitRoamMons
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_JOHTO_SCENE_ECRUTEAK_GYM, 1
+	setvar VAR_JOHTO_SCENE_CIANWOOD_CITY, 1
+	clearflag FLAG_JOHTO_SAW_SUICUNE_AT_CIANWOOD_CITY
+	setflag FLAG_JOHTO_ECRUTEAK_GYM_GRAMPS
+	clearflag FLAG_JOHTO_ECRUTEAK_CITY_GRAMPS
+	setflag FLAG_JOHTO_BURNED_TOWER_MORTY
+	setflag FLAG_JOHTO_BURNED_TOWER_1F_EUSINE
+	clearflag FLAG_JOHTO_EUSINE_IN_BURNED_TOWER
+	addobject 9
+	setmetatile 6, 14, 513, 0
+	setmetatile 7, 14, 513, 0
+	setmetatile 6, 15, 513, 0
+	setmetatile 7, 15, 534, 0
+	special DrawWholeMapView
+	closemessage
+	setvar VAR_JOHTO_SCENE_BURNED_TOWER_B1F, 1
+	releaseall
+	end
 
 BurnedTowerB1F_Johto_BurnedTowerB1FEusine:
 	faceplayer
@@ -123,6 +144,17 @@ BurnedTowerB1F_Johto_BurnedTowerB1FTMEndure:
 
 BurnedTowerB1F_Johto_BurnedTowerB1FBoulder:
 	goto Johto_Std_StrengthBoulderScript
+
+BurnedTowerB1F_Johto_BurnedTowerB1FLadderCallback_Cb:
+	goto_if_set FLAG_JOHTO_RELEASED_THE_BEASTS, BurnedTowerB1F_Johto_BurnedTowerB1FLadderCallback_HideLadder_Cb
+	setmetatile 6, 14, 513, 0
+	setmetatile 7, 14, 513, 0
+	setmetatile 6, 15, 513, 0
+	setmetatile 7, 15, 513, 0
+	special DrawWholeMapView
+
+BurnedTowerB1F_Johto_BurnedTowerB1FLadderCallback_HideLadder_Cb:
+	return
 
 BurnedTowerB1F_Johto_BurnedTowerRaikouMovement:
 	jump_down

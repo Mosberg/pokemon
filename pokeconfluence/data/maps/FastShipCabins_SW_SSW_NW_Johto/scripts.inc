@@ -63,8 +63,22 @@ FastShipCabins_SW_SSW_NW_Johto_TrainerGuitaristClyde::
 	goto FastShipCabins_SW_SSW_NW_Johto_TrainerGuitaristClyde_Script
 
 FastShipCabins_SW_SSW_NW_Johto_TrainerGuitaristClyde_Script:
-	@ TODO unsupported: special CheckMobileAdapterStatusSpecial
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 0
+	goto_if_ne VAR_RESULT, 0, FastShipCabins_SW_SSW_NW_Johto_TrainerGuitaristClyde_mobile
+	message FastShipCabins_SW_SSW_NW_Johto_GuitaristClydeAfterBattleText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+FastShipCabins_SW_SSW_NW_Johto_TrainerGuitaristClyde_mobile:
+	message FastShipCabins_SW_SSW_NW_Johto_GuitaristClydeAfterBattleMobileText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 FastShipCabins_SW_SSW_NW_Johto_FastShipBed:
 	message FastShipCabins_SW_SSW_NW_Johto_FastShipBedText1
@@ -167,6 +181,20 @@ FastShipCabins_SW_SSW_NW_Johto_GuitaristClydeSeenText:
 FastShipCabins_SW_SSW_NW_Johto_GuitaristClydeBeatenText:
 	.string "Yowza!\n"
 	.string "Total distortion!$"
+
+FastShipCabins_SW_SSW_NW_Johto_GuitaristClydeAfterBattleMobileText:
+	.string "I was going to\n"
+	.string "make my debut at\l"
+	.string "the BATTLE TOWER…"
+	.string "\pI should go back\n"
+	.string "to VERMILION and\l"
+	.string "redo my training…$"
+
+FastShipCabins_SW_SSW_NW_Johto_GuitaristClydeAfterBattleText:
+	.string "Speaking of the\n"
+	.string "RADIO STATION,"
+	.string "\pwhat's this week's\n"
+	.string "lucky number?$"
 
 FastShipCabins_SW_SSW_NW_Johto_FastShipBedText1:
 	.string "A comfy bed!\n"

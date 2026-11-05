@@ -51,9 +51,12 @@ Route34_Johto_TrainerCamperTodd1::
 	goto Route34_Johto_TrainerCamperTodd1_Script
 
 Route34_Johto_TrainerCamperTodd1_Script:
+	setvar VAR_0x8007, 503
 	goto_if_set FLAG_JOHTO_ENGINE_TODD_READY_FOR_REMATCH, Route34_Johto_TrainerCamperTodd1_Rematch
 	goto_if_set FLAG_JOHTO_ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON, Route34_Johto_TrainerCamperTodd1_SaleIsOn
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_CAMPER_TODD_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_TODD_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route34_Johto_TrainerCamperTodd1_NumberAccepted
 	goto_if_set FLAG_JOHTO_TODD_ASKED_FOR_PHONE_NUMBER, Route34_Johto_TrainerCamperTodd1_AskAgain
 	message Route34_Johto_CamperTodd1AfterText
@@ -67,16 +70,70 @@ Route34_Johto_TrainerCamperTodd1_AskAgain:
 	call Route34_Johto_TrainerCamperTodd1_AskNumber2_Sub
 
 Route34_Johto_TrainerCamperTodd1_FinishAsk:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_CAMPER_TODD_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_TODD_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route34_Johto_TrainerCamperTodd1_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route34_Johto_TrainerCamperTodd1_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_CAMPER_TODD1
 	call Route34_Johto_TrainerCamperTodd1_RegisteredNumber_Sub
 	goto Route34_Johto_TrainerCamperTodd1_NumberAccepted
 
 Route34_Johto_TrainerCamperTodd1_Rematch:
 	call Route34_Johto_TrainerCamperTodd1_RematchStd_Sub
-	@ TODO unsupported: readmem wToddFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WTODDFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 4, Route34_Johto_TrainerCamperTodd1_Fight4
+	goto_if_eq VAR_RESULT, 3, Route34_Johto_TrainerCamperTodd1_Fight3
+	goto_if_eq VAR_RESULT, 2, Route34_Johto_TrainerCamperTodd1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route34_Johto_TrainerCamperTodd1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route34_Johto_TrainerCamperTodd1_LoadFight0
+
+Route34_Johto_TrainerCamperTodd1_Fight4:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route34_Johto_TrainerCamperTodd1_LoadFight4
+
+Route34_Johto_TrainerCamperTodd1_Fight3:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route34_Johto_TrainerCamperTodd1_LoadFight3
+
+Route34_Johto_TrainerCamperTodd1_Fight2:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_BLACKTHORN, Route34_Johto_TrainerCamperTodd1_LoadFight2
+
+Route34_Johto_TrainerCamperTodd1_Fight1:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_CIANWOOD, Route34_Johto_TrainerCamperTodd1_LoadFight1
+
+Route34_Johto_TrainerCamperTodd1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_CAMPER_TODD1, Route34_Johto_CamperTodd1BeatenText
+	setvar VAR_JOHTO_MEM_WTODDFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_TODD_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route34_Johto_TrainerCamperTodd1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_CAMPER_TODD2, Route34_Johto_CamperTodd1BeatenText
+	setvar VAR_JOHTO_MEM_WTODDFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_TODD_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route34_Johto_TrainerCamperTodd1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_CAMPER_TODD3, Route34_Johto_CamperTodd1BeatenText
+	setvar VAR_JOHTO_MEM_WTODDFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_TODD_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route34_Johto_TrainerCamperTodd1_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_CAMPER_TODD4, Route34_Johto_CamperTodd1BeatenText
+	setvar VAR_JOHTO_MEM_WTODDFIGHTCOUNT, 4
+	clearflag FLAG_JOHTO_ENGINE_TODD_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route34_Johto_TrainerCamperTodd1_LoadFight4:
+	trainerbattle_no_intro TRAINER_JOHTO_CAMPER_TODD5, Route34_Johto_CamperTodd1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_TODD_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route34_Johto_TrainerCamperTodd1_SaleIsOn:
 	message Route34_Johto_CamperToddSaleText
@@ -103,9 +160,12 @@ Route34_Johto_TrainerPicnickerGina1::
 	goto Route34_Johto_TrainerPicnickerGina1_Script
 
 Route34_Johto_TrainerPicnickerGina1_Script:
+	setvar VAR_0x8007, 428
 	goto_if_set FLAG_JOHTO_ENGINE_GINA_READY_FOR_REMATCH, Route34_Johto_TrainerPicnickerGina1_Rematch
 	goto_if_set FLAG_JOHTO_ENGINE_GINA_HAS_LEAF_STONE, Route34_Johto_TrainerPicnickerGina1_LeafStone
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_PICNICKER_GINA_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_GINA_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route34_Johto_TrainerPicnickerGina1_NumberAccepted
 	goto_if_set FLAG_JOHTO_GINA_ASKED_FOR_PHONE_NUMBER, Route34_Johto_TrainerPicnickerGina1_AskAgain
 	message Route34_Johto_PicnickerGina1AfterText
@@ -119,16 +179,70 @@ Route34_Johto_TrainerPicnickerGina1_AskAgain:
 	call Route34_Johto_TrainerPicnickerGina1_AskNumber2_Sub
 
 Route34_Johto_TrainerPicnickerGina1_FinishAsk:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_PICNICKER_GINA_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_GINA_READY_FOR_REMATCH
+	setvar VAR_0x8006, FLAG_JOHTO_ENGINE_GINA_HAS_LEAF_STONE
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route34_Johto_TrainerPicnickerGina1_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route34_Johto_TrainerPicnickerGina1_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_PICNICKER_GINA1
 	call Route34_Johto_TrainerPicnickerGina1_RegisteredNumber_Sub
 	goto Route34_Johto_TrainerPicnickerGina1_NumberAccepted
 
 Route34_Johto_TrainerPicnickerGina1_Rematch:
 	call Route34_Johto_TrainerPicnickerGina1_RematchStd_Sub
-	@ TODO unsupported: readmem wGinaFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WGINAFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 4, Route34_Johto_TrainerPicnickerGina1_Fight4
+	goto_if_eq VAR_RESULT, 3, Route34_Johto_TrainerPicnickerGina1_Fight3
+	goto_if_eq VAR_RESULT, 2, Route34_Johto_TrainerPicnickerGina1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route34_Johto_TrainerPicnickerGina1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route34_Johto_TrainerPicnickerGina1_LoadFight0
+
+Route34_Johto_TrainerPicnickerGina1_Fight4:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route34_Johto_TrainerPicnickerGina1_LoadFight4
+
+Route34_Johto_TrainerPicnickerGina1_Fight3:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route34_Johto_TrainerPicnickerGina1_LoadFight3
+
+Route34_Johto_TrainerPicnickerGina1_Fight2:
+	goto_if_set FLAG_JOHTO_CLEARED_RADIO_TOWER, Route34_Johto_TrainerPicnickerGina1_LoadFight2
+
+Route34_Johto_TrainerPicnickerGina1_Fight1:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_MAHOGANY, Route34_Johto_TrainerPicnickerGina1_LoadFight1
+
+Route34_Johto_TrainerPicnickerGina1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_GINA1, Route34_Johto_PicnickerGina1BeatenText
+	setvar VAR_JOHTO_MEM_WGINAFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_GINA_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route34_Johto_TrainerPicnickerGina1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_GINA2, Route34_Johto_PicnickerGina1BeatenText
+	setvar VAR_JOHTO_MEM_WGINAFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_GINA_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route34_Johto_TrainerPicnickerGina1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_GINA3, Route34_Johto_PicnickerGina1BeatenText
+	setvar VAR_JOHTO_MEM_WGINAFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_GINA_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route34_Johto_TrainerPicnickerGina1_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_GINA4, Route34_Johto_PicnickerGina1BeatenText
+	setvar VAR_JOHTO_MEM_WGINAFIGHTCOUNT, 4
+	clearflag FLAG_JOHTO_ENGINE_GINA_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route34_Johto_TrainerPicnickerGina1_LoadFight4:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_GINA5, Route34_Johto_PicnickerGina1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_GINA_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route34_Johto_TrainerPicnickerGina1_LeafStone:
 	call Route34_Johto_TrainerPicnickerGina1_Gift_Sub

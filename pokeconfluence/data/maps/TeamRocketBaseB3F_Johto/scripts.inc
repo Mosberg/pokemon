@@ -1,6 +1,11 @@
 TeamRocketBaseB3F_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, TeamRocketBaseB3F_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, TeamRocketBaseB3F_Johto_OnFrame
 	.byte 0
+
+TeamRocketBaseB3F_Johto_OnLoad:
+	call TeamRocketBaseB3F_Johto_TeamRocketBaseB3FCheckGiovanniDoorCallback_Cb
+	end
 
 TeamRocketBaseB3F_Johto_OnFrame:
 	map_script_2 VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B3F, 0, TeamRocketBaseB3F_Johto_LanceGetPasswordScript_Entry
@@ -249,6 +254,18 @@ TeamRocketBaseB3F_Johto_TeamRocketBaseB3FUltraBall:
 	finditem ITEM_ULTRA_BALL
 	releaseall
 	end
+
+TeamRocketBaseB3F_Johto_TeamRocketBaseB3FCheckGiovanniDoorCallback_Cb:
+	goto_if_set FLAG_JOHTO_OPENED_DOOR_TO_GIOVANNIS_OFFICE, TeamRocketBaseB3F_Johto_TeamRocketBaseB3FCheckGiovanniDoorCallback_OpenSesame_Cb
+	return
+
+TeamRocketBaseB3F_Johto_TeamRocketBaseB3FCheckGiovanniDoorCallback_OpenSesame_Cb:
+	setmetatile 10, 8, 514, 0
+	setmetatile 11, 8, 514, 0
+	setmetatile 10, 9, 514, 0
+	setmetatile 11, 9, 514, 0
+	special DrawWholeMapView
+	return
 
 TeamRocketBaseB3F_Johto_RocketBaseLanceApproachesPlayerMovement:
 	walk_right

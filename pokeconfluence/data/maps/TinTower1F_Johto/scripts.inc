@@ -1,7 +1,12 @@
 TinTower1F_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, TinTower1F_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, TinTower1F_Johto_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, TinTower1F_Johto_OnFrame
 	.byte 0
+
+TinTower1F_Johto_OnLoad:
+	call TinTower1F_Johto_TinTower1FStairsCallback_Cb
+	end
 
 TinTower1F_Johto_OnTransition:
 	call TinTower1F_Johto_TinTower1FNPCsCallback_Cb
@@ -187,6 +192,17 @@ TinTower1F_Johto_TinTower1FNPCsCallback_FoughtSuicune_Cb:
 	setflag FLAG_JOHTO_TIN_TOWER_1F_ENTEI
 	clearflag FLAG_JOHTO_TIN_TOWER_1F_WISE_TRIO_1
 	setflag FLAG_JOHTO_TIN_TOWER_1F_WISE_TRIO_2
+	return
+
+TinTower1F_Johto_TinTower1FStairsCallback_Cb:
+	goto_if_set FLAG_JOHTO_GOT_RAINBOW_WING, TinTower1F_Johto_TinTower1FStairsCallback_DontHideStairs_Cb
+	setmetatile 10, 2, 513, 0
+	setmetatile 11, 2, 513, 0
+	setmetatile 10, 3, 513, 0
+	setmetatile 11, 3, 513, 0
+	special DrawWholeMapView
+
+TinTower1F_Johto_TinTower1FStairsCallback_DontHideStairs_Cb:
 	return
 
 TinTower1F_Johto_TinTower1FPlayerEntersMovement:

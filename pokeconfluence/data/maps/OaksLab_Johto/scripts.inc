@@ -49,8 +49,9 @@ OaksLab_Johto_Oak:
 
 OaksLab_Johto_Oak_CheckBadges:
 	special JohtoCountBadges
-	@ TODO unsupported: ifequal NUM_BADGES, .OpenMtSilver
-	goto Johto_EventScript_Unimplemented
+	goto_if_eq VAR_RESULT, 8, OaksLab_Johto_Oak_OpenMtSilver
+	goto_if_eq VAR_RESULT, 8, OaksLab_Johto_Oak_Complain
+	goto OaksLab_Johto_Oak_AhGood
 
 OaksLab_Johto_Oak_CheckPokedex:
 	message OaksLab_Johto_OakLabDexCheckText
@@ -58,6 +59,25 @@ OaksLab_Johto_Oak_CheckPokedex:
 	waitbuttonpress
 	@ TODO unsupported: special ProfOaksPCBoot
 	goto Johto_EventScript_Unimplemented
+
+OaksLab_Johto_Oak_OpenMtSilver:
+	message OaksLab_Johto_OakOpenMtSilverText
+	waitmessage
+	waitbuttonpress
+	setflag FLAG_JOHTO_OPENED_MT_SILVER
+	goto OaksLab_Johto_Oak_CheckPokedex
+
+OaksLab_Johto_Oak_Complain:
+	message OaksLab_Johto_OakNoKantoBadgesText
+	waitmessage
+	waitbuttonpress
+	goto OaksLab_Johto_Oak_CheckPokedex
+
+OaksLab_Johto_Oak_AhGood:
+	message OaksLab_Johto_OakYesKantoBadgesText
+	waitmessage
+	waitbuttonpress
+	goto OaksLab_Johto_Oak_CheckPokedex
 
 OaksLab_Johto_OaksAssistant1Script:
 	faceplayer
@@ -135,6 +155,62 @@ OaksLab_Johto_OakLabDexCheckText:
 	.string "How is your POKé-\n"
 	.string "DEX coming?"
 	.string "\pLet's see…$"
+
+OaksLab_Johto_OakOpenMtSilverText:
+	.string "OAK: Wow! That's\n"
+	.string "excellent!"
+	.string "\pYou collected the\n"
+	.string "BADGES of GYMS in\l"
+	.string "KANTO. Well done!"
+	.string "\pI was right in my\n"
+	.string "assessment of you."
+	.string "\pTell you what,\n"
+	.string "{PLAYER}. I'll make"
+	.string "\parrangements so\n"
+	.string "that you can go to\l"
+	.string "MT.SILVER."
+	.string "\pMT.SILVER is a big\n"
+	.string "mountain that is"
+	.string "\phome to many wild\n"
+	.string "POKéMON."
+	.string "\pIt's too dangerous\n"
+	.string "for your average"
+	.string "\ptrainer, so it's\n"
+	.string "off limits. But"
+	.string "\pwe can make an\n"
+	.string "exception in your\l"
+	.string "case, {PLAYER}."
+	.string "\pGo up to INDIGO\n"
+	.string "PLATEAU. You can"
+	.string "\preach MT.SILVER\n"
+	.string "from there.$"
+
+OaksLab_Johto_OakNoKantoBadgesText:
+	.string "OAK: Hmm? You're\n"
+	.string "not collecting\l"
+	.string "KANTO GYM BADGES?"
+	.string "\pThe GYM LEADERS in\n"
+	.string "KANTO are as tough"
+	.string "\pas any you battled\n"
+	.string "in JOHTO."
+	.string "\pI recommend that\n"
+	.string "you challenge\l"
+	.string "them.$"
+
+OaksLab_Johto_OakYesKantoBadgesText:
+	.string "OAK: Ah, you're\n"
+	.string "collecting KANTO\l"
+	.string "GYM BADGES."
+	.string "\pI imagine that\n"
+	.string "it's hard, but the"
+	.string "\pexperience is sure\n"
+	.string "to help you."
+	.string "\pCome see me when\n"
+	.string "you get them all."
+	.string "\pI'll have a gift\n"
+	.string "for you."
+	.string "\pKeep trying hard,\n"
+	.string "{PLAYER}!$"
 
 OaksLab_Johto_OaksAssistant1Text:
 	.string "The PROF's POKéMON\n"

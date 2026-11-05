@@ -1,5 +1,10 @@
 CeladonDeptStore6F_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, CeladonDeptStore6F_Johto_OnLoad
 	.byte 0
+
+CeladonDeptStore6F_Johto_OnLoad:
+	call CeladonDeptStore6F_Johto_CeladonDeptStore6FHideRooftopStairsCallback_Cb
+	end
 
 CeladonDeptStore6F_Johto_CeladonDeptStore6FSuperNerdScript_Entry::
 	lockall
@@ -41,7 +46,7 @@ CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine:
 	waitmessage
 
 CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_Start:
-	@ TODO unsupported: special PlaceMoneyTopRight
+	@ TODO unsupported: loadmenu .MenuHeader
 	goto Johto_EventScript_Unimplemented
 
 CeladonDeptStore6F_Johto_CeladonDeptStore6FDirectory:
@@ -51,6 +56,14 @@ CeladonDeptStore6F_Johto_CeladonDeptStore6FDirectory:
 	closemessage
 	releaseall
 	end
+
+CeladonDeptStore6F_Johto_CeladonDeptStore6FHideRooftopStairsCallback_Cb:
+	setmetatile 12, 0, 514, 1
+	setmetatile 13, 0, 514, 1
+	setmetatile 12, 1, 515, 0
+	setmetatile 13, 1, 515, 0
+	special DrawWholeMapView
+	return
 
 CeladonDeptStore6F_Johto_CeladonVendingText:
 	.string "A vending machine!\n"

@@ -82,8 +82,39 @@ GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript:
 	message GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistOhYourMonDotDotDotText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: ifgreater 150 - 1, .VeryHappy
-	goto Johto_EventScript_Unimplemented
+	goto_if_gt VAR_RESULT, 149, GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript_VeryHappy
+	goto_if_gt VAR_RESULT, 49, GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript_SomewhatHappy
+	goto GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript_NotVeryHappy
+
+GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript_VeryHappy:
+	message GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistThisMoveShouldBePerfectText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_TM_RETURN
+	goto_if_eq VAR_RESULT, 0, GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript_Done
+	setflag FLAG_JOHTO_ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
+	closemessage
+	releaseall
+	end
+
+GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript_SomewhatHappy:
+	message GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistItsAdorableText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript_NotVeryHappy:
+	message GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistItLooksEvilHowAboutThisTMText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_TM_FRUSTRATION
+	goto_if_eq VAR_RESULT, 0, GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript_Done
+	setflag FLAG_JOHTO_ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
+	closemessage
+	releaseall
+	end
 
 GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistScript_EventIsOver:
 	message GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistThereAreTMsPerfectForMonText
@@ -146,6 +177,23 @@ GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FCheckIfSundayCallback_yes_Cb:
 GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistOhYourMonDotDotDotText:
 	.string "Hello. Oh, your\n"
 	.string "POKéMON…$"
+
+GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistThisMoveShouldBePerfectText:
+	.string "It's very attached\n"
+	.string "to you."
+	.string "\pThis move should\n"
+	.string "be perfect for a\l"
+	.string "pair like you.$"
+
+GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistItsAdorableText:
+	.string "It's adorable!"
+	.string "\pYou should teach\n"
+	.string "it good TM moves.$"
+
+GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistItLooksEvilHowAboutThisTMText:
+	.string "It looks evil. How\n"
+	.string "about this TM for\l"
+	.string "it?$"
 
 GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FReceptionistThereAreTMsPerfectForMonText:
 	.string "There are sure to\n"

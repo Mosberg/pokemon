@@ -50,8 +50,20 @@ DragonsDenB1F_Johto_DragonsDenB1F_ClairScene:
 	waitbuttonpress
 	additem ITEM_NUGGET
 	goto_if_eq VAR_RESULT, 0, DragonsDenB1F_Johto_DragonsDenB1F_ClairScene_BagFull
-	@ TODO unsupported: getitemname STRING_BUFFER_3, TM_DRAGONBREATH
-	goto Johto_EventScript_Unimplemented
+	bufferitemname STR_VAR_1, ITEM_NUGGET
+	message DragonsDenB1F_Johto_Text_ReceivedTM24
+	waitmessage
+	playse SE_PIN
+	waitse
+	setflag FLAG_JOHTO_GOT_TM24_DRAGONBREATH
+	message DragonsDenB1F_Johto_ClairText_DescribeDragonbreathDragonDen
+	waitmessage
+	waitbuttonpress
+	message DragonsDenB1F_Johto_ClairText_WhatsTheMatterDragonDen
+	waitmessage
+	waitbuttonpress
+	closemessage
+	goto DragonsDenB1F_Johto_DragonsDenB1F_ClairScene_FinishClair
 
 DragonsDenB1F_Johto_DragonsDenB1F_ClairScene_BagFull:
 	message DragonsDenB1F_Johto_ClairText_NoRoom
@@ -234,6 +246,20 @@ DragonsDenB1F_Johto_ClairText_GiveDragonbreathDragonDen:
 	.string "\pHere, take this as\n"
 	.string "my apology.$"
 
+DragonsDenB1F_Johto_Text_ReceivedTM24:
+	.string "{PLAYER} received\n"
+	.string "TM24.$"
+
+DragonsDenB1F_Johto_ClairText_DescribeDragonbreathDragonDen:
+	.string "That contains\n"
+	.string "DRAGONBREATH."
+	.string "\pNo, it doesn't\n"
+	.string "have anything to\l"
+	.string "do with my breath."
+	.string "\pIf you don't want\n"
+	.string "it, you don't have\l"
+	.string "to take it.$"
+
 DragonsDenB1F_Johto_ClairText_NoRoom:
 	.string "Oh? You don't have\n"
 	.string "any room for this."
@@ -241,6 +267,29 @@ DragonsDenB1F_Johto_ClairText_NoRoom:
 	.string "the GYM, so make"
 	.string "\proom, then come\n"
 	.string "see me there.$"
+
+DragonsDenB1F_Johto_ClairText_WhatsTheMatterDragonDen:
+	.string "CLAIR: What's the\n"
+	.string "matter? Aren't you"
+	.string "\pgoing on to the\n"
+	.string "POKéMON LEAGUE?"
+	.string "\pDo you know how to\n"
+	.string "get there?"
+	.string "\pFrom here, go to\n"
+	.string "NEW BARK TOWN."
+	.string "\pThen SURF east to\n"
+	.string "POKéMON LEAGUE."
+	.string "\pThe route there is\n"
+	.string "very tough."
+	.string "\pDon't you dare\n"
+	.string "lose at the POKé-\l"
+	.string "MON LEAGUE!"
+	.string "\pIf you do, I'll\n"
+	.string "feel even worse"
+	.string "\pabout having lost\n"
+	.string "to you!"
+	.string "\pGive it everything\n"
+	.string "you've got.$"
 
 DragonsDenB1F_Johto_DragonShrineSignpostText:
 	.string "DRAGON SHRINE"

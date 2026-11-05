@@ -1,6 +1,11 @@
 GoldenrodUnderground_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, GoldenrodUnderground_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, GoldenrodUnderground_Johto_OnTransition
 	.byte 0
+
+GoldenrodUnderground_Johto_OnLoad:
+	call GoldenrodUnderground_Johto_GoldenrodUndergroundCheckBasementKeyCallback_Cb
+	end
 
 GoldenrodUnderground_Johto_OnTransition:
 	call GoldenrodUnderground_Johto_GoldenrodUndergroundResetSwitchesCallback_Cb
@@ -130,8 +135,74 @@ GoldenrodUnderground_Johto_OlderHaircutBrotherScript:
 
 GoldenrodUnderground_Johto_OlderHaircutBrotherScript_DoHaircut:
 	goto_if_set FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT, GoldenrodUnderground_Johto_OlderHaircutBrotherScript_AlreadyGotHaircut
-	@ TODO unsupported: special PlaceMoneyTopRight
-	goto Johto_EventScript_Unimplemented
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherOfferHaircutText
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, GoldenrodUnderground_Johto_OlderHaircutBrotherScript_Refused
+	checkmoney 500
+	goto_if_eq VAR_RESULT, 0, GoldenrodUnderground_Johto_OlderHaircutBrotherScript_NotEnoughMoney
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherAskWhichMonText
+	waitmessage
+	waitbuttonpress
+	special JohtoHaircut
+	goto_if_eq VAR_RESULT, 0x0, GoldenrodUnderground_Johto_OlderHaircutBrotherScript_Refused
+	goto_if_eq VAR_RESULT, 0x1, GoldenrodUnderground_Johto_OlderHaircutBrotherScript_Refused
+	setflag FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
+	goto_if_eq VAR_RESULT, 0x2, GoldenrodUnderground_Johto_OlderHaircutBrotherScript_two
+	goto_if_eq VAR_RESULT, 0x3, GoldenrodUnderground_Johto_OlderHaircutBrotherScript_three
+	goto GoldenrodUnderground_Johto_OlderHaircutBrotherScript_else
+
+GoldenrodUnderground_Johto_OlderHaircutBrotherScript_two:
+	setflag FLAG_TEMP_11
+	clearflag FLAG_TEMP_12
+	clearflag FLAG_TEMP_13
+	goto GoldenrodUnderground_Johto_OlderHaircutBrotherScript_then
+
+GoldenrodUnderground_Johto_OlderHaircutBrotherScript_three:
+	clearflag FLAG_TEMP_11
+	setflag FLAG_TEMP_12
+	clearflag FLAG_TEMP_13
+	goto GoldenrodUnderground_Johto_OlderHaircutBrotherScript_then
+
+GoldenrodUnderground_Johto_OlderHaircutBrotherScript_else:
+	clearflag FLAG_TEMP_11
+	clearflag FLAG_TEMP_12
+	setflag FLAG_TEMP_13
+	goto GoldenrodUnderground_Johto_OlderHaircutBrotherScript_then
+
+GoldenrodUnderground_Johto_OlderHaircutBrotherScript_then:
+	removemoney 500
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherWatchItBecomeBeautifulText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	fadescreen FADE_TO_WHITE
+	playbgm MUS_HEAL, FALSE
+	delay 60
+	fadescreen FADE_FROM_WHITE
+	fadedefaultbgm
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherAllDoneText
+	waitmessage
+	waitbuttonpress
+	goto_if_set FLAG_TEMP_11, GoldenrodUnderground_Johto_EitherHaircutBrotherScript_SlightlyHappier
+	goto_if_set FLAG_TEMP_12, GoldenrodUnderground_Johto_EitherHaircutBrotherScript_Happier
+	goto GoldenrodUnderground_Johto_EitherHaircutBrotherScript_MuchHappier
+
+GoldenrodUnderground_Johto_OlderHaircutBrotherScript_Refused:
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherThatsAShameText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodUnderground_Johto_OlderHaircutBrotherScript_NotEnoughMoney:
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherYoullNeedMoreMoneyText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 GoldenrodUnderground_Johto_OlderHaircutBrotherScript_AlreadyGotHaircut:
 	message GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherOneHaircutADayText
@@ -150,12 +221,108 @@ GoldenrodUnderground_Johto_YoungerHaircutBrotherScript:
 
 GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_DoHaircut:
 	goto_if_set FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT, GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_AlreadyGotHaircut
-	@ TODO unsupported: special PlaceMoneyTopRight
-	goto Johto_EventScript_Unimplemented
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherOfferHaircutText
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_Refused
+	checkmoney 300
+	goto_if_eq VAR_RESULT, 0, GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_NotEnoughMoney
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherAskWhichMonText
+	waitmessage
+	waitbuttonpress
+	special JohtoHaircut
+	goto_if_eq VAR_RESULT, 0x0, GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_Refused
+	goto_if_eq VAR_RESULT, 0x1, GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_Refused
+	setflag FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
+	goto_if_eq VAR_RESULT, 0x2, GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_two
+	goto_if_eq VAR_RESULT, 0x3, GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_three
+	goto GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_else
+
+GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_two:
+	setflag FLAG_TEMP_11
+	clearflag FLAG_TEMP_12
+	clearflag FLAG_TEMP_13
+	goto GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_then
+
+GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_three:
+	clearflag FLAG_TEMP_11
+	setflag FLAG_TEMP_12
+	clearflag FLAG_TEMP_13
+	goto GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_then
+
+GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_else:
+	clearflag FLAG_TEMP_11
+	clearflag FLAG_TEMP_12
+	setflag FLAG_TEMP_13
+	goto GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_then
+
+GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_then:
+	removemoney 300
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherIllMakeItLookCoolText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	fadescreen FADE_TO_WHITE
+	playbgm MUS_HEAL, FALSE
+	delay 60
+	fadescreen FADE_FROM_WHITE
+	fadedefaultbgm
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherAllDoneText
+	waitmessage
+	waitbuttonpress
+	goto_if_set FLAG_TEMP_11, GoldenrodUnderground_Johto_EitherHaircutBrotherScript_SlightlyHappier
+	goto_if_set FLAG_TEMP_12, GoldenrodUnderground_Johto_EitherHaircutBrotherScript_Happier
+	goto GoldenrodUnderground_Johto_EitherHaircutBrotherScript_MuchHappier
+
+GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_Refused:
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherHowDisappointingText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_NotEnoughMoney:
+	message GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherShortOnFundsText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_AlreadyGotHaircut:
 	message GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherOneHaircutADayText
 	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodUnderground_Johto_EitherHaircutBrotherScript_SlightlyHappier:
+	message GoldenrodUnderground_Johto_HaircutBrosText_SlightlyHappier
+	waitmessage
+	playmoncry VAR_0x8004, CRY_MODE_NORMAL
+	waitmoncry
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodUnderground_Johto_EitherHaircutBrotherScript_Happier:
+	message GoldenrodUnderground_Johto_HaircutBrosText_Happier
+	waitmessage
+	playmoncry VAR_0x8004, CRY_MODE_NORMAL
+	waitmoncry
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodUnderground_Johto_EitherHaircutBrotherScript_MuchHappier:
+	message GoldenrodUnderground_Johto_HaircutBrosText_MuchHappier
+	waitmessage
+	playmoncry VAR_0x8004, CRY_MODE_NORMAL
+	waitmoncry
 	waitbuttonpress
 	closemessage
 	releaseall
@@ -234,6 +401,19 @@ GoldenrodUnderground_Johto_GoldenrodUndergroundResetSwitchesCallback_Cb:
 	clearflag FLAG_JOHTO_DOOR_10_OPEN
 	clearflag FLAG_JOHTO_DOOR_11_OPEN
 	setvar VAR_RESULT, 0
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
+	return
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundCheckBasementKeyCallback_Cb:
+	goto_if_unset FLAG_JOHTO_USED_BASEMENT_KEY, GoldenrodUnderground_Johto_GoldenrodUndergroundCheckBasementKeyCallback_LockBasementDoor_Cb
+	return
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundCheckBasementKeyCallback_LockBasementDoor_Cb:
+	setmetatile 18, 6, 563, 1
+	setmetatile 19, 6, 562, 1
+	setmetatile 18, 7, 515, 0
+	setmetatile 19, 7, 515, 0
+	special DrawWholeMapView
 	return
 
 GoldenrodUnderground_Johto_GoldenrodUndergroundCheckDayOfWeekCallback_Cb:
@@ -378,16 +558,73 @@ GoldenrodUnderground_Johto_GoldenrodUndergroundBasementKeyOpenedDoorText:
 	.string "The BASEMENT KEY\n"
 	.string "opened the door.$"
 
+GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherOfferHaircutText:
+	.string "(text not converted)$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherAskWhichMonText:
+	.string "Which POKéMON\n"
+	.string "should I work on?$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherWatchItBecomeBeautifulText:
+	.string "OK! Watch it\n"
+	.string "become beautiful!$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherAllDoneText:
+	.string "There! All done!$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherThatsAShameText:
+	.string "Is that right?\n"
+	.string "That's a shame!$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherYoullNeedMoreMoneyText:
+	.string "You'll need more\n"
+	.string "money than that.$"
+
 GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherOneHaircutADayText:
 	.string "I do only one\n"
 	.string "haircut a day. I'm\l"
 	.string "done for today.$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherOfferHaircutText:
+	.string "(text not converted)$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherAskWhichMonText:
+	.string "OK, which POKéMON\n"
+	.string "should I do?$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherIllMakeItLookCoolText:
+	.string "OK! I'll make it\n"
+	.string "look cool!$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherAllDoneText:
+	.string "There we go!\n"
+	.string "All done!$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherHowDisappointingText:
+	.string "No? \n"
+	.string "How disappointing!$"
+
+GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherShortOnFundsText:
+	.string "You're a little\n"
+	.string "short on funds.$"
 
 GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherOneHaircutADayText:
 	.string "I can do only one\n"
 	.string "haircut a day."
 	.string "\pSorry, but I'm all\n"
 	.string "done for today.$"
+
+GoldenrodUnderground_Johto_HaircutBrosText_SlightlyHappier:
+	.string "{STR_VAR_1} looks a\n"
+	.string "little happier.$"
+
+GoldenrodUnderground_Johto_HaircutBrosText_Happier:
+	.string "{STR_VAR_1} looks\n"
+	.string "happy.$"
+
+GoldenrodUnderground_Johto_HaircutBrosText_MuchHappier:
+	.string "{STR_VAR_1} looks\n"
+	.string "delighted!$"
 
 GoldenrodUnderground_Johto_GoldenrodUndergroundWeAreNotOpenTodayText:
 	.string "We're not open\n"

@@ -1,5 +1,10 @@
 GoldenrodUndergroundSwitchRoomEntrances_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, GoldenrodUndergroundSwitchRoomEntrances_Johto_OnLoad
 	.byte 0
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_OnLoad:
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_Cb
+	end
 
 GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesTeacherScript_Entry::
 	lockall
@@ -211,16 +216,22 @@ GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch1Script:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	@ TODO unsupported: readmem wUndergroundSwitchPositions
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS
+	addvar VAR_RESULT, 1
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
+	setflag FLAG_JOHTO_SWITCH_1
+	goto GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch1Script_On:
 	message GoldenrodUndergroundSwitchRoomEntrances_Johto_SwitchRoomText_OnTurnOff
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	@ TODO unsupported: readmem wUndergroundSwitchPositions
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS
+	subvar VAR_RESULT, 1
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
+	clearflag FLAG_JOHTO_SWITCH_1
+	goto GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch2Script:
 	message GoldenrodUndergroundSwitchRoomEntrances_Johto_SwitchRoomText_Switch2
@@ -231,16 +242,22 @@ GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch2Script:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	@ TODO unsupported: readmem wUndergroundSwitchPositions
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS
+	addvar VAR_RESULT, 2
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
+	setflag FLAG_JOHTO_SWITCH_2
+	goto GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch2Script_On:
 	message GoldenrodUndergroundSwitchRoomEntrances_Johto_SwitchRoomText_OnTurnOff
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	@ TODO unsupported: readmem wUndergroundSwitchPositions
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS
+	subvar VAR_RESULT, 2
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
+	clearflag FLAG_JOHTO_SWITCH_2
+	goto GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch3Script:
 	message GoldenrodUndergroundSwitchRoomEntrances_Johto_SwitchRoomText_Switch3
@@ -251,16 +268,22 @@ GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch3Script:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	@ TODO unsupported: readmem wUndergroundSwitchPositions
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS
+	addvar VAR_RESULT, 3
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
+	setflag FLAG_JOHTO_SWITCH_3
+	goto GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 GoldenrodUndergroundSwitchRoomEntrances_Johto_Switch3Script_On:
 	message GoldenrodUndergroundSwitchRoomEntrances_Johto_SwitchRoomText_OnTurnOff
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_DontToggle
-	@ TODO unsupported: readmem wUndergroundSwitchPositions
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS
+	subvar VAR_RESULT, 3
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
+	clearflag FLAG_JOHTO_SWITCH_3
+	goto GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 GoldenrodUndergroundSwitchRoomEntrances_Johto_EmergencySwitchScript:
 	message GoldenrodUndergroundSwitchRoomEntrances_Johto_SwitchRoomText_Emergency
@@ -272,6 +295,7 @@ GoldenrodUndergroundSwitchRoomEntrances_Johto_EmergencySwitchScript:
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_DontToggle
 	setvar VAR_RESULT, 7
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
 	setflag FLAG_JOHTO_EMERGENCY_SWITCH
 	setflag FLAG_JOHTO_SWITCH_1
 	setflag FLAG_JOHTO_SWITCH_2
@@ -284,6 +308,7 @@ GoldenrodUndergroundSwitchRoomEntrances_Johto_EmergencySwitchScript_On:
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_DontToggle
 	setvar VAR_RESULT, 0
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
 	clearflag FLAG_JOHTO_EMERGENCY_SWITCH
 	clearflag FLAG_JOHTO_SWITCH_1
 	clearflag FLAG_JOHTO_SWITCH_2
@@ -296,8 +321,129 @@ GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntr
 	end
 
 GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors:
-	@ TODO unsupported: readmem wUndergroundSwitchPositions
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS
+	goto_if_eq VAR_RESULT, 0, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position0
+	goto_if_eq VAR_RESULT, 1, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position1
+	goto_if_eq VAR_RESULT, 2, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position2
+	goto_if_eq VAR_RESULT, 3, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position3
+	goto_if_eq VAR_RESULT, 4, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position4
+	goto_if_eq VAR_RESULT, 5, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position5
+	goto_if_eq VAR_RESULT, 6, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position6
+	goto_if_eq VAR_RESULT, 7, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_EmergencyPosition
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position0:
+	playse SE_DOOR
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor1_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor2_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor3_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor4_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor5_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor6_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor7_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor8_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor9_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor10_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor11_Sub
+	closemessage
+	releaseall
+	end
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position1:
+	playse SE_DOOR
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor1_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor7_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor10_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor6_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor8_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor9_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor11_Sub
+	closemessage
+	releaseall
+	end
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position2:
+	playse SE_DOOR
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor2_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor8_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor9_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor5_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor7_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor10_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor11_Sub
+	closemessage
+	releaseall
+	end
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position3:
+	playse SE_DOOR
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor3_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor7_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor10_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor4_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor8_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor9_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor11_Sub
+	closemessage
+	releaseall
+	end
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position4:
+	playse SE_DOOR
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor4_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor8_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor9_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor3_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor7_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor10_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor11_Sub
+	closemessage
+	releaseall
+	end
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position5:
+	playse SE_DOOR
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor5_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor7_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor10_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor2_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor8_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor9_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor11_Sub
+	closemessage
+	releaseall
+	end
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_Position6:
+	playse SE_DOOR
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor6_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor8_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor9_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor11_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor1_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor7_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor10_Sub
+	closemessage
+	releaseall
+	end
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_EmergencyPosition:
+	playse SE_DOOR
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor1_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor2_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor3_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor4_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor5_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor6_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor7_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor8_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor9_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor10_Sub
+	call GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor11_Sub
+	closemessage
+	setvar VAR_RESULT, 6
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
+	releaseall
+	end
 
 GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesSmokeBall:
 	finditem ITEM_SMOKE_BALL
@@ -343,6 +489,370 @@ GoldenrodUndergroundSwitchRoomEntrances_Johto_UndergroundRivalBattleScript_Finis
 	waitmessage
 	waitbuttonpress
 	closemessage
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor1_Sub:
+	setmetatile 16, 6, 519, 0
+	setmetatile 17, 6, 519, 0
+	setmetatile 16, 7, 519, 0
+	setmetatile 17, 7, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_1_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor2_Sub:
+	setmetatile 10, 6, 519, 0
+	setmetatile 11, 6, 519, 0
+	setmetatile 10, 7, 519, 0
+	setmetatile 11, 7, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_2_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor3_Sub:
+	setmetatile 2, 6, 519, 0
+	setmetatile 3, 6, 519, 0
+	setmetatile 2, 7, 519, 0
+	setmetatile 3, 7, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_3_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor4_Sub:
+	setmetatile 2, 10, 519, 0
+	setmetatile 3, 10, 519, 0
+	setmetatile 2, 11, 519, 0
+	setmetatile 3, 11, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_4_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor5_Sub:
+	setmetatile 10, 10, 519, 0
+	setmetatile 11, 10, 519, 0
+	setmetatile 10, 11, 519, 0
+	setmetatile 11, 11, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_5_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor6_Sub:
+	setmetatile 16, 10, 519, 0
+	setmetatile 17, 10, 519, 0
+	setmetatile 16, 11, 519, 0
+	setmetatile 17, 11, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_6_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor7_Sub:
+	setmetatile 12, 6, 527, 1
+	setmetatile 13, 6, 526, 1
+	setmetatile 12, 7, 528, 1
+	setmetatile 13, 7, 528, 1
+	special DrawWholeMapView
+	setmetatile 12, 8, 519, 0
+	setmetatile 13, 8, 519, 0
+	setmetatile 12, 9, 519, 0
+	setmetatile 13, 9, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_7_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor8_Sub:
+	setmetatile 6, 6, 527, 1
+	setmetatile 7, 6, 526, 1
+	setmetatile 6, 7, 528, 1
+	setmetatile 7, 7, 528, 1
+	special DrawWholeMapView
+	setmetatile 6, 8, 519, 0
+	setmetatile 7, 8, 519, 0
+	setmetatile 6, 9, 519, 0
+	setmetatile 7, 9, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_8_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor9_Sub:
+	setmetatile 12, 10, 527, 1
+	setmetatile 13, 10, 526, 1
+	setmetatile 12, 11, 528, 1
+	setmetatile 13, 11, 528, 1
+	special DrawWholeMapView
+	setmetatile 12, 12, 519, 0
+	setmetatile 13, 12, 519, 0
+	setmetatile 12, 13, 519, 0
+	setmetatile 13, 13, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_9_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor10_Sub:
+	setmetatile 6, 10, 527, 1
+	setmetatile 7, 10, 526, 1
+	setmetatile 6, 11, 528, 1
+	setmetatile 7, 11, 528, 1
+	special DrawWholeMapView
+	setmetatile 6, 12, 519, 0
+	setmetatile 7, 12, 519, 0
+	setmetatile 6, 13, 519, 0
+	setmetatile 7, 13, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_10_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_OpenDoor11_Sub:
+	setmetatile 18, 10, 527, 1
+	setmetatile 19, 10, 526, 1
+	setmetatile 18, 11, 528, 1
+	setmetatile 19, 11, 528, 1
+	special DrawWholeMapView
+	setmetatile 18, 12, 519, 0
+	setmetatile 19, 12, 519, 0
+	setmetatile 18, 13, 519, 0
+	setmetatile 19, 13, 519, 0
+	special DrawWholeMapView
+	setflag FLAG_JOHTO_DOOR_11_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor1_Sub:
+	setmetatile 16, 6, 527, 1
+	setmetatile 17, 6, 526, 1
+	setmetatile 16, 7, 569, 1
+	setmetatile 17, 7, 569, 1
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_1_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor2_Sub:
+	setmetatile 10, 6, 527, 1
+	setmetatile 11, 6, 526, 1
+	setmetatile 10, 7, 569, 1
+	setmetatile 11, 7, 569, 1
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_2_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor3_Sub:
+	setmetatile 2, 6, 527, 1
+	setmetatile 3, 6, 526, 1
+	setmetatile 2, 7, 569, 1
+	setmetatile 3, 7, 569, 1
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_3_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor4_Sub:
+	setmetatile 2, 10, 527, 1
+	setmetatile 3, 10, 526, 1
+	setmetatile 2, 11, 569, 1
+	setmetatile 3, 11, 569, 1
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_4_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor5_Sub:
+	setmetatile 10, 10, 527, 1
+	setmetatile 11, 10, 526, 1
+	setmetatile 10, 11, 569, 1
+	setmetatile 11, 11, 569, 1
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_5_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor6_Sub:
+	setmetatile 16, 10, 527, 1
+	setmetatile 17, 10, 526, 1
+	setmetatile 16, 11, 569, 1
+	setmetatile 17, 11, 569, 1
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_6_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor7_Sub:
+	setmetatile 12, 6, 527, 1
+	setmetatile 13, 6, 526, 1
+	setmetatile 12, 7, 568, 1
+	setmetatile 13, 7, 528, 1
+	special DrawWholeMapView
+	setmetatile 12, 8, 568, 1
+	setmetatile 13, 8, 519, 0
+	setmetatile 12, 9, 568, 1
+	setmetatile 13, 9, 519, 0
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_7_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor8_Sub:
+	setmetatile 6, 6, 527, 1
+	setmetatile 7, 6, 526, 1
+	setmetatile 6, 7, 568, 1
+	setmetatile 7, 7, 528, 1
+	special DrawWholeMapView
+	setmetatile 6, 8, 568, 1
+	setmetatile 7, 8, 519, 0
+	setmetatile 6, 9, 568, 1
+	setmetatile 7, 9, 519, 0
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_8_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor9_Sub:
+	setmetatile 12, 10, 527, 1
+	setmetatile 13, 10, 526, 1
+	setmetatile 12, 11, 568, 1
+	setmetatile 13, 11, 528, 1
+	special DrawWholeMapView
+	setmetatile 12, 12, 568, 1
+	setmetatile 13, 12, 519, 0
+	setmetatile 12, 13, 568, 1
+	setmetatile 13, 13, 519, 0
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_9_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor10_Sub:
+	setmetatile 6, 10, 527, 1
+	setmetatile 7, 10, 526, 1
+	setmetatile 6, 11, 568, 1
+	setmetatile 7, 11, 528, 1
+	special DrawWholeMapView
+	setmetatile 6, 12, 568, 1
+	setmetatile 7, 12, 519, 0
+	setmetatile 6, 13, 568, 1
+	setmetatile 7, 13, 519, 0
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_10_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors_CloseDoor11_Sub:
+	setmetatile 18, 10, 527, 1
+	setmetatile 19, 10, 526, 1
+	setmetatile 18, 11, 568, 1
+	setmetatile 19, 11, 528, 1
+	special DrawWholeMapView
+	setmetatile 18, 12, 568, 1
+	setmetatile 19, 12, 519, 0
+	setmetatile 18, 13, 568, 1
+	setmetatile 19, 13, 519, 0
+	special DrawWholeMapView
+	clearflag FLAG_JOHTO_DOOR_11_OPEN
+	return
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_1_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_1_closed_Cb
+	setmetatile 16, 6, 519, 0
+	setmetatile 17, 6, 519, 0
+	setmetatile 16, 7, 519, 0
+	setmetatile 17, 7, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_1_closed_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_2_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_2_closed_Cb
+	setmetatile 10, 6, 519, 0
+	setmetatile 11, 6, 519, 0
+	setmetatile 10, 7, 519, 0
+	setmetatile 11, 7, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_2_closed_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_3_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_3_closed_Cb
+	setmetatile 2, 6, 519, 0
+	setmetatile 3, 6, 519, 0
+	setmetatile 2, 7, 519, 0
+	setmetatile 3, 7, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_3_closed_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_4_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_4_closed_Cb
+	setmetatile 2, 10, 519, 0
+	setmetatile 3, 10, 519, 0
+	setmetatile 2, 11, 519, 0
+	setmetatile 3, 11, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_4_closed_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_5_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_5_closed_Cb
+	setmetatile 10, 10, 519, 0
+	setmetatile 11, 10, 519, 0
+	setmetatile 10, 11, 519, 0
+	setmetatile 11, 11, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_5_closed_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_6_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_6_closed_Cb
+	setmetatile 16, 10, 519, 0
+	setmetatile 17, 10, 519, 0
+	setmetatile 16, 11, 519, 0
+	setmetatile 17, 11, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_6_closed_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_7_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_7_closed_Cb
+	setmetatile 12, 6, 527, 1
+	setmetatile 13, 6, 526, 1
+	setmetatile 12, 7, 528, 1
+	setmetatile 13, 7, 528, 1
+	special DrawWholeMapView
+	setmetatile 12, 8, 519, 0
+	setmetatile 13, 8, 519, 0
+	setmetatile 12, 9, 519, 0
+	setmetatile 13, 9, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_7_closed_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_8_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_8_closed_Cb
+	setmetatile 6, 6, 527, 1
+	setmetatile 7, 6, 526, 1
+	setmetatile 6, 7, 528, 1
+	setmetatile 7, 7, 528, 1
+	special DrawWholeMapView
+	setmetatile 6, 8, 519, 0
+	setmetatile 7, 8, 519, 0
+	setmetatile 6, 9, 519, 0
+	setmetatile 7, 9, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_8_closed_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_9_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_9_closed_Cb
+	setmetatile 12, 10, 527, 1
+	setmetatile 13, 10, 526, 1
+	setmetatile 12, 11, 528, 1
+	setmetatile 13, 11, 528, 1
+	special DrawWholeMapView
+	setmetatile 12, 12, 519, 0
+	setmetatile 13, 12, 519, 0
+	setmetatile 12, 13, 519, 0
+	setmetatile 13, 13, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_9_closed_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_10_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_10_closed_Cb
+	setmetatile 6, 10, 527, 1
+	setmetatile 7, 10, 526, 1
+	setmetatile 6, 11, 528, 1
+	setmetatile 7, 11, 528, 1
+	special DrawWholeMapView
+	setmetatile 6, 12, 519, 0
+	setmetatile 7, 12, 519, 0
+	setmetatile 6, 13, 519, 0
+	setmetatile 7, 13, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_10_closed_Cb:
+	goto_if_unset FLAG_JOHTO_DOOR_11_OPEN, GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_11_closed_Cb
+	setmetatile 18, 10, 527, 1
+	setmetatile 19, 10, 526, 1
+	setmetatile 18, 11, 528, 1
+	setmetatile 19, 11, 528, 1
+	special DrawWholeMapView
+	setmetatile 18, 12, 519, 0
+	setmetatile 19, 12, 519, 0
+	setmetatile 18, 13, 519, 0
+	setmetatile 19, 13, 519, 0
+	special DrawWholeMapView
+
+GoldenrodUndergroundSwitchRoomEntrances_Johto_GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback_door_11_closed_Cb:
 	return
 
 GoldenrodUndergroundSwitchRoomEntrances_Johto_UndergroundRivalApproachMovement1:

@@ -198,9 +198,12 @@ Route36_Johto_TrainerSchoolboyAlan1::
 	goto Route36_Johto_TrainerSchoolboyAlan1_Script
 
 Route36_Johto_TrainerSchoolboyAlan1_Script:
+	setvar VAR_0x8007, 294
 	goto_if_set FLAG_JOHTO_ENGINE_ALAN_READY_FOR_REMATCH, Route36_Johto_TrainerSchoolboyAlan1_ChooseRematch
 	goto_if_set FLAG_JOHTO_ENGINE_ALAN_HAS_FIRE_STONE, Route36_Johto_TrainerSchoolboyAlan1_GiveFireStone
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_SCHOOLBOY_ALAN_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_ALAN_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route36_Johto_TrainerSchoolboyAlan1_NumberAccepted
 	goto_if_set FLAG_JOHTO_ALAN_ASKED_FOR_PHONE_NUMBER, Route36_Johto_TrainerSchoolboyAlan1_AskAgainForPhoneNumber
 	message Route36_Johto_SchoolboyAlanBooksText
@@ -214,16 +217,70 @@ Route36_Johto_TrainerSchoolboyAlan1_AskAgainForPhoneNumber:
 	call Route36_Johto_TrainerSchoolboyAlan1_AskNumber2_Sub
 
 Route36_Johto_TrainerSchoolboyAlan1_ContinueAskForPhoneNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_SCHOOLBOY_ALAN_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_ALAN_READY_FOR_REMATCH
+	setvar VAR_0x8006, FLAG_JOHTO_ENGINE_ALAN_HAS_FIRE_STONE
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route36_Johto_TrainerSchoolboyAlan1_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route36_Johto_TrainerSchoolboyAlan1_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_SCHOOLBOY_ALAN1
 	call Route36_Johto_TrainerSchoolboyAlan1_RegisteredNumber_Sub
 	goto Route36_Johto_TrainerSchoolboyAlan1_NumberAccepted
 
 Route36_Johto_TrainerSchoolboyAlan1_ChooseRematch:
 	call Route36_Johto_TrainerSchoolboyAlan1_Rematch_Sub
-	@ TODO unsupported: readmem wAlanFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WALANFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 4, Route36_Johto_TrainerSchoolboyAlan1_Fight4
+	goto_if_eq VAR_RESULT, 3, Route36_Johto_TrainerSchoolboyAlan1_Fight3
+	goto_if_eq VAR_RESULT, 2, Route36_Johto_TrainerSchoolboyAlan1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route36_Johto_TrainerSchoolboyAlan1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route36_Johto_TrainerSchoolboyAlan1_LoadFight0
+
+Route36_Johto_TrainerSchoolboyAlan1_Fight4:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route36_Johto_TrainerSchoolboyAlan1_LoadFight4
+
+Route36_Johto_TrainerSchoolboyAlan1_Fight3:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route36_Johto_TrainerSchoolboyAlan1_LoadFight3
+
+Route36_Johto_TrainerSchoolboyAlan1_Fight2:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_BLACKTHORN, Route36_Johto_TrainerSchoolboyAlan1_LoadFight2
+
+Route36_Johto_TrainerSchoolboyAlan1_Fight1:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_OLIVINE, Route36_Johto_TrainerSchoolboyAlan1_LoadFight1
+
+Route36_Johto_TrainerSchoolboyAlan1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_ALAN1, Route36_Johto_SchoolboyAlan1BeatenText
+	setvar VAR_JOHTO_MEM_WALANFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_ALAN_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route36_Johto_TrainerSchoolboyAlan1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_ALAN2, Route36_Johto_SchoolboyAlan1BeatenText
+	setvar VAR_JOHTO_MEM_WALANFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_ALAN_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route36_Johto_TrainerSchoolboyAlan1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_ALAN3, Route36_Johto_SchoolboyAlan1BeatenText
+	setvar VAR_JOHTO_MEM_WALANFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_ALAN_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route36_Johto_TrainerSchoolboyAlan1_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_ALAN4, Route36_Johto_SchoolboyAlan1BeatenText
+	setvar VAR_JOHTO_MEM_WALANFIGHTCOUNT, 4
+	clearflag FLAG_JOHTO_ENGINE_ALAN_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route36_Johto_TrainerSchoolboyAlan1_LoadFight4:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_ALAN5, Route36_Johto_SchoolboyAlan1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_ALAN_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route36_Johto_TrainerSchoolboyAlan1_GiveFireStone:
 	call Route36_Johto_TrainerSchoolboyAlan1_Gift_Sub

@@ -1,5 +1,10 @@
 BlackthornGym1F_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, BlackthornGym1F_Johto_OnLoad
 	.byte 0
+
+BlackthornGym1F_Johto_OnLoad:
+	call BlackthornGym1F_Johto_BlackthornGym1FBouldersCallback_Cb
+	end
 
 BlackthornGym1F_Johto_BlackthornGymClairScript_Entry::
 	lockall
@@ -54,8 +59,16 @@ BlackthornGym1F_Johto_BlackthornGymClairScript_AlreadyGotBadge:
 	waitbuttonpress
 	additem ITEM_NUGGET
 	goto_if_eq VAR_RESULT, 0, BlackthornGym1F_Johto_BlackthornGymClairScript_BagFull
-	@ TODO unsupported: getitemname STRING_BUFFER_3, TM_DRAGONBREATH
-	goto Johto_EventScript_Unimplemented
+	bufferitemname STR_VAR_1, ITEM_NUGGET
+	message BlackthornGym1F_Johto_BlackthornGymText_ReceivedTM24
+	waitmessage
+	playse SE_PIN
+	waitse
+	setflag FLAG_JOHTO_GOT_TM24_DRAGONBREATH
+	message BlackthornGym1F_Johto_BlackthornGymClairText_DescribeTM24
+	waitmessage
+	waitbuttonpress
+	goto BlackthornGym1F_Johto_BlackthornGymClairScript_GotTM24
 
 BlackthornGym1F_Johto_BlackthornGymClairScript_BagFull:
 	message BlackthornGym1F_Johto_BlackthornGymClairText_BagFull
@@ -141,7 +154,35 @@ BlackthornGym1F_Johto_BlackthornGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 BlackthornGym1F_Johto_BlackthornGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_CLAIR_CLAIR1
 	goto Johto_Std_GymStatue2Script
+
+BlackthornGym1F_Johto_BlackthornGym1FBouldersCallback_Cb:
+	goto_if_unset FLAG_JOHTO_BOULDER_IN_BLACKTHORN_GYM_1, BlackthornGym1F_Johto_BlackthornGym1FBouldersCallback_skip1_Cb
+	setmetatile 8, 2, 558, 1
+	setmetatile 9, 2, 519, 0
+	setmetatile 8, 3, 566, 0
+	setmetatile 9, 3, 519, 0
+	special DrawWholeMapView
+
+BlackthornGym1F_Johto_BlackthornGym1FBouldersCallback_skip1_Cb:
+	goto_if_unset FLAG_JOHTO_BOULDER_IN_BLACKTHORN_GYM_2, BlackthornGym1F_Johto_BlackthornGym1FBouldersCallback_skip2_Cb
+	setmetatile 2, 4, 534, 1
+	setmetatile 3, 4, 519, 0
+	setmetatile 2, 5, 566, 0
+	setmetatile 3, 5, 532, 1
+	special DrawWholeMapView
+
+BlackthornGym1F_Johto_BlackthornGym1FBouldersCallback_skip2_Cb:
+	goto_if_unset FLAG_JOHTO_BOULDER_IN_BLACKTHORN_GYM_3, BlackthornGym1F_Johto_BlackthornGym1FBouldersCallback_skip3_Cb
+	setmetatile 8, 6, 558, 1
+	setmetatile 9, 6, 519, 0
+	setmetatile 8, 7, 566, 0
+	setmetatile 9, 7, 519, 0
+	special DrawWholeMapView
+
+BlackthornGym1F_Johto_BlackthornGym1FBouldersCallback_skip3_Cb:
+	return
 
 BlackthornGym1F_Johto_ClairIntroText:
 	.string "I am CLAIR."
@@ -200,6 +241,20 @@ BlackthornGym1F_Johto_BlackthornGymClairText_YouKeptMeWaiting:
 	.string "You've kept me\n"
 	.string "waiting!"
 	.string "\pHere! Take this!$"
+
+BlackthornGym1F_Johto_BlackthornGymText_ReceivedTM24:
+	.string "{PLAYER} received\n"
+	.string "TM24.$"
+
+BlackthornGym1F_Johto_BlackthornGymClairText_DescribeTM24:
+	.string "That contains\n"
+	.string "DRAGONBREATH."
+	.string "\pNo, it doesn't\n"
+	.string "have anything to\l"
+	.string "do with my breath."
+	.string "\pIf you don't want\n"
+	.string "it, you don't have\l"
+	.string "to take it.$"
 
 BlackthornGym1F_Johto_BlackthornGymClairText_BagFull:
 	.string "What is this? You\n"

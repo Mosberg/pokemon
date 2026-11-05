@@ -14302,6 +14302,32 @@
       "border_filepath": "data/layouts/Route31VioletGate_Johto/border.bin",
       "blockdata_filepath": "data/layouts/Route31VioletGate_Johto/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_JOHTO_MERIDIAN_STATION",
+      "name": "MeridianStation_Johto_Layout",
+      "width": 20,
+      "height": 12,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CrystalTrainStation",
+      "border_filepath": "data/layouts/MeridianStation_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/MeridianStation_Johto/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_JOHTO_APEX_SUMMIT",
+      "name": "ApexSummit_Johto_Layout",
+      "width": 14,
+      "height": 14,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CrystalChampionsRoom",
+      "border_filepath": "data/layouts/ApexSummit_Johto/border.bin",
+      "blockdata_filepath": "data/layouts/ApexSummit_Johto/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

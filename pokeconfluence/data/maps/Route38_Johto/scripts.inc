@@ -52,9 +52,12 @@ Route38_Johto_TrainerLassDana1::
 	goto Route38_Johto_TrainerLassDana1_Script
 
 Route38_Johto_TrainerLassDana1_Script:
+	setvar VAR_0x8007, 871
 	goto_if_set FLAG_JOHTO_ENGINE_DANA_READY_FOR_REMATCH, Route38_Johto_TrainerLassDana1_DanaRematch
 	goto_if_set FLAG_JOHTO_ENGINE_DANA_HAS_THUNDERSTONE, Route38_Johto_TrainerLassDana1_TryGiveThunderstone
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_LASS_DANA_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_DANA_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route38_Johto_TrainerLassDana1_NumberAccepted
 	goto_if_set FLAG_JOHTO_DANA_ASKED_FOR_PHONE_NUMBER, Route38_Johto_TrainerLassDana1_SecondTimeAsking
 	message Route38_Johto_LassDanaMoomooMilkText
@@ -68,16 +71,70 @@ Route38_Johto_TrainerLassDana1_SecondTimeAsking:
 	call Route38_Johto_TrainerLassDana1_AskNumber2F_Sub
 
 Route38_Johto_TrainerLassDana1_AskForPhoneNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_LASS_DANA_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_DANA_READY_FOR_REMATCH
+	setvar VAR_0x8006, FLAG_JOHTO_ENGINE_DANA_HAS_THUNDERSTONE
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route38_Johto_TrainerLassDana1_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route38_Johto_TrainerLassDana1_DeclinedPhoneNumber
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_LASS_DANA1
 	call Route38_Johto_TrainerLassDana1_RegisteredPhoneNumber_Sub
 	goto Route38_Johto_TrainerLassDana1_NumberAccepted
 
 Route38_Johto_TrainerLassDana1_DanaRematch:
 	call Route38_Johto_TrainerLassDana1_Rematch_Sub
-	@ TODO unsupported: readmem wDanaFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WDANAFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 4, Route38_Johto_TrainerLassDana1_Fight4
+	goto_if_eq VAR_RESULT, 3, Route38_Johto_TrainerLassDana1_Fight3
+	goto_if_eq VAR_RESULT, 2, Route38_Johto_TrainerLassDana1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route38_Johto_TrainerLassDana1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route38_Johto_TrainerLassDana1_LoadFight0
+
+Route38_Johto_TrainerLassDana1_Fight4:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route38_Johto_TrainerLassDana1_LoadFight4
+
+Route38_Johto_TrainerLassDana1_Fight3:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route38_Johto_TrainerLassDana1_LoadFight3
+
+Route38_Johto_TrainerLassDana1_Fight2:
+	goto_if_set FLAG_JOHTO_CLEARED_RADIO_TOWER, Route38_Johto_TrainerLassDana1_LoadFight2
+
+Route38_Johto_TrainerLassDana1_Fight1:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_CIANWOOD, Route38_Johto_TrainerLassDana1_LoadFight1
+
+Route38_Johto_TrainerLassDana1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_LASS_DANA1, Route38_Johto_LassDana1BeatenText
+	setvar VAR_JOHTO_MEM_WDANAFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_DANA_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route38_Johto_TrainerLassDana1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_LASS_DANA2, Route38_Johto_LassDana1BeatenText
+	setvar VAR_JOHTO_MEM_WDANAFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_DANA_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route38_Johto_TrainerLassDana1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_LASS_DANA3, Route38_Johto_LassDana1BeatenText
+	setvar VAR_JOHTO_MEM_WDANAFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_DANA_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route38_Johto_TrainerLassDana1_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_LASS_DANA4, Route38_Johto_LassDana1BeatenText
+	setvar VAR_JOHTO_MEM_WDANAFIGHTCOUNT, 4
+	clearflag FLAG_JOHTO_ENGINE_DANA_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route38_Johto_TrainerLassDana1_LoadFight4:
+	trainerbattle_no_intro TRAINER_JOHTO_LASS_DANA5, Route38_Johto_LassDana1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_DANA_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route38_Johto_TrainerLassDana1_TryGiveThunderstone:
 	call Route38_Johto_TrainerLassDana1_Gift_Sub
@@ -110,8 +167,11 @@ Route38_Johto_TrainerSchoolboyChad1::
 	goto Route38_Johto_TrainerSchoolboyChad1_Script
 
 Route38_Johto_TrainerSchoolboyChad1_Script:
+	setvar VAR_0x8007, 367
 	goto_if_set FLAG_JOHTO_ENGINE_CHAD_READY_FOR_REMATCH, Route38_Johto_TrainerSchoolboyChad1_ChadRematch
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_SCHOOLBOY_CHAD_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_CHAD_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route38_Johto_TrainerSchoolboyChad1_HaveChadsNumber
 	goto_if_set FLAG_JOHTO_CHAD_ASKED_FOR_PHONE_NUMBER, Route38_Johto_TrainerSchoolboyChad1_SecondTimeAsking
 	message Route38_Johto_SchoolboyChadSoManyTestsText
@@ -125,16 +185,70 @@ Route38_Johto_TrainerSchoolboyChad1_SecondTimeAsking:
 	call Route38_Johto_TrainerSchoolboyChad1_AskPhoneNumber2_Sub
 
 Route38_Johto_TrainerSchoolboyChad1_AskToRegisterNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_SCHOOLBOY_CHAD_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_CHAD_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route38_Johto_TrainerSchoolboyChad1_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route38_Johto_TrainerSchoolboyChad1_SaidNo
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_SCHOOLBOY_CHAD1
 	call Route38_Johto_TrainerSchoolboyChad1_RegisteredChad_Sub
 	goto Route38_Johto_TrainerSchoolboyChad1_HaveChadsNumber
 
 Route38_Johto_TrainerSchoolboyChad1_ChadRematch:
 	call Route38_Johto_TrainerSchoolboyChad1_Rematch_Sub
-	@ TODO unsupported: readmem wChadFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WCHADFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 4, Route38_Johto_TrainerSchoolboyChad1_Fight4
+	goto_if_eq VAR_RESULT, 3, Route38_Johto_TrainerSchoolboyChad1_Fight3
+	goto_if_eq VAR_RESULT, 2, Route38_Johto_TrainerSchoolboyChad1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route38_Johto_TrainerSchoolboyChad1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route38_Johto_TrainerSchoolboyChad1_LoadFight0
+
+Route38_Johto_TrainerSchoolboyChad1_Fight4:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route38_Johto_TrainerSchoolboyChad1_LoadFight4
+
+Route38_Johto_TrainerSchoolboyChad1_Fight3:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route38_Johto_TrainerSchoolboyChad1_LoadFight3
+
+Route38_Johto_TrainerSchoolboyChad1_Fight2:
+	goto_if_set FLAG_JOHTO_CLEARED_RADIO_TOWER, Route38_Johto_TrainerSchoolboyChad1_LoadFight2
+
+Route38_Johto_TrainerSchoolboyChad1_Fight1:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_MAHOGANY, Route38_Johto_TrainerSchoolboyChad1_LoadFight1
+
+Route38_Johto_TrainerSchoolboyChad1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_CHAD1, Route38_Johto_SchoolboyChad1BeatenText
+	setvar VAR_JOHTO_MEM_WCHADFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_CHAD_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route38_Johto_TrainerSchoolboyChad1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_CHAD2, Route38_Johto_SchoolboyChad1BeatenText
+	setvar VAR_JOHTO_MEM_WCHADFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_CHAD_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route38_Johto_TrainerSchoolboyChad1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_CHAD3, Route38_Johto_SchoolboyChad1BeatenText
+	setvar VAR_JOHTO_MEM_WCHADFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_CHAD_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route38_Johto_TrainerSchoolboyChad1_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_CHAD4, Route38_Johto_SchoolboyChad1BeatenText
+	setvar VAR_JOHTO_MEM_WCHADFIGHTCOUNT, 4
+	clearflag FLAG_JOHTO_ENGINE_CHAD_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route38_Johto_TrainerSchoolboyChad1_LoadFight4:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_CHAD5, Route38_Johto_SchoolboyChad1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_CHAD_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route38_Johto_TrainerSchoolboyChad1_HaveChadsNumber:
 	goto Johto_Std_NumberAcceptedMScript

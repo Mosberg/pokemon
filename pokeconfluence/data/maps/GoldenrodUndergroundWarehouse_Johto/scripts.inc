@@ -123,6 +123,7 @@ GoldenrodUndergroundWarehouse_Johto_GoldenrodUndergroundWarehouseResetSwitchesCa
 	clearflag FLAG_JOHTO_DOOR_10_OPEN
 	clearflag FLAG_JOHTO_DOOR_11_OPEN
 	setvar VAR_RESULT, 0
+	copyvar VAR_JOHTO_MEM_WUNDERGROUNDSWITCHPOSITIONS, VAR_RESULT
 	return
 
 GoldenrodUndergroundWarehouse_Johto_GruntM24SeenText:

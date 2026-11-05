@@ -96,14 +96,20 @@ BillsFamilysHouse_Johto_BillsMomScript_HaventMetBill:
 
 BillsFamilysHouse_Johto_BillsYoungerSisterScript:
 	faceplayer
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_BILL_REGISTERED
+	setvar VAR_0x8005, 0
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, BillsFamilysHouse_Johto_BillsYoungerSisterScript_GotBillsNumber
 	message BillsFamilysHouse_Johto_BillsYoungerSisterUsefulNumberText
 	waitmessage
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_BILL_REGISTERED
+	setvar VAR_0x8005, 0
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, BillsFamilysHouse_Johto_BillsYoungerSisterScript_NoRoom
 	goto_if_eq VAR_RESULT, 2, BillsFamilysHouse_Johto_BillsYoungerSisterScript_Refused
 	waitse
+	setflag FLAG_JOHTO_PHONE_BILL_REGISTERED
 	message BillsFamilysHouse_Johto_RecordedBillsNumberText
 	waitmessage
 	playse SE_PIN

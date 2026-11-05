@@ -1,6 +1,11 @@
 MahoganyMart1F_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, MahoganyMart1F_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, MahoganyMart1F_Johto_OnFrame
 	.byte 0
+
+MahoganyMart1F_Johto_OnLoad:
+	call MahoganyMart1F_Johto_MahoganyMart1FStaircaseCallback_Cb
+	end
 
 MahoganyMart1F_Johto_OnFrame:
 	map_script_2 VAR_JOHTO_SCENE_MAHOGANY_MART_1F, 1, MahoganyMart1F_Johto_MahoganyMart1FLanceUncoversStaircaseScript_Entry
@@ -119,6 +124,18 @@ MahoganyMart1F_Johto_MahoganyMart1FGrannyScript:
 	closemessage
 	releaseall
 	end
+
+MahoganyMart1F_Johto_MahoganyMart1FStaircaseCallback_Cb:
+	goto_if_set FLAG_JOHTO_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART, MahoganyMart1F_Johto_MahoganyMart1FStaircaseCallback_ShowStairs_Cb
+	return
+
+MahoganyMart1F_Johto_MahoganyMart1FStaircaseCallback_ShowStairs_Cb:
+	setmetatile 6, 2, 548, 0
+	setmetatile 7, 2, 521, 0
+	setmetatile 6, 3, 521, 0
+	setmetatile 7, 3, 549, 0
+	special DrawWholeMapView
+	return
 
 MahoganyMart1F_Johto_MahoganyMart1FDragoniteTackleMovement:
 	lock_facing_direction

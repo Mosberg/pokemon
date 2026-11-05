@@ -27,7 +27,7 @@ GoldenrodDeptStore6F_Johto_GoldenrodVendingMachine:
 	waitmessage
 
 GoldenrodDeptStore6F_Johto_GoldenrodVendingMachine_Start:
-	@ TODO unsupported: special PlaceMoneyTopRight
+	@ TODO unsupported: loadmenu .MenuHeader
 	goto Johto_EventScript_Unimplemented
 
 GoldenrodDeptStore6F_Johto_GoldenrodDeptStore6FLassScript:

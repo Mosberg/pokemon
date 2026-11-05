@@ -49,8 +49,33 @@ Route43Gate_Johto_RocketScript_Southbound:
 	message Route43Gate_Johto_RocketText_TollFee
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
-	goto Johto_EventScript_Unimplemented
+	checkmoney 1000
+	goto_if_eq VAR_RESULT, 1, Route43Gate_Johto_RocketScript_TollSouth
+	goto Route43Gate_Johto_RocketScript_YoureBrokeSouth
+
+Route43Gate_Johto_RocketScript_TollSouth:
+	removemoney 1000
+	message Route43Gate_Johto_RocketText_ThankYou
+	waitmessage
+	goto Route43Gate_Johto_RocketScript_ShakeDownSouth
+
+Route43Gate_Johto_RocketScript_YoureBrokeSouth:
+	removemoney 1000
+	message Route43Gate_Johto_RocketText_AllYouGot
+	waitmessage
+	goto Route43Gate_Johto_RocketScript_ShakeDownSouth
+
+Route43Gate_Johto_RocketScript_ShakeDownSouth:
+	waitbuttonpress
+	closemessage
+	applymovement 2, Route43Gate_Johto_Rocket1Script_LetsYouPassSouth
+	waitmovement 2
+	applymovement 3, Route43Gate_Johto_Rocket2Script_LetsYouPassSouth
+	waitmovement 3
+	setvar VAR_JOHTO_SCENE_ROUTE_43_GATE, 1
+	fadedefaultbgm
+	releaseall
+	end
 
 Route43Gate_Johto_RocketScript_Northbound:
 	applymovement 2, Johto_Movement_Emote_exclamation_mark
@@ -66,8 +91,33 @@ Route43Gate_Johto_RocketScript_Northbound:
 	message Route43Gate_Johto_RocketText_TollFee
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
-	goto Johto_EventScript_Unimplemented
+	checkmoney 1000
+	goto_if_eq VAR_RESULT, 1, Route43Gate_Johto_RocketScript_TollNorth
+	goto Route43Gate_Johto_RocketScript_YoureBrokeNorth
+
+Route43Gate_Johto_RocketScript_TollNorth:
+	removemoney 1000
+	message Route43Gate_Johto_RocketText_ThankYou
+	waitmessage
+	goto Route43Gate_Johto_RocketScript_ShakeDownNorth
+
+Route43Gate_Johto_RocketScript_YoureBrokeNorth:
+	removemoney 1000
+	message Route43Gate_Johto_RocketText_AllYouGot
+	waitmessage
+	goto Route43Gate_Johto_RocketScript_ShakeDownNorth
+
+Route43Gate_Johto_RocketScript_ShakeDownNorth:
+	waitbuttonpress
+	closemessage
+	applymovement 3, Route43Gate_Johto_Rocket2Script_LetsYouPassNorth
+	waitmovement 3
+	applymovement 2, Route43Gate_Johto_Rocket1Script_LetsYouPassNorth
+	waitmovement 2
+	setvar VAR_JOHTO_SCENE_ROUTE_43_GATE, 1
+	fadedefaultbgm
+	releaseall
+	end
 
 Route43Gate_Johto_RocketScript_MakingABundle:
 	faceplayer
@@ -122,11 +172,26 @@ Route43Gate_Johto_Rocket1Script_BlocksYouSouth:
 	face_up
 	step_end
 
+Route43Gate_Johto_Rocket1Script_LetsYouPassSouth:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_down
+	walk_fast_down
+	step_end
+
 Route43Gate_Johto_Rocket1Script_BlocksYouNorth:
 	walk_fast_down
 	walk_fast_down
 	walk_fast_right
 	walk_fast_right
+	face_down
+	step_end
+
+Route43Gate_Johto_Rocket1Script_LetsYouPassNorth:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
 	face_down
 	step_end
 
@@ -138,6 +203,14 @@ Route43Gate_Johto_Rocket2Script_BlocksYouSouth:
 	face_up
 	step_end
 
+Route43Gate_Johto_Rocket2Script_LetsYouPassSouth:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_down
+	walk_fast_down
+	face_up
+	step_end
+
 Route43Gate_Johto_Rocket2Script_BlocksYouNorth:
 	walk_fast_down
 	walk_fast_down
@@ -146,8 +219,23 @@ Route43Gate_Johto_Rocket2Script_BlocksYouNorth:
 	face_down
 	step_end
 
+Route43Gate_Johto_Rocket2Script_LetsYouPassNorth:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	step_end
+
 Route43Gate_Johto_RocketText_TollFee:
 	.string "(text not converted)$"
+
+Route43Gate_Johto_RocketText_ThankYou:
+	.string "Thank you very\n"
+	.string "much!$"
+
+Route43Gate_Johto_RocketText_AllYouGot:
+	.string "Then pay what you\n"
+	.string "have, please.$"
 
 Route43Gate_Johto_RocketText_MakingABundle:
 	.string "He-he-he. We're\n"

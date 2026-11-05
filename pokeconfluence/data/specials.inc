@@ -640,7 +640,13 @@ gSpecials::
 	def_special CheckAddCoins
 	def_special JohtoCheckTime
 	def_special JohtoGetWeekday
+	def_special JohtoGetHour
+	def_special JohtoHaircut
+	def_special JohtoBillsGrandfather
 	def_special JohtoCountBadges
+	def_special JohtoPhoneIsRegistered
+	def_special JohtoPhoneRegister
+	def_special JohtoBufferLandmarkName
 	def_special JohtoFindPartyMonSpecies
 	def_special JohtoGetFirstMonHappiness
 	def_special ConfluenceCountBadges

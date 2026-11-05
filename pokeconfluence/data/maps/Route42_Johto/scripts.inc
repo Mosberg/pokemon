@@ -66,9 +66,12 @@ Route42_Johto_TrainerFisherTully::
 	goto Route42_Johto_TrainerFisherTully_Script
 
 Route42_Johto_TrainerFisherTully_Script:
+	setvar VAR_0x8007, 326
 	goto_if_set FLAG_JOHTO_ENGINE_TULLY_READY_FOR_REMATCH, Route42_Johto_TrainerFisherTully_WantsBattle
 	goto_if_set FLAG_JOHTO_ENGINE_TULLY_HAS_WATER_STONE, Route42_Johto_TrainerFisherTully_HasWaterStone
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_FISHER_TULLY_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_TULLY_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route42_Johto_TrainerFisherTully_NumberAccepted
 	goto_if_set FLAG_JOHTO_TULLY_ASKED_FOR_PHONE_NUMBER, Route42_Johto_TrainerFisherTully_AskedAlready
 	message Route42_Johto_FisherTullyAfterBattleText
@@ -82,16 +85,59 @@ Route42_Johto_TrainerFisherTully_AskedAlready:
 	call Route42_Johto_TrainerFisherTully_AskNumber2_Sub
 
 Route42_Johto_TrainerFisherTully_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_FISHER_TULLY_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_TULLY_READY_FOR_REMATCH
+	setvar VAR_0x8006, FLAG_JOHTO_ENGINE_TULLY_HAS_WATER_STONE
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route42_Johto_TrainerFisherTully_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route42_Johto_TrainerFisherTully_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_FISHER_TULLY1
 	call Route42_Johto_TrainerFisherTully_RegisteredNumber_Sub
 	goto Route42_Johto_TrainerFisherTully_NumberAccepted
 
 Route42_Johto_TrainerFisherTully_WantsBattle:
 	call Route42_Johto_TrainerFisherTully_Rematch_Sub
-	@ TODO unsupported: readmem wTullyFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WTULLYFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 3, Route42_Johto_TrainerFisherTully_Fight3
+	goto_if_eq VAR_RESULT, 2, Route42_Johto_TrainerFisherTully_Fight2
+	goto_if_eq VAR_RESULT, 1, Route42_Johto_TrainerFisherTully_Fight1
+	goto_if_eq VAR_RESULT, 0, Route42_Johto_TrainerFisherTully_LoadFight0
+
+Route42_Johto_TrainerFisherTully_Fight3:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route42_Johto_TrainerFisherTully_LoadFight3
+
+Route42_Johto_TrainerFisherTully_Fight2:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route42_Johto_TrainerFisherTully_LoadFight2
+
+Route42_Johto_TrainerFisherTully_Fight1:
+	goto_if_set FLAG_JOHTO_CLEARED_ROCKET_HIDEOUT, Route42_Johto_TrainerFisherTully_LoadFight1
+
+Route42_Johto_TrainerFisherTully_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_TULLY1, Route42_Johto_FisherTullyBeatenText
+	setvar VAR_JOHTO_MEM_WTULLYFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_TULLY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route42_Johto_TrainerFisherTully_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_TULLY2, Route42_Johto_FisherTullyBeatenText
+	setvar VAR_JOHTO_MEM_WTULLYFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_TULLY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route42_Johto_TrainerFisherTully_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_TULLY3, Route42_Johto_FisherTullyBeatenText
+	setvar VAR_JOHTO_MEM_WTULLYFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_TULLY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route42_Johto_TrainerFisherTully_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_TULLY4, Route42_Johto_FisherTullyBeatenText
+	clearflag FLAG_JOHTO_ENGINE_TULLY_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route42_Johto_TrainerFisherTully_HasWaterStone:
 	call Route42_Johto_TrainerFisherTully_Gift_Sub

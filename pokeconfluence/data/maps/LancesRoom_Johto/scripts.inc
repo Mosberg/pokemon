@@ -1,6 +1,11 @@
 LancesRoom_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, LancesRoom_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LancesRoom_Johto_OnFrame
 	.byte 0
+
+LancesRoom_Johto_OnLoad:
+	call LancesRoom_Johto_LancesRoomDoorsCallback_Cb
+	end
 
 LancesRoom_Johto_OnFrame:
 	map_script_2 VAR_JOHTO_SCENE_LANCES_ROOM, 0, LancesRoom_Johto_LancesRoomDoorLocksBehindYouScript_Entry
@@ -146,6 +151,25 @@ LancesRoom_Johto_LancesRoomLanceScript:
 	delay 15
 	@ TODO unsupported: warpfacing UP, HALL_OF_FAME, 4, 13
 	goto Johto_EventScript_Unimplemented
+
+LancesRoom_Johto_LancesRoomDoorsCallback_Cb:
+	goto_if_unset FLAG_JOHTO_LANCES_ROOM_ENTRANCE_CLOSED, LancesRoom_Johto_LancesRoomDoorsCallback_KeepEntranceOpen_Cb
+	setmetatile 4, 22, 582, 0
+	setmetatile 5, 22, 583, 0
+	setmetatile 4, 23, 543, 1
+	setmetatile 5, 23, 544, 1
+	special DrawWholeMapView
+
+LancesRoom_Johto_LancesRoomDoorsCallback_KeepEntranceOpen_Cb:
+	goto_if_unset FLAG_JOHTO_LANCES_ROOM_EXIT_OPEN, LancesRoom_Johto_LancesRoomDoorsCallback_KeepExitClosed_Cb
+	setmetatile 4, 0, 535, 1
+	setmetatile 5, 0, 536, 1
+	setmetatile 4, 1, 537, 0
+	setmetatile 5, 1, 537, 0
+	special DrawWholeMapView
+
+LancesRoom_Johto_LancesRoomDoorsCallback_KeepExitClosed_Cb:
+	return
 
 LancesRoom_Johto_LancesRoom_EnterMovement:
 	walk_up

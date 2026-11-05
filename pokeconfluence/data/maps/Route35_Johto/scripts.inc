@@ -42,7 +42,10 @@ Route35_Johto_TrainerJugglerIrwin::
 	goto Route35_Johto_TrainerJugglerIrwin_Script
 
 Route35_Johto_TrainerJugglerIrwin_Script:
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8007, 1037
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_JUGGLER_IRWIN_REGISTERED
+	setvar VAR_0x8005, 0
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route35_Johto_Route35NumberAcceptedM
 	goto_if_set FLAG_JOHTO_IRWIN_ASKED_FOR_PHONE_NUMBER, Route35_Johto_TrainerJugglerIrwin_AskedAlready
 	message Route35_Johto_JugglerIrwinAfterBattleText
@@ -56,9 +59,13 @@ Route35_Johto_TrainerJugglerIrwin_AskedAlready:
 	call Route35_Johto_Route35AskNumber2M_Sub
 
 Route35_Johto_TrainerJugglerIrwin_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_JUGGLER_IRWIN_REGISTERED
+	setvar VAR_0x8005, 0
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route35_Johto_Route35PhoneFullM
 	goto_if_eq VAR_RESULT, 2, Route35_Johto_Route35NumberDeclinedM
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_JUGGLER_IRWIN1
 	call Route35_Johto_Route35RegisteredNumberM_Sub
 	goto Route35_Johto_Route35NumberAcceptedM
 
@@ -139,9 +146,12 @@ Route35_Johto_TrainerBugCatcherArnie::
 	goto Route35_Johto_TrainerBugCatcherArnie_Script
 
 Route35_Johto_TrainerBugCatcherArnie_Script:
+	setvar VAR_0x8007, 894
 	goto_if_set FLAG_JOHTO_ENGINE_ARNIE_READY_FOR_REMATCH, Route35_Johto_TrainerBugCatcherArnie_WantsBattle
 	goto_if_set FLAG_JOHTO_ENGINE_YANMA_SWARM, Route35_Johto_TrainerBugCatcherArnie_YanmaSwarming
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_BUG_CATCHER_ARNIE_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_ARNIE_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route35_Johto_Route35NumberAcceptedM
 	goto_if_set FLAG_JOHTO_ARNIE_ASKED_FOR_PHONE_NUMBER, Route35_Johto_TrainerBugCatcherArnie_AskedAlready
 	message Route35_Johto_BugCatcherArnieAfterBattleText
@@ -155,16 +165,70 @@ Route35_Johto_TrainerBugCatcherArnie_AskedAlready:
 	call Route35_Johto_Route35AskNumber2M_Sub
 
 Route35_Johto_TrainerBugCatcherArnie_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_BUG_CATCHER_ARNIE_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_ARNIE_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route35_Johto_Route35PhoneFullM
 	goto_if_eq VAR_RESULT, 2, Route35_Johto_Route35NumberDeclinedM
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_BUG_CATCHER_ARNIE1
 	call Route35_Johto_Route35RegisteredNumberM_Sub
 	goto Route35_Johto_Route35NumberAcceptedM
 
 Route35_Johto_TrainerBugCatcherArnie_WantsBattle:
 	call Route35_Johto_Route35RematchM_Sub
-	@ TODO unsupported: readmem wArnieFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WARNIEFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 4, Route35_Johto_TrainerBugCatcherArnie_Fight4
+	goto_if_eq VAR_RESULT, 3, Route35_Johto_TrainerBugCatcherArnie_Fight3
+	goto_if_eq VAR_RESULT, 2, Route35_Johto_TrainerBugCatcherArnie_Fight2
+	goto_if_eq VAR_RESULT, 1, Route35_Johto_TrainerBugCatcherArnie_Fight1
+	goto_if_eq VAR_RESULT, 0, Route35_Johto_TrainerBugCatcherArnie_LoadFight0
+
+Route35_Johto_TrainerBugCatcherArnie_Fight4:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route35_Johto_TrainerBugCatcherArnie_LoadFight4
+
+Route35_Johto_TrainerBugCatcherArnie_Fight3:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route35_Johto_TrainerBugCatcherArnie_LoadFight3
+
+Route35_Johto_TrainerBugCatcherArnie_Fight2:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_BLACKTHORN, Route35_Johto_TrainerBugCatcherArnie_LoadFight2
+
+Route35_Johto_TrainerBugCatcherArnie_Fight1:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_LAKE_OF_RAGE, Route35_Johto_TrainerBugCatcherArnie_LoadFight1
+
+Route35_Johto_TrainerBugCatcherArnie_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_BUG_CATCHER_ARNIE1, Route35_Johto_BugCatcherArnieBeatenText
+	setvar VAR_JOHTO_MEM_WARNIEFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_ARNIE_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route35_Johto_TrainerBugCatcherArnie_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_BUG_CATCHER_ARNIE2, Route35_Johto_BugCatcherArnieBeatenText
+	setvar VAR_JOHTO_MEM_WARNIEFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_ARNIE_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route35_Johto_TrainerBugCatcherArnie_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_BUG_CATCHER_ARNIE3, Route35_Johto_BugCatcherArnieBeatenText
+	setvar VAR_JOHTO_MEM_WARNIEFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_ARNIE_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route35_Johto_TrainerBugCatcherArnie_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_BUG_CATCHER_ARNIE4, Route35_Johto_BugCatcherArnieBeatenText
+	setvar VAR_JOHTO_MEM_WARNIEFIGHTCOUNT, 4
+	clearflag FLAG_JOHTO_ENGINE_ARNIE_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route35_Johto_TrainerBugCatcherArnie_LoadFight4:
+	trainerbattle_no_intro TRAINER_JOHTO_BUG_CATCHER_ARNIE5, Route35_Johto_BugCatcherArnieBeatenText
+	clearflag FLAG_JOHTO_ENGINE_ARNIE_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route35_Johto_TrainerBugCatcherArnie_YanmaSwarming:
 	message Route35_Johto_BugCatcherArnieYanmaText

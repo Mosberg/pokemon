@@ -75,8 +75,11 @@ Route30_Johto_TrainerYoungsterJoey::
 	goto Route30_Johto_TrainerYoungsterJoey_Script
 
 Route30_Johto_TrainerYoungsterJoey_Script:
+	setvar VAR_0x8007, 138
 	goto_if_set FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH, Route30_Johto_TrainerYoungsterJoey_Rematch
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_YOUNGSTER_JOEY_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route30_Johto_TrainerYoungsterJoey_NumberAccepted
 	goto_if_set FLAG_JOHTO_JOEY_ASKED_FOR_PHONE_NUMBER, Route30_Johto_TrainerYoungsterJoey_AskAgain
 	message Route30_Johto_YoungsterJoey1AfterText
@@ -90,16 +93,89 @@ Route30_Johto_TrainerYoungsterJoey_AskAgain:
 	call Route30_Johto_TrainerYoungsterJoey_AskNumber2_Sub
 
 Route30_Johto_TrainerYoungsterJoey_RequestNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_YOUNGSTER_JOEY_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route30_Johto_TrainerYoungsterJoey_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route30_Johto_TrainerYoungsterJoey_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_YOUNGSTER_JOEY1
 	call Route30_Johto_TrainerYoungsterJoey_RegisteredNumber_Sub
 	goto Route30_Johto_TrainerYoungsterJoey_NumberAccepted
 
 Route30_Johto_TrainerYoungsterJoey_Rematch:
 	call Route30_Johto_TrainerYoungsterJoey_RematchStd_Sub
-	@ TODO unsupported: readmem wJoeyFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WJOEYFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 4, Route30_Johto_TrainerYoungsterJoey_Fight4
+	goto_if_eq VAR_RESULT, 3, Route30_Johto_TrainerYoungsterJoey_Fight3
+	goto_if_eq VAR_RESULT, 2, Route30_Johto_TrainerYoungsterJoey_Fight2
+	goto_if_eq VAR_RESULT, 1, Route30_Johto_TrainerYoungsterJoey_Fight1
+	goto_if_eq VAR_RESULT, 0, Route30_Johto_TrainerYoungsterJoey_LoadFight0
+
+Route30_Johto_TrainerYoungsterJoey_Fight4:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route30_Johto_TrainerYoungsterJoey_LoadFight4
+
+Route30_Johto_TrainerYoungsterJoey_Fight3:
+	goto_if_set FLAG_JOHTO_CLEARED_RADIO_TOWER, Route30_Johto_TrainerYoungsterJoey_LoadFight3
+
+Route30_Johto_TrainerYoungsterJoey_Fight2:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_OLIVINE, Route30_Johto_TrainerYoungsterJoey_LoadFight2
+
+Route30_Johto_TrainerYoungsterJoey_Fight1:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_GOLDENROD, Route30_Johto_TrainerYoungsterJoey_LoadFight1
+
+Route30_Johto_TrainerYoungsterJoey_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_YOUNGSTER_JOEY1, Route30_Johto_YoungsterJoey1BeatenText
+	setvar VAR_JOHTO_MEM_WJOEYFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route30_Johto_TrainerYoungsterJoey_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_YOUNGSTER_JOEY2, Route30_Johto_YoungsterJoey1BeatenText
+	setvar VAR_JOHTO_MEM_WJOEYFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route30_Johto_TrainerYoungsterJoey_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_YOUNGSTER_JOEY3, Route30_Johto_YoungsterJoey1BeatenText
+	setvar VAR_JOHTO_MEM_WJOEYFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route30_Johto_TrainerYoungsterJoey_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_YOUNGSTER_JOEY4, Route30_Johto_YoungsterJoey1BeatenText
+	setvar VAR_JOHTO_MEM_WJOEYFIGHTCOUNT, 4
+	clearflag FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route30_Johto_TrainerYoungsterJoey_LoadFight4:
+	trainerbattle_no_intro TRAINER_JOHTO_YOUNGSTER_JOEY5, Route30_Johto_YoungsterJoey1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_JOEY_READY_FOR_REMATCH
+	goto_if_set FLAG_JOHTO_JOEY_HP_UP, Route30_Johto_TrainerYoungsterJoey_GiveHPUp
+	goto_if_set FLAG_JOHTO_GOT_HP_UP_FROM_JOEY, Route30_Johto_TrainerYoungsterJoey_done
+	call Route30_Johto_TrainerYoungsterJoey_RematchGift_Sub
+	giveitem ITEM_HP_UP
+	goto_if_eq VAR_RESULT, 0, Route30_Johto_TrainerYoungsterJoey_PackFull
+	setflag FLAG_JOHTO_GOT_HP_UP_FROM_JOEY
+	goto Route30_Johto_TrainerYoungsterJoey_NumberAccepted
+
+Route30_Johto_TrainerYoungsterJoey_done:
+	releaseall
+	end
+
+Route30_Johto_TrainerYoungsterJoey_GiveHPUp:
+	message Route30_Johto_YoungsterJoeyText_GiveHPUpAfterBattle
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_HP_UP
+	goto_if_eq VAR_RESULT, 0, Route30_Johto_TrainerYoungsterJoey_PackFull
+	clearflag FLAG_JOHTO_JOEY_HP_UP
+	setflag FLAG_JOHTO_GOT_HP_UP_FROM_JOEY
+	goto Route30_Johto_TrainerYoungsterJoey_NumberAccepted
 
 Route30_Johto_TrainerYoungsterJoey_NumberAccepted:
 	goto Johto_Std_NumberAcceptedMScript
@@ -109,6 +185,10 @@ Route30_Johto_TrainerYoungsterJoey_NumberDeclined:
 
 Route30_Johto_TrainerYoungsterJoey_PhoneFull:
 	goto Johto_Std_PhoneFullMScript
+
+Route30_Johto_TrainerYoungsterJoey_PackFull:
+	setflag FLAG_JOHTO_JOEY_HP_UP
+	goto Johto_Std_PackFullMScript
 
 Route30_Johto_TrainerYoungsterMikey::
 	trainerbattle_single TRAINER_JOHTO_YOUNGSTER_MIKEY, Route30_Johto_YoungsterMikeySeenText, Route30_Johto_YoungsterMikeyBeatenText
@@ -230,6 +310,9 @@ Route30_Johto_TrainerYoungsterJoey_RegisteredNumber_Sub:
 Route30_Johto_TrainerYoungsterJoey_RematchStd_Sub:
 	goto Johto_Std_RematchMScript_Sub
 
+Route30_Johto_TrainerYoungsterJoey_RematchGift_Sub:
+	goto Johto_Std_RematchGiftMScript_Sub
+
 Route30_Johto_Route30_JoeysRattataAttacksMovement:
 	lock_facing_direction
 	walk_fast_up
@@ -341,6 +424,17 @@ Route30_Johto_Route30TrainerTipsText:
 	.string "\pPOKé BALLS are to\n"
 	.string "be thrown only at\l"
 	.string "wild POKéMON!$"
+
+Route30_Johto_YoungsterJoeyText_GiveHPUpAfterBattle:
+	.string "I lost again…\n"
+	.string "Gee, you're tough!"
+	.string "\pOh yeah, I almost\n"
+	.string "forgot that I had\l"
+	.string "to give you this."
+	.string "\pUse it to get even\n"
+	.string "tougher, OK?"
+	.string "\pI'm going to get\n"
+	.string "tougher too.$"
 
 Route30_Johto_OnLoad:
 	goto_if_unset FLAG_JOHTO_CUTTREE_ROUTE_30_0, Route30_Johto_CutTree0_Keep

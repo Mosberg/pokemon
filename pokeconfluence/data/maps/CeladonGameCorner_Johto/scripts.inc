@@ -87,22 +87,49 @@ CeladonGameCorner_Johto_CeladonGameCornerPokefanMScript:
 
 CeladonGameCorner_Johto_CeladonGameCornerTeacherScript:
 	faceplayer
-	@ TODO unsupported: writetext CeladonGameCornerTeacherText
-	goto Johto_EventScript_Unimplemented
+	message CeladonGameCorner_Johto_CeladonGameCornerTeacherText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement 4, Johto_Movement_Face_Right
+	waitmovement 4
+	releaseall
+	end
 
 CeladonGameCorner_Johto_CeladonGameCornerFishingGuruScript:
 	faceplayer
-	@ TODO unsupported: writetext CeladonGameCornerFishingGuruText
-	goto Johto_EventScript_Unimplemented
+	message CeladonGameCorner_Johto_CeladonGameCornerFishingGuruText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement 5, Johto_Movement_Face_Right
+	waitmovement 5
+	releaseall
+	end
 
 CeladonGameCorner_Johto_CeladonGameCornerFisherScript:
 	faceplayer
 	goto_if_set FLAG_JOHTO_GOT_COINS_FROM_GAMBLER_AT_CELADON, CeladonGameCorner_Johto_CeladonGameCornerFisherScript_GotCoins
-	@ TODO unsupported: writetext CeladonGameCornerFisherText1
+	message CeladonGameCorner_Johto_CeladonGameCornerFisherText1
+	waitmessage
+	waitbuttonpress
+	checkitem ITEM_COIN_CASE, 1
+	goto_if_eq VAR_RESULT, 0, CeladonGameCorner_Johto_CeladonGameCornerFisherScript_NoCoinCase
+	@ TODO unsupported: checkcoins MAX_COINS - 1
 	goto Johto_EventScript_Unimplemented
 
 CeladonGameCorner_Johto_CeladonGameCornerFisherScript_GotCoins:
 	message CeladonGameCorner_Johto_CeladonGameCornerFisherText2
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement VAR_LAST_TALKED, Johto_Movement_Face_Left
+	waitmovement VAR_LAST_TALKED
+	releaseall
+	end
+
+CeladonGameCorner_Johto_CeladonGameCornerFisherScript_NoCoinCase:
+	message CeladonGameCorner_Johto_CeladonGameCornerFisherNoCoinCaseText
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -122,8 +149,14 @@ CeladonGameCorner_Johto_CeladonGymGuideScript:
 
 CeladonGameCorner_Johto_CeladonGameCornerGrampsScript:
 	faceplayer
-	@ TODO unsupported: writetext CeladonGameCornerGrampsText
-	goto Johto_EventScript_Unimplemented
+	message CeladonGameCorner_Johto_CeladonGameCornerGrampsText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement 8, Johto_Movement_Face_Left
+	waitmovement 8
+	releaseall
+	end
 
 CeladonGameCorner_Johto_CeladonGameCornerPoster1Script:
 	message CeladonGameCorner_Johto_CeladonGameCornerPoster1Text
@@ -145,17 +178,23 @@ CeladonGameCorner_Johto_CeladonGameCornerLuckySlotMachineScript:
 	random 6
 	goto_if_eq VAR_RESULT, 0, CeladonGameCorner_Johto_CeladonGameCornerSlotMachineScript
 	setvar VAR_RESULT, FALSE
-	@ TODO unsupported: special SlotMachine
-	goto Johto_EventScript_Unimplemented
+	goto MauvilleCity_GameCorner_EventScript_SlotMachine0
+	closemessage
+	releaseall
+	end
 
 CeladonGameCorner_Johto_CeladonGameCornerSlotMachineScript:
 	setvar VAR_RESULT, TRUE
-	@ TODO unsupported: special SlotMachine
-	goto Johto_EventScript_Unimplemented
+	goto MauvilleCity_GameCorner_EventScript_SlotMachine0
+	closemessage
+	releaseall
+	end
 
 CeladonGameCorner_Johto_CeladonGameCornerCardFlipScript:
-	@ TODO unsupported: special CardFlip
-	goto Johto_EventScript_Unimplemented
+	goto MauvilleCity_GameCorner_EventScript_SlotMachine0
+	closemessage
+	releaseall
+	end
 
 CeladonGameCorner_Johto_CeladonGameCornerLighterScript:
 	message CeladonGameCorner_Johto_CeladonGameCornerLighterText
@@ -169,8 +208,10 @@ CeladonGameCorner_Johto_CeladonGameCornerSodaCanScript:
 	message CeladonGameCorner_Johto_CeladonGameCornerSodaCanText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: special CardFlip
-	goto Johto_EventScript_Unimplemented
+	goto MauvilleCity_GameCorner_EventScript_SlotMachine0
+	closemessage
+	releaseall
+	end
 
 CeladonGameCorner_Johto_CeladonGameCornerReceptionistText:
 	.string "Welcome!"
@@ -184,6 +225,30 @@ CeladonGameCorner_Johto_CeladonGameCornerPokefanMText:
 	.string "are all state of\l"
 	.string "the art.$"
 
+CeladonGameCorner_Johto_CeladonGameCornerTeacherText:
+	.string "It's this machine\n"
+	.string "I want."
+	.string "\pIt cleaned me out\n"
+	.string "yesterday, so it"
+	.string "\pshould pay out\n"
+	.string "today.$"
+
+CeladonGameCorner_Johto_CeladonGameCornerFishingGuruText:
+	.string "I think this slot\n"
+	.string "machine will pay\l"
+	.string "out…"
+	.string "\pThe odds vary\n"
+	.string "among machines.$"
+
+CeladonGameCorner_Johto_CeladonGameCornerFisherText1:
+	.string "Gahahaha!"
+	.string "\pThe coins just\n"
+	.string "keep popping out!"
+	.string "\pHm? What, kid? You\n"
+	.string "want to play?"
+	.string "\pI'll share my luck\n"
+	.string "with you!$"
+
 CeladonGameCorner_Johto_CeladonGameCornerFisherText2:
 	.string "Gahahaha!"
 	.string "\pIt makes me feel\n"
@@ -191,8 +256,29 @@ CeladonGameCorner_Johto_CeladonGameCornerFisherText2:
 	.string "\pthings for other\n"
 	.string "people!$"
 
+CeladonGameCorner_Johto_CeladonGameCornerFisherNoCoinCaseText:
+	.string "Hey, you don't\n"
+	.string "have a COIN CASE."
+	.string "\pHow am I supposed\n"
+	.string "to give you any\l"
+	.string "coins, kid?$"
+
 CeladonGameCorner_Johto_CeladonGymGuideText:
-	.string "(text not converted)$"
+	.string "Hey! CHAMP in\n"
+	.string "making!"
+	.string "\pAre you playing\n"
+	.string "the slots too?"
+	.string "\pI'm trying to get\n"
+	.string "enough coins for a\l"
+	.string "prize POKéMON."
+	.string "\pBut I don't have\n"
+	.string "enough coins yet…$"
+
+CeladonGameCorner_Johto_CeladonGameCornerGrampsText:
+	.string "Hmmm… The odds are\n"
+	.string "surely better for"
+	.string "\pPIKACHU's line,\n"
+	.string "but… What to do?$"
 
 CeladonGameCorner_Johto_CeladonGameCornerPoster1Text:
 	.string "Hey!"

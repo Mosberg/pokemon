@@ -127,6 +127,7 @@ VermilionGym_Johto_VermilionGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 VermilionGym_Johto_VermilionGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_LT_SURGE_LT_SURGE1
 	goto Johto_Std_GymStatue2Script
 
 VermilionGym_Johto_LtSurgeIntroText:

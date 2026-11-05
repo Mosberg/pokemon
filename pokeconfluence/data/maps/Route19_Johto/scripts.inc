@@ -1,5 +1,10 @@
 Route19_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, Route19_Johto_OnLoad
 	.byte 0
+
+Route19_Johto_OnLoad:
+	call Route19_Johto_Route19ClearRocksCallback_Cb
+	end
 
 Route19_Johto_Route19Fisher1Script_Entry::
 	lockall
@@ -129,6 +134,42 @@ Route19_Johto_CarefulSwimmingSign:
 	closemessage
 	releaseall
 	end
+
+Route19_Johto_Route19ClearRocksCallback_Cb:
+	goto_if_set FLAG_JOHTO_CINNABAR_ROCKS_CLEARED, Route19_Johto_Route19ClearRocksCallback_Done_Cb
+	setmetatile 6, 6, 649, 1
+	setmetatile 7, 6, 650, 1
+	setmetatile 6, 7, 651, 1
+	setmetatile 7, 7, 652, 1
+	special DrawWholeMapView
+	setmetatile 8, 6, 649, 1
+	setmetatile 9, 6, 650, 1
+	setmetatile 8, 7, 651, 1
+	setmetatile 9, 7, 652, 1
+	special DrawWholeMapView
+	setmetatile 10, 6, 649, 1
+	setmetatile 11, 6, 650, 1
+	setmetatile 10, 7, 651, 1
+	setmetatile 11, 7, 652, 1
+	special DrawWholeMapView
+	setmetatile 12, 8, 649, 1
+	setmetatile 13, 8, 650, 1
+	setmetatile 12, 9, 651, 1
+	setmetatile 13, 9, 652, 1
+	special DrawWholeMapView
+	setmetatile 4, 8, 649, 1
+	setmetatile 5, 8, 650, 1
+	setmetatile 4, 9, 651, 1
+	setmetatile 5, 9, 652, 1
+	special DrawWholeMapView
+	setmetatile 10, 10, 649, 1
+	setmetatile 11, 10, 650, 1
+	setmetatile 10, 11, 651, 1
+	setmetatile 11, 11, 652, 1
+	special DrawWholeMapView
+
+Route19_Johto_Route19ClearRocksCallback_Done_Cb:
+	return
 
 Route19_Johto_SwimmermHaroldSeenText:
 	.string "Have you ever gone\n"

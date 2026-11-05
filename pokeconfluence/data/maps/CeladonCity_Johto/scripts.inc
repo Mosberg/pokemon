@@ -92,8 +92,13 @@ CeladonCity_Johto_CeladonCityPoliwrath:
 	end
 
 CeladonCity_Johto_CeladonCityTeacher1Script:
-	@ TODO unsupported: jumptextfaceplayer CeladonCityTeacher1Text
-	goto Johto_EventScript_Unimplemented
+	faceplayer
+	message CeladonCity_Johto_CeladonCityTeacher1Text
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 CeladonCity_Johto_CeladonCityGramps1Script:
 	faceplayer
@@ -182,8 +187,12 @@ CeladonCity_Johto_CeladonCityMansionSign:
 	end
 
 CeladonCity_Johto_CeladonCityGameCornerSign:
-	@ TODO unsupported: jumptext CeladonCityGameCornerSignText
-	goto Johto_EventScript_Unimplemented
+	message CeladonCity_Johto_CeladonCityGameCornerSignText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 CeladonCity_Johto_CeladonCityTrainerTips:
 	message CeladonCity_Johto_CeladonCityTrainerTipsText
@@ -209,6 +218,14 @@ CeladonCity_Johto_CeladonCityFisherText:
 
 CeladonCity_Johto_CeladonCityPoliwrathText:
 	.string "POLIWRATH: Croak!$"
+
+CeladonCity_Johto_CeladonCityTeacher1Text:
+	.string "I lost at the slot\n"
+	.string "machines again…"
+	.string "\pWe girls also play\n"
+	.string "the slots now."
+	.string "\pYou should check\n"
+	.string "them out too.$"
 
 CeladonCity_Johto_CeladonCityGramps1Text:
 	.string "GRIMER have been\n"
@@ -279,6 +296,11 @@ CeladonCity_Johto_CeladonCityDeptStoreSignText:
 
 CeladonCity_Johto_CeladonCityMansionSignText:
 	.string "CELADON MANSION$"
+
+CeladonCity_Johto_CeladonCityGameCornerSignText:
+	.string "The Playground for\n"
+	.string "Everybody--CELADON\l"
+	.string "GAME CORNER$"
 
 CeladonCity_Johto_CeladonCityTrainerTipsText:
 	.string "TRAINER TIPS"

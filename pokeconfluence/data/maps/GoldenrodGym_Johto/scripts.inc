@@ -184,6 +184,7 @@ GoldenrodGym_Johto_GoldenrodGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 GoldenrodGym_Johto_GoldenrodGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_WHITNEY_WHITNEY1
 	goto Johto_Std_GymStatue2Script
 
 GoldenrodGym_Johto_GoldenrodGymActivateRockets_Sub:

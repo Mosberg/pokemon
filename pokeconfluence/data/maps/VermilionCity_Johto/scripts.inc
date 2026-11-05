@@ -109,8 +109,39 @@ VermilionCity_Johto_VermilionGymBadgeGuy:
 	faceplayer
 	goto_if_set FLAG_JOHTO_GOT_HP_UP_FROM_VERMILION_GUY, VermilionCity_Johto_VermilionGymBadgeGuy_AlreadyGotItem
 	special JohtoCountBadges
-	@ TODO unsupported: ifequal NUM_BADGES, .AllBadges
-	goto Johto_EventScript_Unimplemented
+	goto_if_eq VAR_RESULT, 8, VermilionCity_Johto_VermilionGymBadgeGuy_AllBadges
+	goto_if_gt VAR_RESULT, 13, VermilionCity_Johto_VermilionGymBadgeGuy_MostBadges
+	goto_if_gt VAR_RESULT, 9, VermilionCity_Johto_VermilionGymBadgeGuy_SomeBadges
+	message VermilionCity_Johto_VermilionCityBadgeGuyTrainerText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+VermilionCity_Johto_VermilionGymBadgeGuy_SomeBadges:
+	message VermilionCity_Johto_VermilionCityBadgeGuySomeBadgesText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+VermilionCity_Johto_VermilionGymBadgeGuy_MostBadges:
+	message VermilionCity_Johto_VermilionCityBadgeGuyMostBadgesText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+VermilionCity_Johto_VermilionGymBadgeGuy_AllBadges:
+	message VermilionCity_Johto_VermilionCityBadgeGuyAllBadgesText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_HP_UP
+	goto_if_eq VAR_RESULT, 0, VermilionCity_Johto_VermilionGymBadgeGuy_Done
+	setflag FLAG_JOHTO_GOT_HP_UP_FROM_VERMILION_GUY
 
 VermilionCity_Johto_VermilionGymBadgeGuy_AlreadyGotItem:
 	message VermilionCity_Johto_VermilionCityBadgeGuyBattleEdgeText
@@ -203,6 +234,38 @@ VermilionCity_Johto_VermilionCitySuperNerdText:
 	.string "\pThat big building\n"
 	.string "is VERMILION's\l"
 	.string "POKéMON GYM.$"
+
+VermilionCity_Johto_VermilionCityBadgeGuyTrainerText:
+	.string "Skilled trainers\n"
+	.string "gather in KANTO."
+	.string "\pGYM LEADERS are\n"
+	.string "especially strong."
+	.string "\pThey won't be easy\n"
+	.string "to defeat.$"
+
+VermilionCity_Johto_VermilionCityBadgeGuySomeBadgesText:
+	.string "You've started to\n"
+	.string "collect KANTO GYM\l"
+	.string "BADGES?"
+	.string "\pDon't you agree\n"
+	.string "that the trainers\l"
+	.string "here are tough?$"
+
+VermilionCity_Johto_VermilionCityBadgeGuyMostBadgesText:
+	.string "I guess you'll be\n"
+	.string "finished with your"
+	.string "\pconquest of KANTO\n"
+	.string "GYMS soon."
+	.string "\pLet me know if\n"
+	.string "you get all eight\l"
+	.string "BADGES.$"
+
+VermilionCity_Johto_VermilionCityBadgeGuyAllBadgesText:
+	.string "Congratulations!"
+	.string "\pYou got all the\n"
+	.string "KANTO GYM BADGES."
+	.string "\pI've got a reward\n"
+	.string "for your efforts.$"
 
 VermilionCity_Johto_VermilionCityBadgeGuyBattleEdgeText:
 	.string "Having a variety\n"

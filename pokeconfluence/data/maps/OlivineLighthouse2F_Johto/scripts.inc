@@ -26,8 +26,11 @@ OlivineLighthouse2F_Johto_TrainerSailorHuey::
 	goto OlivineLighthouse2F_Johto_TrainerSailorHuey_Script
 
 OlivineLighthouse2F_Johto_TrainerSailorHuey_Script:
+	setvar VAR_0x8007, 123
 	goto_if_set FLAG_JOHTO_ENGINE_HUEY_READY_FOR_REMATCH, OlivineLighthouse2F_Johto_TrainerSailorHuey_WantsBattle
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_SAILOR_HUEY_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_HUEY_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, OlivineLighthouse2F_Johto_TrainerSailorHuey_NumberAccepted
 	goto_if_set FLAG_JOHTO_HUEY_ASKED_FOR_PHONE_NUMBER, OlivineLighthouse2F_Johto_TrainerSailorHuey_AskedBefore
 	setflag FLAG_JOHTO_HUEY_ASKED_FOR_PHONE_NUMBER
@@ -38,16 +41,78 @@ OlivineLighthouse2F_Johto_TrainerSailorHuey_AskedBefore:
 	call OlivineLighthouse2F_Johto_TrainerSailorHuey_AskNumber2_Sub
 
 OlivineLighthouse2F_Johto_TrainerSailorHuey_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_SAILOR_HUEY_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_HUEY_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, OlivineLighthouse2F_Johto_TrainerSailorHuey_PhoneFull
 	goto_if_eq VAR_RESULT, 2, OlivineLighthouse2F_Johto_TrainerSailorHuey_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_SAILOR_HUEY1
 	call OlivineLighthouse2F_Johto_TrainerSailorHuey_RegisteredNumber_Sub
 	goto OlivineLighthouse2F_Johto_TrainerSailorHuey_NumberAccepted
 
 OlivineLighthouse2F_Johto_TrainerSailorHuey_WantsBattle:
 	call OlivineLighthouse2F_Johto_TrainerSailorHuey_Rematch_Sub
-	@ TODO unsupported: readmem wHueyFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WHUEYFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 3, OlivineLighthouse2F_Johto_TrainerSailorHuey_Fight3
+	goto_if_eq VAR_RESULT, 2, OlivineLighthouse2F_Johto_TrainerSailorHuey_Fight2
+	goto_if_eq VAR_RESULT, 1, OlivineLighthouse2F_Johto_TrainerSailorHuey_Fight1
+	goto_if_eq VAR_RESULT, 0, OlivineLighthouse2F_Johto_TrainerSailorHuey_LoadFight0
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_Fight3:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, OlivineLighthouse2F_Johto_TrainerSailorHuey_LoadFight3
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_Fight2:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, OlivineLighthouse2F_Johto_TrainerSailorHuey_LoadFight2
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_Fight1:
+	goto_if_set FLAG_JOHTO_CLEARED_RADIO_TOWER, OlivineLighthouse2F_Johto_TrainerSailorHuey_LoadFight1
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_SAILOR_HUEY1, OlivineLighthouse2F_Johto_SailorHueyBeatenText
+	setvar VAR_JOHTO_MEM_WHUEYFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_HUEY_READY_FOR_REMATCH
+	releaseall
+	end
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_SAILOR_HUEY2, OlivineLighthouse2F_Johto_SailorHueyBeatenText
+	setvar VAR_JOHTO_MEM_WHUEYFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_HUEY_READY_FOR_REMATCH
+	releaseall
+	end
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_SAILOR_HUEY3, OlivineLighthouse2F_Johto_SailorHueyBeatenText
+	setvar VAR_JOHTO_MEM_WHUEYFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_HUEY_READY_FOR_REMATCH
+	releaseall
+	end
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_SAILOR_HUEY4, OlivineLighthouse2F_Johto_SailorHueyBeatenText
+	clearflag FLAG_JOHTO_ENGINE_HUEY_READY_FOR_REMATCH
+	goto_if_set FLAG_JOHTO_HUEY_PROTEIN, OlivineLighthouse2F_Johto_TrainerSailorHuey_HasProtein
+	goto_if_set FLAG_JOHTO_GOT_PROTEIN_FROM_HUEY, OlivineLighthouse2F_Johto_TrainerSailorHuey_SkipGift
+	call OlivineLighthouse2F_Johto_TrainerSailorHuey_RematchGift_Sub
+	giveitem ITEM_PROTEIN
+	goto_if_eq VAR_RESULT, 0, OlivineLighthouse2F_Johto_TrainerSailorHuey_PackFull
+	setflag FLAG_JOHTO_GOT_PROTEIN_FROM_HUEY
+	goto OlivineLighthouse2F_Johto_TrainerSailorHuey_NumberAccepted
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_SkipGift:
+	releaseall
+	end
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_HasProtein:
+	message OlivineLighthouse2F_Johto_SailorHueyGiveProteinText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_PROTEIN
+	goto_if_eq VAR_RESULT, 0, OlivineLighthouse2F_Johto_TrainerSailorHuey_PackFull
+	clearflag FLAG_JOHTO_HUEY_PROTEIN
+	setflag FLAG_JOHTO_GOT_PROTEIN_FROM_HUEY
+	goto OlivineLighthouse2F_Johto_TrainerSailorHuey_NumberAccepted
 
 OlivineLighthouse2F_Johto_TrainerSailorHuey_NumberAccepted:
 	goto Johto_Std_NumberAcceptedMScript
@@ -57,6 +122,10 @@ OlivineLighthouse2F_Johto_TrainerSailorHuey_NumberDeclined:
 
 OlivineLighthouse2F_Johto_TrainerSailorHuey_PhoneFull:
 	goto Johto_Std_PhoneFullMScript
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_PackFull:
+	setflag FLAG_JOHTO_HUEY_PROTEIN
+	goto Johto_Std_PackFullMScript
 
 OlivineLighthouse2F_Johto_TrainerSailorHuey_AskNumber1_Sub:
 	goto Johto_Std_AskNumber1MScript_Sub
@@ -69,6 +138,9 @@ OlivineLighthouse2F_Johto_TrainerSailorHuey_RegisteredNumber_Sub:
 
 OlivineLighthouse2F_Johto_TrainerSailorHuey_Rematch_Sub:
 	goto Johto_Std_RematchMScript_Sub
+
+OlivineLighthouse2F_Johto_TrainerSailorHuey_RematchGift_Sub:
+	goto Johto_Std_RematchGiftMScript_Sub
 
 OlivineLighthouse2F_Johto_SailorHueySeenText:
 	.string "Men of the sea are\n"
@@ -95,3 +167,10 @@ OlivineLighthouse2F_Johto_GentlemanAlfredAfterBattleText:
 	.string "it's sick now and"
 	.string "\pcan't be cured by\n"
 	.string "ordinary medicine.$"
+
+OlivineLighthouse2F_Johto_SailorHueyGiveProteinText:
+	.string "Man! You're as\n"
+	.string "tough as ever!"
+	.string "\pAnyway, here's\n"
+	.string "that medicine from\l"
+	.string "before.$"

@@ -30,8 +30,45 @@ Route39Farmhouse_Johto_FarmerMScript_SellMilk:
 	goto_if_ne VAR_RESULT, 0, Route39Farmhouse_Johto_FarmerMScript_Milking
 	message Route39Farmhouse_Johto_FarmerMText_BuyMilk
 	waitmessage
-	@ TODO unsupported: special PlaceMoneyTopRight
-	goto Johto_EventScript_Unimplemented
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, Route39Farmhouse_Johto_FarmerMScript_NoSale
+	checkmoney 500
+	goto_if_eq VAR_RESULT, 0, Route39Farmhouse_Johto_FarmerMScript_NoMoney
+	additem ITEM_MOOMOO_MILK
+	goto_if_eq VAR_RESULT, 0, Route39Farmhouse_Johto_FarmerMScript_NoRoom
+	removemoney 500
+	waitse
+	playse SE_PIN
+	message Route39Farmhouse_Johto_FarmerMText_GotMilk
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route39Farmhouse_Johto_FarmerMScript_NoMoney:
+	message Route39Farmhouse_Johto_FarmerMText_NoMoney
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route39Farmhouse_Johto_FarmerMScript_NoRoom:
+	message Route39Farmhouse_Johto_FarmerMText_NoRoom
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route39Farmhouse_Johto_FarmerMScript_NoSale:
+	message Route39Farmhouse_Johto_FarmerMText_NoSale
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 Route39Farmhouse_Johto_FarmerMScript_Milking:
 	message Route39Farmhouse_Johto_FarmerMText_Milking
@@ -88,6 +125,22 @@ Route39Farmhouse_Johto_FarmerMText_SickCow:
 
 Route39Farmhouse_Johto_FarmerMText_BuyMilk:
 	.string "(text not converted)$"
+
+Route39Farmhouse_Johto_FarmerMText_GotMilk:
+	.string "Here ya go!\n"
+	.string "Drink up'n enjoy!$"
+
+Route39Farmhouse_Johto_FarmerMText_NoMoney:
+	.string "Sorry, there.\n"
+	.string "No cash, no sale!$"
+
+Route39Farmhouse_Johto_FarmerMText_NoRoom:
+	.string "I reckon yer\n"
+	.string "PACK's full.$"
+
+Route39Farmhouse_Johto_FarmerMText_NoSale:
+	.string "You don't want it?\n"
+	.string "Come again, hear?$"
 
 Route39Farmhouse_Johto_FarmerMText_Milking:
 	.string "I best go do my\n"

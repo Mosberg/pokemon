@@ -1,6 +1,11 @@
 RuinsOfAlphHoOhChamber_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, RuinsOfAlphHoOhChamber_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RuinsOfAlphHoOhChamber_Johto_OnFrame
 	.byte 0
+
+RuinsOfAlphHoOhChamber_Johto_OnLoad:
+	call RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberHiddenDoorsCallback_Cb
+	end
 
 RuinsOfAlphHoOhChamber_Johto_OnFrame:
 	map_script_2 VAR_JOHTO_SCENE_RUINS_OF_ALPH_HO_OH_CHAMBER, 0, RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberCheckWallScene_Entry
@@ -78,6 +83,31 @@ RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberWallPatternRight_WallOpen:
 	closemessage
 	releaseall
 	end
+
+RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberHiddenDoorsCallback_Cb:
+	goto_if_set FLAG_JOHTO_WALL_OPENED_IN_HO_OH_CHAMBER, RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberHiddenDoorsCallback_WallOpen_Cb
+	setmetatile 4, 0, 552, 1
+	setmetatile 5, 0, 529, 1
+	setmetatile 4, 1, 521, 0
+	setmetatile 5, 1, 521, 0
+	special DrawWholeMapView
+
+RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberHiddenDoorsCallback_WallOpen_Cb:
+	goto_if_unset FLAG_JOHTO_SOLVED_HO_OH_PUZZLE, RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberHiddenDoorsCallback_FloorClosed_Cb
+	return
+
+RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberHiddenDoorsCallback_FloorClosed_Cb:
+	setmetatile 2, 2, 513, 1
+	setmetatile 3, 2, 514, 1
+	setmetatile 2, 3, 515, 1
+	setmetatile 3, 3, 516, 0
+	special DrawWholeMapView
+	setmetatile 4, 2, 517, 1
+	setmetatile 5, 2, 513, 1
+	setmetatile 4, 3, 518, 0
+	setmetatile 5, 3, 515, 1
+	special DrawWholeMapView
+	return
 
 RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberWallPatternLeftText:
 	.string "Patterns appeared\n"

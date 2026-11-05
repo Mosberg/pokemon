@@ -1,6 +1,11 @@
 KarensRoom_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, KarensRoom_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, KarensRoom_Johto_OnFrame
 	.byte 0
+
+KarensRoom_Johto_OnLoad:
+	call KarensRoom_Johto_KarensRoomDoorsCallback_Cb
+	end
 
 KarensRoom_Johto_OnFrame:
 	map_script_2 VAR_JOHTO_SCENE_KARENS_ROOM, 0, KarensRoom_Johto_KarensRoomDoorLocksBehindYouScript_Entry
@@ -63,6 +68,25 @@ KarensRoom_Johto_KarenScript_AfterBattle:
 	closemessage
 	releaseall
 	end
+
+KarensRoom_Johto_KarensRoomDoorsCallback_Cb:
+	goto_if_unset FLAG_JOHTO_KARENS_ROOM_ENTRANCE_CLOSED, KarensRoom_Johto_KarensRoomDoorsCallback_KeepEntranceOpen_Cb
+	setmetatile 4, 14, 527, 1
+	setmetatile 5, 14, 526, 1
+	setmetatile 4, 15, 528, 1
+	setmetatile 5, 15, 528, 1
+	special DrawWholeMapView
+
+KarensRoom_Johto_KarensRoomDoorsCallback_KeepEntranceOpen_Cb:
+	goto_if_unset FLAG_JOHTO_KARENS_ROOM_EXIT_OPEN, KarensRoom_Johto_KarensRoomDoorsCallback_KeepExitClosed_Cb
+	setmetatile 4, 2, 530, 0
+	setmetatile 5, 2, 530, 0
+	setmetatile 4, 3, 519, 0
+	setmetatile 5, 3, 519, 0
+	special DrawWholeMapView
+
+KarensRoom_Johto_KarensRoomDoorsCallback_KeepExitClosed_Cb:
+	return
 
 KarensRoom_Johto_KarensRoom_EnterMovement:
 	walk_up

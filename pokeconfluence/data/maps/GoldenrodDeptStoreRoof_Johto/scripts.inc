@@ -1,6 +1,11 @@
 GoldenrodDeptStoreRoof_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, GoldenrodDeptStoreRoof_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, GoldenrodDeptStoreRoof_Johto_OnTransition
 	.byte 0
+
+GoldenrodDeptStoreRoof_Johto_OnLoad:
+	call GoldenrodDeptStoreRoof_Johto_GoldenrodDeptStoreRoofCheckSaleChangeBlockCallback_Cb
+	end
 
 GoldenrodDeptStoreRoof_Johto_OnTransition:
 	call GoldenrodDeptStoreRoof_Johto_GoldenrodDeptStoreRoofCheckSaleChangeClerkCallback_Cb
@@ -162,6 +167,23 @@ GoldenrodDeptStoreRoof_Johto_PokeDollVendingMachine:
 	closemessage
 	releaseall
 	end
+
+GoldenrodDeptStoreRoof_Johto_GoldenrodDeptStoreRoofCheckSaleChangeBlockCallback_Cb:
+	goto_if_set FLAG_JOHTO_ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON, GoldenrodDeptStoreRoof_Johto_GoldenrodDeptStoreRoofCheckSaleChangeBlockCallback_SaleIsOn_Cb
+	return
+
+GoldenrodDeptStoreRoof_Johto_GoldenrodDeptStoreRoofCheckSaleChangeBlockCallback_SaleIsOn_Cb:
+	setmetatile 0, 2, 588, 1
+	setmetatile 1, 2, 589, 1
+	setmetatile 0, 3, 590, 1
+	setmetatile 1, 3, 591, 1
+	special DrawWholeMapView
+	setmetatile 0, 4, 532, 0
+	setmetatile 1, 4, 533, 1
+	setmetatile 0, 5, 534, 1
+	setmetatile 1, 5, 535, 1
+	special DrawWholeMapView
+	return
 
 GoldenrodDeptStoreRoof_Johto_GoldenrodDeptStoreRoofCheckSaleChangeClerkCallback_Cb:
 	goto_if_set FLAG_JOHTO_ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON, GoldenrodDeptStoreRoof_Johto_GoldenrodDeptStoreRoofCheckSaleChangeClerkCallback_ChangeClerk_Cb

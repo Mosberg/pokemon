@@ -89,6 +89,7 @@ OlivineGym_Johto_OlivineGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 OlivineGym_Johto_OlivineGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_JASMINE_JASMINE1
 	goto Johto_Std_GymStatue2Script
 
 OlivineGym_Johto_OlivineGymActivateRockets_Sub:

@@ -113,6 +113,7 @@ VioletGym_Johto_VioletGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 VioletGym_Johto_VioletGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_FALKNER_FALKNER1
 	goto Johto_Std_GymStatue2Script
 
 VioletGym_Johto_VioletGymActivateRockets_Sub:

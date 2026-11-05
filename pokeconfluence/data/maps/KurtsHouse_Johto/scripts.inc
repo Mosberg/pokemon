@@ -151,6 +151,9 @@ KurtsHouse_Johto_Kurt1_WaitForApricorns:
 	releaseall
 	end
 
+KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat:
+	setflag FLAG_TEMP_12
+
 KurtsHouse_Johto_Kurt1_ThatTurnedOutGreat:
 	message KurtsHouse_Johto_KurtsHouseKurtTurnedOutGreatText
 	waitmessage
@@ -166,56 +169,70 @@ KurtsHouse_Johto_Kurt1_GiveLevelBall:
 	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: verbosegiveitemvar LEVEL_BALL, VAR_KURT_APRICORNS
-	goto Johto_EventScript_Unimplemented
+	giveitem ITEM_LEVEL_BALL, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
+	clearflag FLAG_JOHTO_GAVE_KURT_RED_APRICORN
+	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
 
 KurtsHouse_Johto_Kurt1_GiveLureBall:
 	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
 	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: verbosegiveitemvar LURE_BALL, VAR_KURT_APRICORNS
-	goto Johto_EventScript_Unimplemented
+	giveitem ITEM_LURE_BALL, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
+	clearflag FLAG_JOHTO_GAVE_KURT_BLU_APRICORN
+	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
 
 KurtsHouse_Johto_Kurt1_GiveMoonBall:
 	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
 	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: verbosegiveitemvar MOON_BALL, VAR_KURT_APRICORNS
-	goto Johto_EventScript_Unimplemented
+	giveitem ITEM_MOON_BALL, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
+	clearflag FLAG_JOHTO_GAVE_KURT_YLW_APRICORN
+	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
 
 KurtsHouse_Johto_Kurt1_GiveFriendBall:
 	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
 	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: verbosegiveitemvar FRIEND_BALL, VAR_KURT_APRICORNS
-	goto Johto_EventScript_Unimplemented
+	giveitem ITEM_FRIEND_BALL, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
+	clearflag FLAG_JOHTO_GAVE_KURT_GRN_APRICORN
+	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
 
 KurtsHouse_Johto_Kurt1_GiveFastBall:
 	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
 	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: verbosegiveitemvar FAST_BALL, VAR_KURT_APRICORNS
-	goto Johto_EventScript_Unimplemented
+	giveitem ITEM_FAST_BALL, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
+	clearflag FLAG_JOHTO_GAVE_KURT_WHT_APRICORN
+	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
 
 KurtsHouse_Johto_Kurt1_GiveHeavyBall:
 	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
 	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: verbosegiveitemvar HEAVY_BALL, VAR_KURT_APRICORNS
-	goto Johto_EventScript_Unimplemented
+	giveitem ITEM_HEAVY_BALL, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
+	clearflag FLAG_JOHTO_GAVE_KURT_BLK_APRICORN
+	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
 
 KurtsHouse_Johto_Kurt1_GiveLoveBall:
 	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
 	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: verbosegiveitemvar LOVE_BALL, VAR_KURT_APRICORNS
-	goto Johto_EventScript_Unimplemented
+	giveitem ITEM_LOVE_BALL, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
+	clearflag FLAG_JOHTO_GAVE_KURT_PNK_APRICORN
+	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
 
 KurtsHouse_Johto_Kurt1_CanGiveGSBallToKurt:
 	goto_if_set FLAG_JOHTO_GAVE_GS_BALL_TO_KURT, KurtsHouse_Johto_Kurt1_GaveGSBallToKurt

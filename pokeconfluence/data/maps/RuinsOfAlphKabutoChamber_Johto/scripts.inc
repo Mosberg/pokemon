@@ -1,6 +1,11 @@
 RuinsOfAlphKabutoChamber_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, RuinsOfAlphKabutoChamber_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RuinsOfAlphKabutoChamber_Johto_OnFrame
 	.byte 0
+
+RuinsOfAlphKabutoChamber_Johto_OnLoad:
+	call RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberHiddenDoorsCallback_Cb
+	end
 
 RuinsOfAlphKabutoChamber_Johto_OnFrame:
 	map_script_2 VAR_JOHTO_SCENE_RUINS_OF_ALPH_KABUTO_CHAMBER, 0, RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberCheckWallScene_Entry
@@ -64,7 +69,34 @@ RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberPuzzle:
 
 RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistScript:
 	faceplayer
-	@ TODO unsupported: readvar VAR_UNOWNCOUNT
+	setvar VAR_RESULT, 0
+	goto_if_eq VAR_RESULT, 26, RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistScript_AllUnownCaught
+	goto_if_set FLAG_JOHTO_WALL_OPENED_IN_KABUTO_CHAMBER, RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistScript_WallOpen
+	goto_if_unset FLAG_JOHTO_SOLVED_KABUTO_PUZZLE, RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistScript_PuzzleIncomplete
+	message RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistTremorText
+	waitmessage
+	waitbuttonpress
+
+RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistScript_PuzzleIncomplete:
+	message RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistCrypticText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement 2, Johto_Movement_Face_Up
+	waitmovement 2
+	releaseall
+	end
+
+RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistScript_WallOpen:
+	message RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistHoleText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistScript_AllUnownCaught:
+	@ TODO unsupported: writetext RuinsOfAlphResearchCenterScientist1Text_GotAllUnown
 	goto Johto_EventScript_Unimplemented
 
 RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberAncientReplica:
@@ -106,6 +138,31 @@ RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberWallPatternRight_WallOpen
 	releaseall
 	end
 
+RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberHiddenDoorsCallback_Cb:
+	goto_if_set FLAG_JOHTO_WALL_OPENED_IN_KABUTO_CHAMBER, RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberHiddenDoorsCallback_WallOpen_Cb
+	setmetatile 4, 0, 552, 1
+	setmetatile 5, 0, 529, 1
+	setmetatile 4, 1, 521, 0
+	setmetatile 5, 1, 521, 0
+	special DrawWholeMapView
+
+RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberHiddenDoorsCallback_WallOpen_Cb:
+	goto_if_unset FLAG_JOHTO_SOLVED_KABUTO_PUZZLE, RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberHiddenDoorsCallback_FloorClosed_Cb
+	return
+
+RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberHiddenDoorsCallback_FloorClosed_Cb:
+	setmetatile 2, 2, 513, 1
+	setmetatile 3, 2, 514, 1
+	setmetatile 2, 3, 515, 1
+	setmetatile 3, 3, 516, 0
+	special DrawWholeMapView
+	setmetatile 4, 2, 517, 1
+	setmetatile 5, 2, 513, 1
+	setmetatile 4, 3, 518, 0
+	setmetatile 5, 3, 515, 1
+	special DrawWholeMapView
+	return
+
 RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberReceptionistText:
 	.string "Welcome to this\n"
 	.string "chamber."
@@ -123,6 +180,29 @@ RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberReceptionistText:
 	.string "back are examining"
 	.string "\psome newly found\n"
 	.string "patterns.$"
+
+RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistCrypticText:
+	.string "Recently, strange,\n"
+	.string "cryptic patterns\l"
+	.string "have appeared."
+	.string "\pIt's odd. They\n"
+	.string "weren't here a\l"
+	.string "little while ago…"
+	.string "\pYou should take a\n"
+	.string "look at the walls.$"
+
+RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistHoleText:
+	.string "Ah! Here's another\n"
+	.string "huge hole!"
+	.string "\pIt's big enough to\n"
+	.string "go through!$"
+
+RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistTremorText:
+	.string "That tremor was\n"
+	.string "pretty scary!"
+	.string "\pBut I'm more\n"
+	.string "concerned about\l"
+	.string "this wall here…$"
 
 RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberWallPatternLeftText:
 	.string "Patterns appeared\n"

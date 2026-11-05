@@ -131,6 +131,7 @@ SaffronGym_Johto_SaffronGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 SaffronGym_Johto_SaffronGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_SABRINA_SABRINA1
 	goto Johto_Std_GymStatue2Script
 
 SaffronGym_Johto_SabrinaIntroText:

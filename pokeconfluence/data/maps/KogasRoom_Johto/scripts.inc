@@ -1,6 +1,11 @@
 KogasRoom_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, KogasRoom_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, KogasRoom_Johto_OnFrame
 	.byte 0
+
+KogasRoom_Johto_OnLoad:
+	call KogasRoom_Johto_KogasRoomDoorsCallback_Cb
+	end
 
 KogasRoom_Johto_OnFrame:
 	map_script_2 VAR_JOHTO_SCENE_KOGAS_ROOM, 0, KogasRoom_Johto_KogasRoomDoorLocksBehindYouScript_Entry
@@ -63,6 +68,25 @@ KogasRoom_Johto_KogaScript_AfterBattle:
 	closemessage
 	releaseall
 	end
+
+KogasRoom_Johto_KogasRoomDoorsCallback_Cb:
+	goto_if_unset FLAG_JOHTO_KOGAS_ROOM_ENTRANCE_CLOSED, KogasRoom_Johto_KogasRoomDoorsCallback_KeepEntranceOpen_Cb
+	setmetatile 4, 14, 527, 1
+	setmetatile 5, 14, 526, 1
+	setmetatile 4, 15, 528, 1
+	setmetatile 5, 15, 528, 1
+	special DrawWholeMapView
+
+KogasRoom_Johto_KogasRoomDoorsCallback_KeepEntranceOpen_Cb:
+	goto_if_unset FLAG_JOHTO_KOGAS_ROOM_EXIT_OPEN, KogasRoom_Johto_KogasRoomDoorsCallback_KeepExitClosed_Cb
+	setmetatile 4, 2, 530, 0
+	setmetatile 5, 2, 530, 0
+	setmetatile 4, 3, 519, 0
+	setmetatile 5, 3, 519, 0
+	special DrawWholeMapView
+
+KogasRoom_Johto_KogasRoomDoorsCallback_KeepExitClosed_Cb:
+	return
 
 KogasRoom_Johto_KogasRoom_EnterMovement:
 	walk_up

@@ -66,8 +66,11 @@ Route43_Johto_TrainerPokemaniacBrent::
 	goto Route43_Johto_TrainerPokemaniacBrent_Script
 
 Route43_Johto_TrainerPokemaniacBrent_Script:
+	setvar VAR_0x8007, 625
 	goto_if_set FLAG_JOHTO_ENGINE_BRENT_READY_FOR_REMATCH, Route43_Johto_TrainerPokemaniacBrent_WantsBattle
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_POKEMANIAC_BRENT_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_BRENT_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route43_Johto_TrainerPokemaniacBrent_NumberAccepted
 	goto_if_set FLAG_JOHTO_BRENT_ASKED_FOR_PHONE_NUMBER, Route43_Johto_TrainerPokemaniacBrent_AskedAlready
 	message Route43_Johto_PokemaniacBrentAfterBattleText
@@ -81,16 +84,59 @@ Route43_Johto_TrainerPokemaniacBrent_AskedAlready:
 	call Route43_Johto_TrainerPokemaniacBrent_AskNumber2_Sub
 
 Route43_Johto_TrainerPokemaniacBrent_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_POKEMANIAC_BRENT_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_BRENT_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route43_Johto_TrainerPokemaniacBrent_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route43_Johto_TrainerPokemaniacBrent_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_POKEMANIAC_BRENT1
 	call Route43_Johto_TrainerPokemaniacBrent_RegisteredNumber_Sub
 	goto Route43_Johto_TrainerPokemaniacBrent_NumberAccepted
 
 Route43_Johto_TrainerPokemaniacBrent_WantsBattle:
 	call Route43_Johto_TrainerPokemaniacBrent_Rematch_Sub
-	@ TODO unsupported: readmem wBrentFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WBRENTFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 3, Route43_Johto_TrainerPokemaniacBrent_Fight3
+	goto_if_eq VAR_RESULT, 2, Route43_Johto_TrainerPokemaniacBrent_Fight2
+	goto_if_eq VAR_RESULT, 1, Route43_Johto_TrainerPokemaniacBrent_Fight1
+	goto_if_eq VAR_RESULT, 0, Route43_Johto_TrainerPokemaniacBrent_LoadFight0
+
+Route43_Johto_TrainerPokemaniacBrent_Fight3:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route43_Johto_TrainerPokemaniacBrent_LoadFight3
+
+Route43_Johto_TrainerPokemaniacBrent_Fight2:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route43_Johto_TrainerPokemaniacBrent_LoadFight2
+
+Route43_Johto_TrainerPokemaniacBrent_Fight1:
+	goto_if_set FLAG_JOHTO_CLEARED_ROCKET_HIDEOUT, Route43_Johto_TrainerPokemaniacBrent_LoadFight1
+
+Route43_Johto_TrainerPokemaniacBrent_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_POKEMANIAC_BRENT1, Route43_Johto_PokemaniacBrentBeatenText
+	setvar VAR_JOHTO_MEM_WBRENTFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_BRENT_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route43_Johto_TrainerPokemaniacBrent_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_POKEMANIAC_BRENT2, Route43_Johto_PokemaniacBrentBeatenText
+	setvar VAR_JOHTO_MEM_WBRENTFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_BRENT_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route43_Johto_TrainerPokemaniacBrent_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_POKEMANIAC_BRENT3, Route43_Johto_PokemaniacBrentBeatenText
+	setvar VAR_JOHTO_MEM_WBRENTFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_BRENT_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route43_Johto_TrainerPokemaniacBrent_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_POKEMANIAC_BRENT4, Route43_Johto_PokemaniacBrentBeatenText
+	clearflag FLAG_JOHTO_ENGINE_BRENT_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route43_Johto_TrainerPokemaniacBrent_NumberAccepted:
 	goto Johto_Std_NumberAcceptedMScript
@@ -139,11 +185,15 @@ Route43_Johto_TrainerPicnickerTiffany::
 	goto Route43_Johto_TrainerPicnickerTiffany_Script
 
 Route43_Johto_TrainerPicnickerTiffany_Script:
+	setvar VAR_0x8007, 365
 	goto_if_set FLAG_JOHTO_ENGINE_TIFFANY_READY_FOR_REMATCH, Route43_Johto_TrainerPicnickerTiffany_WantsBattle
 	goto_if_set FLAG_JOHTO_ENGINE_TIFFANY_HAS_PINK_BOW, Route43_Johto_TrainerPicnickerTiffany_HasPinkBow
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_PICNICKER_TIFFANY_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_TIFFANY_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route43_Johto_TrainerPicnickerTiffany_NumberAccepted
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, SPECIES_CLEFAIRY
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
 	goto_if_eq VAR_RESULT, 0, Route43_Johto_TrainerPicnickerTiffany_NoClefairy
 	goto_if_set FLAG_JOHTO_TIFFANY_ASKED_FOR_PHONE_NUMBER, Route43_Johto_TrainerPicnickerTiffany_AskedAlready
 	message Route43_Johto_PicnickerTiffanyWantsPicnicText
@@ -157,16 +207,59 @@ Route43_Johto_TrainerPicnickerTiffany_AskedAlready:
 	call Route43_Johto_TrainerPicnickerTiffany_AskNumber2_Sub
 
 Route43_Johto_TrainerPicnickerTiffany_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_PICNICKER_TIFFANY_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_TIFFANY_READY_FOR_REMATCH
+	setvar VAR_0x8006, FLAG_JOHTO_ENGINE_TIFFANY_HAS_PINK_BOW
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route43_Johto_TrainerPicnickerTiffany_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route43_Johto_TrainerPicnickerTiffany_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_PICNICKER_TIFFANY3
 	call Route43_Johto_TrainerPicnickerTiffany_RegisteredNumber_Sub
 	goto Route43_Johto_TrainerPicnickerTiffany_NumberAccepted
 
 Route43_Johto_TrainerPicnickerTiffany_WantsBattle:
 	call Route43_Johto_TrainerPicnickerTiffany_Rematch_Sub
-	@ TODO unsupported: readmem wTiffanyFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WTIFFANYFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 3, Route43_Johto_TrainerPicnickerTiffany_Fight3
+	goto_if_eq VAR_RESULT, 2, Route43_Johto_TrainerPicnickerTiffany_Fight2
+	goto_if_eq VAR_RESULT, 1, Route43_Johto_TrainerPicnickerTiffany_Fight1
+	goto_if_eq VAR_RESULT, 0, Route43_Johto_TrainerPicnickerTiffany_LoadFight0
+
+Route43_Johto_TrainerPicnickerTiffany_Fight3:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route43_Johto_TrainerPicnickerTiffany_LoadFight3
+
+Route43_Johto_TrainerPicnickerTiffany_Fight2:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route43_Johto_TrainerPicnickerTiffany_LoadFight2
+
+Route43_Johto_TrainerPicnickerTiffany_Fight1:
+	goto_if_set FLAG_JOHTO_CLEARED_RADIO_TOWER, Route43_Johto_TrainerPicnickerTiffany_LoadFight1
+
+Route43_Johto_TrainerPicnickerTiffany_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_TIFFANY3, Route43_Johto_PicnickerTiffanyBeatenText
+	setvar VAR_JOHTO_MEM_WTIFFANYFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_TIFFANY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route43_Johto_TrainerPicnickerTiffany_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_TIFFANY1, Route43_Johto_PicnickerTiffanyBeatenText
+	setvar VAR_JOHTO_MEM_WTIFFANYFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_TIFFANY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route43_Johto_TrainerPicnickerTiffany_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_TIFFANY2, Route43_Johto_PicnickerTiffanyBeatenText
+	setvar VAR_JOHTO_MEM_WTIFFANYFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_TIFFANY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route43_Johto_TrainerPicnickerTiffany_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_TIFFANY4, Route43_Johto_PicnickerTiffanyBeatenText
+	clearflag FLAG_JOHTO_ENGINE_TIFFANY_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route43_Johto_TrainerPicnickerTiffany_HasPinkBow:
 	call Route43_Johto_TrainerPicnickerTiffany_Gift_Sub

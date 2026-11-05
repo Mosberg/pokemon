@@ -127,6 +127,7 @@ CeladonGym_Johto_CeladonGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 CeladonGym_Johto_CeladonGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_ERIKA_ERIKA1
 	goto Johto_Std_GymStatue2Script
 
 CeladonGym_Johto_ErikaBeforeBattleText:

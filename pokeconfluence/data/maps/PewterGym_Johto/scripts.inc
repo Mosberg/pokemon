@@ -83,6 +83,7 @@ PewterGym_Johto_PewterGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 PewterGym_Johto_PewterGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_BROCK_BROCK1
 	goto Johto_Std_GymStatue2Script
 
 PewterGym_Johto_BrockIntroText:

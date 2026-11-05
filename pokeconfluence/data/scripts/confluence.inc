@@ -567,3 +567,51 @@ Confluence_Text_GateClosed:
 Confluence_Text_ApexNotYet:
 	.string "The Summit is fought in order.\n"
 	.string "Face the warden below me first.$"
+
+Confluence_EventScript_StationCommuterKanto::
+	msgbox Confluence_Text_StationCommuterKanto, MSGBOX_NPC
+	end
+
+Confluence_EventScript_StationCommuterJohto::
+	msgbox Confluence_Text_StationCommuterJohto, MSGBOX_NPC
+	end
+
+Confluence_EventScript_StationEngineerHoenn::
+	msgbox Confluence_Text_StationEngineerHoenn, MSGBOX_NPC
+	end
+
+Confluence_EventScript_StationTimetableSign::
+	msgbox Confluence_Text_StationTimetableSign, MSGBOX_SIGN
+	end
+
+Confluence_EventScript_StationNetworkSign::
+	msgbox Confluence_Text_StationNetworkSign, MSGBOX_SIGN
+	end
+
+Confluence_Text_StationCommuterKanto:
+	.string "In the old days you needed an S.S.\n"
+	.string "TICKET just to sail out of VERMILION.\p"
+	.string "Now the MERIDIAN EXPRESS runs beneath\n"
+	.string "the sea in minutes!$"
+
+Confluence_Text_StationCommuterJohto:
+	.string "I came down from OLIVINE CITY to shop\n"
+	.string "in SLATEPORT's market.\p"
+	.string "Three regions, one rail pass!$"
+
+Confluence_Text_StationEngineerHoenn:
+	.string "DEVON CORP. and SILPH CO. laid the\n"
+	.string "subsea magnet rails together.\p"
+	.string "MERIDIAN HOLDINGS manages the station\n"
+	.string "power grid.$"
+
+Confluence_Text_StationTimetableSign:
+	.string "MERIDIAN EXPRESS TIMETABLE\n"
+	.string "Platform 1: VERMILION HARBOR (KANTO)\l"
+	.string "Platform 2: OLIVINE PIER (JOHTO)\l"
+	.string "Platform 3: SLATEPORT HARBOR (HOENN)$"
+
+Confluence_Text_StationNetworkSign:
+	.string "TRI-REGION CIRCUIT NOTICE\n"
+	.string "All 24 GYM BADGES are recognized\l"
+	.string "by the APEX SUMMIT COMMITTEE.$"

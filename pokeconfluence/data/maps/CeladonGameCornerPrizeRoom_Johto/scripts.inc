@@ -28,8 +28,13 @@ CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomGentlemanScript:
 	end
 
 CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPharmacistScript:
-	@ TODO unsupported: jumptextfaceplayer CeladonGameCornerPrizeRoomPharmacistText
-	goto Johto_EventScript_Unimplemented
+	faceplayer
+	message CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPharmacistText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomTMVendor:
 	faceplayer
@@ -42,7 +47,7 @@ CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomTMVendor:
 	waitmessage
 
 CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_tmcounterloop:
-	@ TODO unsupported: special DisplayCoinCaseBalance
+	@ TODO unsupported: loadmenu CeladonPrizeRoom_TMMenuHeader
 	goto Johto_EventScript_Unimplemented
 
 CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_NoCoinCase:
@@ -64,13 +69,21 @@ CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor:
 CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPokemonVendor_loop:
 	message CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_AskWhichPrizeText
 	waitmessage
-	@ TODO unsupported: special DisplayCoinCaseBalance
+	@ TODO unsupported: loadmenu .MenuHeader
 	goto Johto_EventScript_Unimplemented
 
 CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomGentlemanText:
 	.string "I wanted PORYGON,\n"
 	.string "but I was short by\l"
 	.string "100 coins…$"
+
+CeladonGameCornerPrizeRoom_Johto_CeladonGameCornerPrizeRoomPharmacistText:
+	.string "Whew…"
+	.string "\pI've got to stay\n"
+	.string "calm and cool…"
+	.string "\pI can't lose my\n"
+	.string "cool, or I'll lose\l"
+	.string "all my money…$"
 
 CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_PrizeVendorIntroText:
 	.string "Welcome!"

@@ -16,8 +16,11 @@ GoldenrodNameRater_Johto_GoldenrodNameRaterRadio_Entry::
 
 GoldenrodNameRater_Johto_GoldenrodNameRater:
 	faceplayer
-	@ TODO unsupported: special NameRater
-	goto Johto_EventScript_Unimplemented
+	goto SlateportCity_NameRatersHouse_EventScript_NameRater
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 GoldenrodNameRater_Johto_GoldenrodNameRaterBookshelf:
 	goto Johto_Std_DifficultBookshelfScript

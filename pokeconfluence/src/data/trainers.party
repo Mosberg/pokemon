@@ -16881,7 +16881,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 === TRAINER_APEX_KANTO ===
 Name: KESTREL
 Class: Elite Four
-Pic: Elite Four Drake
+Pic: Champion Rival Frlg
 Gender: Male
 Music: Elite Four
 Items: Full Restore / Full Restore / Full Restore / Full Restore
@@ -16940,7 +16940,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 === TRAINER_APEX_JOHTO ===
 Name: MAREN
 Class: Elite Four
-Pic: Dragon Tamer
+Pic: Elite Four Lance Frlg
 Gender: Male
 Music: Elite Four
 Items: Full Restore / Full Restore / Full Restore / Full Restore
@@ -16999,7 +16999,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 === TRAINER_APEX_HOENN ===
 Name: ORVILLE
 Class: Elite Four
-Pic: Elite Four Sidney
+Pic: Steven
 Gender: Male
 Music: Elite Four
 Items: Full Restore / Full Restore / Full Restore / Full Restore
@@ -17267,7 +17267,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 === TRAINER_SYNDICATE_CHAIRMAN ===
 Name: CHAIRMAN
 Class: Magma Leader
-Pic: Magma Leader Maxie
+Pic: Leader Giovanni Frlg
 Gender: Male
 Music: Intense
 Items: Hyper Potion / Hyper Potion

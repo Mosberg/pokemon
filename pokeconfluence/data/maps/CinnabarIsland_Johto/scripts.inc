@@ -61,6 +61,7 @@ CinnabarIsland_Johto_CinnabarIslandFlypointCallback_Cb:
 	return
 
 CinnabarIsland_Johto_CinnabarIslandBlueTeleport:
+	set_invisible
 	step_end
 
 CinnabarIsland_Johto_CinnabarIslandBlueText:

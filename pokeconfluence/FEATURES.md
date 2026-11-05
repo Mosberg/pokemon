@@ -23,8 +23,9 @@ Added on top of the base hack (design and status: [docs/CONFLUENCE.md](docs/CONF
 - Gym Leaders, Elite Four and Champions scaled to the level cap (never lowered)
 - Resonance weather anomalies until each region's three legends are caught
 - Convergence Crisis: three Syndicate enforcers, then the Chairman
-- Apex Summit: four rounds against the three Regional Wardens and the Summit Champion
-- Field Kit: the first party Pokémon can use Cut, Rock Smash, Strength, Surf, Waterfall, Dive and Rock Climb without the HM move
+- Apex Summit: four rounds against the three Regional Wardens and the Summit Champion in a dedicated Summit arena
+- Field Kit: the first party Pokémon can use Cut, Rock Smash, Strength, Surf, Waterfall, Dive and Rock Climb in the overworld without the HM move, plus a **FIELD KIT** submenu in the party menu for Surf, Fly, Flash, Dig, Teleport, Dive and Waterfall
+- Johto Phone Book & Rematches: register all 37 Johto phone trainers and battle their 5-tier scaled rematch teams
 - Reusable TMs
 
 ## Configuration files

@@ -77,23 +77,93 @@ RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterGetUnownDexScript:
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist3Script:
 	faceplayer
-	@ TODO unsupported: readvar VAR_UNOWNCOUNT
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 0
+	goto_if_eq VAR_RESULT, 26, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist3Script_PrinterAvailable
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist3Text
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist3Script_PrinterAvailable:
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist3_PrinterAvailable
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Script:
 	faceplayer
-	@ TODO unsupported: readvar VAR_UNOWNCOUNT
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 0
+	goto_if_eq VAR_RESULT, 26, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Script_GotAllUnown
+	goto_if_set FLAG_JOHTO_ENGINE_UNOWN_DEX, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Script_GotUnownDex
+	goto_if_set FLAG_JOHTO_MADE_UNOWN_APPEAR_IN_RUINS, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Script_UnownAppeared
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Text
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Script_UnownAppeared:
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Text_UnownAppeared
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Script_GotUnownDex:
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Text_GotUnownDex
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Script_GotAllUnown:
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Text_GotAllUnown
+	waitmessage
+	waitbuttonpress
+	closemessage
+	clearflag FLAG_JOHTO_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
+	releaseall
+	end
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Script:
 	faceplayer
-	@ TODO unsupported: readvar VAR_UNOWNCOUNT
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 0
+	goto_if_eq VAR_RESULT, 26, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Script_GotAllUnown
+	goto_if_set FLAG_JOHTO_MADE_UNOWN_APPEAR_IN_RUINS, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Script_UnownAppeared
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Text
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Script_UnownAppeared:
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Text_UnownAppeared
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Script_GotAllUnown:
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Text_GotAllUnown
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputer:
 	goto_if_set FLAG_JOHTO_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputer_SkipChecking
-	@ TODO unsupported: readvar VAR_UNOWNCOUNT
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 0
+	goto_if_eq VAR_RESULT, 26, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputer_GotAllUnown
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputer_SkipChecking:
 	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputerText
@@ -103,10 +173,18 @@ RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputer_SkipChecking:
 	releaseall
 	end
 
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputer_GotAllUnown:
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputerText_GotAllUnown
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterPrinter:
 	goto_if_set FLAG_JOHTO_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterPrinter_SkipChecking
-	@ TODO unsupported: readvar VAR_UNOWNCOUNT
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 0
+	goto_if_eq VAR_RESULT, 26, RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterPrinter_PrinterAvailable
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterPrinter_SkipChecking:
 	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterPrinterText_DoesntWork
@@ -115,6 +193,13 @@ RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterPrinter_SkipChecking:
 	closemessage
 	releaseall
 	end
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterPrinter_PrinterAvailable:
+	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterUnownPrinterText
+	waitmessage
+	waitbuttonpress
+	@ TODO unsupported: special UnownPrinter
+	goto Johto_EventScript_Unimplemented
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterBookshelf:
 	message RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterAcademicBooksText
@@ -167,14 +252,94 @@ RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist3Text:
 	.string "\pCheck to see how\n"
 	.string "many kinds exist.$"
 
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist3_PrinterAvailable:
+	.string "You caught all the\n"
+	.string "UNOWN variations?"
+	.string "\pThat's a great\n"
+	.string "achievement!"
+	.string "\pI've set up the\n"
+	.string "printer here for\l"
+	.string "handling UNOWN."
+	.string "\pFeel free to use\n"
+	.string "it anytime.$"
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Text:
+	.string "The RUINS are\n"
+	.string "about 1500 years\l"
+	.string "old."
+	.string "\pBut it's not known\n"
+	.string "why they were\l"
+	.string "built--or by whom.$"
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Text_GotUnownDex:
+	.string "I wonder how many\n"
+	.string "kinds of POKéMON\l"
+	.string "are in the RUINS?$"
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Text_UnownAppeared:
+	.string "POKéMON appeared\n"
+	.string "in the RUINS?"
+	.string "\pThat's incredible\n"
+	.string "news!"
+	.string "\pWe'll need to\n"
+	.string "investigate this.$"
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist1Text_GotAllUnown:
+	.string "Our investigation,\n"
+	.string "with your help, is"
+	.string "\pgiving us insight\n"
+	.string "into the RUINS."
+	.string "\pThe RUINS appear\n"
+	.string "to have been built"
+	.string "\pas a habitat for\n"
+	.string "POKéMON.$"
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Text:
+	.string "There are odd pat-\n"
+	.string "terns drawn on the"
+	.string "\pwalls of the\n"
+	.string "RUINS."
+	.string "\pThey must be the\n"
+	.string "keys for unravel-\l"
+	.string "ing the mystery\l"
+	.string "of the RUINS.$"
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Text_UnownAppeared:
+	.string "The strange POKé-\n"
+	.string "MON you saw in the\l"
+	.string "RUINS?"
+	.string "\pThey appear to be\n"
+	.string "very much like the"
+	.string "\pdrawings on the\n"
+	.string "walls there."
+	.string "\pHmm…"
+	.string "\pThat must mean\n"
+	.string "there are many\l"
+	.string "kinds of them…$"
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterScientist2Text_GotAllUnown:
+	.string "Why did those\n"
+	.string "ancient patterns"
+	.string "\pappear on the wall\n"
+	.string "now?"
+	.string "\pThe mystery\n"
+	.string "deepens…$"
+
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputerText:
 	.string "RUINS OF ALPH"
 	.string "\pExploration\n"
 	.string "Year 10$"
 
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterComputerText_GotAllUnown:
+	.string "(text not converted)$"
+
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterPrinterText_DoesntWork:
 	.string "This doesn't seem\n"
 	.string "to work yet.$"
+
+RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterUnownPrinterText:
+	.string "UNOWN may be\n"
+	.string "printed out.$"
 
 RuinsOfAlphResearchCenter_Johto_RuinsOfAlphResearchCenterAcademicBooksText:
 	.string "There are many\n"

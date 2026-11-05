@@ -313,6 +313,16 @@ Johto_Std_ReceiveItemScript_Cb:
 	closemessage
 	return
 
+Johto_Std_AskPhone:
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, NO, Johto_Std_AskPhone_No
+	special JohtoPhoneRegister
+	return
+
+Johto_Std_AskPhone_No:
+	setvar VAR_RESULT, 2
+	return
+
 	.align 2
 Johto_Mart_AZALEA:
 	.2byte ITEM_CHARCOAL
@@ -836,7 +846,7 @@ Johto_Std_AskNumber1FScript_Reena_Sub:
 	return
 
 Johto_Std_AskNumber1FScript_Sub:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 843, Johto_Std_AskNumber1FScript_Beverly_Sub
 	goto_if_eq VAR_RESULT, 548, Johto_Std_AskNumber1FScript_Beth_Sub
 	goto_if_eq VAR_RESULT, 641, Johto_Std_AskNumber1FScript_Reena_Sub
@@ -927,7 +937,7 @@ Johto_Std_AskNumber1MScript_Ralph_Sub:
 	return
 
 Johto_Std_AskNumber1MScript_Sub:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 465, Johto_Std_AskNumber1MScript_Jack_Sub
 	goto_if_eq VAR_RESULT, 123, Johto_Std_AskNumber1MScript_Huey_Sub
 	goto_if_eq VAR_RESULT, 797, Johto_Std_AskNumber1MScript_Gaven_Sub
@@ -1010,7 +1020,7 @@ Johto_Std_AskNumber2FScript_Reena_Sub:
 	return
 
 Johto_Std_AskNumber2FScript_Sub:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 843, Johto_Std_AskNumber2FScript_Beverly_Sub
 	goto_if_eq VAR_RESULT, 548, Johto_Std_AskNumber2FScript_Beth_Sub
 	goto_if_eq VAR_RESULT, 641, Johto_Std_AskNumber2FScript_Reena_Sub
@@ -1101,7 +1111,7 @@ Johto_Std_AskNumber2MScript_Ralph_Sub:
 	return
 
 Johto_Std_AskNumber2MScript_Sub:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 465, Johto_Std_AskNumber2MScript_Jack_Sub
 	goto_if_eq VAR_RESULT, 123, Johto_Std_AskNumber2MScript_Huey_Sub
 	goto_if_eq VAR_RESULT, 797, Johto_Std_AskNumber2MScript_Gaven_Sub
@@ -1327,7 +1337,7 @@ Johto_Std_CoinVendor_IntroScript:
 	waitmessage
 
 Johto_Std_CoinVendor_IntroScript_loop:
-	@ TODO unsupported: special DisplayMoneyAndCoinBalance
+	@ TODO unsupported: loadmenu .MenuHeader
 	goto Johto_EventScript_Unimplemented
 
 Johto_Std_CoinVendor_IntroText:
@@ -1561,6 +1571,13 @@ Johto_Std_ErinPhoneFullText:
 	.string "Oh no. Your phone\n"
 	.string "is all filled up.$"
 
+Johto_Std_ErinRematchGiftText:
+	.string "Aww… I lost again!"
+	.string "\pI wonder how many\n"
+	.string "times that is…"
+	.string "\pThanks for coming!\n"
+	.string "Here's a present!$"
+
 Johto_Std_ErinRematchText:
 	.string "Yay! I waited!\n"
 	.string "Let's start now!$"
@@ -1642,7 +1659,7 @@ Johto_Std_GiftFScript_Gina_Sub:
 	return
 
 Johto_Std_GiftFScript_Sub:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 843, Johto_Std_GiftFScript_Beverly_Sub
 	goto_if_eq VAR_RESULT, 428, Johto_Std_GiftFScript_Gina_Sub
 	goto_if_eq VAR_RESULT, 871, Johto_Std_GiftFScript_Dana_Sub
@@ -1679,7 +1696,7 @@ Johto_Std_GiftMScript_Kenji_Sub:
 	return
 
 Johto_Std_GiftMScript_Sub:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 122, Johto_Std_GiftMScript_Jose_Sub
 	goto_if_eq VAR_RESULT, 711, Johto_Std_GiftMScript_Wade_Sub
 	goto_if_eq VAR_RESULT, 294, Johto_Std_GiftMScript_Alan_Sub
@@ -1762,6 +1779,7 @@ Johto_Std_GoldenrodRocketsScript_Sub:
 	return
 
 Johto_Std_GymStatue1Script:
+	special JohtoBufferLandmarkName
 	message Johto_Std_GymStatue_CityGymText
 	waitmessage
 	waitbuttonpress
@@ -1770,6 +1788,7 @@ Johto_Std_GymStatue1Script:
 	end
 
 Johto_Std_GymStatue2Script:
+	special JohtoBufferLandmarkName
 	message Johto_Std_GymStatue_CityGymText
 	waitmessage
 	waitbuttonpress
@@ -1869,6 +1888,26 @@ Johto_Std_HueyPackFullText:
 Johto_Std_HueyPhoneFullText:
 	.string "Hey! Your phone's\n"
 	.string "already full!$"
+
+Johto_Std_HueyRematchGiftText:
+	.string "Man! You're as\n"
+	.string "tough as ever!"
+	.string "\pI've battled you\n"
+	.string "over and over, but"
+	.string "\p{PLAYER}, I haven't\n"
+	.string "won once."
+	.string "\pI bought tons of\n"
+	.string "items to toughen"
+	.string "\pup my POKéMON, but\n"
+	.string "to no avail…"
+	.string "\pItems alone aren't\n"
+	.string "the answer."
+	.string "\pThat must be what\n"
+	.string "it is…"
+	.string "\pHere, take this,\n"
+	.string "{PLAYER}."
+	.string "\pI won't be needing\n"
+	.string "it anymore…$"
 
 Johto_Std_HueyRematchText:
 	.string "Hey! I'm tired of\n"
@@ -2122,6 +2161,19 @@ Johto_Std_JoeyPhoneFullText:
 	.string "Huh, what? Your\n"
 	.string "phone's full.$"
 
+Johto_Std_JoeyRematchGiftText:
+	.string "And yet another\n"
+	.string "loss…"
+	.string "\pNo doubt about\n"
+	.string "it--you're tough."
+	.string "\pBeing beaten this\n"
+	.string "often actually\l"
+	.string "feels good now!"
+	.string "\pHere, take this. \n"
+	.string "Use it to get even"
+	.string "\ptougher. That will\n"
+	.string "toughen me up too!$"
+
 Johto_Std_JoeyRematchText:
 	.string "I've been waiting!\n"
 	.string "Let's battle now!$"
@@ -2295,7 +2347,7 @@ Johto_Std_MartSignText:
 	.string "\pPOKéMON MART$"
 
 Johto_Std_NumberAcceptedFScript:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 843, Johto_Std_NumberAcceptedFScript_Beverly
 	goto_if_eq VAR_RESULT, 548, Johto_Std_NumberAcceptedFScript_Beth
 	goto_if_eq VAR_RESULT, 641, Johto_Std_NumberAcceptedFScript_Reena
@@ -2370,7 +2422,7 @@ Johto_Std_NumberAcceptedFScript_Tiffany:
 	end
 
 Johto_Std_NumberAcceptedMScript:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 465, Johto_Std_NumberAcceptedMScript_Jack
 	goto_if_eq VAR_RESULT, 123, Johto_Std_NumberAcceptedMScript_Huey
 	goto_if_eq VAR_RESULT, 797, Johto_Std_NumberAcceptedMScript_Gaven
@@ -2553,7 +2605,7 @@ Johto_Std_NumberAcceptedMScript_Wilton:
 	end
 
 Johto_Std_NumberDeclinedFScript:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 843, Johto_Std_NumberDeclinedFScript_Beverly
 	goto_if_eq VAR_RESULT, 548, Johto_Std_NumberDeclinedFScript_Beth
 	goto_if_eq VAR_RESULT, 641, Johto_Std_NumberDeclinedFScript_Reena
@@ -2628,7 +2680,7 @@ Johto_Std_NumberDeclinedFScript_Tiffany:
 	end
 
 Johto_Std_NumberDeclinedMScript:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 465, Johto_Std_NumberDeclinedMScript_Jack
 	goto_if_eq VAR_RESULT, 123, Johto_Std_NumberDeclinedMScript_Huey
 	goto_if_eq VAR_RESULT, 797, Johto_Std_NumberDeclinedMScript_Gaven
@@ -2837,7 +2889,7 @@ Johto_Std_NurseTakePokemonText:
 	.string "POKéMON?$"
 
 Johto_Std_PackFullFScript:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 843, Johto_Std_PackFullFScript_Beverly
 	goto_if_eq VAR_RESULT, 428, Johto_Std_PackFullFScript_Gina
 	goto_if_eq VAR_RESULT, 871, Johto_Std_PackFullFScript_Dana
@@ -2885,7 +2937,7 @@ Johto_Std_PackFullFScript_Tiffany:
 	end
 
 Johto_Std_PackFullMScript:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 123, Johto_Std_PackFullMScript_Huey
 	goto_if_eq VAR_RESULT, 122, Johto_Std_PackFullMScript_Jose
 	goto_if_eq VAR_RESULT, 138, Johto_Std_PackFullMScript_Joey
@@ -3024,6 +3076,17 @@ Johto_Std_ParryPhoneFullText:
 	.string "room to register\l"
 	.string "my phone number.$"
 
+Johto_Std_ParryRematchGiftText:
+	.string "Well, you're\n"
+	.string "special all right."
+	.string "\pIf only I'd begun\n"
+	.string "POKéMON when I was\l"
+	.string "a tad younger…"
+	.string "\pI want you to work\n"
+	.string "and succeed for"
+	.string "\pthe both of us.\n"
+	.string "So take this, OK?$"
+
 Johto_Std_ParryRematchText:
 	.string "Hey, here comes\n"
 	.string "the kid! Let's go!"
@@ -3032,7 +3095,7 @@ Johto_Std_ParryRematchText:
 	.string "out offense?$"
 
 Johto_Std_PhoneFullFScript:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 843, Johto_Std_PhoneFullFScript_Beverly
 	goto_if_eq VAR_RESULT, 548, Johto_Std_PhoneFullFScript_Beth
 	goto_if_eq VAR_RESULT, 641, Johto_Std_PhoneFullFScript_Reena
@@ -3107,7 +3170,7 @@ Johto_Std_PhoneFullFScript_Tiffany:
 	end
 
 Johto_Std_PhoneFullMScript:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 465, Johto_Std_PhoneFullMScript_Jack
 	goto_if_eq VAR_RESULT, 123, Johto_Std_PhoneFullMScript_Huey
 	goto_if_eq VAR_RESULT, 797, Johto_Std_PhoneFullMScript_Gaven
@@ -3521,7 +3584,7 @@ Johto_Std_RematchFScript_Reena_Sub:
 	return
 
 Johto_Std_RematchFScript_Sub:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 548, Johto_Std_RematchFScript_Beth_Sub
 	goto_if_eq VAR_RESULT, 641, Johto_Std_RematchFScript_Reena_Sub
 	goto_if_eq VAR_RESULT, 718, Johto_Std_RematchFScript_Liz_Sub
@@ -3535,6 +3598,47 @@ Johto_Std_RematchFScript_Tiffany_Sub:
 	waitmessage
 	waitbuttonpress
 	closemessage
+	return
+
+Johto_Std_RematchGiftFScript_Erin_Sub:
+	message Johto_Std_ErinRematchGiftText
+	waitmessage
+	waitbuttonpress
+	return
+
+Johto_Std_RematchGiftFScript_Sub:
+	copyvar VAR_RESULT, VAR_0x8007
+	goto_if_eq VAR_RESULT, 552, Johto_Std_RematchGiftFScript_Erin_Sub
+
+Johto_Std_RematchGiftMScript_Huey_Sub:
+	message Johto_Std_HueyRematchGiftText
+	waitmessage
+	waitbuttonpress
+	return
+
+Johto_Std_RematchGiftMScript_Joey_Sub:
+	message Johto_Std_JoeyRematchGiftText
+	waitmessage
+	waitbuttonpress
+	return
+
+Johto_Std_RematchGiftMScript_Parry_Sub:
+	message Johto_Std_ParryRematchGiftText
+	waitmessage
+	waitbuttonpress
+	return
+
+Johto_Std_RematchGiftMScript_Sub:
+	copyvar VAR_RESULT, VAR_0x8007
+	goto_if_eq VAR_RESULT, 123, Johto_Std_RematchGiftMScript_Huey_Sub
+	goto_if_eq VAR_RESULT, 138, Johto_Std_RematchGiftMScript_Joey_Sub
+	goto_if_eq VAR_RESULT, 917, Johto_Std_RematchGiftMScript_Vance_Sub
+	goto_if_eq VAR_RESULT, 605, Johto_Std_RematchGiftMScript_Parry_Sub
+
+Johto_Std_RematchGiftMScript_Vance_Sub:
+	message Johto_Std_VanceRematchGiftText
+	waitmessage
+	waitbuttonpress
 	return
 
 Johto_Std_RematchMScript_Alan_Sub:
@@ -3622,7 +3726,7 @@ Johto_Std_RematchMScript_Ralph_Sub:
 	return
 
 Johto_Std_RematchMScript_Sub:
-	setvar VAR_RESULT, 0
+	copyvar VAR_RESULT, VAR_0x8007
 	goto_if_eq VAR_RESULT, 465, Johto_Std_RematchMScript_Jack_Sub
 	goto_if_eq VAR_RESULT, 123, Johto_Std_RematchMScript_Huey_Sub
 	goto_if_eq VAR_RESULT, 797, Johto_Std_RematchMScript_Gaven_Sub
@@ -3899,6 +4003,16 @@ Johto_Std_VancePhoneFullText:
 	.string "Your phone's out\n"
 	.string "of memory. Delete\l"
 	.string "a number for me!$"
+
+Johto_Std_VanceRematchGiftText:
+	.string "You are really,\n"
+	.string "really strong!"
+	.string "\pThanks for taking\n"
+	.string "me on so often--I"
+	.string "\plearned a whole\n"
+	.string "lot from you."
+	.string "\pI know! This will\n"
+	.string "do as my thanks!$"
 
 Johto_Std_VanceRematchText:
 	.string "Am I happy to see\n"

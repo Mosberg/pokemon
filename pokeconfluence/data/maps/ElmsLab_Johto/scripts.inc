@@ -335,6 +335,7 @@ ElmsLab_Johto_ElmDirectionsScript:
 	waitmessage
 	waitbuttonpress
 	closemessage
+	setflag FLAG_JOHTO_PHONE_ELM_REGISTERED
 	message ElmsLab_Johto_GotElmsNumberText
 	waitmessage
 	playse SE_PIN

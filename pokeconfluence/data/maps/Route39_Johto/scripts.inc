@@ -44,10 +44,14 @@ Route39_Johto_TrainerPokefanmDerek::
 	goto Route39_Johto_TrainerPokefanmDerek_Script
 
 Route39_Johto_TrainerPokefanmDerek_Script:
+	setvar VAR_0x8007, 1009
 	goto_if_set FLAG_JOHTO_ENGINE_DEREK_HAS_NUGGET, Route39_Johto_TrainerPokefanmDerek_HasNugget
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_POKEFANM_DEREK_REGISTERED
+	setvar VAR_0x8005, 0
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route39_Johto_TrainerPokefanmDerek_NumberAccepted
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, SPECIES_PIKACHU
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
 	goto_if_eq VAR_RESULT, 0, Route39_Johto_TrainerPokefanmDerek_WantsPikachu
 	goto_if_set FLAG_JOHTO_DEREK_ASKED_FOR_PHONE_NUMBER, Route39_Johto_TrainerPokefanmDerek_AskedAlready
 	message Route39_Johto_PokefanMDerekText_NotBragging
@@ -61,9 +65,13 @@ Route39_Johto_TrainerPokefanmDerek_AskedAlready:
 	call Route39_Johto_TrainerPokefanmDerek_AskNumber2_Sub
 
 Route39_Johto_TrainerPokefanmDerek_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_POKEFANM_DEREK_REGISTERED
+	setvar VAR_0x8005, 0
+	setvar VAR_0x8006, FLAG_JOHTO_ENGINE_DEREK_HAS_NUGGET
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route39_Johto_TrainerPokefanmDerek_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route39_Johto_TrainerPokefanmDerek_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_POKEFANM_DEREK1
 	call Route39_Johto_TrainerPokefanmDerek_RegisteredNumber_Sub
 	goto Route39_Johto_TrainerPokefanmDerek_NumberAccepted
 

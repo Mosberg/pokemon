@@ -1,6 +1,11 @@
 BurnedTower1F_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, BurnedTower1F_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, BurnedTower1F_Johto_OnFrame
 	.byte 0
+
+BurnedTower1F_Johto_OnLoad:
+	call BurnedTower1F_Johto_BurnedTower1FHoleAndLadderCallback_Cb
+	end
 
 BurnedTower1F_Johto_OnFrame:
 	map_script_2 VAR_JOHTO_SCENE_BURNED_TOWER_1F, 0, BurnedTower1F_Johto_BurnedTower1FMeetEusineScript_Entry
@@ -139,6 +144,25 @@ BurnedTower1F_Johto_BurnedTower1FHPUp:
 	finditem ITEM_HP_UP
 	releaseall
 	end
+
+BurnedTower1F_Johto_BurnedTower1FHoleAndLadderCallback_Cb:
+	goto_if_set FLAG_JOHTO_HOLE_IN_BURNED_TOWER, BurnedTower1F_Johto_BurnedTower1FHoleAndLadderCallback_KeepHoleOpen_Cb
+	setmetatile 10, 8, 543, 1
+	setmetatile 11, 8, 543, 1
+	setmetatile 10, 9, 513, 0
+	setmetatile 11, 9, 513, 0
+	special DrawWholeMapView
+
+BurnedTower1F_Johto_BurnedTower1FHoleAndLadderCallback_KeepHoleOpen_Cb:
+	goto_if_set FLAG_JOHTO_RELEASED_THE_BEASTS, BurnedTower1F_Johto_BurnedTower1FHoleAndLadderCallback_HideBasement_Cb
+	setmetatile 6, 14, 513, 0
+	setmetatile 7, 14, 513, 0
+	setmetatile 6, 15, 513, 0
+	setmetatile 7, 15, 513, 0
+	special DrawWholeMapView
+
+BurnedTower1F_Johto_BurnedTower1FHoleAndLadderCallback_HideBasement_Cb:
+	return
 
 BurnedTower1F_Johto_BurnedTowerMovement_PlayerWalksToRival:
 	walk_left

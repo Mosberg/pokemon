@@ -71,8 +71,308 @@ IlexForest_Johto_IlexForestCharcoalApprenticeScript_DoneFarfetchd:
 	end
 
 IlexForest_Johto_IlexForestFarfetchdScript:
-	@ TODO unsupported: readmem wFarfetchdPosition
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WFARFETCHDPOSITION
+	goto_if_eq VAR_RESULT, 1, IlexForest_Johto_IlexForestFarfetchdScript_Position1
+	goto_if_eq VAR_RESULT, 2, IlexForest_Johto_IlexForestFarfetchdScript_Position2
+	goto_if_eq VAR_RESULT, 3, IlexForest_Johto_IlexForestFarfetchdScript_Position3
+	goto_if_eq VAR_RESULT, 4, IlexForest_Johto_IlexForestFarfetchdScript_Position4
+	goto_if_eq VAR_RESULT, 5, IlexForest_Johto_IlexForestFarfetchdScript_Position5
+	goto_if_eq VAR_RESULT, 6, IlexForest_Johto_IlexForestFarfetchdScript_Position6
+	goto_if_eq VAR_RESULT, 7, IlexForest_Johto_IlexForestFarfetchdScript_Position7
+	goto_if_eq VAR_RESULT, 8, IlexForest_Johto_IlexForestFarfetchdScript_Position8
+	goto_if_eq VAR_RESULT, 9, IlexForest_Johto_IlexForestFarfetchdScript_Position9
+	goto_if_eq VAR_RESULT, 10, IlexForest_Johto_IlexForestFarfetchdScript_Position10
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position1:
+	faceplayer
+	message IlexForest_Johto_Text_ItsTheMissingPokemon
+	waitmessage
+	waitbuttonpress
+	message IlexForest_Johto_Text_Kwaaaa
+	waitmessage
+	playmoncry SPECIES_FARFETCHD, CRY_MODE_NORMAL
+	waitmoncry
+	waitbuttonpress
+	closemessage
+	applymovement 1, IlexForest_Johto_MovementData_Farfetchd_Pos1_Pos2
+	waitmovement 1
+	setobjectxyperm 1, 15, 25
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 2
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position2:
+	call IlexForest_Johto_IlexForestFarfetchdScript_CryAndCheckFacing_Sub
+	goto_if_eq VAR_RESULT, DIR_SOUTH, IlexForest_Johto_IlexForestFarfetchdScript_Position2_Down
+	applymovement 1, IlexForest_Johto_MovementData_Farfetchd_Pos2_Pos3
+	waitmovement 1
+	setobjectxyperm 1, 20, 24
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 3
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position2_Down:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetchd_Pos2_Pos8
+	waitmovement 1
+	setobjectxyperm 1, 15, 29
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 8
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position3:
+	call IlexForest_Johto_IlexForestFarfetchdScript_CryAndCheckFacing_Sub
+	goto_if_eq VAR_RESULT, DIR_WEST, IlexForest_Johto_IlexForestFarfetchdScript_Position3_Left
+	applymovement 1, IlexForest_Johto_MovementData_Farfetchd_Pos3_Pos4
+	waitmovement 1
+	setobjectxyperm 1, 29, 22
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 4
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position3_Left:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetchd_Pos3_Pos2
+	waitmovement 1
+	setobjectxyperm 1, 15, 25
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 2
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position4:
+	call IlexForest_Johto_IlexForestFarfetchdScript_CryAndCheckFacing_Sub
+	goto_if_eq VAR_RESULT, DIR_NORTH, IlexForest_Johto_IlexForestFarfetchdScript_Position4_Up
+	applymovement 1, IlexForest_Johto_MovementData_Farfetchd_Pos4_Pos5
+	waitmovement 1
+	setobjectxyperm 1, 28, 31
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 5
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position4_Up:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetchd_Pos4_Pos3
+	waitmovement 1
+	setobjectxyperm 1, 20, 24
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 3
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position5:
+	call IlexForest_Johto_IlexForestFarfetchdScript_CryAndCheckFacing_Sub
+	goto_if_eq VAR_RESULT, DIR_NORTH, IlexForest_Johto_IlexForestFarfetchdScript_Position5_Up
+	goto_if_eq VAR_RESULT, DIR_WEST, IlexForest_Johto_IlexForestFarfetchdScript_Position5_Left
+	goto_if_eq VAR_RESULT, DIR_EAST, IlexForest_Johto_IlexForestFarfetchdScript_Position5_Right
+	applymovement 1, IlexForest_Johto_MovementData_Farfetchd_Pos5_Pos6
+	waitmovement 1
+	setobjectxyperm 1, 24, 35
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 6
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position5_Left:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetchd_Pos5_Pos7
+	waitmovement 1
+	setobjectxyperm 1, 22, 31
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 7
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position5_Up:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos5_Pos4_Up
+	waitmovement 1
+	setobjectxyperm 1, 29, 22
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 4
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position5_Right:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos5_Pos4_Right
+	waitmovement 1
+	setobjectxyperm 1, 29, 22
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 4
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position6:
+	call IlexForest_Johto_IlexForestFarfetchdScript_CryAndCheckFacing_Sub
+	goto_if_eq VAR_RESULT, DIR_EAST, IlexForest_Johto_IlexForestFarfetchdScript_Position6_Right
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos6_Pos7
+	waitmovement 1
+	setobjectxyperm 1, 22, 31
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 7
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position6_Right:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos6_Pos5
+	waitmovement 1
+	setobjectxyperm 1, 28, 31
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 5
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position7:
+	call IlexForest_Johto_IlexForestFarfetchdScript_CryAndCheckFacing_Sub
+	goto_if_eq VAR_RESULT, DIR_SOUTH, IlexForest_Johto_IlexForestFarfetchdScript_Position7_Down
+	goto_if_eq VAR_RESULT, DIR_WEST, IlexForest_Johto_IlexForestFarfetchdScript_Position7_Left
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos7_Pos8
+	waitmovement 1
+	setobjectxyperm 1, 15, 29
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 8
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position7_Left:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos7_Pos6
+	waitmovement 1
+	setobjectxyperm 1, 24, 35
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 6
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position7_Down:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos7_Pos5
+	waitmovement 1
+	setobjectxyperm 1, 28, 31
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 5
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position8:
+	call IlexForest_Johto_IlexForestFarfetchdScript_CryAndCheckFacing_Sub
+	goto_if_eq VAR_RESULT, DIR_NORTH, IlexForest_Johto_IlexForestFarfetchdScript_Position8_Up
+	goto_if_eq VAR_RESULT, DIR_WEST, IlexForest_Johto_IlexForestFarfetchdScript_Position8_Left
+	goto_if_eq VAR_RESULT, DIR_EAST, IlexForest_Johto_IlexForestFarfetchdScript_Position8_Right
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos8_Pos9
+	waitmovement 1
+	setobjectxyperm 1, 10, 35
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 9
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position8_Right:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos8_Pos7
+	waitmovement 1
+	setobjectxyperm 1, 22, 31
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 7
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position8_Up:
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position8_Left:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos8_Pos2
+	waitmovement 1
+	setobjectxyperm 1, 15, 25
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 2
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position9:
+	call IlexForest_Johto_IlexForestFarfetchdScript_CryAndCheckFacing_Sub
+	goto_if_eq VAR_RESULT, DIR_SOUTH, IlexForest_Johto_IlexForestFarfetchdScript_Position9_Down
+	goto_if_eq VAR_RESULT, DIR_EAST, IlexForest_Johto_IlexForestFarfetchdScript_Position9_Right
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos9_Pos10
+	waitmovement 1
+	setobjectxyperm 1, 6, 28
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 10
+	clearflag FLAG_JOHTO_ILEX_FOREST_CHARCOAL_MASTER
+	addobject 3
+	setflag FLAG_JOHTO_CHARCOAL_KILN_BOSS
+	setflag FLAG_JOHTO_HERDED_FARFETCHD
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position9_Right:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos9_Pos8_Right
+	waitmovement 1
+	setobjectxyperm 1, 15, 29
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 8
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position9_Down:
+	applymovement 1, IlexForest_Johto_MovementData_Farfetched_Pos9_Pos8_Down
+	waitmovement 1
+	setobjectxyperm 1, 15, 29
+	removeobject 1
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	addobject 1
+	setvar VAR_JOHTO_MEM_WFARFETCHDPOSITION, 8
+	releaseall
+	end
+
+IlexForest_Johto_IlexForestFarfetchdScript_Position10:
+	faceplayer
+	message IlexForest_Johto_Text_Kwaaaa
+	waitmessage
+	playmoncry SPECIES_FARFETCHD, CRY_MODE_NORMAL
+	waitmoncry
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 IlexForest_Johto_IlexForestCharcoalMasterScript:
 	faceplayer
@@ -224,13 +524,318 @@ IlexForest_Johto_IlexForestShrineScript_CelebiEvent:
 	@ TODO unsupported: special CelebiShrineEvent
 	goto Johto_EventScript_Unimplemented
 
+IlexForest_Johto_IlexForestFarfetchdScript_CryAndCheckFacing_Sub:
+	faceplayer
+	message IlexForest_Johto_Text_Kwaaaa
+	waitmessage
+	playmoncry SPECIES_FARFETCHD, CRY_MODE_NORMAL
+	waitmoncry
+	waitbuttonpress
+	closemessage
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	return
+
 IlexForest_Johto_IlexForestFarfetchdCallback_Cb:
 	goto_if_set FLAG_JOHTO_GOT_HM01_CUT, IlexForest_Johto_IlexForestFarfetchdCallback_Static_Cb
-	@ TODO unsupported: readmem wFarfetchdPosition
-	return
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WFARFETCHDPOSITION
+	goto_if_eq VAR_RESULT, 1, IlexForest_Johto_IlexForestFarfetchdCallback_PositionOne_Cb
+	goto_if_eq VAR_RESULT, 2, IlexForest_Johto_IlexForestFarfetchdCallback_PositionTwo_Cb
+	goto_if_eq VAR_RESULT, 3, IlexForest_Johto_IlexForestFarfetchdCallback_PositionThree_Cb
+	goto_if_eq VAR_RESULT, 4, IlexForest_Johto_IlexForestFarfetchdCallback_PositionFour_Cb
+	goto_if_eq VAR_RESULT, 5, IlexForest_Johto_IlexForestFarfetchdCallback_PositionFive_Cb
+	goto_if_eq VAR_RESULT, 6, IlexForest_Johto_IlexForestFarfetchdCallback_PositionSix_Cb
+	goto_if_eq VAR_RESULT, 7, IlexForest_Johto_IlexForestFarfetchdCallback_PositionSeven_Cb
+	goto_if_eq VAR_RESULT, 8, IlexForest_Johto_IlexForestFarfetchdCallback_PositionEight_Cb
+	goto_if_eq VAR_RESULT, 9, IlexForest_Johto_IlexForestFarfetchdCallback_PositionNine_Cb
+	goto_if_eq VAR_RESULT, 10, IlexForest_Johto_IlexForestFarfetchdCallback_PositionTen_Cb
 
 IlexForest_Johto_IlexForestFarfetchdCallback_Static_Cb:
 	return
+
+IlexForest_Johto_IlexForestFarfetchdCallback_PositionOne_Cb:
+	setobjectxyperm 1, 14, 31
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	return
+
+IlexForest_Johto_IlexForestFarfetchdCallback_PositionTwo_Cb:
+	setobjectxyperm 1, 15, 25
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	return
+
+IlexForest_Johto_IlexForestFarfetchdCallback_PositionThree_Cb:
+	setobjectxyperm 1, 20, 24
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	return
+
+IlexForest_Johto_IlexForestFarfetchdCallback_PositionFour_Cb:
+	setobjectxyperm 1, 29, 22
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	return
+
+IlexForest_Johto_IlexForestFarfetchdCallback_PositionFive_Cb:
+	setobjectxyperm 1, 28, 31
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	return
+
+IlexForest_Johto_IlexForestFarfetchdCallback_PositionSix_Cb:
+	setobjectxyperm 1, 24, 35
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	return
+
+IlexForest_Johto_IlexForestFarfetchdCallback_PositionSeven_Cb:
+	setobjectxyperm 1, 22, 31
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	return
+
+IlexForest_Johto_IlexForestFarfetchdCallback_PositionEight_Cb:
+	setobjectxyperm 1, 15, 29
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	return
+
+IlexForest_Johto_IlexForestFarfetchdCallback_PositionNine_Cb:
+	setobjectxyperm 1, 10, 35
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	return
+
+IlexForest_Johto_IlexForestFarfetchdCallback_PositionTen_Cb:
+	setobjectxyperm 1, 6, 28
+	clearflag FLAG_JOHTO_ILEX_FOREST_FARFETCHD
+	return
+
+IlexForest_Johto_MovementData_Farfetchd_Pos1_Pos2:
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+IlexForest_Johto_MovementData_Farfetchd_Pos2_Pos3:
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_down
+	step_end
+
+IlexForest_Johto_MovementData_Farfetchd_Pos2_Pos8:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
+
+IlexForest_Johto_MovementData_Farfetchd_Pos3_Pos4:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+IlexForest_Johto_MovementData_Farfetchd_Pos3_Pos2:
+	walk_fast_up
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+IlexForest_Johto_MovementData_Farfetchd_Pos4_Pos5:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
+
+IlexForest_Johto_MovementData_Farfetchd_Pos4_Pos3:
+	walk_fast_left
+	jump_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+IlexForest_Johto_MovementData_Farfetchd_Pos5_Pos6:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+IlexForest_Johto_MovementData_Farfetchd_Pos5_Pos7:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos5_Pos4_Up:
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_up
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos5_Pos4_Right:
+	walk_fast_right
+	face_up
+	delay_8
+	face_down
+	delay_8
+	face_up
+	delay_8
+	walk_fast_down
+	walk_fast_down
+	lock_facing_direction
+	jump_up
+	delay_8
+	delay_8
+	unlock_facing_direction
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos6_Pos7:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos6_Pos5:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos7_Pos8:
+	walk_fast_up
+	walk_fast_up
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos7_Pos6:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_left
+	walk_fast_down
+	walk_fast_down
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos7_Pos5:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos8_Pos9:
+	walk_fast_down
+	walk_fast_left
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos8_Pos7:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos8_Pos2:
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos9_Pos10:
+	walk_fast_left
+	walk_fast_left
+	lock_facing_direction
+	jump_right
+	delay_8
+	delay_8
+	unlock_facing_direction
+	walk_fast_left
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos9_Pos8_Right:
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
+
+IlexForest_Johto_MovementData_Farfetched_Pos9_Pos8_Down:
+	walk_fast_left
+	walk_fast_left
+	lock_facing_direction
+	jump_right
+	delay_8
+	delay_8
+	unlock_facing_direction
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_right
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	walk_fast_up
+	step_end
 
 IlexForest_Johto_IlexForestPlayerStepsDownMovement:
 	lock_facing_direction
@@ -259,6 +864,13 @@ IlexForest_Johto_IlexForestApprenticeAfterText:
 	.string "won't obey me be-\l"
 	.string "cause I don't have\l"
 	.string "a BADGE.$"
+
+IlexForest_Johto_Text_ItsTheMissingPokemon:
+	.string "It's the missing\n"
+	.string "POKéMON!$"
+
+IlexForest_Johto_Text_Kwaaaa:
+	.string "FARFETCH'D: Kwaa!$"
 
 IlexForest_Johto_Text_CharcoalMasterIntro:
 	.string "Ah! My FARFETCH'D!"

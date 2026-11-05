@@ -220,6 +220,7 @@ FuchsiaGym_Johto_FuchsiaGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 FuchsiaGym_Johto_FuchsiaGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_JANINE_JANINE1
 	goto Johto_Std_GymStatue2Script
 
 FuchsiaGym_Johto_Movement_NinjaSpin:

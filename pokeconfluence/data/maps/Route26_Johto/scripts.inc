@@ -37,8 +37,12 @@ Route26_Johto_TrainerCooltrainermGaven3::
 	goto Route26_Johto_TrainerCooltrainermGaven3_Script
 
 Route26_Johto_TrainerCooltrainermGaven3_Script:
+	setvar VAR_0x8007, 797
+	bufferspeciesname STR_VAR_2, SPECIES_VICTREEBEL
 	goto_if_set FLAG_JOHTO_ENGINE_GAVEN_READY_FOR_REMATCH, Route26_Johto_TrainerCooltrainermGaven3_WantsBattle
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_COOLTRAINERM_GAVEN_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_GAVEN_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route26_Johto_TrainerCooltrainermGaven3_NumberAccepted
 	goto_if_set FLAG_JOHTO_GAVEN_ASKED_FOR_PHONE_NUMBER, Route26_Johto_TrainerCooltrainermGaven3_AskedAlready
 	message Route26_Johto_CooltrainermGavenAfterText
@@ -52,16 +56,48 @@ Route26_Johto_TrainerCooltrainermGaven3_AskedAlready:
 	call Route26_Johto_TrainerCooltrainermGaven3_AskNumber2_Sub
 
 Route26_Johto_TrainerCooltrainermGaven3_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_COOLTRAINERM_GAVEN_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_GAVEN_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route26_Johto_TrainerCooltrainermGaven3_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route26_Johto_TrainerCooltrainermGaven3_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_COOLTRAINERM_GAVEN3
 	call Route26_Johto_TrainerCooltrainermGaven3_RegisteredNumber_Sub
 	goto Route26_Johto_TrainerCooltrainermGaven3_NumberAccepted
 
 Route26_Johto_TrainerCooltrainermGaven3_WantsBattle:
 	call Route26_Johto_TrainerCooltrainermGaven3_Rematch_Sub
-	@ TODO unsupported: readmem wGavenFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WGAVENFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 2, Route26_Johto_TrainerCooltrainermGaven3_Fight2
+	goto_if_eq VAR_RESULT, 1, Route26_Johto_TrainerCooltrainermGaven3_Fight1
+	goto_if_eq VAR_RESULT, 0, Route26_Johto_TrainerCooltrainermGaven3_LoadFight0
+
+Route26_Johto_TrainerCooltrainermGaven3_Fight2:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route26_Johto_TrainerCooltrainermGaven3_LoadFight2
+
+Route26_Johto_TrainerCooltrainermGaven3_Fight1:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route26_Johto_TrainerCooltrainermGaven3_LoadFight1
+
+Route26_Johto_TrainerCooltrainermGaven3_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_COOLTRAINERM_GAVEN3, Route26_Johto_CooltrainermGaven3BeatenText
+	setvar VAR_JOHTO_MEM_WGAVENFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_GAVEN_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route26_Johto_TrainerCooltrainermGaven3_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_COOLTRAINERM_GAVEN1, Route26_Johto_CooltrainermGaven3BeatenText
+	setvar VAR_JOHTO_MEM_WGAVENFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_GAVEN_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route26_Johto_TrainerCooltrainermGaven3_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_COOLTRAINERM_GAVEN2, Route26_Johto_CooltrainermGaven3BeatenText
+	clearflag FLAG_JOHTO_ENGINE_GAVEN_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route26_Johto_TrainerCooltrainermGaven3_NumberAccepted:
 	goto Johto_Std_NumberAcceptedMScript
@@ -95,8 +131,11 @@ Route26_Johto_TrainerCooltrainerfBeth1::
 	goto Route26_Johto_TrainerCooltrainerfBeth1_Script
 
 Route26_Johto_TrainerCooltrainerfBeth1_Script:
+	setvar VAR_0x8007, 548
 	goto_if_set FLAG_JOHTO_ENGINE_BETH_READY_FOR_REMATCH, Route26_Johto_TrainerCooltrainerfBeth1_WantsBattle
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_COOLTRAINERF_BETH_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_BETH_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route26_Johto_TrainerCooltrainerfBeth1_NumberAccepted
 	goto_if_set FLAG_JOHTO_BETH_ASKED_FOR_PHONE_NUMBER, Route26_Johto_TrainerCooltrainerfBeth1_AskedAlready
 	message Route26_Johto_CooltrainerfBethAfterText
@@ -110,16 +149,48 @@ Route26_Johto_TrainerCooltrainerfBeth1_AskedAlready:
 	call Route26_Johto_TrainerCooltrainerfBeth1_AskNumber2_Sub
 
 Route26_Johto_TrainerCooltrainerfBeth1_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_COOLTRAINERF_BETH_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_BETH_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route26_Johto_TrainerCooltrainerfBeth1_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route26_Johto_TrainerCooltrainerfBeth1_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_COOLTRAINERF_BETH1
 	call Route26_Johto_TrainerCooltrainerfBeth1_RegisteredNumber_Sub
 	goto Route26_Johto_TrainerCooltrainerfBeth1_NumberAccepted
 
 Route26_Johto_TrainerCooltrainerfBeth1_WantsBattle:
 	call Route26_Johto_TrainerCooltrainerfBeth1_Rematch_Sub
-	@ TODO unsupported: readmem wBethFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WBETHFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 2, Route26_Johto_TrainerCooltrainerfBeth1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route26_Johto_TrainerCooltrainerfBeth1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route26_Johto_TrainerCooltrainerfBeth1_LoadFight0
+
+Route26_Johto_TrainerCooltrainerfBeth1_Fight2:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route26_Johto_TrainerCooltrainerfBeth1_LoadFight2
+
+Route26_Johto_TrainerCooltrainerfBeth1_Fight1:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route26_Johto_TrainerCooltrainerfBeth1_LoadFight1
+
+Route26_Johto_TrainerCooltrainerfBeth1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_COOLTRAINERF_BETH1, Route26_Johto_CooltrainerfBeth1BeatenText
+	setvar VAR_JOHTO_MEM_WBETHFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_BETH_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route26_Johto_TrainerCooltrainerfBeth1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_COOLTRAINERF_BETH2, Route26_Johto_CooltrainerfBeth1BeatenText
+	setvar VAR_JOHTO_MEM_WBETHFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_BETH_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route26_Johto_TrainerCooltrainerfBeth1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_COOLTRAINERF_BETH3, Route26_Johto_CooltrainerfBeth1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_BETH_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route26_Johto_TrainerCooltrainerfBeth1_NumberAccepted:
 	goto Johto_Std_NumberAcceptedFScript

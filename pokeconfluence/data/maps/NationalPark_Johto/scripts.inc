@@ -149,8 +149,11 @@ NationalPark_Johto_TrainerSchoolboyJack1::
 	goto NationalPark_Johto_TrainerSchoolboyJack1_Script
 
 NationalPark_Johto_TrainerSchoolboyJack1_Script:
+	setvar VAR_0x8007, 465
 	goto_if_set FLAG_JOHTO_ENGINE_JACK_READY_FOR_REMATCH, NationalPark_Johto_TrainerSchoolboyJack1_Rematch
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_SCHOOLBOY_JACK_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_JACK_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, NationalPark_Johto_TrainerSchoolboyJack1_NumberAccepted
 	goto_if_set FLAG_JOHTO_JACK_ASKED_FOR_PHONE_NUMBER, NationalPark_Johto_TrainerSchoolboyJack1_AskAgain
 	message NationalPark_Johto_SchoolboyJackTradeMonText
@@ -164,16 +167,70 @@ NationalPark_Johto_TrainerSchoolboyJack1_AskAgain:
 	call NationalPark_Johto_TrainerSchoolboyJack1_AskNumber2_Sub
 
 NationalPark_Johto_TrainerSchoolboyJack1_RequestNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_SCHOOLBOY_JACK_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_JACK_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, NationalPark_Johto_TrainerSchoolboyJack1_PhoneFull
 	goto_if_eq VAR_RESULT, 2, NationalPark_Johto_TrainerSchoolboyJack1_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_SCHOOLBOY_JACK1
 	call NationalPark_Johto_TrainerSchoolboyJack1_RegisteredNumber_Sub
 	goto NationalPark_Johto_TrainerSchoolboyJack1_NumberAccepted
 
 NationalPark_Johto_TrainerSchoolboyJack1_Rematch:
 	call NationalPark_Johto_TrainerSchoolboyJack1_RematchStd_Sub
-	@ TODO unsupported: readmem wJackFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WJACKFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 4, NationalPark_Johto_TrainerSchoolboyJack1_Fight4
+	goto_if_eq VAR_RESULT, 3, NationalPark_Johto_TrainerSchoolboyJack1_Fight3
+	goto_if_eq VAR_RESULT, 2, NationalPark_Johto_TrainerSchoolboyJack1_Fight2
+	goto_if_eq VAR_RESULT, 1, NationalPark_Johto_TrainerSchoolboyJack1_Fight1
+	goto_if_eq VAR_RESULT, 0, NationalPark_Johto_TrainerSchoolboyJack1_LoadFight0
+
+NationalPark_Johto_TrainerSchoolboyJack1_Fight4:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, NationalPark_Johto_TrainerSchoolboyJack1_LoadFight4
+
+NationalPark_Johto_TrainerSchoolboyJack1_Fight3:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, NationalPark_Johto_TrainerSchoolboyJack1_LoadFight3
+
+NationalPark_Johto_TrainerSchoolboyJack1_Fight2:
+	goto_if_set FLAG_JOHTO_CLEARED_RADIO_TOWER, NationalPark_Johto_TrainerSchoolboyJack1_LoadFight2
+
+NationalPark_Johto_TrainerSchoolboyJack1_Fight1:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_OLIVINE, NationalPark_Johto_TrainerSchoolboyJack1_LoadFight1
+
+NationalPark_Johto_TrainerSchoolboyJack1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_JACK1, NationalPark_Johto_SchoolboyJack1BeatenText
+	setvar VAR_JOHTO_MEM_WJACKFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_JACK_READY_FOR_REMATCH
+	releaseall
+	end
+
+NationalPark_Johto_TrainerSchoolboyJack1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_JACK2, NationalPark_Johto_SchoolboyJack1BeatenText
+	setvar VAR_JOHTO_MEM_WJACKFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_JACK_READY_FOR_REMATCH
+	releaseall
+	end
+
+NationalPark_Johto_TrainerSchoolboyJack1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_JACK3, NationalPark_Johto_SchoolboyJack1BeatenText
+	setvar VAR_JOHTO_MEM_WJACKFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_JACK_READY_FOR_REMATCH
+	releaseall
+	end
+
+NationalPark_Johto_TrainerSchoolboyJack1_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_JACK4, NationalPark_Johto_SchoolboyJack1BeatenText
+	setvar VAR_JOHTO_MEM_WJACKFIGHTCOUNT, 4
+	clearflag FLAG_JOHTO_ENGINE_JACK_READY_FOR_REMATCH
+	releaseall
+	end
+
+NationalPark_Johto_TrainerSchoolboyJack1_LoadFight4:
+	trainerbattle_no_intro TRAINER_JOHTO_SCHOOLBOY_JACK5, NationalPark_Johto_SchoolboyJack1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_JACK_READY_FOR_REMATCH
+	releaseall
+	end
 
 NationalPark_Johto_TrainerSchoolboyJack1_NumberAccepted:
 	goto Johto_Std_NumberAcceptedMScript
@@ -207,10 +264,14 @@ NationalPark_Johto_TrainerPokefanfBeverly1::
 	goto NationalPark_Johto_TrainerPokefanfBeverly1_Script
 
 NationalPark_Johto_TrainerPokefanfBeverly1_Script:
+	setvar VAR_0x8007, 843
 	goto_if_set FLAG_JOHTO_ENGINE_BEVERLY_HAS_NUGGET, NationalPark_Johto_TrainerPokefanfBeverly1_GiveNugget
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_POKEFAN_BEVERLY_REGISTERED
+	setvar VAR_0x8005, 0
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, NationalPark_Johto_TrainerPokefanfBeverly1_NumberAccepted
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, SPECIES_MARILL
+	specialvar VAR_RESULT, DoesPlayerPartyContainSpecies
 	goto_if_eq VAR_RESULT, 0, NationalPark_Johto_TrainerPokefanfBeverly1_NoMarill
 	goto_if_set FLAG_JOHTO_BEVERLY_ASKED_FOR_PHONE_NUMBER, NationalPark_Johto_TrainerPokefanfBeverly1_AskAgain
 	message NationalPark_Johto_PokefanBeverlyCuteMonText
@@ -224,9 +285,13 @@ NationalPark_Johto_TrainerPokefanfBeverly1_AskAgain:
 	call NationalPark_Johto_TrainerPokefanfBeverly1_AskNumber2_Sub
 
 NationalPark_Johto_TrainerPokefanfBeverly1_RequestNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_POKEFAN_BEVERLY_REGISTERED
+	setvar VAR_0x8005, 0
+	setvar VAR_0x8006, FLAG_JOHTO_ENGINE_BEVERLY_HAS_NUGGET
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, NationalPark_Johto_TrainerPokefanfBeverly1_PhoneFull
 	goto_if_eq VAR_RESULT, 2, NationalPark_Johto_TrainerPokefanfBeverly1_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_POKEFANF_BEVERLY1
 	call NationalPark_Johto_TrainerPokefanfBeverly1_RegisteredNumber_Sub
 	goto NationalPark_Johto_TrainerPokefanfBeverly1_NumberAccepted
 

@@ -22,5 +22,12 @@ MobileTradeRoom_Johto_MobileTradeRoomInitializeAndPreparePokecenter2FScript:
 	end
 
 MobileTradeRoom_Johto_MobileTradeRoomConsoleScript:
-	@ TODO unsupported: special Function1037c2
+	message MobileTradeRoom_Johto_MobileTradeRoom_EstablishingCommsText
+	waitmessage
+	waitbuttonpress
+	@ TODO unsupported: special Function101231
 	goto Johto_EventScript_Unimplemented
+
+MobileTradeRoom_Johto_MobileTradeRoom_EstablishingCommsText:
+	.string "Establishing\n"
+	.string "communications…$"

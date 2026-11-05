@@ -159,6 +159,7 @@ AzaleaGym_Johto_AzaleaGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 AzaleaGym_Johto_AzaleaGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_BUGSY_BUGSY1
 	goto Johto_Std_GymStatue2Script
 
 AzaleaGym_Johto_AzaleaGymActivateRockets_Sub:

@@ -34,8 +34,11 @@ Route44_Johto_TrainerBirdKeeperVance1::
 	goto Route44_Johto_TrainerBirdKeeperVance1_Script
 
 Route44_Johto_TrainerBirdKeeperVance1_Script:
+	setvar VAR_0x8007, 917
 	goto_if_set FLAG_JOHTO_ENGINE_VANCE_READY_FOR_REMATCH, Route44_Johto_TrainerBirdKeeperVance1_WantsBattle
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_BIRDKEEPER_VANCE_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_VANCE_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route44_Johto_Route44NumberAcceptedM
 	goto_if_set FLAG_JOHTO_VANCE_ASKED_FOR_PHONE_NUMBER, Route44_Johto_TrainerBirdKeeperVance1_AskedAlready
 	message Route44_Johto_BirdKeeperVanceLegendaryBirdsText
@@ -49,16 +52,67 @@ Route44_Johto_TrainerBirdKeeperVance1_AskedAlready:
 	call Route44_Johto_Route44AskNumber2M_Sub
 
 Route44_Johto_TrainerBirdKeeperVance1_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_BIRDKEEPER_VANCE_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_VANCE_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route44_Johto_Route44PhoneFullM
 	goto_if_eq VAR_RESULT, 2, Route44_Johto_Route44NumberDeclinedM
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_BIRD_KEEPER_VANCE1
 	call Route44_Johto_Route44RegisteredNumberM_Sub
 	goto Route44_Johto_Route44NumberAcceptedM
 
 Route44_Johto_TrainerBirdKeeperVance1_WantsBattle:
 	call Route44_Johto_Route44RematchM_Sub
-	@ TODO unsupported: readmem wVanceFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WVANCEFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 2, Route44_Johto_TrainerBirdKeeperVance1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route44_Johto_TrainerBirdKeeperVance1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route44_Johto_TrainerBirdKeeperVance1_LoadFight0
+
+Route44_Johto_TrainerBirdKeeperVance1_Fight2:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route44_Johto_TrainerBirdKeeperVance1_LoadFight2
+
+Route44_Johto_TrainerBirdKeeperVance1_Fight1:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route44_Johto_TrainerBirdKeeperVance1_LoadFight1
+
+Route44_Johto_TrainerBirdKeeperVance1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_BIRD_KEEPER_VANCE1, Route44_Johto_BirdKeeperVance1BeatenText
+	setvar VAR_JOHTO_MEM_WVANCEFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_VANCE_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route44_Johto_TrainerBirdKeeperVance1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_BIRD_KEEPER_VANCE2, Route44_Johto_BirdKeeperVance1BeatenText
+	setvar VAR_JOHTO_MEM_WVANCEFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_VANCE_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route44_Johto_TrainerBirdKeeperVance1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_BIRD_KEEPER_VANCE3, Route44_Johto_BirdKeeperVance1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_VANCE_READY_FOR_REMATCH
+	goto_if_set FLAG_JOHTO_VANCE_CARBOS, Route44_Johto_TrainerBirdKeeperVance1_Carbos
+	goto_if_set FLAG_JOHTO_GOT_CARBOS_FROM_VANCE, Route44_Johto_TrainerBirdKeeperVance1_ReceivedCarbosBefore
+	call Route44_Johto_Route44RematchGiftM_Sub
+	giveitem ITEM_CARBOS
+	goto_if_eq VAR_RESULT, 0, Route44_Johto_VancePackFull
+	setflag FLAG_JOHTO_GOT_CARBOS_FROM_VANCE
+	goto Route44_Johto_Route44NumberAcceptedM
+
+Route44_Johto_TrainerBirdKeeperVance1_ReceivedCarbosBefore:
+	releaseall
+	end
+
+Route44_Johto_TrainerBirdKeeperVance1_Carbos:
+	message Route44_Johto_BirdKeeperVance2BeatenText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_CARBOS
+	goto_if_eq VAR_RESULT, 0, Route44_Johto_VancePackFull
+	clearflag FLAG_JOHTO_VANCE_CARBOS
+	setflag FLAG_JOHTO_GOT_CARBOS_FROM_VANCE
+	goto Route44_Johto_Route44NumberAcceptedM
 
 Route44_Johto_Route44NumberAcceptedM:
 	goto Johto_Std_NumberAcceptedMScript
@@ -70,6 +124,10 @@ Route44_Johto_Route44PhoneFullM:
 	goto Johto_Std_PhoneFullMScript
 
 Route44_Johto_Route44PackFullM:
+	goto Johto_Std_PackFullMScript
+
+Route44_Johto_VancePackFull:
+	setflag FLAG_JOHTO_VANCE_CARBOS
 	goto Johto_Std_PackFullMScript
 
 Route44_Johto_TrainerPsychicPhil::
@@ -95,9 +153,12 @@ Route44_Johto_TrainerFisherWilton1::
 	goto Route44_Johto_TrainerFisherWilton1_Script
 
 Route44_Johto_TrainerFisherWilton1_Script:
+	setvar VAR_0x8007, 992
 	goto_if_set FLAG_JOHTO_ENGINE_WILTON_READY_FOR_REMATCH, Route44_Johto_TrainerFisherWilton1_WantsBattle
 	goto_if_set FLAG_JOHTO_ENGINE_WILTON_HAS_ITEM, Route44_Johto_TrainerFisherWilton1_HasItem
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_FISHER_WILTON_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_WILTON_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route44_Johto_Route44NumberAcceptedM
 	goto_if_set FLAG_JOHTO_WILTON_ASKED_FOR_PHONE_NUMBER, Route44_Johto_TrainerFisherWilton1_AskedAlready
 	message Route44_Johto_FisherWiltonHugePoliwagText
@@ -111,16 +172,48 @@ Route44_Johto_TrainerFisherWilton1_AskedAlready:
 	call Route44_Johto_Route44AskNumber2M_Sub
 
 Route44_Johto_TrainerFisherWilton1_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_FISHER_WILTON_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_WILTON_READY_FOR_REMATCH
+	setvar VAR_0x8006, FLAG_JOHTO_ENGINE_WILTON_HAS_ITEM
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route44_Johto_Route44PhoneFullM
 	goto_if_eq VAR_RESULT, 2, Route44_Johto_Route44NumberDeclinedM
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_FISHER_WILTON1
 	call Route44_Johto_Route44RegisteredNumberM_Sub
 	goto Route44_Johto_Route44NumberAcceptedM
 
 Route44_Johto_TrainerFisherWilton1_WantsBattle:
 	call Route44_Johto_Route44RematchM_Sub
-	@ TODO unsupported: readmem wWiltonFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WWILTONFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 2, Route44_Johto_TrainerFisherWilton1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route44_Johto_TrainerFisherWilton1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route44_Johto_TrainerFisherWilton1_LoadFight0
+
+Route44_Johto_TrainerFisherWilton1_Fight2:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route44_Johto_TrainerFisherWilton1_LoadFight2
+
+Route44_Johto_TrainerFisherWilton1_Fight1:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route44_Johto_TrainerFisherWilton1_LoadFight1
+
+Route44_Johto_TrainerFisherWilton1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_WILTON1, Route44_Johto_FisherWilton1BeatenText
+	setvar VAR_JOHTO_MEM_WWILTONFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_WILTON_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route44_Johto_TrainerFisherWilton1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_WILTON2, Route44_Johto_FisherWilton1BeatenText
+	setvar VAR_JOHTO_MEM_WWILTONFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_WILTON_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route44_Johto_TrainerFisherWilton1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_WILTON3, Route44_Johto_FisherWilton1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_WILTON_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route44_Johto_TrainerFisherWilton1_HasItem:
 	call Route44_Johto_Route44GiftM_Sub
@@ -262,6 +355,9 @@ Route44_Johto_Route44RematchM_Sub:
 Route44_Johto_Route44GiftM_Sub:
 	goto Johto_Std_GiftMScript_Sub
 
+Route44_Johto_Route44RematchGiftM_Sub:
+	goto Johto_Std_RematchGiftMScript_Sub
+
 Route44_Johto_FisherWilton1SeenText:
 	.string "Aack! You made me\n"
 	.string "lose a POLIWAG!"
@@ -315,6 +411,14 @@ Route44_Johto_BirdKeeperVanceLegendaryBirdsText:
 	.string "\pI heard there are\n"
 	.string "other legendary\l"
 	.string "birds, though.$"
+
+Route44_Johto_BirdKeeperVance2BeatenText:
+	.string "Why can't I ever\n"
+	.string "beat you?"
+	.string "\pOh yeah, here you\n"
+	.string "go. It's that gift"
+	.string "\pI couldn't give\n"
+	.string "you last time.$"
 
 Route44_Johto_PsychicPhilSeenText:
 	.string "I'm gonna win,\n"

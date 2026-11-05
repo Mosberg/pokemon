@@ -131,8 +131,15 @@ OlivineLighthouse6F_Johto_OlivineLighthouseAmphy:
 	message OlivineLighthouse6F_Johto_AmphyPalPalooText
 	waitmessage
 	setvar VAR_0x8004, SPECIES_AMPHAROS
-	@ TODO unsupported: special PlaySlowCry
-	goto Johto_EventScript_Unimplemented
+	playmoncry VAR_0x8004, CRY_MODE_WEAK
+	waitmoncry
+	waitbuttonpress
+	message OlivineLighthouse6F_Johto_AmphyBreathingLaboredText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 OlivineLighthouse6F_Johto_OlivineLighthouseAmphy_HealthyNow:
 	message OlivineLighthouse6F_Johto_AmphyPaluPaluluText
@@ -248,6 +255,10 @@ OlivineLighthouse6F_Johto_JasmineAmphyHangOnText:
 OlivineLighthouse6F_Johto_AmphyPalPalooText:
 	.string "AMPHY: …\n"
 	.string "…Pa… paloo…$"
+
+OlivineLighthouse6F_Johto_AmphyBreathingLaboredText:
+	.string "Its breathing is\n"
+	.string "terribly labored…$"
 
 OlivineLighthouse6F_Johto_AmphyPaluPaluluText:
 	.string "AMPHY: Palu!\n"

@@ -92,7 +92,7 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendorScript:
 	waitmessage
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerTMVendor_LoopScript:
-	@ TODO unsupported: special DisplayCoinCaseBalance
+	@ TODO unsupported: loadmenu GoldenrodGameCornerTMVendorMenuHeader
 	goto Johto_EventScript_Unimplemented
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendor_NoCoinCaseScript:
@@ -114,23 +114,41 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript:
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeMonVendorScript_loop:
 	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorWhichPrizeText
 	waitmessage
-	@ TODO unsupported: special DisplayCoinCaseBalance
+	@ TODO unsupported: loadmenu .MenuHeader
 	goto Johto_EventScript_Unimplemented
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPharmacistScript:
 	faceplayer
-	@ TODO unsupported: writetext GoldenrodGameCornerPharmacistText
-	goto Johto_EventScript_Unimplemented
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPharmacistText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement VAR_LAST_TALKED, Johto_Movement_Face_Left
+	waitmovement VAR_LAST_TALKED
+	releaseall
+	end
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanM1Script:
 	faceplayer
-	@ TODO unsupported: writetext GoldenrodGameCornerPokefanM1Text
-	goto Johto_EventScript_Unimplemented
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanM1Text
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement 5, Johto_Movement_Face_Right
+	waitmovement 5
+	releaseall
+	end
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerCooltrainerMScript:
 	faceplayer
-	@ TODO unsupported: writetext GoldenrodGameCornerCooltrainerMText
-	goto Johto_EventScript_Unimplemented
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerCooltrainerMText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement 6, Johto_Movement_Face_Left
+	waitmovement 6
+	releaseall
+	end
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanFScript:
 	faceplayer
@@ -164,8 +182,13 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerGentlemanScript:
 	end
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanM2Script:
-	@ TODO unsupported: jumptextfaceplayer GoldenrodGameCornerPokefanM2Text
-	goto Johto_EventScript_Unimplemented
+	faceplayer
+	message GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanM2Text
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerLeftTheirDrinkScript:
 	message GoldenrodGameCorner_Johto_GoldenrodGameCornerLeftTheirDrinkText
@@ -179,17 +202,23 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerSlotsMachineScript:
 	random 6
 	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_GoldenrodGameCornerLuckySlotsMachineScript
 	setvar VAR_RESULT, FALSE
-	@ TODO unsupported: special SlotMachine
-	goto Johto_EventScript_Unimplemented
+	goto MauvilleCity_GameCorner_EventScript_SlotMachine0
+	closemessage
+	releaseall
+	end
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerLuckySlotsMachineScript:
 	setvar VAR_RESULT, TRUE
-	@ TODO unsupported: special SlotMachine
-	goto Johto_EventScript_Unimplemented
+	goto MauvilleCity_GameCorner_EventScript_SlotMachine0
+	closemessage
+	releaseall
+	end
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript:
-	@ TODO unsupported: special CardFlip
-	goto Johto_EventScript_Unimplemented
+	goto MauvilleCity_GameCorner_EventScript_SlotMachine0
+	closemessage
+	releaseall
+	end
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerMoveTutorCallback_Cb:
 	goto_if_unset FLAG_JOHTO_BEAT_ELITE_FOUR, GoldenrodGameCorner_Johto_GoldenrodGameCornerMoveTutorCallback_finish_Cb
@@ -224,8 +253,32 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerPrizeVendorNoCoinCaseText:
 	.string "Oh? You don't have\n"
 	.string "a COIN CASE.$"
 
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPharmacistText:
+	.string "I always play this\n"
+	.string "slot machine. It"
+	.string "\ppays out more than\n"
+	.string "others, I think.$"
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanM1Text:
+	.string "I just love this\n"
+	.string "new slot machine."
+	.string "\pIt's more of a\n"
+	.string "challenge than the\l"
+	.string "ones in CELADON.$"
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerCooltrainerMText:
+	.string "Life is a gamble.\n"
+	.string "I'm going to flip\l"
+	.string "cards till I drop!$"
+
 GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanFText:
-	.string "(text not converted)$"
+	.string "Card flip…"
+	.string "\pI prefer it over\n"
+	.string "the slots because"
+	.string "\pit's easier to\n"
+	.string "figure the odds."
+	.string "\pBut the payout is\n"
+	.string "much lower.$"
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerCooltrainerFText:
 	.string "I won't quit until\n"
@@ -238,6 +291,16 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerGentlemanText:
 	.string "enough coins for"
 	.string "\pit, but it was\n"
 	.string "worth it.$"
+
+GoldenrodGameCorner_Johto_GoldenrodGameCornerPokefanM2Text:
+	.string "I couldn't win at\n"
+	.string "the slots, and I"
+	.string "\pblew it on card\n"
+	.string "flipping…"
+	.string "\pI got so furious,\n"
+	.string "I tossed out my"
+	.string "\pCOIN CASE in the\n"
+	.string "UNDERGROUND.$"
 
 GoldenrodGameCorner_Johto_MoveTutorInsideText:
 	.string "Wahahah! The coins\n"

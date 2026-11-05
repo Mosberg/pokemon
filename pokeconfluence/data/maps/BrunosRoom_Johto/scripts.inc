@@ -1,6 +1,11 @@
 BrunosRoom_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, BrunosRoom_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, BrunosRoom_Johto_OnFrame
 	.byte 0
+
+BrunosRoom_Johto_OnLoad:
+	call BrunosRoom_Johto_BrunosRoomDoorsCallback_Cb
+	end
 
 BrunosRoom_Johto_OnFrame:
 	map_script_2 VAR_JOHTO_SCENE_BRUNOS_ROOM, 0, BrunosRoom_Johto_BrunosRoomDoorLocksBehindYouScript_Entry
@@ -63,6 +68,25 @@ BrunosRoom_Johto_BrunoScript_AfterBattle:
 	closemessage
 	releaseall
 	end
+
+BrunosRoom_Johto_BrunosRoomDoorsCallback_Cb:
+	goto_if_unset FLAG_JOHTO_BRUNOS_ROOM_ENTRANCE_CLOSED, BrunosRoom_Johto_BrunosRoomDoorsCallback_KeepEntranceOpen_Cb
+	setmetatile 4, 14, 527, 1
+	setmetatile 5, 14, 526, 1
+	setmetatile 4, 15, 528, 1
+	setmetatile 5, 15, 528, 1
+	special DrawWholeMapView
+
+BrunosRoom_Johto_BrunosRoomDoorsCallback_KeepEntranceOpen_Cb:
+	goto_if_unset FLAG_JOHTO_BRUNOS_ROOM_EXIT_OPEN, BrunosRoom_Johto_BrunosRoomDoorsCallback_KeepExitClosed_Cb
+	setmetatile 4, 2, 530, 0
+	setmetatile 5, 2, 530, 0
+	setmetatile 4, 3, 519, 0
+	setmetatile 5, 3, 519, 0
+	special DrawWholeMapView
+
+BrunosRoom_Johto_BrunosRoomDoorsCallback_KeepExitClosed_Cb:
+	return
 
 BrunosRoom_Johto_BrunosRoom_EnterMovement:
 	walk_up

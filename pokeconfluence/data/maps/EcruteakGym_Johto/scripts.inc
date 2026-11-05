@@ -174,6 +174,7 @@ EcruteakGym_Johto_EcruteakGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 EcruteakGym_Johto_EcruteakGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_MORTY_MORTY1
 	goto Johto_Std_GymStatue2Script
 
 EcruteakGym_Johto_EcruteakGymActivateRockets_Sub:

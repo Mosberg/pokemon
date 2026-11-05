@@ -38,25 +38,67 @@ Route45_Johto_TrainerBlackbeltKenji::
 	goto Route45_Johto_TrainerBlackbeltKenji_Script
 
 Route45_Johto_TrainerBlackbeltKenji_Script:
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8007, 693
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_BLACKBELT_KENJI_REGISTERED
+	setvar VAR_0x8005, 0
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route45_Johto_TrainerBlackbeltKenji_Registered
 	goto_if_set FLAG_JOHTO_KENJI_ASKED_FOR_PHONE_NUMBER, Route45_Johto_TrainerBlackbeltKenji_AskedAlready
-	@ TODO unsupported: special SampleKenjiBreakCountdown
-	goto Johto_EventScript_Unimplemented
+	message Route45_Johto_BlackbeltKenjiAfterBattleText
+	waitmessage
+	waitbuttonpress
+	setflag FLAG_JOHTO_KENJI_ASKED_FOR_PHONE_NUMBER
+	call Route45_Johto_Route45AskNumber1M_Sub
+	goto Route45_Johto_TrainerBlackbeltKenji_AskForNumber
 
 Route45_Johto_TrainerBlackbeltKenji_AskedAlready:
 	call Route45_Johto_Route45AskNumber2M_Sub
 
 Route45_Johto_TrainerBlackbeltKenji_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_BLACKBELT_KENJI_REGISTERED
+	setvar VAR_0x8005, 0
+	setvar VAR_0x8006, FLAG_JOHTO_KENJI_ON_BREAK
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route45_Johto_Route45PhoneFullM
 	goto_if_eq VAR_RESULT, 2, Route45_Johto_Route45NumberDeclinedM
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_BLACKBELT_T_KENJI3
 	call Route45_Johto_Route45RegisteredNumberM_Sub
 	goto Route45_Johto_Route45NumberAcceptedM
 
 Route45_Johto_TrainerBlackbeltKenji_Registered:
-	@ TODO unsupported: readvar VAR_KENJI_BREAK
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 1
+	goto_if_ne VAR_RESULT, 1, Route45_Johto_Route45NumberAcceptedM
+	setvar VAR_0x8004, 1
+	special JohtoCheckTime
+	goto_if_ne VAR_RESULT, 0, Route45_Johto_TrainerBlackbeltKenji_Morning
+	setvar VAR_0x8004, 4
+	special JohtoCheckTime
+	goto_if_ne VAR_RESULT, 0, Route45_Johto_TrainerBlackbeltKenji_Night
+	goto_if_unset FLAG_JOHTO_KENJI_ON_BREAK, Route45_Johto_Route45NumberAcceptedM
+	call Route45_Johto_Route45GiftM_Sub
+	giveitem ITEM_PP_UP
+	goto_if_eq VAR_RESULT, 0, Route45_Johto_TrainerBlackbeltKenji_NoRoom
+	clearflag FLAG_JOHTO_KENJI_ON_BREAK
+	goto Route45_Johto_Route45NumberAcceptedM
+
+Route45_Johto_TrainerBlackbeltKenji_Morning:
+	message Route45_Johto_BlackbeltKenjiMorningText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route45_Johto_TrainerBlackbeltKenji_Night:
+	message Route45_Johto_BlackbeltKenjiNightText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route45_Johto_TrainerBlackbeltKenji_NoRoom:
+	goto Route45_Johto_Route45PackFullM
 
 Route45_Johto_Route45NumberAcceptedM:
 	goto Johto_Std_NumberAcceptedMScript
@@ -66,6 +108,13 @@ Route45_Johto_Route45NumberDeclinedM:
 
 Route45_Johto_Route45PhoneFullM:
 	goto Johto_Std_PhoneFullMScript
+
+Route45_Johto_Route45PackFullM:
+	goto Johto_Std_PackFullMScript
+
+Route45_Johto_HikerParryHasIron:
+	setflag FLAG_JOHTO_PARRY_IRON
+	goto Johto_Std_PackFullMScript
 
 Route45_Johto_TrainerHikerErik::
 	trainerbattle_single TRAINER_JOHTO_HIKER_ERIK, Route45_Johto_HikerErikSeenText, Route45_Johto_HikerErikBeatenText
@@ -105,8 +154,11 @@ Route45_Johto_TrainerHikerParry::
 	goto Route45_Johto_TrainerHikerParry_Script
 
 Route45_Johto_TrainerHikerParry_Script:
+	setvar VAR_0x8007, 605
 	goto_if_set FLAG_JOHTO_ENGINE_PARRY_READY_FOR_REMATCH, Route45_Johto_TrainerHikerParry_WantsBattle
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_HIKER_PARRY_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_PARRY_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route45_Johto_Route45NumberAcceptedM
 	goto_if_set FLAG_JOHTO_PARRY_ASKED_FOR_PHONE_NUMBER, Route45_Johto_TrainerHikerParry_AskedAlready
 	message Route45_Johto_HikerParryAfterBattleText
@@ -120,16 +172,67 @@ Route45_Johto_TrainerHikerParry_AskedAlready:
 	call Route45_Johto_Route45AskNumber2M_Sub
 
 Route45_Johto_TrainerHikerParry_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_HIKER_PARRY_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_PARRY_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route45_Johto_Route45PhoneFullM
 	goto_if_eq VAR_RESULT, 2, Route45_Johto_Route45NumberDeclinedM
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_HIKER_PARRY1
 	call Route45_Johto_Route45RegisteredNumberM_Sub
 	goto Route45_Johto_Route45NumberAcceptedM
 
 Route45_Johto_TrainerHikerParry_WantsBattle:
 	call Route45_Johto_Route45RematchM_Sub
-	@ TODO unsupported: readmem wParryFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WPARRYFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 2, Route45_Johto_TrainerHikerParry_Fight2
+	goto_if_eq VAR_RESULT, 1, Route45_Johto_TrainerHikerParry_Fight1
+	goto_if_eq VAR_RESULT, 0, Route45_Johto_TrainerHikerParry_LoadFight0
+
+Route45_Johto_TrainerHikerParry_Fight2:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route45_Johto_TrainerHikerParry_LoadFight2
+
+Route45_Johto_TrainerHikerParry_Fight1:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route45_Johto_TrainerHikerParry_LoadFight1
+
+Route45_Johto_TrainerHikerParry_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_HIKER_PARRY3, Route45_Johto_HikerParry3BeatenText
+	setvar VAR_JOHTO_MEM_WPARRYFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_PARRY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route45_Johto_TrainerHikerParry_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_HIKER_PARRY1, Route45_Johto_HikerParry3BeatenText
+	setvar VAR_JOHTO_MEM_WPARRYFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_PARRY_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route45_Johto_TrainerHikerParry_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_HIKER_PARRY2, Route45_Johto_HikerParry3BeatenText
+	clearflag FLAG_JOHTO_ENGINE_PARRY_READY_FOR_REMATCH
+	goto_if_set FLAG_JOHTO_PARRY_IRON, Route45_Johto_TrainerHikerParry_HasIron
+	goto_if_set FLAG_JOHTO_GOT_IRON_FROM_PARRY, Route45_Johto_TrainerHikerParry_GotIron
+	call Route45_Johto_Route45RematchGiftM_Sub
+	giveitem ITEM_IRON
+	goto_if_eq VAR_RESULT, 0, Route45_Johto_HikerParryHasIron
+	setflag FLAG_JOHTO_GOT_IRON_FROM_PARRY
+	goto Route45_Johto_Route45NumberAcceptedM
+
+Route45_Johto_TrainerHikerParry_GotIron:
+	releaseall
+	end
+
+Route45_Johto_TrainerHikerParry_HasIron:
+	message Route45_Johto_HikerParryGivesIronText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_IRON
+	goto_if_eq VAR_RESULT, 0, Route45_Johto_HikerParryHasIron
+	clearflag FLAG_JOHTO_PARRY_IRON
+	setflag FLAG_JOHTO_GOT_IRON_FROM_PARRY
+	goto Route45_Johto_Route45NumberAcceptedM
 
 Route45_Johto_TrainerHikerTimothy::
 	trainerbattle_single TRAINER_JOHTO_HIKER_TIMOTHY, Route45_Johto_HikerTimothySeenText, Route45_Johto_HikerTimothyBeatenText
@@ -244,6 +347,12 @@ Route45_Johto_Route45RegisteredNumberM_Sub:
 Route45_Johto_Route45RematchM_Sub:
 	goto Johto_Std_RematchMScript_Sub
 
+Route45_Johto_Route45GiftM_Sub:
+	goto Johto_Std_GiftMScript_Sub
+
+Route45_Johto_Route45RematchGiftM_Sub:
+	goto Johto_Std_RematchGiftMScript_Sub
+
 Route45_Johto_HikerErikSeenText:
 	.string "Be prepared for\n"
 	.string "anything!"
@@ -312,6 +421,15 @@ Route45_Johto_HikerTimothyAfterBattleText:
 	.string "\pwas discovering\n"
 	.string "POKéMON.$"
 
+Route45_Johto_HikerParryGivesIronText:
+	.string "I just can't find\n"
+	.string "a way to win!"
+	.string "\pKeep it up!"
+	.string "\pOh, and take this\n"
+	.string "--it's the gift"
+	.string "\pyou couldn't take\n"
+	.string "when we last met.$"
+
 Route45_Johto_BlackbeltKenji3SeenText:
 	.string "I was training\n"
 	.string "here alone."
@@ -320,6 +438,26 @@ Route45_Johto_BlackbeltKenji3SeenText:
 
 Route45_Johto_BlackbeltKenji3BeatenText:
 	.string "Waaaargh!$"
+
+Route45_Johto_BlackbeltKenjiAfterBattleText:
+	.string "This calls for\n"
+	.string "extreme measures."
+	.string "\pI must take to the\n"
+	.string "hills and train in\l"
+	.string "solitude.$"
+
+Route45_Johto_BlackbeltKenjiMorningText:
+	.string "I'm going to train\n"
+	.string "a bit more before\l"
+	.string "I break for lunch.$"
+
+Route45_Johto_BlackbeltKenjiNightText:
+	.string "We had plenty of\n"
+	.string "rest at lunch, so"
+	.string "\pnow we're all\n"
+	.string "ready to go again!"
+	.string "\pWe're going to\n"
+	.string "train again!$"
 
 Route45_Johto_CooltrainermRyanSeenText:
 	.string "What are your\n"

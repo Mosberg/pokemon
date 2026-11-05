@@ -154,7 +154,40 @@ MahoganyTown_Johto_RageCandyBarMerchantScript_ClearedRocketHideout_Sub:
 MahoganyTown_Johto_RageCandyBarMerchantScript_SellRageCandyBars_Sub:
 	message MahoganyTown_Johto_RageCandyBarMerchantTryOneText
 	waitmessage
-	@ TODO unsupported: special PlaceMoneyTopRight
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, MahoganyTown_Johto_RageCandyBarMerchantScript_Refused_Sub
+	checkmoney 300
+	goto_if_eq VAR_RESULT, 0, MahoganyTown_Johto_RageCandyBarMerchantScript_NotEnoughMoney_Sub
+	additem ITEM_RAGECANDYBAR
+	goto_if_eq VAR_RESULT, 0, MahoganyTown_Johto_RageCandyBarMerchantScript_NoRoom_Sub
+	waitse
+	playse SE_PIN
+	removemoney 300
+	message MahoganyTown_Johto_RageCandyBarMerchantSavorItText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	return
+
+MahoganyTown_Johto_RageCandyBarMerchantScript_NotEnoughMoney_Sub:
+	message MahoganyTown_Johto_RageCandyBarMerchantNotEnoughMoneyText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	return
+
+MahoganyTown_Johto_RageCandyBarMerchantScript_Refused_Sub:
+	message MahoganyTown_Johto_RageCandyBarMerchantRefusedText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	return
+
+MahoganyTown_Johto_RageCandyBarMerchantScript_NoRoom_Sub:
+	message MahoganyTown_Johto_RageCandyBarMerchantNoRoomText
+	waitmessage
+	waitbuttonpress
+	closemessage
 	return
 
 MahoganyTown_Johto_MahoganyTownFlypointCallback_Cb:
@@ -178,6 +211,20 @@ MahoganyTown_Johto_MahoganyTownRageCandyBarMerchantReturnsMovement:
 
 MahoganyTown_Johto_RageCandyBarMerchantTryOneText:
 	.string "(text not converted)$"
+
+MahoganyTown_Johto_RageCandyBarMerchantSavorItText:
+	.string "Good! Savor it!$"
+
+MahoganyTown_Johto_RageCandyBarMerchantNotEnoughMoneyText:
+	.string "You don't have\n"
+	.string "enough money.$"
+
+MahoganyTown_Johto_RageCandyBarMerchantRefusedText:
+	.string "Oh, fine then…$"
+
+MahoganyTown_Johto_RageCandyBarMerchantNoRoomText:
+	.string "You don't have\n"
+	.string "room for this.$"
 
 MahoganyTown_Johto_RageCandyBarMerchantSoldOutText:
 	.string "RAGECANDYBAR's\n"

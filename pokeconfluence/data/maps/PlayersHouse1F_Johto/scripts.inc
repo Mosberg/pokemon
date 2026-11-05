@@ -60,6 +60,7 @@ PlayersHouse1F_Johto_MeetMomScript:
 	call PlayersHouse1F_Johto_PlayersHouse1FReceiveItemStd_Sub
 	setflag FLAG_JOHTO_ENGINE_POKEGEAR
 	setflag FLAG_JOHTO_ENGINE_PHONE_CARD
+	setflag FLAG_JOHTO_PHONE_MOM_REGISTERED
 	setvar VAR_JOHTO_SCENE_PLAYERS_HOUSE_1F, 1
 	setflag FLAG_JOHTO_PLAYERS_HOUSE_MOM_1
 	clearflag FLAG_JOHTO_PLAYERS_HOUSE_MOM_2

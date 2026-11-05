@@ -105,8 +105,24 @@ Route40_Johto_Route40Lass1Script:
 	end
 
 Route40_Johto_Route40PokefanMScript:
-	@ TODO unsupported: special CheckMobileAdapterStatusSpecial
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 0
+	goto_if_ne VAR_RESULT, 0, Route40_Johto_Route40PokefanMScript_mobile
+	faceplayer
+	message Route40_Johto_Route40PokefanMText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route40_Johto_Route40PokefanMScript_mobile:
+	faceplayer
+	message Route40_Johto_Route40PokefanMText_Mobile
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 Route40_Johto_Route40Lass2Script:
 	faceplayer
@@ -253,6 +269,18 @@ Route40_Johto_Route40Lass1Text:
 	.string "see it from here,"
 	.string "\pCIANWOOD is across\n"
 	.string "the sea.$"
+
+Route40_Johto_Route40PokefanMText:
+	.string "Hm! There's a big\n"
+	.string "building up ahead!"
+	.string "\pWhat is it?$"
+
+Route40_Johto_Route40PokefanMText_Mobile:
+	.string "Hm! Look at all\n"
+	.string "those serious-\l"
+	.string "looking trainers\l"
+	.string "streaming in."
+	.string "\pWhat? What?$"
 
 Route40_Johto_Route40Lass2Text:
 	.string "I came to OLIVINE\n"

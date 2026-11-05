@@ -1,6 +1,11 @@
 BattleTowerOutside_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, BattleTowerOutside_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleTowerOutside_Johto_OnTransition
 	.byte 0
+
+BattleTowerOutside_Johto_OnLoad:
+	call BattleTowerOutside_Johto_BattleTowerOutsideNoopCallback_Cb
+	end
 
 BattleTowerOutside_Johto_OnTransition:
 	call BattleTowerOutside_Johto_BattleTowerOutsideShowCiviliansCallback_Cb
@@ -57,6 +62,9 @@ BattleTowerOutside_Johto_BattleTowerOutsideSign:
 	closemessage
 	releaseall
 	end
+
+BattleTowerOutside_Johto_BattleTowerOutsideNoopCallback_Cb:
+	return
 
 BattleTowerOutside_Johto_BattleTowerOutsideShowCiviliansCallback_Cb:
 	clearflag FLAG_JOHTO_BATTLE_TOWER_OPEN_CIVILIANS

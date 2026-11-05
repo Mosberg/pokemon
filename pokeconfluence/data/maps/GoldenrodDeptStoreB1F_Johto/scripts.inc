@@ -1,6 +1,11 @@
 GoldenrodDeptStoreB1F_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, GoldenrodDeptStoreB1F_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, GoldenrodDeptStoreB1F_Johto_OnTransition
 	.byte 0
+
+GoldenrodDeptStoreB1F_Johto_OnLoad:
+	call GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_Cb
+	end
 
 GoldenrodDeptStoreB1F_Johto_OnTransition:
 	call GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreUnblockCallback_Cb
@@ -95,6 +100,44 @@ GoldenrodDeptStoreB1F_Johto_GoldenrodDeptStoreB1FUltraBall:
 	finditem ITEM_ULTRA_BALL
 	releaseall
 	end
+
+GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_Cb:
+	goto_if_set FLAG_JOHTO_RECEIVED_CARD_KEY, GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_GotCardKey_Cb
+	goto GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_Continue_Cb
+
+GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_GotCardKey_Cb:
+	setmetatile 16, 4, 513, 0
+	setmetatile 17, 4, 513, 0
+	setmetatile 16, 5, 513, 0
+	setmetatile 17, 5, 513, 0
+	special DrawWholeMapView
+	goto GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_Continue_Cb
+
+GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_Continue_Cb:
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2, GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_Layout2_Cb
+	goto_if_set FLAG_JOHTO_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3, GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_Layout3_Cb
+	setmetatile 10, 8, 513, 0
+	setmetatile 11, 8, 513, 0
+	setmetatile 10, 9, 513, 0
+	setmetatile 11, 9, 513, 0
+	special DrawWholeMapView
+	return
+
+GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_Layout2_Cb:
+	setmetatile 4, 10, 513, 0
+	setmetatile 5, 10, 513, 0
+	setmetatile 4, 11, 513, 0
+	setmetatile 5, 11, 513, 0
+	special DrawWholeMapView
+	return
+
+GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreB1FClearBoxesCallback_Layout3_Cb:
+	setmetatile 10, 12, 513, 0
+	setmetatile 11, 12, 513, 0
+	setmetatile 10, 13, 513, 0
+	setmetatile 11, 13, 513, 0
+	special DrawWholeMapView
+	return
 
 GoldenrodDeptStoreB1F_Johto_GoldenRodDeptStoreUnblockCallback_Cb:
 	clearflag FLAG_JOHTO_GOLDENROD_UNDERGROUND_WAREHOUSE_BLOCKED_OFF

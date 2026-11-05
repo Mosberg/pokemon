@@ -80,8 +80,24 @@ EcruteakPokecenter1F_Johto_EcruteakPokecenter1FNurseScript:
 	goto Johto_Std_PokecenterNurseScript
 
 EcruteakPokecenter1F_Johto_EcruteakPokecenter1FPokefanMScript:
-	@ TODO unsupported: special CheckMobileAdapterStatusSpecial
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 0
+	goto_if_ne VAR_RESULT, 0, EcruteakPokecenter1F_Johto_EcruteakPokecenter1FPokefanMScript_mobile
+	faceplayer
+	message EcruteakPokecenter1F_Johto_EcruteakPokecenter1FPokefanMText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+EcruteakPokecenter1F_Johto_EcruteakPokecenter1FPokefanMScript_mobile:
+	faceplayer
+	message EcruteakPokecenter1F_Johto_EcruteakPokecenter1FPokefanMTextMobile
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 EcruteakPokecenter1F_Johto_EcruteakPokecenter1FCooltrainerFScript:
 	faceplayer
@@ -170,6 +186,24 @@ EcruteakPokecenter1F_Johto_EcruteakPokecenter1F_BillText2:
 	.string "back to GOLDENROD\l"
 	.string "and see my folks."
 	.string "\pBuh-bye!$"
+
+EcruteakPokecenter1F_Johto_EcruteakPokecenter1FPokefanMText:
+	.string "The way the KIMONO\n"
+	.string "GIRLS dance is"
+	.string "\pmarvelous. Just\n"
+	.string "like the way they\l"
+	.string "use their POKéMON.$"
+
+EcruteakPokecenter1F_Johto_EcruteakPokecenter1FPokefanMTextMobile:
+	.string "You must be hoping\n"
+	.string "to battle more"
+	.string "\ppeople, right?\n"
+	.string "There's apparently"
+	.string "\psome place where\n"
+	.string "trainers gather."
+	.string "\pWhere, you ask?"
+	.string "\pIt's a little past\n"
+	.string "OLIVINE CITY.$"
 
 EcruteakPokecenter1F_Johto_EcruteakPokecenter1FCooltrainerFText:
 	.string "MORTY, the GYM\n"

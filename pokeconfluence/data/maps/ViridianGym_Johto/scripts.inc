@@ -67,6 +67,7 @@ ViridianGym_Johto_ViridianGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 ViridianGym_Johto_ViridianGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_BLUE_BLUE1
 	goto Johto_Std_GymStatue2Script
 
 ViridianGym_Johto_LeaderBlueBeforeText:

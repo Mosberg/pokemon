@@ -41,8 +41,11 @@ Route46_Johto_TrainerPicnickerErin1::
 	goto Route46_Johto_TrainerPicnickerErin1_Script
 
 Route46_Johto_TrainerPicnickerErin1_Script:
+	setvar VAR_0x8007, 552
 	goto_if_set FLAG_JOHTO_ENGINE_ERIN_READY_FOR_REMATCH, Route46_Johto_TrainerPicnickerErin1_WantsBattle
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_PICNICKER_ERIN_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_ERIN_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route46_Johto_Route46NumberAcceptedF
 	goto_if_set FLAG_JOHTO_ERIN_ASKED_FOR_PHONE_NUMBER, Route46_Johto_TrainerPicnickerErin1_AskedAlready
 	message Route46_Johto_PicnickerErinAfterBattleText
@@ -56,16 +59,67 @@ Route46_Johto_TrainerPicnickerErin1_AskedAlready:
 	call Route46_Johto_Route46AskNumber2F_Sub
 
 Route46_Johto_TrainerPicnickerErin1_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_PICNICKER_ERIN_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_ERIN_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route46_Johto_Route46PhoneFullF
 	goto_if_eq VAR_RESULT, 2, Route46_Johto_Route46NumberDeclinedF
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_PICNICKER_ERIN1
 	call Route46_Johto_Route46RegisteredNumberF_Sub
 	goto Route46_Johto_Route46NumberAcceptedF
 
 Route46_Johto_TrainerPicnickerErin1_WantsBattle:
 	call Route46_Johto_Route46RematchF_Sub
-	@ TODO unsupported: readmem wErinFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WERINFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 2, Route46_Johto_TrainerPicnickerErin1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route46_Johto_TrainerPicnickerErin1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route46_Johto_TrainerPicnickerErin1_LoadFight0
+
+Route46_Johto_TrainerPicnickerErin1_Fight2:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route46_Johto_TrainerPicnickerErin1_LoadFight2
+
+Route46_Johto_TrainerPicnickerErin1_Fight1:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route46_Johto_TrainerPicnickerErin1_LoadFight1
+
+Route46_Johto_TrainerPicnickerErin1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_ERIN1, Route46_Johto_PicnickerErin1BeatenText
+	setvar VAR_JOHTO_MEM_WERINFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_ERIN_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route46_Johto_TrainerPicnickerErin1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_ERIN2, Route46_Johto_PicnickerErin1BeatenText
+	setvar VAR_JOHTO_MEM_WERINFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_ERIN_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route46_Johto_TrainerPicnickerErin1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_ERIN3, Route46_Johto_PicnickerErin1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_ERIN_READY_FOR_REMATCH
+	goto_if_set FLAG_JOHTO_ERIN_CALCIUM, Route46_Johto_TrainerPicnickerErin1_HasCalcium
+	goto_if_set FLAG_JOHTO_GOT_CALCIUM_FROM_ERIN, Route46_Johto_TrainerPicnickerErin1_GotCalciumAlready
+	call Route46_Johto_Route46RematchGiftF_Sub
+	giveitem ITEM_CALCIUM
+	goto_if_eq VAR_RESULT, 0, Route46_Johto_ErinNoRoomForCalcium
+	setflag FLAG_JOHTO_GOT_CALCIUM_FROM_ERIN
+	goto Route46_Johto_Route46NumberAcceptedF
+
+Route46_Johto_TrainerPicnickerErin1_GotCalciumAlready:
+	releaseall
+	end
+
+Route46_Johto_TrainerPicnickerErin1_HasCalcium:
+	message Route46_Johto_PicnickerErin2BeatenText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_CALCIUM
+	goto_if_eq VAR_RESULT, 0, Route46_Johto_ErinNoRoomForCalcium
+	clearflag FLAG_JOHTO_ERIN_CALCIUM
+	setflag FLAG_JOHTO_GOT_CALCIUM_FROM_ERIN
+	goto Route46_Johto_Route46NumberAcceptedF
 
 Route46_Johto_Route46NumberAcceptedF:
 	goto Johto_Std_NumberAcceptedFScript
@@ -75,6 +129,10 @@ Route46_Johto_Route46NumberDeclinedF:
 
 Route46_Johto_Route46PhoneFullF:
 	goto Johto_Std_PhoneFullFScript
+
+Route46_Johto_ErinNoRoomForCalcium:
+	setflag FLAG_JOHTO_ERIN_CALCIUM
+	goto Johto_Std_PackFullFScript
 
 Route46_Johto_TrainerHikerBailey::
 	trainerbattle_single TRAINER_JOHTO_HIKER_BAILEY, Route46_Johto_HikerBaileySeenText, Route46_Johto_HikerBaileyBeatenText
@@ -130,6 +188,9 @@ Route46_Johto_Route46RegisteredNumberF_Sub:
 Route46_Johto_Route46RematchF_Sub:
 	goto Johto_Std_RematchFScript_Sub
 
+Route46_Johto_Route46RematchGiftF_Sub:
+	goto Johto_Std_RematchGiftFScript_Sub
+
 Route46_Johto_HikerBaileySeenText:
 	.string "Awright! I'll show\n"
 	.string "you the power of\l"
@@ -175,6 +236,17 @@ Route46_Johto_PicnickerErinAfterBattleText:
 	.string "favorite."
 	.string "\pIt's filled with\n"
 	.string "pretty flowers!$"
+
+Route46_Johto_PicnickerErin2BeatenText:
+	.string "Aww… I keep losing\n"
+	.string "all the time!"
+	.string "\pI'll just have to\n"
+	.string "try harder!"
+	.string "\pAnyway, thanks for\n"
+	.string "battling me again"
+	.string "\pand again. Here's\n"
+	.string "that present from\l"
+	.string "the other time.$"
 
 Route46_Johto_Route46SignText:
 	.string "ROUTE 46\n"

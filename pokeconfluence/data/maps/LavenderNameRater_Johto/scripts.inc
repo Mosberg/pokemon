@@ -8,5 +8,8 @@ LavenderNameRater_Johto_LavenderNameRater_Entry::
 
 LavenderNameRater_Johto_LavenderNameRater:
 	faceplayer
-	@ TODO unsupported: special NameRater
-	goto Johto_EventScript_Unimplemented
+	goto SlateportCity_NameRatersHouse_EventScript_NameRater
+	waitbuttonpress
+	closemessage
+	releaseall
+	end

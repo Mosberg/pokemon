@@ -208,9 +208,12 @@ Route32_Johto_TrainerFisherRalph1::
 	goto Route32_Johto_TrainerFisherRalph1_Script
 
 Route32_Johto_TrainerFisherRalph1_Script:
+	setvar VAR_0x8007, 993
 	goto_if_set FLAG_JOHTO_ENGINE_RALPH_READY_FOR_REMATCH, Route32_Johto_TrainerFisherRalph1_Rematch
 	goto_if_set FLAG_JOHTO_ENGINE_QWILFISH_SWARM, Route32_Johto_TrainerFisherRalph1_Swarm
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_FISHER_RALPH_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_RALPH_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route32_Johto_TrainerFisherRalph1_NumberAccepted
 	goto_if_set FLAG_JOHTO_RALPH_ASKED_FOR_PHONE_NUMBER, Route32_Johto_TrainerFisherRalph1_AskAgain
 	message Route32_Johto_FisherRalphAfterText
@@ -224,16 +227,70 @@ Route32_Johto_TrainerFisherRalph1_AskAgain:
 	call Route32_Johto_TrainerFisherRalph1_AskNumber2_Sub
 
 Route32_Johto_TrainerFisherRalph1_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_FISHER_RALPH_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_RALPH_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route32_Johto_TrainerFisherRalph1_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route32_Johto_TrainerFisherRalph1_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_FISHER_RALPH1
 	call Route32_Johto_TrainerFisherRalph1_RegisteredNumber_Sub
 	goto Route32_Johto_TrainerFisherRalph1_NumberAccepted
 
 Route32_Johto_TrainerFisherRalph1_Rematch:
 	call Route32_Johto_TrainerFisherRalph1_RematchStd_Sub
-	@ TODO unsupported: readmem wRalphFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WRALPHFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 4, Route32_Johto_TrainerFisherRalph1_Fight4
+	goto_if_eq VAR_RESULT, 3, Route32_Johto_TrainerFisherRalph1_Fight3
+	goto_if_eq VAR_RESULT, 2, Route32_Johto_TrainerFisherRalph1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route32_Johto_TrainerFisherRalph1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route32_Johto_TrainerFisherRalph1_LoadFight0
+
+Route32_Johto_TrainerFisherRalph1_Fight4:
+	goto_if_set FLAG_JOHTO_RESTORED_POWER_TO_KANTO, Route32_Johto_TrainerFisherRalph1_LoadFight4
+
+Route32_Johto_TrainerFisherRalph1_Fight3:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route32_Johto_TrainerFisherRalph1_LoadFight3
+
+Route32_Johto_TrainerFisherRalph1_Fight2:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_LAKE_OF_RAGE, Route32_Johto_TrainerFisherRalph1_LoadFight2
+
+Route32_Johto_TrainerFisherRalph1_Fight1:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_ECRUTEAK, Route32_Johto_TrainerFisherRalph1_LoadFight1
+
+Route32_Johto_TrainerFisherRalph1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_RALPH1, Route32_Johto_FisherRalph1BeatenText
+	setvar VAR_JOHTO_MEM_WRALPHFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_RALPH_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route32_Johto_TrainerFisherRalph1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_RALPH2, Route32_Johto_FisherRalph1BeatenText
+	setvar VAR_JOHTO_MEM_WRALPHFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_RALPH_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route32_Johto_TrainerFisherRalph1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_RALPH3, Route32_Johto_FisherRalph1BeatenText
+	setvar VAR_JOHTO_MEM_WRALPHFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_RALPH_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route32_Johto_TrainerFisherRalph1_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_RALPH4, Route32_Johto_FisherRalph1BeatenText
+	setvar VAR_JOHTO_MEM_WRALPHFIGHTCOUNT, 4
+	clearflag FLAG_JOHTO_ENGINE_RALPH_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route32_Johto_TrainerFisherRalph1_LoadFight4:
+	trainerbattle_no_intro TRAINER_JOHTO_FISHER_RALPH5, Route32_Johto_FisherRalph1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_RALPH_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route32_Johto_TrainerFisherRalph1_Swarm:
 	message Route32_Johto_FisherRalphSwarmText
@@ -275,8 +332,11 @@ Route32_Johto_TrainerPicnickerLiz1::
 	goto Route32_Johto_TrainerPicnickerLiz1_Script
 
 Route32_Johto_TrainerPicnickerLiz1_Script:
+	setvar VAR_0x8007, 718
 	goto_if_set FLAG_JOHTO_ENGINE_LIZ_READY_FOR_REMATCH, Route32_Johto_TrainerPicnickerLiz1_Rematch
-	setvar VAR_RESULT, 0
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_PICNICKER_LIZ_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_LIZ_READY_FOR_REMATCH
+	special JohtoPhoneIsRegistered
 	goto_if_ne VAR_RESULT, 0, Route32_Johto_TrainerPicnickerLiz1_NumberAccepted
 	goto_if_set FLAG_JOHTO_LIZ_ASKED_FOR_PHONE_NUMBER, Route32_Johto_TrainerPicnickerLiz1_AskAgain
 	message Route32_Johto_PicnickerLiz1AfterText
@@ -290,16 +350,70 @@ Route32_Johto_TrainerPicnickerLiz1_AskAgain:
 	call Route32_Johto_TrainerPicnickerLiz1_AskNumber2_Sub
 
 Route32_Johto_TrainerPicnickerLiz1_AskForNumber:
-	setvar VAR_RESULT, 2
+	setvar VAR_0x8004, FLAG_JOHTO_PHONE_PICNICKER_LIZ_REGISTERED
+	setvar VAR_0x8005, FLAG_JOHTO_ENGINE_LIZ_READY_FOR_REMATCH
+	setvar VAR_0x8006, 0
+	call Johto_Std_AskPhone
 	goto_if_eq VAR_RESULT, 1, Route32_Johto_TrainerPicnickerLiz1_PhoneFull
 	goto_if_eq VAR_RESULT, 2, Route32_Johto_TrainerPicnickerLiz1_NumberDeclined
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_PICNICKER_LIZ1
 	call Route32_Johto_TrainerPicnickerLiz1_RegisteredNumber_Sub
 	goto Route32_Johto_TrainerPicnickerLiz1_NumberAccepted
 
 Route32_Johto_TrainerPicnickerLiz1_Rematch:
 	call Route32_Johto_TrainerPicnickerLiz1_RematchStd_Sub
-	@ TODO unsupported: readmem wLizFightCount
-	goto Johto_EventScript_Unimplemented
+	copyvar VAR_RESULT, VAR_JOHTO_MEM_WLIZFIGHTCOUNT
+	goto_if_eq VAR_RESULT, 4, Route32_Johto_TrainerPicnickerLiz1_Fight4
+	goto_if_eq VAR_RESULT, 3, Route32_Johto_TrainerPicnickerLiz1_Fight3
+	goto_if_eq VAR_RESULT, 2, Route32_Johto_TrainerPicnickerLiz1_Fight2
+	goto_if_eq VAR_RESULT, 1, Route32_Johto_TrainerPicnickerLiz1_Fight1
+	goto_if_eq VAR_RESULT, 0, Route32_Johto_TrainerPicnickerLiz1_LoadFight0
+
+Route32_Johto_TrainerPicnickerLiz1_Fight4:
+	goto_if_set FLAG_JOHTO_BEAT_ELITE_FOUR, Route32_Johto_TrainerPicnickerLiz1_LoadFight4
+
+Route32_Johto_TrainerPicnickerLiz1_Fight3:
+	goto_if_set FLAG_JOHTO_CLEARED_RADIO_TOWER, Route32_Johto_TrainerPicnickerLiz1_LoadFight3
+
+Route32_Johto_TrainerPicnickerLiz1_Fight2:
+	goto_if_set FLAG_JOHTO_CLEARED_ROCKET_HIDEOUT, Route32_Johto_TrainerPicnickerLiz1_LoadFight2
+
+Route32_Johto_TrainerPicnickerLiz1_Fight1:
+	goto_if_set FLAG_JOHTO_ENGINE_FLYPOINT_ECRUTEAK, Route32_Johto_TrainerPicnickerLiz1_LoadFight1
+
+Route32_Johto_TrainerPicnickerLiz1_LoadFight0:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_LIZ1, Route32_Johto_PicnickerLiz1BeatenText
+	setvar VAR_JOHTO_MEM_WLIZFIGHTCOUNT, 1
+	clearflag FLAG_JOHTO_ENGINE_LIZ_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route32_Johto_TrainerPicnickerLiz1_LoadFight1:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_LIZ2, Route32_Johto_PicnickerLiz1BeatenText
+	setvar VAR_JOHTO_MEM_WLIZFIGHTCOUNT, 2
+	clearflag FLAG_JOHTO_ENGINE_LIZ_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route32_Johto_TrainerPicnickerLiz1_LoadFight2:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_LIZ3, Route32_Johto_PicnickerLiz1BeatenText
+	setvar VAR_JOHTO_MEM_WLIZFIGHTCOUNT, 3
+	clearflag FLAG_JOHTO_ENGINE_LIZ_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route32_Johto_TrainerPicnickerLiz1_LoadFight3:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_LIZ4, Route32_Johto_PicnickerLiz1BeatenText
+	setvar VAR_JOHTO_MEM_WLIZFIGHTCOUNT, 4
+	clearflag FLAG_JOHTO_ENGINE_LIZ_READY_FOR_REMATCH
+	releaseall
+	end
+
+Route32_Johto_TrainerPicnickerLiz1_LoadFight4:
+	trainerbattle_no_intro TRAINER_JOHTO_PICNICKER_LIZ5, Route32_Johto_PicnickerLiz1BeatenText
+	clearflag FLAG_JOHTO_ENGINE_LIZ_READY_FOR_REMATCH
+	releaseall
+	end
 
 Route32_Johto_TrainerPicnickerLiz1_NumberAccepted:
 	goto Johto_Std_NumberAcceptedFScript

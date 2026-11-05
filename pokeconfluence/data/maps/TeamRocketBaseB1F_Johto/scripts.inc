@@ -692,7 +692,8 @@ TeamRocketBaseB1F_Johto_VoltorbExplodingTrap_Sub:
 	playmoncry SPECIES_VOLTORB, CRY_MODE_NORMAL
 	waitmoncry
 	fadescreen FADE_FROM_WHITE
-	@ TODO unsupported: setlasttalked -1
+	setwildbattle SPECIES_VOLTORB, 23
+	dowildbattle
 	return
 
 TeamRocketBaseB1F_Johto_GeodudeExplodingTrap_Sub:
@@ -700,7 +701,8 @@ TeamRocketBaseB1F_Johto_GeodudeExplodingTrap_Sub:
 	playmoncry SPECIES_GEODUDE, CRY_MODE_NORMAL
 	waitmoncry
 	fadescreen FADE_FROM_WHITE
-	@ TODO unsupported: setlasttalked -1
+	setwildbattle SPECIES_GEODUDE, 21
+	dowildbattle
 	return
 
 TeamRocketBaseB1F_Johto_KoffingExplodingTrap_Sub:
@@ -708,7 +710,8 @@ TeamRocketBaseB1F_Johto_KoffingExplodingTrap_Sub:
 	playmoncry SPECIES_KOFFING, CRY_MODE_NORMAL
 	waitmoncry
 	fadescreen FADE_FROM_WHITE
-	@ TODO unsupported: setlasttalked -1
+	setwildbattle SPECIES_KOFFING, 21
+	dowildbattle
 	return
 
 TeamRocketBaseB1F_Johto_TeamRocketBaseB1FHideSecurityGruntCallback_Cb:

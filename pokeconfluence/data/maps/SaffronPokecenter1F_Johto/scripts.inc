@@ -23,8 +23,24 @@ SaffronPokecenter1F_Johto_SaffronPokecenter1FNurseScript:
 	goto Johto_Std_PokecenterNurseScript
 
 SaffronPokecenter1F_Johto_SaffronPokecenter1FTeacherScript:
-	@ TODO unsupported: special CheckMobileAdapterStatusSpecial
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 0
+	goto_if_ne VAR_RESULT, 0, SaffronPokecenter1F_Johto_SaffronPokecenter1FTeacherScript_mobile
+	faceplayer
+	message SaffronPokecenter1F_Johto_SaffronPokecenter1FTeacherText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+SaffronPokecenter1F_Johto_SaffronPokecenter1FTeacherScript_mobile:
+	faceplayer
+	message SaffronPokecenter1F_Johto_SaffronPokecenter1FTeacherMobileText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 SaffronPokecenter1F_Johto_SaffronPokecenter1FFisherScript:
 	faceplayer
@@ -52,6 +68,31 @@ SaffronPokecenter1F_Johto_SaffronPokecenter1FYoungsterScript:
 	closemessage
 	releaseall
 	end
+
+SaffronPokecenter1F_Johto_SaffronPokecenter1FTeacherText:
+	.string "What are JOHTO's\n"
+	.string "POKéMON CENTERS\l"
+	.string "like?"
+	.string "\p…Oh, I see. So\n"
+	.string "they're not much"
+	.string "\pdifferent from the\n"
+	.string "ones in KANTO."
+	.string "\pI can go to JOHTO\n"
+	.string "without worrying,\l"
+	.string "then!$"
+
+SaffronPokecenter1F_Johto_SaffronPokecenter1FTeacherMobileText:
+	.string "What are JOHTO's\n"
+	.string "POKéMON CENTERS\l"
+	.string "like?"
+	.string "\p…Oh, I see.\n"
+	.string "So they let you"
+	.string "\plink with people\n"
+	.string "far away?"
+	.string "\pThen I'll get my\n"
+	.string "friend in JOHTO to"
+	.string "\pcatch a MARILL and\n"
+	.string "trade it to me!$"
 
 SaffronPokecenter1F_Johto_SaffronPokecenter1FFisherText:
 	.string "I just happened to\n"

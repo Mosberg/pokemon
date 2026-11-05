@@ -160,6 +160,7 @@ MahoganyGym_Johto_MahoganyGymStatue:
 	goto Johto_Std_GymStatue1Script
 
 MahoganyGym_Johto_MahoganyGymStatue_Beaten:
+	buffertrainername STR_VAR_2, TRAINER_JOHTO_PRYCE_PRYCE1
 	goto Johto_Std_GymStatue2Script
 
 MahoganyGym_Johto_MahoganyGymActivateRockets_Sub:

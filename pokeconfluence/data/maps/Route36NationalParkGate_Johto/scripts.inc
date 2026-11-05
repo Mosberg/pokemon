@@ -92,8 +92,8 @@ Route36NationalParkGate_Johto_Route36OfficerScriptContest:
 Route36NationalParkGate_Johto_Route36OfficerScriptContest_LeaveMonsWithOfficer:
 	getpartysize
 	goto_if_lt VAR_RESULT, 6, Route36NationalParkGate_Johto_Route36OfficerScriptContest_ContinueLeavingMons
-	@ TODO unsupported: readvar VAR_BOXSPACE
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 20
+	goto_if_eq VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36OfficerScriptContest_BoxFull
 
 Route36NationalParkGate_Johto_Route36OfficerScriptContest_ContinueLeavingMons:
 	@ TODO unsupported: special CheckFirstMonIsEgg
@@ -101,6 +101,14 @@ Route36NationalParkGate_Johto_Route36OfficerScriptContest_ContinueLeavingMons:
 
 Route36NationalParkGate_Johto_Route36OfficerScriptContest_DecidedNotToJoinContest:
 	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1TakePartInFutureText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+Route36NationalParkGate_Johto_Route36OfficerScriptContest_BoxFull:
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1MakeRoomText
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -418,6 +426,19 @@ Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1TakePartInFutureTex
 	.string "OK. We hope you'll\n"
 	.string "take part in the\l"
 	.string "future.$"
+
+Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1MakeRoomText:
+	.string "Uh-oh…\n"
+	.string "Both your party"
+	.string "\pand your PC BOX\n"
+	.string "are full."
+	.string "\pYou have no room\n"
+	.string "to put the bug\l"
+	.string "POKéMON you catch."
+	.string "\pPlease make room\n"
+	.string "in your party or"
+	.string "\pyour PC BOX, then\n"
+	.string "come see me.$"
 
 Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1ContestIsOverText:
 	.string "Today's Contest is\n"

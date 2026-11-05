@@ -121,20 +121,25 @@ MountMoonSquare_Johto_PlayerWalksUpToDancingClefairies:
 
 MountMoonSquare_Johto_ClefairyDanceStep1:
 	walk_slow_down
+	jump_down
 	step_end
 
 MountMoonSquare_Johto_ClefairyDanceStep2:
+	jump_right
 	step_end
 
 MountMoonSquare_Johto_ClefairyDanceStep3:
 	walk_slow_up
+	jump_up
 	step_end
 
 MountMoonSquare_Johto_ClefairyDanceStep4:
+	jump_left
 	step_end
 
 MountMoonSquare_Johto_ClefairyDanceStep5:
 	walk_slow_down
+	jump_down
 	step_end
 
 MountMoonSquare_Johto_ClefairyDanceStep6:

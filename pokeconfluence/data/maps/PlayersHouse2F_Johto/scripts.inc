@@ -1,6 +1,11 @@
 PlayersHouse2F_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, PlayersHouse2F_Johto_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, PlayersHouse2F_Johto_OnTransition
 	.byte 0
+
+PlayersHouse2F_Johto_OnLoad:
+	call PlayersHouse2F_Johto_PlayersHouse2FSetUpTileDecorationsCallback_Cb
+	end
 
 PlayersHouse2F_Johto_OnTransition:
 	call PlayersHouse2F_Johto_PlayersHouse2FInitializeRoomCallback_Cb
@@ -103,6 +108,9 @@ PlayersHouse2F_Johto_PlayersHouse2FInitializeRoomCallback_Cb:
 	goto Johto_Std_InitializeEventsScript_Cb
 
 PlayersHouse2F_Johto_PlayersHouse2FInitializeRoomCallback_SkipInitialization_Cb:
+	return
+
+PlayersHouse2F_Johto_PlayersHouse2FSetUpTileDecorationsCallback_Cb:
 	return
 
 PlayersHouse2F_Johto_PlayersRadioText1:

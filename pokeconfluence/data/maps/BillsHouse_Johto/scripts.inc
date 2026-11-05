@@ -30,8 +30,13 @@ BillsHouse_Johto_BillsGrandpa_MetGrandpa:
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
 	call BillsHouse_Johto_BillsGrandpa_ExcitedToSee_Sub
-	@ TODO unsupported: special BillsGrandfather
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_0x8004, SPECIES_LICKITUNG
+	special JohtoBillsGrandfather
+	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
+	goto_if_ne VAR_RESULT, SPECIES_LICKITUNG, BillsHouse_Johto_BillsGrandpa_WrongPokemon
+	call BillsHouse_Johto_BillsGrandpa_CorrectPokemon_Sub
+	setflag FLAG_JOHTO_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
+	goto BillsHouse_Johto_BillsGrandpa_ShowedLickitung
 
 BillsHouse_Johto_BillsGrandpa_GotEverstone:
 	message BillsHouse_Johto_BillsGrandpaOddishText
@@ -42,8 +47,13 @@ BillsHouse_Johto_BillsGrandpa_GotEverstone:
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
 	call BillsHouse_Johto_BillsGrandpa_ExcitedToSee_Sub
-	@ TODO unsupported: special BillsGrandfather
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_0x8004, SPECIES_ODDISH
+	special JohtoBillsGrandfather
+	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
+	goto_if_ne VAR_RESULT, SPECIES_ODDISH, BillsHouse_Johto_BillsGrandpa_WrongPokemon
+	call BillsHouse_Johto_BillsGrandpa_CorrectPokemon_Sub
+	setflag FLAG_JOHTO_SHOWED_ODDISH_TO_BILLS_GRANDPA
+	goto BillsHouse_Johto_BillsGrandpa_ShowedOddish
 
 BillsHouse_Johto_BillsGrandpa_GotLeafStone:
 	message BillsHouse_Johto_BillsGrandpaStaryuText
@@ -54,12 +64,49 @@ BillsHouse_Johto_BillsGrandpa_GotLeafStone:
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
 	call BillsHouse_Johto_BillsGrandpa_ExcitedToSee_Sub
-	@ TODO unsupported: special BillsGrandfather
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_0x8004, SPECIES_STARYU
+	special JohtoBillsGrandfather
+	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
+	goto_if_ne VAR_RESULT, SPECIES_STARYU, BillsHouse_Johto_BillsGrandpa_WrongPokemon
+	call BillsHouse_Johto_BillsGrandpa_CorrectPokemon_Sub
+	setflag FLAG_JOHTO_SHOWED_STARYU_TO_BILLS_GRANDPA
+	goto BillsHouse_Johto_BillsGrandpa_ShowedStaryu
 
 BillsHouse_Johto_BillsGrandpa_GotWaterStone:
-	@ TODO unsupported: checkver 
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 0
+	goto_if_ne VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_AskVulpix
+	message BillsHouse_Johto_BillsGrandpaGrowlitheText
+	waitmessage
+	waitbuttonpress
+	message BillsHouse_Johto_BillsGrandpaAskToSeeMonText
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
+	call BillsHouse_Johto_BillsGrandpa_ExcitedToSee_Sub
+	setvar VAR_0x8004, SPECIES_GROWLITHE
+	special JohtoBillsGrandfather
+	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
+	goto_if_ne VAR_RESULT, SPECIES_GROWLITHE, BillsHouse_Johto_BillsGrandpa_WrongPokemon
+	call BillsHouse_Johto_BillsGrandpa_CorrectPokemon_Sub
+	setflag FLAG_JOHTO_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
+	goto BillsHouse_Johto_BillsGrandpa_ShowedGrowlitheVulpix
+
+BillsHouse_Johto_BillsGrandpa_AskVulpix:
+	message BillsHouse_Johto_BillsGrandpaVulpixText
+	waitmessage
+	waitbuttonpress
+	message BillsHouse_Johto_BillsGrandpaAskToSeeMonText
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
+	call BillsHouse_Johto_BillsGrandpa_ExcitedToSee_Sub
+	setvar VAR_0x8004, SPECIES_VULPIX
+	special JohtoBillsGrandfather
+	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
+	goto_if_ne VAR_RESULT, SPECIES_VULPIX, BillsHouse_Johto_BillsGrandpa_WrongPokemon
+	call BillsHouse_Johto_BillsGrandpa_CorrectPokemon_Sub
+	setflag FLAG_JOHTO_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
+	goto BillsHouse_Johto_BillsGrandpa_ShowedGrowlitheVulpix
 
 BillsHouse_Johto_BillsGrandpa_GotFireStone:
 	message BillsHouse_Johto_BillsGrandpaPichuText
@@ -70,8 +117,13 @@ BillsHouse_Johto_BillsGrandpa_GotFireStone:
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
 	call BillsHouse_Johto_BillsGrandpa_ExcitedToSee_Sub
-	@ TODO unsupported: special BillsGrandfather
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_0x8004, SPECIES_PICHU
+	special JohtoBillsGrandfather
+	goto_if_eq VAR_RESULT, 0, BillsHouse_Johto_BillsGrandpa_SaidNo
+	goto_if_ne VAR_RESULT, SPECIES_PICHU, BillsHouse_Johto_BillsGrandpa_WrongPokemon
+	call BillsHouse_Johto_BillsGrandpa_CorrectPokemon_Sub
+	setflag FLAG_JOHTO_SHOWED_PICHU_TO_BILLS_GRANDPA
+	goto BillsHouse_Johto_BillsGrandpa_ShowedPichu
 
 BillsHouse_Johto_BillsGrandpa_ShowedLickitung:
 	goto_if_set FLAG_JOHTO_GOT_EVERSTONE_FROM_BILLS_GRANDPA, BillsHouse_Johto_BillsGrandpa_GotEverstone
@@ -150,6 +202,14 @@ BillsHouse_Johto_BillsGrandpa_GotThunderstone:
 	releaseall
 	end
 
+BillsHouse_Johto_BillsGrandpa_WrongPokemon:
+	message BillsHouse_Johto_BillsGrandpaWrongPokemonText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
 BillsHouse_Johto_BillsGrandpa_BagFull:
 	closemessage
 	releaseall
@@ -157,6 +217,12 @@ BillsHouse_Johto_BillsGrandpa_BagFull:
 
 BillsHouse_Johto_BillsGrandpa_ExcitedToSee_Sub:
 	message BillsHouse_Johto_BillsGrandpaExcitedToSeeText
+	waitmessage
+	waitbuttonpress
+	return
+
+BillsHouse_Johto_BillsGrandpa_CorrectPokemon_Sub:
+	message BillsHouse_Johto_BillsGrandpaShownPokemonText
 	waitmessage
 	waitbuttonpress
 	return
@@ -188,6 +254,13 @@ BillsHouse_Johto_BillsGrandpaYouDontHaveItTextText:
 	.string "You don't have it?\n"
 	.string "That's too bad…$"
 
+BillsHouse_Johto_BillsGrandpaShownPokemonText:
+	.string "Ah, so that is\n"
+	.string "{STR_VAR_1}?"
+	.string "\pIsn't it cute!\n"
+	.string "That's so kind of\l"
+	.string "you.$"
+
 BillsHouse_Johto_BillsGrandpaTokenOfAppreciationText:
 	.string "Thanks!"
 	.string "\pThis is a token of\n"
@@ -205,6 +278,12 @@ BillsHouse_Johto_BillsGrandpaShownAllThePokemonText:
 	.string "myself. I'm glad"
 	.string "\pI've lived such a\n"
 	.string "long life.$"
+
+BillsHouse_Johto_BillsGrandpaWrongPokemonText:
+	.string "Hm?"
+	.string "\pThat's not the\n"
+	.string "POKéMON that I was\l"
+	.string "told about.$"
 
 BillsHouse_Johto_BillsGrandpaLickitungText:
 	.string "My grandson BILL\n"
@@ -231,6 +310,22 @@ BillsHouse_Johto_BillsGrandpaStaryuText:
 	.string "appears at night."
 	.string "\pI would surely\n"
 	.string "like to see it.$"
+
+BillsHouse_Johto_BillsGrandpaGrowlitheText:
+	.string "BILL told me about\n"
+	.string "a POKéMON that is"
+	.string "\pvery loyal to its\n"
+	.string "trainer."
+	.string "\pIt's supposed to\n"
+	.string "ROAR well.$"
+
+BillsHouse_Johto_BillsGrandpaVulpixText:
+	.string "I heard about a\n"
+	.string "cute POKéMON that\l"
+	.string "has six tails."
+	.string "\pI would love to\n"
+	.string "hug a cute POKéMON\l"
+	.string "like that.$"
 
 BillsHouse_Johto_BillsGrandpaPichuText:
 	.string "Do you know that\n"

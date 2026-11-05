@@ -1,5 +1,10 @@
 TeamRocketBaseB2F_Johto_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, TeamRocketBaseB2F_Johto_OnLoad
 	.byte 0
+
+TeamRocketBaseB2F_Johto_OnLoad:
+	call TeamRocketBaseB2F_Johto_TeamRocketBaseB2FTransmitterDoorCallback_Cb
+	end
 
 TeamRocketBaseB2F_Johto_RocketElectrode1_Entry::
 	lockall
@@ -277,8 +282,10 @@ TeamRocketBaseB2F_Johto_RocketElectrode1:
 	goto_if_unset FLAG_JOHTO_TEAM_ROCKET_BASE_B2F_ELECTRODE_1, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FReloadMap
 	goto_if_unset FLAG_JOHTO_TEAM_ROCKET_BASE_B2F_ELECTRODE_2, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FReloadMap
 	goto_if_unset FLAG_JOHTO_TEAM_ROCKET_BASE_B2F_ELECTRODE_3, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FReloadMap
-	@ TODO unsupported: special PlayMapMusic
-	goto Johto_EventScript_Unimplemented
+	fadedefaultbgm
+	applymovement OBJ_EVENT_ID_PLAYER, TeamRocketBaseB2F_Johto_RocketBasePlayerLeavesElectrodesMovement1
+	waitmovement OBJ_EVENT_ID_PLAYER
+	goto TeamRocketBaseB2F_Johto_RocketBaseElectrodeScript
 
 TeamRocketBaseB2F_Johto_RocketElectrode2:
 	playmoncry SPECIES_ELECTRODE, CRY_MODE_NORMAL
@@ -291,8 +298,10 @@ TeamRocketBaseB2F_Johto_RocketElectrode2:
 	goto_if_unset FLAG_JOHTO_TEAM_ROCKET_BASE_B2F_ELECTRODE_1, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FReloadMap
 	goto_if_unset FLAG_JOHTO_TEAM_ROCKET_BASE_B2F_ELECTRODE_2, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FReloadMap
 	goto_if_unset FLAG_JOHTO_TEAM_ROCKET_BASE_B2F_ELECTRODE_3, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FReloadMap
-	@ TODO unsupported: special PlayMapMusic
-	goto Johto_EventScript_Unimplemented
+	fadedefaultbgm
+	applymovement OBJ_EVENT_ID_PLAYER, TeamRocketBaseB2F_Johto_RocketBasePlayerLeavesElectrodesMovement2
+	waitmovement OBJ_EVENT_ID_PLAYER
+	goto TeamRocketBaseB2F_Johto_RocketBaseElectrodeScript
 
 TeamRocketBaseB2F_Johto_RocketElectrode3:
 	playmoncry SPECIES_ELECTRODE, CRY_MODE_NORMAL
@@ -305,10 +314,55 @@ TeamRocketBaseB2F_Johto_RocketElectrode3:
 	goto_if_unset FLAG_JOHTO_TEAM_ROCKET_BASE_B2F_ELECTRODE_1, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FReloadMap
 	goto_if_unset FLAG_JOHTO_TEAM_ROCKET_BASE_B2F_ELECTRODE_2, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FReloadMap
 	goto_if_unset FLAG_JOHTO_TEAM_ROCKET_BASE_B2F_ELECTRODE_3, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FReloadMap
-	@ TODO unsupported: special PlayMapMusic
-	goto Johto_EventScript_Unimplemented
+	fadedefaultbgm
+	applymovement OBJ_EVENT_ID_PLAYER, TeamRocketBaseB2F_Johto_RocketBasePlayerLeavesElectrodesMovement3
+	waitmovement OBJ_EVENT_ID_PLAYER
+	goto TeamRocketBaseB2F_Johto_RocketBaseElectrodeScript
 
 TeamRocketBaseB2F_Johto_TeamRocketBaseB2FReloadMap:
+	releaseall
+	end
+
+TeamRocketBaseB2F_Johto_RocketBaseElectrodeScript:
+	setobjectxyperm 3, 18, 6
+	clearflag FLAG_JOHTO_TEAM_ROCKET_BASE_B2F_LANCE
+	addobject 3
+	applymovement 3, TeamRocketBaseB2F_Johto_RocketBaseLanceLeavesElectrodesMovement
+	waitmovement 3
+	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Face_Right
+	waitmovement OBJ_EVENT_ID_PLAYER
+	message TeamRocketBaseB2F_Johto_RocketBaseLanceElectrodeDoneText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_NUGGET
+	setflag FLAG_JOHTO_GOT_HM06_WHIRLPOOL
+	message TeamRocketBaseB2F_Johto_RocketBaseLanceWhirlpoolText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement 3, Johto_Movement_Face_Down
+	waitmovement 3
+	message TeamRocketBaseB2F_Johto_RocketBaseLanceMonMasterText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Face_Down
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 3, TeamRocketBaseB2F_Johto_RocketBaseLanceLeavesBaseMovement
+	waitmovement 3
+	removeobject 3
+	setflag FLAG_JOHTO_CLEARED_ROCKET_HIDEOUT
+	clearflag FLAG_JOHTO_ENGINE_ROCKET_SIGNAL_ON_CH20
+	setflag FLAG_JOHTO_ROUTE_43_GATE_ROCKETS
+	setflag FLAG_JOHTO_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
+	setvar VAR_JOHTO_SCENE_TEAM_ROCKET_BASE_B2F, 3
+	clearflag FLAG_JOHTO_LAKE_OF_RAGE_CIVILIANS
+	setflag FLAG_JOHTO_TURNED_OFF_SECURITY_CAMERAS
+	setflag FLAG_JOHTO_SECURITY_CAMERA_1
+	setflag FLAG_JOHTO_SECURITY_CAMERA_2
+	setflag FLAG_JOHTO_SECURITY_CAMERA_3
+	setflag FLAG_JOHTO_SECURITY_CAMERA_4
+	setflag FLAG_JOHTO_SECURITY_CAMERA_5
 	releaseall
 	end
 
@@ -333,6 +387,18 @@ TeamRocketBaseB2F_Johto_TeamRocketBaseB2FTMThief:
 	finditem ITEM_TM_THIEF
 	releaseall
 	end
+
+TeamRocketBaseB2F_Johto_TeamRocketBaseB2FTransmitterDoorCallback_Cb:
+	goto_if_set FLAG_JOHTO_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FTransmitterDoorCallback_OpenDoor_Cb
+	return
+
+TeamRocketBaseB2F_Johto_TeamRocketBaseB2FTransmitterDoorCallback_OpenDoor_Cb:
+	setmetatile 14, 12, 514, 0
+	setmetatile 15, 12, 514, 0
+	setmetatile 14, 13, 514, 0
+	setmetatile 15, 13, 514, 0
+	special DrawWholeMapView
+	return
 
 TeamRocketBaseB2F_Johto_RocketBaseLanceLeavesAfterHealMovement:
 	walk_right
@@ -472,6 +538,67 @@ TeamRocketBaseB2F_Johto_RocketBasePlayerCantGoRightMovement:
 	walk_left
 	step_end
 
+TeamRocketBaseB2F_Johto_RocketBaseLanceLeavesElectrodesMovement:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+TeamRocketBaseB2F_Johto_RocketBaseLanceLeavesBaseMovement:
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+TeamRocketBaseB2F_Johto_RocketBasePlayerLeavesElectrodesMovement1:
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+TeamRocketBaseB2F_Johto_RocketBasePlayerLeavesElectrodesMovement2:
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+TeamRocketBaseB2F_Johto_RocketBasePlayerLeavesElectrodesMovement3:
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
 TeamRocketBaseB2F_Johto_RocketBaseExecutiveFHoldItText:
 	.string "Hold it right\n"
 	.string "there!$"
@@ -581,6 +708,54 @@ TeamRocketBaseB2F_Johto_RockerBaseLanceElectrodeFaintText:
 TeamRocketBaseB2F_Johto_RocketBaseLancesSideText:
 	.string "LANCE: Leave this\n"
 	.string "side to me.$"
+
+TeamRocketBaseB2F_Johto_RocketBaseLanceElectrodeDoneText:
+	.string "LANCE: That odd\n"
+	.string "signal has finally\l"
+	.string "stopped."
+	.string "\pThe LAKE should be\n"
+	.string "back to normal."
+	.string "\pYou're the hero!\n"
+	.string "Let me thank you"
+	.string "\pon behalf of all\n"
+	.string "the POKéMON."
+	.string "\pOh, yes. You\n"
+	.string "should take this."
+	.string "\pI found it here,\n"
+	.string "but I don't have\l"
+	.string "any need for it.$"
+
+TeamRocketBaseB2F_Johto_RocketBaseLanceWhirlpoolText:
+	.string "That's WHIRLPOOL.\n"
+	.string "Teach it to a"
+	.string "\pPOKéMON to get\n"
+	.string "across wild water."
+	.string "\pBut keep this in\n"
+	.string "mind."
+	.string "\pYou can use that\n"
+	.string "out of battle only"
+	.string "\pwith the BADGE\n"
+	.string "from MAHOGANY GYM.$"
+
+TeamRocketBaseB2F_Johto_RocketBaseLanceMonMasterText:
+	.string "{PLAYER}…"
+	.string "\pThe journey to be-\n"
+	.string "coming the POKéMON"
+	.string "\pMASTER is long and\n"
+	.string "difficult."
+	.string "\pKnowing that, will\n"
+	.string "you keep going?"
+	.string "\p…"
+	.string "\pI see. No, you're\n"
+	.string "right."
+	.string "\pIf you would give\n"
+	.string "up that easily,"
+	.string "\pyou would have\n"
+	.string "never chased that"
+	.string "\pdream in the first\n"
+	.string "place."
+	.string "\pI look forward to\n"
+	.string "seeing you again!$"
 
 TeamRocketBaseB2F_Johto_LanceHealsText1:
 	.string "LANCE: Are you all\n"
