@@ -36,12 +36,18 @@ Route34_Johto_DayCareSign_Entry::
 
 
 Route34_Johto_DayCareMon1Script:
-	@ TODO unsupported: special DayCareMon1
-	goto Johto_EventScript_Unimplemented
+	playmoncry SPECIES_PIKACHU, CRY_MODE_NORMAL
+	waitmoncry
+	closemessage
+	releaseall
+	end
 
 Route34_Johto_DayCareMon2Script:
-	@ TODO unsupported: special DayCareMon2
-	goto Johto_EventScript_Unimplemented
+	playmoncry SPECIES_PIKACHU, CRY_MODE_NORMAL
+	waitmoncry
+	closemessage
+	releaseall
+	end
 
 Route34_Johto_TrainerCamperTodd1::
 	trainerbattle_single TRAINER_JOHTO_CAMPER_TODD1, Route34_Johto_CamperTodd1SeenText, Route34_Johto_CamperTodd1BeatenText

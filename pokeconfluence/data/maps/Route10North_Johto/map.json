@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_10_NORTH",
   "name": "Route10North_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_10_NORTH",
-  "music": "MUS_ROUTE101",
+  "music": "MUS_RG_ROUTE3",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_10",
   "requires_flash": false,

@@ -168,6 +168,7 @@ RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberHiddenDoorsCallback_FloorClos
 	return
 
 RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberSkyfallTopMovement:
+	walk_fast_down
 	step_end
 
 RuinsOfAlphHoOhChamber_Johto_RuinsOfAlphHoOhChamberWallPatternLeftText:

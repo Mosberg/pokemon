@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_SAFFRON_GYM",
   "name": "SaffronGym_Johto",
   "layout": "LAYOUT_JOHTO_SAFFRON_GYM",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_GYM",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_SAFFRON_CITY",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_SABRINA",
       "x": 9,
       "y": 8,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "x": 3,
       "y": 16,
       "elevation": 3,
@@ -69,7 +69,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "x": 17,
       "y": 4,
       "elevation": 3,
@@ -82,7 +82,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 9,
       "y": 14,
       "elevation": 3,

@@ -23,9 +23,41 @@ MobileBattleRoom_Johto_MobileBattleRoomInitializeAndPreparePokecenter2FScript:
 
 MobileBattleRoom_Johto_MobileBattleRoomConsoleScript:
 	goto_if_eq VAR_RESULT, 0x1, MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_one
-	@ TODO unsupported: special Function1037eb
-	goto Johto_EventScript_Unimplemented
+	goto_if_eq VAR_RESULT, 0, MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_false
+	goto_if_eq VAR_RESULT, 0x1, MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_one_
+	goto_if_eq VAR_RESULT, 0x2, MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_two_
+	goto MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_false
+
+MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_one_:
+	message MobileBattleRoom_Johto_MobileBattleRoom_HealText
+	waitmessage
+	delay 20
+	closemessage
+	fadescreen FADE_TO_WHITE
+	playbgm MUS_HEAL, FALSE
+	delay 60
+	fadescreen FADE_FROM_WHITE
+	fadedefaultbgm
+
+MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_two_:
+	special HealPlayerParty
+	goto_if_ne VAR_RESULT, 0, MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_false
 
 MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_one:
-	@ TODO unsupported: special Function10387b
-	goto Johto_EventScript_Unimplemented
+	message MobileBattleRoom_Johto_MobileBattleRoom_EstablishingCommsText
+	waitmessage
+	waitbuttonpress
+
+MobileBattleRoom_Johto_MobileBattleRoomConsoleScript_false:
+	closemessage
+	releaseall
+	end
+
+MobileBattleRoom_Johto_MobileBattleRoom_EstablishingCommsText:
+	.string "Establishing\n"
+	.string "communications…$"
+
+MobileBattleRoom_Johto_MobileBattleRoom_HealText:
+	.string "Your POKéMON will\n"
+	.string "be fully healed\l"
+	.string "before battle.$"

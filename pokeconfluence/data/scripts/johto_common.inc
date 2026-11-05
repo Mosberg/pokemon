@@ -796,22 +796,34 @@ Johto_Mart_GOLDENROD_4F:
 
 	.align 2
 Johto_Mart_GOLDENROD_5F_1:
-
+	.2byte ITEM_TM_SHOCK_WAVE
+	.2byte ITEM_TM_FLAMETHROWER
+	.2byte ITEM_TM_ICE_BEAM
 	.2byte ITEM_NONE
 
 	.align 2
 Johto_Mart_GOLDENROD_5F_2:
-
+	.2byte ITEM_TM_SHOCK_WAVE
+	.2byte ITEM_TM_FLAMETHROWER
+	.2byte ITEM_TM_ICE_BEAM
+	.2byte ITEM_TM_SECRET_POWER
 	.2byte ITEM_NONE
 
 	.align 2
 Johto_Mart_GOLDENROD_5F_3:
-
+	.2byte ITEM_TM_SHOCK_WAVE
+	.2byte ITEM_TM_FLAMETHROWER
+	.2byte ITEM_TM_ICE_BEAM
+	.2byte ITEM_TM_BRICK_BREAK
 	.2byte ITEM_NONE
 
 	.align 2
 Johto_Mart_GOLDENROD_5F_4:
-
+	.2byte ITEM_TM_SHOCK_WAVE
+	.2byte ITEM_TM_FLAMETHROWER
+	.2byte ITEM_TM_ICE_BEAM
+	.2byte ITEM_TM_SECRET_POWER
+	.2byte ITEM_TM_BRICK_BREAK
 	.2byte ITEM_NONE
 
 	.align 2
@@ -4325,6 +4337,16 @@ Johto_Std_RematchMScript_Wilton_Sub:
 	waitbuttonpress
 	closemessage
 	return
+
+Johto_Std_RuinsOfAlphResearchCenterScientist1Text_GotAllUnown:
+	.string "Our investigation,\n"
+	.string "with your help, is"
+	.string "\pgiving us insight\n"
+	.string "into the RUINS."
+	.string "\pThe RUINS appear\n"
+	.string "to have been built"
+	.string "\pas a habitat for\n"
+	.string "POKéMON.$"
 
 Johto_Std_SmashRockScript:
 	goto EventScript_RockSmash

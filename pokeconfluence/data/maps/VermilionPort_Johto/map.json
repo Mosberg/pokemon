@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_VERMILION_PORT",
   "name": "VermilionPort_Johto",
   "layout": "LAYOUT_JOHTO_VERMILION_PORT",
-  "music": "MUS_ROUTE101",
+  "music": "MUS_RG_VERMILLION",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_VERMILION_CITY",
   "requires_flash": false,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 11,
       "y": 11,
       "elevation": 3,

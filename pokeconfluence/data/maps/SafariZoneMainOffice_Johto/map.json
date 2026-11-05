@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_SAFARI_ZONE_MAIN_OFFICE",
   "name": "SafariZoneMainOffice_Johto",
   "layout": "LAYOUT_JOHTO_SAFARI_ZONE_MAIN_OFFICE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_CELADON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_FUCHSIA_CITY",
   "requires_flash": false,

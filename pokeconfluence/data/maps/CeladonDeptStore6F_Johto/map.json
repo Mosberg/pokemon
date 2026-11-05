@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_CELADON_DEPT_STORE_6F",
   "name": "CeladonDeptStore6F_Johto",
   "layout": "LAYOUT_JOHTO_CELADON_DEPT_STORE_6F",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_CELADON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_CELADON_CITY",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 9,
       "y": 2,
       "elevation": 3,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "x": 12,
       "y": 5,
       "elevation": 3,
@@ -75,7 +75,7 @@
       "y": 0,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Johto_EventScript_StubSign"
+      "script": "CeladonDeptStore6F_Johto_CeladonDeptStore1FElevatorButton_Entry"
     },
     {
       "type": "sign",

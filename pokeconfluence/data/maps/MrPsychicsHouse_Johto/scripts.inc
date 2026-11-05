@@ -16,7 +16,7 @@ MrPsychicsHouse_Johto_MrPsychic:
 	message MrPsychicsHouse_Johto_MrPsychicText1
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_PSYCHIC
 	goto_if_eq VAR_RESULT, 0, MrPsychicsHouse_Johto_MrPsychic_Done
 	setflag FLAG_JOHTO_GOT_TM29_PSYCHIC
 

@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_GOLDENROD_MAGNET_TRAIN_STATION",
   "name": "GoldenrodMagnetTrainStation_Johto",
   "layout": "LAYOUT_JOHTO_GOLDENROD_MAGNET_TRAIN_STATION",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_LILYCOVE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_GOLDENROD_CITY",
   "requires_flash": false,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "x": 11,
       "y": 14,
       "elevation": 3,

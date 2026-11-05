@@ -54,7 +54,7 @@ Route34IlexForestGate_Johto_Route34IlexForestGateTeacherScript:
 	message Route34IlexForestGate_Johto_Route34IlexForestGateTeacherText
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_GIGA_DRAIN
 	goto_if_eq VAR_RESULT, 0, Route34IlexForestGate_Johto_Route34IlexForestGateTeacherScript_NoRoom
 	setflag FLAG_JOHTO_GOT_TM12_SWEET_SCENT
 

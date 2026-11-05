@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_19_FUCHSIA_GATE",
   "name": "Route19FuchsiaGate_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_19_FUCHSIA_GATE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_ROUTE3",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_19",
   "requires_flash": false,

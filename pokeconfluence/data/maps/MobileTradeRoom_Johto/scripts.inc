@@ -25,8 +25,9 @@ MobileTradeRoom_Johto_MobileTradeRoomConsoleScript:
 	message MobileTradeRoom_Johto_MobileTradeRoom_EstablishingCommsText
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: special Function101231
-	goto Johto_EventScript_Unimplemented
+	closemessage
+	releaseall
+	end
 
 MobileTradeRoom_Johto_MobileTradeRoom_EstablishingCommsText:
 	.string "Establishing\n"

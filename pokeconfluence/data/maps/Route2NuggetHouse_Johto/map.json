@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_2_NUGGET_HOUSE",
   "name": "Route2NuggetHouse_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_2_NUGGET_HOUSE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_PEWTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_2",
   "requires_flash": false,

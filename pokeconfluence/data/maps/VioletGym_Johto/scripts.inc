@@ -40,7 +40,7 @@ VioletGym_Johto_VioletGymFalknerScript_FightDone:
 	message VioletGym_Johto_FalknerZephyrBadgeText
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_AERIAL_ACE
 	goto_if_eq VAR_RESULT, 0, VioletGym_Johto_VioletGymFalknerScript_NoRoomForMudSlap
 	setflag FLAG_JOHTO_GOT_TM31_MUD_SLAP
 	message VioletGym_Johto_FalknerTMMudSlapText

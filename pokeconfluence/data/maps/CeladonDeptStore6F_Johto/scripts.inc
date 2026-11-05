@@ -18,6 +18,10 @@ CeladonDeptStore6F_Johto_CeladonDeptStore6FDirectory_Entry::
 	lockall
 	goto CeladonDeptStore6F_Johto_CeladonDeptStore6FDirectory
 
+CeladonDeptStore6F_Johto_CeladonDeptStore1FElevatorButton_Entry::
+	lockall
+	goto CeladonDeptStore6F_Johto_CeladonDeptStore1FElevatorButton
+
 CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine_Entry::
 	lockall
 	goto CeladonDeptStore6F_Johto_CeladonDeptStore6FVendingMachine
@@ -113,6 +117,14 @@ CeladonDeptStore6F_Johto_CeladonDeptStore6FDirectory:
 	releaseall
 	end
 
+CeladonDeptStore6F_Johto_CeladonDeptStore1FElevatorButton:
+	message CeladonDeptStore6F_Johto_CeladonDeptStore6FElevatorButtonText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
 CeladonDeptStore6F_Johto_CeladonDeptStore6FHideRooftopStairsCallback_Cb:
 	setmetatile 12, 0, 514, 1
 	setmetatile 13, 0, 514, 1
@@ -153,3 +165,7 @@ CeladonDeptStore6F_Johto_CeladonDeptStore6FYoungsterText:
 CeladonDeptStore6F_Johto_CeladonDeptStore6FDirectoryText:
 	.string "6F: ROOFTOP SQUARE\n"
 	.string "VENDING MACHINES$"
+
+CeladonDeptStore6F_Johto_CeladonDeptStore6FElevatorButtonText:
+	.string "It's the elevator\n"
+	.string "button.$"

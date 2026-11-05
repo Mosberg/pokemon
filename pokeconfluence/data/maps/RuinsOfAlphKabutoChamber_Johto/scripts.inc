@@ -143,8 +143,12 @@ RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistScript_WallOpen:
 	end
 
 RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberScientistScript_AllUnownCaught:
-	@ TODO unsupported: writetext RuinsOfAlphResearchCenterScientist1Text_GotAllUnown
-	goto Johto_EventScript_Unimplemented
+	message Johto_Std_RuinsOfAlphResearchCenterScientist1Text_GotAllUnown
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
 
 RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberAncientReplica:
 	message RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberAncientReplicaText
@@ -213,6 +217,7 @@ RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberHiddenDoorsCallback_Floor
 	return
 
 RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberSkyfallTopMovement:
+	walk_fast_down
 	step_end
 
 RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberReceptionistText:

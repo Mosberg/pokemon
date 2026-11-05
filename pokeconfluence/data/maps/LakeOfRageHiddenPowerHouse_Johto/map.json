@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_LAKE_OF_RAGE_HIDDEN_POWER_HOUSE",
   "name": "LakeOfRageHiddenPowerHouse_Johto",
   "layout": "LAYOUT_JOHTO_LAKE_OF_RAGE_HIDDEN_POWER_HOUSE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_SOOTOPOLIS",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_LAKE_OF_RAGE",
   "requires_flash": false,

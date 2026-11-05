@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_POKECOM_CENTER_ADMIN_OFFICE_MOBILE",
   "name": "PokecomCenterAdminOfficeMobile_Johto",
   "layout": "LAYOUT_JOHTO_POKECOM_CENTER_ADMIN_OFFICE_MOBILE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_POKE_CENTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_GOLDENROD_CITY",
   "requires_flash": false,

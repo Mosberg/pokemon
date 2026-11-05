@@ -295,7 +295,7 @@ Route35_Johto_Route35Sign:
 	end
 
 Route35_Johto_Route35TMRollout:
-	finditem ITEM_NUGGET
+	finditem ITEM_TM_ROCK_TOMB
 	releaseall
 	end
 

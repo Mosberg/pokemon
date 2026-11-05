@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_10_POKECENTER_2F_BETA",
   "name": "Route10Pokecenter2FBeta_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_10_POKECENTER_2F_BETA",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_POKE_CENTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_10",
   "requires_flash": false,

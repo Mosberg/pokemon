@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_CELADON_MANSION_ROOF",
   "name": "CeladonMansionRoof_Johto",
   "layout": "LAYOUT_JOHTO_CELADON_MANSION_ROOF",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_CELADON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_CELADON_CITY",
   "requires_flash": false,

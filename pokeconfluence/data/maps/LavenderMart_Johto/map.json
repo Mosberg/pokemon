@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_LAVENDER_MART",
   "name": "LavenderMart_Johto",
   "layout": "LAYOUT_JOHTO_LAVENDER_MART",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_LAVENDER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_LAVENDER_TOWN",
   "requires_flash": false,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "x": 6,
       "y": 6,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
       "x": 9,
       "y": 2,
       "elevation": 3,

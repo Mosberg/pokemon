@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_CELADON_GAME_CORNER",
   "name": "CeladonGameCorner_Johto",
   "layout": "LAYOUT_JOHTO_CELADON_GAME_CORNER",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_GAME_CORNER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_CELADON_CITY",
   "requires_flash": false,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
       "x": 3,
       "y": 2,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "x": 14,
       "y": 10,
       "elevation": 3,
@@ -56,7 +56,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "x": 17,
       "y": 7,
       "elevation": 3,
@@ -69,7 +69,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
       "x": 11,
       "y": 7,
       "elevation": 3,
@@ -95,7 +95,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 11,
       "y": 3,
       "elevation": 3,

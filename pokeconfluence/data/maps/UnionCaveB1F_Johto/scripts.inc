@@ -75,7 +75,7 @@ UnionCaveB1F_Johto_TrainerHikerLeonard_Script:
 	end
 
 UnionCaveB1F_Johto_UnionCaveB1FTMSwift:
-	finditem ITEM_NUGGET
+	finditem ITEM_TM_AERIAL_ACE
 	releaseall
 	end
 

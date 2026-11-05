@@ -163,6 +163,7 @@ RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberHiddenDoorsCallba
 	return
 
 RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberSkyfallTopMovement:
+	walk_fast_down
 	step_end
 
 RuinsOfAlphAerodactylChamber_Johto_RuinsOfAlphAerodactylChamberWallPatternLeftText:

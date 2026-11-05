@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_MOBILE_TRADE_ROOM",
   "name": "MobileTradeRoom_Johto",
   "layout": "LAYOUT_JOHTO_MOBILE_TRADE_ROOM",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_OLDALE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_SPECIAL_AREA",
   "requires_flash": false,

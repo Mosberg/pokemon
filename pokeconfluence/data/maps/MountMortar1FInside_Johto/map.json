@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_MOUNT_MORTAR_1F_INSIDE",
   "name": "MountMortar1FInside_Johto",
   "layout": "LAYOUT_JOHTO_MOUNT_MORTAR_1F_INSIDE",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_RG_MT_MOON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_MT_MORTAR",
   "requires_flash": false,
@@ -95,7 +95,7 @@
       "flag": "FLAG_JOHTO_MOUNT_MORTAR_1F_INSIDE_NUGGET"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 33,
       "y": 43,
       "elevation": 3,
@@ -108,7 +108,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 24,
       "y": 28,
       "elevation": 3,

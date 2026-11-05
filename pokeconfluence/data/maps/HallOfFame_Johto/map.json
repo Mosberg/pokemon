@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_LANCE",
       "x": 4,
       "y": 12,
       "elevation": 3,

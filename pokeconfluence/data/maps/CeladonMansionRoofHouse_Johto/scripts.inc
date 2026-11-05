@@ -26,7 +26,7 @@ CeladonMansionRoofHouse_Johto_CeladonMansionRoofHousePharmacistScript_Night:
 	message CeladonMansionRoofHouse_Johto_CeladonMansionRoofHousePharmacistStoryText
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_BULK_UP
 	goto_if_eq VAR_RESULT, 0, CeladonMansionRoofHouse_Johto_CeladonMansionRoofHousePharmacistScript_NoRoom
 	setflag FLAG_JOHTO_GOT_TM03_CURSE
 

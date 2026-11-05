@@ -39,6 +39,10 @@ PlayersHouse2F_Johto_PlayersHouseBookshelfScript_Entry::
 	lockall
 	goto PlayersHouse2F_Johto_PlayersHouseBookshelfScript
 
+PlayersHouse2F_Johto_PlayersHousePosterScript_Entry::
+	lockall
+	goto PlayersHouse2F_Johto_PlayersHousePosterScript
+
 
 PlayersHouse2F_Johto_PlayersHouseDoll1Script:
 	msgbox Johto_Text_DecorationDesc, MSGBOX_DEFAULT
@@ -53,8 +57,12 @@ PlayersHouse2F_Johto_PlayersHouseGameConsoleScript:
 	msgbox Johto_Text_DecorationDesc, MSGBOX_DEFAULT
 
 PlayersHouse2F_Johto_PlayersHousePosterScript:
-	@ TODO unsupported: conditional_event EVENT_PLAYERS_ROOM_POSTER, .Script
-	goto Johto_EventScript_Unimplemented
+	goto_if_set FLAG_JOHTO_PLAYERS_ROOM_POSTER, PlayersHouse2F_Johto_PlayersHousePosterScript_Script
+	releaseall
+	end
+
+PlayersHouse2F_Johto_PlayersHousePosterScript_Script:
+	msgbox Johto_Text_DecorationDesc, MSGBOX_DEFAULT
 
 PlayersHouse2F_Johto_PlayersHouseRadioScript:
 	goto_if_set FLAG_JOHTO_GOT_A_POKEMON_FROM_ELM, PlayersHouse2F_Johto_PlayersHouseRadioScript_NormalRadio

@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_SILVER_CAVE_OUTSIDE",
   "name": "SilverCaveOutside_Johto",
   "layout": "LAYOUT_JOHTO_SILVER_CAVE_OUTSIDE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_VICTORY_ROAD",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_SILVER_CAVE",
   "requires_flash": false,

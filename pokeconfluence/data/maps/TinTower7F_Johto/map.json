@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_TIN_TOWER_7F",
   "name": "TinTower7F_Johto",
   "layout": "LAYOUT_JOHTO_TIN_TOWER_7F",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_MT_PYRE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_ECRUTEAK_CITY",
   "requires_flash": false,

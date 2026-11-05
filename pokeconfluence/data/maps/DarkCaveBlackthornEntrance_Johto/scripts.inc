@@ -40,7 +40,7 @@ DarkCaveBlackthornEntrance_Johto_DarkCaveBlackthornEntranceRevive:
 	end
 
 DarkCaveBlackthornEntrance_Johto_DarkCaveBlackthornEntranceTMSnore:
-	finditem ITEM_NUGGET
+	finditem ITEM_TM_REST
 	releaseall
 	end
 

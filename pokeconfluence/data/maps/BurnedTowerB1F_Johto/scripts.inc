@@ -138,7 +138,7 @@ BurnedTowerB1F_Johto_BurnedTowerB1FEusine_Finish:
 	end
 
 BurnedTowerB1F_Johto_BurnedTowerB1FTMEndure:
-	finditem ITEM_NUGGET
+	finditem ITEM_TM_SAFEGUARD
 	releaseall
 	end
 

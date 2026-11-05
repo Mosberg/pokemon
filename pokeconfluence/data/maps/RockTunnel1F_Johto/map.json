@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROCK_TUNNEL_1F",
   "name": "RockTunnel1F_Johto",
   "layout": "LAYOUT_JOHTO_ROCK_TUNNEL_1F",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_RG_MT_MOON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROCK_TUNNEL",
   "requires_flash": false,

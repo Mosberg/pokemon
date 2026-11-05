@@ -204,7 +204,7 @@ Route31_Johto_Route31MailRecipientScript_TryGiveKenya:
 	waitmessage
 	waitbuttonpress
 	setflag FLAG_JOHTO_GAVE_KENYA
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_TAUNT
 	goto_if_eq VAR_RESULT, 0, Route31_Johto_Route31MailRecipientScript_NoRoomForItems
 	setflag FLAG_JOHTO_GOT_TM50_NIGHTMARE
 

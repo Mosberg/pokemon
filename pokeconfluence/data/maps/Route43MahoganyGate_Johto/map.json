@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_43_MAHOGANY_GATE",
   "name": "Route43MahoganyGate_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_43_MAHOGANY_GATE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_SOOTOPOLIS",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_ROUTE_43",
   "requires_flash": false,

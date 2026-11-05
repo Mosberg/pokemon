@@ -48,9 +48,9 @@ DragonsDenB1F_Johto_DragonsDenB1F_ClairScene:
 	message DragonsDenB1F_Johto_ClairText_GiveDragonbreathDragonDen
 	waitmessage
 	waitbuttonpress
-	additem ITEM_NUGGET
+	additem ITEM_TM_DRAGON_CLAW
 	goto_if_eq VAR_RESULT, 0, DragonsDenB1F_Johto_DragonsDenB1F_ClairScene_BagFull
-	bufferitemname STR_VAR_1, ITEM_NUGGET
+	bufferitemname STR_VAR_1, ITEM_TM_DRAGON_CLAW
 	message DragonsDenB1F_Johto_Text_ReceivedTM24
 	waitmessage
 	playse SE_PIN

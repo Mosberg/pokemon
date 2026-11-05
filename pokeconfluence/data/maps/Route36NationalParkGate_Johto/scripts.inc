@@ -60,6 +60,10 @@ Route36NationalParkGate_Johto_Route36NationalParkGateOfficerScript_Entry::
 	lockall
 	goto Route36NationalParkGate_Johto_Route36NationalParkGateOfficerScript
 
+Route36NationalParkGate_Johto_BugCatchingContestExplanationSign_Entry::
+	lockall
+	goto Route36NationalParkGate_Johto_BugCatchingContestExplanationSign
+
 Route36NationalParkGate_Johto_Route36NationalParkGateLeavingContestEarlyScript_Entry::
 	lockall
 	goto Route36NationalParkGate_Johto_Route36NationalParkGateLeavingContestEarlyScript
@@ -437,6 +441,14 @@ Route36NationalParkGate_Johto_BugCatchingContestant10BScript_StillCompeting:
 	releaseall
 	end
 
+Route36NationalParkGate_Johto_BugCatchingContestExplanationSign:
+	message Route36NationalParkGate_Johto_UnusedBugCatchingContestExplanationText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
 Route36NationalParkGate_Johto_Route36ParkGate_DayToText_Sub:
 	goto Johto_Std_DayToTextScript_Sub
 
@@ -692,6 +704,20 @@ Route36NationalParkGate_Johto_BugCatchingContestant10BStillCompetingText:
 	.string "lot, but that's"
 	.string "\pnot good enough to\n"
 	.string "win.$"
+
+Route36NationalParkGate_Johto_UnusedBugCatchingContestExplanationText:
+	.string "The Bug-Catching\n"
+	.string "Contest is held on"
+	.string "\pTuesday, Thursday\n"
+	.string "and Saturday."
+	.string "\pNot only do you\n"
+	.string "earn a prize just"
+	.string "\pfor participating,\n"
+	.string "you also get to"
+	.string "\pkeep the bug\n"
+	.string "POKéMON you may"
+	.string "\phave at the end of\n"
+	.string "the contest.$"
 
 Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1WellHoldPrizeText:
 	.string "Uh-oh… Your PACK\n"

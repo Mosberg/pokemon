@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_14",
   "name": "Route14_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_14",
-  "music": "MUS_ROUTE101",
+  "music": "MUS_RG_ROUTE11",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_14",
   "requires_flash": false,
@@ -28,7 +28,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "x": 11,
       "y": 15,
       "elevation": 3,
@@ -41,7 +41,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "x": 11,
       "y": 27,
       "elevation": 3,
@@ -54,7 +54,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "x": 6,
       "y": 11,
       "elevation": 3,
@@ -67,7 +67,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "x": 7,
       "y": 5,
       "elevation": 3,

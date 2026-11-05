@@ -173,6 +173,7 @@ BurnedTower1F_Johto_BurnedTowerMovement_RivalWalksToPlayer:
 	step_end
 
 BurnedTower1F_Johto_BurnedTower1FMovement_PlayerStartsToFall:
+	walk_fast_down
 	step_end
 
 BurnedTower1F_Johto_BurnedTower1FEusineMovement:

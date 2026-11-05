@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_LAVENDER_NAME_RATER",
   "name": "LavenderNameRater_Johto",
   "layout": "LAYOUT_JOHTO_LAVENDER_NAME_RATER",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_LAVENDER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_LAVENDER_TOWN",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "x": 2,
       "y": 3,
       "elevation": 3,

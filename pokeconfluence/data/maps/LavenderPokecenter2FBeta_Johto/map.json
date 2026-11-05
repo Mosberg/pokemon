@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_LAVENDER_POKECENTER_2F_BETA",
   "name": "LavenderPokecenter2FBeta_Johto",
   "layout": "LAYOUT_JOHTO_LAVENDER_POKECENTER_2F_BETA",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_POKE_CENTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_LAVENDER_TOWN",
   "requires_flash": false,

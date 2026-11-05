@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_TIN_TOWER_1F",
   "name": "TinTower1F_Johto",
   "layout": "LAYOUT_JOHTO_TIN_TOWER_1F",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_MT_PYRE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_ECRUTEAK_CITY",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_SUICUNE",
       "x": 9,
       "y": 9,
       "elevation": 3,
@@ -30,7 +30,7 @@
       "flag": "FLAG_JOHTO_TIN_TOWER_1F_SUICUNE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_RAIKOU",
       "x": 7,
       "y": 9,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "FLAG_JOHTO_TIN_TOWER_1F_RAIKOU"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_ENTEI",
       "x": 12,
       "y": 9,
       "elevation": 3,
@@ -56,7 +56,7 @@
       "flag": "FLAG_JOHTO_TIN_TOWER_1F_ENTEI"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 8,
       "y": 3,
       "elevation": 3,

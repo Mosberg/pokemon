@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_COPYCATS_HOUSE_2F",
   "name": "CopycatsHouse2F_Johto",
   "layout": "LAYOUT_JOHTO_COPYCATS_HOUSE_2F",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_PEWTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_SAFFRON_CITY",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "x": 4,
       "y": 3,
       "elevation": 3,
@@ -30,7 +30,7 @@
       "flag": "FLAG_JOHTO_COPYCAT_1"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_MOLTRES",
       "x": 6,
       "y": 4,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
       "x": 6,
       "y": 1,
       "elevation": 3,
@@ -56,7 +56,7 @@
       "flag": "FLAG_JOHTO_COPYCATS_HOUSE_2F_DOLL"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_NIDORINO",
       "x": 2,
       "y": 1,
       "elevation": 3,
@@ -69,7 +69,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_PIDGEY",
       "x": 7,
       "y": 1,
       "elevation": 3,
@@ -82,7 +82,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "x": 4,
       "y": 3,
       "elevation": 3,

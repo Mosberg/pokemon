@@ -42,7 +42,7 @@ MahoganyGym_Johto_MahoganyGymPryceScript_FightDone:
 	message MahoganyGym_Johto_PryceText_GlacierBadgeSpeech
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_HAIL
 	goto_if_eq VAR_RESULT, 0, MahoganyGym_Johto_MahoganyGym_NoRoomForIcyWind
 	setflag FLAG_JOHTO_GOT_TM16_ICY_WIND
 	message MahoganyGym_Johto_PryceText_IcyWindSpeech

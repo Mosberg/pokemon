@@ -57,7 +57,7 @@ CianwoodGym_Johto_CianwoodGymChuckScript_FightDone:
 	message CianwoodGym_Johto_ChuckExplainBadgeText
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_FOCUS_PUNCH
 	goto_if_eq VAR_RESULT, 0, CianwoodGym_Johto_CianwoodGymChuckScript_BagFull
 	setflag FLAG_JOHTO_GOT_TM01_DYNAMICPUNCH
 	message CianwoodGym_Johto_ChuckExplainTMText

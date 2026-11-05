@@ -73,10 +73,10 @@ CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_tmcounterloop_Psychic:
 	setvar VAR_0x8004, 3500
 	special JohtoCheckCoins
 	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughcoins
-	bufferitemname STR_VAR_1, ITEM_NUGGET
+	bufferitemname STR_VAR_1, ITEM_TM_PSYCHIC
 	call CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_askbuy_Sub
 	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_CancelPurchaseScript
-	additem ITEM_NUGGET
+	additem ITEM_TM_PSYCHIC
 	goto_if_eq VAR_RESULT, 0, CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_notenoughroom
 	removecoins 3500
 	goto CeladonGameCornerPrizeRoom_Johto_CeladonPrizeRoom_purchased

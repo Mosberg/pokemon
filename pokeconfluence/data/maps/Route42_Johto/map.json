@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_42",
   "name": "Route42_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_42",
-  "music": "MUS_ROUTE101",
+  "music": "MUS_SOOTOPOLIS",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_ROUTE_42",
   "requires_flash": false,
@@ -41,7 +41,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "x": 51,
       "y": 9,
       "elevation": 3,
@@ -54,7 +54,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 47,
       "y": 8,
       "elevation": 3,
@@ -67,7 +67,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 27,
       "y": 16,
       "elevation": 3,
@@ -80,7 +80,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 28,
       "y": 16,
       "elevation": 3,
@@ -93,7 +93,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 29,
       "y": 16,
       "elevation": 3,
@@ -132,7 +132,7 @@
       "flag": "FLAG_JOHTO_ROUTE_42_SUPER_POTION"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_SUICUNE",
       "x": 26,
       "y": 16,
       "elevation": 3,

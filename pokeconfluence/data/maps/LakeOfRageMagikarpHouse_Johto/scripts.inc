@@ -48,8 +48,11 @@ LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_AskedForMagikarp:
 	message LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_YouHaveAMagikarp
 	waitmessage
 	waitbuttonpress
-	@ TODO unsupported: special CheckMagikarpLength
-	goto Johto_EventScript_Unimplemented
+	setvar VAR_RESULT, 3
+	goto_if_eq VAR_RESULT, 0, LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_NotMagikarp
+	goto_if_eq VAR_RESULT, 1, LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_Refused
+	goto_if_eq VAR_RESULT, 2, LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_TooShort
+	goto LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_GetReward
 
 LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_GetReward:
 	message LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_Memento
@@ -68,6 +71,30 @@ LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_GetReward:
 LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_NoRoom:
 	closemessage
 	setflag FLAG_JOHTO_LAKE_OF_RAGE_ELIXIR_ON_STANDBY
+	releaseall
+	end
+
+LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_TooShort:
+	message LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_TooShort
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_NotMagikarp:
+	message LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_NotMagikarp
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterScript_Refused:
+	message LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_Refused
+	waitmessage
+	waitbuttonpress
+	closemessage
 	releaseall
 	end
 
@@ -132,3 +159,21 @@ LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_Bonus:
 	.string "important thing."
 	.string "\pThink of that as\n"
 	.string "a bonus!$"
+
+LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_TooShort:
+	.string "Wow! This one is\n"
+	.string "outstanding!"
+	.string "\p…I wish I could\n"
+	.string "say that, but I've"
+	.string "\pseen a bigger one\n"
+	.string "before.$"
+
+LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_NotMagikarp:
+	.string "What? That's not a\n"
+	.string "MAGIKARP!$"
+
+LakeOfRageMagikarpHouse_Johto_MagikarpLengthRaterText_Refused:
+	.string "Oh… So you didn't\n"
+	.string "get one good"
+	.string "\penough to show me?\n"
+	.string "Maybe next time.$"

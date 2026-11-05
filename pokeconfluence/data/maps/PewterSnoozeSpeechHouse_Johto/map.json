@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_PEWTER_SNOOZE_SPEECH_HOUSE",
   "name": "PewterSnoozeSpeechHouse_Johto",
   "layout": "LAYOUT_JOHTO_PEWTER_SNOOZE_SPEECH_HOUSE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_PEWTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_PEWTER_CITY",
   "requires_flash": false,

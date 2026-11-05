@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_GOLDENROD_FLOWER_SHOP",
   "name": "GoldenrodFlowerShop_Johto",
   "layout": "LAYOUT_JOHTO_GOLDENROD_FLOWER_SHOP",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_LILYCOVE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_GOLDENROD_CITY",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "x": 2,
       "y": 4,
       "elevation": 3,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "x": 5,
       "y": 6,
       "elevation": 3,

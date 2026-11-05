@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_VICTORY_ROAD_GATE",
   "name": "VictoryRoadGate_Johto",
   "layout": "LAYOUT_JOHTO_VICTORY_ROAD_GATE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_VICTORY_ROAD",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_ROUTE_26",
   "requires_flash": false,

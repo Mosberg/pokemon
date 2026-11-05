@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_LANCES_ROOM",
   "name": "LancesRoom_Johto",
   "layout": "LAYOUT_JOHTO_LANCES_ROOM",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_VICTORY_ROAD",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_INDIGO_PLATEAU",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_LANCE",
       "x": 5,
       "y": 3,
       "elevation": 3,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "x": 4,
       "y": 7,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "FLAG_JOHTO_LANCES_ROOM_OAK_AND_MARY"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
+      "graphics_id": "OBJ_EVENT_GFX_PROF_OAK",
       "x": 4,
       "y": 7,
       "elevation": 3,

@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_CERULEAN_POKECENTER_2F_BETA",
   "name": "CeruleanPokecenter2FBeta_Johto",
   "layout": "LAYOUT_JOHTO_CERULEAN_POKECENTER_2F_BETA",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_POKE_CENTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_CERULEAN_CITY",
   "requires_flash": false,

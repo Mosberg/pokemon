@@ -43,6 +43,10 @@ TeamRocketBaseB3F_Johto_TeamRocketBaseB3FUltraBall_Entry::
 	lockall
 	goto TeamRocketBaseB3F_Johto_TeamRocketBaseB3FUltraBall
 
+TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoor_Entry::
+	lockall
+	goto TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoor
+
 TeamRocketBaseB3F_Johto_TeamRocketBaseB3FOathScript_Entry::
 	lockall
 	goto TeamRocketBaseB3F_Johto_TeamRocketBaseB3FOathScript
@@ -224,6 +228,40 @@ TeamRocketBaseB3F_Johto_TrainerScientistMitch_Script:
 	waitmessage
 	waitbuttonpress
 	closemessage
+	releaseall
+	end
+
+TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoor:
+	goto_if_unset FLAG_JOHTO_OPENED_DOOR_TO_GIOVANNIS_OFFICE, TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoor_Script
+	releaseall
+	end
+
+TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoor_Script:
+	goto_if_unset FLAG_JOHTO_LEARNED_SLOWPOKETAIL, TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoor_NeedsPassword
+	goto_if_unset FLAG_JOHTO_LEARNED_RATICATE_TAIL, TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoor_NeedsPassword
+	goto TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoor_OpenSesame
+
+TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoor_NeedsPassword:
+	message TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoorNeedsPasswordText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoor_OpenSesame:
+	message TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoorOpenSesameText
+	waitmessage
+	waitbuttonpress
+	playse SE_DOOR
+	setmetatile 10, 8, 514, 0
+	setmetatile 11, 8, 514, 0
+	setmetatile 10, 9, 514, 0
+	setmetatile 11, 9, 514, 0
+	special DrawWholeMapView
+	closemessage
+	setflag FLAG_JOHTO_OPENED_DOOR_TO_GIOVANNIS_OFFICE
+	waitse
 	releaseall
 	end
 
@@ -533,3 +571,14 @@ TeamRocketBaseB3F_Johto_ScientistMitchAfterBattleText:
 	.string "cast nationwide…"
 	.string "\pThe very thought\n"
 	.string "excites me!$"
+
+TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoorNeedsPasswordText:
+	.string "The door's closed…"
+	.string "\pIt needs two\n"
+	.string "passwords to open.$"
+
+TeamRocketBaseB3F_Johto_TeamRocketBaseB3FLockedDoorOpenSesameText:
+	.string "The door's closed…"
+	.string "\p{PLAYER} entered\n"
+	.string "the two passwords."
+	.string "\pThe door opened!$"

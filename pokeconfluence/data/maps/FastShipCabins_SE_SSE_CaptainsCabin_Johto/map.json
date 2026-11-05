@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN",
   "name": "FastShipCabins_SE_SSE_CaptainsCabin_Johto",
   "layout": "LAYOUT_JOHTO_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_SS_ANNE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_FAST_SHIP",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_CAPTAIN",
       "x": 3,
       "y": 25,
       "elevation": 3,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "x": 2,
       "y": 17,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "FLAG_JOHTO_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "x": 3,
       "y": 17,
       "elevation": 3,
@@ -56,7 +56,7 @@
       "flag": "FLAG_JOHTO_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "x": 2,
       "y": 25,
       "elevation": 3,
@@ -69,7 +69,7 @@
       "flag": "FLAG_JOHTO_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "x": 5,
       "y": 6,
       "elevation": 3,
@@ -82,7 +82,7 @@
       "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "x": 2,
       "y": 4,
       "elevation": 3,
@@ -95,7 +95,7 @@
       "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "x": 3,
       "y": 4,
       "elevation": 3,
@@ -108,7 +108,7 @@
       "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 5,
       "y": 5,
       "elevation": 3,
@@ -121,7 +121,7 @@
       "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "x": 2,
       "y": 3,
       "elevation": 3,
@@ -134,7 +134,7 @@
       "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
       "x": 5,
       "y": 5,
       "elevation": 3,
@@ -147,7 +147,7 @@
       "flag": "FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 1,
       "y": 15,
       "elevation": 3,

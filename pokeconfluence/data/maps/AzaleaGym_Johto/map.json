@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_AZALEA_GYM",
   "name": "AzaleaGym_Johto",
   "layout": "LAYOUT_JOHTO_AZALEA_GYM",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_GYM",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_AZALEA_TOWN",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "x": 5,
       "y": 7,
       "elevation": 3,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "x": 5,
       "y": 3,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "x": 8,
       "y": 8,
       "elevation": 3,
@@ -56,7 +56,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "x": 0,
       "y": 2,
       "elevation": 3,
@@ -69,7 +69,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "x": 4,
       "y": 10,
       "elevation": 3,
@@ -82,7 +82,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "x": 5,
       "y": 10,
       "elevation": 3,
@@ -95,7 +95,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 7,
       "y": 13,
       "elevation": 3,

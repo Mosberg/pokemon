@@ -167,6 +167,7 @@ RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberHiddenDoorsCallback_Flo
 	return
 
 RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberSkyfallTopMovement:
+	walk_fast_down
 	step_end
 
 RuinsOfAlphOmanyteChamber_Johto_RuinsOfAlphOmanyteChamberWallPatternLeftText:

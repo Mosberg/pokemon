@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_RUINS_OF_ALPH_INNER_CHAMBER",
   "name": "RuinsOfAlphInnerChamber_Johto",
   "layout": "LAYOUT_JOHTO_RUINS_OF_ALPH_INNER_CHAMBER",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_SEALED_CHAMBER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_RUINS_OF_ALPH",
   "requires_flash": false,
@@ -30,7 +30,7 @@
       "flag": "FLAG_JOHTO_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "x": 14,
       "y": 13,
       "elevation": 3,

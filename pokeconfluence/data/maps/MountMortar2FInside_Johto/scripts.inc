@@ -52,7 +52,7 @@ MountMortar2FInside_Johto_MountMortar2FInsideRareCandy:
 	end
 
 MountMortar2FInside_Johto_MountMortar2FInsideTMDefenseCurl:
-	finditem ITEM_NUGGET
+	finditem ITEM_TM_WATER_PULSE
 	releaseall
 	end
 

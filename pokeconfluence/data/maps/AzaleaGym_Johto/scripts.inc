@@ -41,7 +41,7 @@ AzaleaGym_Johto_AzaleaGymBugsyScript_FightDone:
 	message AzaleaGym_Johto_BugsyText_HiveBadgeSpeech
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_AERIAL_ACE
 	goto_if_eq VAR_RESULT, 0, AzaleaGym_Johto_AzaleaGymBugsyScript_NoRoomForFuryCutter
 	setflag FLAG_JOHTO_GOT_TM49_FURY_CUTTER
 	message AzaleaGym_Johto_BugsyText_FuryCutterSpeech

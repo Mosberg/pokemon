@@ -212,7 +212,7 @@ PowerPlant_Johto_PowerPlantManager_ReturnedMachinePart:
 	message PowerPlant_Johto_PowerPlantManagerTakeThisTMText
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_SHOCK_WAVE
 	goto_if_eq VAR_RESULT, 0, PowerPlant_Johto_PowerPlantManager_NoRoom
 	setflag FLAG_JOHTO_GOT_TM07_ZAP_CANNON
 	message PowerPlant_Johto_PowerPlantManagerTM07IsZapCannonText

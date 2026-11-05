@@ -134,8 +134,8 @@ GoldenrodDeptStore5F_Johto_Carrie:
 	waitmessage
 	waitbuttonpress
 	closemessage
-	@ TODO unsupported: special UnlockMysteryGift
-	goto Johto_EventScript_Unimplemented
+	releaseall
+	end
 
 GoldenrodDeptStore5F_Johto_Carrie_NotGBC:
 	message GoldenrodDeptStore5F_Johto_GoldenrodDeptStore5FCarrieMysteryGiftRequiresGBCText

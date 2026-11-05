@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_CELADON_MANSION_1F",
   "name": "CeladonMansion1F_Johto",
   "layout": "LAYOUT_JOHTO_CELADON_MANSION_1F",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_CELADON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_CELADON_CITY",
   "requires_flash": false,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POOCHYENA",
       "x": 2,
       "y": 6,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
+      "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
       "x": 3,
       "y": 4,
       "elevation": 3,
@@ -56,7 +56,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POOCHYENA",
       "x": 4,
       "y": 4,
       "elevation": 3,

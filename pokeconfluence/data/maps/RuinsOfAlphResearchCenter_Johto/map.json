@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_RUINS_OF_ALPH_RESEARCH_CENTER",
   "name": "RuinsOfAlphResearchCenter_Johto",
   "layout": "LAYOUT_JOHTO_RUINS_OF_ALPH_RESEARCH_CENTER",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_MT_MOON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_RUINS_OF_ALPH",
   "requires_flash": false,

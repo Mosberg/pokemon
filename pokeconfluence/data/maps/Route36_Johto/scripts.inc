@@ -167,7 +167,7 @@ Route36_Johto_Route36RockSmashGuyScript_ClearedSudowoodo:
 	message Route36_Johto_RockSmashGuyText2
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_BRICK_BREAK
 	goto_if_eq VAR_RESULT, 0, Route36_Johto_Route36RockSmashGuyScript_NoRoomForTM
 	setflag FLAG_JOHTO_GOT_TM08_ROCK_SMASH
 
@@ -437,6 +437,7 @@ Route36_Johto_Route36ArthurCallback_ArthurAppears_Cb:
 	return
 
 Route36_Johto_SudowoodoShakeMovement:
+	walk_in_place_fast_down
 	step_end
 
 Route36_Johto_WeirdTreeMovement_Flee:

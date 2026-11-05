@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_MAHOGANY_GYM",
   "name": "MahoganyGym_Johto",
   "layout": "LAYOUT_JOHTO_MAHOGANY_GYM",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_GYM",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_MAHOGANY_TOWN",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_SPENSER",
       "x": 5,
       "y": 3,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
       "x": 0,
       "y": 17,
       "elevation": 3,
@@ -69,7 +69,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
       "x": 5,
       "y": 9,
       "elevation": 3,
@@ -82,7 +82,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
       "x": 2,
       "y": 4,
       "elevation": 3,
@@ -95,7 +95,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 7,
       "y": 15,
       "elevation": 3,

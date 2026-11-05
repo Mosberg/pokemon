@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_17_ROUTE_18_GATE",
   "name": "Route17Route18Gate_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_17_ROUTE_18_GATE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_ROUTE3",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_17",
   "requires_flash": false,

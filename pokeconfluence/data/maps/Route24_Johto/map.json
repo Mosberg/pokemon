@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_24",
   "name": "Route24_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_24",
-  "music": "MUS_ROUTE101",
+  "music": "MUS_RG_ROUTE3",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_24",
   "requires_flash": false,
@@ -28,7 +28,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "x": 8,
       "y": 7,
       "elevation": 3,

@@ -55,7 +55,7 @@ OlivineLighthouse5F_Johto_OlivineLighthouse5FSuperRepel:
 	end
 
 OlivineLighthouse5F_Johto_OlivineLighthouse5FTMSwagger:
-	finditem ITEM_NUGGET
+	finditem ITEM_TM_TORMENT
 	releaseall
 	end
 

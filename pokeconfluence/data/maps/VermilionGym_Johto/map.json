@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_VERMILION_GYM",
   "name": "VermilionGym_Johto",
   "layout": "LAYOUT_JOHTO_VERMILION_GYM",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_GYM",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_VERMILION_CITY",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_LT_SURGE",
       "x": 5,
       "y": 2,
       "elevation": 3,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "x": 8,
       "y": 8,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
       "x": 4,
       "y": 7,
       "elevation": 3,
@@ -56,7 +56,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 0,
       "y": 10,
       "elevation": 3,
@@ -69,7 +69,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 7,
       "y": 15,
       "elevation": 3,

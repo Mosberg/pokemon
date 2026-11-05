@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_MAHOGANY_MART_1F",
   "name": "MahoganyMart1F_Johto",
   "layout": "LAYOUT_JOHTO_MAHOGANY_MART_1F",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_POKE_MART",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_MAHOGANY_TOWN",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN",
       "x": 4,
       "y": 3,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "FLAG_JOHTO_TEAM_ROCKET_BASE_POPULATION"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_LANCE",
       "x": 4,
       "y": 6,
       "elevation": 3,
@@ -56,7 +56,7 @@
       "flag": "FLAG_JOHTO_MAHOGANY_MART_LANCE_AND_DRAGONITE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_SEEL",
       "x": 3,
       "y": 6,
       "elevation": 3,

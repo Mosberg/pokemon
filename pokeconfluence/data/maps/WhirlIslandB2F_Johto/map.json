@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_WHIRL_ISLAND_B2F",
   "name": "WhirlIslandB2F_Johto",
   "layout": "LAYOUT_JOHTO_WHIRL_ISLAND_B2F",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_RG_MT_MOON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_WHIRL_ISLANDS",
   "requires_flash": false,

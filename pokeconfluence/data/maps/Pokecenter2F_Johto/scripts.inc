@@ -185,8 +185,12 @@ Pokecenter2F_Johto_Script_LeftTimeCapsule_Female:
 	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_RESULT, 0
-	@ TODO unsupported: special SetPlayerPalette
-	goto Johto_EventScript_Unimplemented
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesOneStepDown
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 3, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2
+	waitmovement 3
 
 Pokecenter2F_Johto_Script_LeftTimeCapsule_Done:
 	setvar VAR_JOHTO_SCENE_POKECENTER_2F, 0
@@ -266,7 +270,12 @@ Pokecenter2F_Johto_Script_WalkOutOfLinkTradeRoom_Female_Sub:
 	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_RESULT, 0
-	@ TODO unsupported: special SetPlayerPalette
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesTwoStepsDown_2
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 1, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightAndDown
+	waitmovement 1
 	return
 
 Pokecenter2F_Johto_Script_WalkOutOfLinkBattleRoom_Sub:
@@ -289,7 +298,12 @@ Pokecenter2F_Johto_Script_WalkOutOfLinkBattleRoom_Female_Sub:
 	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_RESULT, 0
-	@ TODO unsupported: special SetPlayerPalette
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement OBJ_EVENT_ID_PLAYER, Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesTwoStepsDown_2
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 2, Pokecenter2F_Johto_Pokecenter2FMovementData_ReceptionistStepsRightAndDown
+	waitmovement 2
 	return
 
 Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesThreeStepsDown:
@@ -353,7 +367,20 @@ Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight:
 	face_right
 	step_end
 
+Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft:
+	face_down
+	face_left
+	face_up
+	face_right
+	face_left
+	step_end
+
 Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesOneStepDown_2:
+	walk_down
+	step_end
+
+Pokecenter2F_Johto_Pokecenter2FMovementData_PlayerTakesTwoStepsDown_2:
+	walk_down
 	walk_down
 	step_end
 

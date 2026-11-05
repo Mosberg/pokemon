@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_LAV_RADIO_TOWER_1F",
   "name": "LavRadioTower1F_Johto",
   "layout": "LAYOUT_JOHTO_LAV_RADIO_TOWER_1F",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_LAVENDER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_LAVENDER_TOWN",
   "requires_flash": false,
@@ -17,7 +17,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
       "x": 6,
       "y": 6,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 1,
       "y": 3,
       "elevation": 3,
@@ -56,7 +56,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "x": 9,
       "y": 1,
       "elevation": 3,
@@ -69,7 +69,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 14,
       "y": 6,
       "elevation": 3,

@@ -286,7 +286,7 @@ LakeOfRage_Johto_LakeOfRageElixer:
 	end
 
 LakeOfRage_Johto_LakeOfRageTMDetect:
-	finditem ITEM_NUGGET
+	finditem ITEM_TM_PROTECT
 	releaseall
 	end
 

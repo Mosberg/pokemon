@@ -22,6 +22,10 @@ TeamRocketBaseB2F_Johto_TeamRocketBaseB2FTMThief_Entry::
 	lockall
 	goto TeamRocketBaseB2F_Johto_TeamRocketBaseB2FTMThief
 
+TeamRocketBaseB2F_Johto_TeamRocketBaseB2FLockedDoor_Entry::
+	lockall
+	goto TeamRocketBaseB2F_Johto_TeamRocketBaseB2FLockedDoor
+
 TeamRocketBaseB2F_Johto_TeamRocketBaseB2FTransmitterScript_Entry::
 	lockall
 	goto TeamRocketBaseB2F_Johto_TeamRocketBaseB2FTransmitterScript
@@ -334,7 +338,7 @@ TeamRocketBaseB2F_Johto_RocketBaseElectrodeScript:
 	message TeamRocketBaseB2F_Johto_RocketBaseLanceElectrodeDoneText
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_HM_DIVE
 	setflag FLAG_JOHTO_GOT_HM06_WHIRLPOOL
 	message TeamRocketBaseB2F_Johto_RocketBaseLanceWhirlpoolText
 	waitmessage
@@ -363,6 +367,36 @@ TeamRocketBaseB2F_Johto_RocketBaseElectrodeScript:
 	setflag FLAG_JOHTO_SECURITY_CAMERA_3
 	setflag FLAG_JOHTO_SECURITY_CAMERA_4
 	setflag FLAG_JOHTO_SECURITY_CAMERA_5
+	releaseall
+	end
+
+TeamRocketBaseB2F_Johto_TeamRocketBaseB2FLockedDoor:
+	goto_if_unset FLAG_JOHTO_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FLockedDoor_Script
+	releaseall
+	end
+
+TeamRocketBaseB2F_Johto_TeamRocketBaseB2FLockedDoor_Script:
+	goto_if_set FLAG_JOHTO_LEARNED_HAIL_GIOVANNI, TeamRocketBaseB2F_Johto_TeamRocketBaseB2FLockedDoor_KnowsPassword
+	message TeamRocketBaseB2F_Johto_RocketBaseDoorNoPasswordText
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+TeamRocketBaseB2F_Johto_TeamRocketBaseB2FLockedDoor_KnowsPassword:
+	message TeamRocketBaseB2F_Johto_RocketBaseDoorKnowPasswordText
+	waitmessage
+	waitbuttonpress
+	playse SE_DOOR
+	setmetatile 14, 12, 514, 0
+	setmetatile 15, 12, 514, 0
+	setmetatile 14, 13, 514, 0
+	setmetatile 15, 13, 514, 0
+	special DrawWholeMapView
+	closemessage
+	setflag FLAG_JOHTO_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
+	waitse
 	releaseall
 	end
 
@@ -823,6 +857,17 @@ TeamRocketBaseB2F_Johto_GruntM19AfterBattleText:
 	.string "\pWhere's the boss?\n"
 	.string "Who knows? Go look\l"
 	.string "for yourself.$"
+
+TeamRocketBaseB2F_Johto_RocketBaseDoorNoPasswordText:
+	.string "The door's closed…"
+	.string "\pIt needs a pass-\n"
+	.string "word to open.$"
+
+TeamRocketBaseB2F_Johto_RocketBaseDoorKnowPasswordText:
+	.string "The door's closed…"
+	.string "\p{PLAYER} entered\n"
+	.string "the password."
+	.string "\pThe door opened!$"
 
 TeamRocketBaseB2F_Johto_RocketBaseB2FTransmitterText:
 	.string "It's the radio\n"

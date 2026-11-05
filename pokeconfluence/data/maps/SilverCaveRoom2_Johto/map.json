@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_SILVER_CAVE_ROOM_2",
   "name": "SilverCaveRoom2_Johto",
   "layout": "LAYOUT_JOHTO_SILVER_CAVE_ROOM_2",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_MT_PYRE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_SILVER_CAVE",
   "requires_flash": false,

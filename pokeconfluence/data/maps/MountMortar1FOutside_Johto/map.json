@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_MOUNT_MORTAR_1F_OUTSIDE",
   "name": "MountMortar1FOutside_Johto",
   "layout": "LAYOUT_JOHTO_MOUNT_MORTAR_1F_OUTSIDE",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_RG_MT_MOON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_MT_MORTAR",
   "requires_flash": false,

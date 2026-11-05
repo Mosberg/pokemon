@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_23",
   "name": "Route23_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_23",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_VICTORY_ROAD",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_23",
   "requires_flash": false,

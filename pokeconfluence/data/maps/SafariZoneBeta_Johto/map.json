@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_SAFARI_ZONE_BETA",
   "name": "SafariZoneBeta_Johto",
   "layout": "LAYOUT_JOHTO_SAFARI_ZONE_BETA",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_EVOLUTION",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_FUCHSIA_CITY",
   "requires_flash": false,

@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_42_ECRUTEAK_GATE",
   "name": "Route42EcruteakGate_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_42_ECRUTEAK_GATE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_SOOTOPOLIS",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_ROUTE_42",
   "requires_flash": false,

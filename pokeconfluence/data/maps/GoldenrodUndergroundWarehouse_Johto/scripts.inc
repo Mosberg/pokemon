@@ -97,7 +97,7 @@ GoldenrodUndergroundWarehouse_Johto_GoldenrodUndergroundWarehouseMaxEther:
 	end
 
 GoldenrodUndergroundWarehouse_Johto_GoldenrodUndergroundWarehouseTMSleepTalk:
-	finditem ITEM_NUGGET
+	finditem ITEM_TM_CALM_MIND
 	releaseall
 	end
 

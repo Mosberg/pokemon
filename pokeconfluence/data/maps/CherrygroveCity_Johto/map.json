@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_CHERRYGROVE_CITY",
   "name": "CherrygroveCity_Johto",
   "layout": "LAYOUT_JOHTO_CHERRYGROVE_CITY",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_OLDALE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_CHERRYGROVE_CITY",
   "requires_flash": false,
@@ -41,7 +41,7 @@
       "flag": "FLAG_JOHTO_GUIDE_GENT_IN_HIS_HOUSE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BRENDAN_NORMAL",
+      "graphics_id": "OBJ_EVENT_GFX_BLUE",
       "x": 39,
       "y": 6,
       "elevation": 3,
@@ -54,7 +54,7 @@
       "flag": "FLAG_JOHTO_RIVAL_CHERRYGROVE_CITY"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
       "x": 27,
       "y": 12,
       "elevation": 3,
@@ -67,7 +67,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "x": 23,
       "y": 7,
       "elevation": 3,

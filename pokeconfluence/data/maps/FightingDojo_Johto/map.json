@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_FIGHTING_DOJO",
   "name": "FightingDojo_Johto",
   "layout": "LAYOUT_JOHTO_FIGHTING_DOJO",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_PEWTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_SAFFRON_CITY",
   "requires_flash": false,

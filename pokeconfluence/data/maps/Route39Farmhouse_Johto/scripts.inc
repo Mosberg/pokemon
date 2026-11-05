@@ -93,7 +93,7 @@ Route39Farmhouse_Johto_FarmerFScript_GiveSnore:
 	message Route39Farmhouse_Johto_FarmerFText_HealedMiltank
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_REST
 	goto_if_eq VAR_RESULT, 0, Route39Farmhouse_Johto_FarmerFScript_NoRoomForSnore
 	setflag FLAG_JOHTO_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 

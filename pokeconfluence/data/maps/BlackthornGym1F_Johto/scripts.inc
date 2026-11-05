@@ -57,9 +57,9 @@ BlackthornGym1F_Johto_BlackthornGymClairScript_AlreadyGotBadge:
 	message BlackthornGym1F_Johto_BlackthornGymClairText_YouKeptMeWaiting
 	waitmessage
 	waitbuttonpress
-	additem ITEM_NUGGET
+	additem ITEM_TM_DRAGON_CLAW
 	goto_if_eq VAR_RESULT, 0, BlackthornGym1F_Johto_BlackthornGymClairScript_BagFull
-	bufferitemname STR_VAR_1, ITEM_NUGGET
+	bufferitemname STR_VAR_1, ITEM_TM_DRAGON_CLAW
 	message BlackthornGym1F_Johto_BlackthornGymText_ReceivedTM24
 	waitmessage
 	playse SE_PIN

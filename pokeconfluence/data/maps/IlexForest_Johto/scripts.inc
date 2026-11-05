@@ -409,7 +409,7 @@ IlexForest_Johto_IlexForestHeadbuttGuyScript:
 	message IlexForest_Johto_Text_HeadbuttIntro
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_SECRET_POWER
 	goto_if_eq VAR_RESULT, 0, IlexForest_Johto_IlexForestHeadbuttGuyScript_BagFull
 	setflag FLAG_JOHTO_GOT_TM02_HEADBUTT
 

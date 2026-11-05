@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_CIANWOOD_POKECENTER_1F",
   "name": "CianwoodPokecenter1F_Johto",
   "layout": "LAYOUT_JOHTO_CIANWOOD_POKECENTER_1F",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_POKE_CENTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_CIANWOOD_CITY",
   "requires_flash": false,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "x": 1,
       "y": 5,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 5,
       "y": 3,
       "elevation": 3,
@@ -56,7 +56,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 8,
       "y": 6,
       "elevation": 3,

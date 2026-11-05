@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_TOHJO_FALLS",
   "name": "TohjoFalls_Johto",
   "layout": "LAYOUT_JOHTO_TOHJO_FALLS",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_RG_MT_MOON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_TOHJO_FALLS",
   "requires_flash": false,

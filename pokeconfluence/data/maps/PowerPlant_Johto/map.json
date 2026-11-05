@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_POWER_PLANT",
   "name": "PowerPlant_Johto",
   "layout": "LAYOUT_JOHTO_POWER_PLANT",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_PEWTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_POWER_PLANT",
   "requires_flash": false,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 2,
       "y": 9,
       "elevation": 3,
@@ -43,7 +43,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 6,
       "y": 11,
       "elevation": 3,
@@ -69,7 +69,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 7,
       "y": 2,
       "elevation": 3,
@@ -95,7 +95,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 5,
       "y": 5,
       "elevation": 3,

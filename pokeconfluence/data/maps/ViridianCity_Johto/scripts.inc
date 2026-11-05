@@ -93,7 +93,7 @@ ViridianCity_Johto_ViridianCityDreamEaterFisher:
 	message ViridianCity_Johto_ViridianCityDreamEaterFisherText
 	waitmessage
 	waitbuttonpress
-	giveitem ITEM_NUGGET
+	giveitem ITEM_TM_SHADOW_BALL
 	goto_if_eq VAR_RESULT, 0, ViridianCity_Johto_ViridianCityDreamEaterFisher_NoRoomForDreamEater
 	setflag FLAG_JOHTO_GOT_TM42_DREAM_EATER
 

@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_BILLS_HOUSE",
   "name": "BillsHouse_Johto",
   "layout": "LAYOUT_JOHTO_BILLS_HOUSE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_PEWTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_25",
   "requires_flash": false,

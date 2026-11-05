@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_CIANWOOD_CITY",
   "name": "CianwoodCity_Johto",
   "layout": "LAYOUT_JOHTO_CIANWOOD_CITY",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_FALLARBOR",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_CIANWOOD_CITY",
   "requires_flash": false,
@@ -23,7 +23,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "x": 21,
       "y": 37,
       "elevation": 3,
@@ -36,7 +36,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
       "x": 17,
       "y": 33,
       "elevation": 3,
@@ -49,7 +49,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
       "x": 14,
       "y": 42,
       "elevation": 3,
@@ -140,7 +140,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
       "x": 10,
       "y": 46,
       "elevation": 3,
@@ -153,7 +153,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
       "x": 11,
       "y": 21,
       "elevation": 3,
@@ -166,7 +166,7 @@
       "flag": "FLAG_JOHTO_CIANWOOD_CITY_EUSINE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "graphics_id": "OBJ_EVENT_GFX_SUICUNE",
       "x": 10,
       "y": 14,
       "elevation": 3,

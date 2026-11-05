@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_27_SANDSTORM_HOUSE",
   "name": "Route27SandstormHouse_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_27_SANDSTORM_HOUSE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_VERDANTURF",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_ROUTE_26",
   "requires_flash": false,

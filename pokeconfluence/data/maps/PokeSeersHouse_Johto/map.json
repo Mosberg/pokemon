@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_POKE_SEERS_HOUSE",
   "name": "PokeSeersHouse_Johto",
   "layout": "LAYOUT_JOHTO_POKE_SEERS_HOUSE",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_FALLARBOR",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_CIANWOOD_CITY",
   "requires_flash": false,

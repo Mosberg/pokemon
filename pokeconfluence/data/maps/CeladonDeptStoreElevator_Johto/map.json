@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_CELADON_DEPT_STORE_ELEVATOR",
   "name": "CeladonDeptStoreElevator_Johto",
   "layout": "LAYOUT_JOHTO_CELADON_DEPT_STORE_ELEVATOR",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_RG_CELADON",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_CELADON_CITY",
   "requires_flash": false,
