@@ -31,7 +31,7 @@ Constants: [include/constants/confluence.h](../include/constants/confluence.h). 
 ## Not done yet (honest list)
 
 - The Meridian Station and the Summit arena reuse existing layouts (Record Corner, Ever Grande Champion's room) and sprites; no new tiles, art or music, and no animated train.
-- Per-HM key items (one Field Kit stands in for all of them); the Fly/Teleport/Dig family is not covered.
+- Per-HM key items (one Field Kit stands in for all of them); the Fly/Teleport/Dig family is not covered. Design note: Flash/Fly/Teleport/Dig are party-menu actions (`SetPartyMonFieldSelectionActions`, `CursorCb_FieldMove` in `src/party_menu.c`), which do not check that the mon knows the move, so the Kit could append them for its mon; but `PartyMenuInternal.actions[]` holds 8 entries (already full for a mon with four field moves plus Switch/Item/Cancel) and the menu window is sized from it, so it needs a Kit submenu entry rather than extra rows. Needs an emulator playtest.
 - Syndicate and Chairman use existing sprites and trainer pictures; no new art, music or cutscene animations.
 - Opponents other than Leaders, Elite Four and Champions (ordinary trainers, Syndicate) keep their original levels.
 - Everything listed in [MISSING.md](../MISSING.md) for the Johto and Kanto conversions.
