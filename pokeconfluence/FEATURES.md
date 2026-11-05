@@ -4,6 +4,7 @@
 
 - [What features are included?](#what-features-are-included)
 	- [Table of Contents](#table-of-contents)
+	- [Confluence layer](#confluence-layer)
 	- [Configuration files](#configuration-files)
 	- [Upgraded Battle Engine](#upgraded-battle-engine)
 	- [Full Trainer customization](#full-trainer-customization)
@@ -12,6 +13,19 @@
 	- [Engine improvements](#engine-improvements)
 	- [Overworld improvements](#overworld-improvements)
 	- [Developer tools](#developer-tools)
+
+## Confluence layer
+
+Added on top of the base hack (design and status: [docs/CONFLUENCE.md](docs/CONFLUENCE.md)):
+
+- 24-badge circuit across Kanto, Johto and Hoenn, with a level cap that follows the badges held
+- Meridian Transit: fast travel between the three regions once you hold two badges
+- Gym Leaders, Elite Four and Champions scaled to the level cap (never lowered)
+- Resonance weather anomalies until each region's three legends are caught
+- Convergence Crisis: three Syndicate enforcers, then the Chairman
+- Apex Summit: four rounds against the three Regional Wardens and the Summit Champion
+- Field Kit: the first party Pokémon can use Cut, Rock Smash, Strength, Surf, Waterfall, Dive and Rock Climb without the HM move
+- Reusable TMs
 
 ## Configuration files
 
