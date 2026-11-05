@@ -10,24 +10,30 @@ Build target: `make -j$(nproc) confluence` → `pokeconfluence.gba` (title `POKE
 | --- | --- | --- |
 | **24-badge circuit** | [src/confluence.c](../src/confluence.c) `Confluence_CountBadges` | Counts Hoenn (`FLAG_BADGE01..08`), Kanto (`FLAG_BADGE09..16`) and Johto badge flags through `GetBadgeFlagForRegion`. |
 | **Badge-count level cap** | [src/caps.c](../src/caps.c), [include/config/caps.h](../include/config/caps.h) | `B_EXP_CAP_TYPE = EXP_CAP_SOFT`, new `B_LEVEL_CAP_TYPE = LEVEL_CAP_BADGE_COUNT`. Cap = table by badges held (15 with none, 48 with 8, 80 with 24), in any order and any region. Clearing the Apex Summit lifts it to 100. Over-cap Pokémon get reduced EXP. |
-| **Meridian Transit** | [data/scripts/confluence.inc](../data/scripts/confluence.inc) | Conductors in Slateport Harbor (Hoenn), Vermilion City (Kanto, the old ferry sailor) and Olivine City (Johto, new NPC). With fewer than 2 badges the line is closed; otherwise the player picks either other region, or reads the *Circuit report* (badges, level cap, Resonances calmed). Replaces the old Hoenn↔Kanto-only ferry. |
+| **Meridian Transit** | [data/scripts/confluence.inc](../data/scripts/confluence.inc), map `MeridianStation_Johto` | Conductors in Slateport Harbor (Hoenn), Vermilion City (Kanto, the old ferry sailor) and Olivine City (Johto) offer *Board the line*, *Circuit report* and *Crisis briefing*; with fewer than 2 badges the line is closed. Boarding rides (fade, shake, sounds) to **Meridian Station**, a hall with a conductor and four gates: platform 1 Vermilion, 2 Olivine, 3 Slateport, 4 closed. Replaces the old Hoenn↔Kanto-only ferry. |
 | **Resonance Encounters (tracking)** | `Confluence_CountResonanceCalmed` | The 9 legends (Articuno, Zapdos, Moltres, Raikou, Entei, Suicune, Regirock, Regice, Registeel) count as calmed once registered as caught. |
-| **Apex Summit** | warden NPC in Silver Cave Outside (Johto), trainers `TRAINER_APEX_*` in [src/data/trainers.party](../src/data/trainers.party) | Needs all 24 badges. Four fights in a row (Kanto, Johto and Hoenn Wardens, then the Summit Champion), party healed between rounds, progress kept in the trainer flags. Winning sets `FLAG_CONFLUENCE_APEX_CHAMPION`, gives a Master Ball and lifts the level cap. |
+| **Apex Summit** | warden NPC in Silver Cave Outside (Johto), map `ApexSummit_Johto`, trainers `TRAINER_APEX_*` in [src/data/trainers.party](../src/data/trainers.party) | Needs all 24 badges. The warden sends the player into the Summit arena, where the Kanto, Johto and Hoenn Wardens and the Summit Champion stand in a column and fight in order (each refuses until the one before is beaten), party healed before each round, progress kept in the trainer flags. Winning sets `FLAG_CONFLUENCE_APEX_CHAMPION`, gives a Master Ball, lifts the level cap and warps to the Hall of Fame scene. |
+| **Gym leader scaling** | `Confluence_GetTrainerLevelBoost` in [src/confluence.c](../src/confluence.c), [src/trainer_util.c](../src/trainer_util.c) | Trainers of class Leader (Hoenn and Kanto) get every party level raised so their strongest Pokémon matches the badge-count level cap. Never lowered. |
+| **Resonance weather anomalies** | `Confluence_GetAnomalyWeather`, hooked in [src/field_weather_effect.c](../src/field_weather_effect.c) | After the 2nd badge, clear outdoor weather becomes storms (Kanto), fog (Johto) or downpours (Hoenn) until that region's three legends are caught or the Chairman is beaten. |
+| **Convergence Crisis** | [data/scripts/confluence.inc](../data/scripts/confluence.inc), `TRAINER_SYNDICATE_*` | *Crisis briefing* on the conductor menu. A syndicate enforcer waits at each terminal (Rocket at Vermilion, Magma at Olivine, Aqua at Slateport; need 6 badges). With all three beaten and 12 badges the conductor connects the Chairman; beating him sets `FLAG_CONFLUENCE_CRISIS_RESOLVED` (weather clears) and gives 5 Rare Candies. |
+| **Field Kit** | `ITEM_FIELD_KIT`, `Confluence_GetFieldKitMon` | Key item given by the conductors. The first non-egg party Pokémon can use Cut, Rock Smash, Strength, Surf, Waterfall, Dive and Rock Climb without the HM move (badges are still required). One item for all of them. |
 | **Reusable TMs** | [include/config/item.h](../include/config/item.h) | `I_REUSABLE_TMS = TRUE`. |
 
-Constants: [include/constants/confluence.h](../include/constants/confluence.h). Flags `FLAG_CONFLUENCE_*` reuse `FLAG_UNUSED_0x020..0x022`. Trainer ids 855–858 use four of the nine trainer flags still free in the Hoenn band (do not add more than 5 further Hoenn-band trainers).
+The two new maps are appended to `gMapGroup_Johto4` (map numbers 83 and 84), so `GetCurrentRegion()` reports Johto there, and use `MAPSEC_JOHTO_MERIDIAN_STATION` / `MAPSEC_JOHTO_APEX_SUMMIT`.
+
+Constants: [include/constants/confluence.h](../include/constants/confluence.h). Flags `FLAG_CONFLUENCE_*` reuse `FLAG_UNUSED_0x020..0x024`. Trainer ids 855–862 use eight of the nine trainer flags still free in the Hoenn band (only id 863 is left; more trainers need flag space made in `constants/flags.h`).
 
 ## Verified
 
-- Headless tests: `scripts/test.sh` runs [test/confluence.c](../test/confluence.c) (badge counting across regions, level cap table and Apex lift, Meridian and Apex gates, Resonance counting, trainer id range). 7 of 7 pass.
-- Played in the embedded emulator (`scripts/play.sh` + `mgba-agent`): new game, Olivine conductor dialogue with the 4-entry menu, circuit report (2 of 24 badges, cap 24), ride to Slateport Harbor, Slateport conductor, Apex warden refusal with 2 badges and the first Apex battle (Kestrel) with 24 badges.
+- Headless tests: `scripts/test.sh` runs [test/confluence.c](../test/confluence.c): badge counting, level cap table and Apex lift, Meridian and Apex gates, Resonance counting, trainer ids, gym leader boost, weather anomalies, Field Kit. All pass.
+- Played in the embedded emulator by [mgba-agent/confluence_smoke.py](../mgba-agent/confluence_smoke.py) (`scripts/play.sh 8911`, then `new_game_kanto.py`, then the script; each test starts from the saved new game): Field Kit hand-out, boarding the line to Meridian Station and leaving by a platform gate, enforcer refusing at 2 badges / fighting at 6 / defeat recorded, Chairman call, the Apex warden sending the player into the arena, the Summit Champion fight and the ending (champion flag, Hall of Fame). Earlier by hand: the Olivine menu, circuit report, ride to Slateport, the Apex warden refusal and the first Apex fight. The smoke test keeps the stat-block Pokémon's PP and HP topped up, so it checks the scripted flow, not balance.
 
 ## Not done yet (honest list)
 
-- Gym/trainer **scaling**: opponents keep their original levels; only the player's level cap follows badges.
-- **Resonance weather anomalies** and catastrophes; the legends are the stock static encounters (Johto's beasts are not roaming, see [MISSING.md](../MISSING.md)).
-- The **Convergence Crisis story**: the syndicate, Rocket/Magma/Aqua alliance, Great Meridian lore scenes. No scripted storyline exists yet.
-- A Meridian **train station map**/animation (the line is a warp today), HM field moves as key items, Hall of Fame and credits for the Apex Summit, the Mt. Silver summit arena (the fights run from the warden in front of the cave).
+- The Meridian Station and the Summit arena reuse existing layouts (Record Corner, Ever Grande Champion's room) and sprites; no new tiles, art or music, and no animated train.
+- Per-HM key items (one Field Kit stands in for all of them); the Fly/Teleport/Dig family is not covered.
+- Syndicate and Chairman use existing sprites and trainer pictures; no new art, music or cutscene animations.
+- Opponents other than Leaders keep their original levels.
 - Everything listed in [MISSING.md](../MISSING.md) for the Johto and Kanto conversions.
 
 ## Tooling

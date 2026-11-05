@@ -3,14 +3,15 @@
     scripts/play.sh 8911 &          (or any emulator / mGBA with the bridge on that port)
     MGBA_BRIDGE_PORT=8911 .venv/bin/python mgba-agent/confluence_smoke.py [--only kit,enforcer,chairman,apex]
 
-Needs a fresh game at the overworld (run new_game_kanto.py first). Flag ids come from the build (include/constants/flags.h):
+Run it on a fresh game (the Apex ending leaves the overworld, so `apex` goes last) at the overworld (run new_game_kanto.py first). Flag ids come from the build (include/constants/flags.h):
 FLAG_CONFLUENCE_* = 0x20..0x24, trainer flags = 0x500 + trainer id, badges as below.
 """
 import argparse
 import struct
 import sys
+from pathlib import Path
 
-from addresses import SYMBOLS
+from addresses import BATTLE_MON, SYMBOLS
 from memory_patcher import give_mon, set_flag, warp_player
 from mgba_client import Bridge
 
@@ -23,6 +24,10 @@ APEX = [855, 856, 857, 858]
 SYNDICATE = {"kanto": 859, "johto": 860, "hoenn": 861, "chairman": 862}
 OLIVINE = (75, 13)
 SILVER_CAVE_OUTSIDE = (77, 80)
+STATION = (78, 83)             # MeridianStation_Johto
+ARENA = (78, 84)               # ApexSummit_Johto
+SLATEPORT_HARBOR = (9, 9)
+HALL_OF_FAME = (16, 11)        # EverGrandeCity_HallOfFame
 
 b = Bridge()
 failures = []
@@ -44,9 +49,16 @@ def clear_badges() -> None:
         set_flag(b, f, False)
 
 
+def set_options() -> None:
+    """Fast text, battle style SET (no "switch?" prompts) and battle animations off."""
+    opts = b.sb2() + 0x14
+    b.w16(opts, (b.u16(opts) & ~7) | 2 | 0x600)
+
+
 def strong_mon() -> None:
-    """A level 100 Mewtwo-like stat block with Psychic, so that scripted trainer fights can be won."""
-    give_mon(b, 150, 100, [94], slot=0)
+    """A level 100 Mewtwo-like stat block with Body Slam, so that scripted trainer fights can be won."""
+    set_options()
+    give_mon(b, 150, 100, [34], slot=0)
     base = SYMBOLS["gPlayerParty"] + 0x56
     b.write(base, struct.pack("<HHHHHHH", 999, 999, 999, 999, 999, 999, 999))
 
@@ -70,10 +82,27 @@ def advance(n: int = 8, stop_in_battle: bool = True) -> None:
     b.step(200)
 
 
-def win_battle(max_turns: int = 400) -> bool:
+def wait_battle(frames: int = 1200) -> bool:
+    """The intro and the transition take a while before the battle flag is raised."""
+    for _ in range(frames // 30):
+        if b.in_battle():
+            return True
+        b.step(30)
+    return False
+
+
+def refill_player_mon() -> None:
+    """The test is about the scripted flow, not balance: keep the stat-block Pokemon's first move and HP topped up."""
+    mon = SYMBOLS["gBattleMons"]
+    b.w8(mon + BATTLE_MON["pp"], 40)
+    b.w16(mon + BATTLE_MON["hp"], 999)
+
+
+def win_battle(max_turns: int = 2500) -> bool:
     for _ in range(max_turns):
         if not b.in_battle():
             return True
+        refill_player_mon()
         b.press("A", 4)
         b.step(45)
     return not b.in_battle()
@@ -87,7 +116,7 @@ def test_kit() -> None:
     clear_badges()
     badges(2)
     talk(OLIVINE, 15, 22, "RIGHT")
-    advance(10, stop_in_battle=False)
+    advance(18, stop_in_battle=False)
     check("conductor hands out the Field Kit with 2 badges", b.flag(FLAG_FIELD_KIT))
 
 
@@ -101,7 +130,7 @@ def test_enforcer() -> None:
     badges(6)
     talk(OLIVINE, 18, 23, "RIGHT")
     advance(8)
-    check("enforcer battles a player with 6 badges", b.in_battle())
+    check("enforcer battles a player with 6 badges", wait_battle())
     check("enforcer fight can be won", win_battle())
     advance(4, stop_in_battle=False)
     check("enforcer defeat is recorded", trainer_defeated(SYNDICATE["johto"]))
@@ -111,40 +140,75 @@ def test_chairman() -> None:
     clear_badges()
     badges(12)
     strong_mon()
+    set_flag(b, FLAG_FIELD_KIT)            # skip the kit hand-out so the menu opens after the welcome pages
     for t in ("kanto", "johto", "hoenn"):
         set_flag(b, TRAINER_FLAGS + SYNDICATE[t])
     talk(OLIVINE, 15, 22, "RIGHT")
-    advance(5, stop_in_battle=False)       # welcome, menu opens
-    for _ in range(3):                     # Kanto, Hoenn, Circuit report, Crisis briefing
+    advance(4, stop_in_battle=False)       # three welcome pages, then the menu opens
+    for _ in range(2):                     # Board the line, Circuit report, Crisis briefing
         b.press("DOWN", 4)
         b.step(15)
     b.press("A", 4)
     advance(8)
-    check("chairman call starts a battle", b.in_battle())
+    check("chairman call starts a battle", wait_battle())
     check("chairman fight can be won", win_battle())
     advance(8, stop_in_battle=False)
     check("beating the chairman resolves the crisis", b.flag(FLAG_CRISIS_RESOLVED))
 
 
+def test_station() -> None:
+    clear_badges()
+    badges(2)
+    set_flag(b, FLAG_FIELD_KIT)
+    talk(OLIVINE, 15, 22, "RIGHT")
+    advance(4, stop_in_battle=False)       # three welcome pages, then the menu opens
+    b.press("A", 4)                        # Board the line
+    advance(3, stop_in_battle=False)       # "All aboard", then the ride
+    b.step(600)
+    check("boarding the line arrives at Meridian Station", b.player_position()[2:] == STATION)
+    warp_player(b, STATION[0], STATION[1], 9, 8)
+    b.step(300)
+    b.press("DOWN", 10)                    # onto the Johto platform gate
+    advance(2, stop_in_battle=False)
+    b.press("A", 4)                        # yes
+    advance(3, stop_in_battle=False)
+    b.step(600)
+    check("the Johto platform leads back to Olivine City", b.player_position()[2:] == OLIVINE)
+
+
 def test_apex() -> None:
     clear_badges()
     badges(24)
-    for t in APEX:
-        set_flag(b, TRAINER_FLAGS + t)
+    strong_mon()
     talk(SILVER_CAVE_OUTSIDE, 23, 21, "RIGHT")
+    advance(6, stop_in_battle=False)
+    b.step(600)
+    check("the Apex warden leads to the Summit arena", b.player_position()[2:] == ARENA)
+    for t in APEX[:3]:
+        set_flag(b, TRAINER_FLAGS + t)
+    talk(ARENA, 7, 4, "LEFT")
+    advance(6)
+    check("the Summit Champion battles", wait_battle())
+    check("the Summit Champion can be beaten", win_battle())
     advance(10, stop_in_battle=False)
     b.step(600)
+    advance(8, stop_in_battle=False)
     check("Apex victory sets the champion flag", b.flag(FLAG_APEX_CHAMPION))
-    print("position after the Apex ending:", b.player_position())
+    check("Apex victory leads to the Hall of Fame", b.player_position()[2:] == HALL_OF_FAME)
 
 
-TESTS = {"kit": test_kit, "enforcer": test_enforcer, "chairman": test_chairman, "apex": test_apex}
+TESTS = {"kit": test_kit, "station": test_station, "enforcer": test_enforcer, "chairman": test_chairman, "apex": test_apex}
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default=",".join(TESTS))
     args = ap.parse_args()
+    START_STATE = Path(__file__).parent / "states" / "stage0_start.ss1"
     for name in args.only.split(","):
         print(f"== {name}")
+        if START_STATE.exists():           # every test starts from the same new game
+            b.send(f"LOADFILE {START_STATE}")
+            b.step(60)
+            set_options()
         TESTS[name]()
     sys.exit(1 if failures else 0)

@@ -5,58 +5,36 @@
 @ One conductor per region. Each entry offers the other two regions; the line only opens after the second badge.
 
 Confluence_EventScript_MeridianFromHoenn::
-	lock
-	faceplayer
-	msgbox Confluence_Text_MeridianWelcome, MSGBOX_DEFAULT
-	special ConfluenceCheckMeridianAccess
-	goto_if_eq VAR_RESULT, FALSE, Confluence_EventScript_MeridianLocked
-	call_if_unset FLAG_CONFLUENCE_GOT_FIELD_KIT, Confluence_EventScript_GiveFieldKit
-	msgbox Confluence_Text_MeridianWhere, MSGBOX_DEFAULT
-	dynmultipush Confluence_Text_DestKanto, CONFLUENCE_DEST_KANTO
-	dynmultipush Confluence_Text_DestJohto, CONFLUENCE_DEST_JOHTO
-	dynmultipush Confluence_Text_Report, 3
-	dynmultipush Confluence_Text_Briefing, 5
-	dynmultipush Confluence_Text_Cancel, 4
-	dynmultistack 0, 0, FALSE, 5, FALSE, 0, DYN_MULTICHOICE_CB_NONE
-	goto Confluence_EventScript_MeridianHandleChoice
-
 Confluence_EventScript_MeridianFromKanto::
+Confluence_EventScript_MeridianFromJohto::
+Confluence_EventScript_Terminal::
 	lock
 	faceplayer
 	msgbox Confluence_Text_MeridianWelcome, MSGBOX_DEFAULT
 	special ConfluenceCheckMeridianAccess
 	goto_if_eq VAR_RESULT, FALSE, Confluence_EventScript_MeridianLocked
 	call_if_unset FLAG_CONFLUENCE_GOT_FIELD_KIT, Confluence_EventScript_GiveFieldKit
-	msgbox Confluence_Text_MeridianWhere, MSGBOX_DEFAULT
-	dynmultipush Confluence_Text_DestJohto, CONFLUENCE_DEST_JOHTO
-	dynmultipush Confluence_Text_DestHoenn, CONFLUENCE_DEST_HOENN
+	msgbox Confluence_Text_TerminalWhat, MSGBOX_DEFAULT
+	dynmultipush Confluence_Text_Board, 0
 	dynmultipush Confluence_Text_Report, 3
 	dynmultipush Confluence_Text_Briefing, 5
 	dynmultipush Confluence_Text_Cancel, 4
-	dynmultistack 0, 0, FALSE, 5, FALSE, 0, DYN_MULTICHOICE_CB_NONE
+	dynmultistack 0, 0, FALSE, 4, FALSE, 0, DYN_MULTICHOICE_CB_NONE
 	goto Confluence_EventScript_MeridianHandleChoice
 
-Confluence_EventScript_MeridianFromJohto::
+Confluence_EventScript_StationConductor::
 	lock
 	faceplayer
-	msgbox Confluence_Text_MeridianWelcome, MSGBOX_DEFAULT
-	special ConfluenceCheckMeridianAccess
-	goto_if_eq VAR_RESULT, FALSE, Confluence_EventScript_MeridianLocked
-	call_if_unset FLAG_CONFLUENCE_GOT_FIELD_KIT, Confluence_EventScript_GiveFieldKit
-	msgbox Confluence_Text_MeridianWhere, MSGBOX_DEFAULT
-	dynmultipush Confluence_Text_DestKanto, CONFLUENCE_DEST_KANTO
-	dynmultipush Confluence_Text_DestHoenn, CONFLUENCE_DEST_HOENN
+	msgbox Confluence_Text_StationWelcome, MSGBOX_DEFAULT
 	dynmultipush Confluence_Text_Report, 3
 	dynmultipush Confluence_Text_Briefing, 5
 	dynmultipush Confluence_Text_Cancel, 4
-	dynmultistack 0, 0, FALSE, 5, FALSE, 0, DYN_MULTICHOICE_CB_NONE
+	dynmultistack 0, 0, FALSE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE
 	goto Confluence_EventScript_MeridianHandleChoice
 
 Confluence_EventScript_MeridianHandleChoice::
 	switch VAR_RESULT
-	case CONFLUENCE_DEST_KANTO, Confluence_EventScript_RideToKanto
-	case CONFLUENCE_DEST_JOHTO, Confluence_EventScript_RideToJohto
-	case CONFLUENCE_DEST_HOENN, Confluence_EventScript_RideToHoenn
+	case 0, Confluence_EventScript_BoardLine
 	case 3, Confluence_EventScript_ShowReport
 	case 5, Confluence_EventScript_CrisisBriefing
 	msgbox Confluence_Text_ComeBackAnytime, MSGBOX_DEFAULT
@@ -74,28 +52,58 @@ Confluence_EventScript_ShowReport::
 	release
 	end
 
-Confluence_EventScript_RideToKanto::
+Confluence_EventScript_BoardLine::
 	call Confluence_EventScript_TransitRide
 	setflag FLAG_CONFLUENCE_MERIDIAN_USED
+	warp MAP_JOHTO_MERIDIAN_STATION, 9, 8
+	waitstate
+	end
+
+@ The four gates at the south end of Meridian Station (triggered by walking onto them).
+Confluence_EventScript_GateKanto::
+	lockall
+	msgbox Confluence_Text_GateKanto, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Confluence_EventScript_GateStepBack
+	call Confluence_EventScript_TransitRide
 	setflag FLAG_WORLD_MAP_VERMILION_CITY
 	warp MAP_VERMILION_CITY, 23, 33
 	waitstate
 	end
 
-Confluence_EventScript_RideToJohto::
+Confluence_EventScript_GateJohto::
+	lockall
+	msgbox Confluence_Text_GateJohto, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Confluence_EventScript_GateStepBack
 	call Confluence_EventScript_TransitRide
-	setflag FLAG_CONFLUENCE_MERIDIAN_USED
 	warp MAP_JOHTO_OLIVINE_CITY, 15, 22
 	waitstate
 	end
 
-Confluence_EventScript_RideToHoenn::
+Confluence_EventScript_GateHoenn::
+	lockall
+	msgbox Confluence_Text_GateHoenn, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Confluence_EventScript_GateStepBack
 	call Confluence_EventScript_TransitRide
-	setflag FLAG_CONFLUENCE_MERIDIAN_USED
 	setflag FLAG_VISITED_SLATEPORT_CITY
 	warp MAP_SLATEPORT_CITY_HARBOR, 12, 13
 	waitstate
 	end
+
+Confluence_EventScript_GateClosed::
+	lockall
+	msgbox Confluence_Text_GateClosed, MSGBOX_DEFAULT
+	goto Confluence_EventScript_GateStepBack
+
+Confluence_EventScript_GateStepBack::
+	closemessage
+	applymovement LOCALID_PLAYER, Confluence_Movement_StepBack
+	waitmovement 0
+	releaseall
+	end
+
+Confluence_Movement_StepBack:
+	walk_up
+	step_end
 
 Confluence_EventScript_TransitRide::
 	msgbox Confluence_Text_AllAboard, MSGBOX_DEFAULT
@@ -258,44 +266,83 @@ Confluence_EventScript_ApexAskStart::
 	msgbox Confluence_Text_ApexBegin, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Confluence_EventScript_ApexDecline
 	closemessage
-	goto Confluence_EventScript_ApexRound1
+	special HealPlayerParty
+	setdynamicwarp MAP_JOHTO_SILVER_CAVE_OUTSIDE, 255, 23, 21
+	warp MAP_JOHTO_APEX_SUMMIT, 6, 11
+	waitstate
+	end
 
 Confluence_EventScript_ApexDecline::
 	msgbox Confluence_Text_ComeBackAnytime, MSGBOX_DEFAULT
 	release
 	end
 
+@ In the Apex Summit arena the four opponents stand in a column, one per round, and each only fights once the one before is beaten.
 Confluence_EventScript_ApexRound1::
-	goto_if_defeated TRAINER_APEX_KANTO, Confluence_EventScript_ApexRound2
+	lock
+	faceplayer
+	goto_if_defeated TRAINER_APEX_KANTO, Confluence_EventScript_ApexRound1Done
 	msgbox Confluence_Text_ApexRound1, MSGBOX_DEFAULT
 	closemessage
 	special HealPlayerParty
 	trainerbattle_no_intro TRAINER_APEX_KANTO, Confluence_Text_ApexKantoDefeat
-	goto Confluence_EventScript_ApexRound2
+	release
+	end
+
+Confluence_EventScript_ApexRound1Done::
+	msgbox Confluence_Text_ApexKantoDefeat, MSGBOX_DEFAULT
+	release
+	end
 
 Confluence_EventScript_ApexRound2::
-	goto_if_defeated TRAINER_APEX_JOHTO, Confluence_EventScript_ApexRound3
+	lock
+	faceplayer
+	goto_if_defeated TRAINER_APEX_JOHTO, Confluence_EventScript_ApexRound2Done
+	goto_if_not_defeated TRAINER_APEX_KANTO, Confluence_EventScript_ApexNotYet
 	msgbox Confluence_Text_ApexRound2, MSGBOX_DEFAULT
 	closemessage
 	special HealPlayerParty
 	trainerbattle_no_intro TRAINER_APEX_JOHTO, Confluence_Text_ApexJohtoDefeat
-	goto Confluence_EventScript_ApexRound3
+	release
+	end
+
+Confluence_EventScript_ApexRound2Done::
+	msgbox Confluence_Text_ApexJohtoDefeat, MSGBOX_DEFAULT
+	release
+	end
 
 Confluence_EventScript_ApexRound3::
-	goto_if_defeated TRAINER_APEX_HOENN, Confluence_EventScript_ApexRound4
+	lock
+	faceplayer
+	goto_if_defeated TRAINER_APEX_HOENN, Confluence_EventScript_ApexRound3Done
+	goto_if_not_defeated TRAINER_APEX_JOHTO, Confluence_EventScript_ApexNotYet
 	msgbox Confluence_Text_ApexRound3, MSGBOX_DEFAULT
 	closemessage
 	special HealPlayerParty
 	trainerbattle_no_intro TRAINER_APEX_HOENN, Confluence_Text_ApexHoennDefeat
-	goto Confluence_EventScript_ApexRound4
+	release
+	end
+
+Confluence_EventScript_ApexRound3Done::
+	msgbox Confluence_Text_ApexHoennDefeat, MSGBOX_DEFAULT
+	release
+	end
 
 Confluence_EventScript_ApexRound4::
+	lock
+	faceplayer
 	goto_if_defeated TRAINER_APEX_CHAMPION, Confluence_EventScript_ApexVictory
+	goto_if_not_defeated TRAINER_APEX_HOENN, Confluence_EventScript_ApexNotYet
 	msgbox Confluence_Text_ApexRound4, MSGBOX_DEFAULT
 	closemessage
 	special HealPlayerParty
 	trainerbattle_no_intro TRAINER_APEX_CHAMPION, Confluence_Text_ApexChampionDefeat
 	goto Confluence_EventScript_ApexVictory
+
+Confluence_EventScript_ApexNotYet::
+	msgbox Confluence_Text_ApexNotYet, MSGBOX_DEFAULT
+	release
+	end
 
 Confluence_EventScript_ApexVictory::
 	special HealPlayerParty
@@ -322,17 +369,11 @@ Confluence_Text_MeridianLocked:
 	.string "Come back once you've earned your\n"
 	.string "second BADGE.$"
 
-Confluence_Text_MeridianWhere:
-	.string "Where would you like to go?$"
+Confluence_Text_TerminalWhat:
+	.string "How can I help you?$"
 
-Confluence_Text_DestKanto:
-	.string "Kanto$"
-
-Confluence_Text_DestJohto:
-	.string "Johto$"
-
-Confluence_Text_DestHoenn:
-	.string "Hoenn$"
+Confluence_Text_Board:
+	.string "Board the line$"
 
 Confluence_Text_Report:
 	.string "Circuit report$"
@@ -500,3 +541,29 @@ Confluence_Text_EnforcerHoennDefeat:
 Confluence_Text_EnforcerHoennDone:
 	.string "TIDE: The CHAIRMAN is waiting for you.\n"
 	.string "Ask the conductor.$"
+
+Confluence_Text_StationWelcome:
+	.string "MERIDIAN STATION.\n"
+	.string "Platform 1 runs to VERMILION, 2 to\l"
+	.string "OLIVINE, 3 to SLATEPORT.\p"
+	.string "Anything I can tell you?$"
+
+Confluence_Text_GateKanto:
+	.string "Platform 1: VERMILION CITY, KANTO.\n"
+	.string "Board the line?$"
+
+Confluence_Text_GateJohto:
+	.string "Platform 2: OLIVINE CITY, JOHTO.\n"
+	.string "Board the line?$"
+
+Confluence_Text_GateHoenn:
+	.string "Platform 3: SLATEPORT CITY, HOENN.\n"
+	.string "Board the line?$"
+
+Confluence_Text_GateClosed:
+	.string "Platform 4 is closed.\n"
+	.string "Leylines under repair.$"
+
+Confluence_Text_ApexNotYet:
+	.string "The Summit is fought in order.\n"
+	.string "Face the warden below me first.$"

@@ -1802,6 +1802,14 @@
     {
       "id": "MAPSEC_JOHTO_WHIRL_ISLANDS",
       "name": "WHIRL ISLANDS"
+    },
+    {
+      "id": "MAPSEC_JOHTO_MERIDIAN_STATION",
+      "name": "MERIDIAN STATION"
+    },
+    {
+      "id": "MAPSEC_JOHTO_APEX_SUMMIT",
+      "name": "APEX SUMMIT"
     }
   ]
 }

@@ -1451,6 +1451,8 @@ gStdScripts_End::
 	.include "data/scripts/seagallop.inc"
 	.include "data/scripts/multiregion.inc"
 	.include "data/scripts/confluence.inc"
+	.include "data/maps/MeridianStation_Johto/scripts.inc"
+	.include "data/maps/ApexSummit_Johto/scripts.inc"
 	.include "data/scripts/static_pokemon.inc"
 	.include "data/scripts/aide.inc"
 	.include "data/scripts/pokemon_mansion.inc"

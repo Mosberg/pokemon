@@ -207,3 +207,11 @@ TEST("Confluence: the Field Kit lets the first non-egg Pokemon use HM field move
     EXPECT_EQ(Confluence_GetFieldKitMon(FIELD_MOVE_STRENGTH), 1);
     RemoveBagItem(ITEM_FIELD_KIT, 1);
 }
+
+TEST("Confluence: Meridian Station and the Apex Summit arena are Johto maps")
+{
+    // GetCurrentRegion() tells Johto by map group, so both must sit in the Johto groups
+    EXPECT_GE(MAP_GROUP(MAP_JOHTO_MERIDIAN_STATION), MAP_GROUP(MAP_JOHTO_OLIVINE_POKECENTER_1F));
+    EXPECT_GE(MAP_GROUP(MAP_JOHTO_APEX_SUMMIT), MAP_GROUP(MAP_JOHTO_OLIVINE_POKECENTER_1F));
+    EXPECT_NE(MAP_NUM(MAP_JOHTO_MERIDIAN_STATION), MAP_NUM(MAP_JOHTO_APEX_SUMMIT));
+}
