@@ -392,3 +392,98 @@ VermilionCity_Text_Route2AideHasPackageForYou::
 	.string "If you're in the ROUTE 2 area,\n"
 	.string "please look for him.$"
 
+@ POKE-YELLOW: Squirtle gift from Officer Jenny
+VermilionCity_EventScript_OfficerJenny::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_YELLOW_SQUIRTLE, VermilionCity_EventScript_OfficerJennyAlreadyGot
+	goto_if_set FLAG_BADGE11_GET, VermilionCity_EventScript_OfficerJennyOfferSquirtle
+	goto_if_set FLAG_BADGE03_GET, VermilionCity_EventScript_OfficerJennyOfferSquirtle
+	msgbox VermilionCity_Text_OfficerJennyNeedTrainer, MSGBOX_DEFAULT
+	release
+	end
+
+VermilionCity_EventScript_OfficerJennyOfferSquirtle::
+	msgbox VermilionCity_Text_OfficerJennyOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_OfficerJennyDeclined
+	setvar VAR_TEMP_1, SPECIES_SQUIRTLE
+	givemon SPECIES_SQUIRTLE, 10
+	goto_if_eq VAR_RESULT, 0, VermilionCity_EventScript_OfficerJennyGiveParty
+	goto_if_eq VAR_RESULT, 1, VermilionCity_EventScript_OfficerJennyGivePC
+	goto_if_eq VAR_RESULT, 2, Common_EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+VermilionCity_EventScript_OfficerJennyGiveParty::
+	playfanfare MUS_LEVEL_UP
+	message VermilionCity_Text_ReceivedSquirtle
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_SQUIRTLE
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_OfficerJennyFinish
+	call Common_EventScript_GetGiftMonPartySlot
+	call Common_EventScript_NameReceivedPartyMon
+	goto VermilionCity_EventScript_OfficerJennyFinish
+	end
+
+VermilionCity_EventScript_OfficerJennyGivePC::
+	playfanfare MUS_LEVEL_UP
+	message VermilionCity_Text_ReceivedSquirtle
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_SQUIRTLE
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_OfficerJennyTransferPC
+	call Common_EventScript_NameReceivedBoxMon
+	goto VermilionCity_EventScript_OfficerJennyTransferPC
+	end
+
+VermilionCity_EventScript_OfficerJennyTransferPC::
+	call Common_EventScript_TransferredToPC
+	goto VermilionCity_EventScript_OfficerJennyFinish
+	end
+
+VermilionCity_EventScript_OfficerJennyFinish::
+	setflag FLAG_GOT_YELLOW_SQUIRTLE
+	msgbox VermilionCity_Text_OfficerJennyTreatRight, MSGBOX_DEFAULT
+	release
+	end
+
+VermilionCity_EventScript_OfficerJennyDeclined::
+	msgbox VermilionCity_Text_OfficerJennyDeclined, MSGBOX_DEFAULT
+	release
+	end
+
+VermilionCity_EventScript_OfficerJennyAlreadyGot::
+	msgbox VermilionCity_Text_OfficerJennyAlreadyGot, MSGBOX_DEFAULT
+	release
+	end
+
+VermilionCity_Text_OfficerJennyNeedTrainer::
+	.string "I just caught a SQUIRTLE that was\n"
+	.string "always getting into mischief.\p"
+	.string "I think it needs a good TRAINER\n"
+	.string "with a GYM BADGE to set it straight.$"
+
+VermilionCity_Text_OfficerJennyOffer::
+	.string "You have a THUNDERBADGE!?\p"
+	.string "You must be a skilled TRAINER!\p"
+	.string "I just caught a SQUIRTLE that was\n"
+	.string "always getting into mischief.\p"
+	.string "Would you take good care of it?$"
+
+VermilionCity_Text_ReceivedSquirtle::
+	.string "{PLAYER} received a SQUIRTLE!$"
+
+VermilionCity_Text_OfficerJennyTreatRight::
+	.string "OK! Please treat SQUIRTLE right!$"
+
+VermilionCity_Text_OfficerJennyDeclined::
+	.string "Oh… What am I to do now?$"
+
+VermilionCity_Text_OfficerJennyAlreadyGot::
+	.string "How is SQUIRTLE doing?\n"
+	.string "Has it learned to behave?$"
+
+

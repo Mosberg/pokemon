@@ -33,6 +33,7 @@
 #include "constants/rgb.h"
 #include "constants/trainers.h"
 #include "constants/union_room.h"
+#include "regions.h"
 
 enum {
     WIN_MSG,
@@ -76,6 +77,7 @@ struct TrainerCardData
     s8 flipBlendY;
     bool8 timeColonNeedDraw;
     u8 cardType;
+    u8 badgeRegion; // POKE-CONFLUENCE: REGION_HOENN, REGION_KANTO, REGION_JOHTO
     bool8 isHoenn;
     u16 blendColor;
     MainCallback callback2;
@@ -108,6 +110,9 @@ static void CreateTrainerCardTrainerPic(void);
 static void DrawCardScreenBackground(u16 *);
 static void DrawCardFrontOrBack(u16 *);
 static void DrawStarsAndBadgesOnCard(void);
+static enum Region GetNextBadgeRegion(enum Region region);
+static enum Region GetPrevBadgeRegion(enum Region region);
+static void SwitchTrainerCardBadgeRegion(enum Region newRegion);
 static void PrintTimeOnCard(void);
 static void FlipTrainerCard(void);
 static bool8 IsCardFlipTaskActive(void);
@@ -182,6 +187,7 @@ static const u16 sHoennTrainerCardFemaleBg_Pal[] = INCGFX_U16("graphics/trainer_
 static const u16 sKantoTrainerCardFemaleBg_Pal[] = INCGFX_U16("graphics/trainer_card/frlg/female_bg.pal", ".gbapal");
 static const u16 sHoennTrainerCardBadges_Pal[]   = INCGFX_U16("graphics/trainer_card/badges.png", ".gbapal");
 static const u16 sKantoTrainerCardBadges_Pal[]   = INCGFX_U16("graphics/trainer_card/frlg/badges.png", ".gbapal");
+static const u16 sJohtoTrainerCardBadges_Pal[]   = INCGFX_U16("graphics/trainer_card/johto/badges.png", ".gbapal");
 static const u16 sTrainerCardStar_Pal[]          = INCGFX_U16("graphics/trainer_card/star.pal", ".gbapal");
 static const u16 sTrainerCardSticker1_Pal[]      = INCGFX_U16("graphics/trainer_card/frlg/stickers1.pal", ".gbapal");
 static const u16 sTrainerCardSticker2_Pal[]      = INCGFX_U16("graphics/trainer_card/frlg/stickers2.pal", ".gbapal");
@@ -189,6 +195,7 @@ static const u16 sTrainerCardSticker3_Pal[]      = INCGFX_U16("graphics/trainer_
 static const u16 sTrainerCardSticker4_Pal[]      = INCGFX_U16("graphics/trainer_card/frlg/stickers4.pal", ".gbapal");
 static const u32 sHoennTrainerCardBadges_Gfx[]   = INCGFX_U32("graphics/trainer_card/badges.png", ".4bpp.smol");
 static const u32 sKantoTrainerCardBadges_Gfx[]   = INCGFX_U32("graphics/trainer_card/frlg/badges.png", ".4bpp.smol");
+static const u32 sJohtoTrainerCardBadges_Gfx[]   = INCGFX_U32("graphics/trainer_card/johto/badges.png", ".4bpp.smol");
 
 static const struct BgTemplate sTrainerCardBgTemplates[4] =
 {
@@ -365,6 +372,74 @@ static void CloseTrainerCard(u8 taskId)
     DestroyTask(taskId);
 }
 
+// POKE-CONFLUENCE: Regional badge switching helpers
+static enum Region GetNextBadgeRegion(enum Region region)
+{
+    switch (region)
+    {
+    case REGION_HOENN:
+        return REGION_KANTO;
+    case REGION_KANTO:
+        return REGION_JOHTO;
+    default:
+    case REGION_JOHTO:
+        return REGION_HOENN;
+    }
+}
+
+static enum Region GetPrevBadgeRegion(enum Region region)
+{
+    switch (region)
+    {
+    case REGION_HOENN:
+        return REGION_JOHTO;
+    case REGION_JOHTO:
+        return REGION_KANTO;
+    default:
+    case REGION_KANTO:
+        return REGION_HOENN;
+    }
+}
+
+static void SwitchTrainerCardBadgeRegion(enum Region newRegion)
+{
+    u8 i;
+    const u32 *gfx;
+    const u16 *pal;
+
+    sData->badgeRegion = newRegion;
+
+    switch (sData->badgeRegion)
+    {
+    case REGION_JOHTO:
+        gfx = sJohtoTrainerCardBadges_Gfx;
+        pal = sJohtoTrainerCardBadges_Pal;
+        break;
+    case REGION_KANTO:
+        gfx = sKantoTrainerCardBadges_Gfx;
+        pal = sKantoTrainerCardBadges_Pal;
+        break;
+    default:
+    case REGION_HOENN:
+        gfx = sHoennTrainerCardBadges_Gfx;
+        pal = sHoennTrainerCardBadges_Pal;
+        break;
+    }
+
+    DecompressDataWithHeaderWram(gfx, sData->badgeTiles);
+    LoadBgTiles(3, sData->badgeTiles, ARRAY_COUNT(sData->badgeTiles), 0);
+    LoadPalette(pal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
+
+    memset(sData->badgeCount, 0, sizeof(sData->badgeCount));
+    for (i = 0; i < NUM_BADGES; i++)
+    {
+        if (FlagGet(GetBadgeFlagForRegion(sData->badgeRegion, i)))
+            sData->badgeCount[i]++;
+    }
+
+    DrawStarsAndBadgesOnCard();
+}
+
 // States for Task_TrainerCard. Skips the initial states, which are done once in order
 #define STATE_HANDLE_INPUT_FRONT  10
 #define STATE_HANDLE_INPUT_BACK   11
@@ -460,6 +535,17 @@ static void Task_TrainerCard(u8 taskId)
                 BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, sData->blendColor);
                 sData->mainState = STATE_CLOSE_CARD;
             }
+        }
+        // POKE-CONFLUENCE: Cycle badge regions (Hoenn -> Kanto -> Johto)
+        else if (!sData->isLink && JOY_NEW(DPAD_RIGHT | R_BUTTON | SELECT_BUTTON))
+        {
+            SwitchTrainerCardBadgeRegion(GetNextBadgeRegion(sData->badgeRegion));
+            PlaySE(SE_DEX_PAGE);
+        }
+        else if (!sData->isLink && JOY_NEW(DPAD_LEFT | L_BUTTON))
+        {
+            SwitchTrainerCardBadgeRegion(GetPrevBadgeRegion(sData->badgeRegion));
+            PlaySE(SE_DEX_PAGE);
         }
         break;
     case STATE_WAIT_FLIP_TO_BACK:
@@ -562,10 +648,12 @@ static bool8 LoadCardGfx(void)
         }
         break;
     case 3:
-        if (sData->cardType != CARD_TYPE_FRLG)
-            DecompressDataWithHeaderWram(sHoennTrainerCardBadges_Gfx, sData->badgeTiles);
-        else
+        if (sData->badgeRegion == REGION_JOHTO)
+            DecompressDataWithHeaderWram(sJohtoTrainerCardBadges_Gfx, sData->badgeTiles);
+        else if (sData->badgeRegion == REGION_KANTO || sData->cardType == CARD_TYPE_FRLG)
             DecompressDataWithHeaderWram(sKantoTrainerCardBadges_Gfx, sData->badgeTiles);
+        else
+            DecompressDataWithHeaderWram(sHoennTrainerCardBadges_Gfx, sData->badgeTiles);
         break;
     case 4:
         if (sData->cardType != CARD_TYPE_FRLG)
@@ -852,9 +940,10 @@ static void SetDataFromTrainerCard(void)
     if (sData->trainerCard.battleTowerWins || sData->trainerCard.battleTowerStraightWins)
         sData->hasBattleTowerWins++;
 
-    for (i = 0, badgeFlag = FLAG_BADGE01_GET; badgeFlag < FLAG_BADGE01_GET + NUM_BADGES; badgeFlag++, i++)
+    // POKE-CONFLUENCE: Check badges for active region
+    for (i = 0; i < NUM_BADGES; i++)
     {
-        if (FlagGet(badgeFlag))
+        if (FlagGet(GetBadgeFlagForRegion(sData->badgeRegion, i)))
             sData->badgeCount[i]++;
     }
 }
@@ -1445,17 +1534,21 @@ static u8 SetCardBgsAndPals(void)
         if (sData->cardType != CARD_TYPE_FRLG)
         {
             LoadPalette(sHoennTrainerCardPals[sData->trainerCard.stars], BG_PLTT_ID(0), 3 * PLTT_SIZE_4BPP);
-            LoadPalette(sHoennTrainerCardBadges_Pal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
             if (sData->trainerCard.gender != MALE)
                 LoadPalette(sHoennTrainerCardFemaleBg_Pal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         }
         else
         {
             LoadPalette(sKantoTrainerCardPals[sData->trainerCard.stars], BG_PLTT_ID(0), 3 * PLTT_SIZE_4BPP);
-            LoadPalette(sKantoTrainerCardBadges_Pal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
             if (sData->trainerCard.gender != MALE)
                 LoadPalette(sKantoTrainerCardFemaleBg_Pal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         }
+        if (sData->badgeRegion == REGION_JOHTO)
+            LoadPalette(sJohtoTrainerCardBadges_Pal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
+        else if (sData->badgeRegion == REGION_KANTO || sData->cardType == CARD_TYPE_FRLG)
+            LoadPalette(sKantoTrainerCardBadges_Pal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
+        else
+            LoadPalette(sHoennTrainerCardBadges_Pal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
         LoadPalette(sTrainerCardStar_Pal, BG_PLTT_ID(4), PLTT_SIZE_4BPP);
         break;
     case 3:
@@ -1522,6 +1615,7 @@ static void DrawStarsAndBadgesOnCard(void)
     {
         x = 4;
         y = IS_FRLG ? 16 : 15;
+        FillBgTilemapBufferRect(3, 0, 4, y, 24, 2, 0);
         for (i = 0; i < NUM_BADGES; i++, tileNum += 2, x += 3)
         {
             if (sData->badgeCount[i])
@@ -1848,6 +1942,18 @@ static void InitTrainerCardData(void)
     sData->onBack = FALSE;
     sData->flipBlendY = 0;
     sData->cardType = GetSetCardType();
+    // POKE-CONFLUENCE: Initialize badge region based on current region or link card
+    if (sData->isLink)
+    {
+        if (sData->trainerCard.version == VERSION_FIRE_RED || sData->trainerCard.version == VERSION_LEAF_GREEN)
+            sData->badgeRegion = REGION_KANTO;
+        else
+            sData->badgeRegion = REGION_HOENN;
+    }
+    else
+    {
+        sData->badgeRegion = GetCurrentRegion();
+    }
     for (i = 0; i < TRAINER_CARD_PROFILE_LENGTH; i++)
         CopyEasyChatWord(sData->easyChatProfile[i], sData->trainerCard.easyChatProfile[i]);
 }
@@ -1913,4 +2019,12 @@ static void CreateTrainerCardTrainerPic(void)
                     8,
                     WIN_TRAINER_PIC);
     }
+}
+
+// POKE-CONFLUENCE: Get currently active trainer card badge region
+enum Region TrainerCard_GetBadgeRegion(void)
+{
+    if (sData != NULL)
+        return sData->badgeRegion;
+    return GetCurrentRegion();
 }

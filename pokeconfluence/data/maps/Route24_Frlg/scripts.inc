@@ -196,3 +196,85 @@ Route24_Text_CaleDefeat::
 
 Route24_Text_CalePostBattle::
 	.string "I did my best. I have no regrets!$"
+
+@ POKE-YELLOW: Charmander gift from Damian
+Route24_EventScript_Damian::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_YELLOW_CHARMANDER, Route24_EventScript_DamianAlreadyGot
+	msgbox Route24_Text_DamianIntro, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route24_EventScript_DamianDeclined
+	setvar VAR_TEMP_1, SPECIES_CHARMANDER
+	givemon SPECIES_CHARMANDER, 10
+	goto_if_eq VAR_RESULT, 0, Route24_EventScript_DamianGiveParty
+	goto_if_eq VAR_RESULT, 1, Route24_EventScript_DamianGivePC
+	goto_if_eq VAR_RESULT, 2, Common_EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+Route24_EventScript_DamianGiveParty::
+	playfanfare MUS_LEVEL_UP
+	message Route24_Text_ReceivedCharmander
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_CHARMANDER
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route24_EventScript_DamianFinish
+	call Common_EventScript_GetGiftMonPartySlot
+	call Common_EventScript_NameReceivedPartyMon
+	goto Route24_EventScript_DamianFinish
+	end
+
+Route24_EventScript_DamianGivePC::
+	playfanfare MUS_LEVEL_UP
+	message Route24_Text_ReceivedCharmander
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_CHARMANDER
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route24_EventScript_DamianTransferPC
+	call Common_EventScript_NameReceivedBoxMon
+	goto Route24_EventScript_DamianTransferPC
+	end
+
+Route24_EventScript_DamianTransferPC::
+	call Common_EventScript_TransferredToPC
+	goto Route24_EventScript_DamianFinish
+	end
+
+Route24_EventScript_DamianFinish::
+	setflag FLAG_GOT_YELLOW_CHARMANDER
+	msgbox Route24_Text_DamianTakeCare, MSGBOX_DEFAULT
+	release
+	end
+
+Route24_EventScript_DamianDeclined::
+	msgbox Route24_Text_DamianDeclined, MSGBOX_DEFAULT
+	release
+	end
+
+Route24_EventScript_DamianAlreadyGot::
+	msgbox Route24_Text_DamianAlreadyGot, MSGBOX_DEFAULT
+	release
+	end
+
+Route24_Text_DamianIntro::
+	.string "I'm not good at raising POKéMON.\p"
+	.string "I should release my CHARMANDER\n"
+	.string "because I haven't raised it well…\p"
+	.string "If you promise me you'll care for\n"
+	.string "it, it's yours.$"
+
+Route24_Text_ReceivedCharmander::
+	.string "{PLAYER} received a CHARMANDER!$"
+
+Route24_Text_DamianTakeCare::
+	.string "Take good care of my CHARMANDER!$"
+
+Route24_Text_DamianDeclined::
+	.string "Oh… I'd better release it then.$"
+
+Route24_Text_DamianAlreadyGot::
+	.string "How's CHARMANDER doing?\n"
+	.string "I hope you two are bonding well!$"
+

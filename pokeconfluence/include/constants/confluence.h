@@ -28,6 +28,11 @@
 #define FLAG_CONFLUENCE_CRISIS_RESOLVED FLAG_UNUSED_0x023 // The syndicate chairman was beaten: the Resonance anomalies stop
 #define FLAG_CONFLUENCE_GOT_FIELD_KIT   FLAG_UNUSED_0x024 // The conductors handed out the Field Kit
 
+// Yellow Gift Starters (Cerulean Bulbasaur, Route 24 Charmander, Vermilion Squirtle)
+#define FLAG_GOT_YELLOW_BULBASAUR       FLAG_UNUSED_0x025 // Melanie entrusted Bulbasaur in Cerulean
+#define FLAG_GOT_YELLOW_CHARMANDER      FLAG_UNUSED_0x026 // Damian entrusted Charmander on Route 24
+#define FLAG_GOT_YELLOW_SQUIRTLE        FLAG_UNUSED_0x027 // Officer Jenny entrusted Squirtle in Vermilion
+
 // The Convergence Crisis: the syndicate enforcers wait at the Meridian terminals once enough badges are held.
 #define CONFLUENCE_SYNDICATE_MIN_BADGES 6
 #define CONFLUENCE_CHAIRMAN_MIN_BADGES  12

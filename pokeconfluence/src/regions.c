@@ -86,6 +86,9 @@ static const u16 sJohtoBadgeFlags[8] =
 
 u16 GetBadgeFlagForRegion(enum Region region, u32 index)
 {
+    if (index >= 8)
+        return 0;
+
     switch (region)
     {
     case REGION_JOHTO:

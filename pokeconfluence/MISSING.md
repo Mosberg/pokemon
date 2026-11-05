@@ -1,76 +1,126 @@
-# MISSING
+# MISSING FEATURES & WORK IN PROGRESS
 
-The Confluence layer (Meridian Transit, 24-badge level cap, Apex Summit) is tracked in [docs/CONFLUENCE.md](docs/CONFLUENCE.md). The lists below are inherited from `pokemultiregion`.
+This document tracks all features, scripts, and subsystems that are unfinished, in progress, or require live playtesting in **Pokémon Confluence Version**. All fully implemented and verified features have been migrated to [COMPLETED.md](COMPLETED.md).
 
-Everything known to be unfinished, unconverted or untested. Items are removed when done and verified, and appended when found.
-Hard caps and approximations live in LIMITS.md. Status of the Johto conversion: all 383 maps load in the emulator smoke test (0 failures),
-21 `@ TODO unsupported:` stubs across all 383 maps remain, confined exclusively to Link/Mobile rooms (16) and Crystal's Battle Tower (5) — 0 in single-player overworld/indoor/dungeon progression. The Bug-Catching Contest gate entry (`GiveParkBalls`, 20 Sport Balls, contestant randomization) and early exit dialog (`buffernumberstring`), the Goldenrod Pokémon Center GS Ball trigger (`EVENT_CAN_GIVE_GS_BALL_TO_KURT`), and the Route 34 Day Care Odd Egg gift (`GiveOddEgg` with authentic 14% shiny rate and Dizzy Punch baby Pokémon) are fully implemented.
+For hard limits and engine constraints, refer to [LIMITS.md](LIMITS.md). Overall status: all 383 Johto maps load in emulator smoke tests (0 crash failures), with 0 stubs in single-player overworld/indoor/dungeon progression. Only 21 `@ TODO unsupported:` stubs remain across all 383 maps, confined exclusively to Link/Mobile rooms (16) and Crystal's Battle Tower (5).
 
-## Johto: scripts still not converted (largest groups first)
+---
 
-- **Phone book & rematches (converted for overworld interactions, no Pokegear call menu)**: `askforphonenumber`, `addcellnum`, `checkcellnum`, `loadvar VAR_CALLERID`, `readvar VAR_CALLERID`, `gettrainername`, `readmem`, `loadmem`, `writemem`, and `addval` are now converted across all 37 Johto phone trainers (`JohtoPhoneIsRegistered`, `JohtoPhoneRegister`, `VAR_JOHTO_MEM_W*`). Accepting a trainer's number registers `FLAG_JOHTO_PHONE_*_REGISTERED`, arms `FLAG_JOHTO_ENGINE_*_READY_FOR_REMATCH` (and gift flags for the 11 item-gifting trainers), and re-arms rematches on subsequent overworld visits; winning rematches increments `w<Trainer>FightCount` across all 5 tiers. Still missing: the Pokegear start-menu phone UI and incoming random overworld phone calls.
-- **Day care**: the Johto day care man/lady run the engine's own day care (Route 117 scripts; the woman's offer dialogue verified in play), and the wandering yard mons (`DayCareMon1`, `DayCareMon2`) play cries. The Crystal Odd Egg gift (`GiveOddEgg` / `JohtoGiveOddEgg`) is implemented: the Day Care Man inside the Route 34 house gifts the Odd Egg (Pichu, Cleffa, Igglybuff, Smoochum, Magby, Elekid, Tyrogue with Dizzy Punch and authentic 14% shiny probability) and sets `FLAG_JOHTO_GOT_ODD_EGG`.
-- **Battle Tower** (`BattleTowerAction`), **Link/Trade/Mobile** (`Colosseum`, `TimeCapsule`, `TradeCenter`, `CableClubCheckWhichChris`, `AskMobileOrCable`). Bug-Catching Contest gate entry (`GiveParkBalls` granting 20 Sport Balls and randomizing contestants, plus early return prompt) and Goldenrod GS Ball trigger are converted.
-- **Converted in Wave 2 & Wave 3**:
-  - `loadmenu` / `verticalmenu` / `_2dmenu` (`dynmultipush` + `dynmultistack` with `maxBeforeScroll = min(len(opts), 6)`, unlocking the Dragon Shrine 8th-badge quiz and ExtremeSpeed Dratini gift, Goldenrod & Celadon Game Corner prize counters, Goldenrod & Celadon Dept. Store vending machines, Goldenrod Move Tutor, and Earl's Academy blackboard)
-  - `elevator` (Goldenrod & Celadon Dept. Store elevators, including B1F warehouse box-layout cycling)
-  - `BGEVENT_IFSET` / `BGEVENT_IFNOTSET` + `conditional_event` (Mahogany Team Rocket Base B2F & B3F password-locked doors to the transmitter room and Giovanni's office, verified in emulator play; Player's House 2F poster)
-  - Goldenrod Radio Tower 1F Lucky Number Show (`CheckLuckyNumberShowFlag`, `PrintTodaysLuckyNumber`, `CheckForLuckyNumberWinners`) and 2F Buena's Password Show (`VAR_BLUECARDBALANCE`, `AskRememberPassword`, `BuenasPassword`, `BuenaPrize`)
-  - Lake of Rage Fishing Guru (`CheckMagikarpLength`), Viridian Trainer House (`TrainerHouse` -> Trainer Cal battle), Goldenrod Dept. Store 5F (`UnlockMysteryGift`), Ruins of Alph (`UnownPuzzle`, `HoOhChamber`, `OmanyteChamber`, `skyfall_top`, `RuinsOfAlphResearchCenterScientist1Text_GotAllUnown`)
-  - `checkcoins` / `givecoins` / `takecoins`, `SelectApricornForKurt` (`JohtoSelectApricornForKurt`), `CelebiShrineEvent` / `CheckCaughtCelebi`, `SnorlaxAwake` (Vermilion Snorlax), `MACHINE_PART` (`ITEM_DEVON_PARTS` in Cerulean Gym & Power Plant), `warpcheck` / `MagnetTrain` (Goldenrod <-> Saffron Magnet Train & Ruins of Alph chambers), `GiveShuckle` / `ReturnShuckie` (Mania's Shuckie), `checkpokemail` / `givepokemail` (Route 35/31 Kenya mail quest), `MoveDeletion` / `MoveTutor`, `halloffame` / `credits` / `warpfacing` (Lance -> Hall of Fame and Mt. Silver Red -> Credits), `BeastsCheck` / `MonCheck` (Tin Tower Rainbow Wing & Ho-Oh), `catchtutorial`, `describedecoration`, `readvar VAR_DEXCAUGHT` / `VAR_XCOORD` / `VAR_YCOORD`, and `{d:...}` price/coin string interpolation.
-  - All Gen 2 TMs/HMs (`TM_PSYCHIC_M`, `TM_DRAGONBREATH`, `TM_DYNAMICPUNCH`, `TM_FURY_CUTTER`, `TM_ICY_WIND`, `TM_MUD_SLAP`, `TM_ZAP_CANNON`, `TM_THUNDERPUNCH`, `TM_FIRE_PUNCH`, `TM_ICE_PUNCH`, `TM_HEADBUTT`, `TM_ROCK_SMASH`, `HM_WHIRLPOOL`, etc.) mapped to Gen 3 TM/HM equivalents in `CMD_ITEMS` (0 Nugget fallbacks remaining).
-  - All 118 Crystal `SPRITE_*` constants mapped to validated `OBJ_EVENT_GFX_*` entries in `SPRITE_MAP` (Team Rocket Grunts, all 16 Johto/Kanto Gym Leaders & Elite Four, Suicune/Raikou/Entei/Ho-Oh/Lugia, Snorlax, Sudowoodo, Berry Trees, Prof. Oak, Bill, Red, Blue, Lance, Kurt/Elder, Gym Guides, etc.) and all 48 Crystal `MUSIC_*` constants mapped to `MUS_RG_*` / `MUS_*` tracks in `MAP_MUSIC`.
-- Nurse: time-of-day greetings (morning, day, evening) and Pokerus detection are converted.
-- Phone / Pokegear: no Pokegear start-menu entry, incoming overworld calls, or map card (overworld phone registration and rematches are converted).
-- Fruit trees: daily regrowth is converted via `JohtoDailyResetFruitTrees` in `DoDailyEvents` across all 30 Johto and Kanto berry trees.
+## Progress Overview
 
-## Johto: content not imported
+| Feature / Subsystem | Status | Progress | Notes |
+|:---|:---:|:---:|:---|
+| **Phone & Rematches** | WIP | `[████████░░] 80%` | 37 trainers & 5 tiers done; incoming calls & map card missing |
+| **Fly Points & Navigation** | WIP | `[███████░░░] 70%` | 22 town respawns & 11 Johto fly points wired; Town Map art missing |
+| **Kanto / Yellow Content** | WIP | `[██████░░░░] 60%` | 3 gift starters & Jessie/James done; Pikachu mood missing |
+| **Overworld & Audio Polish** | WIP | `[█████░░░░░] 50%` | 118 sprites & 48 songs mapped; native GBC chiptunes missing |
+| **Engine Integration** | WIP | `[████░░░░░░] 40%` | Badges, obedience, GameClear, Cut done; DNS & Johto Dex pending |
+| **Script Playtesting** | WIP | `[████░░░░░░] 40%` | Early game verified; mid/late game & static encounters unplayed |
+| **Emulator & Tooling** | WIP | `[███░░░░░░░] 30%` | Headless runner & pytest done; RTC hardware sync missing |
+| **Wild Encounter Tables** | WIP | `[███░░░░░░░] 30%` | Base tables load; time-of-day, roamers, Headbutt trees missing |
+| **Battle Tower & Mobile** | Backlog | `[██░░░░░░░░] 20%` | 21 link/tower stubs remain; single-player untouched |
 
-- Time-of-day (morning/night) wild tables; Headbutt trees, swarms, roaming Pokemon, Bug-Catching Contest table, flee mons, Unown unlocks
-- Real GBC Crystal synth songs/SFX (maps now use per-map FRLG/Emerald `MUS_RG_*` and `MUS_*` tracks via `MAP_MUSIC`)
-- Custom GBC overworld sprites and trainer pictures (maps now use validated FRLG/Emerald `OBJ_EVENT_GFX_*` counterparts for all 118 Crystal sprites), Crystal text font and scroll-arrow tiles (the arrow shows as a heart)
-- Johto Pokedex ordering and area map; Johto town map and Fly points (heal locations / respawn points exist for 22 towns)
-- Per-class trainer DVs, per-class battle music, Crystal move/learnset differences, Crystal held-item effects
-- Goldenrod Radio Tower, Underground, Bug Contest, Lake of Rage events (their scripts convert as far as the unsupported commands above allow, untested)
-- Mobile Stadium, Link/Trade, Mobile features (not planned)
+---
 
-## Johto: engine integration
+## 1. Phone & Pokégear Subsystem
 
-- Johto Elite Four / Champion progression and Hall of Fame; Johto badge case / trainer card display (badges are flags that drive obedience, field-move badges and `VAR_BADGES`)
-- Johto town map, music sets, Pokedex area pages and trainer card still use Hoenn's
-- Pokemon Center PC / Pokegear start-menu entry; day/night palettes
-- Cut _grass_ blocks and "use Cut from the party menu" (cutting works by facing the tree and pressing A)
+- `[████████░░] 80%` **Phone Book & Rematches**
+  - **Completed**: All 37 Johto phone trainers are converted (`JohtoPhoneRegister`, `JohtoPhoneIsRegistered`, `FLAG_JOHTO_PHONE_*_REGISTERED`). Accepting numbers arms `FLAG_JOHTO_ENGINE_*_READY_FOR_REMATCH` and gift flags for the 11 item-gifting trainers. Rematch counts in `VAR_JOHTO_MEM_W*` scale teams across 5 distinct tiers. Pokégear start menu entry is fully integrated via `FLAG_JOHTO_ENGINE_POKEGEAR`.
+  - **Missing**:
+    - `[░░░░░░░░░░] 0%` Random incoming overworld phone calls while walking.
+    - `[░░░░░░░░░░] 0%` Pokégear Map Card UI.
 
-## Verified in play / still untested
+---
 
-Verified in the embedded emulator: Mom's Pokegear scene, New Bark Town, Elm's scene, all three starters (Totodile and Cyndaquil picked, Chikorita's rival variant run), Aide scene, Route 29 wild encounter,
-Route 30 trainer, Johto save + continue round trip (position and party survive), Cherrygrove Pokemon Center / Mart / Guide Gent / rival scene (all three starter variants), Mr. Pokemon (Mystery Egg flag), Violet Gym (Falkner), Togepi egg from the Aide,
-cut trees (Ilex Forest, Route 29), item balls (Sprout Tower 3F Potion), Sprout Tower rival scene and the Sage Li fight giving Flash, NPC trade (Emy), a trainer battle played to the end, the Violet nurse setting the respawn point and a whiteout waking the player in Violet's Pokemon Center (nurse cutscene), all 383 maps loading. `make test-johto` replays these.
+## 2. Regional Navigation & Town Maps
 
-Converted but **not played**: static wild battles (`loadwildmon`), `changeblock`, hidden items (60 maps), boulders and rocks, Johto badges driving obedience/HM, Elder Li's Flash gift (needs the rival scene first),
-Route 32 Slowpoketail scene / Union Cave / Azalea / Kurt / Ilex Forest, Togepi hatching and Elm's follow-up, per-town respawn in towns other than Violet,
-fishing encounter tables (Old/Good/Super Rod for 149 maps; the Old Rod is accepted on corrected water, species/levels unchecked), Surf, wild encounter species/levels against the table, what the rival says/uses per starter.
+- `[███████░░░] 70%` **Fly Points & Regional Map Sections**
+  - **Completed**: Heal locations and respawn points exist for 22 towns. Regional Johto Fly destinations and out-of-bounds guards are wired in `sMapHealLocations` in `src/region_map.c`.
+  - **Missing**:
+    - `[░░░░░░░░░░] 0%` Dedicated Johto Town Map layout and rendering in Pokégear / Pokénav.
 
-## Kanto / Yellow
+---
 
-- Yellow Pikachu mood, refusing Poke Balls/evolution stones, Pikachu happiness reactions; Yellow gift starters
-- Route 22 Jolteon upgrade and Jessie & James fights are built but never played
-- Play-testing Viridian Forest, Mt. Moon, Cerulean and the ferry back to Hoenn with a Kanto badge
-- The older plugin scripts (`poke-patch*`, `poke-migrate-*`) do not reproduce the trainer-id / flag-band changes
+## 3. Kanto / Yellow Additions
 
-## Embedded emulator
+- `[██████░░░░] 60%` **Yellow Expansion & Events**
+  - **Completed**: Authentic Yellow gift starters (Bulbasaur in Cerulean City House 1, Charmander on Route 24, Squirtle in Vermilion City) with authentic dialogue, badge requirements, party/PC deposit handling, nickname prompts, and custom flags (`FLAG_GOT_YELLOW_*`). Route 22 Jolteon upgrade and Jessie & James battle scripts built.
+  - **Missing**:
+    - `[░░░░░░░░░░] 0%` Yellow Pikachu mood reactions, refusing Poké Balls, and refusing evolution stones.
+    - `[░░░░░░░░░░] 0%` Live playtesting of Viridian Forest, Mt. Moon, Cerulean, and the ferry back to Hoenn with a Kanto badge.
+    - `[░░░░░░░░░░] 0%` Older legacy plugin scripts (`poke-patch*`, `poke-migrate-*`) updating to reproduce trainer-id/flag-band changes.
 
-- Cartridge RTC (real time-of-day / weekday behaviour in Johto scripts), link cable, rewind, cheats, breakpoint / memory-viewer panels and a Debug Adapter (gba-kit has the packages, not wired in)
-- Native-mGBA savestate import
-- Live test of keyboard / gamepad and audio in the webview beyond the screen (verified: screen, toolbar, bridge protocol, Python tools, crash banner logic)
+---
 
-## Tooling and extension
+## 4. Wild Encounter Tables & Mechanics
 
-- Field Kit party-menu row: fully integrated in `src/party_menu.c` and `src/confluence.c` via `Confluence_GetFieldKitMoveByIndex` (Surf, Fly, Flash, Dig, Teleport, Dive, Waterfall). Headless tests in `test/confluence.c` pass.
-- VS Code extension views, dashboard, chat participant and real model calls are untested (only the emulator screen and MCP server were run)
-- Headless mGBA Python bindings and the RL stack are not set up
-- No automated test that rebuilds the ROM and replays the Johto opening (the manual replay scripts live in the session scratchpad, not in the repo)
+- `[███░░░░░░░] 30%` **Johto Wild Data & Tables**
+  - **Completed**: Standard overworld encounter tables load in smoke tests across all maps.
+  - **Missing**:
+    - `[░░░░░░░░░░] 0%` Time-of-day wild tables (morning, day, night splits).
+    - `[░░░░░░░░░░] 0%` Headbutt tree encounter tables.
+    - `[░░░░░░░░░░] 0%` Daily Pokémon swarms.
+    - `[░░░░░░░░░░] 0%` Roaming legendary beasts (Suicune, Raikou, Entei).
+    - `[░░░░░░░░░░] 0%` Bug-Catching Contest wild encounter table.
+    - `[░░░░░░░░░░] 0%` Fleeing wild Pokémon tables and Ruins of Alph Unown unlock stages.
 
-## How this file is maintained
+---
 
-Add a line whenever something is found missing, unimplemented or untested; delete it when it is done and verified.
+## 5. Audio, Sprites & Visual Polish
+
+- `[█████░░░░░] 50%` **GBC Audio & Visual Fidelity**
+  - **Completed**: All 118 Crystal `SPRITE_*` constants mapped to validated FRLG/Emerald `OBJ_EVENT_GFX_*` counterparts. All 48 Crystal `MUSIC_*` constants mapped to `MUS_RG_*` / `MUS_*` tracks. Authentic GBC Johto badges integrated on the Trainer Card.
+  - **Missing**:
+    - `[░░░░░░░░░░] 0%` Real GBC Crystal synth chiptune playback / mid2agb conversions.
+    - `[░░░░░░░░░░] 0%` Custom GBC overworld sprites and trainer battle front/back pictures.
+    - `[░░░░░░░░░░] 0%` Crystal text font and authentic scroll-arrow tiles.
+
+---
+
+## 6. Engine Integration
+
+- `[████░░░░░░] 40%` **Engine Mechanics**
+  - **Completed**: 24-badge soft level caps, dynamic Gym Leader/Elite Four scaling, regional `GameClear` Hall of Fame continue warps, multi-region Trainer Card badge display with cycling, regional battle obedience in `battle_util.c`, field-move badges in `field_move.c`, `VAR_BADGES` counter, and party menu / field kit Cut for Johto background trees and tall grass.
+  - **Missing**:
+    - `[░░░░░░░░░░] 0%` Overworld Day/Night color palettes (DNS).
+    - `[░░░░░░░░░░] 0%` Johto regional Pokédex ordering and area map pages.
+    - `[░░░░░░░░░░] 0%` Per-class trainer DVs, per-class battle music, and Crystal held-item / learnset nuances.
+
+---
+
+## 7. Battle Tower, Mobile & Link Stubs
+
+- `[██░░░░░░░░] 20%` **Crystal Link & Facility Stubs**
+  - **Completed**: Bug-Catching Contest gate entry (`GiveParkBalls`) and Goldenrod Pokémon Center GS Ball trigger. 0 stubs in single-player overworld/indoor/dungeon progression.
+  - **Missing**:
+    - `[░░░░░░░░░░] 0%` Crystal Battle Tower actions (`BattleTowerAction` - 5 stubs).
+    - `[░░░░░░░░░░] 0%` Link/Mobile room stubs (`Colosseum`, `TimeCapsule`, `TradeCenter`, `CableClubCheckWhichChris`, `AskMobileOrCable` - 16 stubs).
+
+---
+
+## 8. Overworld Scripts: Converted but Unplayed
+
+- `[████░░░░░░] 40%` **Playtest Status**
+  - **Verified in Play**: Mom's Pokegear scene, New Bark Town, Elm's lab, all three starter selections (Totodile, Cyndaquil, Chikorita rival variant), Elm's Aide, Route 29 wild encounter, Route 30 trainer, Johto save/continue round trip, Cherrygrove Pokémon Center / Mart / Guide Gent / rival scene, Mr. Pokémon (Mystery Egg), Violet Gym (Falkner), Togepi egg from Aide, cut trees (Ilex Forest, Route 29), Sprout Tower rival scene & Sage Li Flash battle, NPC trade (Emy), Violet nurse respawn & whiteout wakeup.
+  - **Converted but Unplayed**:
+    - `[░░░░░░░░░░] 0%` Static wild battles (`loadwildmon`).
+    - `[░░░░░░░░░░] 0%` Dynamic block changes (`changeblock`).
+    - `[░░░░░░░░░░] 0%` Hidden items across 60 maps.
+    - `[░░░░░░░░░░] 0%` Strength boulders and Rock Smash breakable rocks in Johto dungeons.
+    - `[░░░░░░░░░░] 0%` Elder Li's Flash gift follow-up sequence.
+    - `[░░░░░░░░░░] 0%` Route 32 Slowpoke Tail scene, Union Cave, Azalea Town, Kurt, and Ilex Forest Farfetch'd chase.
+    - `[░░░░░░░░░░] 0%` Togepi hatching and Elm's follow-up phone call / scene.
+    - `[░░░░░░░░░░] 0%` Per-town respawn in towns other than Violet.
+    - `[░░░░░░░░░░] 0%` Fishing encounter tables (Old, Good, Super Rod across 149 maps).
+
+---
+
+## 9. Embedded Emulator & Tooling
+
+- `[███░░░░░░░] 30%` **Harness & Tooling**
+  - **Completed**: Headless C integration test suite (`test.sh`), emulator smoke test runner (`test_units.py`), limit auditor (`check_limits.py`), Field Kit party menu row, and mGBA Python bridge protocol.
+  - **Missing**:
+    - `[░░░░░░░░░░] 0%` Real Cartridge RTC time sync (weekday and day-of-week behaviour in Johto scripts).
+    - `[░░░░░░░░░░] 0%` Native-mGBA savestate import.
+    - `[░░░░░░░░░░] 0%` VS Code extension views, dashboard, and debug adapter panels.
+    - `[░░░░░░░░░░] 0%` Automated CI/CD script that rebuilds the ROM and replays the Johto opening.

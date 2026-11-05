@@ -8,6 +8,7 @@
 #include "overworld.h"
 #include "script_pokemon_util.h"
 #include "tv.h"
+#include "regions.h" // POKE-CONFLUENCE
 #include "constants/heal_locations.h"
 
 int GameClear(void)
@@ -36,10 +37,22 @@ int GameClear(void)
 
     SetContinueGameWarpStatus();
 
-    if (gSaveBlock2Ptr->playerGender == MALE)
-        SetContinueGameWarpToHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F);
+    // POKE-CONFLUENCE: Respawn at regional home town after beating Hall of Fame
+    if (GetCurrentRegion() == REGION_JOHTO)
+    {
+        SetContinueGameWarpToHealLocation(HEAL_LOCATION_JOHTO_NEW_BARK_TOWN);
+    }
+    else if (GetCurrentRegion() == REGION_KANTO)
+    {
+        SetContinueGameWarpToHealLocation(HEAL_LOCATION_PALLET_TOWN);
+    }
     else
-        SetContinueGameWarpToHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F);
+    {
+        if (gSaveBlock2Ptr->playerGender == MALE)
+            SetContinueGameWarpToHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F);
+        else
+            SetContinueGameWarpToHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F);
+    }
 
     ribbonGet = FALSE;
 

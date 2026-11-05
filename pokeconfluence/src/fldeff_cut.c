@@ -23,6 +23,9 @@
 #include "constants/field_effects.h"
 #include "constants/songs.h"
 #include "constants/metatile_labels.h"
+#include "regions.h"
+
+extern const u8 Johto_Std_TryCutTree[];
 
 extern struct MapPosition gPlayerFacingPosition;
 
@@ -50,6 +53,8 @@ struct HyperCutterUnk
 // this file's functions
 static void FieldCallback_CutTree(void);
 static void FieldCallback_CutGrass(void);
+static void FieldCallback_CutJohtoTree(void);
+static const u8 *GetFacingJohtoCutTreeScript(void);
 static void StartCutTreeFieldEffect(void);
 static void StartCutGrassFieldEffect(void);
 static void SetCutGrassMetatile(s16, s16);
@@ -68,6 +73,7 @@ static bool8 sHyperCutTiles[CUT_HYPER_AREA];
 // EWRAM variables
 static EWRAM_DATA u8 *sCutGrassSpriteArrayPtr = NULL;
 static EWRAM_DATA bool8 sScheduleOpenDottedHole = FALSE;
+static EWRAM_DATA const u8 *sFacingJohtoCutTreeScript = NULL;
 
 // const rom data
 static const struct HyperCutterUnk sHyperCutStruct[] =
@@ -158,6 +164,15 @@ bool32 SetUpFieldMove_Cut(void)
         // Standing in front of cuttable tree.
         gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
         gPostMenuFieldCallback = FieldCallback_CutTree;
+        return TRUE;
+    }
+
+    // POKE-CONFLUENCE: Johto cut trees are background sign events
+    sFacingJohtoCutTreeScript = GetFacingJohtoCutTreeScript();
+    if (sFacingJohtoCutTreeScript != NULL)
+    {
+        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
+        gPostMenuFieldCallback = FieldCallback_CutJohtoTree;
         return TRUE;
     }
     else
@@ -306,6 +321,49 @@ static void FieldCallback_CutTree(void)
     ScriptContext_SetupScript(EventScript_UseCut);
 }
 
+// POKE-CONFLUENCE: Johto cut trees are background sign events
+static void FieldCallback_CutJohtoTree(void)
+{
+    if (sFacingJohtoCutTreeScript != NULL)
+        ScriptContext_SetupScript(sFacingJohtoCutTreeScript);
+}
+
+static const u8 *GetFacingJohtoCutTreeScript(void)
+{
+    s16 x, y;
+    u8 elevation, i, count;
+    const struct BgEvent *bgEvents;
+
+    if (gMapHeader.events == NULL)
+        return NULL;
+
+    GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
+    elevation = PlayerGetElevation();
+    x -= MAP_OFFSET;
+    y -= MAP_OFFSET;
+    bgEvents = gMapHeader.events->bgEvents;
+    count = gMapHeader.events->bgEventCount;
+
+    for (i = 0; i < count; i++)
+    {
+        if ((s16)bgEvents[i].x == x && (s16)bgEvents[i].y == y)
+        {
+            if (bgEvents[i].elevation == elevation || bgEvents[i].elevation == ELEVATION_TRANSITION)
+            {
+                const u8 *script = bgEvents[i].bgUnion.script;
+                // Script begins with: lockall (0x67), call (0x5C), pointer to Johto_Std_TryCutTree
+                if (script != NULL && script[0] == 0x67 && script[1] == 0x5C)
+                {
+                    const u8 *target = (const u8 *)(script[2] | (script[3] << 8) | (script[4] << 16) | (script[5] << 24));
+                    if (target == Johto_Std_TryCutTree)
+                        return script;
+                }
+            }
+        }
+    }
+    return NULL;
+}
+
 bool8 FldEff_UseCutOnTree(void)
 {
     u8 taskId = CreateFieldMoveTask();
@@ -365,7 +423,9 @@ bool8 FldEff_CutGrass(void)
 // set map grid metatile depending on x, y
 static void SetCutGrassMetatile(s16 x, s16 y)
 {
-    switch (MapGridGetMetatileIdAt(x, y))
+    u16 metatileId = MapGridGetMetatileIdAt(x, y);
+
+    switch (metatileId)
     {
     case METATILE_Fortree_LongGrass_Root:
     case METATILE_General_LongGrass:
@@ -397,6 +457,18 @@ static void SetCutGrassMetatile(s16 x, s16 y)
         break;
     case METATILE_General_TallGrass_TreeUp:
         MapGridSetMetatileIdAt(x, y, METATILE_General_Grass_TreeUp);
+        break;
+    default:
+        // POKE-CONFLUENCE: In Johto tilesets, if metatile has tall grass behavior, swap with plain grass
+        if (GetCurrentRegion() == REGION_JOHTO)
+        {
+            u8 behavior = MapGridGetMetatileBehaviorAt(x, y);
+            if (MetatileBehavior_IsPokeGrass(behavior) || MetatileBehavior_IsCuttableGrass(behavior))
+            {
+                if (metatileId >= 512)
+                    MapGridSetMetatileIdAt(x, y, metatileId - 1);
+            }
+        }
         break;
     }
 }

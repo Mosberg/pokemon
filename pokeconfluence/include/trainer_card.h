@@ -3,6 +3,7 @@
 
 #include "constants/trainer_card.h"
 #include "constants/species.h"
+#include "constants/regions.h"
 
 struct TrainerCard
 {
@@ -55,5 +56,7 @@ void CopyTrainerCardData(struct TrainerCard *dst, struct TrainerCard *src, u8 ga
 void ShowPlayerTrainerCard(void (*callback)(void));
 void ShowTrainerCardInLink(u8 cardId, void (*callback)(void));
 void TrainerCard_GenerateCardForLinkPlayer(struct TrainerCard *trainerCard);
+// POKE-CONFLUENCE
+enum Region TrainerCard_GetBadgeRegion(void);
 
 #endif // GUARD_TRAINER_CARD_H

@@ -143,3 +143,100 @@ CeruleanCity_House1_Text_SpStatsWaterfall::
 CeruleanCity_House1_Text_AllMonsWillObeyYou::
 	.string "All POKéMON will obey you!$"
 
+@ POKE-YELLOW: Bulbasaur gift from Melanie
+CeruleanCity_House1_EventScript_Melanie::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_YELLOW_BULBASAUR, CeruleanCity_House1_EventScript_MelanieAlreadyGot
+	goto_if_set FLAG_BADGE10_GET, CeruleanCity_House1_EventScript_MelanieOfferBulbasaur
+	goto_if_set FLAG_BADGE02_GET, CeruleanCity_House1_EventScript_MelanieOfferBulbasaur
+	msgbox CeruleanCity_House1_Text_MelanieCarePokemon, MSGBOX_DEFAULT
+	release
+	end
+
+CeruleanCity_House1_EventScript_MelanieOfferBulbasaur::
+	msgbox CeruleanCity_House1_Text_MelanieOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, CeruleanCity_House1_EventScript_MelanieDeclined
+	setvar VAR_TEMP_1, SPECIES_BULBASAUR
+	givemon SPECIES_BULBASAUR, 10
+	goto_if_eq VAR_RESULT, 0, CeruleanCity_House1_EventScript_MelanieGiveParty
+	goto_if_eq VAR_RESULT, 1, CeruleanCity_House1_EventScript_MelanieGivePC
+	goto_if_eq VAR_RESULT, 2, Common_EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+CeruleanCity_House1_EventScript_MelanieGiveParty::
+	playfanfare MUS_LEVEL_UP
+	message CeruleanCity_House1_Text_ReceivedBulbasaur
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_BULBASAUR
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, CeruleanCity_House1_EventScript_MelanieFinish
+	call Common_EventScript_GetGiftMonPartySlot
+	call Common_EventScript_NameReceivedPartyMon
+	goto CeruleanCity_House1_EventScript_MelanieFinish
+	end
+
+CeruleanCity_House1_EventScript_MelanieGivePC::
+	playfanfare MUS_LEVEL_UP
+	message CeruleanCity_House1_Text_ReceivedBulbasaur
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_BULBASAUR
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, CeruleanCity_House1_EventScript_MelanieTransferPC
+	call Common_EventScript_NameReceivedBoxMon
+	goto CeruleanCity_House1_EventScript_MelanieTransferPC
+	end
+
+CeruleanCity_House1_EventScript_MelanieTransferPC::
+	call Common_EventScript_TransferredToPC
+	goto CeruleanCity_House1_EventScript_MelanieFinish
+	end
+
+CeruleanCity_House1_EventScript_MelanieFinish::
+	setflag FLAG_GOT_YELLOW_BULBASAUR
+	msgbox CeruleanCity_House1_Text_MelanieTakeCare, MSGBOX_DEFAULT
+	release
+	end
+
+CeruleanCity_House1_EventScript_MelanieDeclined::
+	msgbox CeruleanCity_House1_Text_MelanieDeclined, MSGBOX_DEFAULT
+	release
+	end
+
+CeruleanCity_House1_EventScript_MelanieAlreadyGot::
+	msgbox CeruleanCity_House1_Text_MelanieAlreadyGot, MSGBOX_DEFAULT
+	release
+	end
+
+CeruleanCity_House1_Text_MelanieCarePokemon::
+	.string "I look after injured POKéMON.\p"
+	.string "I nurse them back to health, but\n"
+	.string "they need skilled TRAINERS with\l"
+	.string "GYM BADGES to grow strong.$"
+
+CeruleanCity_House1_Text_MelanieOffer::
+	.string "I see you have a CASCADEBADGE!\p"
+	.string "You clearly care deeply for\n"
+	.string "your POKéMON.\p"
+	.string "I nursed a little BULBASAUR back\n"
+	.string "to health, and it needs a partner.\p"
+	.string "Will you look after this BULBASAUR?$"
+
+CeruleanCity_House1_Text_ReceivedBulbasaur::
+	.string "{PLAYER} received a BULBASAUR!$"
+
+CeruleanCity_House1_Text_MelanieTakeCare::
+	.string "Please take good care of BULBASAUR!$"
+
+CeruleanCity_House1_Text_MelanieDeclined::
+	.string "Oh… Please reconsider if you\n"
+	.string "change your mind.$"
+
+CeruleanCity_House1_Text_MelanieAlreadyGot::
+	.string "How is BULBASAUR?\n"
+	.string "I hope you two are great partners!$"
+
+

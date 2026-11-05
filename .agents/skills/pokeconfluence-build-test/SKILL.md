@@ -49,4 +49,5 @@ pokeconfluence/.venv/bin/pytest pokeconfluence/mgba-agent/tests
      - Gym leader / Elite Four scaling boost (`test_trainer_level_boost`)
      - Resonance weather anomaly dispatch (`test_weather_anomalies`)
      - Field Kit move retrieval (`test_field_kit_moves`)
+     - Yellow gift starters flags and generation (`test_yellow_gift_starters`)
 

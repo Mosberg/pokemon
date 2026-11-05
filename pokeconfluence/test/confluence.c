@@ -18,6 +18,8 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "constants/species.h"
+#include "constants/heal_locations.h"
+#include "trainer_card.h"
 
 static void ClearAllBadges(void)
 {
@@ -224,3 +226,85 @@ TEST("Confluence: Meridian Station and the Apex Summit arena are Johto maps")
     EXPECT_GE(MAP_GROUP(MAP_JOHTO_APEX_SUMMIT), MAP_GROUP(MAP_JOHTO_OLIVINE_POKECENTER_1F));
     EXPECT_NE(MAP_NUM(MAP_JOHTO_MERIDIAN_STATION), MAP_NUM(MAP_JOHTO_APEX_SUMMIT));
 }
+
+TEST("Confluence: Yellow gift starters flags and generation")
+{
+    FlagClear(FLAG_GOT_YELLOW_BULBASAUR);
+    FlagClear(FLAG_GOT_YELLOW_CHARMANDER);
+    FlagClear(FLAG_GOT_YELLOW_SQUIRTLE);
+
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_BULBASAUR), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_CHARMANDER), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_SQUIRTLE), FALSE);
+
+    FlagSet(FLAG_GOT_YELLOW_BULBASAUR);
+    FlagSet(FLAG_GOT_YELLOW_CHARMANDER);
+    FlagSet(FLAG_GOT_YELLOW_SQUIRTLE);
+
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_BULBASAUR), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_CHARMANDER), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_GOT_YELLOW_SQUIRTLE), TRUE);
+
+    // Verify gift mon species can be created at level 10
+    struct Pokemon mon;
+    CreateMon(&mon, SPECIES_BULBASAUR, 10, 0, OTID_STRUCT_PRESET(0));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES, NULL), SPECIES_BULBASAUR);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_LEVEL, NULL), 10);
+
+    CreateMon(&mon, SPECIES_CHARMANDER, 10, 0, OTID_STRUCT_PRESET(0));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES, NULL), SPECIES_CHARMANDER);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_LEVEL, NULL), 10);
+
+    CreateMon(&mon, SPECIES_SQUIRTLE, 10, 0, OTID_STRUCT_PRESET(0));
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_SPECIES, NULL), SPECIES_SQUIRTLE);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_LEVEL, NULL), 10);
+
+    FlagClear(FLAG_GOT_YELLOW_BULBASAUR);
+    FlagClear(FLAG_GOT_YELLOW_CHARMANDER);
+    FlagClear(FLAG_GOT_YELLOW_SQUIRTLE);
+}
+
+TEST("Confluence: Pokégear flag and communicator logic")
+{
+    FlagClear(FLAG_JOHTO_ENGINE_POKEGEAR);
+    FlagClear(FLAG_SYS_POKENAV_GET);
+
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_POKEGEAR), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_SYS_POKENAV_GET), FALSE);
+
+    FlagSet(FLAG_JOHTO_ENGINE_POKEGEAR);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_POKEGEAR), TRUE);
+
+    FlagSet(FLAG_SYS_POKENAV_GET);
+    EXPECT_EQ(FlagGet(FLAG_SYS_POKENAV_GET), TRUE);
+
+    FlagClear(FLAG_JOHTO_ENGINE_POKEGEAR);
+    FlagClear(FLAG_SYS_POKENAV_GET);
+}
+
+TEST("Confluence: Johto Fly destinations and regional GameClear warp")
+{
+    EXPECT_EQ(HEAL_LOCATION_JOHTO_NEW_BARK_TOWN > HEAL_LOCATION_NONE, TRUE);
+    EXPECT_EQ(HEAL_LOCATION_JOHTO_GOLDENROD_CITY > HEAL_LOCATION_NONE, TRUE);
+    EXPECT_EQ(HEAL_LOCATION_JOHTO_BLACKTHORN_CITY > HEAL_LOCATION_NONE, TRUE);
+    EXPECT_EQ(HEAL_LOCATION_PALLET_TOWN > HEAL_LOCATION_NONE, TRUE);
+    EXPECT_EQ(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F > HEAL_LOCATION_NONE, TRUE);
+}
+
+TEST("Confluence: Regional Trainer Card badge retrieval and cycling")
+{
+    EXPECT_EQ(GetBadgeFlagForRegion(REGION_HOENN, 0), FLAG_BADGE01_GET);
+    EXPECT_EQ(GetBadgeFlagForRegion(REGION_HOENN, 7), FLAG_BADGE08_GET);
+    EXPECT_EQ(GetBadgeFlagForRegion(REGION_HOENN, 8), 0);
+
+    EXPECT_EQ(GetBadgeFlagForRegion(REGION_KANTO, 0), FLAG_BADGE09_GET);
+    EXPECT_EQ(GetBadgeFlagForRegion(REGION_KANTO, 7), FLAG_BADGE16_GET);
+    EXPECT_EQ(GetBadgeFlagForRegion(REGION_KANTO, 8), 0);
+
+    EXPECT_EQ(GetBadgeFlagForRegion(REGION_JOHTO, 0), FLAG_JOHTO_ENGINE_ZEPHYRBADGE);
+    EXPECT_EQ(GetBadgeFlagForRegion(REGION_JOHTO, 7), FLAG_JOHTO_ENGINE_RISINGBADGE);
+    EXPECT_EQ(GetBadgeFlagForRegion(REGION_JOHTO, 8), 0);
+
+    EXPECT_EQ(TrainerCard_GetBadgeRegion(), GetCurrentRegion());
+}
+
