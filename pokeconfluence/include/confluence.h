@@ -19,6 +19,11 @@ enum OverworldWeather Confluence_GetAnomalyWeather(enum OverworldWeather weather
 // The Field Kit lets the first non-egg party Pokemon use the HM field moves; PARTY_SIZE when it does not apply.
 u32 Confluence_GetFieldKitMon(enum FieldMove fieldMove);
 
+// True when the Field Kit is in the bag and this party slot is the Kit mon (first non-egg Pokemon).
+bool32 Confluence_IsFieldKitSlot(u32 slot);
+// The n-th field move the Field Kit offers in the party menu, in menu order; FIELD_MOVES_COUNT past the end.
+enum FieldMove Confluence_GetFieldKitMoveByIndex(u32 index);
+
 struct Trainer;
 // Levels to add to a gym leader's party so that, whatever order the circuit is played in, the leader matches the player's level cap.
 u32 Confluence_GetTrainerLevelBoost(const struct Trainer *trainer);

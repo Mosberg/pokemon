@@ -209,7 +209,12 @@ TEST("Confluence: the Field Kit lets the first non-egg Pokemon use HM field move
     u32 isEgg = TRUE;
     SetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_IS_EGG, &isEgg);
     EXPECT_EQ(Confluence_GetFieldKitMon(FIELD_MOVE_STRENGTH), 1);
+    EXPECT(Confluence_IsFieldKitSlot(1));
+    EXPECT(!Confluence_IsFieldKitSlot(0));
+    EXPECT_EQ(Confluence_GetFieldKitMoveByIndex(0), FIELD_MOVE_SURF);
+    EXPECT_EQ(Confluence_GetFieldKitMoveByIndex(7), FIELD_MOVES_COUNT);
     RemoveBagItem(ITEM_FIELD_KIT, 1);
+    EXPECT(!Confluence_IsFieldKitSlot(1));
 }
 
 TEST("Confluence: Meridian Station and the Apex Summit arena are Johto maps")

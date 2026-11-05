@@ -181,6 +181,23 @@ u32 Confluence_GetFieldKitMon(enum FieldMove fieldMove)
     return PARTY_SIZE;
 }
 
+bool32 Confluence_IsFieldKitSlot(u32 slot)
+{
+    return slot < PARTY_SIZE && Confluence_GetFieldKitMon(FIELD_MOVE_CUT) == slot;
+}
+
+// Party menu order: the water moves first, then the travel moves and the rest. Every entry works for the Kit mon.
+enum FieldMove Confluence_GetFieldKitMoveByIndex(u32 index)
+{
+    static const u8 sFieldKitMoves[] =
+    {
+        FIELD_MOVE_SURF, FIELD_MOVE_FLY, FIELD_MOVE_FLASH, FIELD_MOVE_DIG,
+        FIELD_MOVE_TELEPORT, FIELD_MOVE_DIVE, FIELD_MOVE_WATERFALL,
+    };
+
+    return index < ARRAY_COUNT(sFieldKitMoves) ? sFieldKitMoves[index] : FIELD_MOVES_COUNT;
+}
+
 // VAR_RESULT = badges across all three regions.
 void ConfluenceCountBadges(void)
 {

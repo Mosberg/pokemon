@@ -1,4 +1,5 @@
 #include "global.h"
+#include "confluence.h" // POKE-CONFLUENCE: Field Kit
 #include "malloc.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -110,6 +111,7 @@ enum {
     MENU_CATALOG_MOWER,
     MENU_CHANGE_FORM,
     MENU_CHANGE_ABILITY,
+    MENU_FIELD_KIT, // POKE-CONFLUENCE: opens the Field Kit field move list
     MENU_FIELD_MOVES
 };
 
@@ -474,6 +476,7 @@ static void CursorCb_Trade1(u8);
 static void CursorCb_Trade2(u8);
 static void CursorCb_Toss(u8);
 static void CursorCb_FieldMove(u8);
+static void CursorCb_FieldKit(u8);
 static void CursorCb_CatalogBulb(u8);
 static void CursorCb_CatalogOven(u8);
 static void CursorCb_CatalogWashing(u8);
@@ -2970,6 +2973,10 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         }
     }
 
+    // POKE-CONFLUENCE: the Field Kit mon gets one extra row that lists the field moves it can perform
+    if (sPartyMenuInternal->numActions <= 4 && Confluence_IsFieldKitSlot(slotId))
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_FIELD_KIT);
+
     if (!InBattlePike())
     {
         if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
@@ -4083,6 +4090,29 @@ static void Task_HandleSpinTradeYesNoInput(u8 taskId)
         Task_ReturnToChooseMonAfterText(taskId);
         break;
     }
+}
+
+// POKE-CONFLUENCE: replaces the action list with the field moves the Field Kit provides (7 rows at most, plus Cancel).
+static void CursorCb_FieldKit(u8 taskId)
+{
+    u32 i;
+
+    PlaySE(SE_SELECT);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    sPartyMenuInternal->numActions = 0;
+    for (i = 0; i < FIELD_MOVES_COUNT && sPartyMenuInternal->numActions < 7; i++)
+    {
+        enum FieldMove fieldMove = Confluence_GetFieldKitMoveByIndex(i);
+
+        if (fieldMove != FIELD_MOVES_COUNT && FieldMove_IsVisible(fieldMove))
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, fieldMove + MENU_FIELD_MOVES);
+    }
+    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
+    DisplaySelectionWindow(SELECTWINDOW_ACTIONS);
+    DisplayPartyMenuStdMessage(PARTY_MSG_DO_WHAT_WITH_MON);
+    gTasks[taskId].data[0] = 0xFF;
+    gTasks[taskId].func = Task_HandleSelectionMenuInput;
 }
 
 static void CursorCb_FieldMove(u8 taskId)
