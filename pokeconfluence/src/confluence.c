@@ -80,8 +80,18 @@ u32 Confluence_GetTrainerLevelBoost(const struct Trainer *trainer)
 {
     u32 i, highest = 0, target;
 
-    if (trainer->trainerClass != TRAINER_CLASS_LEADER && trainer->trainerClass != TRAINER_CLASS_LEADER_FRLG)
+    switch (trainer->trainerClass)
+    {
+    case TRAINER_CLASS_LEADER:
+    case TRAINER_CLASS_LEADER_FRLG:
+    case TRAINER_CLASS_ELITE_FOUR:
+    case TRAINER_CLASS_ELITE_FOUR_FRLG:
+    case TRAINER_CLASS_CHAMPION:
+    case TRAINER_CLASS_CHAMPION_FRLG:
+        break;
+    default:
         return 0;
+    }
     if (trainer->party == NULL)
         return 0;
 

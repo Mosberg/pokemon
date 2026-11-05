@@ -149,6 +149,10 @@ TEST("Confluence: gym leaders are lifted to the level cap, never lowered")
         FlagSet(GetBadgeFlagForRegion(REGION_JOHTO, i));
     EXPECT_EQ(Confluence_GetTrainerLevelBoost(&leader), Confluence_GetLevelCapForBadges(8) - 14);
 
+    grunt.trainerClass = TRAINER_CLASS_ELITE_FOUR;
+    EXPECT_EQ(Confluence_GetTrainerLevelBoost(&grunt), Confluence_GetLevelCapForBadges(8) - 14);
+    grunt.trainerClass = TRAINER_CLASS_CHAMPION_FRLG;
+    EXPECT_EQ(Confluence_GetTrainerLevelBoost(&grunt), Confluence_GetLevelCapForBadges(8) - 14);
     grunt.trainerClass = TRAINER_CLASS_PKMN_TRAINER_1;
     EXPECT_EQ(Confluence_GetTrainerLevelBoost(&grunt), 0);
     ClearAllBadges();
