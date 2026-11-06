@@ -129,6 +129,42 @@ class ConfigApiHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(result).encode("utf-8"))
             return
 
+        if path == "/api/test":
+            try:
+                test_script = ROM_DIR / "scripts" / "test.sh"
+                cmd = ["bash", str(test_script)]
+                proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=120)
+                self._set_headers(200)
+                self.wfile.write(
+                    json.dumps({"success": proc.returncode == 0, "returncode": proc.returncode, "output": proc.stdout}).encode("utf-8")
+                )
+            except Exception as e:
+                self._set_headers(500)
+                self.wfile.write(json.dumps({"success": False, "error": str(e)}).encode("utf-8"))
+            return
+
+        if path == "/api/limits":
+            try:
+                cmd = ["python3", str(WORKSPACE_DIR / ".agents/scripts/check_limits.py")]
+                proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=60)
+                self._set_headers(200)
+                self.wfile.write(
+                    json.dumps({"success": proc.returncode == 0, "returncode": proc.returncode, "output": proc.stdout}).encode("utf-8")
+                )
+            except Exception as e:
+                self._set_headers(500)
+                self.wfile.write(json.dumps({"success": False, "error": str(e)}).encode("utf-8"))
+            return
+
+        if path == "/api/export":
+            updates = data.get("updates", {})
+            name = data.get("name", "Custom Profile")
+            export_path = SCRIPT_DIR / "exported_profile.json"
+            res = self.engine.export_profile(export_path, updates, name=name)
+            self._set_headers(200)
+            self.wfile.write(json.dumps(res).encode("utf-8"))
+            return
+
         if path == "/api/build":
             try:
                 cmd = ["make", "-C", str(ROM_DIR), f"-j{os.cpu_count() or 4}"]

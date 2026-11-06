@@ -267,6 +267,33 @@ PRESETS = {
             "overworld.h": {"OW_RUNNING_INDOORS": "GEN_3", "OW_POISON_DAMAGE": "GEN_3"},
         },
     },
+    "competitive_smogon": {
+        "title": "Competitive Smogon / Tournament Rules",
+        "description": "Smart AI dynamic switching, Gen 9 damage/burn mechanics, Team Preview, Sleep Clause, set battle style, and badge-synced soft level caps.",
+        "icon": "🏆",
+        "updates": {
+            "ai.h": {
+                "SHOULD_SWITCH_WONDER_GUARD_PERCENTAGE": "100",
+                "SHOULD_SWITCH_TRUANT_PERCENTAGE": "100",
+                "SHOULD_SWITCH_ABSORBS_MOVE_PERCENTAGE": "100",
+                "SHOULD_SWITCH_TRAPPER_PERCENTAGE": "100",
+                "SHOULD_SWITCH_FREE_TURN_PERCENTAGE": "50",
+                "SHOULD_SWITCH_DYN_FUNC_PERCENTAGE": "100",
+            },
+            "battle.h": {
+                "B_CRIT_CHANCE": "GEN_9",
+                "B_CRIT_MULTIPLIER": "GEN_9",
+                "B_BURN_DAMAGE": "GEN_9",
+                "B_PARALYSIS_SPEED": "GEN_9",
+                "B_SLEEP_TURNS": "GEN_9",
+            },
+            "caps.h": {
+                "B_EXP_CAP_TYPE": "EXP_CAP_SOFT",
+                "B_LEVEL_CAP_TYPE": "LEVEL_CAP_BADGE_COUNT",
+                "B_RARE_CANDY_CAP": "TRUE",
+            },
+        },
+    },
     "sandbox_dev": {
         "title": "Developer & Sandbox Mode",
         "description": "Enables full overworld debug menus in start menu, battle debug menus, AI timer displays, fast text, and lifts level caps.",
@@ -579,6 +606,74 @@ class ConfigEngine:
     def get_presets(self):
         """Return available configuration presets."""
         return PRESETS
+
+    def export_profile(self, filepath, updates, name="Custom Profile", description="Exported configuration profile"):
+        """Export current or pending configurations to a JSON profile file."""
+        import json
+        data = {
+            "version": "2.5",
+            "name": name,
+            "description": description,
+            "exported_at": datetime.now().isoformat(),
+            "updates": updates,
+        }
+        with open(filepath, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+        return {"success": True, "path": str(filepath), "count": sum(len(v) for v in updates.values())}
+
+    def import_profile(self, filepath):
+        """Import a JSON configuration profile."""
+        import json
+        with open(filepath, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        updates = data.get("updates", {})
+        return {
+            "success": True,
+            "name": data.get("name", "Imported Profile"),
+            "description": data.get("description", ""),
+            "updates": updates,
+            "count": sum(len(v) for v in updates.values()),
+        }
+
+    def get_setting_details(self, filename, setting_name):
+        """Provide detailed technical guidance and presets breakdown for a setting."""
+        cfgs = self.parse_file(filename)
+        cfg = next((c for c in cfgs if c["name"] == setting_name), None)
+        if not cfg:
+            return None
+
+        # Build preset comparison
+        preset_values = {}
+        for pkey, pval in PRESETS.items():
+            val = pval.get("updates", {}).get(filename, {}).get(setting_name, cfg["value"])
+            preset_values[pkey] = {
+                "title": pval["title"],
+                "icon": pval["icon"],
+                "value": val,
+            }
+
+        # Technical notes based on context
+        tech_note = ""
+        c_name = cfg["name"]
+        if "SWITCH" in c_name and "PERCENTAGE" in c_name:
+            tech_note = "Controls AI probability [0-100%] in ShouldSwitch() (src/battle_ai_switch_items.c). Values >= 100 guarantee switching if tactical conditions match."
+        elif "EXP_CAP" in c_name or "LEVEL_CAP" in c_name:
+            tech_note = "Enforces level boundaries across Hoenn, Kanto, and Johto in src/caps.c. Soft cap scales exp down; hard cap completely zeros exp."
+        elif "GEN_" in c_name and "POKEMON" in c_name:
+            tech_note = "Enables species pokedex allocation and cry tables in include/constants/species.h and src/pokemon.c."
+        elif "B_CRIT_" in c_name:
+            tech_note = "Determines critical hit probability stage calculations in src/battle_util.c (GEN_3: 1/16 base, 200% dmg; GEN_7+: 1/24 base, 150% dmg)."
+        elif "RUNNING_INDOORS" in c_name:
+            tech_note = "Permits Player to run inside buildings and houses in src/field_player_avatar.c."
+        else:
+            tech_note = f"Configured in pokeconfluence/include/config/{filename}:{cfg['line']}."
+
+        return {
+            "config": cfg,
+            "tech_note": tech_note,
+            "presets": preset_values,
+        }
+
 
 
 if __name__ == "__main__":

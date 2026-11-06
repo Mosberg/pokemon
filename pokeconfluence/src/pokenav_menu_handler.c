@@ -6,6 +6,7 @@
 #include "constants/songs.h"
 #include "regions.h" // POKE-CONFLUENCE
 #include "johto_phone.h" // POKE-CONFLUENCE
+#include "johto_radio.h" // POKE-CONFLUENCE
 
 struct Pokenav_Menu
 {
@@ -233,6 +234,17 @@ static u32 HandleMainMenuInput(struct Pokenav_Menu *menu)
             SetMenuIdAndCB(menu, POKENAV_REGION_MAP);
             return POKENAV_MENU_FUNC_OPEN_FEATURE;
         case POKENAV_MENUITEM_CONDITION:
+            // POKE-CONFLUENCE: Johto Pokégear maps Condition to Radio Card
+            if (GetCurrentRegion() == REGION_JOHTO)
+            {
+                if (!Johto_HasRadioCard())
+                {
+                    PlaySE(SE_FAILURE);
+                    return POKENAV_MENU_FUNC_NONE;
+                }
+                sPokenavWantsToOpenRadio = TRUE;
+                return POKENAV_MENU_FUNC_EXIT;
+            }
             menu->menuType = POKENAV_MENU_TYPE_CONDITION;
             menu->cursorPos = 0;
             menu->currMenuItem = sMenuItems[POKENAV_MENU_TYPE_CONDITION][0];

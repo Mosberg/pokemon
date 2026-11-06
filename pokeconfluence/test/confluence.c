@@ -39,6 +39,7 @@
 #include "rtc.h"
 #include "script.h"
 #include "overworld.h"
+#include "johto_radio.h"
 
 static void ClearAllBadges(void)
 {
@@ -986,6 +987,72 @@ TEST("Confluence: starting maps for Kanto, Johto, and Hoenn are valid and popula
     EXPECT_NE(kantoHeader->mapLayout, NULL);
     EXPECT_NE(johtoHeader->mapLayout, NULL);
     EXPECT_NE(hoennHeader->mapLayout, NULL);
+}
+
+TEST("Confluence: Authentic Johto Pokégear Radio Card and Audio Broadcasts")
+{
+    u32 rateNormal = 100;
+    u32 rateMarch = 100;
+    u32 rateLullaby = 100;
+
+    // 1. Radio Card detection
+    FlagClear(FLAG_JOHTO_ENGINE_RADIO_CARD);
+    EXPECT_EQ(Johto_HasRadioCard(), FALSE);
+    FlagSet(FLAG_JOHTO_ENGINE_RADIO_CARD);
+    EXPECT_EQ(Johto_HasRadioCard(), TRUE);
+
+    // 2. EXPN Card detection
+    FlagClear(FLAG_JOHTO_ENGINE_EXPN_CARD);
+    EXPECT_EQ(Johto_HasExpnCard(), FALSE);
+    FlagSet(FLAG_JOHTO_ENGINE_EXPN_CARD);
+    EXPECT_EQ(Johto_HasExpnCard(), TRUE);
+
+    // 3. Radio Music Effects (March & Lullaby encounter rate modifiers)
+    VarSet(VAR_JOHTO_RADIO_EFFECT, RADIO_EFFECT_NONE);
+    Johto_ApplyRadioMusicRateMod(&rateNormal);
+    EXPECT_EQ(rateNormal, 100);
+
+    VarSet(VAR_JOHTO_RADIO_EFFECT, RADIO_EFFECT_MARCH);
+    Johto_ApplyRadioMusicRateMod(&rateMarch);
+    EXPECT_EQ(rateMarch, 150); // 1.5x encounter rate boost
+
+    VarSet(VAR_JOHTO_RADIO_EFFECT, RADIO_EFFECT_LULLABY);
+    Johto_ApplyRadioMusicRateMod(&rateLullaby);
+    EXPECT_EQ(rateLullaby, 50);  // 0.5x encounter rate reduction
+
+    // 4. Station tuning and broadcast state
+    JohtoTuneRadioBuenasPassword();
+    EXPECT_EQ(Johto_GetActiveRadioStation(), RADIO_STATION_BUENA_PASSWORD);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_LISTENED_TO_BUENAS_PASSWORD), TRUE);
+
+    // 5. Buena's Password consistency
+    {
+        u8 category = Johto_GetBuenaPasswordCategory();
+        u8 correctOpt = Johto_GetBuenaCorrectOption();
+        const u8 *passStr = Johto_GetBuenaOptionString(category, correctOpt);
+        EXPECT_NE(passStr, NULL);
+
+        // Correct answer grants point on Blue Card
+        VarSet(VAR_JOHTO_BLUE_CARD_BALANCE, 5);
+        FlagClear(FLAG_JOHTO_ENGINE_BUENA_POINT_TODAY);
+        gSpecialVar_Result = correctOpt;
+        JohtoCheckBuenaAnswer();
+        EXPECT_EQ(gSpecialVar_Result, TRUE);
+        EXPECT_EQ(VarGet(VAR_JOHTO_BLUE_CARD_BALANCE), 6);
+        EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_BUENA_POINT_TODAY), TRUE);
+
+        // Wrong answer does not grant point
+        gSpecialVar_Result = (correctOpt + 1) % 3;
+        JohtoCheckBuenaAnswer();
+        EXPECT_EQ(gSpecialVar_Result, FALSE);
+        EXPECT_EQ(VarGet(VAR_JOHTO_BLUE_CARD_BALANCE), 6);
+    }
+
+    // 6. Turn off radio restores initial state
+    Johto_TurnOffRadio();
+    EXPECT_EQ(Johto_GetActiveRadioStation(), RADIO_STATION_OFF);
+    EXPECT_EQ(Johto_GetActiveRadioMusicEffect(), RADIO_EFFECT_NONE);
+    EXPECT_EQ(Johto_IsPokeFluteRadioPlaying(), FALSE);
 }
 
 

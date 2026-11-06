@@ -34,6 +34,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/weather.h"
+#include "johto_radio.h"
 
 extern const u8 EventScript_SprayWoreOff[];
 
@@ -624,6 +625,8 @@ static bool8 WildEncounterCheck(u32 encounterRate, bool8 ignoreAbility)
         encounterRate = encounterRate * 80 / 100;
     ApplyFluteEncounterRateMod(&encounterRate);
     ApplyCleanseTagEncounterRateMod(&encounterRate);
+    // POKE-CONFLUENCE: Johto Pokégear Radio Music encounter rate modifier (March / Lullaby)
+    Johto_ApplyRadioMusicRateMod(&encounterRate);
     if (LURE_STEP_COUNT != 0)
         encounterRate *= 2;
     if (!ignoreAbility && !GetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_SANITY_IS_EGG))

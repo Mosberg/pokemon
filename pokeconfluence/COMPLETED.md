@@ -491,7 +491,3 @@ This document tracks all fully converted, integrated, and verified features in *
     - Omanyte Chamber (`RuinsOfAlphOmanyteChamber_Johto`): checks for `ITEM_WATER_STONE` in bag to open the back wall (`FLAG_JOHTO_WALL_OPENED_IN_OMANYTE_CHAMBER`).
     - Ho-Oh Chamber (`RuinsOfAlphHoOhChamber_Johto`): checks for `SPECIES_HO_OH` in player's party to open the back wall (`FLAG_JOHTO_WALL_OPENED_IN_HO_OH_CHAMBER`).
   - C unit test `TEST("Confluence: Ruins of Alph secret chambers open with proper riddle triggers")` verified in `test/confluence.c` (27/27 passed).
-
-
-
-

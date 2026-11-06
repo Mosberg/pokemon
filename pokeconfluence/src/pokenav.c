@@ -7,6 +7,8 @@
 #include "palette.h"
 #include "pokemon_storage_system.h"
 #include "pokenav.h"
+#include "script.h"
+#include "johto_radio.h"
 
 #define LOOPED_TASK_DECODE_STATE(action) (action - 5)
 
@@ -492,7 +494,14 @@ static void Task_Pokenav(u8 taskId)
 
             FreeMenuHandlerSubstruct1();
             FreePokenavResources();
-            if (calledFromScript)
+            if (sPokenavWantsToOpenRadio)
+            {
+                extern const u8 Johto_EventScript_RadioMenu[];
+                sPokenavWantsToOpenRadio = FALSE;
+                ScriptContext_SetupScript(Johto_EventScript_RadioMenu);
+                SetMainCallback2(CB2_ReturnToFieldContinueScript);
+            }
+            else if (calledFromScript)
                 SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
             else
                 SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);

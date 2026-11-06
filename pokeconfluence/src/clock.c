@@ -69,6 +69,8 @@ void DoDailyEvents(u32 daysSince)
     JohtoDailyResetFruitTrees();
     Johto_DailyResetSwarm();
     FlagClear(FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS);
+    FlagClear(FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS);
+    FlagClear(FLAG_JOHTO_ENGINE_BUENA_POINT_TODAY);
 }
 
 static void UpdatePerDay(struct Time *localTime)

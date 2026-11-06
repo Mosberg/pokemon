@@ -18,6 +18,7 @@
 #include "constants/rgb.h"
 #include "regions.h" // POKE-CONFLUENCE
 #include "johto_phone.h" // POKE-CONFLUENCE
+#include "johto_radio.h" // POKE-CONFLUENCE
 
 #define GFXTAG_BLUE_LIGHT 1
 #define GFXTAG_OPTIONS    3
@@ -1222,6 +1223,8 @@ static void AddOptionDescriptionWindow(void)
 // POKE-CONFLUENCE: Contextual descriptions for Johto Pokégear cards
 static const u8 sText_JohtoMapCardMissing[] = _("The MAP CARD is not installed.");
 static const u8 sText_JohtoMapDesc[] = _("Check the map of the JOHTO region.");
+static const u8 sText_JohtoRadioCardMissing[] = _("The RADIO CARD is not installed.");
+static const u8 sText_JohtoRadioDesc[] = _("Tune into radio broadcasts.");
 static const u8 sText_JohtoPhoneCardMissing[] = _("The PHONE CARD is not installed.");
 static const u8 sText_JohtoPhoneDesc[] = _("Call a registered contact.");
 static const u8 sText_JohtoPokegearPutAway[] = _("Put away the POKéGEAR.");
@@ -1237,6 +1240,8 @@ static void PrintCurrentOptionDescription(void)
     {
         if (menuItem == POKENAV_MENUITEM_MAP)
             desc = Johto_HasMapCard() ? sText_JohtoMapDesc : sText_JohtoMapCardMissing;
+        else if (menuItem == POKENAV_MENUITEM_CONDITION)
+            desc = Johto_HasRadioCard() ? sText_JohtoRadioDesc : sText_JohtoRadioCardMissing;
         else if (menuItem == POKENAV_MENUITEM_MATCH_CALL)
             desc = Johto_HasPhoneCard() ? sText_JohtoPhoneDesc : sText_JohtoPhoneCardMissing;
         else if (menuItem == POKENAV_MENUITEM_SWITCH_OFF)

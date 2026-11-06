@@ -937,8 +937,14 @@
             <div class="dropdown-item" onclick="batchSetBattleLatest()">
               <span>✓</span> Set All Battle Rules to GEN_LATEST
             </div>
+            <div class="dropdown-item" onclick="batchEnableDebugMenus()">
+              <span>✓</span> Enable All Overworld & Battle Debug Menus
+            </div>
             <div class="dropdown-item" onclick="resetActiveFile()">
               <span>↺</span> Reset Active File to Original Defaults
+            </div>
+            <div class="dropdown-item" onclick="exportProfileJson()">
+              <span>💾</span> Export Profile (.json)
             </div>
           </div>
         </div>
@@ -959,6 +965,9 @@
         </button>
         <button id="btnBuild" class="btn btn-primary" onclick="openBuildModal()">
           <span>🔨</span> Build ROM
+        </button>
+        <button id="btnTest" class="btn btn-outline" onclick="runTestSuite()">
+          <span>🧪</span> Run Tests
         </button>
         <button class="btn btn-outline" onclick="openBackupModal()"><span>📦</span> Backups</button>
       </div>
@@ -1228,6 +1237,70 @@
           renderSidebar();
           if (activeFilename === fname) renderCurrentConfigs();
           showToast(`Updated ${count} battle rules to GEN_LATEST`, "success");
+        }
+      }
+
+      function batchEnableDebugMenus() {
+        if (confirm("Enable all overworld start menu and battle debug menus in debug.h?")) {
+          const fname = "debug.h";
+          if (!pendingUpdates[fname]) pendingUpdates[fname] = {};
+          pendingUpdates[fname]["DEBUG_OVERWORLD_MENU"] = "TRUE";
+          pendingUpdates[fname]["DEBUG_OVERWORLD_IN_MENU"] = "TRUE";
+          pendingUpdates[fname]["DEBUG_BATTLE_MENU"] = "TRUE";
+          pendingUpdates[fname]["DEBUG_AI_DELAY_TIMER"] = "TRUE";
+          pendingUpdates[fname]["DEBUG_POKEMON_SPRITE_VISUALIZER"] = "TRUE";
+          updatePendingBadge();
+          renderSidebar();
+          if (activeFilename === fname) renderCurrentConfigs();
+          showToast("All debug menus enabled in debug.h", "success");
+        }
+      }
+
+      function exportProfileJson() {
+        const total = Object.values(pendingUpdates).reduce((acc, cur) => acc + Object.keys(cur).length, 0);
+        if (total === 0) {
+          showToast("No pending changes to export. Make edits or load a preset first!", "error");
+          return;
+        }
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
+          version: "2.5",
+          name: "Confluence Custom Profile",
+          exported_at: new Date().toISOString(),
+          updates: pendingUpdates
+        }, null, 2));
+        const downloadAnchor = document.createElement("a");
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", "confluence_profile.json");
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+        showToast(`Exported ${total} configuration changes to JSON`, "success");
+      }
+
+      async function runTestSuite() {
+        openBuildModal();
+        const outputEl = document.getElementById("buildOutput");
+        const statusEl = document.getElementById("buildStatus");
+        outputEl.textContent = "Running C headless unit tests (bash pokeconfluence/scripts/test.sh)...\n\n";
+        statusEl.textContent = "Running test suite...";
+        statusEl.className = "build-status status-building";
+        try {
+          const res = await fetch("/api/test", { method: "POST" });
+          const data = await res.json();
+          outputEl.textContent = data.output || "";
+          if (data.success) {
+            statusEl.textContent = "✓ ALL TESTS PASSED";
+            statusEl.className = "build-status status-success";
+            showToast("Unit tests passed!", "success");
+          } else {
+            statusEl.textContent = "✕ TESTS FAILED";
+            statusEl.className = "build-status status-failed";
+            showToast("Unit tests failed", "error");
+          }
+        } catch (e) {
+          outputEl.textContent += "\nError: " + e;
+          statusEl.textContent = "✕ NETWORK ERROR";
+          statusEl.className = "build-status status-failed";
         }
       }
 

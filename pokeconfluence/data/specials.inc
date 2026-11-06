@@ -675,3 +675,17 @@ gSpecials::
 	def_special JohtoBugContestJudge
 	def_special JohtoBugContestBufferWinner
 	def_special JohtoBugContestCleanup
+	def_special JohtoOpenRadioMenu
+	def_special JohtoCheckRadioCard
+	def_special JohtoCheckExpnCard
+	def_special JohtoTuneRadioOakTalk
+	def_special JohtoTuneRadioPokemonMusic
+	def_special JohtoTuneRadioBuenasPassword
+	def_special JohtoTuneRadioUnownSignal
+	def_special JohtoTuneRadioPokeFlute
+	def_special JohtoStopRadio
+	def_special JohtoCheckInRuinsOfAlph
+	def_special JohtoCheckCanPlayPokeFlute
+	def_special JohtoCheckRocketCrisis
+	def_special JohtoGetBuenaPasswordChoices
+	def_special JohtoCheckBuenaAnswer

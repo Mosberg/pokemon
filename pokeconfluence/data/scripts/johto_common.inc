@@ -4818,3 +4818,157 @@ Johto_Std_WiltonRematchText:
 Johto_Text_DecorationDesc:
 	.string "It's a nice decoration for\nyour room!\p$"
 
+// POKE-CONFLUENCE: Authentic Pokégear Radio Menu & Overworld Radio Receiver
+Johto_EventScript_RadioMenu::
+	lockall
+	special JohtoCheckRocketCrisis
+	goto_if_eq VAR_RESULT, TRUE, Johto_EventScript_Radio_RocketCrisis
+	special JohtoCheckRadioCard
+	goto_if_eq VAR_RESULT, FALSE, Johto_EventScript_Radio_NoCard
+Johto_EventScript_Radio_SelectStation:
+	dynmultipush Johto_Text_Radio_StationOakTalk, 1
+	dynmultipush Johto_Text_Radio_StationPokemonMusic, 2
+	dynmultipush Johto_Text_Radio_StationBuenasPassword, 3
+	special JohtoCheckInRuinsOfAlph
+	goto_if_ne VAR_RESULT, TRUE, Johto_EventScript_Radio_SkipUnown
+	dynmultipush Johto_Text_Radio_StationUnownSignal, 4
+Johto_EventScript_Radio_SkipUnown:
+	special JohtoCheckCanPlayPokeFlute
+	goto_if_ne VAR_RESULT, TRUE, Johto_EventScript_Radio_SkipPokeFlute
+	dynmultipush Johto_Text_Radio_StationPokeFlute, 5
+Johto_EventScript_Radio_SkipPokeFlute:
+	dynmultipush Johto_Text_Radio_StationTurnOff, 6
+	dynmultistack 0, 0, FALSE, 5, FALSE, 0, NULL
+	goto_if_eq VAR_RESULT, 1, Johto_EventScript_Radio_OakTalk
+	goto_if_eq VAR_RESULT, 2, Johto_EventScript_Radio_PokemonMusic
+	goto_if_eq VAR_RESULT, 3, Johto_EventScript_Radio_BuenasPassword
+	goto_if_eq VAR_RESULT, 4, Johto_EventScript_Radio_UnownSignal
+	goto_if_eq VAR_RESULT, 5, Johto_EventScript_Radio_PokeFlute
+	goto Johto_EventScript_Radio_TurnOff
+
+Johto_EventScript_Radio_OakTalk:
+	special JohtoTuneRadioOakTalk
+	msgbox Johto_Text_Radio_OakTalkBroadcast, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_EventScript_Radio_PokemonMusic:
+	special JohtoTuneRadioPokemonMusic
+	goto_if_eq VAR_RESULT, 0, Johto_EventScript_Radio_MusicMarch
+	msgbox Johto_Text_Radio_MusicLullabyBroadcast, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_EventScript_Radio_MusicMarch:
+	msgbox Johto_Text_Radio_MusicMarchBroadcast, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_EventScript_Radio_BuenasPassword:
+	special JohtoTuneRadioBuenasPassword
+	msgbox Johto_Text_Radio_BuenasPasswordBroadcast, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_EventScript_Radio_UnownSignal:
+	special JohtoTuneRadioUnownSignal
+	msgbox Johto_Text_Radio_UnownSignalBroadcast, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_EventScript_Radio_PokeFlute:
+	special JohtoTuneRadioPokeFlute
+	msgbox Johto_Text_Radio_PokeFluteBroadcast, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_EventScript_Radio_TurnOff:
+	special JohtoStopRadio
+	playse SE_PIN
+	msgbox Johto_Text_Radio_TurnedOff, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_EventScript_Radio_RocketCrisis:
+	playbgm MUS_RG_ENCOUNTER_ROCKET, 0
+	msgbox Johto_Text_Radio_RocketCrisisBroadcast, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_EventScript_Radio_NoCard:
+	playse SE_FAILURE
+	msgbox Johto_Text_Radio_NoRadioCard, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Johto_Text_Radio_StationOakTalk:
+	.string "4.5 POKéMON TALK$"
+
+Johto_Text_Radio_StationPokemonMusic:
+	.string "7.5 POKéMON MUSIC$"
+
+Johto_Text_Radio_StationBuenasPassword:
+	.string "10.5 BUENA'S PASSWORD$"
+
+Johto_Text_Radio_StationUnownSignal:
+	.string "13.5 UNOWN SIGNAL$"
+
+Johto_Text_Radio_StationPokeFlute:
+	.string "20.0 POKé FLUTE$"
+
+Johto_Text_Radio_StationTurnOff:
+	.string "TURN OFF RADIO$"
+
+Johto_Text_Radio_OakTalkBroadcast:
+	.string "MARY: PROF. OAK'S POKéMON TALK!\p"
+	.string "Right now, wild {STR_VAR_1}\n"
+	.string "can be found around {STR_VAR_2}!\p"
+	.string "PROF. OAK: Ah, {STR_VAR_1}!\n"
+	.string "A magnificent sight! Listeners, get\l"
+	.string "out there and search for one!$"
+
+Johto_Text_Radio_MusicMarchBroadcast:
+	.string "BEN: POKéMON MUSIC CHANNEL!\p"
+	.string "Today is POKéMON MARCH!\n"
+	.string "Wild POKéMON are feeling energized\l"
+	.string "and will appear much more often!$"
+
+Johto_Text_Radio_MusicLullabyBroadcast:
+	.string "FERN: POKéMON MUSIC CHANNEL…\p"
+	.string "Today is POKéMON LULLABY…\n"
+	.string "Wild POKéMON are drowsy and calm,\l"
+	.string "and will appear much less often…$"
+
+Johto_Text_Radio_BuenasPasswordBroadcast:
+	.string "BUENA: BUENA'S PASSWORD SHOW!\p"
+	.string "Today's secret password is…\n"
+	.string "“{STR_VAR_1}”!\p"
+	.string "Remember it, and visit me on 2F of\n"
+	.string "the GOLDENROD RADIO TOWER to\l"
+	.string "earn points on your BLUE CARD!$"
+
+Johto_Text_Radio_UnownSignalBroadcast:
+	.string "… …Bizarre, hypnotic radio signals\n"
+	.string "are echoing from the ancient\l"
+	.string "RUINS OF ALPH… …$"
+
+Johto_Text_Radio_PokeFluteBroadcast:
+	.string "The soothing melody of the\n"
+	.string "POKé FLUTE fills the air…\p"
+	.string "Drowsy sleeping POKéMON might\n"
+	.string "awaken to this gentle tune!$"
+
+Johto_Text_Radio_RocketCrisisBroadcast:
+	.string "… …Ahem, we are TEAM ROCKET!\p"
+	.string "After three years of preparation,\n"
+	.string "we have risen again from the ashes!\p"
+	.string "GIOVANNI! Can you hear us?\n"
+	.string "We did it! Where is our leader? … …$"
+
+Johto_Text_Radio_TurnedOff:
+	.string "Turned off the radio.$"
+
+Johto_Text_Radio_NoRadioCard:
+	.string "The RADIO CARD is not installed.$"
+
+
