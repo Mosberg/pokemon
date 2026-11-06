@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_VIOLET_CITY",
   "name": "VioletCity_Johto",
   "layout": "LAYOUT_JOHTO_VIOLET_CITY",
-  "music": "MUS_PETALBURG",
+  "music": "MUS_C_VIOLET",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_VIOLET_CITY",
   "requires_flash": false,

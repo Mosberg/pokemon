@@ -4,7 +4,7 @@
   "layout": "LAYOUT_JOHTO_UNDERGROUND_PATH",
   "music": "MUS_RG_MT_MOON",
   "region": "REGION_HOENN",
-  "region_map_section": "MAPSEC_JOHTO_UNDERGROUND_PATH",
+  "region_map_section": "MAPSEC_UNDERGROUND_PATH",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",

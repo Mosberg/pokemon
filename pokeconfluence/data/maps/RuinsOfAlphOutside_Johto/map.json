@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_RUINS_OF_ALPH_OUTSIDE",
   "name": "RuinsOfAlphOutside_Johto",
   "layout": "LAYOUT_JOHTO_RUINS_OF_ALPH_OUTSIDE",
-  "music": "MUS_RG_MT_MOON",
+  "music": "MUS_C_RUINS_OF_ALPH",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_RUINS_OF_ALPH",
   "requires_flash": false,

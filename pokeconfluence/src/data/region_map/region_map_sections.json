@@ -1944,14 +1944,6 @@
       "height": 1
     },
     {
-      "id": "MAPSEC_JOHTO_UNDERGROUND_PATH",
-      "name": "UNDERGROUND",
-      "x": 7,
-      "y": 8,
-      "width": 1,
-      "height": 1
-    },
-    {
       "id": "MAPSEC_JOHTO_UNION_CAVE",
       "name": "UNION CAVE",
       "x": 13,

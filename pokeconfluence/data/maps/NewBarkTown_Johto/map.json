@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_NEW_BARK_TOWN",
   "name": "NewBarkTown_Johto",
   "layout": "LAYOUT_JOHTO_NEW_BARK_TOWN",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_C_NEW_BARK",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_NEW_BARK_TOWN",
   "requires_flash": false,

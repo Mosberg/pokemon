@@ -547,6 +547,33 @@
 #define PH_NURSE_HELD               608
 #define PH_NURSE_SOLO               609
 
+// POKE-CONFLUENCE: Authentic Johto Crystal Soundtrack
+#define MUS_C_NEW_BARK               610
+#define MUS_C_CHERRYGROVE            611
+#define MUS_C_VIOLET                 612
+#define MUS_C_AZALEA                 613
+#define MUS_C_GOLDENROD              614
+#define MUS_C_ECRUTEAK               615
+#define MUS_C_ROUTE29                616
+#define MUS_C_ROUTE30                617
+#define MUS_C_ROUTE36                618
+#define MUS_C_ROUTE37                619
+#define MUS_C_ELM_LAB                620
+#define MUS_C_SPROUT_TOWER           621
+#define MUS_C_DARK_CAVE              622
+#define MUS_C_UNION_CAVE             623
+#define MUS_C_LAKE_OF_RAGE           624
+#define MUS_C_NATIONAL_PARK          625
+#define MUS_C_DRAGONS_DEN            626
+#define MUS_C_BURNED_TOWER           627
+#define MUS_C_TIN_TOWER              628
+#define MUS_C_RUINS_OF_ALPH          629
+#define MUS_C_VS_WILD_JOHTO          630
+#define MUS_C_VS_TRAINER_JOHTO       631
+#define MUS_C_VS_GYM_JOHTO           632
+#define MUS_C_VS_CHAMPION_LANCE      633
+#define MUS_C_VS_RIVAL_SILVER        634
+
 #define MUS_ROUTE118                0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 
 #define MUS_NONE                    0xFFFF

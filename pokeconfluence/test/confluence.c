@@ -24,6 +24,7 @@
 #include "mood.h"
 #include "johto_phone.h"
 #include "constants/johto_flags.h"
+#include "wild_encounter.h"
 
 static void ClearAllBadges(void)
 {
@@ -538,6 +539,70 @@ TEST("Confluence: Kanto Yellow progression, MapSecs, and Meridian fast travel ac
     FlagClear(FLAG_GOT_YELLOW_CHARMANDER);
     FlagClear(FLAG_GOT_YELLOW_SQUIRTLE);
 }
+
+// POKE-CONFLUENCE: Authentic Johto Time-of-Day wild encounter tables verification
+TEST("Confluence: Johto authentic morning, day, and night wild encounter tables")
+{
+    u32 i;
+    u32 route29Header = HEADER_NONE;
+    u32 route30Header = HEADER_NONE;
+    u32 route34Header = HEADER_NONE;
+    u32 route37Header = HEADER_NONE;
+
+    for (i = 0; gWildMonHeaders[i].mapGroup != 0xFF; i++)
+    {
+        if (gWildMonHeaders[i].mapGroup == MAP_GROUP(MAP_JOHTO_ROUTE_29) &&
+            gWildMonHeaders[i].mapNum == MAP_NUM(MAP_JOHTO_ROUTE_29))
+            route29Header = i;
+        else if (gWildMonHeaders[i].mapGroup == MAP_GROUP(MAP_JOHTO_ROUTE_30) &&
+                 gWildMonHeaders[i].mapNum == MAP_NUM(MAP_JOHTO_ROUTE_30))
+            route30Header = i;
+        else if (gWildMonHeaders[i].mapGroup == MAP_GROUP(MAP_JOHTO_ROUTE_34) &&
+                 gWildMonHeaders[i].mapNum == MAP_NUM(MAP_JOHTO_ROUTE_34))
+            route34Header = i;
+        else if (gWildMonHeaders[i].mapGroup == MAP_GROUP(MAP_JOHTO_ROUTE_37) &&
+                 gWildMonHeaders[i].mapNum == MAP_NUM(MAP_JOHTO_ROUTE_37))
+            route37Header = i;
+    }
+
+    EXPECT_NE(route29Header, HEADER_NONE);
+    EXPECT_NE(route30Header, HEADER_NONE);
+    EXPECT_NE(route34Header, HEADER_NONE);
+    EXPECT_NE(route37Header, HEADER_NONE);
+
+    // Route 29: Night has Hoothoot (Crystal authentic)
+    const struct WildPokemonInfo *r29Night = gWildMonHeaders[route29Header].encounterTypes[TIME_NIGHT].landMonsInfo;
+    EXPECT_NE(r29Night, NULL);
+    EXPECT_EQ(r29Night->wildPokemon[0].species, SPECIES_HOOTHOOT);
+
+    // Route 30: Morning has Ledyba, Day has Pidgey, Night has Spinarak (Crystal authentic)
+    const struct WildPokemonInfo *r30Morn = gWildMonHeaders[route30Header].encounterTypes[TIME_MORNING].landMonsInfo;
+    const struct WildPokemonInfo *r30Day = gWildMonHeaders[route30Header].encounterTypes[TIME_DAY].landMonsInfo;
+    const struct WildPokemonInfo *r30Night = gWildMonHeaders[route30Header].encounterTypes[TIME_NIGHT].landMonsInfo;
+    EXPECT_NE(r30Morn, NULL);
+    EXPECT_NE(r30Day, NULL);
+    EXPECT_NE(r30Night, NULL);
+    EXPECT_EQ(r30Morn->wildPokemon[0].species, SPECIES_LEDYBA);
+    EXPECT_EQ(r30Day->wildPokemon[0].species, SPECIES_PIDGEY);
+    EXPECT_EQ(r30Night->wildPokemon[0].species, SPECIES_SPINARAK);
+
+    // Route 34: Morning/Day has Snubbull, Night has Drowzee (Crystal authentic)
+    const struct WildPokemonInfo *r34Day = gWildMonHeaders[route34Header].encounterTypes[TIME_DAY].landMonsInfo;
+    const struct WildPokemonInfo *r34Night = gWildMonHeaders[route34Header].encounterTypes[TIME_NIGHT].landMonsInfo;
+    EXPECT_NE(r34Day, NULL);
+    EXPECT_NE(r34Night, NULL);
+    EXPECT_EQ(r34Day->wildPokemon[0].species, SPECIES_SNUBBULL);
+    EXPECT_EQ(r34Night->wildPokemon[0].species, SPECIES_DROWZEE);
+
+    // Route 37: Night has Stantler & Spinarak (Crystal authentic)
+    const struct WildPokemonInfo *r37Morn = gWildMonHeaders[route37Header].encounterTypes[TIME_MORNING].landMonsInfo;
+    const struct WildPokemonInfo *r37Night = gWildMonHeaders[route37Header].encounterTypes[TIME_NIGHT].landMonsInfo;
+    EXPECT_NE(r37Morn, NULL);
+    EXPECT_NE(r37Night, NULL);
+    EXPECT_EQ(r37Morn->wildPokemon[0].species, SPECIES_LEDYBA);
+    EXPECT_EQ(r37Night->wildPokemon[0].species, SPECIES_SPINARAK);
+}
+
 
 
 

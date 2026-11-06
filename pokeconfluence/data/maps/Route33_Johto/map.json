@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ROUTE_33",
   "name": "Route33_Johto",
   "layout": "LAYOUT_JOHTO_ROUTE_33",
-  "music": "MUS_ROUTE104",
+  "music": "MUS_C_ROUTE30",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_ROUTE_33",
   "requires_flash": false,

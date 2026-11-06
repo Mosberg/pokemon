@@ -5196,16 +5196,26 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_MAGMA_ADMIN:
             return MUS_VS_AQUA_MAGMA;
         case TRAINER_CLASS_LEADER:
+            // POKE-CONFLUENCE: Authentic Johto Gym Leader Battle theme
+            if (GetCurrentRegion() == REGION_JOHTO)
+                return MUS_C_VS_GYM_JOHTO;
             return MUS_VS_GYM_LEADER;
         case TRAINER_CLASS_CHAMPION:
+            // POKE-CONFLUENCE: Authentic Johto Champion Lance Battle theme
+            if (GetCurrentRegion() == REGION_JOHTO)
+                return MUS_C_VS_CHAMPION_LANCE;
             return MUS_VS_CHAMPION;
         case TRAINER_CLASS_RIVAL:
+            if (GetCurrentRegion() == REGION_JOHTO)
+                return MUS_C_VS_RIVAL_SILVER;
             if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 return MUS_VS_RIVAL;
             if (!StringCompare(GetTrainerNameFromId(TRAINER_BATTLE_PARAM.opponentA), gText_BattleWallyName))
                 return MUS_VS_TRAINER;
             return MUS_VS_RIVAL;
         case TRAINER_CLASS_ELITE_FOUR:
+            if (GetCurrentRegion() == REGION_JOHTO)
+                return MUS_C_VS_GYM_JOHTO;
             return MUS_VS_ELITE_FOUR;
         case TRAINER_CLASS_CHAMPION_FRLG:
             return MUS_RG_VS_CHAMPION;
@@ -5222,7 +5232,9 @@ u16 GetBattleBGM(void)
             return MUS_VS_FRONTIER_BRAIN;
         default:
             // POKE-CONFLUENCE: Authentic battle themes based on current region
-            if (GetCurrentRegion() == REGION_JOHTO || GetCurrentRegion() == REGION_KANTO)
+            if (GetCurrentRegion() == REGION_JOHTO)
+                return MUS_C_VS_TRAINER_JOHTO;
+            else if (GetCurrentRegion() == REGION_KANTO)
                 return MUS_RG_VS_TRAINER;
             else
                 return MUS_VS_TRAINER;
@@ -5231,7 +5243,9 @@ u16 GetBattleBGM(void)
     else
     {
         // POKE-CONFLUENCE: Authentic wild battle themes based on current region
-        if (GetCurrentRegion() == REGION_JOHTO || GetCurrentRegion() == REGION_KANTO)
+        if (GetCurrentRegion() == REGION_JOHTO)
+            return MUS_C_VS_WILD_JOHTO;
+        else if (GetCurrentRegion() == REGION_KANTO)
             return MUS_RG_VS_WILD;
         else
             return MUS_VS_WILD;

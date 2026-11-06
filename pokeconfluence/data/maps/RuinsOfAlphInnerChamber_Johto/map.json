@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_RUINS_OF_ALPH_INNER_CHAMBER",
   "name": "RuinsOfAlphInnerChamber_Johto",
   "layout": "LAYOUT_JOHTO_RUINS_OF_ALPH_INNER_CHAMBER",
-  "music": "MUS_SEALED_CHAMBER",
+  "music": "MUS_C_RUINS_OF_ALPH",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_RUINS_OF_ALPH",
   "requires_flash": false,

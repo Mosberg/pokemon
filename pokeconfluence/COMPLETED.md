@@ -326,3 +326,84 @@ This document tracks all fully converted, integrated, and verified features in *
   - **Automated Snapshots**: Creates timestamped backups in `include/config/.backups/` on every save, with one-click snapshot restore.
   - **Precise C Formatter**: Preserves C indentation, spacing, comments, `#ifndef` guards, and `// POKE-CONFLUENCE` tags.
   - **Direct ROM Compilation**: Integrated `make -C pokeconfluence -j$(nproc)` button with streaming terminal build logs.
+
+---
+
+## 16. Authentic GBC Crystal Audio, Sprites & Visual Polish
+
+- **Authentic GBC Crystal Overworld & Battle Soundtrack (`poke-crystal-audio`)**:
+  - Implemented end-to-end Python conversion pipeline `tools/poke-migrator-pro/bin/poke-crystal-audio` that parses authentic GBC Pokécrystal sound bytecode (`tempo`, `volume`, `note_type`, `octave`, `note`, `rest`, `drum_note`, `sound_call`, `sound_ret`, `sound_loop`, `sound_jump`).
+  - Converts GBC tracks to Standard Format 1 MIDI (division 48 ticks/quarter) with Square 1 (Ch 1), Square 2 (Ch 2), Wave Bass (Ch 3), and Noise Percussion (Ch 10).
+  - Compiles all 25 tracks with `mid2agb` into native M4A sound engine sequences in [sound/songs/midi/](sound/songs/midi/).
+  - Registered in [sound/songs/midi/midi.cfg](sound/songs/midi/midi.cfg), [sound/song_table.inc](sound/song_table.inc), and [include/constants/songs.h](include/constants/songs.h) (IDs 610..634).
+  - 33 Johto map headers bound to authentic GBC audio tracks:
+    - New Bark Town: `MUS_C_NEW_BARK`
+    - Cherrygrove City: `MUS_C_CHERRYGROVE`
+    - Violet City: `MUS_C_VIOLET`
+    - Azalea Town: `MUS_C_AZALEA`
+    - Goldenrod City: `MUS_C_GOLDENROD`
+    - Ecruteak City: `MUS_C_ECRUTEAK`
+    - Route 29: `MUS_C_ROUTE29`
+    - Routes 30, 31, 32, 33: `MUS_C_ROUTE30`
+    - Routes 34, 35, 36: `MUS_C_ROUTE36`
+    - Routes 37, 38, 39: `MUS_C_ROUTE37`
+    - Prof. Elm's Lab: `MUS_C_ELM_LAB`
+    - Sprout Tower: `MUS_C_SPROUT_TOWER`
+    - Dark Cave: `MUS_C_DARK_CAVE`
+    - Union Cave: `MUS_C_UNION_CAVE`
+    - Lake of Rage: `MUS_C_LAKE_OF_RAGE`
+    - National Park: `MUS_C_NATIONAL_PARK`
+    - Dragon's Den: `MUS_C_DRAGONS_DEN`
+    - Burned Tower: `MUS_C_BURNED_TOWER`
+    - Tin Tower: `MUS_C_TIN_TOWER`
+    - Ruins of Alph: `MUS_C_RUINS_OF_ALPH`
+  - Dynamic Region Battle BGM: In [src/pokemon.c](src/pokemon.c), Johto encounters automatically play authentic GBC battle themes:
+    - Wild encounters: `MUS_C_VS_WILD_JOHTO`
+    - Trainer encounters: `MUS_C_VS_TRAINER_JOHTO`
+    - Gym Leaders & Elite Four: `MUS_C_VS_GYM_JOHTO`
+    - Champion Lance: `MUS_C_VS_CHAMPION_LANCE`
+    - Rival Silver: `MUS_C_VS_RIVAL_SILVER`
+    - Legendary Beasts (Suicune / Raikou / Entei): `MUS_C_VS_LEGEND_BEAST`
+- **Authentic GBC Crystal Trainer Battle Pictures (`poke-crystal-graphics`)**:
+  - Implemented automated graphics conversion pipeline `tools/poke-migrator-pro/bin/poke-crystal-graphics`.
+  - Converted 16 authentic Crystal front pictures into centered 64x64 4bpp indexed PNGs with flood-filled transparent background (pixel 0) and compiled `.gbapal` in [graphics/trainers/front_pics/](graphics/trainers/front_pics/):
+    - Falkner, Bugsy, Whitney, Morty, Chuck, Jasmine, Pryce, Clair, Will, Karen, Champion Lance, Silver, Sage Li, Kimono Girl, Officer Jenny, Cal.
+  - Registered in [include/constants/trainers.h](include/constants/trainers.h), [src/data/graphics/trainers.h](src/data/graphics/trainers.h), and [src/data/trainer_graphics.h](src/data/trainer_graphics.h).
+  - Assigned authentic pics in [src/data/trainers_johto.party](src/data/trainers_johto.party) and compiled via `trainerproc` into [src/data/trainers_johto.h](src/data/trainers_johto.h).
+- **Authentic Player Back Pictures (Chris & Kris)**:
+  - Extracted authentic 48x48 back pictures for Chris (Ethan) and Kris from Pokécrystal.
+  - Converted into 64x64 4bpp indexed PNGs with authentic palettes in [graphics/trainers/back_pics/](graphics/trainers/back_pics/) (`chris.png`, `kris.png`, `.gbapal`).
+  - Registered `TRAINER_PIC_CHRIS` and `TRAINER_PIC_KRIS` in [src/data/graphics/trainers.h](src/data/graphics/trainers.h).
+  - Dynamically selected in [src/battle_controller_player.c](src/battle_controller_player.c) (`PlayerGetTrainerBackPicId`) whenever `GetCurrentRegion() == REGION_JOHTO`.
+- **Authentic GBC Overworld Sprites**:
+  - Converted 13 custom GBC overworld sprites (`c_falkner.png`, `c_bugsy.png`, `c_whitney.png`, `c_morty.png`, `c_chuck.png`, `c_jasmine.png`, `c_pryce.png`, `c_clair.png`, `c_elder_li.png`, `c_kimono_girl.png`, `c_officer.png`, `c_kurt.png`, `c_prof_elm.png`) into standard GBA 144x32 4bpp 9-frame sprite sheets in [graphics/object_events/pics/people/](graphics/object_events/pics/people/).
+- **Verification**:
+  - Headless C test runner: 21/21 tests passed (`bash pokeconfluence/scripts/test.sh`).
+  - Script & overworld auditor: 18/18 checks passed (`python3 pokeconfluence/scripts/audit_johto_scripts.py`).
+  - Engine limit auditor: 0 stubs, 0 map overflow (`python3 .agents/scripts/check_limits.py`).
+  - Complete ROM compilation: Clean build with 0 errors (`make -C pokeconfluence -j$(nproc)`).
+
+---
+
+## 8. Authentic Johto Time-of-Day Wild Encounter System
+
+- **Crystal-Accurate Morning, Day, and Night Encounters**:
+  - Extracted and verified all 61 grass and outdoor encounter tables from `games/gbc/pokecrystal/data/wild/johto_grass.asm`.
+  - Configured discrete `[TIME_MORNING]`, `[TIME_DAY]`, and `[TIME_NIGHT]` wild encounter tables across all 149 Johto maps in [src/data/wild_encounters.json](src/data/wild_encounters.json) and compiled into [src/data/wild_encounters.h](src/data/wild_encounters.h).
+  - Authentic species distribution verified across time of day:
+    - Route 29: Hoothoot and Rattata appear at Night; Pidgey, Sentret, and Hoppip appear in Morning and Day.
+    - Route 30 & 31: Morning features Ledyba and Caterpie; Day features Pidgey and Caterpie; Night features Spinarak, Hoothoot, and Poliwag.
+    - Route 34: Morning/Day features Snubbull and Rattata; Night features Drowzee and Rattata.
+    - Route 35: Morning/Day features Snubbull and Pidgey; Night features Drowzee and Hoothoot.
+    - Route 36 & 37: Morning features Ledyba and Growlithe; Day features Pidgey and Growlithe; Night features Spinarak and Stantler.
+- **Engine RTC Time Integration**:
+  - `OW_TIME_OF_DAY_ENCOUNTERS = TRUE` enabled in [include/config/overworld.h](include/config/overworld.h).
+  - `GetTimeOfDayForEncounters()` in [src/wild_encounter.c](src/wild_encounter.c) dynamically samples RTC time and indexes the corresponding time-of-day encounter block with fallback support (`OW_TIME_OF_DAY_DISABLE_FALLBACK = FALSE`).
+- **Automated Verification**:
+  - Added dedicated C unit test in [test/confluence.c](test/confluence.c) (`"Confluence: Johto authentic morning, day, and night wild encounter tables"`).
+  - All 21/21 headless C unit tests pass (`bash pokeconfluence/scripts/test.sh`).
+  - All 18/18 script integrity audits pass (`python3 pokeconfluence/scripts/audit_johto_scripts.py`).
+  - Limits check clean at 253/253 `MAPSEC_*` (`python3 .agents/scripts/check_limits.py`).
+  - Full ROM compilation clean (`make -C pokeconfluence -j$(nproc)`).
+
+

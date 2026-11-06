@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_DARK_CAVE_VIOLET_ENTRANCE",
   "name": "DarkCaveVioletEntrance_Johto",
   "layout": "LAYOUT_JOHTO_DARK_CAVE_VIOLET_ENTRANCE",
-  "music": "MUS_PETALBURG_WOODS",
+  "music": "MUS_C_DARK_CAVE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_DARK_CAVE",
   "requires_flash": false,

@@ -1,7 +1,7 @@
 === TRAINER_JOHTO_FALKNER_FALKNER1 ===
 Name: FALKNER
 Class: Leader
-Pic: Bird Keeper
+Pic: Falkner
 Gender: Male
 Music: Male
 Double Battle: No
@@ -23,7 +23,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_WHITNEY_WHITNEY1 ===
 Name: WHITNEY
 Class: Leader
-Pic: Lass
+Pic: Whitney
 Gender: Female
 Music: Female
 Double Battle: No
@@ -48,7 +48,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_BUGSY_BUGSY1 ===
 Name: BUGSY
 Class: Leader
-Pic: Bug Catcher
+Pic: Bugsy
 Gender: Male
 Music: Male
 Double Battle: No
@@ -78,7 +78,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_MORTY_MORTY1 ===
 Name: MORTY
 Class: Leader
-Pic: Psychic M
+Pic: Morty
 Gender: Male
 Music: Male
 Double Battle: No
@@ -119,7 +119,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_PRYCE_PRYCE1 ===
 Name: PRYCE
 Class: Leader
-Pic: Gentleman
+Pic: Pryce
 Gender: Male
 Music: Male
 Double Battle: No
@@ -152,7 +152,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_JASMINE_JASMINE1 ===
 Name: JASMINE
 Class: Leader
-Pic: Lady
+Pic: Jasmine
 Gender: Female
 Music: Female
 Double Battle: No
@@ -185,7 +185,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_CHUCK_CHUCK1 ===
 Name: CHUCK
 Class: Leader
-Pic: Black Belt
+Pic: Chuck
 Gender: Male
 Music: Male
 Double Battle: No
@@ -210,7 +210,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_CLAIR_CLAIR1 ===
 Name: CLAIR
 Class: Leader
-Pic: Dragon Tamer
+Pic: Clair
 Gender: Male
 Music: Male
 Double Battle: No
@@ -251,7 +251,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_1_CHIKORITA ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -264,7 +264,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_1_CYNDAQUIL ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -277,7 +277,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_1_TOTODILE ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -290,7 +290,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_2_CHIKORITA ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -311,7 +311,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_2_CYNDAQUIL ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -332,7 +332,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_2_TOTODILE ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -353,7 +353,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_3_CHIKORITA ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -394,7 +394,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_3_CYNDAQUIL ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -435,7 +435,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_3_TOTODILE ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -476,7 +476,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_4_CHIKORITA ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -525,7 +525,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_4_CYNDAQUIL ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -574,7 +574,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_4_TOTODILE ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -623,7 +623,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_5_CHIKORITA ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -680,7 +680,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_5_CYNDAQUIL ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -737,7 +737,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL1_RIVAL1_5_TOTODILE ===
 Name: SILVER
 Class: Rival
-Pic: Rival Early Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -794,7 +794,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_WILL_WILL1 ===
 Name: WILL
 Class: Elite Four
-Pic: Elite Four Sidney
+Pic: Will
 Gender: Male
 Music: Male
 Double Battle: No
@@ -843,7 +843,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_CAL_CAL1 ===
 Name: CAL
 Class: Youngster
-Pic: Youngster
+Pic: Cal
 Gender: Male
 Music: Male
 Double Battle: No
@@ -864,7 +864,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_CAL_CAL2 ===
 Name: CAL
 Class: Youngster
-Pic: Youngster
+Pic: Cal
 Gender: Male
 Music: Male
 Double Battle: No
@@ -885,7 +885,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_CAL_CAL3 ===
 Name: CAL
 Class: Youngster
-Pic: Youngster
+Pic: Cal
 Gender: Male
 Music: Male
 Double Battle: No
@@ -955,7 +955,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_KAREN_KAREN1 ===
 Name: KAREN
 Class: Elite Four
-Pic: Elite Four Glacia
+Pic: Karen
 Gender: Female
 Music: Female
 Double Battle: No
@@ -1053,7 +1053,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_CHAMPION_LANCE ===
 Name: LANCE
 Class: Champion Frlg
-Pic: Elite Four Lance Frlg
+Pic: Champion Lance
 Gender: Male
 Music: Male
 Double Battle: No
@@ -4034,7 +4034,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_POKEMANIAC_CALVIN ===
 Name: CALVIN
 Class: Pokemaniac
-Pic: Pokemaniac
+Pic: Cal
 Gender: Male
 Music: Male
 Double Battle: No
@@ -7071,7 +7071,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL2_RIVAL2_1_CHIKORITA ===
 Name: SILVER
 Class: Rival
-Pic: Rival Late Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -7128,7 +7128,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL2_RIVAL2_1_CYNDAQUIL ===
 Name: SILVER
 Class: Rival
-Pic: Rival Late Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -7185,7 +7185,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL2_RIVAL2_1_TOTODILE ===
 Name: SILVER
 Class: Rival
-Pic: Rival Late Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -7242,7 +7242,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL2_RIVAL2_2_CHIKORITA ===
 Name: SILVER
 Class: Rival
-Pic: Rival Late Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -7299,7 +7299,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL2_RIVAL2_2_CYNDAQUIL ===
 Name: SILVER
 Class: Rival
-Pic: Rival Late Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -7356,7 +7356,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_RIVAL2_RIVAL2_2_TOTODILE ===
 Name: SILVER
 Class: Rival
-Pic: Rival Late Frlg
+Pic: Silver
 Gender: Male
 Music: Male
 Double Battle: No
@@ -9999,7 +9999,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_CHOW ===
 Name: CHOW
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10020,7 +10020,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_NICO ===
 Name: NICO
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10041,7 +10041,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_JIN ===
 Name: JIN
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10054,7 +10054,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_TROY ===
 Name: TROY
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10071,7 +10071,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_JEFFREY ===
 Name: JEFFREY
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10084,7 +10084,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_PING ===
 Name: PING
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10113,7 +10113,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_EDMOND ===
 Name: EDMOND
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10134,7 +10134,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_NEAL ===
 Name: NEAL
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10147,7 +10147,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_LI ===
 Name: LI
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10168,7 +10168,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_GAKU ===
 Name: GAKU
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10185,7 +10185,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_MASA ===
 Name: MASA
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10202,7 +10202,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_SAGE_KOJI ===
 Name: KOJI
 Class: Gentleman
-Pic: Gentleman
+Pic: Sage Li
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10389,7 +10389,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_POKEFANM_WILLIAM ===
 Name: WILLIAM
 Class: Pokefan
-Pic: Pokefan M
+Pic: Will
 Gender: Male
 Music: Male
 Double Battle: No
@@ -10615,7 +10615,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_KIMONO_GIRL_NAOKO_UNUSED ===
 Name: NAOKO
 Class: Lady
-Pic: Lady
+Pic: Kimono Girl
 Gender: Female
 Music: Female
 Double Battle: No
@@ -10636,7 +10636,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_KIMONO_GIRL_NAOKO ===
 Name: NAOKO
 Class: Lady
-Pic: Lady
+Pic: Kimono Girl
 Gender: Female
 Music: Female
 Double Battle: No
@@ -10649,7 +10649,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_KIMONO_GIRL_SAYO ===
 Name: SAYO
 Class: Lady
-Pic: Lady
+Pic: Kimono Girl
 Gender: Female
 Music: Female
 Double Battle: No
@@ -10662,7 +10662,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_KIMONO_GIRL_ZUKI ===
 Name: ZUKI
 Class: Lady
-Pic: Lady
+Pic: Kimono Girl
 Gender: Female
 Music: Female
 Double Battle: No
@@ -10675,7 +10675,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_KIMONO_GIRL_KUNI ===
 Name: KUNI
 Class: Lady
-Pic: Lady
+Pic: Kimono Girl
 Gender: Female
 Music: Female
 Double Battle: No
@@ -10688,7 +10688,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_KIMONO_GIRL_MIKI ===
 Name: MIKI
 Class: Lady
-Pic: Lady
+Pic: Kimono Girl
 Gender: Female
 Music: Female
 Double Battle: No
@@ -11111,7 +11111,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_OFFICER_KEITH ===
 Name: KEITH
 Class: Cue Ball Frlg
-Pic: Cue Ball Frlg
+Pic: Officer Jenny
 Gender: Male
 Music: Male
 Double Battle: No
@@ -11124,7 +11124,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_OFFICER_DIRK ===
 Name: DIRK
 Class: Cue Ball Frlg
-Pic: Cue Ball Frlg
+Pic: Officer Jenny
 Gender: Male
 Music: Male
 Double Battle: No
@@ -11238,7 +11238,7 @@ IVs: 8 HP / 8 Atk / 8 Def / 8 SpA / 8 SpD / 8 Spe
 === TRAINER_JOHTO_MYSTICALMAN_EUSINE ===
 Name: EUSINE
 Class: Gentleman
-Pic: Gentleman
+Pic: Cal
 Gender: Male
 Music: Male
 Double Battle: No

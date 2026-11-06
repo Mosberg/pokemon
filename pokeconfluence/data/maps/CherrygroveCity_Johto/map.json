@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_CHERRYGROVE_CITY",
   "name": "CherrygroveCity_Johto",
   "layout": "LAYOUT_JOHTO_CHERRYGROVE_CITY",
-  "music": "MUS_OLDALE",
+  "music": "MUS_C_CHERRYGROVE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_CHERRYGROVE_CITY",
   "requires_flash": false,

@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_ECRUTEAK_CITY",
   "name": "EcruteakCity_Johto",
   "layout": "LAYOUT_JOHTO_ECRUTEAK_CITY",
-  "music": "MUS_FALLARBOR",
+  "music": "MUS_C_ECRUTEAK",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_ECRUTEAK_CITY",
   "requires_flash": false,

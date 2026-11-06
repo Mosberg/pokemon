@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_LAKE_OF_RAGE",
   "name": "LakeOfRage_Johto",
   "layout": "LAYOUT_JOHTO_LAKE_OF_RAGE",
-  "music": "MUS_SOOTOPOLIS",
+  "music": "MUS_C_LAKE_OF_RAGE",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_LAKE_OF_RAGE",
   "requires_flash": false,

@@ -2,7 +2,7 @@
   "id": "MAP_JOHTO_NATIONAL_PARK",
   "name": "NationalPark_Johto",
   "layout": "LAYOUT_JOHTO_NATIONAL_PARK",
-  "music": "MUS_SAFARI_ZONE",
+  "music": "MUS_C_NATIONAL_PARK",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_JOHTO_NATIONAL_PARK",
   "requires_flash": false,

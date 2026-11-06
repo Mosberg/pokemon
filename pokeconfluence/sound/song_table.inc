@@ -617,6 +617,32 @@ gSongTable::
 	song ph_nurse_held, MUSIC_PLAYER_SE2, 2
 	song ph_nurse_solo, MUSIC_PLAYER_SE2, 2
 
+	song mus_c_new_bark, MUSIC_PLAYER_BGM, 0
+	song mus_c_cherrygrove, MUSIC_PLAYER_BGM, 0
+	song mus_c_violet, MUSIC_PLAYER_BGM, 0
+	song mus_c_azalea, MUSIC_PLAYER_BGM, 0
+	song mus_c_goldenrod, MUSIC_PLAYER_BGM, 0
+	song mus_c_ecruteak, MUSIC_PLAYER_BGM, 0
+	song mus_c_route29, MUSIC_PLAYER_BGM, 0
+	song mus_c_route30, MUSIC_PLAYER_BGM, 0
+	song mus_c_route36, MUSIC_PLAYER_BGM, 0
+	song mus_c_route37, MUSIC_PLAYER_BGM, 0
+	song mus_c_elm_lab, MUSIC_PLAYER_BGM, 0
+	song mus_c_sprout_tower, MUSIC_PLAYER_BGM, 0
+	song mus_c_dark_cave, MUSIC_PLAYER_BGM, 0
+	song mus_c_union_cave, MUSIC_PLAYER_BGM, 0
+	song mus_c_lake_of_rage, MUSIC_PLAYER_BGM, 0
+	song mus_c_national_park, MUSIC_PLAYER_BGM, 0
+	song mus_c_dragons_den, MUSIC_PLAYER_BGM, 0
+	song mus_c_burned_tower, MUSIC_PLAYER_BGM, 0
+	song mus_c_tin_tower, MUSIC_PLAYER_BGM, 0
+	song mus_c_ruins_of_alph, MUSIC_PLAYER_BGM, 0
+	song mus_c_vs_wild_johto, MUSIC_PLAYER_BGM, 0
+	song mus_c_vs_trainer_johto, MUSIC_PLAYER_BGM, 0
+	song mus_c_vs_gym_johto, MUSIC_PLAYER_BGM, 0
+	song mus_c_vs_champion_lance, MUSIC_PLAYER_BGM, 0
+	song mus_c_vs_rival_silver, MUSIC_PLAYER_BGM, 0
+
 	.align 2
 dummy_song_header:
 	.byte 0, 0, 0, 0

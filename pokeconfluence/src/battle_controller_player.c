@@ -1881,9 +1881,17 @@ static enum TrainerPicID PlayerGetTrainerBackPicId(void)
     enum TrainerPicID trainerPicId;
 
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
+    {
         trainerPicId = LinkPlayerGetTrainerPicId(GetMultiplayerId());
+    }
     else
-        trainerPicId = GetPlayerTrainerPic(gSaveBlock2Ptr->playerGender, GAME_VERSION);
+    {
+        // POKE-CONFLUENCE: Authentic Johto player back pics (Chris / Kris)
+        if (GetCurrentRegion() == REGION_JOHTO)
+            trainerPicId = (gSaveBlock2Ptr->playerGender == MALE) ? TRAINER_PIC_CHRIS : TRAINER_PIC_KRIS;
+        else
+            trainerPicId = GetPlayerTrainerPic(gSaveBlock2Ptr->playerGender, GAME_VERSION);
+    }
 
     return trainerPicId;
 }
