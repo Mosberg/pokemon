@@ -47,7 +47,8 @@ Integrated via symlinks and `poke-toolkit` (`tools/poke-asset-tools/bin/`):
 - `poke-verify-map-matrix`: Map layout elevation, warp, and collision softlock auditor.
 - `poke-render-dynamic-hp`: Procedural 48px multi-palette battle HUD healthbar renderer.
 
-### 5. Build & Verification Wrappers
+### 5. Build, Configuration & Verification Wrappers
+- `poke-config-gui`: Visual interactive Configuration Studio (Web GUI & Tkinter) for editing all 23 headers and 2,040+ settings in `include/config/` with live search, generational presets, doc tooltips, unified diff preview, and automated backups.
 - `poke-wsl-build`: WSL-optimized multi-core build orchestrator with real-time error filtering.
 - `poke-build-debug`: Builds debug ROM targets with extra assertion checks and symbol maps.
 - `poke-emulator`: Launches embedded mGBA with remote GDB socket debugging enabled.

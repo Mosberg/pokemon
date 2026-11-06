@@ -23,4 +23,3 @@ For hard limits and engine constraints, refer to [LIMITS.md](LIMITS.md). Overall
   - **Missing**:
     - `[░░░░░░░░░░] 0%` Real GBC Crystal synth chiptune playback / mid2agb conversions for full overworld soundtrack.
     - `[░░░░░░░░░░] 0%` Custom GBC overworld sprites and trainer battle front/back pictures.
-

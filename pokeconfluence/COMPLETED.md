@@ -307,10 +307,22 @@ This document tracks all fully converted, integrated, and verified features in *
   - [scripts/audit_johto_scripts.py](scripts/audit_johto_scripts.py): Verified 0 stubs remaining across all maps (18/18 checks pass).
   - [.agents/scripts/check_limits.py](../../.agents/scripts/check_limits.py): Verified 0 remaining stubs.
 
+---
 
+## 15. Configuration Studio GUI (`poke-config-gui`)
 
-
-
-
-
-
+- **Interactive Configuration Editor for All 23 Headers in `include/config/`**:
+  - Full support for `ai.h`, `battle.h`, `caps.h`, `contest.h`, `debug.h`, `dexnav.h`, `fishing.h`, `follower_npc.h`, `general.h`, `item.h`, `map_preview_screen.h`, `name_box.h`, `overworld.h`, `pokedex_plus_hgss.h`, `pokemon.h`, `pokerus.h`, `quickstart.h`, `save.h`, `species_enabled.h`, `summary_screen.h`, `test.h`, `text.h`, and `wild_encounter.h` (2,040+ game options).
+- **Embedded Web GUI & Desktop GUI**:
+  - **Modern Web Application**: Single-page dark mode UI on zero-dependency Python server with live instant search, category filters, type filters (Booleans, Generations, Enums, Numbers, Notices), and real-time pending change tracking.
+  - **Native Desktop GUI**: Tkinter GUI (`poke-config-gui --desktop`) for native X11/Wayland window workflows.
+  - **CLI Launcher**: `poke-config-gui` symlinked in `~/.local/bin/poke-config-gui` and `tools/poke-migrator-pro/bin/poke-config-gui`.
+- **Comprehensive Setting Explanations & Context**:
+  - Extracted descriptions for every single option detailing *what everything does and how it works*.
+  - Historical notes on generational differences (`In Gen 4+...`, `In Gen 6+...`, `In Gen 9+...`).
+  - Warning badges for `SAVE-BREAKING`, `WIP / Experimental`, and `Confluence Custom` options.
+- **Safety, Non-Destructive Editing & Build Integration**:
+  - **Live Unified Diff**: Review side-by-side / unified diff before writing changes to disk.
+  - **Automated Snapshots**: Creates timestamped backups in `include/config/.backups/` on every save, with one-click snapshot restore.
+  - **Precise C Formatter**: Preserves C indentation, spacing, comments, `#ifndef` guards, and `// POKE-CONFLUENCE` tags.
+  - **Direct ROM Compilation**: Integrated `make -C pokeconfluence -j$(nproc)` button with streaming terminal build logs.

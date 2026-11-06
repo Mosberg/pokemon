@@ -1,0 +1,1787 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon Confluence — Configuration Studio v2.5 PRO</title>
+    <style>
+      :root {
+        --bg-base: #090d16;
+        --bg-sidebar: #0f172a;
+        --bg-card: #1e293b;
+        --bg-card-hover: #273549;
+        --bg-input: #0b1220;
+        --border: #334155;
+        --border-focus: #38bdf8;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --text-sub: #64748b;
+        --accent: #38bdf8;
+        --accent-hover: #0284c7;
+        --emerald: #10b981;
+        --gold: #f59e0b;
+        --ruby: #ef4444;
+        --purple: #a855f7;
+        --radius: 8px;
+        --font-mono:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        --font-sans:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: var(--bg-base);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      /* TOP HEADER */
+      header {
+        height: 58px;
+        background: var(--bg-sidebar);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px;
+        gap: 16px;
+        z-index: 10;
+        flex-shrink: 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #fff;
+        letter-spacing: -0.02em;
+      }
+      .brand-badge {
+        background: linear-gradient(135deg, #ef4444 0%, #38bdf8 50%, #10b981 100%);
+        color: white;
+        font-size: 0.65rem;
+        padding: 2px 7px;
+        border-radius: 9999px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 14px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--bg-card);
+        color: var(--text-main);
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        user-select: none;
+      }
+      .btn:hover {
+        background: var(--bg-card-hover);
+        border-color: #4b5563;
+      }
+      .btn-primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #0f172a;
+      }
+      .btn-primary:hover {
+        background: #7dd3fc;
+      }
+      .btn-success {
+        background: var(--emerald);
+        border-color: var(--emerald);
+        color: white;
+      }
+      .btn-success:hover {
+        background: #059669;
+      }
+      .btn-danger {
+        background: var(--ruby);
+        border-color: var(--ruby);
+        color: white;
+      }
+      .btn-danger:hover {
+        background: #dc2626;
+      }
+      .btn-outline {
+        background: transparent;
+      }
+      .btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      /* DROPDOWN MENU */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        margin-top: 4px;
+        background: var(--bg-sidebar);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+        min-width: 250px;
+        z-index: 50;
+        overflow: hidden;
+      }
+      .dropdown-content.show {
+        display: block;
+      }
+      .dropdown-item {
+        padding: 9px 14px;
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .dropdown-item:hover {
+        background: #1e3a5f;
+        color: #fff;
+      }
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      .pending-pill {
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        padding: 5px 12px;
+        border-radius: 9999px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        display: none;
+        align-items: center;
+        gap: 6px;
+      }
+      .pending-pill.active {
+        display: inline-flex;
+      }
+
+      /* LAYOUT CONTAINER */
+      .app-layout {
+        display: flex;
+        flex: 1;
+        height: calc(100vh - 58px);
+        overflow: hidden;
+      }
+
+      /* SIDEBAR */
+      aside {
+        width: 330px;
+        background: var(--bg-sidebar);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+      }
+      .sidebar-search {
+        padding: 12px;
+        border-bottom: 1px solid var(--border);
+      }
+      .search-box {
+        width: 100%;
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        color: var(--text-main);
+        padding: 8px 12px;
+        border-radius: var(--radius);
+        font-size: 0.85rem;
+        outline: none;
+      }
+      .search-box:focus {
+        border-color: var(--border-focus);
+      }
+      .category-filter {
+        padding: 8px 12px;
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        border-bottom: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .cat-btn {
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        padding: 3px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .cat-btn:hover {
+        color: #fff;
+        background: var(--bg-card);
+      }
+      .cat-btn.active {
+        color: #0f172a;
+        background: var(--accent);
+        font-weight: 700;
+      }
+
+      .file-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 8px;
+      }
+      .file-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 9px 12px;
+        border-radius: var(--radius);
+        margin-bottom: 3px;
+        cursor: pointer;
+        color: var(--text-muted);
+        transition: all 0.12s ease;
+      }
+      .file-item:hover {
+        background: var(--bg-card);
+        color: var(--text-main);
+      }
+      .file-item.active {
+        background: #1e3a5f;
+        color: #fff;
+        border-left: 3px solid var(--accent);
+      }
+      .file-item-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        overflow: hidden;
+      }
+      .file-glyph {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .file-info {
+        overflow: hidden;
+      }
+      .file-name {
+        font-weight: 600;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      .file-sub {
+        font-size: 0.72rem;
+        color: var(--text-sub);
+      }
+      .file-badge {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+        border-radius: 9999px;
+        background: var(--bg-input);
+        color: var(--text-sub);
+        font-family: var(--font-mono);
+        flex-shrink: 0;
+      }
+      .file-dirty-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: none;
+        margin-left: 6px;
+      }
+      .file-item.is-dirty .file-dirty-dot {
+        display: inline-block;
+      }
+
+      .sidebar-footer {
+        padding: 10px 14px;
+        border-top: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.25);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* MAIN CONTENT */
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--bg-base);
+      }
+      .file-header {
+        padding: 14px 22px;
+        border-bottom: 1px solid var(--border);
+        background: var(--bg-sidebar);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .file-header-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .file-header-title h2 {
+        font-size: 1.15rem;
+        color: #fff;
+      }
+      .file-header-title span.tag {
+        font-size: 0.75rem;
+        background: #1e293b;
+        border: 1px solid var(--border);
+        padding: 2px 8px;
+        border-radius: 4px;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-weight: 700;
+      }
+      .file-header-desc {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+
+      /* FILTER BAR */
+      .filter-toolbar {
+        padding: 10px 22px;
+        background: rgba(17, 24, 39, 0.7);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .filter-chips {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .chip {
+        padding: 4px 10px;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        cursor: pointer;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        user-select: none;
+      }
+      .chip:hover {
+        color: #fff;
+      }
+      .chip.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #0f172a;
+        font-weight: 700;
+      }
+      .search-in-view {
+        width: 240px;
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: var(--radius);
+        font-size: 0.82rem;
+        outline: none;
+      }
+      .search-in-view:focus {
+        border-color: var(--border-focus);
+      }
+
+      /* CONFIG CARDS LIST */
+      .config-scroll-area {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 24px;
+      }
+      .section-title {
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        font-weight: 800;
+        margin: 24px 0 10px 0;
+        padding-bottom: 6px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .section-title:first-child {
+        margin-top: 0;
+      }
+
+      .config-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 14px 18px;
+        margin-bottom: 10px;
+        transition: all 0.15s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+      .config-card:hover {
+        border-color: #4b5563;
+      }
+      .config-card.is-modified {
+        border-color: var(--gold);
+        background: #232a1e;
+      }
+      .config-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .config-name-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .config-name {
+        font-family: var(--font-mono);
+        font-size: 0.94rem;
+        font-weight: 700;
+        color: #fff;
+        cursor: pointer;
+      }
+      .config-name:hover {
+        color: var(--accent);
+        text-decoration: underline;
+      }
+      .type-pill {
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+      }
+      .type-boolean {
+        background: #1e3a5f;
+        color: #60a5fa;
+      }
+      .type-gen {
+        background: #4c1d95;
+        color: #c084fc;
+      }
+      .type-enum {
+        background: #064e3b;
+        color: #34d399;
+      }
+      .type-number {
+        background: #713f12;
+        color: #fde047;
+      }
+      .type-family {
+        background: #831843;
+        color: #f472b6;
+      }
+      .type-text {
+        background: #374151;
+        color: #d1d5db;
+      }
+
+      .config-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .modified-tag {
+        font-size: 0.72rem;
+        color: var(--gold);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .btn-undo {
+        background: transparent;
+        border: none;
+        color: var(--text-sub);
+        cursor: pointer;
+        font-size: 0.85rem;
+        padding: 2px 4px;
+        border-radius: 3px;
+      }
+      .btn-undo:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* CONTROLS STYLING */
+      .switch-wrap {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        gap: 8px;
+      }
+      .switch-ui {
+        position: relative;
+        width: 46px;
+        height: 24px;
+        background: #475569;
+        border-radius: 9999px;
+        transition: background-color 0.2s ease;
+      }
+      .switch-ui::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border-radius: 50%;
+        transition: transform 0.2s ease;
+      }
+      .switch-wrap.is-on .switch-ui {
+        background: var(--emerald);
+      }
+      .switch-wrap.is-on .switch-ui::after {
+        transform: translateX(22px);
+      }
+      .switch-label {
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        min-width: 45px;
+      }
+      .switch-wrap.is-on .switch-label {
+        color: var(--emerald);
+      }
+
+      .gen-picker {
+        display: inline-flex;
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2px;
+        gap: 2px;
+        overflow-x: auto;
+        max-width: 520px;
+      }
+      .gen-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        font-size: 0.72rem;
+        font-family: var(--font-mono);
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .gen-btn:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .gen-btn.active {
+        background: var(--purple);
+        color: #fff;
+        font-weight: 700;
+      }
+      .gen-btn.active.latest {
+        background: var(--accent);
+        color: #0f172a;
+      }
+
+      .custom-select {
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        outline: none;
+        cursor: pointer;
+        max-width: 320px;
+      }
+      .custom-select:focus {
+        border-color: var(--border-focus);
+      }
+
+      .num-stepper {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .num-input {
+        width: 75px;
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        color: #fff;
+        padding: 6px 8px;
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        text-align: center;
+        outline: none;
+      }
+      .num-input:focus {
+        border-color: var(--border-focus);
+      }
+      .step-btn {
+        background: #334155;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        font-size: 0.72rem;
+        padding: 5px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .step-btn:hover {
+        color: #fff;
+        background: #475569;
+      }
+
+      .family-picker {
+        display: inline-flex;
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2px;
+        gap: 2px;
+      }
+      .family-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        font-size: 0.72rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .family-btn.active {
+        background: #be185d;
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .text-input-ctrl {
+        background: var(--bg-input);
+        border: 1px solid var(--border);
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        outline: none;
+        width: 220px;
+      }
+      .text-input-ctrl:focus {
+        border-color: var(--border-focus);
+      }
+
+      .config-desc {
+        font-size: 0.82rem;
+        line-height: 1.45;
+        color: var(--text-muted);
+        background: rgba(0, 0, 0, 0.25);
+        padding: 9px 14px;
+        border-radius: 6px;
+        border-left: 3px solid rgba(255, 255, 255, 0.1);
+      }
+      .notice-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 4px;
+        margin-top: 6px;
+        margin-right: 6px;
+      }
+      .notice-danger {
+        background: #7f1d1d;
+        border: 1px solid var(--ruby);
+        color: #fecaca;
+      }
+      .notice-warning {
+        background: #78350f;
+        border: 1px solid var(--gold);
+        color: #fef3c7;
+      }
+      .notice-info {
+        background: #1e3a5f;
+        border: 1px solid var(--accent);
+        color: #bfdbfe;
+      }
+
+      /* MODAL */
+      .modal-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+      }
+      .modal-backdrop.open {
+        display: flex;
+      }
+      .modal-dialog {
+        background: var(--bg-sidebar);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        width: 90%;
+        max-width: 860px;
+        max-height: 85vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.7);
+      }
+      .modal-header {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .modal-header h3 {
+        font-size: 1.15rem;
+        color: #fff;
+      }
+      .modal-body {
+        padding: 20px;
+        overflow-y: auto;
+        flex: 1;
+      }
+      .modal-footer {
+        padding: 14px 20px;
+        border-top: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.25);
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .diff-container {
+        background: #030712;
+        border: 1px solid #1f2937;
+        border-radius: 8px;
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        line-height: 1.45;
+        overflow-x: auto;
+        margin-bottom: 16px;
+      }
+      .diff-file-title {
+        background: #111827;
+        padding: 8px 12px;
+        border-bottom: 1px solid #1f2937;
+        font-weight: 700;
+        color: var(--accent);
+      }
+      .diff-lines {
+        padding: 8px 0;
+      }
+      .diff-line {
+        padding: 1px 12px;
+        white-space: pre;
+      }
+      .diff-line.added {
+        background: rgba(16, 185, 129, 0.2);
+        color: #34d399;
+      }
+      .diff-line.removed {
+        background: rgba(239, 68, 68, 0.2);
+        color: #f87171;
+      }
+      .diff-line.header {
+        color: #64748b;
+      }
+
+      .console-box {
+        background: #030712;
+        border: 1px solid #1f2937;
+        border-radius: 8px;
+        padding: 12px;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: #e5e7eb;
+        max-height: 400px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .toast-container {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 200;
+      }
+      .toast {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 10px 16px;
+        border-radius: var(--radius);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.85rem;
+        animation: slideIn 0.2s ease-out;
+      }
+      .toast-success {
+        border-left: 4px solid var(--emerald);
+      }
+      .toast-error {
+        border-left: 4px solid var(--ruby);
+      }
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .empty-state {
+        padding: 60px 20px;
+        text-align: center;
+        color: var(--text-muted);
+      }
+      .empty-icon {
+        font-size: 3rem;
+        margin-bottom: 12px;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <span>⚡ Confluence Config Studio</span>
+        <span class="brand-badge">v2.5 PRO</span>
+      </div>
+      <div class="header-actions">
+        <div id="pendingPill" class="pending-pill">
+          <span>●</span>
+          <span id="pendingCount">0</span> changes pending
+        </div>
+
+        <!-- Presets Dropdown -->
+        <div class="dropdown">
+          <button class="btn btn-outline" onclick="toggleDropdown('presetsDropdown')">
+            <span>⚡</span> Presets ▾
+          </button>
+          <div id="presetsDropdown" class="dropdown-content">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Batch Tools Dropdown -->
+        <div class="dropdown">
+          <button class="btn btn-outline" onclick="toggleDropdown('batchDropdown')">
+            <span>⚙</span> Batch Tools ▾
+          </button>
+          <div id="batchDropdown" class="dropdown-content">
+            <div class="dropdown-item" onclick="batchEnableAllSpecies()">
+              <span>✓</span> Enable All Gens 1-9 in species_enabled.h
+            </div>
+            <div class="dropdown-item" onclick="batchSetBattleLatest()">
+              <span>✓</span> Set All Battle Rules to GEN_LATEST
+            </div>
+            <div class="dropdown-item" onclick="resetActiveFile()">
+              <span>↺</span> Reset Active File to Original Defaults
+            </div>
+          </div>
+        </div>
+
+        <button id="btnReviewDiff" class="btn btn-outline" disabled onclick="openDiffModal()">
+          <span>👁</span> Review Diff
+        </button>
+        <button
+          id="btnDiscard"
+          class="btn btn-danger btn-outline"
+          disabled
+          onclick="discardChanges()"
+        >
+          <span>↺</span> Discard
+        </button>
+        <button id="btnSave" class="btn btn-success" disabled onclick="saveAllChanges()">
+          <span>💾</span> Save All
+        </button>
+        <button id="btnBuild" class="btn btn-primary" onclick="openBuildModal()">
+          <span>🔨</span> Build ROM
+        </button>
+        <button class="btn btn-outline" onclick="openBackupModal()"><span>📦</span> Backups</button>
+      </div>
+    </header>
+
+    <!-- APP LAYOUT -->
+    <div class="app-layout">
+      <!-- SIDEBAR -->
+      <aside>
+        <div class="sidebar-search">
+          <input
+            type="text"
+            id="globalSearch"
+            class="search-box"
+            placeholder="Search 2,040+ settings across files..."
+            oninput="onGlobalSearch()"
+          />
+        </div>
+        <div class="category-filter">
+          <button class="cat-btn active" onclick="filterCategory('All')">All</button>
+          <button class="cat-btn" onclick="filterCategory('Battle & AI')">Battle</button>
+          <button class="cat-btn" onclick="filterCategory('Progression')">Progression</button>
+          <button class="cat-btn" onclick="filterCategory('Overworld')">Overworld</button>
+          <button class="cat-btn" onclick="filterCategory('Items & Pokémon')">Pokémon</button>
+          <button class="cat-btn" onclick="filterCategory('UI & Display')">UI</button>
+          <button class="cat-btn" onclick="filterCategory('System & Debug')">System</button>
+        </div>
+        <div id="fileList" class="file-list">
+          <!-- Rendered by JS -->
+        </div>
+        <div class="sidebar-footer">
+          <span style="font-size: 0.75rem; color: var(--text-sub)">23 Config Headers</span>
+          <span id="totalConfigsBadge" style="font-size: 0.75rem; color: var(--text-sub)"
+            >2040+ Settings</span
+          >
+        </div>
+      </aside>
+
+      <!-- MAIN PANEL -->
+      <main>
+        <div class="file-header">
+          <div>
+            <div class="file-header-title">
+              <span id="activeFileIcon" style="font-size: 1.3rem">🧠</span>
+              <h2 id="activeFileTitle">Level & EV Caps</h2>
+              <span id="activeFileTag" class="tag">caps.h</span>
+            </div>
+            <div id="activeFileDesc" class="file-header-desc">
+              Multi-region 24-badge level caps, soft/hard caps, EV caps, and Rare Candy limits.
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-toolbar">
+          <div class="filter-chips">
+            <span class="chip active" onclick="setFilterType('all')">All</span>
+            <span class="chip" onclick="setFilterType('modified')">Modified</span>
+            <span class="chip" onclick="setFilterType('boolean')">Booleans</span>
+            <span class="chip" onclick="setFilterType('gen')">Generations</span>
+            <span class="chip" onclick="setFilterType('number')">Numbers</span>
+            <span class="chip" onclick="setFilterType('enum')">Enums</span>
+            <span class="chip" onclick="setFilterType('warnings')">Notices</span>
+          </div>
+          <input
+            type="text"
+            id="viewSearch"
+            class="search-in-view"
+            placeholder="Filter this file..."
+            oninput="renderCurrentConfigs()"
+          />
+        </div>
+
+        <div id="configScrollArea" class="config-scroll-area">
+          <!-- Rendered by JS -->
+        </div>
+      </main>
+    </div>
+
+    <!-- DIFF MODAL -->
+    <div id="diffModal" class="modal-backdrop">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3>Proposed Changes Preview</h3>
+          <button class="btn btn-outline" onclick="closeModal('diffModal')">✕</button>
+        </div>
+        <div class="modal-body" id="diffModalBody">
+          <div class="empty-state">Calculating diff...</div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" onclick="closeModal('diffModal')">Cancel</button>
+          <button class="btn btn-success" onclick="confirmSaveFromDiff()">
+            Apply & Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUILD ROM MODAL -->
+    <div id="buildModal" class="modal-backdrop">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3>Build Pokémon Confluence ROM</h3>
+          <button class="btn btn-outline" onclick="closeModal('buildModal')">✕</button>
+        </div>
+        <div class="modal-body">
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px">
+            Runs <code>make -C pokeconfluence -j$(nproc)</code> to compile the ROM with updated
+            configs.
+          </p>
+          <div id="buildConsole" class="console-box">
+            Ready to compile. Click 'Start Compilation' below.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" onclick="closeModal('buildModal')">Close</button>
+          <button id="btnStartBuild" class="btn btn-primary" onclick="triggerBuild()">
+            Start Compilation
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACKUP RESTORE MODAL -->
+    <div id="backupModal" class="modal-backdrop">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3>Configuration Snapshots & Backups</h3>
+          <button class="btn btn-outline" onclick="closeModal('backupModal')">✕</button>
+        </div>
+        <div class="modal-body" id="backupModalBody">
+          <div class="empty-state">Loading backup history...</div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" onclick="closeModal('backupModal')">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script>
+      let allFiles = [];
+      let presets = {};
+      let activeFilename = "caps.h";
+      let fileConfigs = {};
+      let pendingUpdates = {};
+      let originalValues = {};
+      let currentCategory = "All";
+      let currentTypeFilter = "all";
+
+      const GEN_OPTIONS = [
+        "GEN_1",
+        "GEN_2",
+        "GEN_3",
+        "GEN_4",
+        "GEN_5",
+        "GEN_6",
+        "GEN_7",
+        "GEN_8",
+        "GEN_9",
+        "GEN_LATEST",
+      ];
+
+      async function init() {
+        try {
+          const res = await fetch("/api/all");
+          const data = await res.json();
+          if (data.success) {
+            allFiles = data.files;
+            fileConfigs = data.configs;
+            presets = data.presets || {};
+
+            for (const [fname, list] of Object.entries(fileConfigs)) {
+              originalValues[fname] = {};
+              for (const cfg of list) {
+                originalValues[fname][cfg.name] = cfg.value;
+              }
+            }
+
+            populatePresetsDropdown();
+            renderSidebar();
+            selectFile(activeFilename);
+          }
+        } catch (err) {
+          showToast("Error loading configs: " + err.message, "error");
+        }
+      }
+
+      function toggleDropdown(id) {
+        document.querySelectorAll(".dropdown-content").forEach((d) => {
+          if (d.id !== id) d.classList.remove("show");
+        });
+        document.getElementById(id).classList.toggle("show");
+      }
+
+      window.onclick = function (event) {
+        if (!event.target.closest(".dropdown")) {
+          document.querySelectorAll(".dropdown-content").forEach((d) => d.classList.remove("show"));
+        }
+      };
+
+      function populatePresetsDropdown() {
+        const container = document.getElementById("presetsDropdown");
+        container.innerHTML = "";
+        for (const [key, p] of Object.entries(presets)) {
+          const item = document.createElement("div");
+          item.className = "dropdown-item";
+          item.innerHTML = `<span>${p.icon}</span> <span>${escapeHtml(p.title)}</span>`;
+          item.onclick = () => applyPreset(key);
+          container.appendChild(item);
+        }
+      }
+
+      function applyPreset(key) {
+        const p = presets[key];
+        if (!p) return;
+        if (confirm(`Apply preset "${p.title}"?\n\n${p.description}`)) {
+          for (const [fname, updates] of Object.entries(p.updates)) {
+            if (!pendingUpdates[fname]) pendingUpdates[fname] = {};
+            for (const [k, v] of Object.entries(updates)) {
+              pendingUpdates[fname][k] = v;
+            }
+          }
+          updatePendingBadge();
+          renderSidebar();
+          renderCurrentConfigs();
+          showToast(`Preset "${p.title}" applied to pending changes`, "success");
+        }
+      }
+
+      function batchEnableAllSpecies() {
+        if (
+          confirm(
+            "Enable all Generations 1 through 9, Regional forms, and Mega evolutions in species_enabled.h?",
+          )
+        ) {
+          const fname = "species_enabled.h";
+          if (!pendingUpdates[fname]) pendingUpdates[fname] = {};
+          for (let g = 1; g <= 9; g++) {
+            pendingUpdates[fname][`P_GEN_${g}_POKEMON`] = "TRUE";
+          }
+          pendingUpdates[fname]["P_REGIONAL_FORMS"] = "TRUE";
+          pendingUpdates[fname]["P_MEGA_EVOLUTIONS"] = "TRUE";
+          pendingUpdates[fname]["P_GIGANTAMAX_FORMS"] = "TRUE";
+          pendingUpdates[fname]["P_TERA_FORMS"] = "TRUE";
+          updatePendingBadge();
+          renderSidebar();
+          if (activeFilename === fname) renderCurrentConfigs();
+          showToast("Enabled all generations & forms in species_enabled.h", "success");
+        }
+      }
+
+      function batchSetBattleLatest() {
+        if (confirm("Set all battle generational defines in battle.h to GEN_LATEST?")) {
+          const fname = "battle.h";
+          if (!pendingUpdates[fname]) pendingUpdates[fname] = {};
+          const cfgs = fileConfigs[fname] || [];
+          let count = 0;
+          cfgs.forEach((c) => {
+            if (c.type === "gen") {
+              pendingUpdates[fname][c.name] = "GEN_LATEST";
+              count++;
+            }
+          });
+          updatePendingBadge();
+          renderSidebar();
+          if (activeFilename === fname) renderCurrentConfigs();
+          showToast(`Updated ${count} battle rules to GEN_LATEST`, "success");
+        }
+      }
+
+      function resetActiveFile() {
+        if (confirm(`Revert all pending changes in ${activeFilename}?`)) {
+          if (pendingUpdates[activeFilename]) {
+            delete pendingUpdates[activeFilename];
+            updatePendingBadge();
+            renderSidebar();
+            renderCurrentConfigs();
+            showToast(`Reverted pending changes for ${activeFilename}`, "info");
+          }
+        }
+      }
+
+      function renderSidebar() {
+        const container = document.getElementById("fileList");
+        container.innerHTML = "";
+        const searchVal = document.getElementById("globalSearch").value.toLowerCase().trim();
+
+        allFiles.forEach((f) => {
+          if (currentCategory !== "All" && f.category !== currentCategory) return;
+
+          if (searchVal) {
+            const matchFile =
+              f.filename.toLowerCase().includes(searchVal) ||
+              f.title.toLowerCase().includes(searchVal);
+            const matchConfig = (fileConfigs[f.filename] || []).some(
+              (c) =>
+                c.name.toLowerCase().includes(searchVal) ||
+                c.description.toLowerCase().includes(searchVal),
+            );
+            if (!matchFile && !matchConfig) return;
+          }
+
+          const isDirty =
+            pendingUpdates[f.filename] && Object.keys(pendingUpdates[f.filename]).length > 0;
+          const item = document.createElement("div");
+          item.className = `file-item ${f.filename === activeFilename ? "active" : ""} ${isDirty ? "is-dirty" : ""}`;
+          item.onclick = () => selectFile(f.filename);
+
+          item.innerHTML = `
+          <div class="file-item-left">
+            <span class="file-glyph">${f.glyph || f.icon}</span>
+            <div class="file-info">
+              <div class="file-name">${f.title}</div>
+              <div class="file-sub">${f.filename}</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center;">
+            <span class="file-badge">${f.config_count}</span>
+            <span class="file-dirty-dot"></span>
+          </div>
+        `;
+          container.appendChild(item);
+        });
+      }
+
+      function filterCategory(cat) {
+        currentCategory = cat;
+        document.querySelectorAll(".cat-btn").forEach((btn) => {
+          btn.classList.toggle(
+            "active",
+            btn.textContent.trim() === (cat === "All" ? "All" : cat.split(" ")[0]),
+          );
+        });
+        renderSidebar();
+      }
+
+      function onGlobalSearch() {
+        renderSidebar();
+      }
+
+      function selectFile(filename) {
+        activeFilename = filename;
+        const fileMeta = allFiles.find((f) => f.filename === filename);
+        if (fileMeta) {
+          document.getElementById("activeFileIcon").textContent = fileMeta.glyph || fileMeta.icon;
+          document.getElementById("activeFileTitle").textContent = fileMeta.title;
+          document.getElementById("activeFileTag").textContent = fileMeta.filename;
+          document.getElementById("activeFileDesc").textContent = fileMeta.description;
+        }
+        renderSidebar();
+        renderCurrentConfigs();
+      }
+
+      function setFilterType(type) {
+        currentTypeFilter = type;
+        document.querySelectorAll(".filter-chips .chip").forEach((c) => {
+          c.classList.toggle(
+            "active",
+            c.textContent.toLowerCase() === type ||
+              (type === "warnings" && c.textContent.toLowerCase() === "notices"),
+          );
+        });
+        renderCurrentConfigs();
+      }
+
+      function renderCurrentConfigs() {
+        const container = document.getElementById("configScrollArea");
+        container.innerHTML = "";
+
+        const configs = fileConfigs[activeFilename] || [];
+        const viewSearch = document.getElementById("viewSearch").value.toLowerCase().trim();
+        const globalSearch = document.getElementById("globalSearch").value.toLowerCase().trim();
+        const filterText = viewSearch || globalSearch;
+
+        const fileUpdates = pendingUpdates[activeFilename] || {};
+
+        const filtered = configs.filter((c) => {
+          if (filterText) {
+            const matchName = c.name.toLowerCase().includes(filterText);
+            const matchDesc = c.description.toLowerCase().includes(filterText);
+            const matchVal = String(fileUpdates[c.name] ?? c.value)
+              .toLowerCase()
+              .includes(filterText);
+            if (!matchName && !matchDesc && !matchVal) return false;
+          }
+
+          if (currentTypeFilter === "modified") return c.name in fileUpdates;
+          if (currentTypeFilter === "boolean") return c.type === "boolean";
+          if (currentTypeFilter === "gen") return c.type === "gen";
+          if (currentTypeFilter === "number") return c.type === "number";
+          if (currentTypeFilter === "enum") return c.type === "enum" || c.type === "family";
+          if (currentTypeFilter === "warnings") return c.notices && c.notices.length > 0;
+          return true;
+        });
+
+        if (filtered.length === 0) {
+          container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <h3>No configurations match your filter</h3>
+            <p style="font-size: 0.85rem; margin-top: 6px;">Try clearing your search or selecting 'All'.</p>
+          </div>
+        `;
+          return;
+        }
+
+        let lastSection = null;
+
+        filtered.forEach((cfg) => {
+          if (cfg.section !== lastSection) {
+            lastSection = cfg.section;
+            const secTitle = document.createElement("div");
+            secTitle.className = "section-title";
+            secTitle.innerHTML = `<span>📁</span> <span>${escapeHtml(cfg.section)}</span>`;
+            container.appendChild(secTitle);
+          }
+
+          const currentVal =
+            fileUpdates[cfg.name] !== undefined ? fileUpdates[cfg.name] : cfg.value;
+          const origVal = originalValues[activeFilename]?.[cfg.name] ?? cfg.value;
+          const isModified = currentVal !== origVal;
+
+          const card = document.createElement("div");
+          card.className = `config-card ${isModified ? "is-modified" : ""}`;
+          card.id = `card_${cfg.name}`;
+
+          let noticesHtml = "";
+          if (cfg.notices && cfg.notices.length > 0) {
+            cfg.notices.forEach((n) => {
+              noticesHtml += `<span class="notice-badge notice-${n.type}">⚠ ${escapeHtml(n.text)}</span>`;
+            });
+          }
+
+          let modHtml = "";
+          if (isModified) {
+            modHtml = `
+            <div class="modified-tag">
+              <span>(Was: ${escapeHtml(origVal)})</span>
+              <button class="btn-undo" title="Revert to original" onclick="revertSetting('${cfg.name}')">↺ Undo</button>
+            </div>
+          `;
+          }
+
+          const controlHtml = buildControlHtml(cfg, currentVal);
+
+          card.innerHTML = `
+          <div class="config-card-header">
+            <div class="config-name-wrap">
+              <span class="config-name" title="Click to copy name" onclick="copyToClipboard('${cfg.name}')">${cfg.name}</span>
+              <span class="type-pill type-${cfg.type}">${cfg.type}</span>
+            </div>
+            <div class="config-controls">
+              ${modHtml}
+              ${controlHtml}
+            </div>
+          </div>
+          <div class="config-desc">
+            ${escapeHtml(cfg.description || "No description provided in header.")}
+            <div>${noticesHtml}</div>
+          </div>
+        `;
+
+          container.appendChild(card);
+        });
+      }
+
+      function buildControlHtml(cfg, currentVal) {
+        if (cfg.type === "boolean") {
+          const isOn = currentVal === "TRUE";
+          return `
+          <div class="switch-wrap ${isOn ? "is-on" : ""}" onclick="toggleBoolean('${cfg.name}', ${!isOn})">
+            <div class="switch-ui"></div>
+            <span class="switch-label">${isOn ? "TRUE" : "FALSE"}</span>
+          </div>
+        `;
+        }
+
+        if (cfg.type === "gen") {
+          const buttons = GEN_OPTIONS.map((g) => {
+            const isAct = currentVal === g;
+            const isLatest = g === "GEN_LATEST";
+            const label = isLatest ? "Latest" : g.replace("GEN_", "G");
+            return `<button class="gen-btn ${isAct ? "active" : ""} ${isLatest ? "latest" : ""}" onclick="updateValue('${cfg.name}', '${g}')">${label}</button>`;
+          }).join("");
+          return `<div class="gen-picker">${buttons}</div>`;
+        }
+
+        if (cfg.type === "enum") {
+          const opts = cfg.options && cfg.options.length > 0 ? cfg.options : [currentVal];
+          const optElements = opts
+            .map((o) => {
+              return `<option value="${escapeHtml(o)}" ${o === currentVal ? "selected" : ""}>${escapeHtml(o)}</option>`;
+            })
+            .join("");
+          return `
+          <select class="custom-select" onchange="updateValue('${cfg.name}', this.value)">
+            ${optElements}
+          </select>
+        `;
+        }
+
+        if (cfg.type === "family") {
+          const isInherit =
+            currentVal.startsWith("P_GEN_") ||
+            currentVal.startsWith("P_REGIONAL_") ||
+            currentVal.startsWith("P_PIKACHU_") ||
+            currentVal.startsWith("P_CROSS_");
+          const isTrue = currentVal === "TRUE";
+          const isFalse = currentVal === "FALSE";
+          const inheritVal = originalValues[activeFilename]?.[cfg.name] || "P_GEN_1_POKEMON";
+
+          return `
+          <div class="family-picker">
+            <button class="family-btn ${isInherit ? "active" : ""}" onclick="updateValue('${cfg.name}', '${inheritVal}')">Inherit</button>
+            <button class="family-btn ${isTrue ? "active" : ""}" onclick="updateValue('${cfg.name}', 'TRUE')">ON</button>
+            <button class="family-btn ${isFalse ? "active" : ""}" onclick="updateValue('${cfg.name}', 'FALSE')">OFF</button>
+          </div>
+        `;
+        }
+
+        if (cfg.type === "number") {
+          const numVal = parseInt(currentVal, 10) || 0;
+          return `
+          <div class="num-stepper">
+            <button class="step-btn" onclick="stepNumber('${cfg.name}', -10)">-10</button>
+            <button class="step-btn" onclick="stepNumber('${cfg.name}', -1)">-1</button>
+            <input type="number" class="num-input" value="${numVal}" onchange="updateValue('${cfg.name}', this.value)">
+            <button class="step-btn" onclick="stepNumber('${cfg.name}', 1)">+1</button>
+            <button class="step-btn" onclick="stepNumber('${cfg.name}', 10)">+10</button>
+          </div>
+        `;
+        }
+
+        return `
+        <input type="text" class="text-input-ctrl" value="${escapeHtml(currentVal)}" onchange="updateValue('${cfg.name}', this.value)">
+      `;
+      }
+
+      function toggleBoolean(name, newVal) {
+        updateValue(name, newVal ? "TRUE" : "FALSE");
+      }
+
+      function stepNumber(name, delta) {
+        const current = getCurrentVal(name);
+        const num = (parseInt(current, 10) || 0) + delta;
+        updateValue(name, String(Math.max(0, num)));
+      }
+
+      function getCurrentVal(name) {
+        if (pendingUpdates[activeFilename]?.[name] !== undefined) {
+          return pendingUpdates[activeFilename][name];
+        }
+        return originalValues[activeFilename]?.[name] || "";
+      }
+
+      function updateValue(name, val) {
+        val = String(val).trim();
+        const orig = originalValues[activeFilename]?.[name];
+
+        if (!pendingUpdates[activeFilename]) pendingUpdates[activeFilename] = {};
+
+        if (val === orig) {
+          delete pendingUpdates[activeFilename][name];
+          if (Object.keys(pendingUpdates[activeFilename]).length === 0) {
+            delete pendingUpdates[activeFilename];
+          }
+        } else {
+          pendingUpdates[activeFilename][name] = val;
+        }
+
+        updatePendingBadge();
+        renderSidebar();
+        renderCurrentConfigs();
+      }
+
+      function revertSetting(name) {
+        if (pendingUpdates[activeFilename]?.[name]) {
+          delete pendingUpdates[activeFilename][name];
+          if (Object.keys(pendingUpdates[activeFilename]).length === 0) {
+            delete pendingUpdates[activeFilename];
+          }
+          updatePendingBadge();
+          renderSidebar();
+          renderCurrentConfigs();
+        }
+      }
+
+      function discardChanges() {
+        if (confirm("Discard all pending changes across all files?")) {
+          pendingUpdates = {};
+          updatePendingBadge();
+          renderSidebar();
+          renderCurrentConfigs();
+          showToast("All changes discarded", "info");
+        }
+      }
+
+      function updatePendingBadge() {
+        let count = 0;
+        for (const f in pendingUpdates) count += Object.keys(pendingUpdates[f]).length;
+
+        const pill = document.getElementById("pendingPill");
+        const countEl = document.getElementById("pendingCount");
+        const btnSave = document.getElementById("btnSave");
+        const btnDiscard = document.getElementById("btnDiscard");
+        const btnDiff = document.getElementById("btnReviewDiff");
+
+        countEl.textContent = count;
+        if (count > 0) {
+          pill.classList.add("active");
+          btnSave.disabled = false;
+          btnDiscard.disabled = false;
+          btnDiff.disabled = false;
+        } else {
+          pill.classList.remove("active");
+          btnSave.disabled = true;
+          btnDiscard.disabled = true;
+          btnDiff.disabled = true;
+        }
+      }
+
+      async function openDiffModal() {
+        const modal = document.getElementById("diffModal");
+        const body = document.getElementById("diffModalBody");
+        modal.classList.add("open");
+        body.innerHTML = '<div class="empty-state">Computing unified diff...</div>';
+
+        try {
+          const res = await fetch("/api/diff", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ updates: pendingUpdates }),
+          });
+          const data = await res.json();
+          if (data.success) {
+            renderDiffView(data.diffs);
+          } else {
+            body.innerHTML = `<div class="empty-state">Error computing diff: ${data.error}</div>`;
+          }
+        } catch (err) {
+          body.innerHTML = `<div class="empty-state">Error: ${err.message}</div>`;
+        }
+      }
+
+      function renderDiffView(diffs) {
+        const body = document.getElementById("diffModalBody");
+        body.innerHTML = "";
+
+        if (Object.keys(diffs).length === 0) {
+          body.innerHTML = '<div class="empty-state">No changes detected.</div>';
+          return;
+        }
+
+        for (const [fname, diffData] of Object.entries(diffs)) {
+          const container = document.createElement("div");
+          container.className = "diff-container";
+
+          const lines = diffData.diff.split("\n");
+          let linesHtml = "";
+          lines.forEach((l) => {
+            let cls = "";
+            if (l.startsWith("+") && !l.startsWith("+++")) cls = "added";
+            else if (l.startsWith("-") && !l.startsWith("---")) cls = "removed";
+            else if (l.startsWith("@")) cls = "header";
+            linesHtml += `<div class="diff-line ${cls}">${escapeHtml(l)}</div>`;
+          });
+
+          container.innerHTML = `
+          <div class="diff-file-title">📁 ${fname} (${diffData.changed_count} changed)</div>
+          <div class="diff-lines">${linesHtml}</div>
+        `;
+          body.appendChild(container);
+        }
+      }
+
+      async function confirmSaveFromDiff() {
+        closeModal("diffModal");
+        await saveAllChanges();
+      }
+
+      async function saveAllChanges() {
+        try {
+          const res = await fetch("/api/save", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ updates: pendingUpdates }),
+          });
+          const data = await res.json();
+          if (data.success) {
+            showToast("Changes saved & backup created successfully!", "success");
+            await init();
+            pendingUpdates = {};
+            updatePendingBadge();
+          } else {
+            showToast("Error saving changes: " + (data.error || "Unknown error"), "error");
+          }
+        } catch (err) {
+          showToast("Save failed: " + err.message, "error");
+        }
+      }
+
+      function openBuildModal() {
+        document.getElementById("buildModal").classList.add("open");
+      }
+
+      async function triggerBuild() {
+        const btn = document.getElementById("btnStartBuild");
+        const consoleBox = document.getElementById("buildConsole");
+        btn.disabled = true;
+        btn.textContent = "Compiling...";
+        consoleBox.textContent =
+          "Compiling Pokémon Confluence with make -j...\nThis may take 10-30 seconds depending on rebuild cache.\n\n";
+
+        try {
+          const res = await fetch("/api/build", { method: "POST" });
+          const data = await res.json();
+          if (data.success) {
+            consoleBox.textContent += data.output + "\n\n>>> ROM COMPILATION SUCCESSFUL! <<<";
+            showToast("ROM compiled successfully!", "success");
+          } else {
+            consoleBox.textContent +=
+              (data.output || "") +
+              "\n\n>>> BUILD FAILED (code: " +
+              data.returncode +
+              ") <<<\n" +
+              (data.error || "");
+            showToast("ROM build failed, check logs", "error");
+          }
+        } catch (err) {
+          consoleBox.textContent += "\nNetwork error: " + err.message;
+          showToast("Build request failed", "error");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Start Compilation";
+        }
+      }
+
+      async function openBackupModal() {
+        const modal = document.getElementById("backupModal");
+        const body = document.getElementById("backupModalBody");
+        modal.classList.add("open");
+        body.innerHTML = '<div class="empty-state">Loading backup history...</div>';
+
+        try {
+          const res = await fetch("/api/backups");
+          const data = await res.json();
+          if (data.success && data.backups.length > 0) {
+            body.innerHTML = "";
+            data.backups.forEach((b) => {
+              const card = document.createElement("div");
+              card.style.cssText =
+                "background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:12px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;";
+              card.innerHTML = `
+              <div>
+                <div style="font-weight:700; font-size:0.9rem; color:#fff;">Snapshot: ${b.timestamp}</div>
+                <div style="font-size:0.75rem; color:var(--text-sub); margin-top:3px;">Backed up files: ${b.files.join(", ")}</div>
+              </div>
+              <button class="btn btn-outline" onclick="restoreBackup('${b.id}')">Restore</button>
+            `;
+              body.appendChild(card);
+            });
+          } else {
+            body.innerHTML =
+              '<div class="empty-state">No previous backups found. Backups are created automatically on each save.</div>';
+          }
+        } catch (err) {
+          body.innerHTML = `<div class="empty-state">Error: ${err.message}</div>`;
+        }
+      }
+
+      async function restoreBackup(id) {
+        if (confirm(`Are you sure you want to restore snapshot ${id}?`)) {
+          try {
+            const res = await fetch("/api/restore", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ backup_id: id }),
+            });
+            const data = await res.json();
+            if (data.success) {
+              showToast("Snapshot restored successfully!", "success");
+              closeModal("backupModal");
+              await init();
+            } else {
+              showToast("Restore error: " + data.error, "error");
+            }
+          } catch (err) {
+            showToast("Restore request failed", "error");
+          }
+        }
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("open");
+      }
+
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text);
+        showToast(`Copied ${text} to clipboard`, "info");
+      }
+
+      function showToast(msg, type = "info") {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        toast.className = `toast toast-${type}`;
+        toast.innerHTML = `<span>${type === "success" ? "✓" : type === "error" ? "⚠" : "ℹ"}</span> <span>${escapeHtml(msg)}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
+      }
+
+      function escapeHtml(str) {
+        if (!str) return "";
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      window.addEventListener("DOMContentLoaded", init);
+    </script>
+  </body>
+</html>

@@ -12,8 +12,8 @@
 #define LEVEL_CAP_BADGE_COUNT           3 // POKE-CONFLUENCE: Level cap is chosen according to the number of badges held across Kanto, Johto and Hoenn
 
 // Level Cap Configs
-#define B_EXP_CAP_TYPE                  EXP_CAP_SOFT   // [EXP_CAP_NONE, EXP_CAP_HARD, EXP_CAP_SOFT] choose the type of level cap to apply
-#define B_LEVEL_CAP_TYPE                LEVEL_CAP_BADGE_COUNT // [LEVEL_CAP_NONE, LEVEL_CAP_FLAG_LIST, LEVEL_CAP_VARIABLE, LEVEL_CAP_BADGE_COUNT] choose the method to derive the level cap
+#define B_EXP_CAP_TYPE                  EXP_CAP_NONE   // [EXP_CAP_NONE, EXP_CAP_HARD, EXP_CAP_SOFT] choose the type of level cap to apply
+#define B_LEVEL_CAP_TYPE                LEVEL_CAP_NONE // [LEVEL_CAP_NONE, LEVEL_CAP_FLAG_LIST, LEVEL_CAP_VARIABLE, LEVEL_CAP_BADGE_COUNT] choose the method to derive the level cap
 #define B_LEVEL_CAP_VARIABLE            0 // event variable used to derive level cap if B_LEVEL_CAP_TYPE is set to LEVEL_CAP_VARIABLE
 
 #define B_RARE_CANDY_CAP                FALSE // If set to true, Rare Candies can't be used to go over the level cap

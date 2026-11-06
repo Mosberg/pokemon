@@ -2,8 +2,8 @@
 # autolink logic based on https://github.com/zopieux/py-gfm/blob/fd7b33ed138d240d24dfb659acff7d4ce3f43745/gfm/autolink.py
 
 import json
-import sys
 import re
+import sys
 
 URL_RE = re.compile(
     r"(```(?s:.)+?```|`.+?`|<.+?>)|"
