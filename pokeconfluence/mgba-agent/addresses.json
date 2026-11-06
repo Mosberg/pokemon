@@ -3,18 +3,18 @@
     "gMain": 50357968,
     "gSaveBlock1Ptr": 50352596,
     "gSaveBlock2Ptr": 50352592,
-    "gPlayerParty": 33756680,
-    "gPlayerPartyCount": 33756664,
-    "gEnemyParty": 33757280,
-    "gEnemyPartyCount": 33756665,
+    "gPlayerParty": 33756756,
+    "gPlayerPartyCount": 33756740,
+    "gEnemyParty": 33757356,
+    "gEnemyPartyCount": 33756741,
     "gBattleMons": 33555736,
     "gBattleTypeFlags": 33554676,
     "gBattleOutcome": 33554688,
     "gBackupMapLayout": 50341136,
-    "sWarpDestination": 33754384,
-    "gSpecialVar_Result": 33559958,
+    "sWarpDestination": 33754460,
+    "gSpecialVar_Result": 33559966,
     "gAiBridgeMailbox": 33554436,
-    "CB2_LoadMap": 135863524,
-    "CB2_Overworld": 135876228
+    "CB2_LoadMap": 135877088,
+    "CB2_Overworld": 135889792
   }
 }

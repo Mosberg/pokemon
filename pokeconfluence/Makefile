@@ -1,8 +1,8 @@
 GAME_VERSION ?= EMERALD
-TITLE        ?= POKEMON EMER
+TITLE        ?= POKECONFLUEN
 GAME_CODE    ?= BPEE
-BUILD_NAME   ?= emerald
-MAP_VERSION  ?= emerald
+BUILD_NAME   ?= confluence
+MAP_VERSION  ?= multiregion
 
 ifeq (firered, $(or $(BUILD), $(MAKECMDGOALS)))
   	GAME_VERSION 	:= FIRERED
@@ -607,6 +607,9 @@ endif
 $(ROM): $(ELF)
 	$(OBJCOPY) -O binary $< $@
 	$(FIX) $@ -p --silent
+ifeq ($(BUILD_NAME),confluence)
+	@cp -f $(ROM) pokeemerald.gba
+endif
 
 emerald: all
 firered: all

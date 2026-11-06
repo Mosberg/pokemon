@@ -13,6 +13,7 @@ Multiregion_EventScript_ChooseStartRegion::
 
 Multiregion_EventScript_StartInKanto::
 	setrespawn HEAL_LOCATION_PALLET_TOWN
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	warp MAP_PALLET_TOWN_PLAYERS_HOUSE_2F, 6, 6
 	waitstate
@@ -20,6 +21,7 @@ Multiregion_EventScript_StartInKanto::
 
 Multiregion_EventScript_StartInJohto::
 	setrespawn HEAL_LOCATION_JOHTO_NEW_BARK_TOWN
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	warp MAP_JOHTO_PLAYERS_HOUSE_2F, 3, 3
 	waitstate

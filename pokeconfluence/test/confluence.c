@@ -38,6 +38,7 @@
 #include "clock.h"
 #include "rtc.h"
 #include "script.h"
+#include "overworld.h"
 
 static void ClearAllBadges(void)
 {
@@ -966,6 +967,25 @@ TEST("Confluence: Ruins of Alph secret chambers open with proper riddle triggers
     // Test Ho-Oh Chamber: Ho-Oh in party opens hidden chamber
     FlagClear(FLAG_JOHTO_WALL_OPENED_IN_HO_OH_CHAMBER);
     EXPECT_EQ(FlagGet(FLAG_JOHTO_WALL_OPENED_IN_HO_OH_CHAMBER), FALSE);
+}
+
+TEST("Confluence: starting maps for Kanto, Johto, and Hoenn are valid and populated")
+{
+    const struct MapHeader *kantoHeader = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), MAP_NUM(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F));
+    const struct MapHeader *johtoHeader = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_JOHTO_PLAYERS_HOUSE_2F), MAP_NUM(MAP_JOHTO_PLAYERS_HOUSE_2F));
+    const struct MapHeader *hoennHeader = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F), MAP_NUM(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F));
+
+    EXPECT_NE(kantoHeader, NULL);
+    EXPECT_NE(johtoHeader, NULL);
+    EXPECT_NE(hoennHeader, NULL);
+
+    EXPECT_EQ(kantoHeader->regionMapSectionId, MAPSEC_PALLET_TOWN);
+    EXPECT_EQ(johtoHeader->regionMapSectionId, MAPSEC_JOHTO_NEW_BARK_TOWN);
+    EXPECT_EQ(hoennHeader->regionMapSectionId, MAPSEC_LITTLEROOT_TOWN);
+
+    EXPECT_NE(kantoHeader->mapLayout, NULL);
+    EXPECT_NE(johtoHeader->mapLayout, NULL);
+    EXPECT_NE(hoennHeader->mapLayout, NULL);
 }
 
 
