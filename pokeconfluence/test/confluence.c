@@ -949,6 +949,26 @@ TEST("Confluence: Authentic National Park Bug-Catching Contest Minigame")
     EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST), FALSE);
 }
 
+TEST("Confluence: Ruins of Alph secret chambers open with proper riddle triggers")
+{
+    // Test Kabuto Chamber: Escape Rope opens hidden chamber
+    FlagClear(FLAG_JOHTO_WALL_OPENED_IN_KABUTO_CHAMBER);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_WALL_OPENED_IN_KABUTO_CHAMBER), FALSE);
+
+    // Test Aerodactyl Chamber: Field Kit / Flash / HM05 opens hidden chamber
+    FlagClear(FLAG_JOHTO_WALL_OPENED_IN_AERODACTYL_CHAMBER);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_WALL_OPENED_IN_AERODACTYL_CHAMBER), FALSE);
+
+    // Test Omanyte Chamber: Water Stone opens hidden chamber
+    FlagClear(FLAG_JOHTO_WALL_OPENED_IN_OMANYTE_CHAMBER);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_WALL_OPENED_IN_OMANYTE_CHAMBER), FALSE);
+
+    // Test Ho-Oh Chamber: Ho-Oh in party opens hidden chamber
+    FlagClear(FLAG_JOHTO_WALL_OPENED_IN_HO_OH_CHAMBER);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_WALL_OPENED_IN_HO_OH_CHAMBER), FALSE);
+}
+
+
 
 
 

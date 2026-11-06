@@ -484,6 +484,14 @@ This document tracks all fully converted, integrated, and verified features in *
   - Full cleanup (`JohtoBugContestCleanup()`): retrieves remaining Park Balls, returns held party Pokémon, sets `FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST`, and resets daily at midnight.
   - C unit test `TEST("Confluence: Authentic National Park Bug-Catching Contest Minigame")` verified in `test/confluence.c` (26/26 passed).
 
+- **Ruins of Alph Secret Riddle Chambers**:
+  - Implemented authentic Crystal puzzle riddle wall checks across all four chambers:
+    - Kabuto Chamber (`RuinsOfAlphKabutoChamber_Johto`): checks for `ITEM_ESCAPE_ROPE` in bag to open the back wall (`FLAG_JOHTO_WALL_OPENED_IN_KABUTO_CHAMBER`).
+    - Aerodactyl Chamber (`RuinsOfAlphAerodactylChamber_Johto`): checks for `ITEM_FIELD_KIT`, `ITEM_HM05`, or a party member knowing `FIELD_MOVE_FLASH` to open the back wall (`FLAG_JOHTO_WALL_OPENED_IN_AERODACTYL_CHAMBER`).
+    - Omanyte Chamber (`RuinsOfAlphOmanyteChamber_Johto`): checks for `ITEM_WATER_STONE` in bag to open the back wall (`FLAG_JOHTO_WALL_OPENED_IN_OMANYTE_CHAMBER`).
+    - Ho-Oh Chamber (`RuinsOfAlphHoOhChamber_Johto`): checks for `SPECIES_HO_OH` in player's party to open the back wall (`FLAG_JOHTO_WALL_OPENED_IN_HO_OH_CHAMBER`).
+  - C unit test `TEST("Confluence: Ruins of Alph secret chambers open with proper riddle triggers")` verified in `test/confluence.c` (27/27 passed).
+
 
 
 

@@ -16,6 +16,7 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 | **4. Day-of-Week Overworld Events** | Completed | `[██████████] 100%` | Friday Lapras in Union Cave B2F with weekly respawn & all 7 Weekday Siblings item gifts |
 | **5. Lake of Rage Shiny Red Gyarados** | Completed | `[██████████] 100%` | Authentic Level 30 forced-shiny Gyarados battle, overworld sprite clearance, Red Scale reward, and Mr. Pokémon Exp. Share trade |
 | **6. Bug-Catching Contest Minigame** | Completed | `[██████████] 100%` | 20-minute (500 steps) countdown timer, 20 Park Balls, authentic species rarity/HP/IV judging formula, and tiered Sun Stone / Everstone / Sitrus Berry / Oran Berry prize distribution |
+| **7. Ruins of Alph Secret Riddle Chambers** | Completed | `[██████████] 100%` | Authentic riddle triggers opening hidden back wall chambers for Escape Rope (Kabuto), Flash/Field Kit (Aerodactyl), Water Stone (Omanyte), and Ho-Oh (Ho-Oh) |
 
 ---
 
@@ -127,3 +128,17 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
     - Automated unit test `TEST("Confluence: Authentic National Park Bug-Catching Contest Minigame")` verified in `test/confluence.c` (26/26 passed).
   - **Missing**:
     - None. 100% faithful replication of Pokémon Crystal.
+
+---
+
+## 7. Ruins of Alph Secret Riddle Chambers
+
+- `[██████████] 100%` **Authentic Puzzle Riddle Triggers**
+  - **Completed**:
+    - Kabuto Chamber (`RuinsOfAlphKabutoChamber_Johto`): verifies `ITEM_ESCAPE_ROPE` in bag to open back wall (`FLAG_JOHTO_WALL_OPENED_IN_KABUTO_CHAMBER`).
+    - Aerodactyl Chamber (`RuinsOfAlphAerodactylChamber_Johto`): verifies `ITEM_FIELD_KIT`, `ITEM_HM05`, or a party member knowing `FIELD_MOVE_FLASH` (`checkfieldmove FIELD_MOVE_FLASH`) to open back wall (`FLAG_JOHTO_WALL_OPENED_IN_AERODACTYL_CHAMBER`).
+    - Omanyte Chamber (`RuinsOfAlphOmanyteChamber_Johto`): verifies `ITEM_WATER_STONE` in bag to open back wall (`FLAG_JOHTO_WALL_OPENED_IN_OMANYTE_CHAMBER`).
+    - Ho-Oh Chamber (`RuinsOfAlphHoOhChamber_Johto`): verifies `SPECIES_HO_OH` in party to open back wall (`FLAG_JOHTO_WALL_OPENED_IN_HO_OH_CHAMBER`).
+    - Automated unit test `TEST("Confluence: Ruins of Alph secret chambers open with proper riddle triggers")` in `test/confluence.c` (27/27 passed).
+  - **Missing**:
+    - None. All four secret riddle chambers are fully functional and verified.

@@ -45,6 +45,10 @@ RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberCheckWallScene_Entry::
 
 
 RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberCheckWallScene:
+	checkitem ITEM_ESCAPE_ROPE, 1
+	goto_if_eq VAR_RESULT, 0, RuinsOfAlphKabutoChamber_Johto_KabutoChamber_Skip
+	setflag FLAG_JOHTO_WALL_OPENED_IN_KABUTO_CHAMBER
+RuinsOfAlphKabutoChamber_Johto_KabutoChamber_Skip:
 	goto_if_set FLAG_JOHTO_WALL_OPENED_IN_KABUTO_CHAMBER, RuinsOfAlphKabutoChamber_Johto_RuinsOfAlphKabutoChamberCheckWallScene_OpenWall
 	releaseall
 	end

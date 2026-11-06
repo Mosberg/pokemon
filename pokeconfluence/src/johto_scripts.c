@@ -674,5 +674,3 @@ void JohtoCheckBattleTowerEligibility(void)
 
     gSpecialVar_Result = (count >= 3) ? TRUE : FALSE;
 }
-
-

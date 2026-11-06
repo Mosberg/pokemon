@@ -53,13 +53,14 @@ Hard limits (engine, format, tooling, save space) tracked while building **Poké
 
 ## 4. Subsystems Targeted for Expansion
 
-The following features can be expanded from the base conversion:
+All 6 primary expansion subsystems have been fully implemented, integrated, and verified:
 
-1. **Morning & Night Encounter Sets**: Import discrete morning and night encounter tables for Johto routes using `OW_TIME_OF_DAY_ENCOUNTERS`.
-2. **Headbutt Tree Encounters**: Implement overworld Headbutt field interaction on small trees with wild encounter tables (Pineco, Heracross, Aipom).
-3. **Roaming Legendary Beasts**: Full overworld roaming mechanics across Johto routes for Raikou and Entei.
+1. **Morning & Night Encounter Sets**: Discrete morning, day, and night encounter tables active for all Johto maps in `wild_encounters.json` & `.h` via `OW_TIME_OF_DAY_ENCOUNTERS`.
+2. **Headbutt Tree Encounters**: Authentic GBC tree metatile interaction (`MB_HEADBUTT_TREE`), tree coordinate scoring formula, asleep wild mon logic, and 7 table types.
+3. **Roaming Legendary Beasts**: Overworld roaming network across 16 Johto routes for Raikou and Entei with flee AI, persistent status, and authentic battle BGM.
 4. **Day-of-Week Overworld Events**:
-   - Friday Lapras in Union Cave B2F.
-   - 7 Day-of-Week Siblings (Arthur, Sunny, etc.) granting type-enhancing held items.
-5. **Lake of Rage Red Gyarados Event**: Dynamic shiny Red Gyarados battle and Red Scale exchange with Mr. Pokémon for Exp. Share.
-6. **Full Bug-Catching Contest Minigame**: 20-minute timer, 20 Park Balls, judging algorithm based on species/level/IVs/HP, and Sun Stone first prize.
+   - Friday Lapras in Union Cave B2F with weekly midnight respawn.
+   - All 7 Weekday Siblings with type-enhancing held item rewards.
+5. **Lake of Rage Red Gyarados Event**: Level 30 forced-shiny `SPECIES_GYARADOS` battle, Lance reveal, and Mr. Pokémon Red Scale trade for Exp. Share.
+6. **Full Bug-Catching Contest Minigame**: 20-minute (500 steps) timer, 20 Park Balls, authentic species/level/IV/HP judging algorithm, and prize distribution.
+7. **Ruins of Alph Secret Riddle Chambers**: Secret chambers open upon solving authentic puzzle riddles (Escape Rope, Flash/Field Kit, Water Stone, Ho-Oh).
