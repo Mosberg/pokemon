@@ -474,5 +474,16 @@ This document tracks all fully converted, integrated, and verified features in *
   - Authentic Route 30 trade with Mr. Pokémon exchanges `ITEM_RED_SCALE` for `ITEM_EXP_SHARE`.
   - C unit test `TEST("Confluence: Authentic Lake of Rage Shiny Red Gyarados and Red Scale trade")` verified in `test/confluence.c` (25/25 passed).
 
+- **National Park Bug-Catching Contest Minigame**:
+  - Gate entries at Route 35 and Route 36 checking calendar weekday (Tuesday, Thursday, Saturday) and single-mon party rules.
+  - 20 Park Balls (`ITEM_SPORT_BALL`) delivered and 5 random AI contestants randomized to appear in the park and gate lobby.
+  - 20-minute (500 steps) countdown timer tracked across `field_control_avatar.c` via `JohtoBugContestTakeStep()` with authentic audio cue (`SE_DING_DONG`) on out-of-balls and time's up.
+  - Officer dialogue dynamically converts steps to minutes remaining via `JohtoGetBugContestRemainingMinutes()`.
+  - Authentic Crystal judging algorithm in `JohtoCalculateContestScore()` and `JohtoBugContestJudge()` evaluating Species base stats (Scyther/Pinsir vs Caterpie/Weedle), remaining HP / 8, Max HP * 4, and IV totals against 10 authentic AI contestants (Don, Ed, Nick, William, Benny, Barry, Cindy, Josh, Samuel, Kipp).
+  - Awarding 1st Prize (`ITEM_SUN_STONE`), 2nd Prize (`ITEM_EVERSTONE`), 3rd Prize (`ITEM_SITRUS_BERRY`), and consolation prize (`ITEM_ORAN_BERRY`), with full-bag item holding logic by the gate officer.
+  - Full cleanup (`JohtoBugContestCleanup()`): retrieves remaining Park Balls, returns held party Pokémon, sets `FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST`, and resets daily at midnight.
+  - C unit test `TEST("Confluence: Authentic National Park Bug-Catching Contest Minigame")` verified in `test/confluence.c` (26/26 passed).
+
+
 
 

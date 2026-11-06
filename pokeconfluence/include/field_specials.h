@@ -43,5 +43,12 @@ void CutMoveOpenDottedHoleDoor(void);
 void JohtoGetWeekday(void);
 void JohtoSetWeekday(void);
 void JohtoSetWildMonShiny(void);
+void JohtoGiveParkBalls(void);
+bool8 JohtoBugContestTakeStep(void);
+void JohtoGetBugContestRemainingMinutes(void);
+u32 JohtoCalculateContestScore(struct Pokemon *mon);
+void JohtoBugContestJudge(void);
+void JohtoBugContestBufferWinner(void);
+void JohtoBugContestCleanup(void);
 
 #endif // GUARD_FIELD_SPECIALS_H

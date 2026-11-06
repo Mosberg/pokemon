@@ -671,3 +671,7 @@ gSpecials::
 	def_special JohtoCheckMysteryGift
 	def_special JohtoGetMysteryGiftItem
 	def_special JohtoCheckBattleTowerEligibility
+	def_special JohtoGetBugContestRemainingMinutes
+	def_special JohtoBugContestJudge
+	def_special JohtoBugContestBufferWinner
+	def_special JohtoBugContestCleanup

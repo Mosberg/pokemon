@@ -13,9 +13,12 @@
 #include "battle.h"
 #include "random.h"
 #include "daycare.h"
+#include "script.h"
 #include "constants/items.h"
 #include "constants/species.h"
 #include "constants/moves.h"
+#include "constants/maps.h"
+#include "constants/pokeball.h"
 #include "constants/johto_flags.h"
 
 // Crystal's time-of-day slots: MORN 4-9, DAY 10-17, NITE 18-3. VAR_0x8004 holds a mask (1 MORN, 2 DAY, 4 NITE);
@@ -300,6 +303,9 @@ void JohtoSetWildMonShiny(void)
     SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_SHINY, &isShiny);
 }
 
+extern const u8 Johto_BugContest_EventScript_TimesUp[];
+extern const u8 Johto_BugContest_EventScript_OutOfBalls[];
+
 void JohtoGiveParkBalls(void)
 {
     u32 i;
@@ -308,7 +314,12 @@ void JohtoGiveParkBalls(void)
     // Give 20 Sport Balls for the Bug-Catching Contest
     AddBagItem(ITEM_SPORT_BALL, 20);
 
-    // Randomly pick 5 of the 10 contestants to appear in the park
+    // Initialize 20-minute (500 steps) countdown timer
+    VarSet(VAR_JOHTO_BUG_CONTEST_STEPS, 500);
+    VarSet(VAR_JOHTO_BUG_CONTEST_SCORE, 0);
+    VarSet(VAR_JOHTO_BUG_CONTEST_PLACEMENT, 0);
+
+    // Randomly pick 5 of the 10 contestants to appear in the park and gate
     for (i = 0; i < 10; i++)
         indices[i] = i;
 
@@ -321,11 +332,259 @@ void JohtoGiveParkBalls(void)
     }
 
     for (i = 0; i < 5; i++)
+    {
         FlagClear(FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1A + indices[i]);
+        FlagClear(FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1B + indices[i]);
+    }
     for (i = 5; i < 10; i++)
+    {
         FlagSet(FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1A + indices[i]);
+        FlagSet(FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1B + indices[i]);
+    }
 
     gSpecialVar_Result = TRUE;
+}
+
+// POKE-CONFLUENCE: Overworld step decrement & timer expiration for Bug-Catching Contest
+bool8 JohtoBugContestTakeStep(void)
+{
+    if (!FlagGet(FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER))
+        return FALSE;
+
+    if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(MAP_JOHTO_NATIONAL_PARK_BUG_CONTEST)
+        || gSaveBlock1Ptr->location.mapNum != MAP_NUM(MAP_JOHTO_NATIONAL_PARK_BUG_CONTEST))
+        return FALSE;
+
+    // Check if player has run out of Sport Balls
+    if (CheckBagHasItem(ITEM_SPORT_BALL, 1) == FALSE)
+    {
+        ScriptContext_SetupScript(Johto_BugContest_EventScript_OutOfBalls);
+        return TRUE;
+    }
+
+    u16 steps = VarGet(VAR_JOHTO_BUG_CONTEST_STEPS);
+    if (steps > 0)
+    {
+        steps--;
+        VarSet(VAR_JOHTO_BUG_CONTEST_STEPS, steps);
+    }
+
+    if (steps == 0)
+    {
+        ScriptContext_SetupScript(Johto_BugContest_EventScript_TimesUp);
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+// POKE-CONFLUENCE: Calculates remaining minutes for officer dialogue (from 1 to 20)
+void JohtoGetBugContestRemainingMinutes(void)
+{
+    u16 steps = VarGet(VAR_JOHTO_BUG_CONTEST_STEPS);
+    u16 mins;
+
+    if (steps == 0)
+        mins = 0;
+    else
+        mins = (steps + 24) / 25;
+
+    gSpecialVar_Result = mins;
+}
+
+struct BugContestantData
+{
+    const u8 name[12];
+    struct {
+        u16 species;
+        u16 baseScore;
+    } entries[3];
+};
+
+static const struct BugContestantData sBugContestants[10] =
+{
+    { _("DON"),     { {SPECIES_KAKUNA, 300},     {SPECIES_METAPOD, 285},    {SPECIES_CATERPIE, 226} } },
+    { _("ED"),      { {SPECIES_BUTTERFREE, 286}, {SPECIES_BUTTERFREE, 251}, {SPECIES_CATERPIE, 237} } },
+    { _("NICK"),    { {SPECIES_SCYTHER, 357},    {SPECIES_BUTTERFREE, 349}, {SPECIES_PINSIR, 368} } },
+    { _("WILLIAM"), { {SPECIES_PINSIR, 332},     {SPECIES_BUTTERFREE, 324}, {SPECIES_VENONAT, 321} } },
+    { _("BENNY"),   { {SPECIES_BUTTERFREE, 318}, {SPECIES_WEEDLE, 295},     {SPECIES_CATERPIE, 285} } },
+    { _("BARRY"),   { {SPECIES_PINSIR, 366},     {SPECIES_VENONAT, 329},    {SPECIES_KAKUNA, 314} } },
+    { _("CINDY"),   { {SPECIES_BUTTERFREE, 341}, {SPECIES_METAPOD, 301},    {SPECIES_CATERPIE, 264} } },
+    { _("JOSH"),    { {SPECIES_SCYTHER, 326},    {SPECIES_BUTTERFREE, 292}, {SPECIES_METAPOD, 282} } },
+    { _("SAMUEL"),  { {SPECIES_WEEDLE, 270},     {SPECIES_PINSIR, 282},     {SPECIES_CATERPIE, 251} } },
+    { _("KIPP"),    { {SPECIES_VENONAT, 267},    {SPECIES_PARAS, 254},      {SPECIES_KAKUNA, 259} } },
+};
+
+struct ContestParticipant
+{
+    u8 name[PLAYER_NAME_LENGTH + 1];
+    u16 species;
+    u16 score;
+    bool8 isPlayer;
+};
+
+static EWRAM_DATA struct ContestParticipant sTopContestants[3] = {0};
+
+// POKE-CONFLUENCE: Authentic GBC Bug-Catching Contest scoring formula adapted for GBA
+u32 JohtoCalculateContestScore(struct Pokemon *mon)
+{
+    if (mon == NULL || GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE)
+        return 0;
+
+    CalculateMonStats(mon);
+
+    u16 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
+    u16 atk = GetMonData(mon, MON_DATA_ATK);
+    u16 def = GetMonData(mon, MON_DATA_DEF);
+    u16 spd = GetMonData(mon, MON_DATA_SPEED);
+    u16 spAtk = GetMonData(mon, MON_DATA_SPATK);
+    u16 spDef = GetMonData(mon, MON_DATA_SPDEF);
+    u16 hp = GetMonData(mon, MON_DATA_HP);
+    u16 ivSum = GetMonData(mon, MON_DATA_HP_IV) +
+                GetMonData(mon, MON_DATA_ATK_IV) +
+                GetMonData(mon, MON_DATA_DEF_IV) +
+                GetMonData(mon, MON_DATA_SPEED_IV) +
+                GetMonData(mon, MON_DATA_SPATK_IV) +
+                GetMonData(mon, MON_DATA_SPDEF_IV);
+    u16 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
+
+    u32 score = 0;
+    // Max HP * 4
+    score += (maxHp * 4);
+    // Sum of stat low bytes (Attack + Defense + Speed + SpAtk + SpDef)
+    score += (atk + def + spd + spAtk + spDef);
+    // IV / DV contribution (up to ~16-30 points)
+    score += (ivSum * 16) / 186;
+    // Remaining HP / 8
+    score += (hp / 8);
+    // Held item bonus (+1)
+    if (heldItem != ITEM_NONE)
+        score += 1;
+
+    return score;
+}
+
+// POKE-CONFLUENCE: Contest judging based on rarity, remaining HP, level, and IVs
+void JohtoBugContestJudge(void)
+{
+    struct ContestParticipant participants[6];
+    u32 participantCount = 0;
+    u32 i, j;
+    u32 bestPlayerScore = 0;
+    u16 bestPlayerSpecies = SPECIES_NONE;
+
+    // 1. Find player's best mon caught with Sport Ball in the contest
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES) != SPECIES_NONE
+            && GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_POKEBALL) == BALL_SPORT)
+        {
+            u32 s = JohtoCalculateContestScore(&gParties[B_TRAINER_PLAYER][i]);
+            if (s > bestPlayerScore)
+            {
+                bestPlayerScore = s;
+                bestPlayerSpecies = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES);
+            }
+        }
+    }
+
+    // Add player to participants
+    StringCopy(participants[0].name, gSaveBlock2Ptr->playerName);
+    participants[0].species = bestPlayerSpecies;
+    participants[0].score = bestPlayerScore;
+    participants[0].isPlayer = TRUE;
+    participantCount = 1;
+
+    // 2. Add the 5 active AI contestants
+    for (i = 0; i < 10; i++)
+    {
+        if (!FlagGet(FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1A + i))
+        {
+            u32 pick = Random() % 3;
+            u16 perturb = Random() % 8;
+            StringCopy(participants[participantCount].name, sBugContestants[i].name);
+            participants[participantCount].species = sBugContestants[i].entries[pick].species;
+            participants[participantCount].score = sBugContestants[i].entries[pick].baseScore + perturb;
+            participants[participantCount].isPlayer = FALSE;
+            participantCount++;
+            if (participantCount >= 6)
+                break;
+        }
+    }
+
+    // 3. Sort participants by score descending
+    for (i = 0; i < participantCount - 1; i++)
+    {
+        for (j = 0; j < participantCount - 1 - i; j++)
+        {
+            if (participants[j].score < participants[j + 1].score)
+            {
+                struct ContestParticipant tmp = participants[j];
+                participants[j] = participants[j + 1];
+                participants[j + 1] = tmp;
+            }
+        }
+    }
+
+    // Save top 3
+    for (i = 0; i < 3; i++)
+        sTopContestants[i] = participants[i];
+
+    // Determine player's placement
+    u8 playerPlacement = 4; // Consolation
+    if (bestPlayerScore > 0)
+    {
+        for (i = 0; i < participantCount; i++)
+        {
+            if (participants[i].isPlayer)
+            {
+                playerPlacement = (i < 3) ? (i + 1) : 4;
+                break;
+            }
+        }
+    }
+
+    VarSet(VAR_JOHTO_BUG_CONTEST_SCORE, bestPlayerScore);
+    VarSet(VAR_JOHTO_BUG_CONTEST_PLACEMENT, playerPlacement);
+    gSpecialVar_Result = playerPlacement;
+}
+
+// POKE-CONFLUENCE: Buffers top contestant names and scores for dialogue
+void JohtoBugContestBufferWinner(void)
+{
+    u16 place = gSpecialVar_0x8004; // 1, 2, or 3
+    if (place >= 1 && place <= 3)
+    {
+        u8 idx = place - 1;
+        StringCopy(gStringVar1, sTopContestants[idx].name);
+        StringCopy(gStringVar2, GetSpeciesName(sTopContestants[idx].species));
+        ConvertIntToDecimalStringN(gStringVar3, sTopContestants[idx].score, STR_CONV_MODE_LEFT_ALIGN, 4);
+        gSpecialVar_Result = sTopContestants[idx].score;
+    }
+}
+
+// POKE-CONFLUENCE: Resets contest flags, scenes, and returns remaining balls
+void JohtoBugContestCleanup(void)
+{
+    u32 i;
+    u16 sportBalls = CheckBagHasItem(ITEM_SPORT_BALL, 1);
+    if (sportBalls)
+        RemoveBagItem(ITEM_SPORT_BALL, 20);
+
+    FlagClear(FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER);
+    FlagSet(FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST);
+    FlagClear(FLAG_JOHTO_LEFT_MONS_WITH_CONTEST_OFFICER);
+
+    // Hide all contestants
+    for (i = 0; i < 10; i++)
+    {
+        FlagSet(FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1A + i);
+        FlagSet(FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1B + i);
+    }
+
+    VarSet(VAR_JOHTO_SCENE_ROUTE_36_NATIONAL_PARK_GATE, 0);
+    VarSet(VAR_JOHTO_SCENE_ROUTE_35_NATIONAL_PARK_GATE, 0);
+    VarSet(VAR_JOHTO_BUG_CONTEST_STEPS, 0);
 }
 
 static const u16 sJohtoFruitTreeFlags[] = {

@@ -15,7 +15,7 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 | **3. Roaming Legendary Beasts** | Completed | `[██████████] 100%` | Overworld roaming AI across Johto routes for Raikou and Entei with authentic starting routes, flee logic, and battle music |
 | **4. Day-of-Week Overworld Events** | Completed | `[██████████] 100%` | Friday Lapras in Union Cave B2F with weekly respawn & all 7 Weekday Siblings item gifts |
 | **5. Lake of Rage Shiny Red Gyarados** | Completed | `[██████████] 100%` | Authentic Level 30 forced-shiny Gyarados battle, overworld sprite clearance, Red Scale reward, and Mr. Pokémon Exp. Share trade |
-| **6. Bug-Catching Contest Minigame** | Planned | `[░░░░░░░░░░] 0%` | 20-minute timer, 20 Park Balls, judging scoring algorithm, and Sun Stone prize distribution |
+| **6. Bug-Catching Contest Minigame** | Completed | `[██████████] 100%` | 20-minute (500 steps) countdown timer, 20 Park Balls, authentic species rarity/HP/IV judging formula, and tiered Sun Stone / Everstone / Sitrus Berry / Oran Berry prize distribution |
 
 ---
 
@@ -104,9 +104,26 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 
 ## 6. Bug-Catching Contest Minigame
 
-- `[░░░░░░░░░░] 0%` **National Park Tuesday/Thursday/Saturday Contest**
-  - **Completed**: Entry gate check and 20 Park Balls delivery (`GiveParkBalls`) in `NationalParkBugContestGate_Johto`.
+- `[██████████] 100%` **National Park Tuesday/Thursday/Saturday Contest**
+  - **Completed**:
+    - Gate entries at Route 35 and Route 36 checking calendar weekday (Tuesday, Thursday, Saturday) and party limits.
+    - 20 Park Balls (`ITEM_SPORT_BALL`) awarded on contest start; 5 random contestants chosen to compete in National Park and appear in gate lobby.
+    - 20-minute / 500-step countdown timer hooked into `field_control_avatar.c` via `JohtoBugContestTakeStep()`:
+      - Intercepts out-of-balls and step exhaustion with authentic "Ding-dong!" overworld alerts.
+      - Warps player back to gate for judging ceremony.
+      - Dialogue dynamically shows remaining minutes (`JohtoGetBugContestRemainingMinutes()`).
+    - Authentic Crystal judging calculation in `JohtoCalculateContestScore()` and `JohtoBugContestJudge()`:
+      - Factors in Species base stat rarity (Scyther/Pinsir vs Caterpie/Weedle), remaining HP / 8, Max HP * 4, and IV totals.
+      - Dynamic simulation of active AI contestants (Don, Ed, Nick, William, Benny, Barry, Cindy, Josh, Samuel, Kipp) with score perturbation.
+      - Top 3 placements and scores announced.
+    - Prize awarding system:
+      - 1st Place: `ITEM_SUN_STONE`
+      - 2nd Place: `ITEM_EVERSTONE`
+      - 3rd Place: `ITEM_SITRUS_BERRY`
+      - Consolation: `ITEM_ORAN_BERRY`
+      - Full bag logic: Gate officer holds prize with persistent flag until claimed.
+    - Contest cleanup (`JohtoBugContestCleanup()`): retrieves remaining Park Balls, returns held party Pokémon, sets `FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST`.
+    - Midnight daily reset in `DoDailyEvents()` resets contest eligibility.
+    - Automated unit test `TEST("Confluence: Authentic National Park Bug-Catching Contest Minigame")` verified in `test/confluence.c` (26/26 passed).
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` 20-minute step/time counter during contest.
-    - `[░░░░░░░░░░] 0%` Judging calculation based on caught mon's species rarity, remaining HP, level, and IV total.
-    - `[░░░░░░░░░░] 0%` Awarding `ITEM_SUN_STONE` (1st prize), `ITEM_EVERSTONE` (2nd prize), and `ITEM_SITRUS_BERRY` (3rd prize).
+    - None. 100% faithful replication of Pokémon Crystal.

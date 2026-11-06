@@ -38,20 +38,20 @@ Route35NationalParkGate_Johto_Route35NationalParkGateLeavingContestEarlyScript:
 	waitmovement OBJ_EVENT_ID_PLAYER
 	applymovement 1, Johto_Movement_Face_Right
 	waitmovement 1
-	setvar VAR_RESULT, 10
-	addvar VAR_RESULT, 1
+	special JohtoGetBugContestRemainingMinutes
 	buffernumberstring STR_VAR_3, VAR_RESULT
+	goto_if_eq VAR_RESULT, 0, Route35NationalParkGate_Johto_Route35NationalParkGate_GoToNorthGateForJudging
 	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1WantToFinishText
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, Route35NationalParkGate_Johto_Route35NationalParkGate_GoBackToContest
+Route35NationalParkGate_Johto_Route35NationalParkGate_GoToNorthGateForJudging:
 	message Route35NationalParkGate_Johto_Route35NationalParkGateOfficer1WaitAtNorthGateText
 	waitmessage
 	waitbuttonpress
 	closemessage
-	clearflag FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER
-	setflag FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST
-	releaseall
+	warp MAP_JOHTO_ROUTE_36_NATIONAL_PARK_GATE, 3, 4
+	waitstate
 	end
 
 Route35NationalParkGate_Johto_Route35NationalParkGate_GoBackToContest:

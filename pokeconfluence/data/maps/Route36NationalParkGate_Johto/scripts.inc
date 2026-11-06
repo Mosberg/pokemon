@@ -72,9 +72,9 @@ Route36NationalParkGate_Johto_Route36NationalParkGateLeavingContestEarlyScript_E
 Route36NationalParkGate_Johto_Route36NationalParkGateLeavingContestEarlyScript:
 	applymovement OBJ_EVENT_ID_PLAYER, Johto_Movement_Face_Up
 	waitmovement OBJ_EVENT_ID_PLAYER
-	setvar VAR_RESULT, 10
-	addvar VAR_RESULT, 1
+	special JohtoGetBugContestRemainingMinutes
 	buffernumberstring STR_VAR_3, VAR_RESULT
+	goto_if_eq VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36BugContestJudgeAndAward
 	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1WantToFinishText
 	waitmessage
 	yesnobox 20, 8
@@ -83,8 +83,115 @@ Route36NationalParkGate_Johto_Route36NationalParkGateLeavingContestEarlyScript:
 	waitmessage
 	waitbuttonpress
 	closemessage
-	clearflag FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER
-	setflag FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST
+	goto Route36NationalParkGate_Johto_Route36BugContestJudgeAndAward
+
+Route36NationalParkGate_Johto_Route36BugContestJudgeAndAward:
+	message Route36NationalParkGate_Johto_Text_ContestReadyToJudge
+	waitmessage
+	waitbuttonpress
+	closemessage
+	special JohtoBugContestJudge
+	@ Announce 3rd place
+	setvar VAR_0x8004, 3
+	special JohtoBugContestBufferWinner
+	message Route36NationalParkGate_Johto_Text_ContestThirdPlace
+	waitmessage
+	playse SE_PIN
+	waitse
+	waitbuttonpress
+	closemessage
+	@ Announce 2nd place
+	setvar VAR_0x8004, 2
+	special JohtoBugContestBufferWinner
+	message Route36NationalParkGate_Johto_Text_ContestSecondPlace
+	waitmessage
+	playse SE_PIN
+	waitse
+	waitbuttonpress
+	closemessage
+	@ Announce 1st place
+	setvar VAR_0x8004, 1
+	special JohtoBugContestBufferWinner
+	message Route36NationalParkGate_Johto_Text_ContestFirstPlace
+	waitmessage
+	playse SE_PIN
+	waitse
+	waitbuttonpress
+	closemessage
+	@ Award prize according to player placement in VAR_RESULT
+	goto_if_eq VAR_RESULT, 1, Route36NationalParkGate_Johto_Route36BugContest_1stPlace
+	goto_if_eq VAR_RESULT, 2, Route36NationalParkGate_Johto_Route36BugContest_2ndPlace
+	goto_if_eq VAR_RESULT, 3, Route36NationalParkGate_Johto_Route36BugContest_3rdPlace
+	@ Consolation prize
+	message Route36NationalParkGate_Johto_Text_ContestConsolationPrize
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_ORAN_BERRY
+	goto_if_eq VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36BugContest_NoRoomConsolation
+	goto Route36NationalParkGate_Johto_Route36BugContest_Finish
+
+Route36NationalParkGate_Johto_Route36BugContest_1stPlace:
+	bufferitemname STR_VAR_2, ITEM_SUN_STONE
+	message Route36NationalParkGate_Johto_Text_ContestPlayerWonPrize
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_SUN_STONE
+	goto_if_eq VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36BugContest_NoRoom1st
+	goto Route36NationalParkGate_Johto_Route36BugContest_Finish
+
+Route36NationalParkGate_Johto_Route36BugContest_2ndPlace:
+	bufferitemname STR_VAR_2, ITEM_EVERSTONE
+	message Route36NationalParkGate_Johto_Text_ContestPlayerWonPrize
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_EVERSTONE
+	goto_if_eq VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36BugContest_NoRoom2nd
+	goto Route36NationalParkGate_Johto_Route36BugContest_Finish
+
+Route36NationalParkGate_Johto_Route36BugContest_3rdPlace:
+	bufferitemname STR_VAR_2, ITEM_SITRUS_BERRY
+	message Route36NationalParkGate_Johto_Text_ContestPlayerWonPrize
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_SITRUS_BERRY
+	goto_if_eq VAR_RESULT, 0, Route36NationalParkGate_Johto_Route36BugContest_NoRoom3rd
+	goto Route36NationalParkGate_Johto_Route36BugContest_Finish
+
+Route36NationalParkGate_Johto_Route36BugContest_NoRoom1st:
+	setflag FLAG_JOHTO_CONTEST_OFFICER_HAS_SUN_STONE
+	goto Route36NationalParkGate_Johto_Route36BugContest_NoRoomCommon
+
+Route36NationalParkGate_Johto_Route36BugContest_NoRoom2nd:
+	setflag FLAG_JOHTO_CONTEST_OFFICER_HAS_EVERSTONE
+	goto Route36NationalParkGate_Johto_Route36BugContest_NoRoomCommon
+
+Route36NationalParkGate_Johto_Route36BugContest_NoRoom3rd:
+	setflag FLAG_JOHTO_CONTEST_OFFICER_HAS_GOLD_BERRY
+	goto Route36NationalParkGate_Johto_Route36BugContest_NoRoomCommon
+
+Route36NationalParkGate_Johto_Route36BugContest_NoRoomConsolation:
+	setflag FLAG_JOHTO_CONTEST_OFFICER_HAS_BERRY
+	goto Route36NationalParkGate_Johto_Route36BugContest_NoRoomCommon
+
+Route36NationalParkGate_Johto_Route36BugContest_NoRoomCommon:
+	message Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1WellHoldPrizeText
+	waitmessage
+	waitbuttonpress
+	goto Route36NationalParkGate_Johto_Route36BugContest_Finish
+
+Route36NationalParkGate_Johto_Route36BugContest_Finish:
+	goto_if_unset FLAG_JOHTO_LEFT_MONS_WITH_CONTEST_OFFICER, Route36NationalParkGate_Johto_Route36BugContest_Done
+	message Route36NationalParkGate_Johto_Text_ContestReturnParty
+	waitmessage
+	waitbuttonpress
+	clearflag FLAG_JOHTO_LEFT_MONS_WITH_CONTEST_OFFICER
+
+Route36NationalParkGate_Johto_Route36BugContest_Done:
+	message Route36NationalParkGate_Johto_Text_ContestJoinUsNextTime
+	waitmessage
+	waitbuttonpress
+	closemessage
+	special JohtoBugContestCleanup
 	releaseall
 	end
 
@@ -772,3 +879,43 @@ Route36NationalParkGate_Johto_Route36NationalParkGateOfficer1OkGoFinishText:
 	.string "OK. Please go back\n"
 	.string "outside and finish\l"
 	.string "up.$"
+
+Route36NationalParkGate_Johto_Text_ContestReadyToJudge:
+	.string "We will now judge the POKéMON\n"
+	.string "you've caught.\p"
+	.string "……\n"
+	.string "……\p"
+	.string "We have chosen the winners!\n"
+	.string "Are you ready for this?$"
+
+Route36NationalParkGate_Johto_Text_ContestThirdPlace:
+	.string "Placing third was {STR_VAR_1},\n"
+	.string "who caught a {STR_VAR_2}!\p"
+	.string "The score was {STR_VAR_3} points!$"
+
+Route36NationalParkGate_Johto_Text_ContestSecondPlace:
+	.string "Placing second was {STR_VAR_1},\n"
+	.string "who caught a {STR_VAR_2}!\p"
+	.string "The score was {STR_VAR_3} points!$"
+
+Route36NationalParkGate_Johto_Text_ContestFirstPlace:
+	.string "This Bug-Catching Contest\n"
+	.string "winner is… {STR_VAR_1},\l"
+	.string "who caught a {STR_VAR_2}!\p"
+	.string "The winning score was\n"
+	.string "{STR_VAR_3} points!$"
+
+Route36NationalParkGate_Johto_Text_ContestPlayerWonPrize:
+	.string "{PLAYER}, the prize winner,\n"
+	.string "wins a {STR_VAR_2}!$"
+
+Route36NationalParkGate_Johto_Text_ContestConsolationPrize:
+	.string "Everyone else gets an ORAN BERRY\n"
+	.string "as a consolation prize!$"
+
+Route36NationalParkGate_Johto_Text_ContestReturnParty:
+	.string "We'll return the POKéMON we kept\n"
+	.string "for you. Here you go!$"
+
+Route36NationalParkGate_Johto_Text_ContestJoinUsNextTime:
+	.string "Please join us for the next Contest!$"

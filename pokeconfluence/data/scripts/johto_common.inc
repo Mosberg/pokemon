@@ -51,6 +51,41 @@ Johto_Std_FruitTreeEmpty::
 	releaseall
 	end
 
+Johto_BugContest_EventScript_TimesUp::
+	lockall
+	playse SE_DING_DONG
+	waitse
+	message Johto_Text_BugContestTimesUp
+	waitmessage
+	waitbuttonpress
+	closemessage
+	warp MAP_JOHTO_ROUTE_36_NATIONAL_PARK_GATE, 3, 4
+	waitstate
+	end
+
+Johto_BugContest_EventScript_OutOfBalls::
+	lockall
+	playse SE_DING_DONG
+	waitse
+	message Johto_Text_BugContestOutOfBalls
+	waitmessage
+	waitbuttonpress
+	closemessage
+	warp MAP_JOHTO_ROUTE_36_NATIONAL_PARK_GATE, 3, 4
+	waitstate
+	end
+
+Johto_Text_BugContestTimesUp:
+	.string "Ding-dong!\p"
+	.string "Time's up!\n"
+	.string "The Bug-Catching Contest is over.$"
+
+Johto_Text_BugContestOutOfBalls:
+	.string "Ding-dong!\p"
+	.string "You have used up all your\n"
+	.string "PARK BALLS!\p"
+	.string "The Bug-Catching Contest is over.$"
+
 Johto_Text_CantCut:
 	.string "This tree looks like it\ncan be cut down!$"
 

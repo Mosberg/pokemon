@@ -818,6 +818,9 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
 
     if (SafariZoneTakeStep() == TRUE)
         return TRUE;
+    // POKE-CONFLUENCE: Johto Bug-Catching Contest step & timer countdown
+    if (JohtoBugContestTakeStep() == TRUE)
+        return TRUE;
     if (CountSSTidalStep(1) == TRUE)
     {
         ScriptContext_SetupScript(SSTidalCorridor_EventScript_ReachedStepCount);

@@ -12,6 +12,7 @@
 #include "regions.h"
 #include "constants/field_move.h"
 #include "constants/items.h"
+#include "constants/pokeball.h"
 #include "constants/map_types.h"
 #include "constants/maps.h"
 #include "constants/opponents.h"
@@ -871,6 +872,81 @@ TEST("Confluence: Authentic Lake of Rage Shiny Red Gyarados and Red Scale trade"
     // Cleanup
     RemoveBagItem(ITEM_EXP_SHARE, 1);
     FlagClear(FLAG_JOHTO_LAKE_OF_RAGE_RED_GYARADOS);
+}
+
+TEST("Confluence: Authentic National Park Bug-Catching Contest Minigame")
+{
+    u32 i;
+    u32 activeContestants = 0;
+    struct Pokemon scyther;
+    struct Pokemon caterpie;
+    u32 scytherScore;
+    u32 caterpieScore;
+    u8 pokeball = BALL_SPORT;
+
+    // 1. Entry gate setup
+    RemoveBagItem(ITEM_SPORT_BALL, 99);
+    FlagClear(FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER);
+    FlagClear(FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST);
+
+    JohtoGiveParkBalls();
+    EXPECT_EQ(CheckBagHasItem(ITEM_SPORT_BALL, 20), TRUE);
+    EXPECT_EQ(VarGet(VAR_JOHTO_BUG_CONTEST_STEPS), 500);
+
+    // Verify exactly 5 of 10 contestants are active (flag cleared)
+    for (i = 0; i < 10; i++)
+    {
+        if (!FlagGet(FLAG_JOHTO_BUG_CATCHING_CONTESTANT_1A + i))
+            activeContestants++;
+    }
+    EXPECT_EQ(activeContestants, 5);
+
+    // 2. Remaining minutes conversion
+    JohtoGetBugContestRemainingMinutes();
+    EXPECT_EQ(gSpecialVar_Result, 20);
+
+    // Decrement 25 steps -> 19 minutes left
+    VarSet(VAR_JOHTO_BUG_CONTEST_STEPS, 475);
+    JohtoGetBugContestRemainingMinutes();
+    EXPECT_EQ(gSpecialVar_Result, 19);
+
+    // 3. Scoring calculation
+    ZeroMonData(&scyther);
+    CreateMon(&scyther, SPECIES_SCYTHER, 14, 0, OTID_STRUCT_PRESET(0));
+    SetMonData(&scyther, MON_DATA_POKEBALL, &pokeball);
+
+    ZeroMonData(&caterpie);
+    CreateMon(&caterpie, SPECIES_CATERPIE, 7, 0, OTID_STRUCT_PRESET(0));
+    SetMonData(&caterpie, MON_DATA_POKEBALL, &pokeball);
+
+    scytherScore = JohtoCalculateContestScore(&scyther);
+    caterpieScore = JohtoCalculateContestScore(&caterpie);
+
+    // High rarity mon (Scyther) scores significantly higher than common mon (Caterpie)
+    EXPECT_GE(scytherScore, 300);
+    EXPECT_LE(caterpieScore, 260);
+    EXPECT_GT(scytherScore, caterpieScore);
+
+    // 4. Place Scyther in party and run judging
+    ZeroPlayerPartyMons();
+    gParties[B_TRAINER_PLAYER][0] = scyther;
+    gPartiesCount[B_TRAINER_PLAYER] = 1;
+
+    JohtoBugContestJudge();
+    EXPECT_EQ(VarGet(VAR_JOHTO_BUG_CONTEST_SCORE), scytherScore);
+    // Scyther with ~350+ score consistently places in top 3
+    EXPECT_LE(VarGet(VAR_JOHTO_BUG_CONTEST_PLACEMENT), 3);
+
+    // 5. Cleanup and daily reset
+    JohtoBugContestCleanup();
+    EXPECT_EQ(CheckBagHasItem(ITEM_SPORT_BALL, 1), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_BUG_CONTEST_TIMER), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST), TRUE);
+    EXPECT_EQ(VarGet(VAR_JOHTO_BUG_CONTEST_STEPS), 0);
+
+    // Midnight reset re-enables contest
+    DoDailyEvents(1);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST), FALSE);
 }
 
 
