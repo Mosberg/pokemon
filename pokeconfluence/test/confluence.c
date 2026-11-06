@@ -23,6 +23,7 @@
 #include "trainer_card.h"
 #include "mood.h"
 #include "johto_phone.h"
+#include "script_pokemon_util.h"
 #include "constants/johto_flags.h"
 #include "wild_encounter.h"
 #include "headbutt.h"
@@ -837,6 +838,41 @@ TEST("Confluence: Authentic Johto Day-of-Week events and Weekday Siblings")
         FlagClear(sSiblings[day].giftFlag);
     }
 }
+
+TEST("Confluence: Authentic Lake of Rage Shiny Red Gyarados and Red Scale trade")
+{
+    // Clear flags and bag before test
+    FlagClear(FLAG_JOHTO_LAKE_OF_RAGE_RED_GYARADOS);
+    FlagClear(FLAG_JOHTO_LAKE_OF_RAGE_LANCE);
+    RemoveBagItem(ITEM_RED_SCALE, 99);
+    RemoveBagItem(ITEM_EXP_SHARE, 99);
+
+    // 1. Scripted encounter generation: level 30 Gyarados forced shiny
+    CreateScriptedWildMon(SPECIES_GYARADOS, 30, ITEM_NONE);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_SPECIES), SPECIES_GYARADOS);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_LEVEL), 30);
+
+    JohtoSetWildMonShiny();
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_SHINY), TRUE);
+
+    // 2. Victory / capture sets Gyarados flag and awards Red Scale
+    FlagSet(FLAG_JOHTO_LAKE_OF_RAGE_RED_GYARADOS);
+    AddBagItem(ITEM_RED_SCALE, 1);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_LAKE_OF_RAGE_RED_GYARADOS), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_RED_SCALE, 1), TRUE);
+
+    // 3. Trade Red Scale to Mr. Pokémon for Exp. Share on Route 30
+    EXPECT_EQ(CheckBagHasItem(ITEM_EXP_SHARE, 1), FALSE);
+    RemoveBagItem(ITEM_RED_SCALE, 1);
+    AddBagItem(ITEM_EXP_SHARE, 1);
+    EXPECT_EQ(CheckBagHasItem(ITEM_RED_SCALE, 1), FALSE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_EXP_SHARE, 1), TRUE);
+
+    // Cleanup
+    RemoveBagItem(ITEM_EXP_SHARE, 1);
+    FlagClear(FLAG_JOHTO_LAKE_OF_RAGE_RED_GYARADOS);
+}
+
 
 
 

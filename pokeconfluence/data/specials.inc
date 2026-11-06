@@ -666,6 +666,7 @@ gSpecials::
 	def_special ConfluenceBufferProgress
 	def_special JohtoHeadbuttWildEncounter
 	def_special JohtoCheckHeadbuttUser
+	def_special JohtoSetWildMonShiny
 	def_special InitJohtoRoamMons
 	def_special JohtoCheckMysteryGift
 	def_special JohtoGetMysteryGiftItem

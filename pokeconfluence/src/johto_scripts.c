@@ -293,6 +293,13 @@ void JohtoGiveOddEgg(void)
     gSpecialVar_Result = TRUE;
 }
 
+// POKE-CONFLUENCE: Forces the currently staged scripted wild Pokémon to be shiny (Lake of Rage Red Gyarados)
+void JohtoSetWildMonShiny(void)
+{
+    bool32 isShiny = TRUE;
+    SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_SHINY, &isShiny);
+}
+
 void JohtoGiveParkBalls(void)
 {
     u32 i;

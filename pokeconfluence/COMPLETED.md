@@ -435,4 +435,44 @@ This document tracks all fully converted, integrated, and verified features in *
   - Limits check clean at 253/253 `MAPSEC_*` (`python3 .agents/scripts/check_limits.py`).
   - Full ROM compilation clean (`make -C pokeconfluence -j$(nproc)`).
 
+---
+
+## 17. Authentic Johto Secondary Mechanics & Encounters
+
+- **Headbutt Tree Overworld Mechanics**:
+  - Implemented authentic GBC Crystal tree coordinate scoring algorithm in `src/johto_scripts.c`:
+    - Coordinates combined with Trainer ID compute high/low encounter tree status.
+    - Low-encounter trees produce 50% nothing, 35% tier 1, 15% tier 2 encounters.
+    - High-encounter trees produce 10% nothing, 50% tier 1, 15% tier 2, 25% tier 3 rare encounters (Pineco, Heracross, Aipom).
+  - All 7 authentic Crystal Headbutt encounter tables ported (`TREE_CANYON`, `TREE_CITY`, `TREE_FOREST`, `TREE_ILEX`, `TREE_LAKE`, `TREE_MOUNTAIN`, `TREE_ROUTE`).
+  - Diurnal/nocturnal sleep status logic: wild Pokémon caught napping fall asleep at the start of battle based on their sleep cycle.
+  - Overworld field interaction hooked seamlessly into tree metatiles via `MB_HEADBUTT_TREE` in `src/field_control_avatar.c` and Field Kit integration.
+
+- **Roaming Legendary Beasts (Raikou & Entei)**:
+  - 16-route authentic Johto roaming route network defined in `sJohtoRoamerLocations` in `src/roamer.c`.
+  - Canonical Crystal starting routes configured: Raikou on Route 42, Entei on Route 37 upon awakening in Burned Tower.
+  - Overworld battle interceptor checks player's current route and land encounter status (water roam encounters suppressed).
+  - Authentic roamer battle AI (`AI_FLAG_ROAMING`) causes legendary beasts to attempt to flee immediately on turn 1.
+  - Authentic battle theme `MUS_C_VS_LEGEND_BEAST` wired into `GetBattleBGM` in `src/pokemon.c`.
+  - Persistent tracking: remaining HP, status conditions, and Pokédex area location map tracking.
+
+- **Day-of-Week Overworld Events & Weekday Siblings**:
+  - Friday Lapras in `UnionCaveB2F_Johto`: spawns on water every Friday at level 20, weekly respawn via `FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS` reset at midnight in `DoDailyEvents()`.
+  - All 7 Weekday Siblings fully implemented with authentic Crystal schedules, dialogue, and type-boosting held items:
+    - Sunday: Sunny on Route 37 (`ITEM_MAGNET`)
+    - Monday: Monica on Route 40 (`ITEM_SHARP_BEAK`)
+    - Tuesday: Tuscany on Route 29 (`ITEM_PINK_BOW`)
+    - Wednesday: Wesley on Lake of Rage (`ITEM_BLACKBELT_I`)
+    - Thursday: Arthur on Route 36 (`ITEM_HARD_STONE`)
+    - Friday: Frieda on Route 32 (`ITEM_POISON_BARB`)
+    - Saturday: Santos on Blackthorn City (`ITEM_SPELL_TAG`)
+  - Map transition callbacks dynamically evaluate RTC weekday via `special JohtoGetWeekday`.
+
+- **Lake of Rage Shiny Red Gyarados Climax**:
+  - Authentic water sprite interaction triggers scripted level 30 forced-shiny `SPECIES_GYARADOS` encounter using `special JohtoSetWildMonShiny`.
+  - Battle outcomes preserve encounter if ran/lost; catching or defeating Gyarados permanently clears water sprite, awards `ITEM_RED_SCALE`, and reveals Lance on the shore.
+  - Authentic Route 30 trade with Mr. Pokémon exchanges `ITEM_RED_SCALE` for `ITEM_EXP_SHARE`.
+  - C unit test `TEST("Confluence: Authentic Lake of Rage Shiny Red Gyarados and Red Scale trade")` verified in `test/confluence.c` (25/25 passed).
+
+
 

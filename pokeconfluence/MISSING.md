@@ -14,7 +14,7 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 | **2. Headbutt Tree Encounter Mechanics** | Completed | `[██████████] 100%` | Authentic GBC tree metatile interaction, tree scoring algorithm, asleep wild mons, and 7 table types |
 | **3. Roaming Legendary Beasts** | Completed | `[██████████] 100%` | Overworld roaming AI across Johto routes for Raikou and Entei with authentic starting routes, flee logic, and battle music |
 | **4. Day-of-Week Overworld Events** | Completed | `[██████████] 100%` | Friday Lapras in Union Cave B2F with weekly respawn & all 7 Weekday Siblings item gifts |
-| **5. Lake of Rage Shiny Red Gyarados** | In Progress | `[░░░░░░░░░░] 0%` | Static Shiny Gyarados battle script, Red Scale drop, and Mr. Pokémon trade for Exp. Share |
+| **5. Lake of Rage Shiny Red Gyarados** | Completed | `[██████████] 100%` | Authentic Level 30 forced-shiny Gyarados battle, overworld sprite clearance, Red Scale reward, and Mr. Pokémon Exp. Share trade |
 | **6. Bug-Catching Contest Minigame** | Planned | `[░░░░░░░░░░] 0%` | 20-minute timer, 20 Park Balls, judging scoring algorithm, and Sun Stone prize distribution |
 
 ---
@@ -90,11 +90,15 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 
 ## 5. Lake of Rage Shiny Red Gyarados
 
-- `[░░░░░░░░░░] 0%` **Lake of Rage Climax**
-  - **Completed**: Lake of Rage map, Lance intro encounter, and Team Rocket Base scripts converted.
+- `[██████████] 100%` **Lake of Rage Climax**
+  - **Completed**:
+    - Lake of Rage map, Lance intro encounter, and Team Rocket Base scripts converted.
+    - Scripted water sprite interaction triggering level 30 forced-shiny `SPECIES_GYARADOS` battle via `special JohtoSetWildMonShiny`.
+    - Handles battle outcomes: fleeing or losing preserves the encounter; catching or defeating sets `FLAG_JOHTO_LAKE_OF_RAGE_RED_GYARADOS`, clears `FLAG_JOHTO_LAKE_OF_RAGE_LANCE`, spawns Lance on the shore, and awards `ITEM_RED_SCALE`.
+    - Mr. Pokémon dialogue and trade on Route 30 (`MrPokemonsHouse_Johto`) faithfully trades `ITEM_RED_SCALE` for `ITEM_EXP_SHARE`.
+    - Unit test `TEST("Confluence: Authentic Lake of Rage Shiny Red Gyarados and Red Scale trade")` verified in `test/confluence.c` (25/25 passed).
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Water sprite interaction triggering level 30 forced-shiny `SPECIES_GYARADOS` battle.
-    - `[░░░░░░░░░░] 0%` Setting `ITEM_RED_SCALE` reward on capture or defeat, and dialogue script with Mr. Pokémon on Route 30 trading Red Scale for `ITEM_EXP_SHARE`.
+    - None. 100% faithful to Pokémon Crystal.
 
 ---
 

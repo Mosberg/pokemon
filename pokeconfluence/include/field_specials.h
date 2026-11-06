@@ -42,5 +42,6 @@ bool8 CutMoveRuinValleyCheck(void);
 void CutMoveOpenDottedHoleDoor(void);
 void JohtoGetWeekday(void);
 void JohtoSetWeekday(void);
+void JohtoSetWildMonShiny(void);
 
 #endif // GUARD_FIELD_SPECIALS_H

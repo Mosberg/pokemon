@@ -100,21 +100,21 @@ LakeOfRage_Johto_RedGyarados:
 	waitmoncry
 	closemessage
 	setwildbattle SPECIES_GYARADOS, 30
+	special JohtoSetWildMonShiny
 	dowildbattle
-	goto_if_eq VAR_RESULT, 0, LakeOfRage_Johto_RedGyarados_NotBeaten
+	goto_if_eq VAR_RESULT, B_OUTCOME_LOST, LakeOfRage_Johto_RedGyarados_NotBeaten
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, LakeOfRage_Johto_RedGyarados_NotBeaten
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, LakeOfRage_Johto_RedGyarados_NotBeaten
+	setflag FLAG_JOHTO_LAKE_OF_RAGE_RED_GYARADOS
 	removeobject 9
-
-LakeOfRage_Johto_RedGyarados_NotBeaten:
-	additem ITEM_RED_SCALE
-	waitse
-	message LakeOfRage_Johto_LakeOfRageGotRedScaleText
-	waitmessage
-	playse SE_PIN
-	waitse
-	closemessage
+	giveitem ITEM_RED_SCALE
 	setvar VAR_JOHTO_SCENE_LAKE_OF_RAGE, 0
 	clearflag FLAG_JOHTO_LAKE_OF_RAGE_LANCE
 	addobject 1
+	releaseall
+	end
+
+LakeOfRage_Johto_RedGyarados_NotBeaten:
 	releaseall
 	end
 
