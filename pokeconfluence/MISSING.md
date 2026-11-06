@@ -13,8 +13,8 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 | **1. Morning & Night Wild Encounter Tables** | Completed | `[██████████] 100%` | Verified all 61 Crystal grass/outdoor maps with discrete morning/day/night tables in wild_encounters.json & .h |
 | **2. Headbutt Tree Encounter Mechanics** | Completed | `[██████████] 100%` | Authentic GBC tree metatile interaction, tree scoring algorithm, asleep wild mons, and 7 table types |
 | **3. Roaming Legendary Beasts** | Completed | `[██████████] 100%` | Overworld roaming AI across Johto routes for Raikou and Entei with authentic starting routes, flee logic, and battle music |
-| **4. Day-of-Week Overworld Events** | In Progress | `[░░░░░░░░░░] 0%` | Friday Lapras encounter in Union Cave B2F & 7 Siblings of the Week item gifts |
-| **5. Lake of Rage Shiny Red Gyarados** | Planned | `[░░░░░░░░░░] 0%` | Static Shiny Gyarados battle script, Red Scale drop, and Mr. Pokémon trade for Exp. Share |
+| **4. Day-of-Week Overworld Events** | Completed | `[██████████] 100%` | Friday Lapras in Union Cave B2F with weekly respawn & all 7 Weekday Siblings item gifts |
+| **5. Lake of Rage Shiny Red Gyarados** | In Progress | `[░░░░░░░░░░] 0%` | Static Shiny Gyarados battle script, Red Scale drop, and Mr. Pokémon trade for Exp. Share |
 | **6. Bug-Catching Contest Minigame** | Planned | `[░░░░░░░░░░] 0%` | 20-minute timer, 20 Park Balls, judging scoring algorithm, and Sun Stone prize distribution |
 
 ---
@@ -69,11 +69,22 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 
 ## 4. Day-of-Week Overworld Events
 
-- `[░░░░░░░░░░] 0%` **Weekly Calendar Events**
-  - **Completed**: `RtcCalcLocalTime` and `GetDayOfWeek` accessible in engine.
+- `[██████████] 100%` **Weekly Calendar Events**
+  - **Completed**:
+    - Friday Lapras in `UnionCaveB2F_Johto`: Spawns on water exclusively on Friday (`WEEKDAY_FRI`) at level 20 with authentic cry and battle script.
+    - Weekly respawn: Defeating or catching Lapras sets `FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS`; midnight reset in `DoDailyEvents()` in `src/clock.c` clears the flag, allowing Lapras to return every Friday.
+    - All 7 Weekday Siblings fully implemented with authentic Crystal schedules, dialogue, and type-boosting held items:
+      - Sunday: Sunny on Route 37 (`ITEM_MAGNET` / `FLAG_JOHTO_GOT_MAGNET_FROM_SUNNY`)
+      - Monday: Monica on Route 40 (`ITEM_SHARP_BEAK` / `FLAG_JOHTO_GOT_SHARP_BEAK_FROM_MONICA`)
+      - Tuesday: Tuscany on Route 29 (`ITEM_PINK_BOW` / `FLAG_JOHTO_GOT_PINK_BOW_FROM_TUSCANY`)
+      - Wednesday: Wesley on Lake of Rage (`ITEM_BLACKBELT_I` / `FLAG_JOHTO_GOT_BLACKBELT_FROM_WESLEY`)
+      - Thursday: Arthur on Route 36 (`ITEM_HARD_STONE` / `FLAG_JOHTO_GOT_HARD_STONE_FROM_ARTHUR`)
+      - Friday: Frieda on Route 32 (`ITEM_POISON_BARB` / `FLAG_JOHTO_GOT_POISON_BARB_FROM_FRIEDA`)
+      - Saturday: Santos on Blackthorn City (`ITEM_SPELL_TAG` / `FLAG_JOHTO_GOT_SPELL_TAG_FROM_SANTOS`)
+    - Map transition callbacks (`OnTransition`) check `special JohtoGetWeekday` to show/hide siblings appropriately.
+    - Automated integration test `TEST("Confluence: Authentic Johto Day-of-Week events and Weekday Siblings")` in `test/confluence.c` (24/24 passed).
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Friday Lapras event in `UnionCaveB2F_Johto`: spawns on water every Friday, respawns weekly, level 20 battle.
-    - `[░░░░░░░░░░] 0%` 7 Weekday Siblings scripts and schedules (Arthur on Route 36 on Thursday, Sunny on Route 37 on Sunday, etc.) awarding type-boost items (Hard Stone, Magnet, etc.).
+    - None. All day-of-week calendar events and siblings are fully integrated and verified.
 
 ---
 

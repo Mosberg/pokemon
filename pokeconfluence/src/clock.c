@@ -18,6 +18,7 @@
 #include "constants/form_change_types.h"
 #include "apricorn_tree.h"
 #include "johto_swarms.h"
+#include "constants/johto_flags.h"
 
 static void UpdatePerDay(struct Time *localTime);
 static void UpdatePerMinute(struct Time *localTime);
@@ -67,6 +68,7 @@ void DoDailyEvents(u32 daysSince)
     DailyResetApricornTrees();
     JohtoDailyResetFruitTrees();
     Johto_DailyResetSwarm();
+    FlagClear(FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS);
 }
 
 static void UpdatePerDay(struct Time *localTime)

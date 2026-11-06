@@ -81,6 +81,18 @@ This document tracks all fully converted, integrated, and verified features in *
   - Persistent HP and status condition tracking across encounters in `SaveBlock1.roamer` with deactivation upon faint or capture.
   - Pokédex Area screen accurately pinpoints current roaming route across Johto map sections in [src/pokedex_area_screen.c](src/pokedex_area_screen.c).
   - Automated integration test `TEST("Confluence: Authentic Johto Roaming Legendary Beasts (Raikou & Entei)")` in [test/confluence.c](test/confluence.c).
+- **Friday Lapras & Day-of-Week Overworld Events**:
+  - Friday Lapras spawns in `UnionCaveB2F_Johto` on water every Friday at level 20.
+  - Weekly respawn mechanics: defeating or catching Lapras sets `FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS`; daily midnight reset in `DoDailyEvents()` in [src/clock.c](src/clock.c) clears the flag for the next Friday.
+  - Complete 7 Weekday Siblings scheduling and scripts awarding type-boost held items:
+    - Sunday: Sunny on Route 37 (`ITEM_MAGNET` / `FLAG_JOHTO_GOT_MAGNET_FROM_SUNNY`)
+    - Monday: Monica on Route 40 (`ITEM_SHARP_BEAK` / `FLAG_JOHTO_GOT_SHARP_BEAK_FROM_MONICA`)
+    - Tuesday: Tuscany on Route 29 (`ITEM_PINK_BOW` / `FLAG_JOHTO_GOT_PINK_BOW_FROM_TUSCANY`)
+    - Wednesday: Wesley on Lake of Rage (`ITEM_BLACKBELT_I` / `FLAG_JOHTO_GOT_BLACKBELT_FROM_WESLEY`)
+    - Thursday: Arthur on Route 36 (`ITEM_HARD_STONE` / `FLAG_JOHTO_GOT_HARD_STONE_FROM_ARTHUR`)
+    - Friday: Frieda on Route 32 (`ITEM_POISON_BARB` / `FLAG_JOHTO_GOT_POISON_BARB_FROM_FRIEDA`)
+    - Saturday: Santos on Blackthorn City (`ITEM_SPELL_TAG` / `FLAG_JOHTO_GOT_SPELL_TAG_FROM_SANTOS`)
+  - Automated integration test `TEST("Confluence: Authentic Johto Day-of-Week events and Weekday Siblings")` in [test/confluence.c](test/confluence.c).
 - **Daily Fruit Tree Regrowth**:
   - Regrowth cycle runs in `DoDailyEvents()` via `JohtoDailyResetFruitTrees()` across all 30 Johto and Kanto berry trees.
 - **Pokémon Center Nurse Enhancements**:

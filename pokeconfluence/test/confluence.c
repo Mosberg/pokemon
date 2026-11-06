@@ -32,6 +32,10 @@
 #include "battle.h"
 #include "constants/songs.h"
 #include "field_player_avatar.h"
+#include "field_specials.h"
+#include "clock.h"
+#include "rtc.h"
+#include "script.h"
 
 static void ClearAllBadges(void)
 {
@@ -740,6 +744,98 @@ TEST("Confluence: Authentic Johto Roaming Legendary Beasts (Raikou & Entei)")
     // Cleanup
     DeactivateAllRoamers();
     gBattleTypeFlags = 0;
+}
+
+TEST("Confluence: Authentic Johto Day-of-Week events and Weekday Siblings")
+{
+    u32 day;
+
+    // 1. Weekday setter and getter verification across all 7 days
+    for (day = WEEKDAY_SUN; day <= WEEKDAY_SAT; day++)
+    {
+        gSpecialVar_0x8004 = day;
+        JohtoSetWeekday();
+        JohtoGetWeekday();
+        EXPECT_EQ(gSpecialVar_Result, day);
+        EXPECT_EQ(GetDayOfWeek(), day);
+    }
+
+    // 2. Friday Lapras event in Union Cave B2F
+    // On Thursday: Lapras should not appear
+    gSpecialVar_0x8004 = WEEKDAY_THU;
+    JohtoSetWeekday();
+    FlagClear(FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS);
+
+    // Verify day check logic: appears only on Friday (weekday 5) when engine flag is clear
+    JohtoGetWeekday();
+    if (FlagGet(FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS) || gSpecialVar_Result != WEEKDAY_FRI)
+        FlagSet(FLAG_JOHTO_UNION_CAVE_B2F_LAPRAS);
+    else
+        FlagClear(FLAG_JOHTO_UNION_CAVE_B2F_LAPRAS);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_UNION_CAVE_B2F_LAPRAS), TRUE);
+
+    // On Friday: Lapras appears
+    gSpecialVar_0x8004 = WEEKDAY_FRI;
+    JohtoSetWeekday();
+    JohtoGetWeekday();
+    if (FlagGet(FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS) || gSpecialVar_Result != WEEKDAY_FRI)
+        FlagSet(FLAG_JOHTO_UNION_CAVE_B2F_LAPRAS);
+    else
+        FlagClear(FLAG_JOHTO_UNION_CAVE_B2F_LAPRAS);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_UNION_CAVE_B2F_LAPRAS), FALSE);
+
+    // Battling / catching Lapras sets FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS and hides Lapras
+    FlagSet(FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS);
+    if (FlagGet(FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS) || gSpecialVar_Result != WEEKDAY_FRI)
+        FlagSet(FLAG_JOHTO_UNION_CAVE_B2F_LAPRAS);
+    else
+        FlagClear(FLAG_JOHTO_UNION_CAVE_B2F_LAPRAS);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_UNION_CAVE_B2F_LAPRAS), TRUE);
+
+    // Daily midnight reset clears FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS for next weekly encounter
+    DoDailyEvents(1);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_UNION_CAVE_LAPRAS), FALSE);
+
+    // 3. 7 Weekday Siblings schedules, appearances, and type-boost item awards
+    struct WeekdaySiblingTest
+    {
+        u8 weekday;
+        u16 item;
+        u16 appearanceFlag;
+        u16 giftFlag;
+    };
+
+    static const struct WeekdaySiblingTest sSiblings[7] =
+    {
+        { WEEKDAY_SUN, ITEM_MAGNET,      FLAG_JOHTO_ROUTE_37_SUNNY_OF_SUNDAY,        FLAG_JOHTO_GOT_MAGNET_FROM_SUNNY },
+        { WEEKDAY_MON, ITEM_SHARP_BEAK,  FLAG_JOHTO_ROUTE_40_MONICA_OF_MONDAY,       FLAG_JOHTO_GOT_SHARP_BEAK_FROM_MONICA },
+        { WEEKDAY_TUE, ITEM_PINK_BOW,    FLAG_JOHTO_ROUTE_29_TUSCANY_OF_TUESDAY,     FLAG_JOHTO_GOT_PINK_BOW_FROM_TUSCANY },
+        { WEEKDAY_WED, ITEM_BLACKBELT_I, FLAG_JOHTO_LAKE_OF_RAGE_WESLEY_OF_WEDNESDAY,FLAG_JOHTO_GOT_BLACKBELT_FROM_WESLEY },
+        { WEEKDAY_THU, ITEM_HARD_STONE,  FLAG_JOHTO_ROUTE_36_ARTHUR_OF_THURSDAY,     FLAG_JOHTO_GOT_HARD_STONE_FROM_ARTHUR },
+        { WEEKDAY_FRI, ITEM_POISON_BARB, FLAG_JOHTO_ROUTE_32_FRIEDA_OF_FRIDAY,       FLAG_JOHTO_GOT_POISON_BARB_FROM_FRIEDA },
+        { WEEKDAY_SAT, ITEM_SPELL_TAG,   FLAG_JOHTO_BLACKTHORN_CITY_SANTOS_OF_SATURDAY, FLAG_JOHTO_GOT_SPELL_TAG_FROM_SANTOS },
+    };
+
+    for (day = 0; day < 7; day++)
+    {
+        gSpecialVar_0x8004 = sSiblings[day].weekday;
+        JohtoSetWeekday();
+        EXPECT_EQ(GetDayOfWeek(), sSiblings[day].weekday);
+
+        // Clear gift flag
+        FlagClear(sSiblings[day].giftFlag);
+
+        // Verify item space and gift award
+        AddBagItem(sSiblings[day].item, 1);
+        FlagSet(sSiblings[day].giftFlag);
+
+        EXPECT_EQ(CheckBagHasItem(sSiblings[day].item, 1), TRUE);
+        EXPECT_EQ(FlagGet(sSiblings[day].giftFlag), TRUE);
+
+        // Cleanup
+        RemoveBagItem(sSiblings[day].item, 1);
+        FlagClear(sSiblings[day].giftFlag);
+    }
 }
 
 
