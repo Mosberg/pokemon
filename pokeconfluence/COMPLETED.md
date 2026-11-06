@@ -71,6 +71,16 @@ This document tracks all fully converted, integrated, and verified features in *
   - Diurnal and nocturnal sleep mechanics: wild Pokémon encountered during their sleep cycle spawn with the `STATUS1_SLEEP` condition.
   - Fully compatible with both Pokémon knowing `MOVE_HEADBUTT` and the Confluence `ITEM_FIELD_KIT`.
   - Automated integration test `TEST("Confluence: Authentic Johto Headbutt Tree mechanics and encounter tables")` in [test/confluence.c](test/confluence.c).
+- **Roaming Legendary Beasts (Raikou & Entei)**:
+  - Authentic awakening in Burned Tower B1F (`InitJohtoRoamMons`): Raikou starting on Route 42 (`MAP_JOHTO_ROUTE_42`) and Entei starting on Route 37 (`MAP_JOHTO_ROUTE_37`) at level 40.
+  - Authentic 16-route network from pokecrystal `roammon_maps.asm` configured in `sJohtoRoamerLocations` spanning Routes 29 through 46 in [src/roamer.c](src/roamer.c).
+  - Dynamic route movement and jumping on map transitions via `RoamerMove()` and `RoamerMoveToOtherLocationSet()`.
+  - Encounter integration in [src/wild_encounter.c](src/wild_encounter.c) with land-only condition (suppressed while surfing).
+  - Immediate turn 1 fleeing AI (`AI_FLAG_ROAMING`) unless trapped by Mean Look or trapping abilities.
+  - Authentic GBC Crystal Legendary Beast battle theme (`MUS_C_VS_LEGEND_BEAST`) wired in `GetBattleBGM()` for `BATTLE_TYPE_ROAMER` in [src/pokemon.c](src/pokemon.c).
+  - Persistent HP and status condition tracking across encounters in `SaveBlock1.roamer` with deactivation upon faint or capture.
+  - Pokédex Area screen accurately pinpoints current roaming route across Johto map sections in [src/pokedex_area_screen.c](src/pokedex_area_screen.c).
+  - Automated integration test `TEST("Confluence: Authentic Johto Roaming Legendary Beasts (Raikou & Entei)")` in [test/confluence.c](test/confluence.c).
 - **Daily Fruit Tree Regrowth**:
   - Regrowth cycle runs in `DoDailyEvents()` via `JohtoDailyResetFruitTrees()` across all 30 Johto and Kanto berry trees.
 - **Pokémon Center Nurse Enhancements**:

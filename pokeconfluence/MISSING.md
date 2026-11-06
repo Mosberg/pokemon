@@ -12,8 +12,8 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 |:---|:---:|:---:|:---|
 | **1. Morning & Night Wild Encounter Tables** | Completed | `[██████████] 100%` | Verified all 61 Crystal grass/outdoor maps with discrete morning/day/night tables in wild_encounters.json & .h |
 | **2. Headbutt Tree Encounter Mechanics** | Completed | `[██████████] 100%` | Authentic GBC tree metatile interaction, tree scoring algorithm, asleep wild mons, and 7 table types |
-| **3. Roaming Legendary Beasts** | In Progress | `[░░░░░░░░░░] 0%` | Overworld roaming AI across Johto routes for Raikou and Entei with flee logic |
-| **4. Day-of-Week Overworld Events** | Planned | `[░░░░░░░░░░] 0%` | Friday Lapras encounter in Union Cave B2F & 7 Siblings of the Week item gifts |
+| **3. Roaming Legendary Beasts** | Completed | `[██████████] 100%` | Overworld roaming AI across Johto routes for Raikou and Entei with authentic starting routes, flee logic, and battle music |
+| **4. Day-of-Week Overworld Events** | In Progress | `[░░░░░░░░░░] 0%` | Friday Lapras encounter in Union Cave B2F & 7 Siblings of the Week item gifts |
 | **5. Lake of Rage Shiny Red Gyarados** | Planned | `[░░░░░░░░░░] 0%` | Static Shiny Gyarados battle script, Red Scale drop, and Mr. Pokémon trade for Exp. Share |
 | **6. Bug-Catching Contest Minigame** | Planned | `[░░░░░░░░░░] 0%` | 20-minute timer, 20 Park Balls, judging scoring algorithm, and Sun Stone prize distribution |
 
@@ -51,11 +51,19 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 
 ## 3. Roaming Legendary Beasts
 
-- `[░░░░░░░░░░] 0%` **Raikou & Entei Overworld Roaming**
-  - **Completed**: Suicune/Raikou/Entei Crystal battle theme (`MUS_C_VS_LEGEND_BEAST`) wired and verified. Burned Tower awakening sequence scripted.
+- `[██████████] 100%` **Raikou & Entei Overworld Roaming**
+  - **Completed**:
+    - Authentic GBC Crystal starting routes: Raikou initialized to Route 42 (`MAP_JOHTO_ROUTE_42`) and Entei to Route 37 (`MAP_JOHTO_ROUTE_37`) at level 40 upon awakening in Burned Tower B1F (`InitJohtoRoamMons`).
+    - Authentic 16-route Johto roaming network from pokecrystal `roammon_maps.asm` configured in `sJohtoRoamerLocations` (Routes 29-46).
+    - Dynamic route movement and jumping on map transitions via `RoamerMove()` and `RoamerMoveToOtherLocationSet()`.
+    - Authentic encounter rules: Wild battle interceptor checks current route match; water surfing suppression ensures land-only encounters for beasts.
+    - Authentic fleeing AI (`AI_FLAG_ROAMING`) attempting flee on turn 1 unless trapped by Mean Look or Shadow Tag / Arena Trap.
+    - Authentic Crystal Legendary Beast battle theme (`MUS_C_VS_LEGEND_BEAST`) wired in `GetBattleBGM()` for `BATTLE_TYPE_ROAMER`.
+    - Persistent HP and status conditions saved in `SaveBlock1.roamer` across encounters; deactivation upon faint or capture.
+    - Pokédex Area screen accurately pinpoints current roaming route across Johto map sections.
+    - Automated integration test `TEST("Confluence: Authentic Johto Roaming Legendary Beasts (Raikou & Entei)")` in `test/confluence.c` (23/23 passed).
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Roamer state tracking across Johto routes via `sRoamerLocation` engine hooks.
-    - `[░░░░░░░░░░] 0%` Wild battle encounter interceptor checking current route match.
+    - None. All roaming beast mechanics are fully implemented and verified.
 
 ---
 

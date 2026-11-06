@@ -28,6 +28,10 @@
 #include "headbutt.h"
 #include "metatile_behavior.h"
 #include "constants/metatile_behaviors.h"
+#include "roamer.h"
+#include "battle.h"
+#include "constants/songs.h"
+#include "field_player_avatar.h"
 
 static void ClearAllBadges(void)
 {
@@ -663,6 +667,79 @@ TEST("Confluence: Authentic Johto Headbutt Tree mechanics and encounter tables")
     RemoveBagItem(ITEM_FIELD_KIT, 1);
     ZeroPlayerPartyMons();
     gPartiesCount[B_TRAINER_PLAYER] = 0;
+}
+
+TEST("Confluence: Authentic Johto Roaming Legendary Beasts (Raikou & Entei)")
+{
+    u8 group, num;
+    u16 newHp;
+    u32 sleepStatus;
+
+    // 1. Initial deactivation state
+    DeactivateAllRoamers();
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[0].active, FALSE);
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[1].active, FALSE);
+
+    // 2. Awakening the beasts (Burned Tower event)
+    InitJohtoRoamMons();
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[0].active, TRUE);
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[0].species, SPECIES_RAIKOU);
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[0].level, 40);
+
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[1].active, TRUE);
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[1].species, SPECIES_ENTEI);
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[1].level, 40);
+
+    // 3. Authentic starting locations (Route 42 for Raikou, Route 37 for Entei)
+    GetRoamerLocation(0, &group, &num);
+    EXPECT_EQ(group, MAP_GROUP(MAP_JOHTO_ROUTE_42));
+    EXPECT_EQ(num, MAP_NUM(MAP_JOHTO_ROUTE_42));
+    EXPECT_EQ(IsRoamerAt(0, MAP_GROUP(MAP_JOHTO_ROUTE_42), MAP_NUM(MAP_JOHTO_ROUTE_42)), TRUE);
+    EXPECT_EQ(IsRoamerAt(0, MAP_GROUP(MAP_JOHTO_ROUTE_29), MAP_NUM(MAP_JOHTO_ROUTE_29)), FALSE);
+
+    GetRoamerLocation(1, &group, &num);
+    EXPECT_EQ(group, MAP_GROUP(MAP_JOHTO_ROUTE_37));
+    EXPECT_EQ(num, MAP_NUM(MAP_JOHTO_ROUTE_37));
+    EXPECT_EQ(IsRoamerAt(1, MAP_GROUP(MAP_JOHTO_ROUTE_37), MAP_NUM(MAP_JOHTO_ROUTE_37)), TRUE);
+
+    // 4. Roamer movement across adjacent Johto routes
+    RoamerMove(0);
+    GetRoamerLocation(0, &group, &num);
+    // After moving from Route 42, Raikou should still be in Johto group (78)
+    EXPECT_EQ(group, MAP_GROUP(MAP_JOHTO_ROUTE_42));
+
+    RoamerMoveToOtherLocationSet(1);
+    GetRoamerLocation(1, &group, &num);
+    EXPECT_EQ(group, MAP_GROUP(MAP_JOHTO_ROUTE_37));
+
+    // 5. Battle setup, music, and surfing check
+    // Set player to Route 42
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_JOHTO_ROUTE_42);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_JOHTO_ROUTE_42);
+
+    CreateRoamerMonInstance(0);
+    gBattleTypeFlags = BATTLE_TYPE_ROAMER;
+    EXPECT_EQ(GetBattleBGM(), MUS_C_VS_LEGEND_BEAST);
+
+    // 6. HP and status condition persistence across wild encounters
+    newHp = 42;
+    sleepStatus = STATUS1_SLEEP;
+    SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_HP, &newHp);
+    SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_STATUS, &sleepStatus);
+    gEncounteredRoamerIndex = 0;
+    UpdateRoamerHPStatus(&gParties[B_TRAINER_OPPONENT_A][0]);
+
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[0].hp, newHp);
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[0].statusA, STATUS1_SLEEP);
+
+    // 7. Deactivation upon capture or fainting
+    SetRoamerInactive(0);
+    EXPECT_EQ(gSaveBlock1Ptr->roamer[0].active, FALSE);
+    EXPECT_EQ(IsRoamerAt(0, MAP_GROUP(MAP_JOHTO_ROUTE_42), MAP_NUM(MAP_JOHTO_ROUTE_42)), FALSE);
+
+    // Cleanup
+    DeactivateAllRoamers();
+    gBattleTypeFlags = 0;
 }
 
 

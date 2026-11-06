@@ -5170,6 +5170,18 @@ u16 GetBattleBGM(void)
             return MUS_RG_VS_LEGEND;
         }
     }
+    else if (gBattleTypeFlags & BATTLE_TYPE_ROAMER)
+    {
+        u16 oppSpecies = GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_SPECIES);
+        if (oppSpecies == SPECIES_SUICUNE || oppSpecies == SPECIES_RAIKOU || oppSpecies == SPECIES_ENTEI)
+            return MUS_C_VS_LEGEND_BEAST;
+        else if (GetCurrentRegion() == REGION_JOHTO)
+            return MUS_C_VS_WILD_JOHTO;
+        else if (GetCurrentRegion() == REGION_KANTO)
+            return MUS_RG_VS_WILD;
+        else
+            return MUS_VS_WILD;
+    }
     else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
     {
         return MUS_VS_TRAINER;

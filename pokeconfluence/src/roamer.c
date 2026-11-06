@@ -1,5 +1,6 @@
 #include "global.h"
 #include "event_data.h"
+#include "field_player_avatar.h"
 #include "ow_abilities.h"
 #include "pokemon.h"
 #include "random.h"
@@ -161,7 +162,19 @@ static void CreateInitialRoamerMon(u8 index, enum Species species, u8 level)
     ROAMER(index)->shiny = GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_IS_SHINY);
     ROAMER(index)->active = TRUE;
 
-    if (IsJohtoRoamer(index))
+    if (species == SPECIES_RAIKOU)
+    {
+        // Authentic GBC Crystal starting location: Route 42
+        sRoamerLocation[index][MAP_GRP] = MAP_GROUP(MAP_JOHTO_ROUTE_42);
+        sRoamerLocation[index][MAP_NUM] = MAP_NUM(MAP_JOHTO_ROUTE_42);
+    }
+    else if (species == SPECIES_ENTEI)
+    {
+        // Authentic GBC Crystal starting location: Route 37
+        sRoamerLocation[index][MAP_GRP] = MAP_GROUP(MAP_JOHTO_ROUTE_37);
+        sRoamerLocation[index][MAP_NUM] = MAP_NUM(MAP_JOHTO_ROUTE_37);
+    }
+    else if (IsJohtoRoamer(index))
     {
         u8 locSet = Random() % NUM_JOHTO_LOCATION_SETS;
         sRoamerLocation[index][MAP_GRP] = sJohtoRoamerLocations[locSet][0].mapGroup;
@@ -388,11 +401,18 @@ bool8 TryStartRoamerEncounter(void)
 
     for (i = 0; i < ROAMER_COUNT; i++)
     {
-        if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE && (Random() % 4) == 0)
+        if (IsRoamerAt(i, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum) == TRUE)
         {
-            CreateRoamerMonInstance(i);
-            gEncounteredRoamerIndex = i;
-            return TRUE;
+            // POKE-CONFLUENCE: Authentic GBC Crystal: beasts do not encounter while surfing on water
+            if (IsJohtoRoamer(i) && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
+                continue;
+
+            if ((Random() % 4) == 0)
+            {
+                CreateRoamerMonInstance(i);
+                gEncounteredRoamerIndex = i;
+                return TRUE;
+            }
         }
     }
     return FALSE;

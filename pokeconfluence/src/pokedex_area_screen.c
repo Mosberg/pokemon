@@ -378,7 +378,7 @@ static void FindMapsWithMon(enum Species species)
             // This is a roamer's species, show where this roamer is currently
             struct OverworldArea *roamerLocation = &sPokedexAreaScreen->overworldAreasWithMons[sPokedexAreaScreen->numOverworldAreas];
             GetRoamerLocation(i, &roamerLocation->mapGroup, &roamerLocation->mapNum);
-            roamerLocation->regionMapSectionId = Overworld_GetMapHeaderByGroupAndId(roamerLocation->mapGroup, roamerLocation->mapNum)->regionMapSectionId;
+            roamerLocation->regionMapSectionId = CorrectSpecialMapSecId(Overworld_GetMapHeaderByGroupAndId(roamerLocation->mapGroup, roamerLocation->mapNum)->regionMapSectionId);
             sPokedexAreaScreen->numOverworldAreas++;
         }
     }
