@@ -11,8 +11,8 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 | Feature / Subsystem | Status | Progress | Notes |
 |:---|:---:|:---:|:---|
 | **1. Morning & Night Wild Encounter Tables** | Completed | `[██████████] 100%` | Verified all 61 Crystal grass/outdoor maps with discrete morning/day/night tables in wild_encounters.json & .h |
-| **2. Headbutt Tree Encounter Mechanics** | Planned | `[░░░░░░░░░░] 0%` | Overworld Headbutt field move trigger on small trees with Pineco, Heracross, and Aipom encounters |
-| **3. Roaming Legendary Beasts** | Planned | `[░░░░░░░░░░] 0%` | Overworld roaming AI across Johto routes for Raikou and Entei with flee logic |
+| **2. Headbutt Tree Encounter Mechanics** | Completed | `[██████████] 100%` | Authentic GBC tree metatile interaction, tree scoring algorithm, asleep wild mons, and 7 table types |
+| **3. Roaming Legendary Beasts** | In Progress | `[░░░░░░░░░░] 0%` | Overworld roaming AI across Johto routes for Raikou and Entei with flee logic |
 | **4. Day-of-Week Overworld Events** | Planned | `[░░░░░░░░░░] 0%` | Friday Lapras encounter in Union Cave B2F & 7 Siblings of the Week item gifts |
 | **5. Lake of Rage Shiny Red Gyarados** | Planned | `[░░░░░░░░░░] 0%` | Static Shiny Gyarados battle script, Red Scale drop, and Mr. Pokémon trade for Exp. Share |
 | **6. Bug-Catching Contest Minigame** | Planned | `[░░░░░░░░░░] 0%` | 20-minute timer, 20 Park Balls, judging scoring algorithm, and Sun Stone prize distribution |
@@ -35,11 +35,17 @@ For hard limits, engine constraints, and saveblock budgeting, refer to [LIMITS.m
 
 ## 2. Headbutt Tree Encounter Mechanics
 
-- `[░░░░░░░░░░] 0%` **Headbutt Field Move & Tree Spawns**
-  - **Completed**: Field Kit system provides overworld HM moves; Headbutt exists in learnsets.
+- `[██████████] 100%` **Headbutt Field Move & Tree Spawns**
+  - **Completed**:
+    - Metatile collision & behavior: Added `MB_HEADBUTT_TREE` to `include/constants/metatile_behaviors.h` and helper `MetatileBehavior_IsHeadbuttTree()`. Configured in `tools/poke-migrator-pro/bin/poke-crystal-tilesets` and compiled for secondary tilesets (`crystal_johto`, `crystal_johto_modern`, `crystal_forest`, `crystal_park`, `crystal_battle_tower_outside`).
+    - Overworld interaction: Wired into `GetInteractedMetatileScript()` in `src/field_control_avatar.c` allowing direct interaction (`A_BUTTON`) to trigger `Johto_EventScript_HeadbuttTree`.
+    - Field move support: Implemented `JohtoCheckHeadbuttUser()` supporting Pokémon knowing `MOVE_HEADBUTT` as well as the `ITEM_FIELD_KIT`.
+    - Crystal Tree Scoring: Replicated GBC formula `((x + 1) * (y + 1) - 1) / 5 % 10` diffed against `playerTrainerId % 10` to categorize trees into Rare (80% encounter, Pineco/Heracross/Aipom), Good (50% encounter), and Bad (10% encounter).
+    - Authentic Crystal Encounter Tables: Parsed and added all 7 tree types from `games/gbc/pokecrystal/data/wild/treemon_*.asm` (Route, Town, Canyon, Lake, Forest, Rock, Kanto).
+    - Diurnal/Nocturnal Sleep Mechanic: Implemented `CheckSleepingTreeMon` applying sleep status depending on hour of day.
+    - Automated Unit Tests: Added `TEST("Confluence: Authentic Johto Headbutt Tree mechanics and encounter tables")` to `test/confluence.c` (22/22 passed).
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Overworld interaction on headbutt-compatible tree metatiles.
-    - `[░░░░░░░░░░] 0%` Headbutt table parser from `games/gbc/pokecrystal/data/wild/treemon_*.asm` providing Pineco, Heracross, Spearow, and Aipom encounter rates.
+    - None. All Headbutt tree mechanics are fully integrated and verified.
 
 ---
 

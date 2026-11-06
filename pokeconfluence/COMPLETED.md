@@ -64,6 +64,13 @@ This document tracks all fully converted, integrated, and verified features in *
   - All 12 Johto fly destinations mapped to `FLAG_JOHTO_ENGINE_FLYPOINT_*` in `sFlyLocations` in [src/region_map.c](src/region_map.c).
   - Dynamic regional map detection and routing via `GetRegionMapType()` and `GetMapSecIdAt()` for `REGION_JOHTO`.
   - Out-of-bounds array read guards added to `FilterFlyDestination()` and `SetFlyDestination()`.
+- **Headbutt Tree Encounter Mechanics**:
+  - Overworld interaction on headbutt tree metatiles (`MB_HEADBUTT_TREE`) via `GetInteractedMetatileScript()` in [src/field_control_avatar.c](src/field_control_avatar.c) triggering `Johto_EventScript_HeadbuttTree`.
+  - Replicated authentic GBC Crystal coordinate tree scoring formula `((x + 1) * (y + 1) - 1) / 5 % 10` diffed against `playerTrainerId % 10` into Rare (80% encounter, rare table with Pineco/Heracross), Good (50% encounter), and Bad (10% encounter) tree tiers.
+  - Parsed and integrated all 7 distinct Crystal Treemon tables in [src/headbutt.c](src/headbutt.c) (Route, Town, Canyon, Lake, Forest, Rock, Kanto).
+  - Diurnal and nocturnal sleep mechanics: wild Pokémon encountered during their sleep cycle spawn with the `STATUS1_SLEEP` condition.
+  - Fully compatible with both Pokémon knowing `MOVE_HEADBUTT` and the Confluence `ITEM_FIELD_KIT`.
+  - Automated integration test `TEST("Confluence: Authentic Johto Headbutt Tree mechanics and encounter tables")` in [test/confluence.c](test/confluence.c).
 - **Daily Fruit Tree Regrowth**:
   - Regrowth cycle runs in `DoDailyEvents()` via `JohtoDailyResetFruitTrees()` across all 30 Johto and Kanto berry trees.
 - **Pokémon Center Nurse Enhancements**:

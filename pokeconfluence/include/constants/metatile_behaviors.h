@@ -242,6 +242,7 @@ enum {
     MB_DOWN_RIGHT_STAIR_WARP,
     MB_DOWN_LEFT_STAIR_WARP,
     MB_ROCK_CLIMB,
+    MB_HEADBUTT_TREE, // POKE-CONFLUENCE: Authentic Johto Headbutt tree metatile behavior
     NUM_METATILE_BEHAVIORS
 };
 

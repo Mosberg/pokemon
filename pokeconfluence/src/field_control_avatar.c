@@ -599,6 +599,9 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
     }
     if (IsFieldMoveUnlocked(FIELD_MOVE_ROCK_CLIMB) && MetatileBehavior_IsRockClimbable(metatileBehavior) == TRUE && !IsRockClimbActive())
         return EventScript_UseRockClimb;
+    // POKE-CONFLUENCE: Authentic Johto Headbutt tree interaction
+    if (MetatileBehavior_IsHeadbuttTree(metatileBehavior) == TRUE)
+        return Johto_EventScript_HeadbuttTree;
 
     elevation = position->elevation;
     if (elevation == MapGridGetElevationAt(position->x, position->y))

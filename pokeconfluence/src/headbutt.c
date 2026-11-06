@@ -1,6 +1,8 @@
 #include "global.h"
 #include "battle_setup.h"
 #include "event_data.h"
+#include "field_player_avatar.h"
+#include "fieldmap.h"
 #include "headbutt.h"
 #include "item.h"
 #include "party_menu.h"
@@ -84,17 +86,17 @@ static const struct TreeMonTable sTreeMonTables[] =
             { SPECIES_SPINARAK, 10 }, // 15%
             { SPECIES_LEDYBA,   10 }, // 15%
             { SPECIES_EXEGGCUTE,10 }, // 10%
-            { SPECIES_PINECO,   10 }, // 5%
-            { SPECIES_PINECO,   10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
         },
         .rare =
         {
             { SPECIES_HOOTHOOT, 10 }, // 50%
-            { SPECIES_SPINARAK, 10 }, // 15%
-            { SPECIES_LEDYBA,   10 }, // 15%
+            { SPECIES_PINECO,   10 }, // 15%
+            { SPECIES_PINECO,   10 }, // 15%
             { SPECIES_EXEGGCUTE,10 }, // 10%
-            { SPECIES_PINECO,   10 }, // 5%
-            { SPECIES_PINECO,   10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
         },
     },
     [TREEMON_SET_KANTO] =
@@ -102,83 +104,83 @@ static const struct TreeMonTable sTreeMonTables[] =
         .common =
         {
             { SPECIES_HOOTHOOT, 10 }, // 50%
-            { SPECIES_SPINARAK, 10 }, // 15%
-            { SPECIES_LEDYBA,   10 }, // 15%
+            { SPECIES_EKANS,    10 }, // 15%
+            { SPECIES_HOOTHOOT, 10 }, // 15%
             { SPECIES_EXEGGCUTE,10 }, // 10%
-            { SPECIES_PINECO,   10 }, // 5%
-            { SPECIES_PINECO,   10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
         },
         .rare =
         {
             { SPECIES_HOOTHOOT, 10 }, // 50%
-            { SPECIES_SPINARAK, 10 }, // 15%
-            { SPECIES_LEDYBA,   10 }, // 15%
+            { SPECIES_PINECO,   10 }, // 15%
+            { SPECIES_PINECO,   10 }, // 15%
             { SPECIES_EXEGGCUTE,10 }, // 10%
-            { SPECIES_PINECO,   10 }, // 5%
-            { SPECIES_PINECO,   10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
         },
     },
     [TREEMON_SET_LAKE] =
     {
         .common =
         {
-            { SPECIES_VENONAT,  10 }, // 50%
+            { SPECIES_HOOTHOOT, 10 }, // 50%
+            { SPECIES_VENONAT,  10 }, // 15%
             { SPECIES_HOOTHOOT, 10 }, // 15%
-            { SPECIES_SPINARAK, 10 }, // 15%
             { SPECIES_EXEGGCUTE,10 }, // 10%
-            { SPECIES_PINECO,   10 }, // 5%
-            { SPECIES_PINECO,   10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
         },
         .rare =
         {
-            { SPECIES_VENONAT,  10 }, // 50%
-            { SPECIES_HOOTHOOT, 10 }, // 15%
-            { SPECIES_SPINARAK, 10 }, // 15%
+            { SPECIES_HOOTHOOT, 10 }, // 50%
+            { SPECIES_PINECO,   10 }, // 15%
+            { SPECIES_PINECO,   10 }, // 15%
             { SPECIES_EXEGGCUTE,10 }, // 10%
-            { SPECIES_PINECO,   10 }, // 5%
-            { SPECIES_PINECO,   10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
+            { SPECIES_EXEGGCUTE,10 }, // 5%
         },
     },
     [TREEMON_SET_FOREST] =
     {
         .common =
         {
-            { SPECIES_NOCTOWL,  10 }, // 50%
-            { SPECIES_CATERPIE, 10 }, // 15%
-            { SPECIES_WEEDLE,   10 }, // 15%
-            { SPECIES_METAPOD,  10 }, // 10%
-            { SPECIES_KAKUNA,   10 }, // 5%
-            { SPECIES_PINECO,   10 }, // 5%
+            { SPECIES_HOOTHOOT,  10 }, // 50%
+            { SPECIES_PINECO,    10 }, // 15%
+            { SPECIES_PINECO,    10 }, // 15%
+            { SPECIES_NOCTOWL,   10 }, // 10%
+            { SPECIES_BUTTERFREE,10 }, // 5%
+            { SPECIES_BEEDRILL,  10 }, // 5%
         },
         .rare =
         {
-            { SPECIES_NOCTOWL,   10 }, // 50%
-            { SPECIES_BUTTERFREE,10 }, // 15%
-            { SPECIES_BEEDRILL,  10 }, // 15%
-            { SPECIES_METAPOD,   10 }, // 10%
+            { SPECIES_HOOTHOOT,  10 }, // 50%
+            { SPECIES_CATERPIE,  10 }, // 15%
+            { SPECIES_WEEDLE,    10 }, // 15%
+            { SPECIES_HOOTHOOT,  10 }, // 10%
+            { SPECIES_METAPOD,   10 }, // 5%
             { SPECIES_KAKUNA,    10 }, // 5%
-            { SPECIES_PINECO,    10 }, // 5%
         },
     },
     [TREEMON_SET_ROCK] =
     {
         .common =
         {
-            { SPECIES_GEODUDE,  10 }, // 50%
-            { SPECIES_GEODUDE,  10 }, // 15%
-            { SPECIES_GEODUDE,  10 }, // 15%
-            { SPECIES_SHUCKLE,  10 }, // 10%
-            { SPECIES_SHUCKLE,  10 }, // 5%
-            { SPECIES_SHUCKLE,  10 }, // 5%
+            { SPECIES_KRABBY,   15 }, // 50%
+            { SPECIES_KRABBY,   15 }, // 15%
+            { SPECIES_KRABBY,   15 }, // 15%
+            { SPECIES_KRABBY,   15 }, // 10%
+            { SPECIES_SHUCKLE,  15 }, // 5%
+            { SPECIES_SHUCKLE,  15 }, // 5%
         },
         .rare =
         {
-            { SPECIES_GEODUDE,  10 }, // 50%
-            { SPECIES_GEODUDE,  10 }, // 15%
-            { SPECIES_GEODUDE,  10 }, // 15%
-            { SPECIES_SHUCKLE,  10 }, // 10%
-            { SPECIES_SHUCKLE,  10 }, // 5%
-            { SPECIES_SHUCKLE,  10 }, // 5%
+            { SPECIES_KRABBY,   15 }, // 50%
+            { SPECIES_KRABBY,   15 }, // 15%
+            { SPECIES_KRABBY,   15 }, // 15%
+            { SPECIES_KRABBY,   15 }, // 10%
+            { SPECIES_SHUCKLE,  15 }, // 5%
+            { SPECIES_SHUCKLE,  15 }, // 5%
         },
     },
 };
@@ -272,6 +274,37 @@ bool8 CheckSleepingTreeMon(u16 species, enum TimeOfDay timeOfDay)
     }
 }
 
+enum TreeScore
+{
+    TREEMON_SCORE_BAD,
+    TREEMON_SCORE_GOOD,
+    TREEMON_SCORE_RARE
+};
+
+// POKE-CONFLUENCE: Authentic Crystal Tree Coordinate & OTID Scoring
+static enum TreeScore GetTreeScore(s16 x, s16 y)
+{
+    u32 coordProduct;
+    u8 coordScore;
+    u8 otidScore;
+    s8 diff;
+
+    // Crystal: (x + 1) * (y + 1) - 1
+    coordProduct = ((u32)(x + 1) * (u32)(y + 1)) - 1;
+    coordScore = (coordProduct / 5) % 10;
+
+    otidScore = (gSaveBlock2Ptr->playerTrainerId[0] | (gSaveBlock2Ptr->playerTrainerId[1] << 8)) % 10;
+
+    diff = (s8)coordScore - (s8)otidScore;
+    if (diff == 0)
+        return TREEMON_SCORE_RARE;
+    if (diff < 0)
+        diff += 10;
+    if (diff < 5)
+        return TREEMON_SCORE_GOOD;
+    return TREEMON_SCORE_BAD;
+}
+
 static u8 PickTreeMonSlot(void)
 {
     u16 roll = Random() % 100;
@@ -293,6 +326,10 @@ void JohtoHeadbuttWildEncounter(void)
 {
     enum TreeMonSet set = GetCurrentMapTreeMonSet();
     const struct TreeMonSlot *slot;
+    enum TreeScore score;
+    s16 facingX;
+    s16 facingY;
+    u16 encounterChance;
     u16 roll;
     u8 slotIdx;
     u16 species;
@@ -304,20 +341,28 @@ void JohtoHeadbuttWildEncounter(void)
         return;
     }
 
-    // 50% chance nothing drops out of the tree
+    GetXYCoordsOneStepInFrontOfPlayer(&facingX, &facingY);
+    score = GetTreeScore(facingX, facingY);
+
+    if (score == TREEMON_SCORE_RARE)
+        encounterChance = 80;
+    else if (score == TREEMON_SCORE_GOOD)
+        encounterChance = 50;
+    else
+        encounterChance = 10;
+
     roll = Random() % 100;
-    if (roll < 50)
+    if (roll >= encounterChance)
     {
         gSpecialVar_Result = FALSE;
         return;
     }
 
     slotIdx = PickTreeMonSlot();
-    // 35% chance common table (50..84), 15% chance rare table (85..99)
-    if (roll < 85)
-        slot = &sTreeMonTables[set].common[slotIdx];
-    else
+    if (score == TREEMON_SCORE_RARE)
         slot = &sTreeMonTables[set].rare[slotIdx];
+    else
+        slot = &sTreeMonTables[set].common[slotIdx];
 
     species = slot->species;
     level = slot->level;

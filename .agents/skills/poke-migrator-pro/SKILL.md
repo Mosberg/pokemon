@@ -21,6 +21,8 @@ All tools reside in [tools/poke-migrator-pro/bin/](file:///home/mosberg/wsl_proj
 ### 2. Palette & Graphics Processing
 - `poke-palette-shift`: Fixes the GBA transparent pixel 0 bug by shifting opaque color 0 to color 1..4.
 - `poke-palette-fit`: Remaps 8-palette GBC tilesets into GBA secondary palette slots (6..12).
+- `poke-crystal-graphics`: Converts authentic GBC Crystal trainer front pics, back pics, and overworld sprites into centered GBA 4bpp indexed PNGs with flood-fill transparent background and `.gbapal` compilation.
+- `poke-crystal-audio`: End-to-end GBC Crystal music bytecode parser and compiler that generates Type 1 MIDI files, invokes `mid2agb` to generate M4A sequences, and wires song tables, headers, and map bindings.
 - `poke-assets`: Manages trainer front/back pics, icons, overworld sprites, and animation frames.
 - `poke-tileset-convert`: Converts raw tile blocks into 16x16 metatiles with collision attributes.
 

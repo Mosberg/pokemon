@@ -25,6 +25,9 @@
 #include "johto_phone.h"
 #include "constants/johto_flags.h"
 #include "wild_encounter.h"
+#include "headbutt.h"
+#include "metatile_behavior.h"
+#include "constants/metatile_behaviors.h"
 
 static void ClearAllBadges(void)
 {
@@ -602,6 +605,66 @@ TEST("Confluence: Johto authentic morning, day, and night wild encounter tables"
     EXPECT_EQ(r37Morn->wildPokemon[0].species, SPECIES_LEDYBA);
     EXPECT_EQ(r37Night->wildPokemon[0].species, SPECIES_SPINARAK);
 }
+
+// POKE-CONFLUENCE: Authentic Johto Headbutt Tree mechanics verification
+TEST("Confluence: Authentic Johto Headbutt Tree mechanics and encounter tables")
+{
+    // 1. Metatile behavior verification
+    EXPECT_EQ(MetatileBehavior_IsHeadbuttTree(MB_HEADBUTT_TREE), TRUE);
+    EXPECT_EQ(MetatileBehavior_IsHeadbuttTree(MB_NORMAL), FALSE);
+    EXPECT_EQ(MetatileBehavior_IsHeadbuttTree(MB_TALL_GRASS), FALSE);
+
+    // 2. Sleeping tree Pokémon logic
+    // Heracross is nocturnal -> sleeps during morning/day, active at night
+    EXPECT_EQ(CheckSleepingTreeMon(SPECIES_HERACROSS, TIME_MORNING), TRUE);
+    EXPECT_EQ(CheckSleepingTreeMon(SPECIES_HERACROSS, TIME_DAY), TRUE);
+    EXPECT_EQ(CheckSleepingTreeMon(SPECIES_HERACROSS, TIME_NIGHT), FALSE);
+
+    // Aipom is diurnal -> active during morning/day, sleeps at night
+    EXPECT_EQ(CheckSleepingTreeMon(SPECIES_AIPOM, TIME_MORNING), FALSE);
+    EXPECT_EQ(CheckSleepingTreeMon(SPECIES_AIPOM, TIME_DAY), FALSE);
+    EXPECT_EQ(CheckSleepingTreeMon(SPECIES_AIPOM, TIME_NIGHT), TRUE);
+
+    // Spinarak is nocturnal -> sleeps during day, active at night
+    EXPECT_EQ(CheckSleepingTreeMon(SPECIES_SPINARAK, TIME_DAY), TRUE);
+    EXPECT_EQ(CheckSleepingTreeMon(SPECIES_SPINARAK, TIME_NIGHT), FALSE);
+
+    // 3. Map TreeMon set resolution
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_JOHTO_ROUTE_33);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_JOHTO_ROUTE_33);
+    EXPECT_EQ(GetCurrentMapTreeMonSet(), TREEMON_SET_TOWN);
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_JOHTO_ROUTE_43);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_JOHTO_ROUTE_43);
+    EXPECT_EQ(GetCurrentMapTreeMonSet(), TREEMON_SET_LAKE);
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_JOHTO_ILEX_FOREST);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_JOHTO_ILEX_FOREST);
+    EXPECT_EQ(GetCurrentMapTreeMonSet(), TREEMON_SET_FOREST);
+
+    gSaveBlock1Ptr->location.mapGroup = MAP_GROUP(MAP_JOHTO_CIANWOOD_CITY);
+    gSaveBlock1Ptr->location.mapNum = MAP_NUM(MAP_JOHTO_CIANWOOD_CITY);
+    EXPECT_EQ(GetCurrentMapTreeMonSet(), TREEMON_SET_ROCK);
+
+    // 4. Headbutt user check via Field Kit
+    ZeroPlayerPartyMons();
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_PIDGEY, 5, 0, OTID_STRUCT_PRESET(0));
+    gPartiesCount[B_TRAINER_PLAYER] = 1;
+
+    // Without Headbutt move or Field Kit -> fails
+    JohtoCheckHeadbuttUser();
+    EXPECT_EQ(gSpecialVar_Result, PARTY_SIZE);
+
+    // With Field Kit in bag -> succeeds, selecting party member 0
+    AddBagItem(ITEM_FIELD_KIT, 1);
+    JohtoCheckHeadbuttUser();
+    EXPECT_EQ(gSpecialVar_Result, 0);
+
+    RemoveBagItem(ITEM_FIELD_KIT, 1);
+    ZeroPlayerPartyMons();
+    gPartiesCount[B_TRAINER_PLAYER] = 0;
+}
+
 
 
 
