@@ -8,6 +8,8 @@
 #include "pokemon.h"
 #include "constants/cries.h"
 #include "constants/songs.h"
+#include "constants/pikachu_voice.h"
+#include "config/pokemon.h"
 #include "task.h"
 #include "test_runner.h"
 
@@ -32,6 +34,9 @@ COMMON_DATA bool8 gDisableMusic = 0;
 
 extern struct ToneData gCryTable[];
 extern struct ToneData gCryTable_Reverse[];
+// POKE-CONFLUENCE: Authentic Yellow Pikachu Voiced Samples
+extern struct ToneData gPikachuVoiceTable[];
+extern struct ToneData gPikachuVoiceTable_Reverse[];
 
 static void Task_Fanfare(u8 taskId);
 static void CreateFanfareTask(void);
@@ -479,8 +484,79 @@ void PlayCryInternal(enum Species species, s8 pan, s8 volume, u8 priority, u8 mo
     if (cryId != CRY_NONE)
     {
         cryId--;
+#if VOICED_PIKACHU_CRIES
+        if (cryId == CRY_PIKACHU - 1)
+        {
+            u8 voiceId;
+            switch (mode)
+            {
+            case CRY_MODE_FAINT:
+                voiceId = PIKA_VOICE_FAINT;
+                break;
+            case CRY_MODE_WEAK:
+            case CRY_MODE_WEAK_DOUBLES:
+                voiceId = PIKA_VOICE_LOW_HP;
+                break;
+            case CRY_MODE_GROWL_1:
+            case CRY_MODE_GROWL_2:
+            case CRY_MODE_ROAR_1:
+            case CRY_MODE_ROAR_2:
+            case CRY_MODE_HIGH_PITCH:
+                voiceId = PIKA_VOICE_THUNDER;
+                break;
+            case CRY_MODE_NORMAL:
+            case CRY_MODE_DOUBLES:
+            case CRY_MODE_ENCOUNTER:
+            default:
+                voiceId = PIKA_VOICE_ENTRANCE;
+                break;
+            }
+            SetPokemonCryVolume(volume);
+            SetPokemonCryPanpot(pan);
+            SetPokemonCryPitch(15360);
+            SetPokemonCryLength(255);
+            SetPokemonCryProgress(0);
+            SetPokemonCryRelease(0);
+            SetPokemonCryChorus(chorus);
+            SetPokemonCryPriority(priority);
+            gMPlay_PokemonCry = SetPokemonCryTone(reverse ? &gPikachuVoiceTable_Reverse[voiceId] : &gPikachuVoiceTable[voiceId]);
+            return;
+        }
+#endif
         gMPlay_PokemonCry = SetPokemonCryTone(reverse ? &gCryTable_Reverse[cryId] : &gCryTable[cryId]);
     }
+}
+
+// POKE-CONFLUENCE: Direct voiced Pikachu cry playback (Yellow authentic)
+void PlayPikachuVoice(u8 voiceId, s8 pan)
+{
+#if VOICED_PIKACHU_CRIES
+    if (voiceId >= PIKA_VOICE_COUNT)
+        voiceId = PIKA_VOICE_ENTRANCE;
+
+    if (gTestRunnerHeadless)
+        return;
+
+    m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 85);
+    SetPokemonCryVolume(CRY_VOLUME);
+    SetPokemonCryPanpot(pan);
+    SetPokemonCryPitch(15360);
+    SetPokemonCryLength(255);
+    SetPokemonCryProgress(0);
+    SetPokemonCryRelease(0);
+    SetPokemonCryChorus(0);
+    SetPokemonCryPriority(CRY_PRIORITY_NORMAL);
+    gMPlay_PokemonCry = SetPokemonCryTone(&gPikachuVoiceTable[voiceId]);
+    gPokemonCryBGMDuckingCounter = 2;
+    RestoreBGMVolumeAfterPokemonCry();
+#else
+    PlayCry_Normal(SPECIES_PIKACHU, pan);
+#endif
+}
+
+void PlayPikachuCelebrationCry(void)
+{
+    PlayPikachuVoice(PIKA_VOICE_LEVEL_UP, 0);
 }
 
 bool8 IsCryFinished(void)
@@ -545,6 +621,8 @@ void Task_DuckBGMForPokemonCry(u8 taskId)
 
 static void RestoreBGMVolumeAfterPokemonCry(void)
 {
+    if (gTestRunnerHeadless)
+        return;
     if (FuncIsActiveTask(Task_DuckBGMForPokemonCry) != TRUE)
         CreateTask(Task_DuckBGMForPokemonCry, 80);
 }

@@ -5109,3 +5109,24 @@ gCryTable_Reverse::
 	cry_reverse Cry_Pecharunt
 .endif @ P_FAMILY_PECHARUNT
 .endif @ P_CRIES_ENABLED
+
+@ POKE-CONFLUENCE: Authentic Yellow Ikue Otani Voiced 8-bit PCM Pikachu Samples
+	.align 2
+gPikachuVoiceTable::
+	cry Cry_Pikachu_Entrance
+	cry Cry_Pikachu_Faint
+	cry Cry_Pikachu_LowHp
+	cry Cry_Pikachu_LevelUp
+	cry Cry_Pikachu_Thunder
+	cry Cry_Pikachu_Joy
+	cry Cry_Pikachu_Sad
+
+	.align 2
+gPikachuVoiceTable_Reverse::
+	cry_reverse Cry_Pikachu_Entrance
+	cry_reverse Cry_Pikachu_Faint
+	cry_reverse Cry_Pikachu_LowHp
+	cry_reverse Cry_Pikachu_LevelUp
+	cry_reverse Cry_Pikachu_Thunder
+	cry_reverse Cry_Pikachu_Joy
+	cry_reverse Cry_Pikachu_Sad

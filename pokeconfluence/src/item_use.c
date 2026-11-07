@@ -22,6 +22,8 @@
 #include "fishing.h"
 #include "fldeff.h"
 #include "follower_npc.h"
+#include "fame_checker.h"
+#include "teachy_tv.h"
 #include "item.h"
 #include "item_menu.h"
 #include "item_use.h"
@@ -1577,6 +1579,75 @@ void ItemUseOutOfBattle_TownMap(u8 taskId)
     else
     {
         gTasks[taskId].func = ItemUseOnFieldCB_TownMap;
+    }
+}
+
+// POKE-CONFLUENCE
+static void CB2_OpenFameCheckerFromBag(void)
+{
+    UseFameChecker(CB2_ReturnToBagMenuPocket);
+}
+
+static void Task_OpenRegisteredFameChecker(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        UseFameChecker(CB2_ReturnToField);
+        DestroyTask(taskId);
+    }
+}
+
+void ItemUseOutOfBattle_FameChecker(u8 taskId)
+{
+    if (MenuHelpers_IsLinkActive() == TRUE)
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+    else if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gBagMenu->newScreenCallback = CB2_OpenFameCheckerFromBag;
+        Task_FadeAndCloseBagMenu(taskId);
+    }
+    else
+    {
+        gFieldCallback = FieldCB_ReturnToFieldNoScript;
+        FadeScreen(FADE_TO_BLACK, 0);
+        gTasks[taskId].func = Task_OpenRegisteredFameChecker;
+    }
+}
+
+static void CB2_OpenTeachyTvFromBag(void)
+{
+    InitTeachyTvController(0, CB2_ReturnToBagMenuPocket);
+}
+
+static void Task_OpenRegisteredTeachyTv(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        InitTeachyTvController(0, CB2_ReturnToField);
+        DestroyTask(taskId);
+    }
+}
+
+void ItemUseOutOfBattle_TeachyTv(u8 taskId)
+{
+    if (MenuHelpers_IsLinkActive() == TRUE)
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+    else if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gBagMenu->newScreenCallback = CB2_OpenTeachyTvFromBag;
+        Task_FadeAndCloseBagMenu(taskId);
+    }
+    else
+    {
+        gFieldCallback = FieldCB_ReturnToFieldNoScript;
+        FadeScreen(FADE_TO_BLACK, 0);
+        gTasks[taskId].func = Task_OpenRegisteredTeachyTv;
     }
 }
 

@@ -610,6 +610,49 @@ Cry_Pikachu::
 	.incbin "sound/direct_sound_samples/cries/pikachu.bin"
 .endif
 
+@ POKE-CONFLUENCE: Authentic Yellow Ikue Otani Voiced 8-bit PCM Pikachu Samples
+	.align 2
+Cry_Pikachu_Entrance::
+.if TESTING == FALSE
+	.incbin "sound/direct_sound_samples/pikachu_voice/cry_37.bin"
+.endif
+
+	.align 2
+Cry_Pikachu_Faint::
+.if TESTING == FALSE
+	.incbin "sound/direct_sound_samples/pikachu_voice/cry_4.bin"
+.endif
+
+	.align 2
+Cry_Pikachu_LowHp::
+.if TESTING == FALSE
+	.incbin "sound/direct_sound_samples/pikachu_voice/cry_17.bin"
+.endif
+
+	.align 2
+Cry_Pikachu_LevelUp::
+.if TESTING == FALSE
+	.incbin "sound/direct_sound_samples/pikachu_voice/cry_28.bin"
+.endif
+
+	.align 2
+Cry_Pikachu_Thunder::
+.if TESTING == FALSE
+	.incbin "sound/direct_sound_samples/pikachu_voice/cry_2.bin"
+.endif
+
+	.align 2
+Cry_Pikachu_Joy::
+.if TESTING == FALSE
+	.incbin "sound/direct_sound_samples/pikachu_voice/cry_5.bin"
+.endif
+
+	.align 2
+Cry_Pikachu_Sad::
+.if TESTING == FALSE
+	.incbin "sound/direct_sound_samples/pikachu_voice/cry_31.bin"
+.endif
+
 	.align 2
 Cry_Raichu::
 .if TESTING == FALSE

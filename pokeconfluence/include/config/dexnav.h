@@ -2,7 +2,7 @@
 #define GUARD_CONFIG_DEXNAV_H
 
 #define DEXNAV_ENABLED                TRUE  // Whether or not DexNav is enabled. If TRUE, flags/vars below must all be non-zero
-#define USE_DEXNAV_SEARCH_LEVELS      FALSE  /* WARNING: POSSIBLY EXCEEDS SAVEBLOCK SPACE! REQUIRES 1 BYTE PER SPECIES */
+#define USE_DEXNAV_SEARCH_LEVELS      TRUE  // Compact 256-slot search level cache in SaveBlock3
 
 // Flag/var defines
 #define DN_FLAG_SEARCHING             1 // Searching for mon

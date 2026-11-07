@@ -51,4 +51,9 @@ void JohtoBugContestJudge(void);
 void JohtoBugContestBufferWinner(void);
 void JohtoBugContestCleanup(void);
 
+// Surfing Pikachu
+void CheckSurfingPikachuInParty(void);
+void StartSurfingPikachuMinigameSpecial(void);
+void GetSurfingPikachuScores(void);
+
 #endif // GUARD_FIELD_SPECIALS_H

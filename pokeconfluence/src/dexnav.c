@@ -777,15 +777,22 @@ static void LoadSearchIconData(void)
     LoadCompressedSpriteSheetUsingHeap(&sHiddenMonIconSpriteSheet);
 }
 
+u8 DexNav_GetSearchLevel(enum Species species)
+{
+#if USE_DEXNAV_SEARCH_LEVELS == TRUE
+    u32 i;
+    for (i = 0; i < DEXNAV_SAVED_SEARCH_LEVELS_COUNT; i++)
+    {
+        if (gSaveBlock3Ptr->dexNavSearchLevels[i].species == species)
+            return gSaveBlock3Ptr->dexNavSearchLevels[i].searchLevel;
+    }
+#endif
+    return 0;
+}
+
 static u8 GetSearchLevel(enum Species species)
 {
-    u8 searchLevel;
-#if USE_DEXNAV_SEARCH_LEVELS == TRUE
-    searchLevel = gSaveBlock3Ptr->dexNavSearchLevels[species];
-#else
-    searchLevel = 0;
-#endif
-    return searchLevel;
+    return DexNav_GetSearchLevel(species);
 }
 
 static void SetUpDexNavSearch(void)
@@ -2649,11 +2656,46 @@ u32 CalculateDexNavShinyRolls(void)
     return chainBonus + rndBonus;
 }
 
-void TryIncrementSpeciesSearchLevel()
+void TryIncrementSpeciesSearchLevel(void)
 {
 #if USE_DEXNAV_SEARCH_LEVELS == TRUE
-    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gSaveBlock3Ptr->dexNavSearchLevels[gDexNavSpecies] < 255)
-        gSaveBlock3Ptr->dexNavSearchLevels[gDexNavSpecies]++;
+    u32 i;
+    u32 emptySlot = DEXNAV_SAVED_SEARCH_LEVELS_COUNT;
+    u32 lowestSlot = 0;
+    u8 lowestLevel = 255;
+
+    if (gMapHeader.regionMapSectionId == MAPSEC_BATTLE_FRONTIER || gDexNavSpecies == SPECIES_NONE)
+        return;
+
+    for (i = 0; i < DEXNAV_SAVED_SEARCH_LEVELS_COUNT; i++)
+    {
+        if (gSaveBlock3Ptr->dexNavSearchLevels[i].species == gDexNavSpecies)
+        {
+            if (gSaveBlock3Ptr->dexNavSearchLevels[i].searchLevel < 255)
+                gSaveBlock3Ptr->dexNavSearchLevels[i].searchLevel++;
+            return;
+        }
+        if (emptySlot == DEXNAV_SAVED_SEARCH_LEVELS_COUNT && gSaveBlock3Ptr->dexNavSearchLevels[i].species == SPECIES_NONE)
+        {
+            emptySlot = i;
+        }
+        if (gSaveBlock3Ptr->dexNavSearchLevels[i].searchLevel < lowestLevel)
+        {
+            lowestLevel = gSaveBlock3Ptr->dexNavSearchLevels[i].searchLevel;
+            lowestSlot = i;
+        }
+    }
+
+    if (emptySlot < DEXNAV_SAVED_SEARCH_LEVELS_COUNT)
+    {
+        gSaveBlock3Ptr->dexNavSearchLevels[emptySlot].species = gDexNavSpecies;
+        gSaveBlock3Ptr->dexNavSearchLevels[emptySlot].searchLevel = 1;
+    }
+    else
+    {
+        gSaveBlock3Ptr->dexNavSearchLevels[lowestSlot].species = gDexNavSpecies;
+        gSaveBlock3Ptr->dexNavSearchLevels[lowestSlot].searchLevel = 1;
+    }
 #endif
 }
 

@@ -90,13 +90,14 @@ KurtsHouse_Johto_Kurt1_ClearedSlowpokeWell:
 
 KurtsHouse_Johto_Kurt1_GotLureBall:
 	goto_if_set FLAG_TEMP_11, KurtsHouse_Johto_Kurt1_WaitForApricorns
-	goto_if_set FLAG_JOHTO_GAVE_KURT_RED_APRICORN, KurtsHouse_Johto_Kurt1_GiveLevelBall
-	goto_if_set FLAG_JOHTO_GAVE_KURT_BLU_APRICORN, KurtsHouse_Johto_Kurt1_GiveLureBall
-	goto_if_set FLAG_JOHTO_GAVE_KURT_YLW_APRICORN, KurtsHouse_Johto_Kurt1_GiveMoonBall
-	goto_if_set FLAG_JOHTO_GAVE_KURT_GRN_APRICORN, KurtsHouse_Johto_Kurt1_GiveFriendBall
-	goto_if_set FLAG_JOHTO_GAVE_KURT_WHT_APRICORN, KurtsHouse_Johto_Kurt1_GiveFastBall
-	goto_if_set FLAG_JOHTO_GAVE_KURT_BLK_APRICORN, KurtsHouse_Johto_Kurt1_GiveHeavyBall
-	goto_if_set FLAG_JOHTO_GAVE_KURT_PNK_APRICORN, KurtsHouse_Johto_Kurt1_GiveLoveBall
+	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
+	goto_if_set FLAG_JOHTO_GAVE_KURT_RED_APRICORN, KurtsHouse_Johto_Kurt1_DeliverBalls
+	goto_if_set FLAG_JOHTO_GAVE_KURT_BLU_APRICORN, KurtsHouse_Johto_Kurt1_DeliverBalls
+	goto_if_set FLAG_JOHTO_GAVE_KURT_YLW_APRICORN, KurtsHouse_Johto_Kurt1_DeliverBalls
+	goto_if_set FLAG_JOHTO_GAVE_KURT_GRN_APRICORN, KurtsHouse_Johto_Kurt1_DeliverBalls
+	goto_if_set FLAG_JOHTO_GAVE_KURT_WHT_APRICORN, KurtsHouse_Johto_Kurt1_DeliverBalls
+	goto_if_set FLAG_JOHTO_GAVE_KURT_BLK_APRICORN, KurtsHouse_Johto_Kurt1_DeliverBalls
+	goto_if_set FLAG_JOHTO_GAVE_KURT_PNK_APRICORN, KurtsHouse_Johto_Kurt1_DeliverBalls
 	goto_if_set FLAG_JOHTO_CAN_GIVE_GS_BALL_TO_KURT, KurtsHouse_Johto_Kurt1_CanGiveGSBallToKurt
 
 KurtsHouse_Johto_Kurt1_NoGSBall:
@@ -140,44 +141,106 @@ KurtsHouse_Johto_Kurt1_AskApricorn:
 	waitmessage
 	waitbuttonpress
 	setflag FLAG_TEMP_13
-	special JohtoSelectApricornForKurt
-	goto_if_eq VAR_RESULT, FALSE, KurtsHouse_Johto_Kurt1_Cancel
-	goto_if_eq VAR_RESULT, ITEM_BLU_APRICORN, KurtsHouse_Johto_Kurt1_Blu
-	goto_if_eq VAR_RESULT, ITEM_YLW_APRICORN, KurtsHouse_Johto_Kurt1_Ylw
-	goto_if_eq VAR_RESULT, ITEM_GRN_APRICORN, KurtsHouse_Johto_Kurt1_Grn
-	goto_if_eq VAR_RESULT, ITEM_WHT_APRICORN, KurtsHouse_Johto_Kurt1_Wht
-	goto_if_eq VAR_RESULT, ITEM_BLK_APRICORN, KurtsHouse_Johto_Kurt1_Blk
-	goto_if_eq VAR_RESULT, ITEM_PNK_APRICORN, KurtsHouse_Johto_Kurt1_Pnk
-	setflag FLAG_JOHTO_GAVE_KURT_RED_APRICORN
-	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+	call KurtsHouse_Johto_BuildApricornMenu
+	dynmultipush KurtsHouse_Johto_Text_Cancel, 0
+	dynmultistack 0, 0, FALSE, 6, FALSE, 0, NULL
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_Cancel
+	goto_if_eq VAR_RESULT, MULTI_B_PRESSED, KurtsHouse_Johto_Kurt1_Cancel
 
-KurtsHouse_Johto_Kurt1_Blu:
-	setflag FLAG_JOHTO_GAVE_KURT_BLU_APRICORN
-	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+	copyvar VAR_0x8004, VAR_RESULT
+	special JohtoGetApricornQuantity
+	copyvar VAR_0x8005, VAR_RESULT
+	goto_if_eq VAR_0x8005, 1, KurtsHouse_Johto_Kurt1_ConfirmSingle
 
-KurtsHouse_Johto_Kurt1_Ylw:
-	setflag FLAG_JOHTO_GAVE_KURT_YLW_APRICORN
-	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+	@ Batch crafting prompt when player has multiple of chosen Apricorn
+	buffernumberstring STR_VAR_1, VAR_0x8005
+	bufferitemname STR_VAR_2, VAR_0x8004
+	message KurtsHouse_Johto_Text_HowManyApricorns
+	waitmessage
+	dynmultipush KurtsHouse_Johto_Text_MakeOne, 1
+	dynmultipush KurtsHouse_Johto_Text_MakeAll, 2
+	dynmultipush KurtsHouse_Johto_Text_Cancel, 0
+	dynmultistack 0, 0, FALSE, 3, FALSE, 0, NULL
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_Cancel
+	goto_if_eq VAR_RESULT, MULTI_B_PRESSED, KurtsHouse_Johto_Kurt1_Cancel
+	goto_if_eq VAR_RESULT, 1, KurtsHouse_Johto_Kurt1_ConfirmSingle
 
-KurtsHouse_Johto_Kurt1_Grn:
-	setflag FLAG_JOHTO_GAVE_KURT_GRN_APRICORN
-	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+	@ VAR_RESULT == 2 (All): VAR_0x8005 already holds the total count
+	goto KurtsHouse_Johto_Kurt1_ExecuteGive
 
-KurtsHouse_Johto_Kurt1_Wht:
-	setflag FLAG_JOHTO_GAVE_KURT_WHT_APRICORN
-	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
+KurtsHouse_Johto_Kurt1_ConfirmSingle:
+	setvar VAR_0x8005, 1
 
-KurtsHouse_Johto_Kurt1_Blk:
-	setflag FLAG_JOHTO_GAVE_KURT_BLK_APRICORN
-	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
-
-KurtsHouse_Johto_Kurt1_Pnk:
-	setflag FLAG_JOHTO_GAVE_KURT_PNK_APRICORN
-	goto KurtsHouse_Johto_Kurt1_GaveKurtApricorns
-
-KurtsHouse_Johto_Kurt1_GaveKurtApricorns:
+KurtsHouse_Johto_Kurt1_ExecuteGive:
+	special JohtoGiveKurtApricorns
 	setflag FLAG_TEMP_11
-	setflag FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS
+	goto KurtsHouse_Johto_Kurt1_WaitForApricorns
+
+KurtsHouse_Johto_BuildApricornMenu:
+	checkitem ITEM_RED_APRICORN, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_SkipRed
+	dynmultipush KurtsHouse_Johto_Text_RedApricorn, ITEM_RED_APRICORN
+KurtsHouse_Johto_SkipRed:
+	checkitem ITEM_BLU_APRICORN, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_SkipBlu
+	dynmultipush KurtsHouse_Johto_Text_BluApricorn, ITEM_BLU_APRICORN
+KurtsHouse_Johto_SkipBlu:
+	checkitem ITEM_YLW_APRICORN, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_SkipYlw
+	dynmultipush KurtsHouse_Johto_Text_YlwApricorn, ITEM_YLW_APRICORN
+KurtsHouse_Johto_SkipYlw:
+	checkitem ITEM_GRN_APRICORN, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_SkipGrn
+	dynmultipush KurtsHouse_Johto_Text_GrnApricorn, ITEM_GRN_APRICORN
+KurtsHouse_Johto_SkipGrn:
+	checkitem ITEM_WHT_APRICORN, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_SkipWht
+	dynmultipush KurtsHouse_Johto_Text_WhtApricorn, ITEM_WHT_APRICORN
+KurtsHouse_Johto_SkipWht:
+	checkitem ITEM_BLK_APRICORN, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_SkipBlk
+	dynmultipush KurtsHouse_Johto_Text_BlkApricorn, ITEM_BLK_APRICORN
+KurtsHouse_Johto_SkipBlk:
+	checkitem ITEM_PNK_APRICORN, 1
+	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_SkipPnk
+	dynmultipush KurtsHouse_Johto_Text_PnkApricorn, ITEM_PNK_APRICORN
+KurtsHouse_Johto_SkipPnk:
+	return
+
+KurtsHouse_Johto_Kurt1_DeliverBalls:
+	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
+	waitmessage
+	waitbuttonpress
+	special JohtoDeliverKurtBalls
+	goto_if_eq VAR_RESULT, FALSE, KurtsHouse_Johto_Kurt1_NoRoomForBall
+	bufferitemname STR_VAR_1, VAR_0x8000
+	buffernumberstring STR_VAR_2, VAR_0x8001
+	playfanfare MUS_OBTAIN_ITEM
+	message KurtsHouse_Johto_Text_ObtainedKurtBalls
+	waitfanfare
+	waitbuttonpress
+	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
+
+KurtsHouse_Johto_Kurt1_GiveLevelBall:
+	goto KurtsHouse_Johto_Kurt1_DeliverBalls
+
+KurtsHouse_Johto_Kurt1_GiveLureBall:
+	goto KurtsHouse_Johto_Kurt1_DeliverBalls
+
+KurtsHouse_Johto_Kurt1_GiveMoonBall:
+	goto KurtsHouse_Johto_Kurt1_DeliverBalls
+
+KurtsHouse_Johto_Kurt1_GiveFriendBall:
+	goto KurtsHouse_Johto_Kurt1_DeliverBalls
+
+KurtsHouse_Johto_Kurt1_GiveFastBall:
+	goto KurtsHouse_Johto_Kurt1_DeliverBalls
+
+KurtsHouse_Johto_Kurt1_GiveHeavyBall:
+	goto KurtsHouse_Johto_Kurt1_DeliverBalls
+
+KurtsHouse_Johto_Kurt1_GiveLoveBall:
+	goto KurtsHouse_Johto_Kurt1_DeliverBalls
 
 KurtsHouse_Johto_Kurt1_WaitForApricorns:
 	message KurtsHouse_Johto_KurtsHouseKurtItWillTakeADayText
@@ -207,76 +270,6 @@ KurtsHouse_Johto_Kurt1_NoRoomForBall:
 	closemessage
 	releaseall
 	end
-
-KurtsHouse_Johto_Kurt1_GiveLevelBall:
-	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
-	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
-	waitmessage
-	waitbuttonpress
-	giveitem ITEM_LEVEL_BALL, 1
-	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
-	clearflag FLAG_JOHTO_GAVE_KURT_RED_APRICORN
-	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
-
-KurtsHouse_Johto_Kurt1_GiveLureBall:
-	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
-	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
-	waitmessage
-	waitbuttonpress
-	giveitem ITEM_LURE_BALL, 1
-	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
-	clearflag FLAG_JOHTO_GAVE_KURT_BLU_APRICORN
-	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
-
-KurtsHouse_Johto_Kurt1_GiveMoonBall:
-	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
-	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
-	waitmessage
-	waitbuttonpress
-	giveitem ITEM_MOON_BALL, 1
-	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
-	clearflag FLAG_JOHTO_GAVE_KURT_YLW_APRICORN
-	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
-
-KurtsHouse_Johto_Kurt1_GiveFriendBall:
-	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
-	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
-	waitmessage
-	waitbuttonpress
-	giveitem ITEM_FRIEND_BALL, 1
-	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
-	clearflag FLAG_JOHTO_GAVE_KURT_GRN_APRICORN
-	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
-
-KurtsHouse_Johto_Kurt1_GiveFastBall:
-	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
-	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
-	waitmessage
-	waitbuttonpress
-	giveitem ITEM_FAST_BALL, 1
-	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
-	clearflag FLAG_JOHTO_GAVE_KURT_WHT_APRICORN
-	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
-
-KurtsHouse_Johto_Kurt1_GiveHeavyBall:
-	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
-	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
-	waitmessage
-	waitbuttonpress
-	giveitem ITEM_HEAVY_BALL, 1
-	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
-	clearflag FLAG_JOHTO_GAVE_KURT_BLK_APRICORN
-	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
-
-KurtsHouse_Johto_Kurt1_GiveLoveBall:
-	goto_if_set FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS, KurtsHouse_Johto_KurtMakingBallsScript
-	message KurtsHouse_Johto_KurtsHouseKurtJustFinishedYourBallText
-	waitmessage
-	waitbuttonpress
-	giveitem ITEM_LOVE_BALL, 1
-	goto_if_eq VAR_RESULT, 0, KurtsHouse_Johto_Kurt1_NoRoomForBall
-	clearflag FLAG_JOHTO_GAVE_KURT_PNK_APRICORN
-	goto KurtsHouse_Johto_Kurt1__ThatTurnedOutGreat
 
 KurtsHouse_Johto_Kurt1_CanGiveGSBallToKurt:
 	goto_if_set FLAG_JOHTO_GAVE_GS_BALL_TO_KURT, KurtsHouse_Johto_Kurt1_GaveGSBallToKurt
@@ -689,3 +682,40 @@ KurtsHouse_Johto_KurtsHouseCelebiStatueText:
 	.string "It's a statue of\n"
 	.string "the forest's pro-\l"
 	.string "tector.$"
+
+KurtsHouse_Johto_Text_RedApricorn:
+	.string "Red Apricorn (Level Ball)$"
+
+KurtsHouse_Johto_Text_BluApricorn:
+	.string "Blu Apricorn (Lure Ball)$"
+
+KurtsHouse_Johto_Text_YlwApricorn:
+	.string "Ylw Apricorn (Moon Ball)$"
+
+KurtsHouse_Johto_Text_GrnApricorn:
+	.string "Grn Apricorn (Friend Ball)$"
+
+KurtsHouse_Johto_Text_WhtApricorn:
+	.string "Wht Apricorn (Fast Ball)$"
+
+KurtsHouse_Johto_Text_BlkApricorn:
+	.string "Blk Apricorn (Heavy Ball)$"
+
+KurtsHouse_Johto_Text_PnkApricorn:
+	.string "Pnk Apricorn (Love Ball)$"
+
+KurtsHouse_Johto_Text_Cancel:
+	.string "Cancel$"
+
+KurtsHouse_Johto_Text_HowManyApricorns:
+	.string "You have {STR_VAR_1} {STR_VAR_2}s.\nHow many should I turn into Balls?$"
+
+KurtsHouse_Johto_Text_MakeOne:
+	.string "Just 1 Ball$"
+
+KurtsHouse_Johto_Text_MakeAll:
+	.string "All {STR_VAR_1} of them$"
+
+KurtsHouse_Johto_Text_ObtainedKurtBalls:
+	.string "{PLAYER} received {STR_VAR_2}\n{STR_VAR_1}(s) from Kurt!$"
+

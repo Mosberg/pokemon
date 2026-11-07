@@ -24,6 +24,7 @@
 #include "window.h"
 #include "constants/items.h"
 #include "constants/songs.h"
+#include "overworld.h"
 
 // Note that in this file 'Dodrio Berry Picking' is often
 // shortened to DodrioGame or just Game for convenience
@@ -284,6 +285,7 @@ EWRAM_DATA static struct StatusBar *sStatusBar = NULL;
 EWRAM_DATA static struct DodrioGame_Gfx *sGfx = NULL;
 
 static bool32 sExitingGame;
+static bool8 sIsSoloPracticeMode;
 
 static void ResetTasksAndSprites(void);
 static void InitDodrioGame(struct DodrioGame *);
@@ -688,6 +690,42 @@ void StartDodrioBerryPicking(u16 partyId, MainCallback exitCallback)
     }
 }
 
+// POKE-CONFLUENCE: Solo practice mode support
+void StartDodrioBerryPickingPractice(u16 partyId, MainCallback exitCallback)
+{
+    sExitingGame = FALSE;
+    sIsSoloPracticeMode = TRUE;
+
+    if ((sGame = AllocZeroed(sizeof(*sGame))))
+    {
+        ResetTasksAndSprites();
+        InitDodrioGame(sGame);
+        sGame->exitCallback = exitCallback;
+        sGame->multiplayerId = 0;
+        sGame->player = sGame->players[0];
+        sGame->numPlayers = 1;
+        sGame->posToPlayerId[0] = 0;
+        StringCopy(gLinkPlayers[0].name, gSaveBlock2Ptr->playerName);
+        InitMonInfo(&sGame->monInfo[0], &gParties[B_TRAINER_PLAYER][partyId]);
+        CreateTask(Task_StartDodrioGame, 1);
+        SetMainCallback2(CB2_DodrioGame);
+        SetRandomPrize();
+        GetActiveBerryColumns(1, &sGame->berryColStart, &sGame->berryColEnd);
+        StopMapMusic();
+        PlayNewMapMusic(MUS_RG_BERRY_PICK);
+    }
+    else
+    {
+        sIsSoloPracticeMode = FALSE;
+        SetMainCallback2(exitCallback);
+    }
+}
+
+void StartDodrioBerryPickingPracticeSpecial(void)
+{
+    StartDodrioBerryPickingPractice(gSpecialVar_0x8004, CB2_ReturnToFieldContinueScriptPlayMapMusic);
+}
+
 static void ResetTasksAndSprites(void)
 {
     ResetTasks();
@@ -736,14 +774,23 @@ static void InitDodrioGame(struct DodrioGame *game)
         game->playersAttemptingPick[i][1] = PLAYER_NONE;
     }
 
-    game->isLeader = GetMultiplayerId() == 0 ? TRUE : FALSE;
-    game->numPlayers = GetLinkPlayerCount();
-    game->posToPlayerId[0] = GetMultiplayerId();
-    for (i = 1; i < game->numPlayers; i++)
+    if (sIsSoloPracticeMode)
     {
-        game->posToPlayerId[i] = game->posToPlayerId[i - 1] + 1;
-        if (game->posToPlayerId[i] > game->numPlayers - 1)
-            game->posToPlayerId[i] %= game->numPlayers;
+        game->isLeader = TRUE;
+        game->numPlayers = 1;
+        game->posToPlayerId[0] = 0;
+    }
+    else
+    {
+        game->isLeader = GetMultiplayerId() == 0 ? TRUE : FALSE;
+        game->numPlayers = GetLinkPlayerCount();
+        game->posToPlayerId[0] = GetMultiplayerId();
+        for (i = 1; i < game->numPlayers; i++)
+        {
+            game->posToPlayerId[i] = game->posToPlayerId[i - 1] + 1;
+            if (game->posToPlayerId[i] > game->numPlayers - 1)
+                game->posToPlayerId[i] %= game->numPlayers;
+        }
     }
 }
 
@@ -755,11 +802,18 @@ static void Task_StartDodrioGame(u8 taskId)
     {
     case 0:
         SetVBlankCallback(NULL);
-        CreateTask_(Task_CommunicateMonInfo, 4);
-        sGame->startState++;
+        if (sIsSoloPracticeMode)
+        {
+            sGame->startState++;
+        }
+        else
+        {
+            CreateTask_(Task_CommunicateMonInfo, 4);
+            sGame->startState++;
+        }
         break;
     case 1:
-        if (!FuncIsActiveTask(Task_CommunicateMonInfo))
+        if (sIsSoloPracticeMode || !FuncIsActiveTask(Task_CommunicateMonInfo))
         {
             InitGameGfx(&sGame->gfx);
             sGame->startState++;
@@ -768,8 +822,15 @@ static void Task_StartDodrioGame(u8 taskId)
     case 2:
         if (!IsGfxFuncActive())
         {
-            Rfu_SetLinkStandbyCallback();
-            sGame->startState++;
+            if (sIsSoloPracticeMode)
+            {
+                sGame->startState = 4;
+            }
+            else
+            {
+                Rfu_SetLinkStandbyCallback();
+                sGame->startState++;
+            }
         }
         break;
     case 3:
@@ -819,12 +880,15 @@ static void Task_StartDodrioGame(u8 taskId)
 
 static void Task_DodrioGame_Leader(u8 taskId)
 {
-    RecvLinkData_Leader();
+    if (!sIsSoloPracticeMode)
+        RecvLinkData_Leader();
+
     sLeaderFuncs[sGame->funcId]();
     if (!sExitingGame)
         UpdateGame_Leader();
 
-    SendLinkData_Leader();
+    if (!sIsSoloPracticeMode)
+        SendLinkData_Leader();
 }
 
 static void Task_DodrioGame_Member(u8 taskId)
@@ -877,6 +941,12 @@ static void DoCountdown(void)
         sGame->state++;
         break;
     case 1:
+        if (sIsSoloPracticeMode)
+        {
+            sGame->state = 3;
+            sGame->countdownEndDelay = 0;
+            break;
+        }
         Rfu_SetLinkStandbyCallback();
         sGame->state++;
         break;
@@ -894,6 +964,11 @@ static void DoCountdown(void)
     case 4:
         if (++sGame->countdownEndDelay > 5)
         {
+            if (sIsSoloPracticeMode)
+            {
+                SetGameFunc(FUNC_WAIT_START);
+                break;
+            }
             Rfu_SetLinkStandbyCallback();
             sGame->state++;
         }
@@ -910,7 +985,7 @@ static void WaitGameStart(void)
     switch (sGame->state)
     {
     case 0:
-        if (sGame->startGame)
+        if (sIsSoloPracticeMode || sGame->startGame)
             SetGameFunc(FUNC_PLAY_GAME);
         break;
     }
@@ -1016,12 +1091,15 @@ static void WaitEndGame_Leader(void)
     else
     {
         sGame->allReadyToEnd = TRUE;
-        for (i = 1; i < sGame->numPlayers; i++)
+        if (!sIsSoloPracticeMode)
         {
-            if (sGame->readyToEnd[i] != TRUE)
+            for (i = 1; i < sGame->numPlayers; i++)
             {
-                sGame->allReadyToEnd = FALSE;
-                break;
+                if (sGame->readyToEnd[i] != TRUE)
+                {
+                    sGame->allReadyToEnd = FALSE;
+                    break;
+                }
             }
         }
     }
@@ -1051,6 +1129,13 @@ static bool32 AllLinkBlocksReceived(void)
 
 static void InitResults_Leader(void)
 {
+    if (sIsSoloPracticeMode)
+    {
+        SetGameFunc(FUNC_RESULTS);
+        FadeOutAndPlayNewMapMusic(MUS_RG_VICTORY_WILD, 4);
+        return;
+    }
+
     switch (sGame->state)
     {
     case 0:
@@ -1137,6 +1222,26 @@ static void DoResults(void)
     u8 playAgainState = PLAY_AGAIN_YES;
     u8 i;
 
+    if (sIsSoloPracticeMode)
+    {
+        switch (sGame->state)
+        {
+        case 0:
+            TryUpdateRecords();
+            SetStatusBarInvisibility(TRUE);
+            ResetCloudPos();
+            SetCloudInvisibility(TRUE);
+            SetGfxFuncById(GFXFUNC_SHOW_RESULTS);
+            sGame->state++;
+            break;
+        case 1:
+            if (!IsGfxFuncActive())
+                SetGameFunc(FUNC_ASK_PLAY_AGAIN);
+            break;
+        }
+        return;
+    }
+
     switch (sGame->state)
     {
     case 0:
@@ -1220,6 +1325,14 @@ static void AskPlayAgain(void)
     case 3:
         if ((playAgainState = GetPlayAgainState()) != PLAY_AGAIN_NONE)
         {
+            if (sIsSoloPracticeMode)
+            {
+                if (playAgainState == PLAY_AGAIN_YES)
+                    SetGameFunc(FUNC_RESET_GAME);
+                else
+                    SetGameFunc(FUNC_EXIT);
+                break;
+            }
             sGame->state++;
         }
         break;
@@ -1284,6 +1397,12 @@ static void AskPlayAgain(void)
 
 static void EndLink(void)
 {
+    if (sIsSoloPracticeMode)
+    {
+        SetGameFunc(FUNC_EXIT);
+        return;
+    }
+
     switch (sGame->state)
     {
     case 0:
@@ -1337,6 +1456,7 @@ static void ExitGame(void)
             DestroyTask(sGame->taskId);
             Free(sGame);
             FreeAllWindowBuffers();
+            sIsSoloPracticeMode = FALSE;
         }
         break;
     }
@@ -2240,6 +2360,9 @@ static void GetActiveBerryColumns(u8 numPlayers, u8 *start, u8 *end)
 static bool32 AllPlayersReadyToStart(void)
 {
     u8 i, numPlayers;
+
+    if (sIsSoloPracticeMode)
+        return TRUE;
 
     numPlayers = sGame->numPlayers;
     for (i = 1; i < numPlayers; i++)

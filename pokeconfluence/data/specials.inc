@@ -446,8 +446,10 @@ gSpecials::
 	def_special HasAtLeastOneBerry
 	def_special IsPokemonJumpSpeciesInParty
 	def_special ShowPokemonJumpRecords, waitstate=1
+	def_special StartPokemonJumpPracticeSpecial, waitstate=1
 	def_special IsDodrioInParty
 	def_special ShowDodrioBerryPickingRecords, waitstate=1
+	def_special StartDodrioBerryPickingPracticeSpecial, waitstate=1
 	def_special OffsetCameraForBattle
 	def_special GetDeptStoreDefaultFloorChoice
 	def_special BufferVarsForIVRater
@@ -653,6 +655,9 @@ gSpecials::
 	def_special JohtoGetFirstMonHappiness
 	def_special JohtoCheckCoins
 	def_special JohtoSelectApricornForKurt
+	def_special JohtoGetApricornQuantity
+	def_special JohtoGiveKurtApricorns
+	def_special JohtoDeliverKurtBalls
 	def_special JohtoGetDexCaught
 	def_special JohtoCheckFirstMonIsEgg
 	def_special JohtoCheckCaughtCelebi
@@ -689,3 +694,27 @@ gSpecials::
 	def_special JohtoCheckRocketCrisis
 	def_special JohtoGetBuenaPasswordChoices
 	def_special JohtoCheckBuenaAnswer
+	def_special JohtoGetUnownCaughtCount
+	def_special Special_CardFlipInit
+	def_special Special_CardFlipDeal
+	def_special Special_CardFlipSelectCard
+	def_special Special_CardFlipSetBet
+	def_special Special_CardFlipEvaluate
+	def_special Special_CardFlipBufferResult
+	def_special Special_CardFlipShowCoins
+	def_special Special_CardFlipHideCoins
+	def_special JohtoCheckBuenaTime
+	def_special JohtoGetBlueCardBalance
+	def_special JohtoRedeemBuenaPrize
+	def_special JohtoBattleTowerInitChallenge
+	def_special JohtoBattleTowerPrepareOpponent
+	def_special JohtoBattleTowerStartBattle, waitstate=1
+	def_special JohtoBattleTowerGetOutcome
+	def_special JohtoBattleTowerAdvanceStreak
+	def_special JohtoBattleTowerGivePrizes
+	def_special CheckSurfingPikachuInParty
+	def_special StartSurfingPikachuMinigameSpecial, waitstate=1
+	def_special GetSurfingPikachuScores
+
+
+

@@ -2135,3 +2135,9 @@ const u16 gBattleIcons_Pal2[] = INCGFX_U16("graphics/types/battle_icons2.pal", "
 
 const u16 gGhostPalette[] = INCGFX_U16("graphics/pokemon/ghost/front.png", ".gbapal");
 const u32 gGhostFrontPic[] = INCGFX_U32("graphics/pokemon/ghost/front.png", ".4bpp.smol");
+
+// Teachy TV
+const u16 gTeachyTv_Pal[] = INCGFX_U16("graphics/teachy_tv/palettes.pal", ".gbapal");
+const u32 gTeachyTv_Gfx[] = INCGFX_U32("graphics/teachy_tv/tiles.png", ".4bpp.smol");
+const u16 gTeachyTvScreen_Tilemap[] = INCBIN_U16("graphics/teachy_tv/screen.bin");
+const u16 gTeachyTvTitle_Tilemap[] = INCBIN_U16("graphics/teachy_tv/title.bin");

@@ -1187,8 +1187,45 @@ CableClub_EventScript_EnterMinigame_Frlg::
 
 CableClub_EventScript_AdapterNotConnectedMinigame_Frlg::
 	msgbox Text_AdapterNotConnectedMinigame_Frlg
+	msgbox Text_AskPlaySoloPractice, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, CableClub_EventScript_AbortMinigame_Frlg
+	message Text_PlayWhichGame_Frlg
+	waitmessage
+	multichoice 0, 0, MULTI_WIRELESS_MINIGAME, FALSE
+	switch VAR_RESULT
+	case 0, CableClub_EventScript_PlayPokemonJumpPractice_Frlg
+	case 1, CableClub_EventScript_PlayDodrioBerryPickingPractice_Frlg
+	case 2, CableClub_EventScript_AbortMinigame_Frlg
+	case MULTI_B_PRESSED, CableClub_EventScript_AbortMinigame_Frlg
+	end
+
+CableClub_EventScript_PlayPokemonJumpPractice_Frlg::
+	setvar VAR_0x8005, 0
+	special IsPokemonJumpSpeciesInParty
+	goto_if_eq VAR_RESULT, FALSE, CableClub_EventScript_NoEligiblePkmn_Frlg
+	msgbox Text_EnterWhichPokemon_Frlg
+	setvar VAR_0x8005, 0
+	special ChooseMonForWirelessMinigame
+	goto_if_ge VAR_0x8004, PARTY_SIZE, CableClub_EventScript_AbortMinigame_Frlg
+	special StartPokemonJumpPracticeSpecial
 	release
 	end
+
+CableClub_EventScript_PlayDodrioBerryPickingPractice_Frlg::
+	setvar VAR_0x8005, 1
+	special IsDodrioInParty
+	goto_if_eq VAR_RESULT, 0, CableClub_EventScript_NoEligiblePkmn_Frlg
+	msgbox Text_EnterWhichPokemon_Frlg
+	setvar VAR_0x8005, 1
+	special ChooseMonForWirelessMinigame
+	goto_if_ge VAR_0x8004, PARTY_SIZE, CableClub_EventScript_AbortMinigame_Frlg
+	special StartDodrioBerryPickingPracticeSpecial
+	release
+	end
+
+Text_AskPlaySoloPractice::
+	.string "Would you like to try Solo Practice\n"
+	.string "Mode instead?$"
 
 CableClub_EventScript_NoEligiblePkmn_Frlg::
 	msgbox EventScript_ExplainPokemonJumpRequirements_Frlg, MSGBOX_YESNO

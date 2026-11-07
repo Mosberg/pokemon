@@ -3439,4 +3439,10 @@ extern const u16 gBattleIcons_Pal2[];
 extern const u32 gGhostFrontPic[];
 extern const u16 gGhostPalette[];
 
+// Teachy TV
+extern const u16 gTeachyTv_Pal[];
+extern const u32 gTeachyTv_Gfx[];
+extern const u16 gTeachyTvScreen_Tilemap[];
+extern const u16 gTeachyTvTitle_Tilemap[];
+
 #endif //GUARD_GRAPHICS_H

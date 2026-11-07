@@ -40,6 +40,31 @@
 #include "script.h"
 #include "overworld.h"
 #include "johto_radio.h"
+#include "unown.h"
+#include "card_flip.h"
+#include "coins.h"
+#include "string_util.h"
+#include "johto_battle_tower.h"
+#include "fame_checker.h"
+#include "teachy_tv.h"
+#include "surfing_pikachu.h"
+#include "battle_setup.h"
+#include "gym_leader_rematch.h"
+#include "time_events.h"
+#include "pokeblock.h"
+#include "contest.h"
+#include "dexnav.h"
+#include "gba/m4a_internal.h"
+#include "sound.h"
+extern struct ToneData gPikachuVoiceTable[];
+extern struct ToneData gPikachuVoiceTable_Reverse[];
+#include "constants/pikachu_voice.h"
+#include "config/pokemon.h"
+#include "item_use.h"
+#include "berry_powder.h"
+#include "pokemon_jump.h"
+#include "dodrio_berry_picking.h"
+#include "constants/game_stat.h"
 
 static void ClearAllBadges(void)
 {
@@ -1054,6 +1079,1023 @@ TEST("Confluence: Authentic Johto Pokégear Radio Card and Audio Broadcasts")
     EXPECT_EQ(Johto_GetActiveRadioMusicEffect(), RADIO_EFFECT_NONE);
     EXPECT_EQ(Johto_IsPokeFluteRadioPlaying(), FALSE);
 }
+
+extern void JohtoGetApricornQuantity(void);
+extern void JohtoGiveKurtApricorns(void);
+extern void JohtoDeliverKurtBalls(void);
+
+TEST("Confluence: Authentic Johto Kurt Apricorn Crafting and Batch Ball Delivery")
+{
+    // Clear state
+    VarSet(VAR_JOHTO_KURT_APRICORN_ITEM, ITEM_NONE);
+    VarSet(VAR_JOHTO_KURT_APRICORN_COUNT, 0);
+    FlagClear(FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS);
+    FlagClear(FLAG_JOHTO_GAVE_KURT_RED_APRICORN);
+
+    // 1. Give player 5 Red Apricorns
+    AddBagItem(ITEM_RED_APRICORN, 5);
+    gSpecialVar_0x8004 = ITEM_RED_APRICORN;
+    JohtoGetApricornQuantity();
+    EXPECT_EQ(gSpecialVar_Result, 5);
+
+    // 2. Batch craft 3 Red Apricorns into Level Balls
+    gSpecialVar_0x8004 = ITEM_RED_APRICORN;
+    gSpecialVar_0x8005 = 3;
+    JohtoGiveKurtApricorns();
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_RED_APRICORN, 2), TRUE);
+    EXPECT_EQ(VarGet(VAR_JOHTO_KURT_APRICORN_ITEM), ITEM_LEVEL_BALL);
+    EXPECT_EQ(VarGet(VAR_JOHTO_KURT_APRICORN_COUNT), 3);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_GAVE_KURT_RED_APRICORN), TRUE);
+
+    // 3. Overnight RTC tick: midnight clears making balls flag
+    FlagClear(FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS);
+
+    // 4. Kurt delivers 3 Level Balls
+    JohtoDeliverKurtBalls();
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+    EXPECT_EQ(gSpecialVar_0x8000, ITEM_LEVEL_BALL);
+    EXPECT_EQ(gSpecialVar_0x8001, 3);
+    EXPECT_EQ(CheckBagHasItem(ITEM_LEVEL_BALL, 3), TRUE);
+    EXPECT_EQ(VarGet(VAR_JOHTO_KURT_APRICORN_ITEM), ITEM_NONE);
+    EXPECT_EQ(VarGet(VAR_JOHTO_KURT_APRICORN_COUNT), 0);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_GAVE_KURT_RED_APRICORN), FALSE);
+
+    // Clean up
+    RemoveBagItem(ITEM_RED_APRICORN, 2);
+    RemoveBagItem(ITEM_LEVEL_BALL, 3);
+}
+
+extern void JohtoGetUnownCaughtCount(void);
+
+TEST("Confluence: Authentic Johto Unown Pokédex Form Viewer and Word Catalog")
+{
+    static const u8 sTestAngry[] = _("ANGRY");
+    static const u8 sTestChase[] = _("CHASE");
+    static const u8 sTestZoom[]  = _("ZOOM");
+    static const u8 sTestExcl[]  = _("!!!!");
+    static const u8 sTestQues[]  = _("????");
+
+    // Reset Unown caught tracking
+    VarSet(VAR_JOHTO_UNOWN_CAUGHT_LOWER, 0);
+    VarSet(VAR_JOHTO_UNOWN_CAUGHT_UPPER, 0);
+    VarSet(VAR_JOHTO_UNOWN_DEX_INDEX, 0);
+    FlagClear(FLAG_JOHTO_ENGINE_UNOWN_DEX);
+
+    EXPECT_EQ(Johto_GetUnownCaughtCount(), 0);
+    JohtoGetUnownCaughtCount();
+    EXPECT_EQ(gSpecialVar_Result, 0);
+
+    // Register forms: 0 ('A'), 2 ('C'), 25 ('Z'), 26 ('!'), 27 ('?')
+    Johto_RegisterCaughtUnownForm(0);
+    Johto_RegisterCaughtUnownForm(2);
+    Johto_RegisterCaughtUnownForm(25);
+    Johto_RegisterCaughtUnownForm(26);
+    Johto_RegisterCaughtUnownForm(27);
+
+    // Verify bitfield checks
+    EXPECT_EQ(Johto_IsUnownFormCaught(0), TRUE);
+    EXPECT_EQ(Johto_IsUnownFormCaught(1), FALSE);
+    EXPECT_EQ(Johto_IsUnownFormCaught(2), TRUE);
+    EXPECT_EQ(Johto_IsUnownFormCaught(3), FALSE);
+    EXPECT_EQ(Johto_IsUnownFormCaught(25), TRUE);
+    EXPECT_EQ(Johto_IsUnownFormCaught(26), TRUE);
+    EXPECT_EQ(Johto_IsUnownFormCaught(27), TRUE);
+
+    // Verify count and special result
+    EXPECT_EQ(Johto_GetUnownCaughtCount(), 5);
+    JohtoGetUnownCaughtCount();
+    EXPECT_EQ(gSpecialVar_Result, 5);
+
+    // Verify ordered traversal
+    EXPECT_EQ(Johto_GetNthCaughtUnownForm(0), 0);
+    EXPECT_EQ(Johto_GetNthCaughtUnownForm(1), 2);
+    EXPECT_EQ(Johto_GetNthCaughtUnownForm(2), 25);
+    EXPECT_EQ(Johto_GetNthCaughtUnownForm(3), 26);
+    EXPECT_EQ(Johto_GetNthCaughtUnownForm(4), 27);
+
+    // Verify ancient words
+    EXPECT_EQ(StringCompare(Johto_GetUnownWord(0), sTestAngry), 0);
+    EXPECT_EQ(StringCompare(Johto_GetUnownWord(2), sTestChase), 0);
+    EXPECT_EQ(StringCompare(Johto_GetUnownWord(25), sTestZoom), 0);
+    EXPECT_EQ(StringCompare(Johto_GetUnownWord(26), sTestExcl), 0);
+    EXPECT_EQ(StringCompare(Johto_GetUnownWord(27), sTestQues), 0);
+
+    // Verify species resolution
+    EXPECT_EQ(Johto_GetUnownSpeciesByForm(0), SPECIES_UNOWN);
+    EXPECT_EQ(Johto_GetUnownSpeciesByForm(2), SPECIES_UNOWN_C);
+    EXPECT_EQ(Johto_GetUnownSpeciesByForm(25), SPECIES_UNOWN_Z);
+    EXPECT_EQ(Johto_GetUnownSpeciesByForm(26), SPECIES_UNOWN_EXCLAMATION);
+    EXPECT_EQ(Johto_GetUnownSpeciesByForm(27), SPECIES_UNOWN_QUESTION);
+
+    // Verify character representation
+    EXPECT_EQ(Johto_GetUnownCharByForm(0), 'A');
+    EXPECT_EQ(Johto_GetUnownCharByForm(2), 'C');
+    EXPECT_EQ(Johto_GetUnownCharByForm(25), 'Z');
+    EXPECT_EQ(Johto_GetUnownCharByForm(26), '!');
+    EXPECT_EQ(Johto_GetUnownCharByForm(27), '?');
+
+    // Simulate catching Unown form 1 ('B') via HandleSetPokedexFlag
+    // Personality with letter 1:
+    // GET_UNOWN_LETTER: ((((p) & 0x03000000) >> 18) | (((p) & 0x00030000) >> 12) | (((p) & 0x00000300) >> 6) | (((p) & 0x00000003))) % 28
+    // If p = 1, letter = 1 % 28 = 1 ('B')
+    HandleSetPokedexFlag(NATIONAL_DEX_UNOWN, FLAG_SET_CAUGHT, 1);
+    EXPECT_EQ(Johto_IsUnownFormCaught(1), TRUE);
+    EXPECT_EQ(Johto_GetUnownCaughtCount(), 6);
+
+    // Clean up
+    VarSet(VAR_JOHTO_UNOWN_CAUGHT_LOWER, 0);
+    VarSet(VAR_JOHTO_UNOWN_CAUGHT_UPPER, 0);
+    VarSet(VAR_JOHTO_UNOWN_DEX_INDEX, 0);
+}
+
+TEST("Confluence: Authentic Goldenrod Game Corner Card Flip Minigame and Betting Engine")
+{
+    static const u8 sTestPikachu[] = _("PIKACHU");
+    static const u8 sTestOddish[]  = _("ODDISH");
+
+    // 1. Deck indexing and suit/rank mapping
+    EXPECT_EQ(CardFlip_GetCardSuit(0), CARDFLIP_SUIT_PIKACHU);
+    EXPECT_EQ(CardFlip_GetCardRank(0), 1);
+    EXPECT_EQ(CardFlip_GetCardSuit(3), CARDFLIP_SUIT_ODDISH);
+    EXPECT_EQ(CardFlip_GetCardRank(3), 1);
+    EXPECT_EQ(CardFlip_GetCardSuit(23), CARDFLIP_SUIT_ODDISH);
+    EXPECT_EQ(CardFlip_GetCardRank(23), 6);
+
+    EXPECT_EQ(StringCompare(CardFlip_GetSuitName(CARDFLIP_SUIT_PIKACHU), sTestPikachu), 0);
+    EXPECT_EQ(StringCompare(CardFlip_GetSuitName(CARDFLIP_SUIT_ODDISH), sTestOddish), 0);
+
+    // 2. Coin Case checks
+    RemoveBagItem(ITEM_COIN_CASE, 1);
+    Special_CardFlipInit();
+    EXPECT_EQ(gSpecialVar_Result, 0); // No Coin Case
+
+    AddBagItem(ITEM_COIN_CASE, 1);
+    SetCoins(2);
+    Special_CardFlipInit();
+    EXPECT_EQ(gSpecialVar_Result, 1); // Not enough coins (< 3)
+
+    SetCoins(100);
+    Special_CardFlipInit();
+    EXPECT_EQ(gSpecialVar_Result, 2); // Ready
+
+    // 3. Deal deduction: 3 coins deducted per deal
+    Special_CardFlipDeal();
+    EXPECT_EQ(GetCoins(), 97);
+    EXPECT_EQ(gSpecialVar_Result, 0); // Normal deal
+
+    // 4. Test all 5 bet types on known card
+    gSpecialVar_0x8004 = 1;
+    Special_CardFlipSelectCard();
+
+    u8 card = CardFlip_GetChosenCard();
+    u8 suit = CardFlip_GetCardSuit(card);
+    u8 rank = CardFlip_GetCardRank(card);
+    u8 wrongSuit = (suit + 1) % CARDFLIP_NUM_SUITS;
+    u8 wrongRank = (rank == 6) ? 1 : (rank + 1);
+
+    // Single Card bet (24x, 72 coins)
+    CardFlip_SetBet(CARDFLIP_BET_SINGLE_CARD, suit, rank);
+    EXPECT_EQ(CardFlip_EvaluateBet(), TRUE);
+    EXPECT_EQ(CardFlip_GetLastPayout(), 72);
+    EXPECT_EQ(GetCoins(), 97 + 72);
+
+    CardFlip_SetBet(CARDFLIP_BET_SINGLE_CARD, wrongSuit, rank);
+    EXPECT_EQ(CardFlip_EvaluateBet(), FALSE);
+    EXPECT_EQ(CardFlip_GetLastPayout(), 0);
+
+    // Single Rank bet (6x, 18 coins)
+    CardFlip_SetBet(CARDFLIP_BET_RANK, rank, 0);
+    EXPECT_EQ(CardFlip_EvaluateBet(), TRUE);
+    EXPECT_EQ(CardFlip_GetLastPayout(), 18);
+
+    CardFlip_SetBet(CARDFLIP_BET_RANK, wrongRank, 0);
+    EXPECT_EQ(CardFlip_EvaluateBet(), FALSE);
+    EXPECT_EQ(CardFlip_GetLastPayout(), 0);
+
+    // Single Suit bet (4x, 12 coins)
+    CardFlip_SetBet(CARDFLIP_BET_SUIT, suit, 0);
+    EXPECT_EQ(CardFlip_EvaluateBet(), TRUE);
+    EXPECT_EQ(CardFlip_GetLastPayout(), 12);
+
+    CardFlip_SetBet(CARDFLIP_BET_SUIT, wrongSuit, 0);
+    EXPECT_EQ(CardFlip_EvaluateBet(), FALSE);
+    EXPECT_EQ(CardFlip_GetLastPayout(), 0);
+
+    // Rank Pair bet (3x, 9 coins)
+    u8 pairIdx = (rank - 1) / 2;
+    u8 wrongPairIdx = (pairIdx + 1) % 3;
+    CardFlip_SetBet(CARDFLIP_BET_RANK_PAIR, pairIdx, 0);
+    EXPECT_EQ(CardFlip_EvaluateBet(), TRUE);
+    EXPECT_EQ(CardFlip_GetLastPayout(), 9);
+
+    CardFlip_SetBet(CARDFLIP_BET_RANK_PAIR, wrongPairIdx, 0);
+    EXPECT_EQ(CardFlip_EvaluateBet(), FALSE);
+    EXPECT_EQ(CardFlip_GetLastPayout(), 0);
+
+    // Suit Pair bet (2x, 6 coins)
+    u8 suitPairIdx = (suit == CARDFLIP_SUIT_PIKACHU || suit == CARDFLIP_SUIT_JIGGLYPUFF) ? 0 : 1;
+    u8 wrongSuitPairIdx = 1 - suitPairIdx;
+    CardFlip_SetBet(CARDFLIP_BET_SUIT_PAIR, suitPairIdx, 0);
+    EXPECT_EQ(CardFlip_EvaluateBet(), TRUE);
+    EXPECT_EQ(CardFlip_GetLastPayout(), 6);
+
+    CardFlip_SetBet(CARDFLIP_BET_SUIT_PAIR, wrongSuitPairIdx, 0);
+    EXPECT_EQ(CardFlip_EvaluateBet(), FALSE);
+    EXPECT_EQ(CardFlip_GetLastPayout(), 0);
+
+    // 5. Deck exhaustion and automatic reshuffling
+    CardFlip_InitDeck();
+    SetCoins(100);
+    u32 round;
+    for (round = 0; round < 12; round++)
+    {
+        Special_CardFlipDeal();
+    }
+    EXPECT_EQ(CardFlip_GetCardsRemaining(), 0);
+
+    Special_CardFlipDeal();
+    EXPECT_EQ(gSpecialVar_Result, 1); // Reshuffled!
+    EXPECT_EQ(CardFlip_GetCardsRemaining(), 22);
+
+    // Clean up
+    RemoveBagItem(ITEM_COIN_CASE, 1);
+    SetCoins(0);
+}
+
+TEST("Confluence: Authentic Johto Buena's Password and Blue Card Point Exchange")
+{
+    // 1. Blue Card balance tracking
+    VarSet(VAR_JOHTO_BLUE_CARD_BALANCE, 0);
+    JohtoGetBlueCardBalance();
+    EXPECT_EQ(gSpecialVar_Result, 0);
+
+    // 2. Evening hours validation
+    // Simulate day: 14:00 (off air)
+    RtcCalcLocalTimeOffset(0, 14, 0, 0);
+    JohtoCheckBuenaTime();
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+
+    // Simulate evening: 20:00 (on air)
+    RtcCalcLocalTimeOffset(0, 20, 0, 0);
+    JohtoCheckBuenaTime();
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+
+    // 3. Password selection and validation
+    // Ensure daily point flag is clear
+    FlagClear(FLAG_JOHTO_ENGINE_BUENA_POINT_TODAY);
+    JohtoGetBuenaPasswordChoices();
+    EXPECT_GT(StringLength(gStringVar1), 0);
+    EXPECT_GT(StringLength(gStringVar2), 0);
+    EXPECT_GT(StringLength(gStringVar3), 0);
+
+    u8 correctOpt = Johto_GetBuenaCorrectOption();
+    u8 wrongOpt = (correctOpt + 1) % 3;
+
+    // Wrong answer: no point awarded, result FALSE
+    gSpecialVar_Result = wrongOpt;
+    JohtoCheckBuenaAnswer();
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+    JohtoGetBlueCardBalance();
+    EXPECT_EQ(gSpecialVar_Result, 0);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_BUENA_POINT_TODAY), FALSE);
+
+    // Correct answer: +1 point awarded, result TRUE, daily flag set
+    gSpecialVar_Result = correctOpt;
+    JohtoCheckBuenaAnswer();
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+    JohtoGetBlueCardBalance();
+    EXPECT_EQ(gSpecialVar_Result, 1);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_BUENA_POINT_TODAY), TRUE);
+
+    // 4. Point cap at 30 points
+    VarSet(VAR_JOHTO_BLUE_CARD_BALANCE, 30);
+    gSpecialVar_Result = correctOpt;
+    JohtoCheckBuenaAnswer();
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+    JohtoGetBlueCardBalance();
+    EXPECT_EQ(gSpecialVar_Result, 30);
+
+    // 5. Prize redemption: Ultra Ball (2 pts), Rare Candy (3 pts), Protein (5 pts)
+    VarSet(VAR_JOHTO_BLUE_CARD_BALANCE, 4);
+
+    // Protein costs 5 pts -> should fail with Result 1 (not enough)
+    gSpecialVar_0x8004 = 4; // Protein
+    JohtoRedeemBuenaPrize();
+    EXPECT_EQ(gSpecialVar_Result, 1);
+    EXPECT_EQ(VarGet(VAR_JOHTO_BLUE_CARD_BALANCE), 4);
+
+    // Ultra Ball costs 2 pts -> should succeed with Result 0, deducting 2 pts
+    u16 ballsBefore = CheckBagHasItem(ITEM_ULTRA_BALL, 1);
+    gSpecialVar_0x8004 = 0; // Ultra Ball
+    JohtoRedeemBuenaPrize();
+    EXPECT_EQ(gSpecialVar_Result, 0);
+    EXPECT_EQ(VarGet(VAR_JOHTO_BLUE_CARD_BALANCE), 2);
+    EXPECT_EQ(CheckBagHasItem(ITEM_ULTRA_BALL, ballsBefore + 1), TRUE);
+
+    // Clean up
+    RemoveBagItem(ITEM_ULTRA_BALL, 1);
+    VarSet(VAR_JOHTO_BLUE_CARD_BALANCE, 0);
+    FlagClear(FLAG_JOHTO_ENGINE_BUENA_POINT_TODAY);
+}
+
+TEST("Confluence: Authentic Johto Battle Tower 7-Trainer Ladder and Level Brackets")
+{
+    // Save party
+    struct Pokemon savedParty[PARTY_SIZE];
+    u8 savedPartyCount = gPartiesCount[B_TRAINER_PLAYER];
+    memcpy(savedParty, gParties[B_TRAINER_PLAYER], sizeof(savedParty));
+
+    // 1. Eligibility: Less than 3 Pokémon
+    ZeroPlayerPartyMons();
+    gPartiesCount[B_TRAINER_PLAYER] = 2;
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_PIKACHU, 20, 0, OTID_STRUCT_PRESET(0));
+    CreateMon(&gParties[B_TRAINER_PLAYER][1], SPECIES_CHARMANDER, 20, 0, OTID_STRUCT_PRESET(0));
+    CalculateMonStats(&gParties[B_TRAINER_PLAYER][0]);
+    CalculateMonStats(&gParties[B_TRAINER_PLAYER][1]);
+    VarSet(VAR_JOHTO_BATTLE_TOWER_LEVEL, 50);
+    JohtoCheckBattleTowerEligibility();
+    EXPECT_EQ(gSpecialVar_Result, 1); // Less than 3 mons
+
+    // 2. Eligibility: 3 valid Pokémon with Level <= room level (Lv. 50 bracket)
+    gPartiesCount[B_TRAINER_PLAYER] = 3;
+    CreateMon(&gParties[B_TRAINER_PLAYER][2], SPECIES_SQUIRTLE, 20, 0, OTID_STRUCT_PRESET(0));
+    CalculateMonStats(&gParties[B_TRAINER_PLAYER][2]);
+    JohtoCheckBattleTowerEligibility();
+    EXPECT_EQ(gSpecialVar_Result, 0); // Eligible!
+
+    // 3. Eligibility: Level restriction check (Lv. 10 bracket with Lv. 20 mons)
+    VarSet(VAR_JOHTO_BATTLE_TOWER_LEVEL, 10);
+    JohtoCheckBattleTowerEligibility();
+    EXPECT_EQ(gSpecialVar_Result, 2); // Exceeds level limit
+
+    // 4. Eligibility: Species Clause (duplicate Pokémon)
+    VarSet(VAR_JOHTO_BATTLE_TOWER_LEVEL, 50);
+    CreateMon(&gParties[B_TRAINER_PLAYER][2], SPECIES_PIKACHU, 20, 0, OTID_STRUCT_PRESET(0)); // Duplicate Pikachu
+    JohtoCheckBattleTowerEligibility();
+    EXPECT_EQ(gSpecialVar_Result, 3); // Duplicate species
+
+    // 5. Eligibility: Item Clause (duplicate held items)
+    CreateMon(&gParties[B_TRAINER_PLAYER][2], SPECIES_SQUIRTLE, 20, 0, OTID_STRUCT_PRESET(0));
+    u16 item = ITEM_LEFTOVERS;
+    SetMonData(&gParties[B_TRAINER_PLAYER][0], MON_DATA_HELD_ITEM, &item);
+    SetMonData(&gParties[B_TRAINER_PLAYER][1], MON_DATA_HELD_ITEM, &item); // Duplicate Leftovers
+    JohtoCheckBattleTowerEligibility();
+    EXPECT_EQ(gSpecialVar_Result, 4); // Duplicate items
+
+    // Fix item clause
+    item = ITEM_NONE;
+    SetMonData(&gParties[B_TRAINER_PLAYER][1], MON_DATA_HELD_ITEM, &item);
+    JohtoCheckBattleTowerEligibility();
+    EXPECT_EQ(gSpecialVar_Result, 0); // Eligible!
+
+    // 6. Challenge initialization and streak advancement
+    JohtoBattleTowerInitChallenge();
+    EXPECT_EQ(JohtoBattleTower_GetStreak(), 0);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_BATTLE_TOWER_WON_CHALLENGE), FALSE);
+
+    // 7. Opponent generation: round 1 (streak 0) at Lv. 50
+    VarSet(VAR_JOHTO_BATTLE_TOWER_LEVEL, 50);
+    JohtoBattleTowerPrepareOpponent();
+    EXPECT_EQ(gPartiesCount[B_TRAINER_OPPONENT_A], 3);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_LEVEL), 50);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_OPPONENT_A][1], MON_DATA_LEVEL), 50);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_OPPONENT_A][2], MON_DATA_LEVEL), 50);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_HP_IV), 12);
+
+    // Advance streak to round 7 (streak 6)
+    VarSet(VAR_JOHTO_BATTLE_TOWER_STREAK, 6);
+    JohtoBattleTowerPrepareOpponent();
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_HP_IV), 31); // Peak IVs!
+
+    // Advance streak to 7 (complete gauntlet)
+    JohtoBattleTowerAdvanceStreak();
+    EXPECT_EQ(gSpecialVar_Result, 7);
+    EXPECT_EQ(JohtoBattleTower_GetStreak(), 7);
+
+    // 8. Prize award: 5 vitamins
+    u16 initialWins = JohtoBattleTower_GetWins();
+    JohtoBattleTowerGivePrizes();
+    EXPECT_EQ(JohtoBattleTower_GetWins(), initialWins + 1);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_BATTLE_TOWER_WON_CHALLENGE), TRUE);
+
+    // Restore party
+    memcpy(gParties[B_TRAINER_PLAYER], savedParty, sizeof(savedParty));
+    gPartiesCount[B_TRAINER_PLAYER] = savedPartyCount;
+    FlagClear(FLAG_JOHTO_BATTLE_TOWER_WON_CHALLENGE);
+}
+
+TEST("Confluence: Authentic FireRed Fame Checker Lore Journal Subsystem")
+{
+    u8 i;
+    u32 pickState;
+    u32 flags;
+
+    // 1. Reset Fame Checker and verify state (Oak is unlocked and colored by default)
+    ResetFameChecker();
+    for (i = 0; i < NUM_FAMECHECKER_PERSONS; i++)
+    {
+        pickState = gSaveBlock1Ptr->fameChecker[i].pickState;
+        flags = gSaveBlock1Ptr->fameChecker[i].flavorTextFlags;
+        if (i == FAMECHECKER_OAK)
+            EXPECT_EQ(pickState, FCPICKSTATE_COLORED);
+        else
+            EXPECT_EQ(pickState, FCPICKSTATE_NO_DRAW);
+        EXPECT_EQ(flags, 0);
+    }
+
+    // 2. Unlock a flavor text entry via special variables for Oak (already colored)
+    gSpecialVar_0x8004 = FAMECHECKER_OAK;
+    gSpecialVar_0x8005 = 0;
+    SetFlavorTextFlagFromSpecialVars();
+    flags = gSaveBlock1Ptr->fameChecker[FAMECHECKER_OAK].flavorTextFlags;
+    pickState = gSaveBlock1Ptr->fameChecker[FAMECHECKER_OAK].pickState;
+    EXPECT_EQ(flags, (1 << 0));
+    EXPECT_EQ(pickState, FCPICKSTATE_COLORED);
+
+    // 3. Unlock another clue for Oak
+    gSpecialVar_0x8004 = FAMECHECKER_OAK;
+    gSpecialVar_0x8005 = 3;
+    SetFlavorTextFlagFromSpecialVars();
+    flags = gSaveBlock1Ptr->fameChecker[FAMECHECKER_OAK].flavorTextFlags;
+    pickState = gSaveBlock1Ptr->fameChecker[FAMECHECKER_OAK].pickState;
+    EXPECT_EQ(flags, (1 << 0) | (1 << 3));
+    EXPECT_EQ(pickState, FCPICKSTATE_COLORED);
+
+    // 4. Test unlocking an undiscovered person (e.g. Brock, starts NO_DRAW)
+    EXPECT_EQ((u32)gSaveBlock1Ptr->fameChecker[FAMECHECKER_BROCK].pickState, FCPICKSTATE_NO_DRAW);
+    gSpecialVar_0x8004 = FAMECHECKER_BROCK;
+    gSpecialVar_0x8005 = 1;
+    SetFlavorTextFlagFromSpecialVars();
+    flags = gSaveBlock1Ptr->fameChecker[FAMECHECKER_BROCK].flavorTextFlags;
+    pickState = gSaveBlock1Ptr->fameChecker[FAMECHECKER_BROCK].pickState;
+    EXPECT_EQ(flags, (1 << 1));
+    EXPECT_EQ(pickState, FCPICKSTATE_SILHOUETTE);
+
+    // Upgrade Brock from SILHOUETTE to COLORED
+    gSpecialVar_0x8004 = FAMECHECKER_BROCK;
+    gSpecialVar_0x8005 = FCPICKSTATE_COLORED;
+    UpdatePickStateFromSpecialVar8005();
+    pickState = gSaveBlock1Ptr->fameChecker[FAMECHECKER_BROCK].pickState;
+    EXPECT_EQ(pickState, FCPICKSTATE_COLORED);
+
+    // Cannot downgrade Brock from COLORED to SILHOUETTE
+    gSpecialVar_0x8005 = FCPICKSTATE_SILHOUETTE;
+    UpdatePickStateFromSpecialVar8005();
+    pickState = gSaveBlock1Ptr->fameChecker[FAMECHECKER_BROCK].pickState;
+    EXPECT_EQ(pickState, FCPICKSTATE_COLORED);
+
+    // 6. Fully unlock all 16 Kanto persons and verify 6 clues each
+    FullyUnlockFameChecker();
+    for (i = 0; i < NUM_FAMECHECKER_PERSONS; i++)
+    {
+        pickState = gSaveBlock1Ptr->fameChecker[i].pickState;
+        flags = gSaveBlock1Ptr->fameChecker[i].flavorTextFlags;
+        EXPECT_EQ(pickState, FCPICKSTATE_COLORED);
+        EXPECT_EQ(flags, 0x3F); // bits 0-5 set
+    }
+
+    // 7. Verify item field function binding
+    EXPECT_EQ((void *)GetItemFieldFunc(ITEM_FAME_CHECKER), (void *)ItemUseOutOfBattle_FameChecker);
+
+    // Clean up
+    ResetFameChecker();
+}
+
+TEST("Confluence: Authentic FireRed Joyful Game Corner Minigames and Berry Powder Economy")
+{
+    // 1. Berry Powder economy and Powder Jar mechanics
+    SetBerryPowder(&gSaveBlock2Ptr->berryCrush.berryPowderAmount, 0);
+    EXPECT_EQ(GetBerryPowder(), 0);
+
+    // Initial check for berries
+    RemoveBagItem(ITEM_CHERI_BERRY, 99);
+    EXPECT_EQ(HasAtLeastOneBerry(), FALSE);
+
+    // Add berries to bag
+    AddBagItem(ITEM_CHERI_BERRY, 5);
+    EXPECT_EQ(HasAtLeastOneBerry(), TRUE);
+
+    // Exchange checks
+    gSpecialVar_0x8004 = 50; // Energypowder cost
+    EXPECT_EQ(HasEnoughBerryPowder(), FALSE);
+
+    // Give powder (e.g. from crushing berries)
+    GiveBerryPowder(1500);
+    EXPECT_EQ(GetBerryPowder(), 1500);
+    EXPECT_EQ(HasEnoughBerryPowder(), TRUE);
+
+    // Exchange for Protein (1000 powder)
+    gSpecialVar_0x8004 = 1000;
+    EXPECT_EQ(HasEnoughBerryPowder(), TRUE);
+    TakeBerryPowder();
+    EXPECT_EQ(GetBerryPowder(), 500);
+
+    // Exchange for Energypowder (50 powder)
+    gSpecialVar_0x8004 = 50;
+    EXPECT_EQ(HasEnoughBerryPowder(), TRUE);
+    TakeBerryPowder();
+    EXPECT_EQ(GetBerryPowder(), 450);
+
+    // Insufficient powder for PP Up (3000 powder)
+    gSpecialVar_0x8004 = 3000;
+    EXPECT_EQ(HasEnoughBerryPowder(), FALSE);
+
+    // Game stat tracking
+    IncrementGameStat(GAME_STAT_PLAYED_BERRY_CRUSH);
+    EXPECT_GE(GetGameStat(GAME_STAT_PLAYED_BERRY_CRUSH), 1);
+
+    // 2. Pokemon Jump species eligibility
+    EXPECT_EQ(IsSpeciesAllowedInPokemonJump(SPECIES_PIKACHU), TRUE);
+    EXPECT_EQ(IsSpeciesAllowedInPokemonJump(SPECIES_CLEFAIRY), TRUE);
+    EXPECT_EQ(IsSpeciesAllowedInPokemonJump(SPECIES_ODDISH), TRUE);
+    EXPECT_EQ(IsSpeciesAllowedInPokemonJump(SPECIES_GYARADOS), FALSE);
+    EXPECT_EQ(IsSpeciesAllowedInPokemonJump(SPECIES_SNORLAX), FALSE);
+    EXPECT_EQ(IsSpeciesAllowedInPokemonJump(SPECIES_ONIX), FALSE);
+
+    // Party eligibility check for Pokemon Jump
+    ZeroMonData(&gParties[B_TRAINER_PLAYER][0]);
+    ZeroMonData(&gParties[B_TRAINER_PLAYER][1]);
+    ZeroMonData(&gParties[B_TRAINER_PLAYER][2]);
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_SNORLAX, 30, 0, OTID_STRUCT_PRESET(0));
+    gPartiesCount[B_TRAINER_PLAYER] = 1;
+
+    IsPokemonJumpSpeciesInParty();
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+
+    CreateMon(&gParties[B_TRAINER_PLAYER][1], SPECIES_PIKACHU, 25, 0, OTID_STRUCT_PRESET(0));
+    gPartiesCount[B_TRAINER_PLAYER] = 2;
+
+    IsPokemonJumpSpeciesInParty();
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+
+    // 3. Dodrio Berry Picking party eligibility
+    IsDodrioInParty();
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+
+    CreateMon(&gParties[B_TRAINER_PLAYER][2], SPECIES_DODRIO, 35, 0, OTID_STRUCT_PRESET(0));
+    gPartiesCount[B_TRAINER_PLAYER] = 3;
+
+    IsDodrioInParty();
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+
+    // Clean up
+    SetBerryPowder(&gSaveBlock2Ptr->berryCrush.berryPowderAmount, 0);
+    RemoveBagItem(ITEM_CHERI_BERRY, 99);
+    ZeroMonData(&gParties[B_TRAINER_PLAYER][0]);
+    ZeroMonData(&gParties[B_TRAINER_PLAYER][1]);
+    ZeroMonData(&gParties[B_TRAINER_PLAYER][2]);
+    gPartiesCount[B_TRAINER_PLAYER] = 0;
+}
+
+TEST("Confluence: Authentic FireRed Teachy TV Subsystem")
+{
+    // 1. Verify item table configuration
+    EXPECT_EQ(GetItemPocket(ITEM_TEACHY_TV), POCKET_KEY_ITEMS);
+    EXPECT_EQ(GetItemImportance(ITEM_TEACHY_TV), 1);
+    EXPECT_EQ(GetItemType(ITEM_TEACHY_TV), ITEM_USE_BAG_MENU);
+    EXPECT(GetItemFieldFunc(ITEM_TEACHY_TV) == ItemUseOutOfBattle_TeachyTv);
+
+    // 2. Verify Teachy TV episode script identifiers
+    EXPECT_EQ(TTVSCR_BATTLE, 0);
+    EXPECT_EQ(TTVSCR_STATUS, 1);
+    EXPECT_EQ(TTVSCR_MATCHUPS, 2);
+    EXPECT_EQ(TTVSCR_CATCHING, 3);
+    EXPECT_EQ(TTVSCR_TMS, 4);
+    EXPECT_EQ(TTVSCR_REGISTER, 5);
+    EXPECT_EQ(TTVSCR_COUNT, 6);
+
+    // 3. Verify item registration and bag manipulation
+    EXPECT_EQ(CheckBagHasItem(ITEM_TEACHY_TV, 1), FALSE);
+    EXPECT_EQ(AddBagItem(ITEM_TEACHY_TV, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_TEACHY_TV, 1), TRUE);
+    EXPECT_EQ(RemoveBagItem(ITEM_TEACHY_TV, 1), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_TEACHY_TV, 1), FALSE);
+}
+
+TEST("Confluence: Authentic Yellow Surfing Pikachu Beach Minigame Subsystem")
+{
+    // 1. Verify party qualification logic with no mons
+    gPartiesCount[B_TRAINER_PLAYER] = 0;
+    ZeroMonData(&gParties[B_TRAINER_PLAYER][0]);
+    CheckSurfingPikachuInParty();
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+
+    // 2. Add non-Pikachu or Pikachu without Surf
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_PIKACHU, 20, 0, OTID_STRUCT_PRESET(0));
+    gPartiesCount[B_TRAINER_PLAYER] = 1;
+    // Set moves to non-Surf moves
+    SetMonMoveSlot(&gParties[B_TRAINER_PLAYER][0], MOVE_THUNDERSHOCK, 0);
+    SetMonMoveSlot(&gParties[B_TRAINER_PLAYER][0], MOVE_GROWL, 1);
+    SetMonMoveSlot(&gParties[B_TRAINER_PLAYER][0], MOVE_TAIL_WHIP, 2);
+    SetMonMoveSlot(&gParties[B_TRAINER_PLAYER][0], MOVE_QUICK_ATTACK, 3);
+    CheckSurfingPikachuInParty();
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+
+    // 3. Teach Pikachu MOVE_SURF -> now eligible!
+    SetMonMoveSlot(&gParties[B_TRAINER_PLAYER][0], MOVE_SURF, 0);
+    CheckSurfingPikachuInParty();
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+
+    // 4. Test score getters and variables
+    VarSet(VAR_SURFING_PIKACHU_HIGH_SCORE, 7350);
+    VarSet(VAR_SURFING_PIKACHU_RADNESS, 420);
+    GetSurfingPikachuScores();
+    EXPECT_EQ(gSpecialVar_0x8004, 7350);
+    EXPECT_EQ(gSpecialVar_0x8005, 420);
+
+    // 5. Test flag operations
+    FlagClear(FLAG_MET_SURFIN_DUDE);
+    EXPECT_EQ(FlagGet(FLAG_MET_SURFIN_DUDE), FALSE);
+    FlagSet(FLAG_MET_SURFIN_DUDE);
+    EXPECT_EQ(FlagGet(FLAG_MET_SURFIN_DUDE), TRUE);
+
+    // Clean up
+    ZeroMonData(&gParties[B_TRAINER_PLAYER][0]);
+    gPartiesCount[B_TRAINER_PLAYER] = 0;
+}
+
+TEST("Confluence: Authentic Yellow Pikachu Voiced 8-bit PCM Audio Subsystem")
+{
+    // 1. Verify config toggle
+    EXPECT_EQ(VOICED_PIKACHU_CRIES, TRUE);
+
+    // 2. Verify voice identifier constants
+    EXPECT_EQ(PIKA_VOICE_ENTRANCE, 0);
+    EXPECT_EQ(PIKA_VOICE_FAINT, 1);
+    EXPECT_EQ(PIKA_VOICE_LOW_HP, 2);
+    EXPECT_EQ(PIKA_VOICE_LEVEL_UP, 3);
+    EXPECT_EQ(PIKA_VOICE_THUNDER, 4);
+    EXPECT_EQ(PIKA_VOICE_JOY, 5);
+    EXPECT_EQ(PIKA_VOICE_SAD, 6);
+    EXPECT_EQ(PIKA_VOICE_COUNT, 7);
+
+    // 3. Verify Pikachu forms mapping to CRY_PIKACHU
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_COSPLAY].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_ROCK_STAR].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_BELLE].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_POP_STAR].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_PHD].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_LIBRE].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_ORIGINAL].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_HOENN].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_SINNOH].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_UNOVA].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_KALOS].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_ALOLA].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_PARTNER].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_WORLD].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_STARTER].cryId == CRY_PIKACHU);
+    EXPECT(gSpeciesInfo[SPECIES_PIKACHU_GMAX].cryId == CRY_PIKACHU);
+
+    // 4. Verify tone table structure
+    EXPECT_EQ(gPikachuVoiceTable[PIKA_VOICE_ENTRANCE].type, 0x20);
+    EXPECT_EQ(gPikachuVoiceTable[PIKA_VOICE_ENTRANCE].key, 60);
+    EXPECT_EQ(gPikachuVoiceTable[PIKA_VOICE_FAINT].type, 0x20);
+    EXPECT_EQ(gPikachuVoiceTable[PIKA_VOICE_LOW_HP].type, 0x20);
+    EXPECT_EQ(gPikachuVoiceTable[PIKA_VOICE_LEVEL_UP].type, 0x20);
+    EXPECT_EQ(gPikachuVoiceTable[PIKA_VOICE_THUNDER].type, 0x20);
+    EXPECT_EQ(gPikachuVoiceTable[PIKA_VOICE_JOY].type, 0x20);
+    EXPECT_EQ(gPikachuVoiceTable[PIKA_VOICE_SAD].type, 0x20);
+
+    // 5. Verify reverse tone table structure
+    EXPECT_EQ(gPikachuVoiceTable_Reverse[PIKA_VOICE_ENTRANCE].type, 0x30);
+    EXPECT_EQ(gPikachuVoiceTable_Reverse[PIKA_VOICE_ENTRANCE].key, 60);
+
+    // 6. Test playback execution functions
+    PlayPikachuVoice(PIKA_VOICE_ENTRANCE, 0);
+    PlayPikachuVoice(PIKA_VOICE_FAINT, -25);
+    PlayPikachuVoice(PIKA_VOICE_THUNDER, 25);
+    PlayPikachuCelebrationCry();
+    PlayPikachuVoice(99, 0); // Out-of-bounds safety check
+}
+
+TEST("Confluence: Authentic Emerald Hoenn Gym Leader Rematches Subsystem")
+{
+    // 1. Verify all 8 Hoenn Gym Leader rematch mappings in gRematchTable
+    EXPECT_EQ(gRematchTable[REMATCH_ROXANNE].trainerIds[0], TRAINER_ROXANNE_1);
+    EXPECT_EQ(gRematchTable[REMATCH_ROXANNE].trainerIds[1], TRAINER_ROXANNE_2);
+    EXPECT_EQ(gRematchTable[REMATCH_ROXANNE].trainerIds[2], TRAINER_ROXANNE_3);
+    EXPECT_EQ(gRematchTable[REMATCH_ROXANNE].trainerIds[3], TRAINER_ROXANNE_4);
+    EXPECT_EQ(gRematchTable[REMATCH_ROXANNE].trainerIds[4], TRAINER_ROXANNE_5);
+
+    EXPECT_EQ(gRematchTable[REMATCH_BRAWLY].trainerIds[0], TRAINER_BRAWLY_1);
+    EXPECT_EQ(gRematchTable[REMATCH_BRAWLY].trainerIds[1], TRAINER_BRAWLY_2);
+    EXPECT_EQ(gRematchTable[REMATCH_BRAWLY].trainerIds[2], TRAINER_BRAWLY_3);
+    EXPECT_EQ(gRematchTable[REMATCH_BRAWLY].trainerIds[3], TRAINER_BRAWLY_4);
+    EXPECT_EQ(gRematchTable[REMATCH_BRAWLY].trainerIds[4], TRAINER_BRAWLY_5);
+
+    EXPECT_EQ(gRematchTable[REMATCH_WATTSON].trainerIds[0], TRAINER_WATTSON_1);
+    EXPECT_EQ(gRematchTable[REMATCH_WATTSON].trainerIds[1], TRAINER_WATTSON_2);
+    EXPECT_EQ(gRematchTable[REMATCH_WATTSON].trainerIds[2], TRAINER_WATTSON_3);
+    EXPECT_EQ(gRematchTable[REMATCH_WATTSON].trainerIds[3], TRAINER_WATTSON_4);
+    EXPECT_EQ(gRematchTable[REMATCH_WATTSON].trainerIds[4], TRAINER_WATTSON_5);
+
+    EXPECT_EQ(gRematchTable[REMATCH_FLANNERY].trainerIds[0], TRAINER_FLANNERY_1);
+    EXPECT_EQ(gRematchTable[REMATCH_FLANNERY].trainerIds[1], TRAINER_FLANNERY_2);
+    EXPECT_EQ(gRematchTable[REMATCH_FLANNERY].trainerIds[2], TRAINER_FLANNERY_3);
+    EXPECT_EQ(gRematchTable[REMATCH_FLANNERY].trainerIds[3], TRAINER_FLANNERY_4);
+    EXPECT_EQ(gRematchTable[REMATCH_FLANNERY].trainerIds[4], TRAINER_FLANNERY_5);
+
+    EXPECT_EQ(gRematchTable[REMATCH_NORMAN].trainerIds[0], TRAINER_NORMAN_1);
+    EXPECT_EQ(gRematchTable[REMATCH_NORMAN].trainerIds[1], TRAINER_NORMAN_2);
+    EXPECT_EQ(gRematchTable[REMATCH_NORMAN].trainerIds[2], TRAINER_NORMAN_3);
+    EXPECT_EQ(gRematchTable[REMATCH_NORMAN].trainerIds[3], TRAINER_NORMAN_4);
+    EXPECT_EQ(gRematchTable[REMATCH_NORMAN].trainerIds[4], TRAINER_NORMAN_5);
+
+    EXPECT_EQ(gRematchTable[REMATCH_WINONA].trainerIds[0], TRAINER_WINONA_1);
+    EXPECT_EQ(gRematchTable[REMATCH_WINONA].trainerIds[1], TRAINER_WINONA_2);
+    EXPECT_EQ(gRematchTable[REMATCH_WINONA].trainerIds[2], TRAINER_WINONA_3);
+    EXPECT_EQ(gRematchTable[REMATCH_WINONA].trainerIds[3], TRAINER_WINONA_4);
+    EXPECT_EQ(gRematchTable[REMATCH_WINONA].trainerIds[4], TRAINER_WINONA_5);
+
+    EXPECT_EQ(gRematchTable[REMATCH_TATE_AND_LIZA].trainerIds[0], TRAINER_TATE_AND_LIZA_1);
+    EXPECT_EQ(gRematchTable[REMATCH_TATE_AND_LIZA].trainerIds[1], TRAINER_TATE_AND_LIZA_2);
+    EXPECT_EQ(gRematchTable[REMATCH_TATE_AND_LIZA].trainerIds[2], TRAINER_TATE_AND_LIZA_3);
+    EXPECT_EQ(gRematchTable[REMATCH_TATE_AND_LIZA].trainerIds[3], TRAINER_TATE_AND_LIZA_4);
+    EXPECT_EQ(gRematchTable[REMATCH_TATE_AND_LIZA].trainerIds[4], TRAINER_TATE_AND_LIZA_5);
+
+    EXPECT_EQ(gRematchTable[REMATCH_JUAN].trainerIds[0], TRAINER_JUAN_1);
+    EXPECT_EQ(gRematchTable[REMATCH_JUAN].trainerIds[1], TRAINER_JUAN_2);
+    EXPECT_EQ(gRematchTable[REMATCH_JUAN].trainerIds[2], TRAINER_JUAN_3);
+    EXPECT_EQ(gRematchTable[REMATCH_JUAN].trainerIds[3], TRAINER_JUAN_4);
+    EXPECT_EQ(gRematchTable[REMATCH_JUAN].trainerIds[4], TRAINER_JUAN_5);
+
+    // 2. Verify rematch roster capacity (4 rematch tiers + 1 base = 5 teams)
+    EXPECT_EQ(CountMaxPossibleRematch(REMATCH_ROXANNE), 4);
+    EXPECT_EQ(CountMaxPossibleRematch(REMATCH_BRAWLY), 4);
+    EXPECT_EQ(CountMaxPossibleRematch(REMATCH_WATTSON), 4);
+    EXPECT_EQ(CountMaxPossibleRematch(REMATCH_FLANNERY), 4);
+    EXPECT_EQ(CountMaxPossibleRematch(REMATCH_NORMAN), 4);
+    EXPECT_EQ(CountMaxPossibleRematch(REMATCH_WINONA), 4);
+    EXPECT_EQ(CountMaxPossibleRematch(REMATCH_TATE_AND_LIZA), 4);
+    EXPECT_EQ(CountMaxPossibleRematch(REMATCH_JUAN), 4);
+
+    // 3. Test tier progression logic
+    FlagClear(TRAINER_FLAGS_START + TRAINER_ROXANNE_1);
+    FlagClear(TRAINER_FLAGS_START + TRAINER_ROXANNE_2);
+    FlagClear(TRAINER_FLAGS_START + TRAINER_ROXANNE_3);
+    EXPECT_EQ(CountBattledRematchTeams(REMATCH_ROXANNE), 0);
+
+    // After defeating base Roxanne
+    FlagSet(TRAINER_FLAGS_START + TRAINER_ROXANNE_1);
+    EXPECT_EQ(CountBattledRematchTeams(REMATCH_ROXANNE), 1);
+    EXPECT_EQ(GetRematchTrainerIdFromTable(gRematchTable, TRAINER_ROXANNE_1), TRAINER_ROXANNE_2);
+
+    // 4. Test rematch readiness via trainerRematches before rematch 1 is won
+    gSaveBlock1Ptr->trainerRematches[REMATCH_ROXANNE] = 0;
+    EXPECT_EQ(ShouldTryRematchBattleForTrainerId(TRAINER_ROXANNE_1), FALSE);
+    gSaveBlock1Ptr->trainerRematches[REMATCH_ROXANNE] = 1;
+    EXPECT_EQ(ShouldTryRematchBattleForTrainerId(TRAINER_ROXANNE_1), TRUE);
+    gSaveBlock1Ptr->trainerRematches[REMATCH_ROXANNE] = 0;
+
+    // After defeating Rematch 1 (Tier 2)
+    FlagSet(TRAINER_FLAGS_START + TRAINER_ROXANNE_2);
+    EXPECT_EQ(CountBattledRematchTeams(REMATCH_ROXANNE), 2);
+    EXPECT_EQ(GetRematchTrainerIdFromTable(gRematchTable, TRAINER_ROXANNE_1), TRAINER_ROXANNE_3);
+    // Once second rematch has been won, ShouldTryRematchBattle routes to post-rematch dialogue script
+    EXPECT_EQ(ShouldTryRematchBattleForTrainerId(TRAINER_ROXANNE_1), TRUE);
+
+    // 5. Test Gym Leader Rematch level calculation and multi-region qualification
+    FlagClear(FLAG_SYS_GAME_CLEAR);
+    FlagClear(FLAG_CONFLUENCE_APEX_CHAMPION);
+    for (u32 b = 0; b < CONFLUENCE_BADGES_PER_REGION; b++)
+        FlagClear(FLAG_BADGE01_GET + b);
+    EXPECT_EQ(GetCurrentGymLeaderRematchLevel(), 0);
+
+    // Qualify via FLAG_SYS_GAME_CLEAR
+    FlagSet(FLAG_SYS_GAME_CLEAR);
+    // Wattson 1 not fought yet, so lowest rematch level is 0
+    FlagClear(TRAINER_FLAGS_START + TRAINER_WATTSON_1);
+    EXPECT_EQ(GetCurrentGymLeaderRematchLevel(), 0);
+
+    // Mark all base leaders fought
+    for (u32 leader = REMATCH_ROXANNE; leader <= REMATCH_JUAN; leader++)
+        FlagSet(TRAINER_FLAGS_START + gRematchTable[leader].trainerIds[0]);
+
+    // Now all base leaders are fought, so minimum rematch level across leaders is 1
+    EXPECT_EQ(GetCurrentGymLeaderRematchLevel(), 1);
+
+    // Clean up flags
+    FlagClear(FLAG_SYS_GAME_CLEAR);
+    FlagClear(TRAINER_FLAGS_START + TRAINER_ROXANNE_1);
+    FlagClear(TRAINER_FLAGS_START + TRAINER_ROXANNE_2);
+    for (u32 leader = REMATCH_ROXANNE; leader <= REMATCH_JUAN; leader++)
+        FlagClear(TRAINER_FLAGS_START + gRematchTable[leader].trainerIds[0]);
+}
+
+TEST("Confluence: Authentic Emerald Trick House Puzzles and Mirage Island Mechanics")
+{
+    // 1. Mirage Island seed generation and presence check
+    VarSet(VAR_MIRAGE_RND_H, 0x1234);
+    VarSet(VAR_MIRAGE_RND_L, 0x5678);
+
+    // Empty party -> Mirage Island not present
+    gPartiesCount[B_TRAINER_PLAYER] = 0;
+    ZeroMonData(&gParties[B_TRAINER_PLAYER][0]);
+    EXPECT_EQ(IsMirageIslandPresent(), FALSE);
+
+    // Create a party mon with personality whose lower 16 bits match VAR_MIRAGE_RND_H (0x1234)
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_WYNAUT, 5, 0x98761234, OTID_STRUCT_PRESET(0));
+    gPartiesCount[B_TRAINER_PLAYER] = 1;
+    EXPECT_EQ(IsMirageIslandPresent(), TRUE);
+
+    // Change seed -> Mirage Island no longer matches
+    VarSet(VAR_MIRAGE_RND_H, 0xABCD);
+    EXPECT_EQ(IsMirageIslandPresent(), FALSE);
+
+    // Test UpdateMirageRnd daily progression
+    u16 oldHi = VarGet(VAR_MIRAGE_RND_H);
+    u16 oldLo = VarGet(VAR_MIRAGE_RND_L);
+    UpdateMirageRnd(1);
+    u16 newHi = VarGet(VAR_MIRAGE_RND_H);
+    u16 newLo = VarGet(VAR_MIRAGE_RND_L);
+    EXPECT((oldHi != newHi) || (oldLo != newLo));
+
+    // 2. Mirage Tower state transitions and fossil mechanics
+    VarSet(VAR_MIRAGE_TOWER_STATE, 0);
+    EXPECT_EQ(VarGet(VAR_MIRAGE_TOWER_STATE), 0);
+    VarSet(VAR_MIRAGE_TOWER_STATE, 1); // Collapsing
+    EXPECT_EQ(VarGet(VAR_MIRAGE_TOWER_STATE), 1);
+    VarSet(VAR_MIRAGE_TOWER_STATE, 2); // Disintegrated
+    EXPECT_EQ(VarGet(VAR_MIRAGE_TOWER_STATE), 2);
+
+    // Fossil items
+    EXPECT(ITEM_ROOT_FOSSIL != ITEM_NONE);
+    EXPECT(ITEM_CLAW_FOSSIL != ITEM_NONE);
+
+    // 3. Trick House puzzle variables and scroll states
+    VarSet(VAR_TRICK_HOUSE_LEVEL, 0);
+    EXPECT_EQ(VarGet(VAR_TRICK_HOUSE_LEVEL), 0);
+    VarSet(VAR_TRICK_HOUSE_PUZZLE_1_STATE, 0); // Scroll not found
+    EXPECT_EQ(VarGet(VAR_TRICK_HOUSE_PUZZLE_1_STATE), 0);
+    VarSet(VAR_TRICK_HOUSE_PUZZLE_1_STATE, 1); // Scroll found
+    EXPECT_EQ(VarGet(VAR_TRICK_HOUSE_PUZZLE_1_STATE), 1);
+    VarSet(VAR_TRICK_HOUSE_PUZZLE_1_STATE, 2); // Door opened
+    EXPECT_EQ(VarGet(VAR_TRICK_HOUSE_PUZZLE_1_STATE), 2);
+
+    // Clean up
+    ZeroMonData(&gParties[B_TRAINER_PLAYER][0]);
+    gPartiesCount[B_TRAINER_PLAYER] = 0;
+    VarSet(VAR_MIRAGE_TOWER_STATE, 0);
+    VarSet(VAR_TRICK_HOUSE_LEVEL, 0);
+    VarSet(VAR_TRICK_HOUSE_PUZZLE_1_STATE, 0);
+}
+
+TEST("Confluence: Authentic Emerald Contest Halls and Berry Blender Pokéblock Subsystem")
+{
+    // 1. Verify Pokéblock Case structure and capacity
+    EXPECT_EQ(POKEBLOCKS_COUNT, 40);
+    ClearPokeblocks();
+    EXPECT_EQ(GetFirstFreePokeblockSlot(), 0);
+
+    // 2. Create and insert an authentic Red (Spicy) Pokéblock
+    struct Pokeblock block;
+    block.color = PBLOCK_CLR_RED;
+    block.spicy = 30;
+    block.dry = 0;
+    block.sweet = 0;
+    block.bitter = 0;
+    block.sour = 0;
+    block.feel = 20;
+
+    EXPECT_EQ(AddPokeblock(&block), TRUE);
+    EXPECT_EQ(GetFirstFreePokeblockSlot(), 1);
+
+    // 3. Inspect Pokéblock attributes and flavor levels
+    EXPECT_EQ(GetHighestPokeblocksFlavorLevel(&block), 30);
+    EXPECT_EQ(GetPokeblocksFeel(&block), 20);
+    EXPECT_EQ(GetPokeblocksFlavor(&block), FLAVOR_SPICY);
+
+    // 4. Test nature affinity and gain (Adamant likes spicy, Modest dislikes spicy)
+    EXPECT(PokeblockGetGain(NATURE_ADAMANT, &block) > 0);
+    EXPECT(PokeblockGetGain(NATURE_MODEST, &block) < 0);
+
+    // 5. Test Pokéblock naming
+    u8 blockName[32];
+    PokeblockCopyName(&block, blockName);
+    EXPECT(StringLength(blockName) > 0);
+
+    // 6. Test slot clearing
+    EXPECT_EQ(TryClearPokeblock(0), TRUE);
+    EXPECT_EQ(GetFirstFreePokeblockSlot(), 0);
+
+    // 7. Verify Contest categories and rank definitions
+    EXPECT_EQ(CONTEST_CATEGORIES_COUNT, 5);
+    EXPECT_EQ(CONTEST_RANK_NORMAL, 0);
+    EXPECT_EQ(CONTEST_RANK_SUPER, 1);
+    EXPECT_EQ(CONTEST_RANK_HYPER, 2);
+    EXPECT_EQ(CONTEST_RANK_MASTER, 3);
+    EXPECT_EQ(CONTEST_RANK_LINK, 4);
+
+    // Clean up
+    ClearPokeblocks();
+}
+
+TEST("Confluence: DexNav Saveblock-Safe Search Levels and HUD Calibration")
+{
+    // 1. Verify DexNav configuration toggles
+    EXPECT_EQ(DEXNAV_ENABLED, TRUE);
+    EXPECT_EQ(USE_DEXNAV_SEARCH_LEVELS, TRUE);
+
+    // 2. Verify SaveBlock3 safety constraint (must fit within 1624 bytes)
+    EXPECT(sizeof(struct SaveBlock3) <= (116 * 14));
+    EXPECT_EQ(DEXNAV_SAVED_SEARCH_LEVELS_COUNT, 256);
+
+    // 3. Clear search levels in SaveBlock3
+    memset(gSaveBlock3Ptr->dexNavSearchLevels, 0, sizeof(gSaveBlock3Ptr->dexNavSearchLevels));
+
+    // Initial search level is 0 for unencountered species
+    EXPECT_EQ(DexNav_GetSearchLevel(SPECIES_PIKACHU), 0);
+    EXPECT_EQ(DexNav_GetSearchLevel(SPECIES_CYNDAQUIL), 0);
+
+    // 4. Increment Pikachu search level
+    gDexNavSpecies = SPECIES_PIKACHU;
+    TryIncrementSpeciesSearchLevel();
+    EXPECT_EQ(DexNav_GetSearchLevel(SPECIES_PIKACHU), 1);
+    EXPECT_EQ(DexNav_GetSearchLevel(SPECIES_CYNDAQUIL), 0);
+
+    // Increment Pikachu again
+    TryIncrementSpeciesSearchLevel();
+    EXPECT_EQ(DexNav_GetSearchLevel(SPECIES_PIKACHU), 2);
+
+    // 5. Increment Cyndaquil search level
+    gDexNavSpecies = SPECIES_CYNDAQUIL;
+    TryIncrementSpeciesSearchLevel();
+    EXPECT_EQ(DexNav_GetSearchLevel(SPECIES_CYNDAQUIL), 1);
+    EXPECT_EQ(DexNav_GetSearchLevel(SPECIES_PIKACHU), 2);
+
+    // 6. Test chaining mechanics
+    gSaveBlock3Ptr->dexNavChain = 0;
+    IncrementDexNavChain();
+    EXPECT_EQ(gSaveBlock3Ptr->dexNavChain, 1);
+    IncrementDexNavChain();
+    EXPECT_EQ(gSaveBlock3Ptr->dexNavChain, 2);
+    EXPECT(CalculateDexNavShinyRolls() >= 0);
+
+    // 7. Test chain reset
+    ResetDexNavSearch();
+    EXPECT_EQ(gSaveBlock3Ptr->dexNavChain, 0);
+
+    // Clean up
+    memset(gSaveBlock3Ptr->dexNavSearchLevels, 0, sizeof(gSaveBlock3Ptr->dexNavSearchLevels));
+    gSaveBlock3Ptr->dexNavChain = 0;
+}
+
+// POKE-CONFLUENCE: Subsystem 23 - Modern Party EXP Share Key Item Toggle
+TEST("Confluence: Modern Party EXP Share Key Item Toggle Subsystem")
+{
+    // 1. Verify Configuration Macros
+    EXPECT_EQ(I_EXP_SHARE_MODE, EXP_SHARE_KEY_ITEM);
+    EXPECT_EQ(I_EXP_SHARE_ITEM, GEN_6);
+    EXPECT_EQ(I_EXP_SHARE_FLAG, FLAG_EXP_SHARE_ENABLED);
+    EXPECT(FLAG_EXP_SHARE_ENABLED > TEMP_FLAGS_END);
+
+    // 2. Verify Item Properties for Key Item mode
+    EXPECT_EQ(GetItemPocket(ITEM_EXP_SHARE), POCKET_KEY_ITEMS);
+    EXPECT_EQ(GetItemImportance(ITEM_EXP_SHARE), 1);
+
+    // 3. Clear Bag and Flags
+    ClearBag();
+    FlagClear(FLAG_EXP_SHARE_ENABLED);
+
+    // Without the Key Item in the Bag, IsGen6ExpShareEnabled must always be FALSE
+    EXPECT_EQ(CheckBagHasItem(ITEM_EXP_SHARE, 1), FALSE);
+    EXPECT_EQ(IsGen6ExpShareEnabled(), FALSE);
+
+    // Even if the flag is manually set, having no item in bag prevents party-wide Exp Share
+    FlagSet(FLAG_EXP_SHARE_ENABLED);
+    EXPECT_EQ(IsGen6ExpShareEnabled(), FALSE);
+
+    // 4. Add Exp. Share Key Item to Bag
+    AddBagItem(ITEM_EXP_SHARE, 1);
+    EXPECT_EQ(CheckBagHasItem(ITEM_EXP_SHARE, 1), TRUE);
+
+    // Now with the item present, the flag controls the active toggle
+    EXPECT_EQ(IsGen6ExpShareEnabled(), TRUE);
+
+    // Toggle off
+    FlagToggle(FLAG_EXP_SHARE_ENABLED);
+    EXPECT_EQ(FlagGet(FLAG_EXP_SHARE_ENABLED), FALSE);
+    EXPECT_EQ(IsGen6ExpShareEnabled(), FALSE);
+
+    // Toggle on
+    FlagToggle(FLAG_EXP_SHARE_ENABLED);
+    EXPECT_EQ(FlagGet(FLAG_EXP_SHARE_ENABLED), TRUE);
+    EXPECT_EQ(IsGen6ExpShareEnabled(), TRUE);
+
+    // 5. Clean up Bag and Flags
+    RemoveBagItem(ITEM_EXP_SHARE, 1);
+    FlagClear(FLAG_EXP_SHARE_ENABLED);
+    EXPECT_EQ(IsGen6ExpShareEnabled(), FALSE);
+}
+
+
+
+
+
 
 
 

@@ -1339,6 +1339,7 @@ gStdScripts_End::
 	.include "data/maps/FuchsiaCity_WardensHouse_Frlg/scripts.inc"
 	.include "data/maps/FuchsiaCity_House2_Frlg/scripts.inc"
 	.include "data/maps/FuchsiaCity_House3_Frlg/scripts.inc"
+	.include "data/maps/Route19_UnusedHouse_Frlg/scripts.inc"
 	.include "data/maps/CinnabarIsland_Gym_Frlg/scripts.inc"
 	.include "data/maps/CinnabarIsland_PokemonLab_Entrance_Frlg/scripts.inc"
 	.include "data/maps/CinnabarIsland_PokemonLab_Lounge_Frlg/scripts.inc"

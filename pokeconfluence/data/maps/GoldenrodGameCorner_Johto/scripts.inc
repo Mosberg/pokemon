@@ -354,7 +354,198 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerLuckySlotsMachineScript:
 	end
 
 GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript:
-	goto MauvilleCity_GameCorner_EventScript_SlotMachine0
+	lockall
+	special Special_CardFlipInit
+	goto_if_eq VAR_RESULT, 0, GoldenrodGameCorner_Johto_CardFlip_NoCoinCase
+	goto_if_eq VAR_RESULT, 1, GoldenrodGameCorner_Johto_CardFlip_NotEnoughCoins
+
+	special Special_CardFlipShowCoins
+	message GoldenrodGameCorner_Johto_Text_CardFlipPlayWithThreeCoins
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, NO, GoldenrodGameCorner_Johto_CardFlip_Quit
+
+GoldenrodGameCorner_Johto_CardFlip_RoundLoop:
+	special Special_CardFlipDeal
+	goto_if_eq VAR_RESULT, 2, GoldenrodGameCorner_Johto_CardFlip_NotEnoughCoinsMidGame
+	goto_if_ne VAR_RESULT, 1, GoldenrodGameCorner_Johto_CardFlip_SkipShuffledMessage
+
+	playse SE_RG_CARD_FLIP
+	message GoldenrodGameCorner_Johto_Text_CardFlipShuffled
+	waitmessage
+	waitbuttonpress
+
+GoldenrodGameCorner_Johto_CardFlip_SkipShuffledMessage:
+	playse SE_RG_CARD_FLIPPING
+	message GoldenrodGameCorner_Johto_Text_CardFlipChooseACard
+	waitmessage
+
+	dynmultipush GoldenrodGameCorner_Johto_Text_Card1, 1
+	dynmultipush GoldenrodGameCorner_Johto_Text_Card2, 2
+	dynmultistack 20, 8, FALSE, 2, FALSE, 0, NULL
+	copyvar VAR_0x8004, VAR_RESULT
+	special Special_CardFlipSelectCard
+
+	message GoldenrodGameCorner_Johto_Text_CardFlipPlaceYourBet
+	waitmessage
+
+	dynmultipush GoldenrodGameCorner_Johto_Text_BetSingleCard, 0
+	dynmultipush GoldenrodGameCorner_Johto_Text_BetRank, 1
+	dynmultipush GoldenrodGameCorner_Johto_Text_BetSuit, 2
+	dynmultipush GoldenrodGameCorner_Johto_Text_BetRankPair, 3
+	dynmultipush GoldenrodGameCorner_Johto_Text_BetSuitPair, 4
+	dynmultistack 14, 4, FALSE, 5, FALSE, 0, NULL
+
+	copyvar VAR_0x8004, VAR_RESULT
+	goto_if_eq VAR_0x8004, 0, GoldenrodGameCorner_Johto_CardFlip_ChooseSingleCard
+	goto_if_eq VAR_0x8004, 1, GoldenrodGameCorner_Johto_CardFlip_ChooseRank
+	goto_if_eq VAR_0x8004, 2, GoldenrodGameCorner_Johto_CardFlip_ChooseSuit
+	goto_if_eq VAR_0x8004, 3, GoldenrodGameCorner_Johto_CardFlip_ChooseRankPair
+	goto_if_eq VAR_0x8004, 4, GoldenrodGameCorner_Johto_CardFlip_ChooseSuitPair
+	goto GoldenrodGameCorner_Johto_CardFlip_Quit
+
+GoldenrodGameCorner_Johto_CardFlip_ChooseSingleCard:
+	message GoldenrodGameCorner_Johto_Text_CardFlipChooseSuit
+	waitmessage
+	dynmultipush GoldenrodGameCorner_Johto_Text_SuitPikachu, 0
+	dynmultipush GoldenrodGameCorner_Johto_Text_SuitJigglypuff, 1
+	dynmultipush GoldenrodGameCorner_Johto_Text_SuitPoliwag, 2
+	dynmultipush GoldenrodGameCorner_Johto_Text_SuitOddish, 3
+	dynmultistack 16, 4, FALSE, 4, FALSE, 0, NULL
+	copyvar VAR_0x8005, VAR_RESULT
+
+	message GoldenrodGameCorner_Johto_Text_CardFlipChooseRank
+	waitmessage
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank1, 1
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank2, 2
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank3, 3
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank4, 4
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank5, 5
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank6, 6
+	dynmultistack 20, 2, FALSE, 6, FALSE, 0, NULL
+	copyvar VAR_0x8006, VAR_RESULT
+
+	setvar VAR_0x8004, 0
+	special Special_CardFlipSetBet
+	goto GoldenrodGameCorner_Johto_CardFlip_RevealCard
+
+GoldenrodGameCorner_Johto_CardFlip_ChooseRank:
+	message GoldenrodGameCorner_Johto_Text_CardFlipChooseRank
+	waitmessage
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank1, 1
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank2, 2
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank3, 3
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank4, 4
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank5, 5
+	dynmultipush GoldenrodGameCorner_Johto_Text_Rank6, 6
+	dynmultistack 20, 2, FALSE, 6, FALSE, 0, NULL
+	copyvar VAR_0x8005, VAR_RESULT
+	setvar VAR_0x8006, 0
+
+	setvar VAR_0x8004, 1
+	special Special_CardFlipSetBet
+	goto GoldenrodGameCorner_Johto_CardFlip_RevealCard
+
+GoldenrodGameCorner_Johto_CardFlip_ChooseSuit:
+	message GoldenrodGameCorner_Johto_Text_CardFlipChooseSuit
+	waitmessage
+	dynmultipush GoldenrodGameCorner_Johto_Text_SuitPikachu, 0
+	dynmultipush GoldenrodGameCorner_Johto_Text_SuitJigglypuff, 1
+	dynmultipush GoldenrodGameCorner_Johto_Text_SuitPoliwag, 2
+	dynmultipush GoldenrodGameCorner_Johto_Text_SuitOddish, 3
+	dynmultistack 16, 4, FALSE, 4, FALSE, 0, NULL
+	copyvar VAR_0x8005, VAR_RESULT
+	setvar VAR_0x8006, 0
+
+	setvar VAR_0x8004, 2
+	special Special_CardFlipSetBet
+	goto GoldenrodGameCorner_Johto_CardFlip_RevealCard
+
+GoldenrodGameCorner_Johto_CardFlip_ChooseRankPair:
+	message GoldenrodGameCorner_Johto_Text_CardFlipChooseRankPair
+	waitmessage
+	dynmultipush GoldenrodGameCorner_Johto_Text_RankPair12, 0
+	dynmultipush GoldenrodGameCorner_Johto_Text_RankPair34, 1
+	dynmultipush GoldenrodGameCorner_Johto_Text_RankPair56, 2
+	dynmultistack 18, 6, FALSE, 3, FALSE, 0, NULL
+	copyvar VAR_0x8005, VAR_RESULT
+	setvar VAR_0x8006, 0
+
+	setvar VAR_0x8004, 3
+	special Special_CardFlipSetBet
+	goto GoldenrodGameCorner_Johto_CardFlip_RevealCard
+
+GoldenrodGameCorner_Johto_CardFlip_ChooseSuitPair:
+	message GoldenrodGameCorner_Johto_Text_CardFlipChooseSuitPair
+	waitmessage
+	dynmultipush GoldenrodGameCorner_Johto_Text_SuitPairPikaJiggly, 0
+	dynmultipush GoldenrodGameCorner_Johto_Text_SuitPairPoliOdd, 1
+	dynmultistack 12, 6, FALSE, 2, FALSE, 0, NULL
+	copyvar VAR_0x8005, VAR_RESULT
+	setvar VAR_0x8006, 0
+
+	setvar VAR_0x8004, 4
+	special Special_CardFlipSetBet
+	goto GoldenrodGameCorner_Johto_CardFlip_RevealCard
+
+GoldenrodGameCorner_Johto_CardFlip_RevealCard:
+	playse SE_RG_CARD_OPEN
+	special Special_CardFlipBufferResult
+	message GoldenrodGameCorner_Johto_Text_CardFlipRevealedCard
+	waitmessage
+	waitbuttonpress
+
+	special Special_CardFlipEvaluate
+	goto_if_eq VAR_RESULT, TRUE, GoldenrodGameCorner_Johto_CardFlip_Won
+
+GoldenrodGameCorner_Johto_CardFlip_Lost:
+	playse SE_BOO
+	message GoldenrodGameCorner_Johto_Text_CardFlipDarn
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodGameCorner_Johto_CardFlip_AskPlayAgain
+
+GoldenrodGameCorner_Johto_CardFlip_Won:
+	playse SE_SHOP
+	buffernumberstring STR_VAR_1, VAR_0x8005
+	message GoldenrodGameCorner_Johto_Text_CardFlipYeah
+	waitmessage
+	waitbuttonpress
+
+GoldenrodGameCorner_Johto_CardFlip_AskPlayAgain:
+	special Special_CardFlipShowCoins
+	message GoldenrodGameCorner_Johto_Text_CardFlipPlayAgain
+	waitmessage
+	yesnobox 20, 8
+	goto_if_eq VAR_RESULT, YES, GoldenrodGameCorner_Johto_CardFlip_RoundLoop
+
+GoldenrodGameCorner_Johto_CardFlip_Quit:
+	special Special_CardFlipHideCoins
+	closemessage
+	releaseall
+	end
+
+GoldenrodGameCorner_Johto_CardFlip_NoCoinCase:
+	message GoldenrodGameCorner_Johto_Text_CardFlipNoCoinCase
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodGameCorner_Johto_CardFlip_NotEnoughCoins:
+	message GoldenrodGameCorner_Johto_Text_CardFlipNotEnoughCoins
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+GoldenrodGameCorner_Johto_CardFlip_NotEnoughCoinsMidGame:
+	special Special_CardFlipHideCoins
+	message GoldenrodGameCorner_Johto_Text_CardFlipNotEnoughCoins
+	waitmessage
+	waitbuttonpress
 	closemessage
 	releaseall
 	end
@@ -475,3 +666,113 @@ GoldenrodGameCorner_Johto_GoldenrodGameCornerLeftTheirDrinkText:
 	.string "Someone left their\n"
 	.string "drink."
 	.string "\pIt smells sweet.$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipNoCoinCase:
+	.string "You don't have a COIN CASE.$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipNotEnoughCoins:
+	.string "Not enough coins…$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipPlayWithThreeCoins:
+	.string "Play with three coins?$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipShuffled:
+	.string "The cards have been shuffled.$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipChooseACard:
+	.string "Choose a card.$"
+
+GoldenrodGameCorner_Johto_Text_Card1:
+	.string "CARD 1$"
+
+GoldenrodGameCorner_Johto_Text_Card2:
+	.string "CARD 2$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipPlaceYourBet:
+	.string "Place your bet.$"
+
+GoldenrodGameCorner_Johto_Text_BetSingleCard:
+	.string "SINGLE CARD (24x)$"
+
+GoldenrodGameCorner_Johto_Text_BetRank:
+	.string "SINGLE RANK (6x)$"
+
+GoldenrodGameCorner_Johto_Text_BetSuit:
+	.string "SINGLE SUIT (4x)$"
+
+GoldenrodGameCorner_Johto_Text_BetRankPair:
+	.string "RANK PAIR (3x)$"
+
+GoldenrodGameCorner_Johto_Text_BetSuitPair:
+	.string "SUIT PAIR (2x)$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipChooseSuit:
+	.string "Choose a Pokémon suit.$"
+
+GoldenrodGameCorner_Johto_Text_SuitPikachu:
+	.string "PIKACHU$"
+
+GoldenrodGameCorner_Johto_Text_SuitJigglypuff:
+	.string "JIGGLYPUFF$"
+
+GoldenrodGameCorner_Johto_Text_SuitPoliwag:
+	.string "POLIWAG$"
+
+GoldenrodGameCorner_Johto_Text_SuitOddish:
+	.string "ODDISH$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipChooseRank:
+	.string "Choose a number rank.$"
+
+GoldenrodGameCorner_Johto_Text_Rank1:
+	.string "RANK 1$"
+
+GoldenrodGameCorner_Johto_Text_Rank2:
+	.string "RANK 2$"
+
+GoldenrodGameCorner_Johto_Text_Rank3:
+	.string "RANK 3$"
+
+GoldenrodGameCorner_Johto_Text_Rank4:
+	.string "RANK 4$"
+
+GoldenrodGameCorner_Johto_Text_Rank5:
+	.string "RANK 5$"
+
+GoldenrodGameCorner_Johto_Text_Rank6:
+	.string "RANK 6$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipChooseRankPair:
+	.string "Choose a number pair.$"
+
+GoldenrodGameCorner_Johto_Text_RankPair12:
+	.string "RANKS 1 & 2$"
+
+GoldenrodGameCorner_Johto_Text_RankPair34:
+	.string "RANKS 3 & 4$"
+
+GoldenrodGameCorner_Johto_Text_RankPair56:
+	.string "RANKS 5 & 6$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipChooseSuitPair:
+	.string "Choose a Pokémon pair.$"
+
+GoldenrodGameCorner_Johto_Text_SuitPairPikaJiggly:
+	.string "PIKACHU & JIGGLYPUFF$"
+
+GoldenrodGameCorner_Johto_Text_SuitPairPoliOdd:
+	.string "POLIWAG & ODDISH$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipRevealedCard:
+	.string "The card is {STR_VAR_3}!$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipYeah:
+	.string "Yeah!\n"
+	.string "You won {STR_VAR_1} coins!$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipDarn:
+	.string "Darn…$"
+
+GoldenrodGameCorner_Johto_Text_CardFlipPlayAgain:
+	.string "Want to play again?$"
+

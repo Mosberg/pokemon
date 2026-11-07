@@ -20,6 +20,7 @@
 #include "constants/maps.h"
 #include "constants/pokeball.h"
 #include "constants/johto_flags.h"
+#include "unown.h"
 
 // Crystal's time-of-day slots: MORN 4-9, DAY 10-17, NITE 18-3. VAR_0x8004 holds a mask (1 MORN, 2 DAY, 4 NITE);
 // VAR_RESULT is TRUE when the current slot is one of them.
@@ -189,6 +190,104 @@ void JohtoCheckCoins(void)
     gSpecialVar_Result = (GetCoins() >= gSpecialVar_0x8004) ? 1 : 0;
 }
 
+// POKE-CONFLUENCE: Authentic Johto Kurt's Apricorn Crafting specials
+
+static u16 ApricornToBallItem(u16 apricorn)
+{
+    switch (apricorn)
+    {
+    case ITEM_RED_APRICORN:   return ITEM_LEVEL_BALL;
+    case ITEM_BLU_APRICORN:   return ITEM_LURE_BALL;
+    case ITEM_YLW_APRICORN:   return ITEM_MOON_BALL;
+    case ITEM_GRN_APRICORN:   return ITEM_FRIEND_BALL;
+    case ITEM_WHT_APRICORN:   return ITEM_FAST_BALL;
+    case ITEM_BLK_APRICORN:   return ITEM_HEAVY_BALL;
+    case ITEM_PNK_APRICORN:   return ITEM_LOVE_BALL;
+    default:                  return ITEM_NONE;
+    }
+}
+
+void JohtoGetApricornQuantity(void)
+{
+    gSpecialVar_Result = CountTotalItemQuantityInBag(gSpecialVar_0x8004);
+}
+
+void JohtoGiveKurtApricorns(void)
+{
+    u16 apricorn = gSpecialVar_0x8004;
+    u16 count = gSpecialVar_0x8005;
+    u16 ballItem = ApricornToBallItem(apricorn);
+
+    if (count == 0)
+        count = 1;
+
+    if (RemoveBagItem(apricorn, count))
+    {
+        VarSet(VAR_JOHTO_KURT_APRICORN_ITEM, ballItem);
+        VarSet(VAR_JOHTO_KURT_APRICORN_COUNT, count);
+        FlagSet(FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS);
+
+        // Keep legacy flags set for script compatibility
+        switch (apricorn)
+        {
+        case ITEM_RED_APRICORN: FlagSet(FLAG_JOHTO_GAVE_KURT_RED_APRICORN); break;
+        case ITEM_BLU_APRICORN: FlagSet(FLAG_JOHTO_GAVE_KURT_BLU_APRICORN); break;
+        case ITEM_YLW_APRICORN: FlagSet(FLAG_JOHTO_GAVE_KURT_YLW_APRICORN); break;
+        case ITEM_GRN_APRICORN: FlagSet(FLAG_JOHTO_GAVE_KURT_GRN_APRICORN); break;
+        case ITEM_WHT_APRICORN: FlagSet(FLAG_JOHTO_GAVE_KURT_WHT_APRICORN); break;
+        case ITEM_BLK_APRICORN: FlagSet(FLAG_JOHTO_GAVE_KURT_BLK_APRICORN); break;
+        case ITEM_PNK_APRICORN: FlagSet(FLAG_JOHTO_GAVE_KURT_PNK_APRICORN); break;
+        }
+        gSpecialVar_Result = TRUE;
+    }
+    else
+    {
+        gSpecialVar_Result = FALSE;
+    }
+}
+
+void JohtoDeliverKurtBalls(void)
+{
+    u16 ballItem = VarGet(VAR_JOHTO_KURT_APRICORN_ITEM);
+    u16 count = VarGet(VAR_JOHTO_KURT_APRICORN_COUNT);
+
+    if (count == 0)
+        count = 1;
+
+    // Fallback if legacy flag was set without vars
+    if (ballItem == ITEM_NONE)
+    {
+        if (FlagGet(FLAG_JOHTO_GAVE_KURT_RED_APRICORN)) ballItem = ITEM_LEVEL_BALL;
+        else if (FlagGet(FLAG_JOHTO_GAVE_KURT_BLU_APRICORN)) ballItem = ITEM_LURE_BALL;
+        else if (FlagGet(FLAG_JOHTO_GAVE_KURT_YLW_APRICORN)) ballItem = ITEM_MOON_BALL;
+        else if (FlagGet(FLAG_JOHTO_GAVE_KURT_GRN_APRICORN)) ballItem = ITEM_FRIEND_BALL;
+        else if (FlagGet(FLAG_JOHTO_GAVE_KURT_WHT_APRICORN)) ballItem = ITEM_FAST_BALL;
+        else if (FlagGet(FLAG_JOHTO_GAVE_KURT_BLK_APRICORN)) ballItem = ITEM_HEAVY_BALL;
+        else if (FlagGet(FLAG_JOHTO_GAVE_KURT_PNK_APRICORN)) ballItem = ITEM_LOVE_BALL;
+    }
+
+    if (ballItem != ITEM_NONE && AddBagItem(ballItem, count))
+    {
+        VarSet(VAR_JOHTO_KURT_APRICORN_ITEM, ITEM_NONE);
+        VarSet(VAR_JOHTO_KURT_APRICORN_COUNT, 0);
+        FlagClear(FLAG_JOHTO_GAVE_KURT_RED_APRICORN);
+        FlagClear(FLAG_JOHTO_GAVE_KURT_BLU_APRICORN);
+        FlagClear(FLAG_JOHTO_GAVE_KURT_YLW_APRICORN);
+        FlagClear(FLAG_JOHTO_GAVE_KURT_GRN_APRICORN);
+        FlagClear(FLAG_JOHTO_GAVE_KURT_WHT_APRICORN);
+        FlagClear(FLAG_JOHTO_GAVE_KURT_BLK_APRICORN);
+        FlagClear(FLAG_JOHTO_GAVE_KURT_PNK_APRICORN);
+
+        gSpecialVar_0x8000 = ballItem;
+        gSpecialVar_0x8001 = count;
+        gSpecialVar_Result = TRUE;
+    }
+    else
+    {
+        gSpecialVar_Result = FALSE; // Bag full
+    }
+}
+
 void JohtoSelectApricornForKurt(void)
 {
     static const u16 sApricorns[] = {
@@ -201,7 +300,9 @@ void JohtoSelectApricornForKurt(void)
     {
         if (CheckBagHasItem(sApricorns[i], 1))
         {
-            RemoveBagItem(sApricorns[i], 1);
+            gSpecialVar_0x8004 = sApricorns[i];
+            gSpecialVar_0x8005 = 1;
+            JohtoGiveKurtApricorns();
             gSpecialVar_Result = sApricorns[i];
             return;
         }
@@ -652,25 +753,9 @@ void JohtoGetMysteryGiftItem(void)
         gSpecialVar_Result = FALSE;
 }
 
-// POKE-CONFLUENCE
-// Checks if player party has at least 3 eligible battle-ready Pokémon for Battle Tower.
-void JohtoCheckBattleTowerEligibility(void)
+// POKE-CONFLUENCE: Johto Unown Dex caught count query
+void JohtoGetUnownCaughtCount(void)
 {
-    u32 i;
-    u32 count = 0;
-    u8 partyCount = gPartiesCount[B_TRAINER_PLAYER];
-
-    for (i = 0; i < partyCount; i++)
-    {
-        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
-
-        if (!GetMonData(mon, MON_DATA_IS_EGG)
-            && GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE
-            && GetMonData(mon, MON_DATA_HP) > 0)
-        {
-            count++;
-        }
-    }
-
-    gSpecialVar_Result = (count >= 3) ? TRUE : FALSE;
+    gSpecialVar_Result = Johto_GetUnownCaughtCount();
 }
+

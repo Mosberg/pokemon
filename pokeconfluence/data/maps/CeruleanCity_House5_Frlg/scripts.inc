@@ -5,15 +5,24 @@ CeruleanCity_House5_EventScript_BerryPowderMan::
 	lock
 	faceplayer
 	goto_if_set FLAG_GOT_POWDER_JAR, CeruleanCity_House5_EventScript_AskToExchangePowder
+	checkitem ITEM_POWDER_JAR
+	goto_if_eq VAR_RESULT, TRUE, CeruleanCity_House5_EventScript_HasJarAlready
 	msgbox CeruleanCity_House1_Text_AnyInterestInBerries, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, CeruleanCity_House5_EventScript_NoInterestInBerries
-	goto_if_unset FLAG_SYS_GOT_BERRY_POUCH, CeruleanCity_House5_EventScript_NoBerries
+	specialvar VAR_RESULT, HasAtLeastOneBerry
+	goto_if_eq VAR_RESULT, FALSE, CeruleanCity_House5_EventScript_NoBerries
 	msgbox CeruleanCity_House1_Text_HaveJustTheThing
-	setflag FLAG_GOT_POWDER_JAR
 	giveitem ITEM_POWDER_JAR
 	goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull
+	setflag FLAG_GOT_POWDER_JAR
+	setflag FLAG_RECEIVED_POWDER_JAR
 	msgbox CeruleanCity_House1_Text_GoCrushBerriesAtDirectCorner
 	release
+	end
+
+CeruleanCity_House5_EventScript_HasJarAlready::
+	setflag FLAG_GOT_POWDER_JAR
+	goto CeruleanCity_House5_EventScript_AskToExchangePowder
 	end
 
 CeruleanCity_House5_EventScript_NoBerries::

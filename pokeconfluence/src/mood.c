@@ -19,6 +19,9 @@
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/weather.h"
+#include "constants/cries.h"
+#include "constants/pikachu_voice.h"
+#include "config/pokemon.h"
 
 // Refusal Text
 const u8 gText_PokemonRefusedStone[] = _("{STR_VAR_1} refused the stone!\pIt shook its head vigorously.");
@@ -387,6 +390,22 @@ void Special_ShowLeadPokemonMood(void)
 
     Confluence_EvaluateLeadPokemonMood(&info);
     GetMonNickname(mon, gStringVar1);
-    PlayCry_Normal(GetMonData(mon, MON_DATA_SPECIES), 0);
+#if VOICED_PIKACHU_CRIES
+    if (gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].cryId == CRY_PIKACHU)
+    {
+        u8 pikaVoice = PIKA_VOICE_ENTRANCE;
+        if (info.mood == MOOD_ECSTATIC || info.mood == MOOD_HAPPY)
+            pikaVoice = PIKA_VOICE_JOY;
+        else if (info.mood == MOOD_DISTANT || info.mood == MOOD_ANGRY)
+            pikaVoice = PIKA_VOICE_SAD;
+        else if (info.mood == MOOD_TIRED || info.mood == MOOD_SICK || info.mood == MOOD_PARALYZED)
+            pikaVoice = PIKA_VOICE_LOW_HP;
+        PlayPikachuVoice(pikaVoice, 0);
+    }
+    else
+#endif
+    {
+        PlayCry_Normal(GetMonData(mon, MON_DATA_SPECIES), 0);
+    }
     gSpecialVar_Result = info.mood;
 }

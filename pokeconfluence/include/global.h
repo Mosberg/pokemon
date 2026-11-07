@@ -23,6 +23,7 @@
 #include "constants/easy_chat.h"
 #include "constants/trainer_hill.h"
 #include "constants/trainer_tower.h"
+#include "constants/fame_checker.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "config/save.h"
@@ -254,6 +255,14 @@ struct NPCFollower
 #include "constants/items.h"
 #define ITEM_FLAGS_COUNT ((ITEMS_COUNT / 8) + ((ITEMS_COUNT % 8) ? 1 : 0))
 
+#define DEXNAV_SAVED_SEARCH_LEVELS_COUNT 256
+
+struct DexNavSearchLevelEntry
+{
+    u16 species;
+    u8 searchLevel;
+};
+
 struct SaveBlock3
 {
 #if OW_USE_FAKE_RTC
@@ -266,7 +275,7 @@ struct SaveBlock3
     u8 itemFlags[ITEM_FLAGS_COUNT];
 #endif
 #if USE_DEXNAV_SEARCH_LEVELS == TRUE
-    u8 dexNavSearchLevels[NUM_SPECIES];
+    struct DexNavSearchLevelEntry dexNavSearchLevels[DEXNAV_SAVED_SEARCH_LEVELS_COUNT];
 #endif
     u8 dexNavChain;
 #if APRICORN_TREE_COUNT > 0
@@ -944,6 +953,14 @@ struct WaldaPhrase
     //u8 padding;
 };
 
+// POKE-CONFLUENCE
+struct FameCheckerSaveData
+{
+    u16 pickState:2;
+    u16 flavorTextFlags:12;
+    u16 unk_0_E:2;
+};
+
 struct TrainerNameRecord
 {
     u32 trainerId;
@@ -1202,6 +1219,8 @@ struct SaveBlock1
     /*0x3???*/ struct TrainerHillSave trainerHill;
 #endif //FREE_TRAINER_HILL
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
+    // POKE-CONFLUENCE: Fame Checker save data (16 persons * 2 bytes = 32 bytes)
+    struct FameCheckerSaveData fameChecker[NUM_FAMECHECKER_PERSONS];
 #if FREE_TRAINER_TOWER == FALSE && IS_FRLG
     u32 towerChallengeId;
     struct TrainerTower trainerTower[NUM_TOWER_CHALLENGE_TYPES];

@@ -52,6 +52,9 @@ void JohtoCheckCanPlayPokeFlute(void);
 void JohtoCheckRocketCrisis(void);
 void JohtoGetBuenaPasswordChoices(void);
 void JohtoCheckBuenaAnswer(void);
+void JohtoCheckBuenaTime(void);
+void JohtoGetBlueCardBalance(void);
+void JohtoRedeemBuenaPrize(void);
 
 extern bool8 sPokenavWantsToOpenRadio;
 

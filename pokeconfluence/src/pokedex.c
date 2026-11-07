@@ -33,7 +33,9 @@
 #include "window.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/johto_flags.h"
 #include "config/pokedex_plus_hgss.h"
+#include "unown.h"
 
 EWRAM_DATA struct PokedexView *sPokedexView = NULL;
 static EWRAM_DATA u16 sLastSelectedPokemon = 0;
@@ -1183,6 +1185,8 @@ static const u8 sSearchMovementMap_ShiftHoennDex[SEARCH_COUNT][4] =
 static const struct SearchOptionText sDexModeOptions[] =
 {
     [DEX_MODE_HOENN]    = {COMPOUND_STRING("HOENN region's POKéDEX"),   COMPOUND_STRING("HOENN DEX")},
+    [DEX_MODE_KANTO]    = {COMPOUND_STRING("KANTO region's POKéDEX"),   COMPOUND_STRING("KANTO DEX")},
+    [DEX_MODE_JOHTO]    = {COMPOUND_STRING("JOHTO region's POKéDEX"),   COMPOUND_STRING("JOHTO DEX")},
     [DEX_MODE_NATIONAL] = {COMPOUND_STRING("National edition POKéDEX"), COMPOUND_STRING("NATIONAL DEX")},
     {},
 };
@@ -1253,7 +1257,7 @@ static const struct SearchOptionText sDexSearchTypeOptions[] =
     {},
 };
 
-static const u8 sPokedexModes[] = {DEX_MODE_HOENN, DEX_MODE_NATIONAL};
+static const u8 sPokedexModes[] = {DEX_MODE_HOENN, DEX_MODE_KANTO, DEX_MODE_JOHTO, DEX_MODE_NATIONAL};
 static const u8 sOrderOptions[] =
 {
     ORDER_NUMERICAL,
@@ -1389,6 +1393,41 @@ void VBlankCB_Pokedex(void)
     TransferPlttBuffer();
 }
 
+// POKE-CONFLUENCE: Multi-region default and sanitization
+static u8 GetDefaultPokedexMode(void)
+{
+    if (GetCurrentRegion() == REGION_JOHTO)
+        return DEX_MODE_JOHTO;
+    if (GetCurrentRegion() == REGION_KANTO)
+        return DEX_MODE_KANTO;
+    return DEX_MODE_HOENN;
+}
+
+static u8 SanitizePokedexMode(u8 mode)
+{
+    if (mode >= DEX_MODE_COUNT)
+        return GetDefaultPokedexMode();
+    if (mode == DEX_MODE_NATIONAL && !IsNationalPokedexEnabled())
+        return GetDefaultPokedexMode();
+    return mode;
+}
+
+static u32 GetPokedexModeCount(u8 dexMode, u8 caseId)
+{
+    switch (dexMode)
+    {
+    case DEX_MODE_HOENN:
+        return GetHoennPokedexCount(caseId);
+    case DEX_MODE_KANTO:
+        return GetKantoPokedexCount(caseId);
+    case DEX_MODE_JOHTO:
+        return GetJohtoPokedexCount(caseId);
+    case DEX_MODE_NATIONAL:
+    default:
+        return GetNationalPokedexCount(caseId);
+    }
+}
+
 void ResetPokedexView(struct PokedexView *pokedexView)
 {
     u16 i;
@@ -1405,8 +1444,8 @@ void ResetPokedexView(struct PokedexView *pokedexView)
     pokedexView->pokemonListCount = 0;
     pokedexView->selectedPokemon = 0;
     pokedexView->selectedPokemonBackup = 0;
-    pokedexView->dexMode = DEX_MODE_HOENN;
-    pokedexView->dexModeBackup = DEX_MODE_HOENN;
+    pokedexView->dexMode = GetDefaultPokedexMode();
+    pokedexView->dexModeBackup = GetDefaultPokedexMode();
     pokedexView->dexOrder = ORDER_NUMERICAL;
     pokedexView->dexOrderBackup = ORDER_NUMERICAL;
     pokedexView->seenCount = 0;
@@ -1468,23 +1507,13 @@ void CB2_OpenPokedex(void)
         sPokedexView = AllocZeroed(sizeof(struct PokedexView));
         ResetPokedexView(sPokedexView);
         CreateTask(Task_OpenPokedexMainPage, 0);
-        sPokedexView->dexMode = gSaveBlock2Ptr->pokedex.mode;
-        if (!IsNationalPokedexEnabled())
-            sPokedexView->dexMode = DEX_MODE_HOENN;
+        sPokedexView->dexMode = SanitizePokedexMode(gSaveBlock2Ptr->pokedex.mode);
         sPokedexView->dexOrder = gSaveBlock2Ptr->pokedex.order;
         sPokedexView->selectedPokemon = sLastSelectedPokemon;
         sPokedexView->pokeBallRotation = sPokeBallRotation;
         sPokedexView->selectedScreen = AREA_SCREEN;
-        if (!IsNationalPokedexEnabled())
-        {
-            sPokedexView->seenCount = GetRegionalPokedexCount(FLAG_GET_SEEN);
-            sPokedexView->ownCount = GetRegionalPokedexCount(FLAG_GET_CAUGHT);
-        }
-        else
-        {
-            sPokedexView->seenCount = GetNationalPokedexCount(FLAG_GET_SEEN);
-            sPokedexView->ownCount = GetNationalPokedexCount(FLAG_GET_CAUGHT);
-        }
+        sPokedexView->seenCount = GetPokedexModeCount(sPokedexView->dexMode, FLAG_GET_SEEN);
+        sPokedexView->ownCount = GetPokedexModeCount(sPokedexView->dexMode, FLAG_GET_CAUGHT);
         sPokedexView->initialVOffset = 8;
         gMain.state++;
         break;
@@ -1572,6 +1601,46 @@ void Task_HandlePokedexInput(u8 taskId)
             BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
             gTasks[taskId].func = Task_ClosePokedex;
             PlaySE(SE_PC_OFF);
+        }
+        // POKE-CONFLUENCE: L/R buttons cycle regional Pokédexes (Hoenn -> Kanto -> Johto -> National)
+        else if (JOY_NEW(R_BUTTON) || JOY_NEW(L_BUTTON))
+        {
+            u8 nextMode = sPokedexView->dexMode;
+            if (JOY_NEW(R_BUTTON))
+            {
+                nextMode++;
+                if (nextMode == DEX_MODE_NATIONAL && !IsNationalPokedexEnabled())
+                    nextMode = DEX_MODE_HOENN;
+                else if (nextMode >= DEX_MODE_COUNT)
+                    nextMode = DEX_MODE_HOENN;
+            }
+            else
+            {
+                if (nextMode == DEX_MODE_HOENN)
+                    nextMode = IsNationalPokedexEnabled() ? DEX_MODE_NATIONAL : DEX_MODE_JOHTO;
+                else
+                    nextMode--;
+            }
+
+            if (nextMode != sPokedexView->dexMode)
+            {
+                PlaySE(SE_DEX_PAGE);
+                sPokedexView->dexMode = nextMode;
+                sPokedexView->dexModeBackup = nextMode;
+                gSaveBlock2Ptr->pokedex.mode = nextMode;
+                sPokedexView->selectedPokemon = 0;
+                sPokedexView->pokeBallRotation = POKEBALL_ROTATION_TOP;
+                sLastSelectedPokemon = 0;
+                sPokeBallRotation = POKEBALL_ROTATION_TOP;
+                CreatePokedexList(sPokedexView->dexMode, sPokedexView->dexOrder);
+                sPokedexView->seenCount = GetPokedexModeCount(sPokedexView->dexMode, FLAG_GET_SEEN);
+                sPokedexView->ownCount = GetPokedexModeCount(sPokedexView->dexMode, FLAG_GET_CAUGHT);
+                ClearMonSprites();
+                CreateMonSpritesAtPos(sPokedexView->selectedPokemon, 0xE);
+                CopyBgTilemapBufferToVram(1);
+                CopyBgTilemapBufferToVram(2);
+                CopyBgTilemapBufferToVram(3);
+            }
         }
         else
         {
@@ -1700,9 +1769,7 @@ static void Task_WaitForExitSearch(u8 taskId)
         {
             sPokedexView->pokeBallRotation = sPokedexView->pokeBallRotationBackup;
             sPokedexView->selectedPokemon = sPokedexView->selectedPokemonBackup;
-            sPokedexView->dexMode = sPokedexView->dexModeBackup;
-            if (!IsNationalPokedexEnabled())
-                sPokedexView->dexMode = DEX_MODE_HOENN;
+            sPokedexView->dexMode = SanitizePokedexMode(sPokedexView->dexModeBackup);
             sPokedexView->dexOrder = sPokedexView->dexOrderBackup;
             gTasks[taskId].func = Task_OpenPokedexMainPage;
         }
@@ -1713,9 +1780,7 @@ static void Task_ClosePokedex(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        gSaveBlock2Ptr->pokedex.mode = sPokedexView->dexMode;
-        if (!IsNationalPokedexEnabled())
-            gSaveBlock2Ptr->pokedex.mode = DEX_MODE_HOENN;
+        gSaveBlock2Ptr->pokedex.mode = SanitizePokedexMode(sPokedexView->dexMode);
         gSaveBlock2Ptr->pokedex.order = sPokedexView->dexOrder;
         ClearMonSprites();
         FreeWindowAndBgBuffers();
@@ -1904,9 +1969,7 @@ static void Task_ReturnToPokedexFromSearchResults(u8 taskId)
     {
         sPokedexView->pokeBallRotation = sPokedexView->pokeBallRotationBackup;
         sPokedexView->selectedPokemon = sPokedexView->selectedPokemonBackup;
-        sPokedexView->dexMode = sPokedexView->dexModeBackup;
-        if (!IsNationalPokedexEnabled())
-            sPokedexView->dexMode = DEX_MODE_HOENN;
+        sPokedexView->dexMode = SanitizePokedexMode(sPokedexView->dexModeBackup);
         sPokedexView->dexOrder = sPokedexView->dexOrderBackup;
         gTasks[taskId].func = Task_OpenPokedexMainPage;
         ClearMonSprites();
@@ -1920,9 +1983,7 @@ static void Task_ClosePokedexFromSearchResultsStartMenu(u8 taskId)
     {
         sPokedexView->pokeBallRotation = sPokedexView->pokeBallRotationBackup;
         sPokedexView->selectedPokemon = sPokedexView->selectedPokemonBackup;
-        sPokedexView->dexMode = sPokedexView->dexModeBackup;
-        if (!IsNationalPokedexEnabled())
-            sPokedexView->dexMode = DEX_MODE_HOENN;
+        sPokedexView->dexMode = SanitizePokedexMode(sPokedexView->dexModeBackup);
         sPokedexView->dexOrder = sPokedexView->dexOrderBackup;
         gTasks[taskId].func = Task_ClosePokedex;
     }
@@ -2032,10 +2093,10 @@ void LoadPokedexBgPalette(bool8 isSearchResults)
 
     if (isSearchResults == TRUE)
         LoadPalette(gPokedexSearchResults_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
-    else if (!IsNationalPokedexEnabled())
-        LoadPalette(gPokedexBgHoenn_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
-    else
+    else if (sPokedexView && sPokedexView->dexMode == DEX_MODE_NATIONAL)
         LoadPalette(gPokedexBgNational_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
+    else
+        LoadPalette(gPokedexBgHoenn_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(6 * 16 - 1));
     LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(15), PLTT_SIZE_4BPP);
 }
 
@@ -2082,7 +2143,7 @@ void CreatePokedexList(u8 dexMode, u8 order)
 {
     u32 vars[3]; //I have no idea why three regular variables are stored in an array, but whatever.
 #define temp_dexCount   vars[0]
-#define temp_isHoennDex vars[1]
+#define temp_isRegional vars[1]
 #define temp_dexNum     vars[2]
     s32 i, r5, r10;
 
@@ -2092,19 +2153,33 @@ void CreatePokedexList(u8 dexMode, u8 order)
     {
     default:
     case DEX_MODE_HOENN:
-        temp_dexCount = GetRegionalDexCount();
-        temp_isHoennDex = TRUE;
+        temp_dexCount = HOENN_DEX_COUNT - 1;
+        temp_isRegional = TRUE;
+        break;
+    case DEX_MODE_KANTO:
+        temp_dexCount = KANTO_DEX_COUNT - 1;
+        temp_isRegional = TRUE;
+        break;
+    case DEX_MODE_JOHTO:
+        temp_dexCount = JOHTO_REGIONAL_DEX_COUNT - 1;
+        temp_isRegional = TRUE;
         break;
     case DEX_MODE_NATIONAL:
         if (IsNationalPokedexEnabled())
         {
             temp_dexCount = NATIONAL_DEX_COUNT;
-            temp_isHoennDex = FALSE;
+            temp_isRegional = FALSE;
         }
         else
         {
-            temp_dexCount = GetRegionalDexCount();
-            temp_isHoennDex = TRUE;
+            dexMode = GetDefaultPokedexMode();
+            if (dexMode == DEX_MODE_JOHTO)
+                temp_dexCount = JOHTO_REGIONAL_DEX_COUNT - 1;
+            else if (dexMode == DEX_MODE_KANTO)
+                temp_dexCount = KANTO_DEX_COUNT - 1;
+            else
+                temp_dexCount = HOENN_DEX_COUNT - 1;
+            temp_isRegional = TRUE;
         }
         break;
     }
@@ -2114,10 +2189,12 @@ void CreatePokedexList(u8 dexMode, u8 order)
     case ORDER_NUMERICAL:
         for (i = 0, r5 = 0, r10 = 0; i < temp_dexCount; i++)
         {
-            if (temp_isHoennDex)
-            {
-                temp_dexNum = RegionalToNationalOrder(i + 1);
-            }
+            if (dexMode == DEX_MODE_HOENN)
+                temp_dexNum = HoennToNationalOrder(i + 1);
+            else if (dexMode == DEX_MODE_KANTO)
+                temp_dexNum = KantoToNationalOrder(i + 1);
+            else if (dexMode == DEX_MODE_JOHTO)
+                temp_dexNum = JohtoToNationalOrder(i + 1);
             else
             {
                 temp_dexNum = i + 1;
@@ -2125,10 +2202,10 @@ void CreatePokedexList(u8 dexMode, u8 order)
                     r10 = 1;
             }
 
-            if (ShouldSkipPokedexListEntry(temp_dexNum))
+            if (temp_dexNum == 0 || ShouldSkipPokedexListEntry(temp_dexNum))
                 continue;
 
-            if (r10 || temp_isHoennDex)
+            if (r10 || temp_isRegional)
             {
                 sPokedexView->pokedexList[r5].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[r5].seen = GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN);
@@ -2144,7 +2221,12 @@ void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexNum = gPokedexOrder_Alphabetical[i];
 
-            if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToRegionalOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
+            if (temp_dexNum <= NATIONAL_DEX_COUNT &&
+                (!temp_isRegional ||
+                 (dexMode == DEX_MODE_HOENN && NationalToHoennOrder(temp_dexNum) != 0) ||
+                 (dexMode == DEX_MODE_KANTO && NationalToKantoOrder(temp_dexNum) != 0) ||
+                 (dexMode == DEX_MODE_JOHTO && NationalToJohtoOrder(temp_dexNum) != 0)) &&
+                GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -2158,7 +2240,12 @@ void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexNum = gPokedexOrder_Weight[i];
 
-            if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToRegionalOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
+            if (temp_dexNum <= NATIONAL_DEX_COUNT &&
+                (!temp_isRegional ||
+                 (dexMode == DEX_MODE_HOENN && NationalToHoennOrder(temp_dexNum) != 0) ||
+                 (dexMode == DEX_MODE_KANTO && NationalToKantoOrder(temp_dexNum) != 0) ||
+                 (dexMode == DEX_MODE_JOHTO && NationalToJohtoOrder(temp_dexNum) != 0)) &&
+                GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -2172,7 +2259,12 @@ void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexNum = gPokedexOrder_Weight[i];
 
-            if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToRegionalOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
+            if (temp_dexNum <= NATIONAL_DEX_COUNT &&
+                (!temp_isRegional ||
+                 (dexMode == DEX_MODE_HOENN && NationalToHoennOrder(temp_dexNum) != 0) ||
+                 (dexMode == DEX_MODE_KANTO && NationalToKantoOrder(temp_dexNum) != 0) ||
+                 (dexMode == DEX_MODE_JOHTO && NationalToJohtoOrder(temp_dexNum) != 0)) &&
+                GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -2186,7 +2278,12 @@ void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexNum = gPokedexOrder_Height[i];
 
-            if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToRegionalOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
+            if (temp_dexNum <= NATIONAL_DEX_COUNT &&
+                (!temp_isRegional ||
+                 (dexMode == DEX_MODE_HOENN && NationalToHoennOrder(temp_dexNum) != 0) ||
+                 (dexMode == DEX_MODE_KANTO && NationalToKantoOrder(temp_dexNum) != 0) ||
+                 (dexMode == DEX_MODE_JOHTO && NationalToJohtoOrder(temp_dexNum) != 0)) &&
+                GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -2200,7 +2297,12 @@ void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexNum = gPokedexOrder_Height[i];
 
-            if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToRegionalOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
+            if (temp_dexNum <= NATIONAL_DEX_COUNT &&
+                (!temp_isRegional ||
+                 (dexMode == DEX_MODE_HOENN && NationalToHoennOrder(temp_dexNum) != 0) ||
+                 (dexMode == DEX_MODE_KANTO && NationalToKantoOrder(temp_dexNum) != 0) ||
+                 (dexMode == DEX_MODE_JOHTO && NationalToJohtoOrder(temp_dexNum) != 0)) &&
+                GetSetPokedexFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -2340,9 +2442,13 @@ void CreateMonDexNum(u16 entryNum, u8 left, u8 top, u16 unused)
 
     dexNum = sPokedexView->pokedexList[entryNum].dexNum;
     if (sPokedexView->dexMode == DEX_MODE_HOENN)
-        dexNum = NationalToRegionalOrder(dexNum);
+        dexNum = NationalToHoennOrder(dexNum);
+    else if (sPokedexView->dexMode == DEX_MODE_KANTO)
+        dexNum = NationalToKantoOrder(dexNum);
+    else if (sPokedexView->dexMode == DEX_MODE_JOHTO)
+        dexNum = NationalToJohtoOrder(dexNum);
     memcpy(text, sText_No0000, ARRAY_COUNT(sText_No0000));
-    if (NATIONAL_DEX_COUNT > 999 && sPokedexView->dexMode != DEX_MODE_HOENN)
+    if (NATIONAL_DEX_COUNT > 999 && sPokedexView->dexMode == DEX_MODE_NATIONAL)
     {
         text[offset] = CHAR_0 + dexNum / 1000;
         offset++;
@@ -3253,7 +3359,7 @@ void Task_LoadInfoScreen(u8 taskId)
         gMain.state++;
         break;
     case 4:
-        PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+        PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_NATIONAL ? TRUE : FALSE, sPokedexListItem->owned, 0);
         if (!sPokedexListItem->owned)
             LoadPalette(&gPlttBufferUnfaded[BG_PLTT_ID(0) + 1], BG_PLTT_ID(3) + 1, PLTT_SIZEOF(16 - 1));
         CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
@@ -3343,6 +3449,116 @@ void FreeInfoScreenWindowAndBgBuffers(void)
         Free(tilemapBuffer);
 }
 
+// POKE-CONFLUENCE: Authentic GBC Crystal Unown Dex Viewer Screen
+static const u8 sText_UnownDexTitle[] = _("UNOWN DEX");
+static const u8 sText_UnownDexNo[] = _("NO. ");
+static const u8 sText_UnownDexSlash[] = _(" / ");
+static const u8 sText_UnownDexForm[] = _("FORM: ");
+static const u8 sText_UnownDexWord[] = _("WORD: ");
+static const u8 sText_UnownDexControls[] = _("{DPAD_LEFTRIGHT} CHANGE FORM\n{SELECT_BUTTON} / {B_BUTTON} EXIT");
+static const u8 sText_UnownDexPrompt[] = _("{SELECT_BUTTON} UNOWN DEX");
+
+static void Task_HandleUnownDexInput(u8 taskId);
+
+static void Pokedex_DrawUnownDexScreen(u8 taskId)
+{
+    u8 count = Johto_GetUnownCaughtCount();
+    u8 curIndex = gTasks[taskId].data[6];
+    u8 form;
+    enum Species species;
+    u8 letter;
+    u8 str[64];
+    u8 countStr[32];
+    u8 letterStr[16];
+
+    if (count == 0)
+        return;
+    if (curIndex >= count)
+        curIndex = 0;
+
+    form = Johto_GetNthCaughtUnownForm(curIndex);
+    species = Johto_GetUnownSpeciesByForm(form);
+    letter = Johto_GetUnownCharByForm(form);
+
+    FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+    gTasks[taskId].tMonSpriteId = (u16)CreateMonPicSprite(species, FALSE, 0, TRUE, MON_PAGE_X, MON_PAGE_Y, 0, TAG_NONE);
+    gSprites[gTasks[taskId].tMonSpriteId].oam.priority = 0;
+
+    FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+
+    PrintInfoScreenText(sText_UnownDexTitle, 0x60, 0x19);
+
+    ConvertIntToDecimalStringN(countStr, curIndex + 1, STR_CONV_MODE_LEADING_ZEROS, 2);
+    StringCopy(str, sText_UnownDexNo);
+    StringAppend(str, countStr);
+    StringAppend(str, sText_UnownDexSlash);
+    ConvertIntToDecimalStringN(countStr, count, STR_CONV_MODE_LEADING_ZEROS, 2);
+    StringAppend(str, countStr);
+    PrintInfoScreenText(str, 0x64, 0x29);
+
+    letterStr[0] = letter;
+    letterStr[1] = EOS;
+    StringCopy(str, sText_UnownDexForm);
+    StringAppend(str, letterStr);
+    PrintInfoScreenText(str, 0x60, 0x48);
+
+    StringCopy(str, sText_UnownDexWord);
+    StringAppend(str, Johto_GetUnownWord(form));
+    PrintInfoScreenText(str, 0x60, 0x58);
+
+    PrintInfoScreenText(sText_UnownDexControls, 0x20, 105);
+
+    CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
+}
+
+static void Task_HandleUnownDexInput(u8 taskId)
+{
+    u8 count = Johto_GetUnownCaughtCount();
+
+    if (JOY_NEW(B_BUTTON) || JOY_NEW(SELECT_BUTTON) || JOY_NEW(A_BUTTON))
+    {
+        PlaySE(SE_PC_OFF);
+        FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+        gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+        gSprites[gTasks[taskId].tMonSpriteId].oam.priority = 0;
+
+        FillWindowPixelBuffer(WIN_INFO, PIXEL_FILL(0));
+        PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_NATIONAL ? TRUE : FALSE, sPokedexListItem->owned, 0);
+        CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
+
+        gTasks[taskId].func = Task_HandleInfoScreenInput;
+        return;
+    }
+
+    if (JOY_NEW(DPAD_LEFT) || (JOY_NEW(L_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
+    {
+        if (count > 0)
+        {
+            if (gTasks[taskId].data[6] == 0)
+                gTasks[taskId].data[6] = count - 1;
+            else
+                gTasks[taskId].data[6]--;
+
+            VarSet(VAR_JOHTO_UNOWN_DEX_INDEX, gTasks[taskId].data[6]);
+            PlaySE(SE_DEX_PAGE);
+            Pokedex_DrawUnownDexScreen(taskId);
+        }
+        return;
+    }
+
+    if (JOY_NEW(DPAD_RIGHT) || (JOY_NEW(R_BUTTON) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_LR))
+    {
+        if (count > 0)
+        {
+            gTasks[taskId].data[6] = (gTasks[taskId].data[6] + 1) % count;
+            VarSet(VAR_JOHTO_UNOWN_DEX_INDEX, gTasks[taskId].data[6]);
+            PlaySE(SE_DEX_PAGE);
+            Pokedex_DrawUnownDexScreen(taskId);
+        }
+        return;
+    }
+}
+
 void Task_HandleInfoScreenInput(u8 taskId)
 {
     if (gTasks[taskId].tScrolling)
@@ -3359,6 +3575,21 @@ void Task_HandleInfoScreenInput(u8 taskId)
         gTasks[taskId].func = Task_ExitInfoScreen;
         PlaySE(SE_PC_OFF);
         return;
+    }
+
+    // POKE-CONFLUENCE: Authentic Johto Unown Dex mode
+    if (sPokedexListItem->dexNum == NATIONAL_DEX_UNOWN && FlagGet(FLAG_JOHTO_ENGINE_UNOWN_DEX) && Johto_GetUnownCaughtCount() > 0)
+    {
+        if (JOY_NEW(SELECT_BUTTON))
+        {
+            PlaySE(SE_PIN);
+            gTasks[taskId].func = Task_HandleUnownDexInput;
+            gTasks[taskId].data[6] = VarGet(VAR_JOHTO_UNOWN_DEX_INDEX);
+            if (gTasks[taskId].data[6] >= Johto_GetUnownCaughtCount())
+                gTasks[taskId].data[6] = 0;
+            Pokedex_DrawUnownDexScreen(taskId);
+            return;
+        }
     }
 
     if (TryHandleInfoScreenInput_HGSS(taskId))
@@ -4169,7 +4400,16 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     if (newEntry)
         PrintInfoScreenText(sText_PokedexRegistration, GetStringCenterAlignXOffset(FONT_NORMAL, sText_PokedexRegistration, DISPLAY_WIDTH), 0);
     if (value == 0)
-        value = NationalToRegionalOrder(num);
+    {
+        if (sPokedexView && sPokedexView->dexMode == DEX_MODE_HOENN)
+            value = NationalToHoennOrder(num);
+        else if (sPokedexView && sPokedexView->dexMode == DEX_MODE_KANTO)
+            value = NationalToKantoOrder(num);
+        else if (sPokedexView && sPokedexView->dexMode == DEX_MODE_JOHTO)
+            value = NationalToJohtoOrder(num);
+        else
+            value = NationalToRegionalOrder(num);
+    }
     else
         value = num;
 
@@ -4192,6 +4432,13 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         category = gText_5MarksPokemon;
     }
     PrintInfoScreenText(category, 0x64, 0x29);
+
+    // POKE-CONFLUENCE: Display Unown Dex shortcut prompt if unlocked
+    if (num == NATIONAL_DEX_UNOWN && FlagGet(FLAG_JOHTO_ENGINE_UNOWN_DEX) && Johto_GetUnownCaughtCount() > 0)
+    {
+        PrintInfoScreenText(sText_UnownDexPrompt, 0x64, 0x48);
+    }
+
     PrintMonMeasurements(species,owned);
     if (owned)
         description = GetSpeciesPokedexDescription(species);

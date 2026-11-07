@@ -3,6 +3,7 @@
 #include "event_data.h"
 #include "battle_setup.h"
 #include "gym_leader_rematch.h"
+#include "confluence.h" // POKE-CONFLUENCE
 
 static void UpdateGymLeaderRematchFromArray(const u16 *data, size_t size, u32 maxRematch);
 #if FREE_MATCH_CALL == FALSE
@@ -31,9 +32,17 @@ static const u16 GymLeaderRematches_BeforeNewMauville[] = {
     REMATCH_JUAN
 };
 
+// POKE-CONFLUENCE: Support Hoenn Leader rematch qualification via multi-region Hall of Fame, Apex Champion, or 8+ badges
+static bool8 IsHoennLeaderRematchEligible(void)
+{
+    if (FlagGet(FLAG_SYS_GAME_CLEAR) || FlagGet(FLAG_CONFLUENCE_APEX_CHAMPION) || Confluence_CountBadges() >= 8)
+        return TRUE;
+    return FALSE;
+}
+
 void UpdateGymLeaderRematch(void)
 {
-    if (FlagGet(FLAG_SYS_GAME_CLEAR) && (Random() % 100) <= 30)
+    if (IsHoennLeaderRematchEligible() && (Random() % 100) <= 30)
     {
         if (FlagGet(FLAG_WATTSON_REMATCH_AVAILABLE))
             UpdateGymLeaderRematchFromArray(GymLeaderRematches_AfterNewMauville, ARRAY_COUNT(GymLeaderRematches_AfterNewMauville), 5);
@@ -46,9 +55,9 @@ s32 GetCurrentGymLeaderRematchLevel(void)
 {
     u32 i, j;
     u32 maxLevel = REMATCHES_COUNT;
-    if (!FlagGet(FLAG_SYS_GAME_CLEAR))
+    if (!IsHoennLeaderRematchEligible())
         return 0;
-    for (i = REMATCH_SPECIAL_TRAINER_START; i < REMATCH_ELITE_FOUR_ENTRIES; i++)
+    for (i = REMATCH_ROXANNE; i < REMATCH_ELITE_FOUR_ENTRIES; i++)
     {
         for (j = 0; j < REMATCHES_COUNT; j++)
         {
@@ -56,7 +65,7 @@ s32 GetCurrentGymLeaderRematchLevel(void)
                 break;
         }
         if (maxLevel > j)
-            j = maxLevel;
+            maxLevel = j;
     }
     return maxLevel;
 }

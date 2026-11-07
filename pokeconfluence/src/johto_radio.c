@@ -17,6 +17,8 @@
 #include "regions.h"
 #include "random.h"
 #include "rtc.h"
+#include "item.h"
+#include "constants/items.h"
 
 // POKE-CONFLUENCE: Authentic Johto Pokégear Radio Subsystem (from pokecrystal radio.asm)
 
@@ -337,3 +339,67 @@ void JohtoCheckBuenaAnswer(void)
         gSpecialVar_Result = FALSE;
     }
 }
+
+// POKE-CONFLUENCE: Buena evening broadcast time check (18:00 - 23:59)
+void JohtoCheckBuenaTime(void)
+{
+    RtcCalcLocalTime();
+    if (gLocalTime.hours >= 18 && gLocalTime.hours <= 23)
+        gSpecialVar_Result = TRUE;
+    else
+        gSpecialVar_Result = FALSE;
+}
+
+// POKE-CONFLUENCE: Get current Blue Card balance
+void JohtoGetBlueCardBalance(void)
+{
+    gSpecialVar_Result = VarGet(VAR_JOHTO_BLUE_CARD_BALANCE);
+}
+
+struct BuenaPrize
+{
+    u16 item;
+    u8 cost;
+};
+
+// POKE-CONFLUENCE: Authentic GBC Crystal Buena Prize Items (data/items/buena_prizes.asm)
+static const struct BuenaPrize sBuenaPrizes[] = {
+    { ITEM_ULTRA_BALL,   2 },
+    { ITEM_FULL_RESTORE, 2 },
+    { ITEM_NUGGET,       3 },
+    { ITEM_RARE_CANDY,   3 },
+    { ITEM_PROTEIN,      5 },
+    { ITEM_IRON,         5 },
+    { ITEM_CARBOS,       5 },
+    { ITEM_CALCIUM,      5 },
+    { ITEM_HP_UP,        5 },
+};
+
+void JohtoRedeemBuenaPrize(void)
+{
+    u8 index = gSpecialVar_0x8004;
+    u16 balance = VarGet(VAR_JOHTO_BLUE_CARD_BALANCE);
+
+    if (index >= ARRAY_COUNT(sBuenaPrizes))
+    {
+        gSpecialVar_Result = 1; // Invalid / not enough
+        return;
+    }
+
+    if (balance < sBuenaPrizes[index].cost)
+    {
+        gSpecialVar_Result = 1; // Not enough points
+        return;
+    }
+
+    if (!AddBagItem(sBuenaPrizes[index].item, 1))
+    {
+        gSpecialVar_Result = 2; // Bag full
+        return;
+    }
+
+    VarSet(VAR_JOHTO_BLUE_CARD_BALANCE, balance - sBuenaPrizes[index].cost);
+    gSpecialVar_0x8005 = sBuenaPrizes[index].item;
+    gSpecialVar_Result = 0; // Success!
+}
+

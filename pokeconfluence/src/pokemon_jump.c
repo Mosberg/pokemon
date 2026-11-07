@@ -27,6 +27,7 @@
 #include "trig.h"
 #include "pokemon.h"
 #include "pokemon_jump.h"
+#include "overworld.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/items.h"
@@ -407,6 +408,41 @@ static inline void TruncateToFirstWordOnly(u8 *);
 
 EWRAM_DATA static struct PokemonJump *sPokemonJump = NULL;
 EWRAM_DATA static struct PokemonJumpGfx *sPokemonJumpGfx = NULL;
+EWRAM_DATA static bool8 sIsSoloPracticeMode = FALSE;
+
+// POKE-CONFLUENCE: Solo practice mode without wireless link hardware
+void StartPokemonJumpPractice(u16 partyId, MainCallback exitCallback)
+{
+    u8 taskId;
+
+    sIsSoloPracticeMode = TRUE;
+    sPokemonJump = AllocZeroed(sizeof(*sPokemonJump));
+    if (sPokemonJump)
+    {
+        ResetTasks();
+        taskId = CreateTask(Task_StartPokemonJump, 1);
+        sPokemonJump->mainState = 0;
+        sPokemonJump->exitCallback = exitCallback;
+        sPokemonJump->taskId = taskId;
+        sPokemonJump->multiplayerId = 0;
+        sPokemonJump->numPlayers = 1;
+        InitJumpMonInfo(&sPokemonJump->monInfo[0], &gParties[B_TRAINER_PLAYER][partyId]);
+        InitGame(sPokemonJump);
+        sPokemonJump->numPlayers = 1;
+        sPokemonJump->isLeader = TRUE;
+        StringCopy(sPokemonJump->players[0].name, gSaveBlock2Ptr->playerName);
+        SetWordTaskArg(taskId, 2, (u32)sPokemonJump);
+        SetMainCallback2(CB2_PokemonJump);
+        return;
+    }
+
+    SetMainCallback2(exitCallback);
+}
+
+void StartPokemonJumpPracticeSpecial(void)
+{
+    StartPokemonJumpPractice(gSpecialVar_0x8004, CB2_ReturnToFieldContinueScriptPlayMapMusic);
+}
 
 void StartPokemonJump(u16 partyId, MainCallback exitCallback)
 {
@@ -583,7 +619,7 @@ static void Task_StartPokemonJump(u8 taskId)
         }
         break;
     case 3:
-        if (IsLinkTaskFinished())
+        if (sIsSoloPracticeMode || IsLinkTaskFinished())
         {
             BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
             BeginNormalPaletteFade(PALETTES_ALL, -1, 16, 0, RGB_BLACK);
@@ -687,7 +723,11 @@ static bool32 (*const sPokeJumpLeaderFuncs[])(void) =
 
 static void Task_PokemonJump_Leader(u8 taskId)
 {
-    RecvLinkData_Leader();
+    if (sIsSoloPracticeMode)
+        sPokemonJump->allPlayersReady = TRUE;
+    else
+        RecvLinkData_Leader();
+
     TryUpdateScore();
     if (!sPokemonJump->funcActive && sPokemonJump->allPlayersReady)
     {
@@ -705,7 +745,8 @@ static void Task_PokemonJump_Leader(u8 taskId)
     }
 
     UpdateGame();
-    SendLinkData_Leader();
+    if (!sIsSoloPracticeMode)
+        SendLinkData_Leader();
 }
 
 static void SendLinkData_Leader(void)
@@ -1095,7 +1136,13 @@ static bool32 ExitGame(void)
         sPokemonJump->mainState++;
         break;
     case 2:
-        if (!ClosePokeJumpLink())
+        if (sIsSoloPracticeMode)
+        {
+            SetMainCallback2(sPokemonJump->exitCallback);
+            FreePokemonJump();
+            sIsSoloPracticeMode = FALSE;
+        }
+        else if (!ClosePokeJumpLink())
         {
             SetMainCallback2(sPokemonJump->exitCallback);
             FreePokemonJump();
@@ -1153,14 +1200,18 @@ static bool32 SavePokeJump(void)
         }
         break;
     case 2:
-        if (AreLinkQueuesEmpty())
+        if (sIsSoloPracticeMode)
+        {
+            sPokemonJump->mainState++;
+        }
+        else if (AreLinkQueuesEmpty())
         {
             CreateTask(Task_LinkFullSave, 6);
             sPokemonJump->mainState++;
         }
         break;
     case 3:
-        if (!FuncIsActiveTask(Task_LinkFullSave))
+        if (sIsSoloPracticeMode || !FuncIsActiveTask(Task_LinkFullSave))
         {
             ClearMessageWindow();
             sPokemonJump->mainState++;
@@ -1519,6 +1570,14 @@ static void Task_CommunicateMonInfo(u8 taskId)
     int i;
     s16 *data = gTasks[taskId].data;
     struct PokemonJump *jump = (struct PokemonJump *)GetWordTaskArg(taskId, DATAIDX_GAME_STRUCT);
+
+    if (sIsSoloPracticeMode)
+    {
+        StringCopy(jump->players[0].name, gSaveBlock2Ptr->playerName);
+        InitPlayerAndJumpTypes();
+        DestroyTask(taskId);
+        return;
+    }
 
     switch (tState)
     {

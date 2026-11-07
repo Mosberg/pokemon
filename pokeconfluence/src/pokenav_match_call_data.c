@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle_setup.h"
+#include "confluence.h" // POKE-CONFLUENCE
 #include "data.h"
 #include "event_data.h"
 #include "string_util.h"
@@ -1017,7 +1018,8 @@ static void MatchCall_BufferCallMessageTextByRematchTeam(const match_call_text_d
     }
     else
     {
-        if (FlagGet(FLAG_SYS_GAME_CLEAR))
+        // POKE-CONFLUENCE: Support multi-region game clear, Apex Champion, and 8+ badges
+        if (FlagGet(FLAG_SYS_GAME_CLEAR) || FlagGet(FLAG_CONFLUENCE_APEX_CHAMPION) || Confluence_CountBadges() >= 8)
         {
             do
             {

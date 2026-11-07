@@ -56,6 +56,7 @@ BattleTower1F_Johto_BattleTower1FRulesSign_skip:
 
 BattleTower1F_Johto_BattleTower1FReceptionistScript:
 	faceplayer
+	goto_if_set FLAG_JOHTO_BATTLE_TOWER_WON_CHALLENGE, BattleTower1F_Johto_BattleTower1FReceptionist_WonReward
 	message BattleTower1F_Johto_Text_BattleTowerWelcomesYou
 	waitmessage
 	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
@@ -64,6 +65,18 @@ BattleTower1F_Johto_BattleTower1FReceptionistScript:
 	case 1, BattleTower1F_Johto_BattleTower1FReceptionist_Explanation
 	case 2, BattleTower1F_Johto_BattleTower1FReceptionist_Cancel
 	case MULTI_B_PRESSED, BattleTower1F_Johto_BattleTower1FReceptionist_Cancel
+	end
+
+BattleTower1F_Johto_BattleTower1FReceptionist_WonReward:
+	message BattleTower1F_Johto_Text_ReceivedVitamins
+	waitmessage
+	special JohtoBattleTowerGivePrizes
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
+	waitbuttonpress
+	clearflag FLAG_JOHTO_BATTLE_TOWER_WON_CHALLENGE
+	closemessage
+	releaseall
 	end
 
 BattleTower1F_Johto_BattleTower1FReceptionist_Explanation:
@@ -81,8 +94,36 @@ BattleTower1F_Johto_BattleTower1FReceptionist_Cancel:
 	end
 
 BattleTower1F_Johto_BattleTower1FReceptionist_Challenge:
+	message BattleTower1F_Johto_Text_ChooseLevel
+	waitmessage
+	dynmultipush BattleTower1F_Johto_Text_Lv10, 10
+	dynmultipush BattleTower1F_Johto_Text_Lv20, 20
+	dynmultipush BattleTower1F_Johto_Text_Lv30, 30
+	dynmultipush BattleTower1F_Johto_Text_Lv40, 40
+	dynmultipush BattleTower1F_Johto_Text_Lv50, 50
+	dynmultipush BattleTower1F_Johto_Text_Lv60, 60
+	dynmultipush BattleTower1F_Johto_Text_Lv70, 70
+	dynmultipush BattleTower1F_Johto_Text_Lv80, 80
+	dynmultipush BattleTower1F_Johto_Text_Lv90, 90
+	dynmultipush BattleTower1F_Johto_Text_Lv100, 100
+	dynmultipush BattleTower1F_Johto_Text_Cancel, 0
+	dynmultistack 0, 0, FALSE, 6, FALSE, 0, DYN_MULTICHOICE_CB_NONE
+	compare VAR_RESULT, 0
+	goto_if_eq BattleTower1F_Johto_BattleTower1FReceptionist_Cancel
+	copyvar VAR_JOHTO_BATTLE_TOWER_LEVEL, VAR_RESULT
 	special JohtoCheckBattleTowerEligibility
-	goto_if_eq VAR_RESULT, FALSE, BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible
+	switch VAR_RESULT
+	case 0, BattleTower1F_Johto_BattleTower1FReceptionist_Eligible
+	case 1, BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible_Unfit
+	case 2, BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible_Level
+	case 3, BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible_Species
+	case 4, BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible_Item
+	case 5, BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible_Egg
+	end
+
+BattleTower1F_Johto_BattleTower1FReceptionist_Eligible:
+	special JohtoBattleTowerInitChallenge
+	special SavePlayerParty
 	message BattleTower1F_Johto_Text_RightThisWayToYourBattleRoom
 	waitmessage
 	waitbuttonpress
@@ -94,8 +135,40 @@ BattleTower1F_Johto_BattleTower1FReceptionist_Challenge:
 	waitstate
 	end
 
-BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible:
+BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible_Unfit:
 	message BattleTower1F_Johto_Text_NeedThreeMons
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible_Level:
+	message BattleTower1F_Johto_Text_LevelTooHigh
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible_Species:
+	message BattleTower1F_Johto_Text_DuplicateSpecies
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible_Item:
+	message BattleTower1F_Johto_Text_DuplicateItem
+	waitmessage
+	waitbuttonpress
+	closemessage
+	releaseall
+	end
+
+BattleTower1F_Johto_BattleTower1FReceptionist_NotEligible_Egg:
+	message BattleTower1F_Johto_Text_EggNotAllowed
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -149,6 +222,62 @@ BattleTower1F_Johto_Text_NeedThreeMons:
 	.string "Excuse me!\pYou need at least\n"
 	.string "three battle-ready\l"
 	.string "POKéMON to enter.$"
+
+BattleTower1F_Johto_Text_ChooseLevel:
+	.string "Please choose the level of the\n"
+	.string "BATTLE ROOM you wish to challenge.$"
+
+BattleTower1F_Johto_Text_Lv10:
+	.string "LEVEL 10$"
+
+BattleTower1F_Johto_Text_Lv20:
+	.string "LEVEL 20$"
+
+BattleTower1F_Johto_Text_Lv30:
+	.string "LEVEL 30$"
+
+BattleTower1F_Johto_Text_Lv40:
+	.string "LEVEL 40$"
+
+BattleTower1F_Johto_Text_Lv50:
+	.string "LEVEL 50$"
+
+BattleTower1F_Johto_Text_Lv60:
+	.string "LEVEL 60$"
+
+BattleTower1F_Johto_Text_Lv70:
+	.string "LEVEL 70$"
+
+BattleTower1F_Johto_Text_Lv80:
+	.string "LEVEL 80$"
+
+BattleTower1F_Johto_Text_Lv90:
+	.string "LEVEL 90$"
+
+BattleTower1F_Johto_Text_Lv100:
+	.string "LEVEL 100$"
+
+BattleTower1F_Johto_Text_Cancel:
+	.string "CANCEL$"
+
+BattleTower1F_Johto_Text_LevelTooHigh:
+	.string "Excuse me!\pYour {STR_VAR_1} exceeds the Level {STR_VAR_2}\n"
+	.string "restriction for this BATTLE ROOM!$"
+
+BattleTower1F_Johto_Text_DuplicateSpecies:
+	.string "Excuse me!\pYou cannot enter with two or more of\n"
+	.string "the same POKéMON species!$"
+
+BattleTower1F_Johto_Text_DuplicateItem:
+	.string "Excuse me!\pYou cannot enter with two or more\n"
+	.string "POKéMON holding the same item!$"
+
+BattleTower1F_Johto_Text_EggNotAllowed:
+	.string "Excuse me!\pEggs cannot enter the BATTLE TOWER!$"
+
+BattleTower1F_Johto_Text_ReceivedVitamins:
+	.string "Congratulations!\pYou defeated all 7 trainers in your\n"
+	.string "BATTLE ROOM challenge!\pHere is your reward: 5 vitamins!$"
 
 
 BattleTower1F_Johto_BattleTower1FYoungsterScript:

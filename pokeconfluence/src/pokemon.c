@@ -56,6 +56,7 @@
 #include "text.h"
 #include "trainer.h"
 #include "trainer_hill.h"
+#include "unown.h"
 #include "util.h"
 #include "constants/abilities.h"
 #include "constants/battle_frontier.h"
@@ -5852,6 +5853,11 @@ enum TrainerPicID PlayerGenderToFrontTrainerPicId(enum Gender playerGender)
 void HandleSetPokedexFlag(enum NationalDexOrder nationalNum, u8 caseId, u32 personality)
 {
     u8 getFlagCaseId = (caseId == FLAG_SET_SEEN) ? FLAG_GET_SEEN : FLAG_GET_CAUGHT;
+
+    // POKE-CONFLUENCE: Register caught Unown forms for the authentic Johto Unown Dex
+    if (caseId == FLAG_SET_CAUGHT && NationalPokedexNumToSpecies(nationalNum) == SPECIES_UNOWN)
+        Johto_RegisterCaughtUnownForm(GET_UNOWN_LETTER(personality));
+
     if (!GetSetPokedexFlag(nationalNum, getFlagCaseId)) // don't set if it's already set
     {
         GetSetPokedexFlag(nationalNum, caseId);

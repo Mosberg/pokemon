@@ -38,8 +38,8 @@ CeladonMansion3F_Johto_GameFreakGameDesignerScript:
 	faceplayer
 	message CeladonMansion3F_Johto_GameFreakGameDesignerText
 	waitmessage
-	special JohtoGetDexCaught
-	goto_if_gt VAR_RESULT, 248, CeladonMansion3F_Johto_GameFreakGameDesignerScript_CompletedPokedex
+	specialvar VAR_RESULT, HasAllJohtoMons
+	goto_if_eq VAR_RESULT, TRUE, CeladonMansion3F_Johto_GameFreakGameDesignerScript_CompletedPokedex
 	waitbuttonpress
 	closemessage
 	releaseall
@@ -54,6 +54,7 @@ CeladonMansion3F_Johto_GameFreakGameDesignerScript_CompletedPokedex:
 	message CeladonMansion3F_Johto_GameFreakGameDesignerPauseForDiplomaText
 	waitmessage
 	waitbuttonpress
+	special Special_ShowDiploma
 	message CeladonMansion3F_Johto_GameFreakGameDesignerAfterDiplomaText
 	waitmessage
 	waitbuttonpress

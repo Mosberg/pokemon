@@ -52,6 +52,7 @@
 #else
 
 #define FLAG_UNUSED_0x020    0x20 // Unused Flag
+#define FLAG_MET_SURFIN_DUDE 0x20 // POKE-CONFLUENCE: Surfin' Dude introduction flag
 #define FLAG_UNUSED_0x021    0x21 // Unused Flag
 #define FLAG_UNUSED_0x022    0x22 // Unused Flag
 #define FLAG_UNUSED_0x023    0x23 // Unused Flag
@@ -664,7 +665,8 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
 
-#define FLAG_UNUSED_0x264  0x264 // Unused Flag
+#define FLAG_EXP_SHARE_ENABLED                               0x264 // Modern Key Item Exp. Share active toggle
+#define FLAG_UNUSED_0x264                                    FLAG_EXP_SHARE_ENABLED // Backwards compatibility
 #define FLAG_UNUSED_0x265  0x265 // Unused Flag
 #define FLAG_UNUSED_0x266  0x266 // Unused Flag
 #define FLAG_UNUSED_0x267  0x267 // Unused Flag

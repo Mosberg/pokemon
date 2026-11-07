@@ -30,6 +30,9 @@ void PlayCry_ReleaseDouble(enum Species species, s8 pan, u8 mode);
 void PlayCry_Script(enum Species species, u8 mode);
 void PlayCry_DuckNoRestore(enum Species species, s8 pan, u8 mode);
 void PlayCryInternal(enum Species species, s8 pan, s8 volume, u8 priority, u8 mode);
+// POKE-CONFLUENCE: Authentic Yellow Pikachu Voiced Samples
+void PlayPikachuVoice(u8 voiceId, s8 pan);
+void PlayPikachuCelebrationCry(void);
 bool8 IsCryFinished(void);
 void StopCryAndClearCrySongs(void);
 void StopCry(void);

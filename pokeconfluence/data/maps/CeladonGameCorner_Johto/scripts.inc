@@ -206,10 +206,7 @@ CeladonGameCorner_Johto_CeladonGameCornerSlotMachineScript:
 	end
 
 CeladonGameCorner_Johto_CeladonGameCornerCardFlipScript:
-	goto MauvilleCity_GameCorner_EventScript_SlotMachine0
-	closemessage
-	releaseall
-	end
+	goto GoldenrodGameCorner_Johto_GoldenrodGameCornerCardFlipMachineScript
 
 CeladonGameCorner_Johto_CeladonGameCornerLighterScript:
 	message CeladonGameCorner_Johto_CeladonGameCornerLighterText

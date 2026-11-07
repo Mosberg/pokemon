@@ -1816,7 +1816,10 @@ enum JohtoDexOrder
 enum
 {
     DEX_MODE_HOENN,
-    DEX_MODE_NATIONAL
+    DEX_MODE_KANTO,
+    DEX_MODE_JOHTO,
+    DEX_MODE_NATIONAL,
+    DEX_MODE_COUNT
 };
 
 enum

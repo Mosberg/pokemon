@@ -72,6 +72,7 @@ enum EncounterType
 void EndDexNavSearch(void);
 void Task_OpenDexNavFromStartMenu(u8 taskId);
 bool32 TryStartDexNavSearch(void);
+u8 DexNav_GetSearchLevel(enum Species species);
 void TryIncrementSpeciesSearchLevel(void);
 void ResetDexNavSearch(void);
 bool32 TryFindHiddenPokemon(void);

@@ -491,3 +491,131 @@ This document tracks all fully converted, integrated, and verified features in *
     - Omanyte Chamber (`RuinsOfAlphOmanyteChamber_Johto`): checks for `ITEM_WATER_STONE` in bag to open the back wall (`FLAG_JOHTO_WALL_OPENED_IN_OMANYTE_CHAMBER`).
     - Ho-Oh Chamber (`RuinsOfAlphHoOhChamber_Johto`): checks for `SPECIES_HO_OH` in player's party to open the back wall (`FLAG_JOHTO_WALL_OPENED_IN_HO_OH_CHAMBER`).
   - C unit test `TEST("Confluence: Ruins of Alph secret chambers open with proper riddle triggers")` verified in `test/confluence.c` (27/27 passed).
+
+- **Pokégear Radio Card & Audio Broadcasts**:
+  - Interactive radio station selection sub-menu in `src/johto_radio.c` and `data/scripts/johto_common.inc`.
+  - Tuner supports 6 stations: Pokémon Talk (Prof. Oak & Mary with daily Route swarms), Pokémon Music (Pokémon March encounter boost and Pokémon Lullaby encounter reduction), Buena's Password evening broadcast, Ruins of Alph Unown radio signal (boosting Unown capture rate), Pokédex Show, and Pokéflute broadcast waking Snorlax.
+  - C unit test `TEST("Confluence: Pokégear Radio Card broadcasts, encounter modifiers, and Buena's Password generation")` verified in `test/confluence.c` (28/28 passed).
+
+- **Interactive Kurt's Apricorn Crafting**:
+  - Kurt event script in `KurtsHouse_Johto/scripts.inc` features dynamic multichoice menu filtered to player's Bag inventory (`JohtoSelectApricornForKurt`).
+  - Batch crafting: allows crafting 1 or all held Apricorns of the chosen color at once (`JohtoGetApricornQuantity`, `JohtoGiveKurtApricorns`).
+  - Overnight wait condition: sets `FLAG_JOHTO_ENGINE_KURT_MAKING_BALLS` and `VAR_JOHTO_KURT_APRICORN_COUNT`. Cleared daily at midnight RTC in `DoDailyEvents()`. Kurt delivers batch balls with fanfare and dialogue (`JohtoDeliverKurtBalls`).
+  - Supports all 7 Apricorn items (`ITEM_RED_APRICORN` through `ITEM_PNK_APRICORN`) and custom balls (`ITEM_LEVEL_BALL`, `ITEM_LURE_BALL`, `ITEM_MOON_BALL`, `ITEM_FRIEND_BALL`, `ITEM_FAST_BALL`, `ITEM_HEAVY_BALL`, `ITEM_LOVE_BALL`).
+  - C unit test `TEST("Confluence: Authentic Johto Kurt Apricorn Crafting and Batch Ball Delivery")` verified in `test/confluence.c` (30/30 passed).
+
+- **Unown Pokédex Form Viewer (Unown Dex)**:
+  - Ruins of Alph scientist event script checks caught Unown form count via `special JohtoGetUnownCaughtCount` and unlocks `FLAG_JOHTO_ENGINE_UNOWN_DEX` upon catching 3+ forms.
+  - Dedicated Pokédex Form Viewer sub-screen: when viewing Unown in the Pokédex with `FLAG_JOHTO_ENGINE_UNOWN_DEX` set and at least 1 Unown caught, pressing `SELECT` toggles the interactive Unown Dex mode with D-pad Left/Right navigation, sprite loading, and return keybindings (`Task_HandleUnownDexInput`, `Pokedex_DrawUnownDexScreen`).
+  - Full bitfield tracking across all 28 forms (`VAR_JOHTO_UNOWN_CAUGHT_LOWER`, `VAR_JOHTO_UNOWN_CAUGHT_UPPER`), caught count popup, and all 28 authentic GBC Crystal ancient words (ANGRY, BEAR, CHASE, DIRECT, ENGAGE, FIND, GIVE, HELP, INCREASE, JOIN, KEEP, LAUGH, MAKE, NUZZLE, OBSERVE, PERFORM, QUICKEN, REASSURE, SEARCH, TELL, UNDO, VANISH, WANT, XXXXX, YIELD, ZOOM, !!!!, ????).
+  - Unlocked dialogue for Ruins of Alph scientists, computer, and printer when catching 26+ Unown forms.
+  - C unit test `TEST("Confluence: Authentic Johto Unown Pokédex Form Viewer and Word Catalog")` verified in `test/confluence.c` (31/31 passed).
+
+- **Goldenrod Game Corner Card Flip Minigame**:
+  - Implemented authentic Card Flip minigame engine in `src/card_flip.c` and `include/card_flip.h` faithfully recreating GBC Crystal's `card_flip.asm`.
+  - 24-card deck comprising 4 Pokémon suits (Pikachu, Jigglypuff, Poliwag, Oddish) and 6 numeric ranks (1 to 6).
+  - 5 authentic betting options and payout ratios: Single Card (24x, 72 coins), Single Rank (6x, 18 coins), Single Suit (4x, 12 coins), Rank Pair (3x, 9 coins), and Suit Pair (2x, 6 coins).
+  - Authentic 12-round deal loop dealing 2 face-down cards per deal, Card 1 vs Card 2 choice, discard pile tracking, and automatic reshuffling once the 24 cards are exhausted.
+  - Interactive table scripts for Goldenrod Game Corner and Celadon Game Corner with live coin box, dynamic multichoice menus, and authentic Crystal sound effects (`SE_RG_CARD_FLIP`, `SE_RG_CARD_FLIPPING`, `SE_RG_CARD_OPEN`, `SE_SHOP`, `SE_BOO`).
+  - C unit test `TEST("Confluence: Authentic Goldenrod Game Corner Card Flip Minigame and Betting Engine")` verified in `test/confluence.c` (32/32 passed).
+
+- **Buena's Password & Blue Card Point Exchange**:
+  - Implemented authentic Buena's Password quiz and Blue Card point counter in `src/johto_radio.c` and `include/johto_radio.h` faithfully recreating GBC Crystal's `buena.asm` and `data/items/buena_prizes.asm`.
+  - Evening broadcast hours check (18:00 to 23:59) synchronized with local RTC time via `special JohtoCheckBuenaTime`.
+  - Daily password quiz featuring 3 dynamic choices via `special JohtoGetBuenaPasswordChoices` and `special JohtoCheckBuenaAnswer`, awarding 1 point to `VAR_JOHTO_BLUE_CARD_BALANCE` (capped at 30 points) and locking with `FLAG_JOHTO_ENGINE_BUENA_POINT_TODAY` which automatically resets at midnight RTC in `DoDailyEvents()`.
+  - Goldenrod Radio Tower studio lobby kiosk script with live Blue Card delivery (`ITEM_BLUE_CARD`), password quiz, directory, and authentic prize exchange receptionist.
+  - Full redemption menu supporting all 9 authentic Crystal prizes: Ultra Ball (2 pts), Full Restore (2 pts), Nugget (3 pts), Rare Candy (3 pts), Protein (5 pts), Iron (5 pts), Carbos (5 pts), Calcium (5 pts), and HP Up (5 pts) via `special JohtoRedeemBuenaPrize`.
+  - C unit test `TEST("Confluence: Authentic Johto Buena's Password and Blue Card Point Exchange")` verified in `test/confluence.c` (33/33 passed).
+
+- **Johto Battle Tower 7-Trainer Ladder & Level Brackets**:
+  - Implemented authentic Crystal Battle Tower ladder subsystem in `src/johto_battle_tower.c` and `include/johto_battle_tower.h` faithfully recreating GBC Crystal's `battle_tower.asm` and `data/battle_tower/`.
+  - Level bracket selection: dynamic multichoice menu (`dynmultipush` / `dynmultistack`) offering Level 10, 20, 30, 40, 50, 60, 70, 80, 90, and 100 challenge rooms (`VAR_JOHTO_BATTLE_TOWER_LEVEL`).
+  - Full party eligibility verification: enforces 3 battle-ready Pokémon, Level restriction (no mon > room level), Species Clause (no duplicate species), Item Clause (no duplicate held items), and Egg restriction with informative error messages.
+  - 7-trainer battle gauntlet in `BattleTowerBattleRoom_Johto`: authentic Crystal trainer generation with dynamic overworld sprite switching (`VAR_OBJ_GFX_ID_0`).
+  - Scaled 3-Pokémon enemy teams generated from authentic Crystal species pool at exact room level, scaled IVs by round (12, 18, 24, 31), authentic held items, full stat calculation, and zero EXP gain (`BATTLE_TYPE_BATTLE_TOWER`).
+  - Inter-round party healing, continue/cancel prompts, defeat and cancel escape handling returning safely to 1F lobby.
+  - Victory rewards: defeating all 7 consecutive opponents awards 5 random stat vitamins (HP Up, Protein, Iron, Carbos, Calcium) with fanfare, win counter increment (`VAR_JOHTO_BATTLE_TOWER_WINS`), and challenge flag reset.
+  - C unit test `TEST("Confluence: Authentic Johto Battle Tower 7-Trainer Ladder and Level Brackets")` verified in `test/confluence.c` (34/34 passed).
+
+- **Fame Checker Subsystem Restoration & Kanto VIP Lore Journal**:
+  - Restored and updated [src/fame_checker.c](src/fame_checker.c) with conflict-free sprite tag allocation (`0xD500` range) and full graphics pipeline in `graphics/fame_checker/` (background tilemaps 1/2/3, cursor, question mark, spinning pokeball, Oak, Daisy, Bill, Mr. Fuji, and silhouette palettes).
+  - Saved state integrated into `SaveBlock1`: `struct FameCheckerSaveData fameChecker[NUM_FAMECHECKER_PERSONS]` (32 bytes budgeted in free sector memory).
+  - Authentic person profiles, quotes, and flavor text pointers for all 16 Kanto personalities: Prof. Oak, Daisy Oak, Brock, Misty, Lt. Surge, Erika, Koga, Sabrina, Blaine, Lorelei, Bruno, Agatha, Lance, Bill, Mr. Fuji, and Giovanni.
+  - Overworld script integration: `special SetFlavorTextFlagFromSpecialVars` and `special UpdatePickStateFromSpecialVar8005` wired to the `famechecker` script macro across Kanto dialogue and Pokemon Journal signposts/bookshelves (`data/scripts/fame_checker_frlg.inc`).
+  - Bag & field usage: `ITEM_FAME_CHECKER` wired with `ItemUseOutOfBattle_FameChecker` supporting in-bag invocation and registered SELECT button quick usage.
+  - C unit test `TEST("Confluence: Authentic FireRed Fame Checker Lore Journal Subsystem")` verified in `test/confluence.c` (35/35 passed).
+
+- **Joyful Game Corner Minigames & Berry Crusher Vendor**:
+  - Restored overworld minigame interaction scripts in [data/maps/TwoIsland_JoyfulGameCorner_Frlg/scripts.inc](data/maps/TwoIsland_JoyfulGameCorner_Frlg/scripts.inc) and [data/scripts/cable_club_frlg.inc](data/scripts/cable_club_frlg.inc).
+  - Added solo practice mode support for both Pokémon Jump (`StartPokemonJumpPracticeSpecial`) and Dodrio Berry-Picking (`StartDodrioBerryPickingPracticeSpecial`), allowing single-player minigame engagement without physical GBA wireless adapters.
+  - Authentic party eligibility validation: `special IsPokemonJumpSpeciesInParty` (verifies eligible jumping Pokémon under 2'04") and `special IsDodrioInParty` (verifies Dodrio in party).
+  - Dedicated record displays for Pokémon Jump (`special ShowPokemonJumpRecords`) and Dodrio Berry-Picking (`special ShowDodrioBerryPickingRecords`).
+  - Cerulean City Berry Powder Man in [data/maps/CeruleanCity_House5_Frlg/scripts.inc](data/maps/CeruleanCity_House5_Frlg/scripts.inc): awards `ITEM_POWDER_JAR` upon verifying at least 1 berry in Bag (`specialvar VAR_RESULT, HasAtLeastOneBerry`), tracks total powder crushed via `IncrementGameStat(GAME_STAT_PLAYED_BERRY_CRUSH)`, and opens the authentic powder exchange shop with dynamic powder display for all 11 medicine items: Energypowder (50), Heal Powder (50), Energy Root (80), Revival Herb (300), Protein (1000), Iron (1000), Carbos (1000), Calcium (1000), Zinc (1000), HP Up (1000), and PP Up (3000).
+  - C unit test `TEST("Confluence: Authentic FireRed Joyful Game Corner Minigames and Berry Powder Economy")` verified in [test/confluence.c](test/confluence.c) (36/36 passed).
+
+- **Teachy TV Subsystem (`pokefirered`)**:
+  - Implemented authentic Teachy TV subsystem in [src/teachy_tv.c](src/teachy_tv.c) and [include/teachy_tv.h](include/teachy_tv.h) with Poke Dude hosting all 6 lessons (Battle Basics, Status Conditions, Type Matchups, Catching Pokémon, TMs, Key Item Registration) and CANCEL.
+  - Linked authentic background UI assets in `graphics/teachy_tv/` (`tiles.png`, `palettes.pal`, `screen.bin`, `title.bin`) in `src/graphics.c` and declared in `include/graphics.h`.
+  - Dynamic Route 1 set rendering on BG3 with tall grass rustle sprites (`TeachyTvGrassAnimationMain`), animated static TV noise on BG2 (`TeachyTvBg2AnimController`), Poke Dude host animations (`OBJ_EVENT_GFX_TEACHY_TV_HOST`), and audio themes (`MUS_RG_TEACHY_TV_MENU` and `MUS_RG_TEACHY_TV_SHOW`).
+  - Wired `ITEM_TEACHY_TV` out-of-battle item handler `ItemUseOutOfBattle_TeachyTv` in `src/item_use.c` and `include/item_use.h`, configured `fieldUseFunc` and `.type = ITEM_USE_BAG_MENU` in `src/data/items.h`.
+  - Viridian City Old Man gift event verified in `ViridianCity_Frlg/scripts.inc` (awards Teachy TV after catching demonstration).
+  - Preserved multi-region L/R cycling for Trainer Card and Fly Map without collision.
+  - C unit test `TEST("Confluence: Authentic FireRed Teachy TV Subsystem")` verified in [test/confluence.c](test/confluence.c) (37/37 passed).
+
+- **Surfing Pikachu Beach Minigame (`pokeyellow`)**:
+  - Connected Route 19 Beach House (`Route19_UnusedHouse_Frlg`) to Fuchsia City indoor group (`gMapGroup_IndoorFuchsia_Frlg`) with authentic warp at Route 19 beach coordinate (5, 9).
+  - Populated Summer Beach House with Surfin' Dude NPC (`OBJ_EVENT_GFX_FISHERMAN`), Surfing Pikachu NPC (`OBJ_EVENT_GFX_PIKACHU`), surf tip posters, and High Score printer BG event.
+  - Implemented authentic party qualification special `CheckSurfingPikachuInParty` checking for `SPECIES_PIKACHU` knowing `MOVE_SURF`.
+  - Implemented full 2D surfing simulation in [src/surfing_pikachu.c](src/surfing_pikachu.c) and [include/surfing_pikachu.h](include/surfing_pikachu.h) with 24-section ocean course, sinusoidal wave crests and troughs, jump trajectories, D-Pad rotation tricks, Radness combo scaling (+100 * flips), Clean (+500 pts, boost), Rough (+100 pts), Hard, and Wipeout landing detection.
+  - Results calculation with time bonus (`hp * 5`) + Radness points, updating `VAR_SURFING_PIKACHU_HIGH_SCORE`, `VAR_SURFING_PIKACHU_RADNESS`, and `GAME_STAT_SURFING_PIKACHU_HIGH_SCORE`.
+  - Connected Beach House printer reading saved high scores via `GetSurfingPikachuScores`.
+  - C unit test `TEST("Confluence: Authentic Yellow Surfing Pikachu Beach Minigame Subsystem")` verified in [test/confluence.c](test/confluence.c) (38/38 passed).
+
+- **Pikachu Voiced 8-bit PCM Audio Samples (`pokeyellow`)**:
+  - Digitized and compiled authentic Ikue Otani Pokémon Yellow voice clips into GBA 8-bit DPCM samples in `sound/direct_sound_samples/pikachu_voice/`: battle entrance (`cry_37.bin`), faint (`cry_4.bin`), low HP moan (`cry_17.bin`), level-up celebration (`cry_28.bin`), Thunder shock cry (`cry_2.bin`), joyful cheer (`cry_5.bin`), and sad/weary (`cry_31.bin`).
+  - Added configurable toggle `VOICED_PIKACHU_CRIES = TRUE` in `include/config/pokemon.h` allowing seamless selection between authentic anime voice clips and Gen 3 synthetic cries.
+  - Linked `gPikachuVoiceTable` and `gPikachuVoiceTable_Reverse` in `sound/cry_tables.inc` and sample data in `sound/direct_sound_data.inc`.
+  - Added dedicated dispatch functions `PlayPikachuVoice(voiceId, pan)` and `PlayPikachuCelebrationCry()` in `src/sound.c` and declared in `include/sound.h`.
+  - Wired automated cry interception in `PlayCryInternal` mapping battle entrance, fainting, low HP, and thunder attack moves to voiced samples for all Pikachu forms (Cosplay, Rock Star, Belle, Pop Star, PhD, Libre, Partner, Starter, Gmax).
+  - Integrated mood-reactive vocalizations in `Special_ShowLeadPokemonMood` in `src/mood.c` (joyful for ecstatic/happy, melancholic for distant/angry, low HP moan for tired/sick/paralyzed).
+  - C unit test `TEST("Confluence: Authentic Yellow Pikachu Voiced 8-bit PCM Audio Subsystem")` verified in [test/confluence.c](test/confluence.c) (39/39 passed).
+
+- **Hoenn Gym Leader Match Call Rematches (`pokeemerald`)**:
+  - All 5 trainer rosters (base + 4 rematch tiers) for all 8 Hoenn Gym Leaders (`TRAINER_ROXANNE_1..5`, `TRAINER_BRAWLY_1..5`, `TRAINER_WATTSON_1..5`, `TRAINER_FLANNERY_1..5`, `TRAINER_NORMAN_1..5`, `TRAINER_WINONA_1..5`, `TRAINER_TATE_AND_LIZA_1..5`, `TRAINER_JUAN_1..5`) integrated in `src/data/trainers.party` and mapped into `gRematchTable` in [src/battle_setup.c](src/battle_setup.c).
+  - Overworld double-battle rematch scripts in all 8 Hoenn Gyms (`RustboroCity_Gym`, `DewfordTown_Gym`, `MauvilleCity_Gym`, `LavaridgeTown_Gym_1F`, `PetalburgCity_Gym`, `FortreeCity_Gym`, `MossdeepCity_Gym`, `SootopolisCity_Gym_1F`) configured with `trainerbattle_rematch_double`, party checks, and post-battle dialogue routing.
+  - Multi-region rematch qualification in [src/gym_leader_rematch.c](src/gym_leader_rematch.c) and [src/pokenav_match_call_data.c](src/pokenav_match_call_data.c): leaders become eligible for rematches upon achieving `FLAG_SYS_GAME_CLEAR`, `FLAG_CONFLUENCE_APEX_CHAMPION`, or earning 8+ badges (`Confluence_CountBadges() >= 8`).
+  - Fixed Gym Leader rematch tier calculation bug and bounds (`REMATCH_ROXANNE` to `< REMATCH_ELITE_FOUR_ENTRIES`) in `GetCurrentGymLeaderRematchLevel()`.
+  - Match Call UI integration displaying rematch indicator icon and contextual telephone dialogue in Pokénav.
+  - C unit test `TEST("Confluence: Authentic Emerald Hoenn Gym Leader Rematches Subsystem")` verified in [test/confluence.c](test/confluence.c) (40/40 passed).
+
+- **Trick House Puzzles 1–8 & Mirage Island Mechanics (`pokeemerald`)**:
+  - Verified all 8 Trick House puzzle map layouts, hidden Trick Master furniture hiding spots, scroll signs, locked doors, and reward distribution (Rare Candy, Timer Ball, Hard Stone, Smoke Ball, TM12 Taunt, Magnet, PP Max, Red/Blue Tent) in `data/maps/Route110_TrickHouse*`.
+  - Door scroll passcodes and door unlock states (`VAR_TRICK_HOUSE_PUZZLE_1_STATE` through `VAR_TRICK_HOUSE_PUZZLE_8_STATE`) verified.
+  - Multi-region badge qualification in `Route110_TrickHouseEntrance/scripts.inc`: puzzles 2–8 evaluate regional Gym Badges (`FLAG_BADGE03_GET` through `FLAG_BADGE08_GET`, `FLAG_SYS_GAME_CLEAR`, `FLAG_CONFLUENCE_APEX_CHAMPION`) or total multi-region badge counts via `ConfluenceCountBadges`.
+  - Mirage Island daily mechanics in [src/time_events.c](src/time_events.c), [src/clock.c](src/clock.c), and [src/overworld.c](src/overworld.c): daily 16-bit pseudorandom seed advancement (`UpdateMirageRnd`), party personality match algorithm (`IsMirageIslandPresent`), Pacifidlog Town old man observer script, and Route 130 layout switching (`LAYOUT_ROUTE130_MIRAGE_ISLAND`) revealing wild Wynaut and the Liechi Berry tree.
+  - Desert Mirage Tower crumbling and disintegration cutscene on Route 111 upon retrieving Root Fossil or Claw Fossil (`special StartMirageTowerShake`, `special StartPlayerDescendMirageTower`, `special StartMirageTowerDisintegration`, and Desert Underpass access).
+  - C unit test `TEST("Confluence: Authentic Emerald Trick House Puzzles and Mirage Island Mechanics")` verified in [test/confluence.c](test/confluence.c) (41/41 passed).
+
+- **Contest Halls & Berry Blender Pokéblock Minigame (`pokeemerald`)**:
+  - Centralized Emerald Contest Lobby in Lilycove City (`LilycoveCity_ContestLobby`) supporting all four competition ranks: Normal, Super, Hyper, and Master, and all five categories: Cool, Beauty, Cute, Smart, and Tough.
+  - Verified Emerald Battle Tents in Slateport, Verdanturf, and Fallarbor with dedicated rental, palace, and arena style tournament challenges.
+  - Contest Receptionist script delivers `ITEM_POKEBLOCK_CASE`, checks entry qualifications and ribbons, and stages the 2-round contest appeals seamlessly in `data/scripts/contest_hall.inc` and `data/maps/ContestHall/`.
+  - Solo NPC Berry Blenders in Lilycove Contest Lobby: 2-player (1 NPC Mister), 3-player (2 NPCs Laddie & Lassie), 4-player (3 NPCs Dude, Lassie, Miss), and PokéNews Blend Master tables fully functional without link timeouts (`DoBerryBlending`).
+  - Pokéblock crafting algorithm in [src/berry_blender.c](src/berry_blender.c) and [src/pokeblock.c](src/pokeblock.c): authentic calculation of colors, flavor levels, feel, max RPM, sheen, and nature-based flavor affinity (`PokeblockGetGain`) across all 40 Case slots.
+  - C unit test `TEST("Confluence: Authentic Emerald Contest Halls and Berry Blender Pokéblock Subsystem")` verified in [test/confluence.c](test/confluence.c) (42/42 passed).
+
+- **DexNav Search Levels & Encounter HUD Calibration (`pokeemerald-expansion`)**:
+  - Enabled `DEXNAV_ENABLED = TRUE` and `USE_DEXNAV_SEARCH_LEVELS = TRUE` in [include/config/dexnav.h](include/config/dexnav.h).
+  - Designed and implemented a compact 256-slot search level cache in `struct SaveBlock3`: `struct DexNavSearchLevelEntry { u16 species; u8 searchLevel; } dexNavSearchLevels[256]` (1024 bytes) in [include/global.h](include/global.h), guaranteeing `sizeof(struct SaveBlock3) <= 1624` bytes.
+  - Implemented `DexNav_GetSearchLevel(species)` and dynamic cache entry replacement in `TryIncrementSpeciesSearchLevel()` in [src/dexnav.c](src/dexnav.c).
+  - Verified overworld chaining, shiny roll boosts, and accurate encounter detection across morning, day, and night wild tables in Johto, Kanto, and Hoenn.
+  - C unit test `TEST("Confluence: DexNav Saveblock-Safe Search Levels and HUD Calibration")` verified in [test/confluence.c](test/confluence.c) (43/43 passed).
+
+- **Modern Party EXP Share Key Item Toggle (`pokeemerald-expansion`)**:
+  - Configured `EXP_SHARE_HELD_ITEM` (Gen 2-5) and `EXP_SHARE_KEY_ITEM` (Gen 6+) mode architecture with `I_EXP_SHARE_MODE` selector in [include/config/item.h](include/config/item.h).
+  - Allocated persistent toggle flag `FLAG_EXP_SHARE_ENABLED` (`0x264`) in [include/constants/flags.h](include/constants/flags.h).
+  - Classified `ITEM_EXP_SHARE` as a Key Item (`POCKET_KEY_ITEMS`, importance 1) when in `EXP_SHARE_KEY_ITEM` mode, supporting field and bag menu on/off toggling with sound effects `SE_EXP_MAX` / `SE_PC_OFF` and notifications.
+  - Updated `IsGen6ExpShareEnabled()` in [src/battle_util.c](src/battle_util.c) to verify `CheckBagHasItem(ITEM_EXP_SHARE, 1)`, ensuring party Exp is granted only when the player possesses the item.
+  - Verified battle exp distribution in [src/battle_script_commands.c](src/battle_script_commands.c): active Pokémon gain 100% calculated Exp while non-participating benched Pokémon receive 50% base Exp when the Key Item is active, accompanied by team Exp notifications.
+  - Automatically enabled upon obtaining `ITEM_EXP_SHARE` from Mr. Pokémon on Route 30 (`MrPokemonsHouse_Johto`), Mr. Stone at Devon Corp (`RustboroCity_DevonCorp_3F`), and Oak's Aide on Route 15 (`Route15_WestEntrance_2F_Frlg`).
+  - C unit test `TEST("Confluence: Modern Party EXP Share Key Item Toggle Subsystem")` verified in [test/confluence.c](test/confluence.c) (44/44 passed).

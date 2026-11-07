@@ -26,10 +26,16 @@
 #define I_REUSABLE_TMS          TRUE        // In Gens5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
 
 // Exp. Share config
-// To use this feature, replace the 0 with the flag ID you're assigning it to.
-// Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.
-#define I_EXP_SHARE_FLAG        0           // If this flag is set, every Pokémon in the party will gain experience, regardless if they participated in the battle or not.
-#define I_EXP_SHARE_ITEM        GEN_5       // In Gen6+, the Exp. Share is a Key item that toggles the effect described above.
+// POKE-CONFLUENCE: Support both classic held item mode and modern party-wide Key Item mode
+#define EXP_SHARE_HELD_ITEM     GEN_5       // Classic Gen 2-5 held item splitting EXP
+#define EXP_SHARE_KEY_ITEM      GEN_6       // Modern Gen 6+ party-wide toggleable Key Item
+
+#ifndef I_EXP_SHARE_MODE
+#define I_EXP_SHARE_MODE        EXP_SHARE_KEY_ITEM
+#endif
+
+#define I_EXP_SHARE_ITEM        I_EXP_SHARE_MODE
+#define I_EXP_SHARE_FLAG        FLAG_EXP_SHARE_ENABLED // If this flag is set and Key Item held, entire party gains Exp.
 
 // Repel/Lure config
 // These two settings are both independent and complementary.

@@ -95,6 +95,7 @@ MrPokemonsHouse_Johto_MrPokemonsHouse_MrPokemonScript_RedScale:
 	goto_if_eq VAR_RESULT, 0, MrPokemonsHouse_Johto_MrPokemonsHouse_MrPokemonScript_refused
 	giveitem ITEM_EXP_SHARE
 	goto_if_eq VAR_RESULT, 0, MrPokemonsHouse_Johto_MrPokemonsHouse_MrPokemonScript_full
+	setflag FLAG_EXP_SHARE_ENABLED
 	removeitem ITEM_RED_SCALE
 	goto MrPokemonsHouse_Johto_MrPokemonsHouse_MrPokemonScript_AlwaysNewDiscoveries
 

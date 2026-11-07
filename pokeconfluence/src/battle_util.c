@@ -9663,10 +9663,16 @@ bool32 MoveEffectIsGuaranteed(enum BattlerId battler, enum Ability battlerAbilit
     return additionalEffect->chance == 0 || CalcSecondaryEffectChance(battler, battlerAbility, additionalEffect) >= 100;
 }
 
+// POKE-CONFLUENCE: Key Item Exp. Share requires possessing the item in Bag
 bool32 IsGen6ExpShareEnabled(void)
 {
     if (I_EXP_SHARE_FLAG <= TEMP_FLAGS_END)
         return FALSE;
+
+#if I_EXP_SHARE_ITEM >= GEN_6
+    if (!CheckBagHasItem(ITEM_EXP_SHARE, 1))
+        return FALSE;
+#endif
 
     return FlagGet(I_EXP_SHARE_FLAG);
 }

@@ -14,10 +14,13 @@
 #include "overworld.h"
 #include "menu.h"
 #include "pokedex.h"
+#include "confluence.h"
 #include "constants/rgb.h"
 
 extern const u8 gText_DexNational[];
 extern const u8 gText_DexHoenn[];
+extern const u8 gText_DexKanto[];
+extern const u8 gText_DexJohto[];
 extern const u8 gText_PokedexDiploma[];
 
 static void MainCB2(void);
@@ -125,12 +128,23 @@ static void Task_DiplomaFadeOut(u8 taskId)
     }
 }
 
+// POKE-CONFLUENCE: Multi-region Pokédex diploma text
 static void DisplayDiplomaText(void)
 {
     if (HasAllMons())
     {
         SetGpuReg(REG_OFFSET_BG1HOFS, DISPLAY_WIDTH + 16);
         StringCopy(gStringVar1, gText_DexNational);
+    }
+    else if (GetCurrentRegion() == REGION_JOHTO || HasAllJohtoMons())
+    {
+        SetGpuReg(REG_OFFSET_BG1HOFS, 0);
+        StringCopy(gStringVar1, gText_DexJohto);
+    }
+    else if (GetCurrentRegion() == REGION_KANTO || HasAllKantoMons())
+    {
+        SetGpuReg(REG_OFFSET_BG1HOFS, 0);
+        StringCopy(gStringVar1, gText_DexKanto);
     }
     else
     {

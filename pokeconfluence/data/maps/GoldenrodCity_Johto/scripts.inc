@@ -391,9 +391,141 @@ GoldenrodCity_Johto_GoldenrodCityStationSign:
 	end
 
 GoldenrodCity_Johto_GoldenrodCityRadioTowerSign:
+	lockall
+	message GoldenrodCity_Johto_Text_RadioTowerLobbyIntro
+	waitmessage
+GoldenrodCity_Johto_RadioTowerMenu:
+	dynmultipush GoldenrodCity_Johto_Text_MenuBuenasShow, 0
+	dynmultipush GoldenrodCity_Johto_Text_MenuBlueCardPrizes, 1
+	dynmultipush GoldenrodCity_Johto_Text_MenuDirectory, 2
+	dynmultipush GoldenrodCity_Johto_Text_MenuExit, 3
+	dynmultistack 0, 0, FALSE, 4, FALSE, 0, DYN_MULTICHOICE_CB_NONE
+	switch VAR_RESULT
+	case 0, GoldenrodCity_Johto_RadioTower_BuenasShow
+	case 1, GoldenrodCity_Johto_RadioTower_BlueCardPrizes
+	case 2, GoldenrodCity_Johto_RadioTower_Directory
+	goto GoldenrodCity_Johto_RadioTower_Exit
+
+GoldenrodCity_Johto_RadioTower_BuenasShow:
+	checkitem ITEM_BLUE_CARD, 1
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_Johto_RadioTower_GiveBlueCard
+	goto_if_set FLAG_JOHTO_ENGINE_BUENA_POINT_TODAY, GoldenrodCity_Johto_RadioTower_AlreadyGotPointToday
+	special JohtoCheckBuenaTime
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_Johto_RadioTower_BuenaOffAir
+	message GoldenrodCity_Johto_Text_BuenaGreeting
+	waitmessage
+	special JohtoGetBuenaPasswordChoices
+	dynmultipush gStringVar1, 0
+	dynmultipush gStringVar2, 1
+	dynmultipush gStringVar3, 2
+	dynmultistack 0, 0, FALSE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq GoldenrodCity_Johto_RadioTower_BuenaCancel
+	special JohtoCheckBuenaAnswer
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_Johto_RadioTower_BuenaWrongAnswer
+	playse SE_EXP
+	special JohtoGetBlueCardBalance
+	buffernumberstring STR_VAR_1, VAR_RESULT
+	message GoldenrodCity_Johto_Text_BuenaCorrect
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTower_Exit
+
+GoldenrodCity_Johto_RadioTower_GiveBlueCard:
+	message GoldenrodCity_Johto_Text_BuenaIntroduceBlueCard
+	waitmessage
+	giveitem ITEM_BLUE_CARD
+	setvar VAR_JOHTO_BLUE_CARD_BALANCE, 0
+	message GoldenrodCity_Johto_Text_BuenaExplainRules
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTower_Exit
+
+GoldenrodCity_Johto_RadioTower_AlreadyGotPointToday:
+	message GoldenrodCity_Johto_Text_BuenaAlreadyGotPoint
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTower_Exit
+
+GoldenrodCity_Johto_RadioTower_BuenaOffAir:
+	message GoldenrodCity_Johto_Text_BuenaOffAir
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTower_Exit
+
+GoldenrodCity_Johto_RadioTower_BuenaWrongAnswer:
+	playse SE_BOO
+	message GoldenrodCity_Johto_Text_BuenaWrong
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTower_Exit
+
+GoldenrodCity_Johto_RadioTower_BuenaCancel:
+	message GoldenrodCity_Johto_Text_BuenaComeBack
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTower_Exit
+
+GoldenrodCity_Johto_RadioTower_BlueCardPrizes:
+	checkitem ITEM_BLUE_CARD, 1
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_Johto_RadioTower_NeedBlueCard
+GoldenrodCity_Johto_RadioTower_PrizeLoop:
+	special JohtoGetBlueCardBalance
+	buffernumberstring STR_VAR_1, VAR_RESULT
+	message GoldenrodCity_Johto_Text_PrizeExchangeIntro
+	waitmessage
+	dynmultipush GoldenrodCity_Johto_Text_PrizeUltraBall, 0
+	dynmultipush GoldenrodCity_Johto_Text_PrizeFullRestore, 1
+	dynmultipush GoldenrodCity_Johto_Text_PrizeNugget, 2
+	dynmultipush GoldenrodCity_Johto_Text_PrizeRareCandy, 3
+	dynmultipush GoldenrodCity_Johto_Text_PrizeProtein, 4
+	dynmultipush GoldenrodCity_Johto_Text_PrizeIron, 5
+	dynmultipush GoldenrodCity_Johto_Text_PrizeCarbos, 6
+	dynmultipush GoldenrodCity_Johto_Text_PrizeCalcium, 7
+	dynmultipush GoldenrodCity_Johto_Text_PrizeHPUp, 8
+	dynmultipush GoldenrodCity_Johto_Text_PrizeCancel, 9
+	dynmultistack 0, 0, FALSE, 6, FALSE, 0, DYN_MULTICHOICE_CB_NONE
+	compare VAR_RESULT, 9
+	goto_if_ge GoldenrodCity_Johto_RadioTower_Exit
+	copyvar VAR_0x8004, VAR_RESULT
+	special JohtoRedeemBuenaPrize
+	compare VAR_RESULT, 0
+	goto_if_eq GoldenrodCity_Johto_RadioTower_PrizeSuccess
+	compare VAR_RESULT, 1
+	goto_if_eq GoldenrodCity_Johto_RadioTower_PrizeNotEnoughPoints
+	message GoldenrodCity_Johto_Text_PrizeBagFull
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTower_Exit
+
+GoldenrodCity_Johto_RadioTower_PrizeSuccess:
+	playse SE_SHOP
+	copyvar VAR_0x8004, VAR_0x8005
+	bufferitemname STR_VAR_2, VAR_0x8004
+	message GoldenrodCity_Johto_Text_PrizeClaimed
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTower_PrizeLoop
+
+GoldenrodCity_Johto_RadioTower_PrizeNotEnoughPoints:
+	message GoldenrodCity_Johto_Text_PrizeNotEnough
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTower_PrizeLoop
+
+GoldenrodCity_Johto_RadioTower_NeedBlueCard:
+	message GoldenrodCity_Johto_Text_PrizeNeedCard
+	waitmessage
+	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTower_Exit
+
+GoldenrodCity_Johto_RadioTower_Directory:
 	message GoldenrodCity_Johto_GoldenrodCityRadioTowerSignText
 	waitmessage
 	waitbuttonpress
+	goto GoldenrodCity_Johto_RadioTowerMenu
+
+GoldenrodCity_Johto_RadioTower_Exit:
 	closemessage
 	releaseall
 	end
@@ -620,8 +752,128 @@ GoldenrodCity_Johto_GoldenrodCityStationSignText:
 	.string "STATION$"
 
 GoldenrodCity_Johto_GoldenrodCityRadioTowerSignText:
-	.string "GOLDENROD CITY\n"
-	.string "RADIO TOWER$"
+	.string "GOLDENROD CITY RADIO TOWER\n"
+	.string "1F: Reception & Studio Desk\l"
+	.string "2F: Sales & Buena's Studio\l"
+	.string "3F: Personnel & Sound Lab\l"
+	.string "4F: Production Office\l"
+	.string "5F: Director's Office$"
+
+GoldenrodCity_Johto_Text_RadioTowerLobbyIntro:
+	.string "GOLDENROD RADIO TOWER\n"
+	.string "Broadcast Central & Studio Desk.\l"
+	.string "How may we help you?$"
+
+GoldenrodCity_Johto_Text_MenuBuenasShow:
+	.string "BUENA'S SHOW$"
+
+GoldenrodCity_Johto_Text_MenuBlueCardPrizes:
+	.string "BLUE CARD PRIZES$"
+
+GoldenrodCity_Johto_Text_MenuDirectory:
+	.string "STATION DIRECTORY$"
+
+GoldenrodCity_Johto_Text_MenuExit:
+	.string "EXIT$"
+
+GoldenrodCity_Johto_Text_BuenaGreeting:
+	.string "BUENA: Hi! Did you tune in to\n"
+	.string "BUENA'S PASSWORD on the radio tonight?\p"
+	.string "Tell me, what was tonight's password?$"
+
+GoldenrodCity_Johto_Text_BuenaCorrect:
+	.string "BUENA: Bingo! That's correct!\n"
+	.string "Here is 1 point on your BLUE CARD!\p"
+	.string "Your BLUE CARD now has {STR_VAR_1} points!\n"
+	.string "Keep listening tomorrow night!$"
+
+GoldenrodCity_Johto_Text_BuenaWrong:
+	.string "BUENA: Aw, that's incorrect!\p"
+	.string "Tune in to BUENA'S PASSWORD on your\n"
+	.string "Pokégear radio between 6 PM and midnight\l"
+	.string "to find out the real password!$"
+
+GoldenrodCity_Johto_Text_BuenaComeBack:
+	.string "BUENA: Tune in to my password show on\n"
+	.string "the radio and come back anytime!$"
+
+GoldenrodCity_Johto_Text_BuenaIntroduceBlueCard:
+	.string "BUENA: Hi, I'm BUENA! The host of\n"
+	.string "BUENA'S PASSWORD on the radio!\p"
+	.string "Oh? You don't have a BLUE CARD?\n"
+	.string "Here, take this one!$"
+
+GoldenrodCity_Johto_Text_BuenaExplainRules:
+	.string "BUENA: Tune in to BUENA'S PASSWORD on\n"
+	.string "the radio every evening from 6:00 PM\l"
+	.string "to midnight.\p"
+	.string "Come back here, tell me the password,\n"
+	.string "and earn 1 point every day!\p"
+	.string "Save up your points and redeem them for\n"
+	.string "terrific prizes at our Prize Counter!$"
+
+GoldenrodCity_Johto_Text_BuenaAlreadyGotPoint:
+	.string "BUENA: You already earned your\n"
+	.string "point for today!\p"
+	.string "Tune in again tomorrow evening from\n"
+	.string "6:00 PM for a brand-new password!$"
+
+GoldenrodCity_Johto_Text_BuenaOffAir:
+	.string "BUENA: Hi! My password show is only\n"
+	.string "on the air in the evening from\l"
+	.string "6:00 PM to midnight!\p"
+	.string "Please tune in then!$"
+
+GoldenrodCity_Johto_Text_PrizeExchangeIntro:
+	.string "Welcome to the BLUE CARD Point Exchange!\n"
+	.string "Your BLUE CARD currently has {STR_VAR_1} points.\p"
+	.string "Which prize would you like?$"
+
+GoldenrodCity_Johto_Text_PrizeUltraBall:
+	.string "ULTRA BALL    2 pts$"
+
+GoldenrodCity_Johto_Text_PrizeFullRestore:
+	.string "FULL RESTORE  2 pts$"
+
+GoldenrodCity_Johto_Text_PrizeNugget:
+	.string "NUGGET        3 pts$"
+
+GoldenrodCity_Johto_Text_PrizeRareCandy:
+	.string "RARE CANDY    3 pts$"
+
+GoldenrodCity_Johto_Text_PrizeProtein:
+	.string "PROTEIN       5 pts$"
+
+GoldenrodCity_Johto_Text_PrizeIron:
+	.string "IRON          5 pts$"
+
+GoldenrodCity_Johto_Text_PrizeCarbos:
+	.string "CARBOS        5 pts$"
+
+GoldenrodCity_Johto_Text_PrizeCalcium:
+	.string "CALCIUM       5 pts$"
+
+GoldenrodCity_Johto_Text_PrizeHPUp:
+	.string "HP UP         5 pts$"
+
+GoldenrodCity_Johto_Text_PrizeCancel:
+	.string "CANCEL$"
+
+GoldenrodCity_Johto_Text_PrizeClaimed:
+	.string "Here is your prize: {STR_VAR_2}!\n"
+	.string "Thank you for listening!$"
+
+GoldenrodCity_Johto_Text_PrizeNotEnough:
+	.string "You don't have enough points on your\n"
+	.string "BLUE CARD for that item!$"
+
+GoldenrodCity_Johto_Text_PrizeBagFull:
+	.string "Your Bag is full!\n"
+	.string "Please make room before redeeming prizes.$"
+
+GoldenrodCity_Johto_Text_PrizeNeedCard:
+	.string "You need a BLUE CARD to exchange points!\n"
+	.string "Talk to BUENA at the show desk first.$"
 
 GoldenrodCity_Johto_GoldenrodDeptStoreSignText:
 	.string "Full Selection of\n"
