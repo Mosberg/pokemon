@@ -38,6 +38,9 @@
 #define FLAG_STARTER_LOYALTY_REFUSAL    FLAG_UNUSED_0x029 // Starters refuse evolutionary stones out of loyalty
 #define FLAG_POKEMON_REFUSED_STONE      FLAG_UNUSED_0x02A // Most recent stone attempt was refused
 
+// POKE-CONFLUENCE: Apex Summit 24-Leader Gauntlet Flag
+#define FLAG_CONFLUENCE_APEX_CHALLENGE_ACTIVE FLAG_UNUSED_0x02B // Apex Gauntlet tournament active
+
 // The Convergence Crisis: the syndicate enforcers wait at the Meridian terminals once enough badges are held.
 #define CONFLUENCE_SYNDICATE_MIN_BADGES 6
 #define CONFLUENCE_CHAIRMAN_MIN_BADGES  12

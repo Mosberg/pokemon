@@ -97,7 +97,8 @@ struct RegionMap {
     /*0x081*/ u8 charBaseIdx;
     /*0x082*/ u8 mapBaseIdx;
     /*0x083*/ bool8 bgManaged;
-    /*0x084*/ u8 filler_084[0x100];
+    /*0x084*/ u8 selectedRegionMapType; // POKE-CONFLUENCE: currently displayed region (Hoenn, Kanto, Johto)
+    /*0x085*/ u8 filler_085[0xFF];
     /*0x184*/ u8 cursorSmallImage[0x100];
     /*0x284*/ u8 cursorLargeImage[0x600];
 }; // size = 0x884
@@ -114,6 +115,9 @@ struct RegionMapLocation
 // Exported RAM declarations
 
 // Exported ROM declarations
+extern const u8 gRegionMapCycleRegions[];
+u8 GetNextRegionMapType(u8 currentRegion, bool8 reverse);
+void SwitchRegionMapType(u8 newRegionMapType);
 void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *template, bool8 zoomed);
 bool8 LoadRegionMapGfx(void);
 void UpdateRegionMapVideoRegs(void);

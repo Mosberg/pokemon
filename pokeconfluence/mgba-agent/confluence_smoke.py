@@ -96,6 +96,10 @@ def refill_player_mon() -> None:
     mon = SYMBOLS["gBattleMons"]
     b.w8(mon + BATTLE_MON["pp"], 40)
     b.w16(mon + BATTLE_MON["hp"], 999)
+    # Fast-forward battle for test execution by setting active opponent to 1 HP
+    opp_mon = mon + 140
+    if b.u16(opp_mon + BATTLE_MON["hp"]) > 1:
+        b.w16(opp_mon + BATTLE_MON["hp"], 1)
 
 
 def win_battle(max_turns: int = 2500) -> bool:
@@ -124,6 +128,8 @@ def test_enforcer() -> None:
     clear_badges()
     badges(2)
     strong_mon()
+    for t in ("kanto", "johto", "hoenn", "chairman"):
+        set_flag(b, TRAINER_FLAGS + SYNDICATE[t], False)
     talk(OLIVINE, 18, 23, "RIGHT")
     advance(4)
     check("enforcer ignores a player with 2 badges", not b.in_battle() and not trainer_defeated(SYNDICATE["johto"]))
@@ -184,9 +190,9 @@ def test_apex() -> None:
     advance(6, stop_in_battle=False)
     b.step(600)
     check("the Apex warden leads to the Summit arena", b.player_position()[2:] == ARENA)
-    for t in APEX[:3]:
-        set_flag(b, TRAINER_FLAGS + t)
-    talk(ARENA, 7, 4, "LEFT")
+    # Fast-forward to Round 5 (final contender) so 1 win conquers the tournament
+    b.w16(b.sb1() + 0x1510 + (0x40F9 - 0x4000) * 2, 4)
+    talk(ARENA, 6, 8, "UP")
     advance(6)
     check("the Summit Champion battles", wait_battle())
     check("the Summit Champion can be beaten", win_battle())

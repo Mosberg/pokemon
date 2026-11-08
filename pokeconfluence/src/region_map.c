@@ -739,6 +739,7 @@ void InitRegionMapData(struct RegionMap *regionMap, const struct BgTemplate *tem
     sRegionMap->initStep = 0;
     sRegionMap->zoomed = zoomed;
     sRegionMap->inputCallback = zoomed == TRUE ? ProcessRegionMapInput_Zoomed : ProcessRegionMapInput_Full;
+    sRegionMap->selectedRegionMapType = (sFlyMap != NULL) ? sFlyMap->selectedRegionMapType : GetRegionMapType(gMapHeader.regionMapSectionId); // POKE-CONFLUENCE
     if (template != NULL)
     {
         sRegionMap->bgNum = template->bg;
@@ -769,14 +770,14 @@ bool8 LoadRegionMapGfx(void)
     switch (sRegionMap->initStep)
     {
     case 0:
-        regionMapType = (sFlyMap != NULL) ? sFlyMap->selectedRegionMapType : GetRegionMapType(gMapHeader.regionMapSectionId);
+        regionMapType = sRegionMap->selectedRegionMapType;
         if (sRegionMap->bgManaged)
             DecompressAndCopyTileDataToVram(sRegionMap->bgNum, gRegionMapInfos[regionMapType].regionMapGfx, 0, 0, 0);
         else
             DecompressDataWithHeaderVram(gRegionMapInfos[regionMapType].regionMapGfx, (u16 *)BG_CHAR_ADDR(2));
         break;
     case 1:
-        regionMapType = (sFlyMap != NULL) ? sFlyMap->selectedRegionMapType : GetRegionMapType(gMapHeader.regionMapSectionId);
+        regionMapType = sRegionMap->selectedRegionMapType;
         if (sRegionMap->bgManaged)
         {
             if (!FreeTempTileDataBuffersIfPossible())
@@ -788,7 +789,7 @@ bool8 LoadRegionMapGfx(void)
         }
         break;
     case 2:
-        regionMapType = (sFlyMap != NULL) ? sFlyMap->selectedRegionMapType : GetRegionMapType(gMapHeader.regionMapSectionId);
+        regionMapType = sRegionMap->selectedRegionMapType;
         if (!FreeTempTileDataBuffersIfPossible())
             LoadPalette(gRegionMapInfos[regionMapType].regionMapPalette, BG_PLTT_ID(7), 3 * PLTT_SIZE_4BPP);
         break;
@@ -1224,10 +1225,17 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
     y -= MAPCURSOR_Y_MIN;
     x -= MAPCURSOR_X_MIN;
 
-    // POKE-CONFLUENCE: Use selectedRegionMapType when in Fly Map
-    if (sFlyMap != NULL)
+    // POKE-CONFLUENCE: Use selectedRegionMapType across all region map screens
     {
-        switch (sFlyMap->selectedRegionMapType)
+        u8 regionMapType;
+        if (sRegionMap != NULL)
+            regionMapType = sRegionMap->selectedRegionMapType;
+        else if (sFlyMap != NULL)
+            regionMapType = sFlyMap->selectedRegionMapType;
+        else
+            regionMapType = GetRegionMapType(gMapHeader.regionMapSectionId);
+
+        switch (regionMapType)
         {
         case REGION_MAP_JOHTO:
             currentRegion = REGION_JOHTO;
@@ -1243,20 +1251,13 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
             currentRegion = REGION_HOENN;
             break;
         }
-    }
-    else
-    {
-        currentRegion = GetCurrentRegion();
-    }
 
-    switch (currentRegion)
-    {
-    case REGION_JOHTO:
-        return sRegionMapSections_Johto[y][x];
-    case REGION_KANTO:
-        if (sFlyMap != NULL)
+        switch (currentRegion)
         {
-            switch (sFlyMap->selectedRegionMapType)
+        case REGION_JOHTO:
+            return sRegionMapSections_Johto[y][x];
+        case REGION_KANTO:
+            switch (regionMapType)
             {
             case REGION_MAP_SEVII123:
                 return sRegionMapSections_Sevii123[y][x];
@@ -1268,25 +1269,10 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
             default:
                 return sRegionMapSections_Kanto[y][x];
             }
+        case REGION_HOENN:
+        default:
+            return sRegionMap_MapSectionLayout[y][x];
         }
-        else
-        {
-            switch (GetKantoSubregion(gMapHeader.regionMapSectionId))
-            {
-            case KANTO_SUBREGION_SEVII123:
-                return sRegionMapSections_Sevii123[y][x];
-            case KANTO_SUBREGION_SEVII45:
-                return sRegionMapSections_Sevii45[y][x];
-            case KANTO_SUBREGION_SEVII67:
-                return sRegionMapSections_Sevii67[y][x];
-            case KANTO_SUBREGION_KANTO:
-            default:
-                return sRegionMapSections_Kanto[y][x];
-            }
-        }
-    case REGION_HOENN:
-    default:
-        return sRegionMap_MapSectionLayout[y][x];
     }
 }
 
@@ -2491,12 +2477,32 @@ static const struct FlyLocation sFlyLocations[] =
 #define sIconMapSec   data[0]
 #define sFlickerTimer data[1]
 
-static const u8 sFlyMapCycleRegions[] =
+const u8 gRegionMapCycleRegions[] =
 {
     REGION_MAP_HOENN,
     REGION_MAP_KANTO,
     REGION_MAP_JOHTO
 };
+
+u8 GetNextRegionMapType(u8 currentRegion, bool8 reverse)
+{
+    u8 i;
+    u8 baseRegion = currentRegion;
+    if (baseRegion == REGION_MAP_SEVII123 || baseRegion == REGION_MAP_SEVII45 || baseRegion == REGION_MAP_SEVII67)
+        baseRegion = REGION_MAP_KANTO;
+
+    for (i = 0; i < ARRAY_COUNT(gRegionMapCycleRegions); i++)
+    {
+        if (gRegionMapCycleRegions[i] == baseRegion)
+        {
+            if (reverse)
+                return gRegionMapCycleRegions[(i + ARRAY_COUNT(gRegionMapCycleRegions) - 1) % ARRAY_COUNT(gRegionMapCycleRegions)];
+            else
+                return gRegionMapCycleRegions[(i + 1) % ARRAY_COUNT(gRegionMapCycleRegions)];
+        }
+    }
+    return gRegionMapCycleRegions[0];
+}
 
 static void ClearFlyDestIcons(void)
 {
@@ -2511,28 +2517,44 @@ static void ClearFlyDestIcons(void)
     }
 }
 
-static void SwitchFlyMapRegion(u8 newRegionMapType)
+void SwitchRegionMapType(u8 newRegionMapType)
 {
     u8 playerRegionMapType;
     u16 x;
     u16 y;
 
-    if (newRegionMapType == sFlyMap->selectedRegionMapType)
+    if (sRegionMap == NULL)
         return;
 
-    ClearFlyDestIcons();
-    sFlyMap->selectedRegionMapType = newRegionMapType;
+    if (newRegionMapType == sRegionMap->selectedRegionMapType)
+        return;
 
-    DecompressDataWithHeaderVram(gRegionMapInfos[newRegionMapType].regionMapGfx, (u16 *)BG_CHAR_ADDR(2));
-    DecompressDataWithHeaderVram(gRegionMapInfos[newRegionMapType].regionMapTilemap, (u16 *)BG_SCREEN_ADDR(28));
-    LoadPalette(gRegionMapInfos[newRegionMapType].regionMapPalette, BG_PLTT_ID(7), 3 * PLTT_SIZE_4BPP);
+    if (sFlyMap != NULL)
+    {
+        ClearFlyDestIcons();
+        sFlyMap->selectedRegionMapType = newRegionMapType;
+    }
+    sRegionMap->selectedRegionMapType = newRegionMapType;
+
+    if (sRegionMap->bgManaged)
+    {
+        DecompressDataWithHeaderVram(gRegionMapInfos[newRegionMapType].regionMapGfx, (u16 *)BG_CHAR_ADDR(sRegionMap->charBaseIdx));
+        DecompressDataWithHeaderVram(gRegionMapInfos[newRegionMapType].regionMapTilemap, (u16 *)BG_SCREEN_ADDR(sRegionMap->mapBaseIdx));
+        LoadPalette(gRegionMapInfos[newRegionMapType].regionMapPalette, BG_PLTT_ID(7), 3 * PLTT_SIZE_4BPP);
+    }
+    else
+    {
+        DecompressDataWithHeaderVram(gRegionMapInfos[newRegionMapType].regionMapGfx, (u16 *)BG_CHAR_ADDR(2));
+        DecompressDataWithHeaderVram(gRegionMapInfos[newRegionMapType].regionMapTilemap, (u16 *)BG_SCREEN_ADDR(28));
+        LoadPalette(gRegionMapInfos[newRegionMapType].regionMapPalette, BG_PLTT_ID(7), 3 * PLTT_SIZE_4BPP);
+    }
 
     playerRegionMapType = GetRegionMapType(gMapHeader.regionMapSectionId);
     if (newRegionMapType == playerRegionMapType)
     {
         UnhideRegionMapPlayerIcon();
-        x = sFlyMap->regionMap.playerIconSpritePosX;
-        y = sFlyMap->regionMap.playerIconSpritePosY;
+        x = sRegionMap->playerIconSpritePosX;
+        y = sRegionMap->playerIconSpritePosY;
     }
     else
     {
@@ -2555,24 +2577,39 @@ static void SwitchFlyMapRegion(u8 newRegionMapType)
         }
     }
 
-    sFlyMap->regionMap.cursorPosX = x;
-    sFlyMap->regionMap.cursorPosY = y;
-    if (sFlyMap->regionMap.cursorSprite != NULL)
+    sRegionMap->cursorPosX = x;
+    sRegionMap->cursorPosY = y;
+    if (sRegionMap->cursorSprite != NULL)
     {
-        sFlyMap->regionMap.cursorSprite->x = x * 8 + 4;
-        sFlyMap->regionMap.cursorSprite->y = y * 8 + 4;
+        sRegionMap->cursorSprite->x = x * 8 + 4;
+        sRegionMap->cursorSprite->y = y * 8 + 4;
     }
 
-    CreateFlyDestIcons(newRegionMapType);
-    if (newRegionMapType == REGION_MAP_HOENN)
-        TryCreateRedOutlineFlyDestIcons();
+    sRegionMap->cursorDeltaX = 0;
+    sRegionMap->cursorDeltaY = 0;
+    sRegionMap->cursorMovementFrameCounter = 0;
+    sRegionMap->inputCallback = ProcessRegionMapInput_Full;
 
-    sFlyMap->regionMap.mapSecId = GetMapSecIdAt(x, y);
-    sFlyMap->regionMap.mapSecId = CorrectSpecialMapSecId_Internal(sFlyMap->regionMap.mapSecId);
-    sFlyMap->regionMap.mapSecType = GetMapsecType(sFlyMap->regionMap.mapSecId);
-    GetMapName(sFlyMap->regionMap.mapSecName, sFlyMap->regionMap.mapSecId, MAP_NAME_LENGTH);
+    if (sFlyMap != NULL)
+    {
+        CreateFlyDestIcons(newRegionMapType);
+        if (newRegionMapType == REGION_MAP_HOENN)
+            TryCreateRedOutlineFlyDestIcons();
+    }
+
+    sRegionMap->mapSecId = GetMapSecIdAt(x, y);
+    sRegionMap->mapSecId = CorrectSpecialMapSecId_Internal(sRegionMap->mapSecId);
+    sRegionMap->mapSecType = GetMapsecType(sRegionMap->mapSecId);
+    GetMapName(sRegionMap->mapSecName, sRegionMap->mapSecId, MAP_NAME_LENGTH);
     GetPositionOfCursorWithinMapSec();
-    DrawFlyDestTextWindow();
+
+    if (sFlyMap != NULL)
+        DrawFlyDestTextWindow();
+}
+
+static void SwitchFlyMapRegion(u8 newRegionMapType)
+{
+    SwitchRegionMapType(newRegionMapType);
 }
 
 static void CreateFlyDestIcons(u8 regionMapType)
@@ -2696,32 +2733,14 @@ static void CB_HandleFlyMapInput(void)
         {
             if (JOY_NEW(R_BUTTON))
             {
-                u8 i;
-                u8 nextRegion = sFlyMapCycleRegions[0];
-                for (i = 0; i < ARRAY_COUNT(sFlyMapCycleRegions); i++)
-                {
-                    if (sFlyMapCycleRegions[i] == sFlyMap->selectedRegionMapType)
-                    {
-                        nextRegion = sFlyMapCycleRegions[(i + 1) % ARRAY_COUNT(sFlyMapCycleRegions)];
-                        break;
-                    }
-                }
+                u8 nextRegion = GetNextRegionMapType(sFlyMap->selectedRegionMapType, FALSE);
                 m4aSongNumStart(SE_SELECT);
                 SwitchFlyMapRegion(nextRegion);
                 return;
             }
             else if (JOY_NEW(L_BUTTON))
             {
-                u8 i;
-                u8 prevRegion = sFlyMapCycleRegions[ARRAY_COUNT(sFlyMapCycleRegions) - 1];
-                for (i = 0; i < ARRAY_COUNT(sFlyMapCycleRegions); i++)
-                {
-                    if (sFlyMapCycleRegions[i] == sFlyMap->selectedRegionMapType)
-                    {
-                        prevRegion = sFlyMapCycleRegions[(i + ARRAY_COUNT(sFlyMapCycleRegions) - 1) % ARRAY_COUNT(sFlyMapCycleRegions)];
-                        break;
-                    }
-                }
+                u8 prevRegion = GetNextRegionMapType(sFlyMap->selectedRegionMapType, TRUE);
                 m4aSongNumStart(SE_SELECT);
                 SwitchFlyMapRegion(prevRegion);
                 return;

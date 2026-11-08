@@ -26,7 +26,9 @@ BluesHouse_Johto_DaisyScript_ThreePM:
 	message BluesHouse_Johto_DaisyWhichMonText
 	waitmessage
 	waitbuttonpress
-	special JohtoHaircut
+	special ChoosePartyMon
+	goto_if_ge VAR_0x8004, PARTY_SIZE, BluesHouse_Johto_DaisyScript_Refused
+	special JohtoDaisyGrooming
 	goto_if_eq VAR_RESULT, 0x0, BluesHouse_Johto_DaisyScript_Refused
 	goto_if_eq VAR_RESULT, 0x1, BluesHouse_Johto_DaisyScript_CantGroomEgg
 	setflag FLAG_JOHTO_ENGINE_DAISYS_GROOMING

@@ -80,7 +80,7 @@
       "y": 6,
       "elevation": 0,
       "var": "VAR_JOHTO_SCENE_GOLDENROD_MAGNET_TRAIN_STATION",
-      "var_value": "0",
+      "var_value": "1",
       "script": "GoldenrodMagnetTrainStation_Johto_Script_ArriveFromSaffron_Entry"
     }
   ],

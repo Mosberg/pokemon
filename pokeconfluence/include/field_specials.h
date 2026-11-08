@@ -50,10 +50,28 @@ u32 JohtoCalculateContestScore(struct Pokemon *mon);
 void JohtoBugContestJudge(void);
 void JohtoBugContestBufferWinner(void);
 void JohtoBugContestCleanup(void);
+void JohtoHaircut(void);
+void JohtoOlderHaircut(void);
+void JohtoYoungerHaircut(void);
+void JohtoDaisyGrooming(void);
+void JohtoGetFirstMonHappiness(void);
+void JohtoTrainerHouseGetOpponent(void);
 
 // Surfing Pikachu
 void CheckSurfingPikachuInParty(void);
 void StartSurfingPikachuMinigameSpecial(void);
 void GetSurfingPikachuScores(void);
+
+// Magnet Train
+void MagnetTrainWarp(void);
+void MagnetTrain(void);
+
+// Apex Summit Gauntlet
+void ApexSummit_GenerateBracket(void);
+void ApexSummit_SetUpCurrentRound(void);
+void ApexSummit_StartBattle(void);
+void ApexSummit_OnRoundWon(void);
+void ApexSummit_AwardPrizes(void);
+void ApexSummit_ExitChallenge(void);
 
 #endif // GUARD_FIELD_SPECIALS_H

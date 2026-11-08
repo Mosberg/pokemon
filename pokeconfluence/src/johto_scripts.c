@@ -21,6 +21,7 @@
 #include "constants/pokeball.h"
 #include "constants/johto_flags.h"
 #include "unown.h"
+#include "confluence.h"
 
 // Crystal's time-of-day slots: MORN 4-9, DAY 10-17, NITE 18-3. VAR_0x8004 holds a mask (1 MORN, 2 DAY, 4 NITE);
 // VAR_RESULT is TRUE when the current slot is one of them.
@@ -82,25 +83,127 @@ void JohtoGetHour(void)
     gSpecialVar_Result = gLocalTime.hours;
 }
 
-// Goldenrod Underground Haircut Brothers & Daisy's Grooming: boosts lead mon friendship and returns 3.
-void JohtoHaircut(void)
+// Goldenrod Underground Haircut Brothers & Daisy's Grooming: authentic GBC Crystal friendship increases and reactions.
+static void DoJohtoHaircutOrGrooming(u8 provider)
 {
     struct Pokemon *mon;
+    u16 species;
     u32 friendship;
+    u32 gain;
+    u8 result;
+    u16 roll;
+    u8 slot = gSpecialVar_0x8004;
 
     if (gPlayerPartyCount == 0)
     {
         gSpecialVar_Result = 0;
         return;
     }
-    mon = &gPlayerParty[0];
-    friendship = GetMonData(mon, MON_DATA_FRIENDSHIP) + 10;
+
+    if (slot >= PARTY_SIZE)
+    {
+        gSpecialVar_Result = 0; // cancelled
+        return;
+    }
+
+    if (slot >= gPlayerPartyCount)
+        slot = 0;
+
+    mon = &gPlayerParty[slot];
+    if (GetMonData(mon, MON_DATA_IS_EGG))
+    {
+        gSpecialVar_Result = 1; // cannot groom an egg
+        return;
+    }
+
+    species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
+    friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
+    roll = Random() % 100;
+
+    if (provider == 0) // Older Brother (500 yen)
+    {
+        if (roll < 30)
+        {
+            gain = (friendship < 100) ? 1 : ((friendship < 200) ? 3 : 5);
+            result = 2; // slightly happier
+        }
+        else if (roll < 80)
+        {
+            gain = (friendship < 100) ? 3 : ((friendship < 200) ? 5 : 10);
+            result = 3; // happier
+        }
+        else
+        {
+            gain = (friendship < 100) ? 5 : ((friendship < 200) ? 10 : 10);
+            result = 4; // much happier
+        }
+    }
+    else if (provider == 1) // Younger Brother (300 yen)
+    {
+        if (roll < 60)
+        {
+            gain = (friendship < 100) ? 1 : ((friendship < 200) ? 3 : 10);
+            result = 2; // slightly happier
+        }
+        else if (roll < 90)
+        {
+            gain = (friendship < 100) ? 3 : ((friendship < 200) ? 5 : 10);
+            result = 3; // happier
+        }
+        else
+        {
+            gain = 10;
+            result = 4; // much happier
+        }
+    }
+    else // Daisy's Grooming (Pallet Town)
+    {
+        gain = (friendship < 100) ? 10 : 20;
+        result = 2; // content & happy
+    }
+
+    friendship += gain;
     if (friendship > MAX_FRIENDSHIP)
         friendship = MAX_FRIENDSHIP;
     SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
+
     GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
     StringGet_Nickname(gStringVar1);
-    gSpecialVar_Result = 3;
+
+    gSpecialVar_0x8004 = species; // For playmoncry VAR_0x8004
+    gSpecialVar_Result = result;
+}
+
+void JohtoHaircut(void)
+{
+    DoJohtoHaircutOrGrooming(0);
+}
+
+void JohtoOlderHaircut(void)
+{
+    DoJohtoHaircutOrGrooming(0);
+}
+
+void JohtoYoungerHaircut(void)
+{
+    DoJohtoHaircutOrGrooming(1);
+}
+
+void JohtoDaisyGrooming(void)
+{
+    DoJohtoHaircutOrGrooming(2);
+}
+
+// Viridian Trainer House: returns Cal tier (0 = Cal1 Lv 10, 1 = Cal2 Lv 30, 2 = Cal3 Lv 50) based on badge count.
+void JohtoTrainerHouseGetOpponent(void)
+{
+    u8 badges = Confluence_CountBadges();
+    if (badges < 8)
+        gSpecialVar_Result = 0;
+    else if (badges < 16)
+        gSpecialVar_Result = 1;
+    else
+        gSpecialVar_Result = 2;
 }
 
 // Bill's Grandfather: checks if any party mon matches VAR_0x8004 (target species); returns that species in VAR_RESULT if found.

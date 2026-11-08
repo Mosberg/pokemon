@@ -116,6 +116,7 @@ PokemonFanClub_Johto_PokemonFanClubClefairyGuyScript_MetCopycat:
 	additem ITEM_LOST_ITEM
 	goto_if_eq VAR_RESULT, 0, PokemonFanClub_Johto_PokemonFanClubClefairyGuyScript_NoRoom
 	removeobject 5
+	setflag FLAG_JOHTO_VERMILION_FAN_CLUB_DOLL
 	message PokemonFanClub_Johto_PokemonFanClubPlayerReceivedDollText
 	waitmessage
 	playfanfare MUS_OBTAIN_ITEM

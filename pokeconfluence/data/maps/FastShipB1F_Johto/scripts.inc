@@ -27,6 +27,7 @@ FastShipB1F_Johto_FastShipB1FSailorBlocksLeft:
 	addobject 1
 	delay 5
 	removeobject 2
+	setflag FLAG_JOHTO_FAST_SHIP_B1F_SAILOR_RIGHT
 	releaseall
 	end
 
@@ -39,6 +40,7 @@ FastShipB1F_Johto_FastShipB1FSailorBlocksRight:
 	addobject 2
 	delay 5
 	removeobject 1
+	setflag FLAG_JOHTO_FAST_SHIP_B1F_SAILOR_LEFT
 	releaseall
 	end
 

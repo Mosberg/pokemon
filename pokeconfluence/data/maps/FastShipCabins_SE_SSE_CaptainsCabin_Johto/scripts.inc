@@ -54,8 +54,9 @@ FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGranddaughterBefore:
 	closemessage
 	fadescreen FADE_TO_BLACK
 	removeobject 4
-	applymovement OBJ_EVENT_ID_PLAYER, FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaCaptainsCabinWarpsToGrandpasCabinMovement
-	waitmovement OBJ_EVENT_ID_PLAYER
+	setflag FLAG_JOHTO_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
+	setobjectxy OBJ_EVENT_ID_PLAYER, 3, 19
+	setobjectxy 3, 3, 19
 	setobjectxyperm 3, 3, 19
 	clearflag FLAG_JOHTO_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
 	addobject 3
@@ -72,7 +73,8 @@ FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGranddaughterBefore:
 	waitmovement 3
 	applymovement 2, Johto_Movement_Face_Right
 	waitmovement 2
-	goto_if_set FLAG_JOHTO_ENGINE_PLAYER_IS_FEMALE, FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGranddaughterBefore_PlayerIsFemale
+	checkplayergender
+	goto_if_eq VAR_RESULT, FEMALE, FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGranddaughterBefore_PlayerIsFemale
 	message FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGranddaughterWasPlayingMText
 	waitmessage
 	waitbuttonpress
@@ -86,8 +88,8 @@ FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGranddaughterBefore_PlayerIsFema
 	closemessage
 
 FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGranddaughterBefore_cont:
-	applymovement 4, Johto_Movement_Face_Down
-	waitmovement 4
+	applymovement 3, Johto_Movement_Face_Down
+	waitmovement 3
 	applymovement 2, FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaGrandpaApproachesPlayerMovement
 	waitmovement 2
 	message FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaEntertainedGranddaughterText
@@ -120,7 +122,7 @@ FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaMetalCoatAndDocking:
 FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaMetalCoatAndDocking_NoRoom:
 	closemessage
 	waitse
-	playse SE_PIN
+	playse SE_DING_DONG
 	delay 30
 	message FastShipCabins_SE_SSE_CaptainsCabin_Johto_SSAquaHasArrivedVermilionText
 	waitmessage

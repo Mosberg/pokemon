@@ -208,6 +208,31 @@ static u32 HandleRegionMapInput(struct Pokenav_RegionMapMenu *state)
 {
     struct RegionMap* regionMap = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP);
 
+    // POKE-CONFLUENCE: Cycle regions with L / R buttons when zoomed out
+    if (!IsRegionMapZoomed() && regionMap->cursorMovementFrameCounter == 0)
+    {
+        if (JOY_NEW(R_BUTTON))
+        {
+            if (!(regionMap->mapSecType == MAPSECTYPE_CITY_CANFLY && FlagGet(OW_FLAG_POKE_RIDER)
+                && Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE))
+            {
+                u8 nextRegion = GetNextRegionMapType(regionMap->selectedRegionMapType, FALSE);
+                PlaySE(SE_SELECT);
+                SwitchRegionMapType(nextRegion);
+                UpdateMapSecInfoWindow(GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP_ZOOM));
+                return POKENAV_MAP_FUNC_CURSOR_MOVED;
+            }
+        }
+        else if (JOY_NEW(L_BUTTON))
+        {
+            u8 prevRegion = GetNextRegionMapType(regionMap->selectedRegionMapType, TRUE);
+            PlaySE(SE_SELECT);
+            SwitchRegionMapType(prevRegion);
+            UpdateMapSecInfoWindow(GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP_ZOOM));
+            return POKENAV_MAP_FUNC_CURSOR_MOVED;
+        }
+    }
+
     switch (DoRegionMapInputCallback())
     {
     case MAP_INPUT_MOVE_END:
@@ -223,6 +248,15 @@ static u32 HandleRegionMapInput(struct Pokenav_RegionMapMenu *state)
         if (regionMap->mapSecType == MAPSECTYPE_CITY_CANFLY && FlagGet(OW_FLAG_POKE_RIDER)
         && Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
             return POKENAV_MAP_FUNC_FLY;
+        else if (!IsRegionMapZoomed())
+        {
+            u8 nextRegion = GetNextRegionMapType(regionMap->selectedRegionMapType, FALSE);
+            PlaySE(SE_SELECT);
+            SwitchRegionMapType(nextRegion);
+            UpdateMapSecInfoWindow(GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP_ZOOM));
+            return POKENAV_MAP_FUNC_CURSOR_MOVED;
+        }
+        break;
     }
 
     return POKENAV_MAP_FUNC_NONE;

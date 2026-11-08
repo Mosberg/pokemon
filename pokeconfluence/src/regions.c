@@ -116,5 +116,10 @@ enum KantoSubRegion GetKantoSubregion(u32 mapSecId)
 // Crystal's GetFirstPokemonHappiness: VAR_RESULT = friendship of the first party Pokemon.
 void JohtoGetFirstMonHappiness(void)
 {
+    if (gPlayerPartyCount == 0)
+    {
+        gSpecialVar_Result = 0;
+        return;
+    }
     gSpecialVar_Result = GetMonData(&gPlayerParty[0], MON_DATA_FRIENDSHIP);
 }

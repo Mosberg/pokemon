@@ -3,8 +3,11 @@ MountMoonSquare_Johto_MapScripts::
 	.byte 0
 
 MountMoonSquare_Johto_OnTransition:
+	goto_if_set FLAG_JOHTO_ENGINE_MT_MOON_SQUARE_CLEFAIRY, MountMoonSquare_Johto_OnTransition_Done
 	call MountMoonSquare_Johto_MountMoonSquareDisappearMoonStoneCallback_Cb
 	call MountMoonSquare_Johto_MountMoonSquareDisappearRockCallback_Cb
+MountMoonSquare_Johto_OnTransition_Done:
+	setflag FLAG_JOHTO_MT_MOON_SQUARE_CLEFAIRY
 	end
 
 MountMoonSquare_Johto_MtMoonSquareRock_Entry::

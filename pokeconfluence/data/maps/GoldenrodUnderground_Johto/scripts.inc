@@ -146,7 +146,9 @@ GoldenrodUnderground_Johto_OlderHaircutBrotherScript_DoHaircut:
 	message GoldenrodUnderground_Johto_GoldenrodUndergroundOlderHaircutBrotherAskWhichMonText
 	waitmessage
 	waitbuttonpress
-	special JohtoHaircut
+	special ChoosePartyMon
+	goto_if_ge VAR_0x8004, PARTY_SIZE, GoldenrodUnderground_Johto_OlderHaircutBrotherScript_Refused
+	special JohtoOlderHaircut
 	goto_if_eq VAR_RESULT, 0x0, GoldenrodUnderground_Johto_OlderHaircutBrotherScript_Refused
 	goto_if_eq VAR_RESULT, 0x1, GoldenrodUnderground_Johto_OlderHaircutBrotherScript_Refused
 	setflag FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -232,7 +234,9 @@ GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_DoHaircut:
 	message GoldenrodUnderground_Johto_GoldenrodUndergroundYoungerHaircutBrotherAskWhichMonText
 	waitmessage
 	waitbuttonpress
-	special JohtoHaircut
+	special ChoosePartyMon
+	goto_if_ge VAR_0x8004, PARTY_SIZE, GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_Refused
+	special JohtoYoungerHaircut
 	goto_if_eq VAR_RESULT, 0x0, GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_Refused
 	goto_if_eq VAR_RESULT, 0x1, GoldenrodUnderground_Johto_YoungerHaircutBrotherScript_Refused
 	setflag FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT

@@ -12,7 +12,7 @@ MoveDeletersHouse_Johto_MoveDeletersHouseBookshelf_Entry::
 
 MoveDeletersHouse_Johto_MoveDeleter:
 	faceplayer
-	goto FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon
+	goto LilycoveCity_MoveDeletersHouse_EventScript_MoveDeleter
 	waitbuttonpress
 	closemessage
 	releaseall

@@ -28,6 +28,7 @@ static inline enum Region GetCurrentRegion(void)
 
 // Flag of the nth gym badge (0-7) of a region: Hoenn FLAG_BADGE01_GET.., Kanto FLAG_BADGE09_GET.., Johto in the Johto flag band.
 u16 GetBadgeFlagForRegion(enum Region region, u32 index);
+void JohtoGetFirstMonHappiness(void);
 
 // POKE-MULTIREGION: behaviour that FireRed implements with a compile-time IS_FRLG (first-battle tutorial, old man) must
 // also apply to battles fought in Kanto when the ROM is built as Emerald.

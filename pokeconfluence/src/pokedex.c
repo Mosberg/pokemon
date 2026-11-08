@@ -5382,10 +5382,8 @@ static void Task_LoadSearchMenu(u8 taskId)
             PutWindowTilemap(0);
             DecompressAndLoadBgGfxUsingHeap(3, gPokedexSearchMenu_Gfx, 0x2000, 0, 0);
 
-            if (!IsNationalPokedexEnabled())
-                CopyToBgTilemapBuffer(3, gPokedexSearchMenuHoenn_Tilemap, 0, 0);
-            else
-                CopyToBgTilemapBuffer(3, gPokedexSearchMenuNational_Tilemap, 0, 0);
+            // POKE-CONFLUENCE: Multi-region Dex allows choosing between Hoenn, Kanto, Johto (+National)
+            CopyToBgTilemapBuffer(3, gPokedexSearchMenuNational_Tilemap, 0, 0);
             LoadPalette(gPokedexSearchMenu_Pal + 1, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(4 * 16 - 1));
             gMain.state = 1;
         }
@@ -5520,19 +5518,9 @@ static void Task_HandleSearchMenuInput(u8 taskId)
     const u8 (*movementMap)[4];
 
     if (gTasks[taskId].tTopBarItem != SEARCH_TOPBAR_SEARCH)
-    {
-        if (!IsNationalPokedexEnabled())
-            movementMap = sSearchMovementMap_ShiftHoennDex;
-        else
-            movementMap = sSearchMovementMap_ShiftNatDex;
-    }
+        movementMap = sSearchMovementMap_ShiftNatDex;
     else
-    {
-        if (!IsNationalPokedexEnabled())
-            movementMap = sSearchMovementMap_SearchHoennDex;
-        else
-            movementMap = sSearchMovementMap_SearchNatDex;
-    }
+        movementMap = sSearchMovementMap_SearchNatDex;
 
     if (JOY_NEW(B_BUTTON))
     {
@@ -5551,9 +5539,7 @@ static void Task_HandleSearchMenuInput(u8 taskId)
                 sPokedexView->pokeBallRotationBackup = POKEBALL_ROTATION_TOP;
                 sLastSelectedPokemon = 0;
                 sPokedexView->selectedPokemonBackup = 0;
-                gSaveBlock2Ptr->pokedex.mode = GetSearchModeSelection(taskId, SEARCH_MODE);
-                if (!IsNationalPokedexEnabled())
-                    gSaveBlock2Ptr->pokedex.mode = DEX_MODE_HOENN;
+                gSaveBlock2Ptr->pokedex.mode = SanitizePokedexMode(GetSearchModeSelection(taskId, SEARCH_MODE));
                 sPokedexView->dexModeBackup = gSaveBlock2Ptr->pokedex.mode;
                 gSaveBlock2Ptr->pokedex.order = GetSearchModeSelection(taskId, SEARCH_ORDER);
                 sPokedexView->dexOrderBackup = gSaveBlock2Ptr->pokedex.order;
@@ -5697,6 +5683,8 @@ static void Task_HandleSearchParameterInput(u8 taskId)
     cursorPos = &gTasks[taskId].data[sSearchOptions[menuItem].taskDataCursorPos];
     scrollOffset = &gTasks[taskId].data[sSearchOptions[menuItem].taskDataScrollOffset];
     maxOption = sSearchOptions[menuItem].numOptions - 1;
+    if (menuItem == SEARCH_MODE)
+        maxOption = (IsNationalPokedexEnabled() ? 4 : 3) - 1;
     if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_PIN);
@@ -5960,11 +5948,9 @@ void PrintSelectedSearchParameters(u8 taskId)
     searchParamId = gTasks[taskId].tCursorPos_Order + gTasks[taskId].tScrollOffset_Order;
     PrintSearchText(sDexOrderOptions[searchParamId].title, 0x2D, 0x41);
 
-    if (IsNationalPokedexEnabled())
-    {
-        searchParamId = gTasks[taskId].tCursorPos_Mode + gTasks[taskId].tScrollOffset_Mode;
+    searchParamId = gTasks[taskId].tCursorPos_Mode + gTasks[taskId].tScrollOffset_Mode;
+    if (searchParamId < ARRAY_COUNT(sDexModeOptions) - 1)
         PrintSearchText(sDexModeOptions[searchParamId].title, 0x2D, 0x51);
-    }
 }
 
 static void DrawOrEraseSearchParameterBox(bool8 erase)
@@ -6056,12 +6042,20 @@ void SetDefaultSearchModeAndOrder(u8 taskId)
     {
     default:
     case DEX_MODE_HOENN:
-        selected = DEX_MODE_HOENN;
+        selected = 0;
+        break;
+    case DEX_MODE_KANTO:
+        selected = 1;
+        break;
+    case DEX_MODE_JOHTO:
+        selected = 2;
         break;
     case DEX_MODE_NATIONAL:
-        selected = DEX_MODE_NATIONAL;
+        selected = 3;
         break;
     }
+    if (!IsNationalPokedexEnabled() && selected > 2)
+        selected = 0;
     gTasks[taskId].tCursorPos_Mode = selected;
 
     switch (sPokedexView->dexOrderBackup)

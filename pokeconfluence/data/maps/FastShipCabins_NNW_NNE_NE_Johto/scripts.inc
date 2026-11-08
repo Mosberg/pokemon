@@ -101,7 +101,7 @@ FastShipCabins_NNW_NNE_NE_Johto_TrainerBurglarCorey_Script:
 	end
 
 FastShipCabins_NNW_NNE_NE_Johto_FastShipLazySailorScript:
-	playbgm MUS_DUMMY, FALSE
+	playbgm MUS_ENCOUNTER_HIKER, FALSE
 	faceplayer
 	message FastShipCabins_NNW_NNE_NE_Johto_SailorStanlySeenText
 	waitmessage
@@ -115,6 +115,7 @@ FastShipCabins_NNW_NNE_NE_Johto_FastShipLazySailorScript:
 	waitbuttonpress
 	closemessage
 	setflag FLAG_JOHTO_FAST_SHIP_LAZY_SAILOR
+	setflag FLAG_JOHTO_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
 	setvar VAR_JOHTO_SCENE_FAST_SHIP_B1F, 1
 	specialvar VAR_RESULT, GetPlayerFacingDirection
 	goto_if_eq VAR_RESULT, DIR_EAST, FastShipCabins_NNW_NNE_NE_Johto_FastShipLazySailorScript_Movement2

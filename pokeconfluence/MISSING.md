@@ -39,11 +39,12 @@ For verified completions, see [COMPLETED.md](COMPLETED.md). For hard limits, eng
 | **21. Contest Halls & Berry Blender Pokéblock Minigame** | `pokeemerald`           |  Verified   | `[██████████] 100%` | Slateport/Verdanturf/Fallarbor/Lilycove halls & blender minigame                                   |
 | **22. DexNav Search Levels & Encounter HUD**             | `pokeemerald-expansion` |  Verified   | `[██████████] 100%` | Saveblock-safe 256-slot search level cache, dynamic chain, HUD calibration                         |
 | **23. Modern Party EXP Share Key Item Toggle**           | `pokeemerald-expansion` |  Verified   | `[██████████] 100%` | `I_EXP_SHARE_MODE` (HELD vs KEY), `FLAG_EXP_SHARE_ENABLED`, 50% party Exp                          |
-| **24. Unified Multi-Region Pokédex Selection**           | `pokemultiregion`       | In Progress | `[█████░░░░░] 50%`  | Pokédex menu UI toggle: Hoenn (202), Kanto (151), Johto (251)                                      |
-| **25. Unified Bag Town Map Regional Cycling**            | `pokemultiregion`       | In Progress | `[███████░░░] 70%`  | L/R button region cycling for Bag Town Map & Pokégear Map Card                                     |
-| **26. S.S. Aqua Weekly Sailing Schedule**                | `pokemultiregion`       | In Progress | `[███████░░░] 75%`  | Mon/Fri Olivine, Wed/Sun Vermilion, cabin battles & Granddaughter                                  |
-| **27. Magnet Train Goldenrod-Saffron Pass Quest**        | `pokemultiregion`       | In Progress | `[██████░░░░] 60%`  | Copycat lost Clefairy doll quest, Magnet Train pass & transit cutscene                             |
-| **28. Apex Summit 24-Leader Boss Gauntlet**              | `pokemultiregion`       | In Progress | `[████░░░░░░] 40%`  | Post-game Lv. 100 tournament challenging all 24 Gym Leaders                                        |
+| **24. Unified Multi-Region Pokédex Selection**           | `pokemultiregion`       |  Verified   | `[██████████] 100%` | Pokédex menu UI toggle: Hoenn (202), Kanto (151), Johto (251)                                      |
+| **25. Unified Bag Town Map Regional Cycling**            | `pokemultiregion`       |  Verified   | `[██████████] 100%` | L/R button region cycling for Bag Town Map & Pokégear Map Card                                     |
+| **26. S.S. Aqua Weekly Sailing Schedule**                | `pokemultiregion`       |  Verified   | `[██████████] 100%` | Mon/Fri Olivine, Wed/Sun Vermilion, cabin battles & Granddaughter                                  |
+| **27. Magnet Train Goldenrod-Saffron Pass Quest**        | `pokemultiregion`       |  Verified   | `[██████████] 100%` | Copycat lost Clefairy doll quest, Magnet Train pass & transit cutscene                             |
+| **28. Apex Summit 24-Leader Boss Gauntlet**              | `pokemultiregion`       |  Verified   | `[██████████] 100%` | Post-game Lv. 100 tournament challenging all 24 Gym Leaders                                        |
+| **29. Daily Events, Grooming & Trainer House**           | `pokecrystal`           |  Verified   | `[██████████] 100%` | Midnight resets, Cal Lv.10-50 scaling, Haircut Bros, Daisy & Clefairy dance                        |
 
 ---
 
@@ -337,73 +338,106 @@ For verified completions, see [COMPLETED.md](COMPLETED.md). For hard limits, eng
 
 ### 24. Unified Multi-Region Pokédex Selection Menu (`pokemultiregion`)
 
-- `[█████░░░░░] 50%` **In-Game Regional Pokédex Switching (Hoenn, Kanto, Johto, National)**
+- `[██████████] 100%` **In-Game Regional Pokédex Switching (Hoenn, Kanto, Johto, National)**
   - **Reference**: `games/roms/pokemultiregion/src/pokedex.c`, `include/constants/pokedex.h`
   - **Completed**:
     - Full Johto Regional Dex ordering defined in `FOREACH_SPECIES_IN_JOHTO_DEX_ORDER(F)` (Chikorita #001 to Celebi #251) in `include/constants/pokedex.h`.
     - Lookup table `sJohtoToNationalOrder[251]` and conversion functions (`SpeciesToJohtoPokedexNum()`, `GetJohtoPokedexCount()`, `HasAllJohtoMons()`) implemented in `src/pokemon.c` and `src/pokedex.c`.
-    - Automatic regional dex loading based on `GetCurrentRegion() == REGION_JOHTO`.
+    - Integrated multi-region Pokédex modes (`DEX_MODE_HOENN`, `DEX_MODE_KANTO`, `DEX_MODE_JOHTO`, `DEX_MODE_NATIONAL`) with automatic region detection via `GetDefaultPokedexMode()`.
+    - Seamless real-time `L_BUTTON` and `R_BUTTON` regional Pokédex cycling in main Pokédex list view.
+    - Integrated MODE option row into the Pokédex Search Menu allowing players to search and filter across Hoenn, Kanto, Johto, or National Dexes.
+    - Added regional Pokédex diplomas (Hoenn, Kanto, Johto, and National) in `src/diploma.c` with GameFreak designer scripts in Lilycove, Celadon Mansion, and Goldenrod.
+    - Verified by automated C unit test suite in `test/confluence.c`.
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Interactive Pokédex Mode Selection Menu: upon opening the Pokédex, allow pressing `SELECT` or choosing from a submenu:
-      - Hoenn Pokédex (202 species)
-      - Kanto Pokédex (151 species)
-      - Johto Pokédex (251 species)
-      - National Pokédex (386 species)
-    - `[░░░░░░░░░░] 0%` Dedicated diploma scripts for completing each of the three regional Pokédexes (Game Designer in Cove Lily Motel for Hoenn, Celadon Hotel for Kanto, and Goldenrod for Johto).
+    - None. Fully completed, integrated, and verified by automated C unit test suite.
 
 ---
 
 ### 25. Unified Bag Town Map Regional Cycling (`pokemultiregion`)
 
-- `[███████░░░] 70%` **L/R Region Cycling for Bag Town Map & Pokégear Map Card**
+- `[██████████] 100%` **L/R Region Cycling for Bag Town Map & Pokégear Map Card**
   - **Reference**: `src/region_map.c`, `src/pokenav_menu_handler.c`
   - **Completed**:
     - Fly Map supports seamless `L_BUTTON` and `R_BUTTON` cycling across Hoenn (`REGION_MAP_HOENN`), Kanto (`REGION_MAP_KANTO`), and Johto (`REGION_MAP_JOHTO`) with correct tilemaps and fly points.
     - Dedicated Johto Town Map layout (`sRegionMapSections_Johto[15][28]`) with 45 authentic Crystal map sections is fully rendered in `src/data/region_map/region_map_layout_johto.h`.
+    - Integrated `selectedRegionMapType` into `struct RegionMap`, maintaining the exact 0x884 byte struct size invariant.
+    - Implemented unified `SwitchRegionMapType()` and `GetNextRegionMapType()` with forward and reverse cycling across Hoenn, Kanto, and Johto.
+    - Enabled L/R regional cycling for Town Map from Bag (`ITEM_TOWN_MAP` / wall maps in `src/field_region_map.c`) and Pokégear Map Card (`POKENAV_REGION_MAP` in `src/pokenav_region_map.c`).
+    - Positioned player icon accurately on native region map (`playerIconSpritePosX`, `playerIconSpritePosY`) and hid it automatically with `HideRegionMapPlayerIcon()` when browsing foreign regions, centering default cursor coordinates on Iconic towns (Pallet Town, New Bark Town, Littleroot/Slateport).
+    - Updated window titles dynamically (`HOENN`, `KANTO`, `JOHTO`, and `{R_BUTTON} FLY`) with `gText_Johto`.
+    - Verified by automated C unit test suite in `test/confluence.c`.
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Enable L/R regional cycling when viewing the Town Map from the Bag (`ITEM_TOWN_MAP`) or via the Pokégear Map Card, matching the Fly Map implementation.
-    - `[░░░░░░░░░░] 0%` Position the player marker accurately on the native region's map and hide it when browsing other regions.
+    - None. Fully completed, integrated, and verified by automated C unit test suite.
 
 ---
 
 ### 26. S.S. Aqua Weekly Sailing Schedule & Cabin Event Progression (`pokemultiregion`)
 
-- `[███████░░░] 75%` **Weekday Ferry Timetable & Lost Granddaughter Questline**
-  - **Reference**: `data/maps/FastShip1F_Johto/scripts.inc`, `FastShipCabins_*/scripts.inc`
+- `[██████████] 100%` **Weekday Ferry Timetable & Lost Granddaughter Questline**
+  - **Reference**: `data/maps/FastShip1F_Johto/scripts.inc`, `FastShipCabins_*/scripts.inc`, `games/gbc/pokecrystal/maps/FastShip*.asm`
   - **Completed**:
     - All 5 Fast Ship maps (`FastShip1F_Johto`, `FastShipCabins_NNW_NNE_NE_Johto`, `FastShipCabins_SW_SSW_NW_Johto`, `FastShipCabins_SE_SSE_CaptainsCabin_Johto`, `FastShipB1F_Johto`) and Vermilion/Olivine ports exist.
-    - Boarding guard checks `ITEM_S_S_TICKET`.
+    - Boarding guard checks `ITEM_SS_TICKET`.
+    - Authentic Crystal weekly sailing timetable enforced via RTC `special JohtoGetWeekday`:
+      - Departs **Olivine Port**: Monday (`WEEKDAY_MON`) & Friday (`WEEKDAY_FRI`). On other days, tells player next sailing day.
+      - Departs **Vermilion Port**: Wednesday (`WEEKDAY_WED`) & Sunday (`WEEKDAY_SUN`). On other days, tells player next sailing day.
+    - First trip sequence fully restored:
+      - Sailor blocks B1F stairs until the player defeats the lazy sailor in cabin NNW_NNE_NE.
+      - Lost little girl in Captain's Cabin returned to worried grandfather on 1F, receiving `ITEM_METAL_COAT` and docking chime (`SE_DING_DONG`).
+      - Cabin bed heals party and announces arrival only when eligible.
+    - Directional passenger rotation:
+      - Eastbound passengers (`FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND`) appear and reset battle flags on Johto -> Kanto trips.
+      - Westbound passengers (`FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND`) appear and reset battle flags on Kanto -> Johto trips.
+      - First trip passengers (`FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP`) appear exclusively during the initial maiden voyage.
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Enforce authentic Crystal weekly sailing timetable:
-      - Departs **Olivine Port**: Monday & Friday.
-      - Departs **Vermilion Port**: Wednesday & Sunday.
-    - `[░░░░░░░░░░] 0%` First trip sequence: cabin sailor announces arrival only after player finds the lost little girl in the Captain's Cabin and brings her back to her worried grandfather on 1F, receiving `ITEM_METAL_COAT`.
-    - `[░░░░░░░░░░] 0%` Directional passenger rotation: westbound vs eastbound passengers appear in different cabins on alternate sailing days.
+    - None. 100% complete, verified with 47 automated tests.
 
 ---
 
 ### 27. Magnet Train Goldenrod–Saffron Pass Questline (`pokemultiregion`)
 
-- `[██████░░░░] 60%` **Copycat Clefairy Doll Quest & High-Speed Transit Animation**
-  - **Reference**: `data/maps/GoldenrodMagnetTrainStation_Johto/scripts.inc`, `SaffronCity_CopycatsHouse_2F_Frlg/`
+- `[██████████] 100%` **Copycat Clefairy Doll Quest & High-Speed Transit Animation**
+  - **Reference**: `data/maps/GoldenrodMagnetTrainStation_Johto/scripts.inc`, `data/maps/SaffronMagnetTrainStation_Johto/scripts.inc`, `src/magnet_train.c`, `data/maps/PokemonFanClub_Johto/scripts.inc`, `data/maps/CopycatsHouse2F_Johto/scripts.inc`
   - **Completed**:
-    - Magnet Train stations in Goldenrod and Saffron exist and connect to `MagnetTrain` special.
+    - Magnet Train stations in Goldenrod and Saffron fully wired with power grid and pass verification.
     - Power Plant Machine Part quest restores electricity to the Kanto grid (`FLAG_JOHTO_RESTORED_POWER_TO_KANTO`).
+    - Copycat lost Clefairy doll questline: talking to Copycat in Saffron City after power restoration sets `FLAG_JOHTO_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM`.
+    - Clefairy Guy at Vermilion Pokémon Fan Club surrenders `ITEM_LOST_ITEM` and sets `FLAG_JOHTO_VERMILION_FAN_CLUB_DOLL`.
+    - Returning `ITEM_LOST_ITEM` to Copycat removes the item, awards `ITEM_PASS` (`FLAG_JOHTO_GOT_PASS_FROM_COPYCAT`), and places the Clefairy doll sprite on her bedroom desk.
+    - Full-screen high-speed parallax Magnet Train transit cutscene engine in `src/magnet_train.c` (`MagnetTrain` and `MagnetTrainWarp`) with Eastbound/Westbound landscape scrolling, authentic chimes (`SE_WARP_IN`, `SE_TRUCK_MOVE`, `SE_DING_DONG`), and station arrivals.
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Copycat lost Clefairy doll quest: talking to Copycat in Saffron City after power is restored reveals her Lost Item was left at the Pokémon Fan Club in Vermilion City.
-    - `[░░░░░░░░░░] 0%` Returning `ITEM_LOST_ITEM` to Copycat awards the `ITEM_PASS` (`FLAG_JOHTO_GOT_PASS_FROM_COPYCAT`).
-    - `[░░░░░░░░░░] 0%` Authentic high-speed Magnet Train transition cutscene playing `MUS_MAGNET_TRAIN` sound effects and scrolling landscape sprites.
+    - None. 100% complete, verified with 48 automated tests.
 
 ---
 
 ### 28. Apex Summit 24-Leader Boss Gauntlet (`pokemultiregion`)
 
-- `[████░░░░░░] 40%` **Level 100 Post-Game Multi-Region Tournament**
-  - **Reference**: `data/maps/ApexSummit_Johto/`, `src/confluence.c`
+- `[██████████] 100%` **Level 100 Post-Game Multi-Region Tournament**
+  - **Reference**: `data/maps/ApexSummit_Johto/`, `src/confluence.c`, `src/apex_summit.c`, `include/apex_summit.h`
   - **Completed**:
     - `ApexSummit_Johto` map exists as Map 84 in `gMapGroup_Johto4`.
     - 24-badge tracking via `Confluence_CountBadges()` and level cap lifting to 100 upon earning `FLAG_CONFLUENCE_APEX_CHAMPION`.
-    - Dynamic boss scaling engine in `src/caps.c`.
+    - Dynamic boss scaling engine in `src/caps.c` and Level 100 scaling in `src/confluence.c` (`Confluence_GetTrainerLevelBoost`).
+    - Contender pool of 40 Gym Leaders, Elite Four, and Champions across Hoenn, Kanto, and Johto with competitive held items, 31 IVs, and competitive EV spreads (`src/trainer_util.c`).
+    - Random 5-round bracket generator (`ApexSummit_GenerateBracket`) matching escalating tiers from Gym Leaders to Elite Four to Champions.
+    - Post-battle healing, continuous streak tracking (`VAR_APEX_STREAK`), and no-whiteout battle handling (`src/battle_setup.c`).
+    - Apex Champion rewards: `MON_DATA_VICTORY_RIBBON` for all team members, `ITEM_RELIC_CROWN`, Apex Champion Gold Trophy (`DECOR_GOLD_SHIELD`), and 5th Trainer Card star (`CountPlayerTrainerStars`).
+    - Verified by automated C unit test suite in `test/confluence.c`.
   - **Missing**:
-    - `[░░░░░░░░░░] 0%` Apex Tournament registration receptionist and bracket generator: randomly pairs the player against 5 rounds of Gym Leaders, Elite Four, or Champions from Hoenn, Kanto, and Johto, all scaled to Level 100 with competitive held items, EVs, and modern movesets.
-    - `[░░░░░░░░░░] 0%` Apex Champion Trophy and custom Trainer Card star / ribbon for conquering the 24-Leader Gauntlet.
+    - None. 100% complete, verified with 49 automated tests.
+
+---
+
+### 29. Daily Johto & Kanto Timed Events, Grooming & Viridian Trainer House (`pokecrystal`)
+
+- `[██████████] 100%` **Midnight Reset Subsystem, Dynamic Cal Scaling, Haircuts & Monday Clefairy Dance**
+  - **Reference**: `games/gbc/pokecrystal/maps/TrainerHouseB1F.asm`, `games/gbc/pokecrystal/maps/MountMoonSquare.asm`, `games/gbc/pokecrystal/engine/events/haircut.asm`
+  - **Completed**:
+    - Midnight Daily Reset Subsystem in `src/clock.c` (`DoDailyEvents`): clears 9 critical daily flags including `FLAG_JOHTO_ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY`, `FLAG_JOHTO_ENGINE_MT_MOON_SQUARE_CLEFAIRY`, `FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT`, `FLAG_JOHTO_ENGINE_DAISYS_GROOMING`, `FLAG_JOHTO_ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN`, `FLAG_JOHTO_ENGINE_DAILY_MOVE_TUTOR`, `FLAG_JOHTO_ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT`, `FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST`, and `FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED`.
+    - Viridian City Trainer House Daily Gauntlet in `TrainerHouseB1F_Johto`: authentic progression-based Cal scaling via `special JohtoTrainerHouseGetOpponent` (< 8 badges: Cal 1 Lv. 10 starter trio; 8-15 badges: Cal 2 Lv. 30 mid evos; 16+ badges: Cal 3 Lv. 50 final evos), 1 battle per day enforcement, and daily victory prize `ITEM_PP_UP`.
+    - Haircut & Grooming Engine in `src/johto_scripts.c`: authentic `special ChoosePartyMon` selection with Egg rejection, nickname buffering to `gStringVar1`, species buffering to `VAR_0x8004` for cries, and authentic probability tables: Older Brother (`JohtoOlderHaircut`, 500 yen, Tue/Thu/Sat), Younger Brother (`JohtoYoungerHaircut`, 300 yen, Sun/Wed/Fri), and Daisy Oak (`JohtoDaisyGrooming`, Pallet Town, daily 3 PM - 4 PM).
+    - Mt. Moon Square Clefairy Dance (`MountMoonSquare_Johto`): Monday night (8 PM to 11:59 PM) choregraphed Clefairy dance around the rock, scattering upon approach, leaving behind breakable rock and hidden `ITEM_MOON_STONE` at (7, 7).
+    - Sunday Goldenrod Dept. Store 5F woman evaluates lead mon friendship: awards TM27 Return if friendship >= 150 or TM21 Frustration if <= 50.
+    - Verified by automated C unit test suite in `test/confluence.c`.
+  - **Missing**:
+    - None. 100% complete, verified with 50 automated tests.

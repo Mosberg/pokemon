@@ -104,7 +104,7 @@ FastShipCabins_SW_SSW_NW_Johto_FastShipBed_AlreadyArrived:
 	end
 
 FastShipCabins_SW_SSW_NW_Johto_FastShipBed_CanArrive:
-	playse SE_PIN
+	playse SE_DING_DONG
 	delay 30
 	goto_if_set FLAG_JOHTO_FAST_SHIP_DESTINATION_OLIVINE, FastShipCabins_SW_SSW_NW_Johto_FastShipBed_ArrivedOlivine
 	message FastShipCabins_SW_SSW_NW_Johto_FastShipArrivedVermilionText

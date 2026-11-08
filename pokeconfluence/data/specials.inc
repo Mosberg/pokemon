@@ -171,6 +171,8 @@ gSpecials::
 	def_special SetHiddenItemFlag
 	def_special CableCarWarp
 	def_special CableCar, waitstate=1
+	def_special MagnetTrainWarp
+	def_special MagnetTrain, waitstate=1
 	def_special Overworld_PlaySpecialMapMusic
 	def_special StartWallClock, waitstate=1
 	def_special Special_ViewWallClock, waitstate=1
@@ -607,6 +609,7 @@ gSpecials::
 	def_special CompareHeracrossSize
 	def_special GetRandomSlotMachineId
 	def_special HasAllKantoMons
+	def_special HasAllJohtoMons
 	def_special AnimateElevator
 	def_special InitElevatorFloorSelectMenuPos
 	def_special CloseElevatorCurrentFloorWindow
@@ -646,6 +649,10 @@ gSpecials::
 	def_special JohtoSetWeekday
 	def_special JohtoGetHour
 	def_special JohtoHaircut
+	def_special JohtoOlderHaircut
+	def_special JohtoYoungerHaircut
+	def_special JohtoDaisyGrooming
+	def_special JohtoTrainerHouseGetOpponent
 	def_special JohtoBillsGrandfather
 	def_special JohtoCountBadges
 	def_special JohtoPhoneIsRegistered
@@ -715,6 +722,12 @@ gSpecials::
 	def_special CheckSurfingPikachuInParty
 	def_special StartSurfingPikachuMinigameSpecial, waitstate=1
 	def_special GetSurfingPikachuScores
+	def_special ApexSummit_GenerateBracket
+	def_special ApexSummit_SetUpCurrentRound
+	def_special ApexSummit_StartBattle, waitstate=1
+	def_special ApexSummit_OnRoundWon
+	def_special ApexSummit_AwardPrizes
+	def_special ApexSummit_ExitChallenge
 
 
 

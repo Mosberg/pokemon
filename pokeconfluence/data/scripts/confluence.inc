@@ -258,16 +258,25 @@ Confluence_EventScript_ApexNotEligible::
 	end
 
 Confluence_EventScript_ApexAlreadyChampion::
-	msgbox Confluence_Text_ApexAlreadyChampion, MSGBOX_DEFAULT
-	release
+	msgbox Confluence_Text_ApexAlreadyChampion, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Confluence_EventScript_ApexDecline
+	closemessage
+	special ApexSummit_GenerateBracket
+	special ApexSummit_SetUpCurrentRound
+	special HealPlayerParty
+	setdynamicwarp MAP_JOHTO_SILVER_CAVE_OUTSIDE, 255, 24, 22
+	warp MAP_JOHTO_APEX_SUMMIT, 6, 11
+	waitstate
 	end
 
 Confluence_EventScript_ApexAskStart::
 	msgbox Confluence_Text_ApexBegin, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Confluence_EventScript_ApexDecline
 	closemessage
+	special ApexSummit_GenerateBracket
+	special ApexSummit_SetUpCurrentRound
 	special HealPlayerParty
-	setdynamicwarp MAP_JOHTO_SILVER_CAVE_OUTSIDE, 255, 23, 21
+	setdynamicwarp MAP_JOHTO_SILVER_CAVE_OUTSIDE, 255, 24, 22
 	warp MAP_JOHTO_APEX_SUMMIT, 6, 11
 	waitstate
 	end
@@ -446,8 +455,11 @@ Confluence_Text_ApexVictory:
 	.string "Take this as a token of the circuit.$"
 
 Confluence_Text_ApexAlreadyChampion:
-	.string "The APEX SUMMIT CHAMPION!\n"
-	.string "The mountain remembers you.$"
+	.string "Hail, APEX SUMMIT CHAMPION!\p"
+	.string "The mountain honors your supreme title.\n"
+	.string "Will you enter the Apex Summit Gauntlet\l"
+	.string "to test your team against history's\l"
+	.string "greatest legends once again?$"
 
 Confluence_Text_FieldKitIntro:
 	.string "Before you go: MERIDIAN HOLDINGS asks\n"

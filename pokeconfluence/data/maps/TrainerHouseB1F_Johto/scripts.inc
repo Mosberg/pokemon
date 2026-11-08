@@ -13,13 +13,18 @@ TrainerHouseB1F_Johto_TrainerHouseReceptionistScript:
 	message TrainerHouseB1F_Johto_TrainerHouseB1FIntroText
 	waitmessage
 	waitbuttonpress
-	setvar VAR_RESULT, 0
-	goto_if_eq VAR_RESULT, 0, TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GetCal3Name
-	buffertrainername STR_VAR_1, TRAINER_JOHTO_CAL_CAL2
+	special JohtoTrainerHouseGetOpponent
+	goto_if_eq VAR_RESULT, 0, TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GetCal1Name
+	goto_if_eq VAR_RESULT, 1, TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GetCal2Name
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_CAL_CAL3
 	goto TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GotName
 
-TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GetCal3Name:
-	buffertrainername STR_VAR_1, TRAINER_JOHTO_CAL_CAL3
+TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GetCal1Name:
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_CAL_CAL1
+	goto TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GotName
+
+TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GetCal2Name:
+	buffertrainername STR_VAR_1, TRAINER_JOHTO_CAL_CAL2
 
 TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GotName:
 	message TrainerHouseB1F_Johto_TrainerHouseB1FYourOpponentIsText
@@ -29,7 +34,6 @@ TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GotName:
 	waitmessage
 	yesnobox 20, 8
 	goto_if_eq VAR_RESULT, 0, TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_Declined
-	setflag FLAG_JOHTO_ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	message TrainerHouseB1F_Johto_TrainerHouseB1FGoRightInText
 	waitmessage
 	waitbuttonpress
@@ -40,19 +44,31 @@ TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_GotName:
 	waitmessage
 	waitbuttonpress
 	closemessage
-	setvar VAR_RESULT, 0
-	goto_if_eq VAR_RESULT, 0, TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_NoSpecialBattle
-	setvar VAR_LAST_TALKED, 2
-	trainerbattle_no_intro TRAINER_JOHTO_CAL_CAL2, TrainerHouseB1F_Johto_TrainerHouseB1FCalBeatenText
-	goto_if_eq VAR_RESULT, 0, TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_End
-
-TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_NoSpecialBattle:
+	special JohtoTrainerHouseGetOpponent
+	goto_if_eq VAR_RESULT, 0, TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_BattleCal1
+	goto_if_eq VAR_RESULT, 1, TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_BattleCal2
 	setvar VAR_LAST_TALKED, 2
 	trainerbattle_no_intro TRAINER_JOHTO_CAL_CAL3, TrainerHouseB1F_Johto_TrainerHouseB1FCalBeatenText
+	goto TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_End
+
+TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_BattleCal1:
+	setvar VAR_LAST_TALKED, 2
+	trainerbattle_no_intro TRAINER_JOHTO_CAL_CAL1, TrainerHouseB1F_Johto_TrainerHouseB1FCalBeatenText
+	goto TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_End
+
+TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_BattleCal2:
+	setvar VAR_LAST_TALKED, 2
+	trainerbattle_no_intro TRAINER_JOHTO_CAL_CAL2, TrainerHouseB1F_Johto_TrainerHouseB1FCalBeatenText
 
 TrainerHouseB1F_Johto_TrainerHouseReceptionistScript_End:
+	setflag FLAG_JOHTO_ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	applymovement OBJ_EVENT_ID_PLAYER, TrainerHouseB1F_Johto_Movement_ExitTrainerHouseBattleRoom
 	waitmovement OBJ_EVENT_ID_PLAYER
+	message TrainerHouseB1F_Johto_TrainerHouseB1FVictoryRewardText
+	waitmessage
+	waitbuttonpress
+	giveitem ITEM_PP_UP
+	closemessage
 	releaseall
 	end
 
@@ -156,3 +172,6 @@ TrainerHouseB1F_Johto_TrainerHouseB1FCalBeforeText:
 	.string "I traveled out\n"
 	.string "here just so I\l"
 	.string "could battle you.$"
+
+TrainerHouseB1F_Johto_TrainerHouseB1FVictoryRewardText:
+	.string "Splendid battle!\pPlease take this reward for\nyour victory in today's challenge!$"

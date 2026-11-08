@@ -39,11 +39,9 @@ GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationOfficerScript_Magne
 	waitmovement 1
 	applymovement OBJ_EVENT_ID_PLAYER, GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationPlayerApproachAndEnterTrainMovement
 	waitmovement OBJ_EVENT_ID_PLAYER
-	setvar VAR_RESULT, FALSE
-	warp MAP_JOHTO_SAFFRON_MAGNET_TRAIN_STATION, 11, 5
-	waitstate
-	applymovement OBJ_EVENT_ID_PLAYER, GoldenrodMagnetTrainStation_Johto_GoldenrodMagnetTrainStationOfficerScript_MovementBoardTheTrain
-	waitmovement OBJ_EVENT_ID_PLAYER
+	setvar VAR_0x8004, 0
+	special MagnetTrainWarp
+	special MagnetTrain
 	releaseall
 	end
 
@@ -74,6 +72,7 @@ GoldenrodMagnetTrainStation_Johto_Script_ArriveFromSaffron:
 	waitmessage
 	waitbuttonpress
 	closemessage
+	setvar VAR_JOHTO_SCENE_GOLDENROD_MAGNET_TRAIN_STATION, 0
 	releaseall
 	end
 

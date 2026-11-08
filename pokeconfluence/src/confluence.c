@@ -103,8 +103,11 @@ u32 Confluence_GetTrainerLevelBoost(const struct Trainer *trainer)
         if (trainer->party[i].lvl > highest)
             highest = trainer->party[i].lvl;
     }
-    target = GetBadgeTableCap(Confluence_CountBadges());
-    return target > highest ? target - highest : 0;
+	if (gMapHeader.regionMapSectionId == MAPSEC_JOHTO_APEX_SUMMIT || FlagGet(FLAG_CONFLUENCE_APEX_CHALLENGE_ACTIVE))
+		target = MAX_LEVEL;
+	else
+		target = GetBadgeTableCap(Confluence_CountBadges());
+	return target > highest ? target - highest : 0;
 }
 
 // The legends that keep a region's Resonance going: its three Birds, Beasts or Titans.
@@ -266,4 +269,3 @@ void Johto_ConvertShuckleBerryJuice(void)
         }
     }
 }
-

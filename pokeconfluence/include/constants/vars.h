@@ -268,13 +268,13 @@
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
 #define VAR_SURFING_PIKACHU_HIGH_SCORE                   0x40F7 // POKE-CONFLUENCE: Surfing Pikachu minigame high score
 #define VAR_SURFING_PIKACHU_RADNESS                      0x40F8 // POKE-CONFLUENCE: Surfing Pikachu minigame radness score
-#define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
-#define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
-#define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
-#define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
-#define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
-#define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
-#define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
+#define VAR_APEX_CURRENT_ROUND                           0x40F9 // POKE-CONFLUENCE: Apex Summit Gauntlet current round (0-5)
+#define VAR_APEX_STREAK                                  0x40FA // POKE-CONFLUENCE: Apex Summit Gauntlet consecutive victories
+#define VAR_APEX_OPPONENT_0                              0x40FB // POKE-CONFLUENCE: Apex Opponent Round 1
+#define VAR_APEX_OPPONENT_1                              0x40FC // POKE-CONFLUENCE: Apex Opponent Round 2
+#define VAR_APEX_OPPONENT_2                              0x40FD // POKE-CONFLUENCE: Apex Opponent Round 3
+#define VAR_APEX_OPPONENT_3                              0x40FE // POKE-CONFLUENCE: Apex Opponent Round 4
+#define VAR_APEX_OPPONENT_4                              0x40FF // POKE-CONFLUENCE: Apex Opponent Round 5
 
 #define VARS_END                                         0x41BF
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)

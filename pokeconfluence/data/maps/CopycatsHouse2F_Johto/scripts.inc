@@ -111,6 +111,7 @@ CopycatsHouse2F_Johto_Copycat_ReturnLostItem:
 	removeitem ITEM_LOST_ITEM
 	setflag FLAG_JOHTO_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearflag FLAG_JOHTO_COPYCATS_HOUSE_2F_DOLL
+	addobject 3
 	goto CopycatsHouse2F_Johto_Copycat_GivePass
 
 CopycatsHouse2F_Johto_Copycat_TryGivePassAgain:

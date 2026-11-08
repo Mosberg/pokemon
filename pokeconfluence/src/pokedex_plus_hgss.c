@@ -1338,7 +1338,7 @@ bool32 Task_TryLoadInfoScreen_HGSS(u8 taskId)
         gMain.state++;
         break;
     case 4:
-        PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+        PrintMonInfo(sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_NATIONAL ? TRUE : FALSE, sPokedexListItem->owned, 0);
         if (!sPokedexListItem->owned)
             LoadPalette(gPlttBufferUnfaded + 1, BG_PLTT_ID(3) + 1, PLTT_SIZEOF(16 - 1));
         CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
@@ -2022,7 +2022,7 @@ static void Task_LoadStatsScreen(u8 taskId)
         break;
     case 6:
         gTasks[taskId].data[5] = 0;
-        PrintStatsScreen_NameGender(taskId, sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE);
+        PrintStatsScreen_NameGender(taskId, sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_NATIONAL ? TRUE : FALSE);
         PrintStatsScreen_Left(taskId);
         PrintStatsScreen_Abilities(taskId);
         PrintStatsScreen_Moves_Top(taskId);
@@ -2434,7 +2434,16 @@ static void PrintStatsScreen_NameGender(u8 taskId, u32 num, u32 value)
 
     //Number
     if (value == 0)
-        value = NationalToRegionalOrder(num);
+    {
+        if (sPokedexView && sPokedexView->dexMode == DEX_MODE_HOENN)
+            value = NationalToHoennOrder(num);
+        else if (sPokedexView && sPokedexView->dexMode == DEX_MODE_KANTO)
+            value = NationalToKantoOrder(num);
+        else if (sPokedexView && sPokedexView->dexMode == DEX_MODE_JOHTO)
+            value = NationalToJohtoOrder(num);
+        else
+            value = NationalToRegionalOrder(num);
+    }
     else
         value = num;
     ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 4);

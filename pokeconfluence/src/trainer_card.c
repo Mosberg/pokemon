@@ -33,6 +33,7 @@
 #include "constants/rgb.h"
 #include "constants/trainers.h"
 #include "constants/union_room.h"
+#include "constants/confluence.h"
 #include "regions.h"
 
 enum {
@@ -773,6 +774,13 @@ u32 CountPlayerTrainerStars(void)
         if (HasAllFrontierSymbols())
             stars++;
     }
+
+    // POKE-CONFLUENCE: Conquering the 24-Leader Apex Summit Gauntlet awards a star
+    if (FlagGet(FLAG_CONFLUENCE_APEX_CHAMPION))
+        stars++;
+
+    if (stars > 4)
+        stars = 4;
 
     return stars;
 }

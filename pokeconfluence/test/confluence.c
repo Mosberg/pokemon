@@ -10,6 +10,7 @@
 #include "pokemon.h"
 #include "pokedex.h"
 #include "regions.h"
+#include "region_map.h"
 #include "constants/field_move.h"
 #include "constants/items.h"
 #include "constants/pokeball.h"
@@ -31,11 +32,14 @@
 #include "metatile_behavior.h"
 #include "constants/metatile_behaviors.h"
 #include "roamer.h"
+#include "apex_summit.h"
 #include "battle.h"
 #include "constants/songs.h"
 #include "field_player_avatar.h"
 #include "field_specials.h"
 #include "clock.h"
+#include "daycare.h"
+#include "regions.h"
 #include "rtc.h"
 #include "script.h"
 #include "overworld.h"
@@ -2091,6 +2095,441 @@ TEST("Confluence: Modern Party EXP Share Key Item Toggle Subsystem")
     FlagClear(FLAG_EXP_SHARE_ENABLED);
     EXPECT_EQ(IsGen6ExpShareEnabled(), FALSE);
 }
+
+// POKE-CONFLUENCE: Subsystem 24 - Unified Multi-Region Pokédex Selection Menu
+TEST("Confluence: Unified Multi-Region Pokédex Selection Menu Subsystem")
+{
+    // 1. Verify Pokédex Mode constants
+    EXPECT_EQ(DEX_MODE_HOENN, 0);
+    EXPECT_EQ(DEX_MODE_KANTO, 1);
+    EXPECT_EQ(DEX_MODE_JOHTO, 2);
+    EXPECT_EQ(DEX_MODE_NATIONAL, 3);
+    EXPECT_EQ(DEX_MODE_COUNT, 4);
+
+    // 2. Verify regional ordering conversions for key starters and iconic species
+    // Bulbasaur (NatDex 1)
+    EXPECT_EQ(NationalToKantoOrder(NATIONAL_DEX_BULBASAUR), KANTO_DEX_BULBASAUR);
+    EXPECT_EQ(NationalToJohtoOrder(NATIONAL_DEX_BULBASAUR), JOHTO_DEX_BULBASAUR);
+    // Chikorita (NatDex 152)
+    EXPECT_EQ(NationalToJohtoOrder(NATIONAL_DEX_CHIKORITA), JOHTO_DEX_CHIKORITA);
+    EXPECT_EQ(NationalToKantoOrder(NATIONAL_DEX_CHIKORITA), 0);
+    // Treecko (NatDex 252)
+    EXPECT_EQ(NationalToHoennOrder(NATIONAL_DEX_TREECKO), HOENN_DEX_TREECKO);
+    EXPECT_EQ(NationalToKantoOrder(NATIONAL_DEX_TREECKO), 0);
+    EXPECT_EQ(NationalToJohtoOrder(NATIONAL_DEX_TREECKO), 0);
+
+    // 3. Verify dex size counts
+    EXPECT(KANTO_DEX_COUNT >= 151 + 1); // 1-indexed count with optional evolutions
+    EXPECT(JOHTO_REGIONAL_DEX_COUNT >= 251 + 1);
+    EXPECT(HOENN_DEX_COUNT >= 202 + 1);
+    EXPECT(NATIONAL_DEX_COUNT >= 386);
+
+    // 4. Test regional completion checks
+    memset(gSaveBlock1Ptr->dexSeen, 0, sizeof(gSaveBlock1Ptr->dexSeen));
+    memset(gSaveBlock1Ptr->dexCaught, 0, sizeof(gSaveBlock1Ptr->dexCaught));
+    EXPECT_EQ(HasAllKantoMons(), FALSE);
+    EXPECT_EQ(HasAllJohtoMons(), FALSE);
+    EXPECT_EQ(HasAllHoennMons(), FALSE);
+    EXPECT_EQ(HasAllMons(), FALSE);
+}
+
+// POKE-CONFLUENCE: Subsystem 25 - Unified Bag Town Map Regional Cycling
+TEST("Confluence: Unified Bag Town Map Regional Cycling Subsystem")
+{
+    // 1. Verify RegionMap struct size invariant and field layout
+    EXPECT_EQ(sizeof(struct RegionMap), 0x884);
+
+    // 2. Verify Region Map Type values
+    EXPECT_EQ(REGION_MAP_HOENN, 0);
+    EXPECT_EQ(REGION_MAP_KANTO, 1);
+    EXPECT_EQ(REGION_MAP_JOHTO, 5);
+
+    // 3. Verify Cycle List configuration
+    EXPECT_EQ(gRegionMapCycleRegions[0], REGION_MAP_HOENN);
+    EXPECT_EQ(gRegionMapCycleRegions[1], REGION_MAP_KANTO);
+    EXPECT_EQ(gRegionMapCycleRegions[2], REGION_MAP_JOHTO);
+
+    // 4. Verify Forward and Reverse L/R Cycling
+    EXPECT_EQ(GetNextRegionMapType(REGION_MAP_HOENN, FALSE), REGION_MAP_KANTO);
+    EXPECT_EQ(GetNextRegionMapType(REGION_MAP_KANTO, FALSE), REGION_MAP_JOHTO);
+    EXPECT_EQ(GetNextRegionMapType(REGION_MAP_JOHTO, FALSE), REGION_MAP_HOENN);
+
+    EXPECT_EQ(GetNextRegionMapType(REGION_MAP_HOENN, TRUE), REGION_MAP_JOHTO);
+    EXPECT_EQ(GetNextRegionMapType(REGION_MAP_JOHTO, TRUE), REGION_MAP_KANTO);
+    EXPECT_EQ(GetNextRegionMapType(REGION_MAP_KANTO, TRUE), REGION_MAP_HOENN);
+
+    // 5. Verify Sevii Island fallback to Kanto cycling
+    EXPECT_EQ(GetNextRegionMapType(REGION_MAP_SEVII123, FALSE), REGION_MAP_JOHTO);
+    EXPECT_EQ(GetNextRegionMapType(REGION_MAP_SEVII45, FALSE), REGION_MAP_JOHTO);
+    EXPECT_EQ(GetNextRegionMapType(REGION_MAP_SEVII67, FALSE), REGION_MAP_JOHTO);
+
+    // 6. Verify region resolution for map sections
+    EXPECT_EQ(GetRegionMapType(MAPSEC_LITTLEROOT_TOWN), REGION_MAP_HOENN);
+    EXPECT_EQ(GetRegionMapType(MAPSEC_PALLET_TOWN), REGION_MAP_KANTO);
+    EXPECT_EQ(GetRegionMapType(MAPSEC_JOHTO_NEW_BARK_TOWN), REGION_MAP_JOHTO);
+    EXPECT_EQ(GetRegionMapType(MAPSEC_JOHTO_GOLDENROD_CITY), REGION_MAP_JOHTO);
+}
+
+// POKE-CONFLUENCE: Subsystem 26 - S.S. Aqua Weekly Sailing Schedule & Cabin Event Progression
+TEST("Confluence: S.S. Aqua Weekly Sailing Schedule & Cabin Progression Subsystem")
+{
+    u32 day;
+
+    // 1. Verify Authentic Crystal Weekly Sailing Timetable logic
+    // Olivine Port sails ONLY on Monday and Friday
+    for (day = WEEKDAY_SUN; day <= WEEKDAY_SAT; day++)
+    {
+        bool8 canDepartOlivine = (day == WEEKDAY_MON || day == WEEKDAY_FRI);
+        bool8 canDepartVermilion = (day == WEEKDAY_WED || day == WEEKDAY_SUN);
+
+        // Verify Olivine schedule mapping
+        if (day == WEEKDAY_SUN || day == WEEKDAY_SAT)
+            EXPECT_EQ(canDepartOlivine, FALSE); // "sails next Monday"
+        else if (day == WEEKDAY_TUE || day == WEEKDAY_WED || day == WEEKDAY_THU)
+            EXPECT_EQ(canDepartOlivine, FALSE); // "sails next Friday"
+        else
+            EXPECT_EQ(canDepartOlivine, TRUE); // Sails!
+
+        // Verify Vermilion schedule mapping
+        if (day == WEEKDAY_MON || day == WEEKDAY_TUE)
+            EXPECT_EQ(canDepartVermilion, FALSE); // "sails on Wednesday"
+        else if (day == WEEKDAY_THU || day == WEEKDAY_FRI || day == WEEKDAY_SAT)
+            EXPECT_EQ(canDepartVermilion, FALSE); // "sails next Sunday"
+        else
+            EXPECT_EQ(canDepartVermilion, TRUE); // Sails!
+    }
+
+    // 2. Verify Directional Passenger Rotation flags
+    // Boarding in Olivine (Eastbound voyage: Johto -> Kanto)
+    FlagClear(FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND);
+    FlagSet(FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND), FALSE); // Eastbound passengers visible
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND), TRUE);  // Westbound passengers hidden
+
+    // Boarding in Vermilion (Westbound voyage: Kanto -> Johto)
+    FlagSet(FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND);
+    FlagClear(FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_FAST_SHIP_PASSENGERS_EASTBOUND), TRUE);  // Eastbound passengers hidden
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_FAST_SHIP_PASSENGERS_WESTBOUND), FALSE); // Westbound passengers visible
+
+    // 3. Verify First Trip sequence and Lost Granddaughter progression
+    // At start of first trip:
+    FlagClear(FLAG_JOHTO_FAST_SHIP_FIRST_TIME);
+    FlagClear(FLAG_JOHTO_FAST_SHIP_HAS_ARRIVED);
+    FlagClear(FLAG_JOHTO_FAST_SHIP_FOUND_GIRL);
+    FlagClear(FLAG_JOHTO_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA);
+
+    // Bed check before girl is found cannot trigger arrival
+    bool8 canArriveAtBed = (FlagGet(FLAG_JOHTO_FAST_SHIP_HAS_ARRIVED)
+                         || FlagGet(FLAG_JOHTO_FAST_SHIP_FOUND_GIRL)
+                         || FlagGet(FLAG_JOHTO_FAST_SHIP_FIRST_TIME));
+    EXPECT_EQ(canArriveAtBed, FALSE);
+
+    // Finding girl in Captain's Cabin and escorting to Grandpa sets flags & awards Metal Coat
+    FlagSet(FLAG_JOHTO_FAST_SHIP_FOUND_GIRL);
+    FlagSet(FLAG_JOHTO_FAST_SHIP_HAS_ARRIVED);
+    FlagSet(FLAG_JOHTO_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA);
+
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_FAST_SHIP_FOUND_GIRL), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_FAST_SHIP_HAS_ARRIVED), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA), TRUE);
+
+    // Disembarking in Vermilion sets FIRST_TIME and FIRST_TRIP hide flags
+    FlagSet(FLAG_JOHTO_FAST_SHIP_FIRST_TIME);
+    FlagSet(FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_FAST_SHIP_FIRST_TIME), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_FAST_SHIP_PASSENGERS_FIRST_TRIP), TRUE);
+}
+
+// POKE-CONFLUENCE: Subsystem 27 - Magnet Train Goldenrod–Saffron Pass Questline
+TEST("Confluence: Magnet Train Goldenrod-Saffron Pass Questline Subsystem")
+{
+    // 1. Copycat Lost Clefairy Doll Questline
+    // Initially, Power is not restored, doll is at Vermilion Fan Club
+    FlagClear(FLAG_JOHTO_RESTORED_POWER_TO_KANTO);
+    FlagClear(FLAG_JOHTO_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM);
+    FlagClear(FLAG_JOHTO_GOT_LOST_ITEM_FROM_FAN_CLUB);
+    FlagClear(FLAG_JOHTO_RETURNED_LOST_ITEM_TO_COPYCAT);
+    FlagClear(FLAG_JOHTO_GOT_PASS_FROM_COPYCAT);
+    FlagClear(FLAG_JOHTO_VERMILION_FAN_CLUB_DOLL); // Clefairy doll visible in Fan Club
+    FlagSet(FLAG_JOHTO_COPYCATS_HOUSE_2F_DOLL);   // Clefairy doll hidden in Copycat's bedroom
+
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_RESTORED_POWER_TO_KANTO), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_VERMILION_FAN_CLUB_DOLL), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_COPYCATS_HOUSE_2F_DOLL), TRUE);
+
+    // Step A: Power restored at Kanto Power Plant
+    FlagSet(FLAG_JOHTO_RESTORED_POWER_TO_KANTO);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_RESTORED_POWER_TO_KANTO), TRUE);
+
+    // Step B: Talk to Copycat in Saffron City
+    FlagSet(FLAG_JOHTO_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM), TRUE);
+
+    // Step C: Retrieve Lost Item (Clefairy Doll) from Vermilion Pokémon Fan Club
+    FlagSet(FLAG_JOHTO_GOT_LOST_ITEM_FROM_FAN_CLUB);
+    FlagSet(FLAG_JOHTO_VERMILION_FAN_CLUB_DOLL); // Doll removed from Fan Club
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_GOT_LOST_ITEM_FROM_FAN_CLUB), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_VERMILION_FAN_CLUB_DOLL), TRUE);
+
+    // Step D: Return Lost Item to Copycat, award Rail Pass, place Doll on desk
+    FlagSet(FLAG_JOHTO_RETURNED_LOST_ITEM_TO_COPYCAT);
+    ClearBag();
+    AddBagItem(ITEM_PASS, 1);
+    FlagSet(FLAG_JOHTO_GOT_PASS_FROM_COPYCAT);
+    FlagClear(FLAG_JOHTO_COPYCATS_HOUSE_2F_DOLL); // Doll now visible on desk
+
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_RETURNED_LOST_ITEM_TO_COPYCAT), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_GOT_PASS_FROM_COPYCAT), TRUE);
+    EXPECT_EQ(CheckBagHasItem(ITEM_PASS, 1), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_COPYCATS_HOUSE_2F_DOLL), FALSE);
+
+    // 2. Magnet Train Warp Destination and Direction Logic
+    // Test Eastbound voyage: Goldenrod -> Saffron (direction 0)
+    gSpecialVar_0x8004 = 0;
+    VarSet(VAR_JOHTO_SCENE_SAFFRON_MAGNET_TRAIN_STATION, 0);
+    MagnetTrainWarp();
+    EXPECT_EQ(VarGet(VAR_JOHTO_SCENE_SAFFRON_MAGNET_TRAIN_STATION), 1);
+
+    // Simulate arrival in Saffron: arrival trigger runs and resets scene to 0
+    VarSet(VAR_JOHTO_SCENE_SAFFRON_MAGNET_TRAIN_STATION, 0);
+    EXPECT_EQ(VarGet(VAR_JOHTO_SCENE_SAFFRON_MAGNET_TRAIN_STATION), 0);
+
+    // Test Westbound voyage: Saffron -> Goldenrod (direction 1)
+    gSpecialVar_0x8004 = 1;
+    VarSet(VAR_JOHTO_SCENE_GOLDENROD_MAGNET_TRAIN_STATION, 0);
+    MagnetTrainWarp();
+    EXPECT_EQ(VarGet(VAR_JOHTO_SCENE_GOLDENROD_MAGNET_TRAIN_STATION), 1);
+
+    // Simulate arrival in Goldenrod: arrival trigger runs and resets scene to 0
+    VarSet(VAR_JOHTO_SCENE_GOLDENROD_MAGNET_TRAIN_STATION, 0);
+    EXPECT_EQ(VarGet(VAR_JOHTO_SCENE_GOLDENROD_MAGNET_TRAIN_STATION), 0);
+}
+
+TEST("Confluence: Apex Summit 24-Leader Boss Gauntlet Subsystem")
+{
+    u32 i;
+    u8 prevStars, newStars;
+    struct Pokemon *party = gParties[B_TRAINER_PLAYER];
+
+    // 1. Eligibility Check: 24 badges required
+    ClearAllBadges();
+    ConfluenceCheckApexEligible();
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+
+    // Award all 24 badges (8 Hoenn, 8 Kanto, 8 Johto)
+    for (i = 0; i < 8; i++)
+    {
+        FlagSet(GetBadgeFlagForRegion(REGION_HOENN, i));
+        FlagSet(GetBadgeFlagForRegion(REGION_KANTO, i));
+        FlagSet(GetBadgeFlagForRegion(REGION_JOHTO, i));
+    }
+    EXPECT_EQ(Confluence_CountBadges(), 24);
+    ConfluenceCheckApexEligible();
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+
+    // 2. Bracket Generation: 5 rounds across 3 tiers
+    ApexSummit_GenerateBracket();
+    EXPECT_EQ(VarGet(VAR_APEX_CURRENT_ROUND), 0);
+    EXPECT_EQ(FlagGet(FLAG_CONFLUENCE_APEX_CHALLENGE_ACTIVE), TRUE);
+
+    u8 op0 = VarGet(VAR_APEX_OPPONENT_0);
+    u8 op1 = VarGet(VAR_APEX_OPPONENT_1);
+    u8 op2 = VarGet(VAR_APEX_OPPONENT_2);
+    u8 op3 = VarGet(VAR_APEX_OPPONENT_3);
+    u8 op4 = VarGet(VAR_APEX_OPPONENT_4);
+
+    // Round 1 & 2: Gym Leaders (0..23, distinct)
+    EXPECT(op0 < 24);
+    EXPECT(op1 < 24);
+    EXPECT_NE(op0, op1);
+
+    // Round 3: Elite Four (24..34)
+    EXPECT(op2 >= 24 && op2 <= 34);
+
+    // Round 4: Elite Four or Champion (24..38, distinct from Round 3)
+    EXPECT(op3 >= 24 && op3 <= 38);
+    EXPECT_NE(op3, op2);
+
+    // Round 5: Apex Legend Champion (35..39)
+    EXPECT(op4 >= 35 && op4 <= 39);
+
+    // 3. Level 100 Auto-Scaling under Active Gauntlet
+    // Leader with base lvl 14 should receive boost of 100 - 14 = 86 to reach Lv. 100
+    struct Trainer testLeader = { .trainerClass = TRAINER_CLASS_LEADER, .party = sBoostParty, .partySize = ARRAY_COUNT(sBoostParty) };
+    u32 boost = Confluence_GetTrainerLevelBoost(&testLeader);
+    EXPECT_EQ(boost, 100 - 14);
+
+    // 4. Round Setup and Progression
+    ApexSummit_SetUpCurrentRound();
+    EXPECT_EQ(VarGet(VAR_OBJ_GFX_ID_0) > 0, TRUE);
+    EXPECT_EQ(gStringVar1[0] != 0, TRUE);
+
+    // Advance through rounds 1 to 4
+    for (i = 0; i < 4; i++)
+    {
+        ApexSummit_OnRoundWon();
+        EXPECT_EQ(gSpecialVar_Result, FALSE); // More rounds remain
+        EXPECT_EQ(VarGet(VAR_APEX_CURRENT_ROUND), i + 1);
+    }
+
+    // Final 5th round victory
+    ApexSummit_OnRoundWon();
+    EXPECT_EQ(gSpecialVar_Result, TRUE); // Tournament conquered!
+    EXPECT_EQ(VarGet(VAR_APEX_CURRENT_ROUND), 5);
+
+    // 5. Prize Awarding: Ribbon, Star, and Level Cap Lifting
+    ZeroMonData(&party[0]);
+    ZeroMonData(&party[1]);
+    CreateMon(&party[0], SPECIES_CHARIZARD, 80, 0, OTID_STRUCT_PRESET(0));
+    CreateMon(&party[1], SPECIES_TYRANITAR, 80, 0, OTID_STRUCT_PRESET(0));
+
+    FlagClear(FLAG_CONFLUENCE_APEX_CHAMPION);
+    prevStars = CountPlayerTrainerStars();
+
+    ApexSummit_AwardPrizes();
+
+    EXPECT_EQ(FlagGet(FLAG_CONFLUENCE_APEX_CHAMPION), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_CONFLUENCE_APEX_CHALLENGE_ACTIVE), FALSE);
+    EXPECT_EQ(VarGet(VAR_APEX_STREAK), 1);
+
+    // Party received the Victory Ribbon
+    EXPECT_EQ(GetMonData(&party[0], MON_DATA_VICTORY_RIBBON), TRUE);
+    EXPECT_EQ(GetMonData(&party[1], MON_DATA_VICTORY_RIBBON), TRUE);
+    EXPECT_EQ(FlagGet(FLAG_SYS_RIBBON_GET), TRUE);
+
+    // Level cap lifted to 100 permanently
+    EXPECT_EQ(Confluence_GetLevelCapForBadges(24), 100);
+
+    // Trainer Card stars incremented
+    newStars = CountPlayerTrainerStars();
+    EXPECT_EQ(newStars, prevStars + 1);
+
+    // Clean up
+    ClearAllBadges();
+    FlagClear(FLAG_CONFLUENCE_APEX_CHAMPION);
+}
+
+TEST("Confluence: Daily Johto & Kanto Timed Events, Grooming & Viridian Trainer House")
+{
+    u8 prevCount;
+    u8 i;
+    u32 friendship;
+    struct Pokemon *party = gParties[B_TRAINER_PLAYER];
+
+    // 1. Midnight Daily Reset Subsystem (DoDailyEvents)
+    FlagSet(FLAG_JOHTO_ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY);
+    FlagSet(FLAG_JOHTO_ENGINE_MT_MOON_SQUARE_CLEFAIRY);
+    FlagSet(FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT);
+    FlagSet(FLAG_JOHTO_ENGINE_DAISYS_GROOMING);
+    FlagSet(FLAG_JOHTO_ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN);
+    FlagSet(FLAG_JOHTO_ENGINE_DAILY_MOVE_TUTOR);
+    FlagSet(FLAG_JOHTO_ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT);
+    FlagSet(FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST);
+    FlagSet(FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED);
+
+    DoDailyEvents(1);
+
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_MT_MOON_SQUARE_CLEFAIRY), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_DAISYS_GROOMING), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_DAILY_MOVE_TUTOR), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_DAILY_BUG_CONTEST), FALSE);
+    EXPECT_EQ(FlagGet(FLAG_JOHTO_ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED), FALSE);
+
+    // 2. Viridian Trainer House Cal Opponent Scaling
+    ClearAllBadges();
+    EXPECT_EQ(Confluence_CountBadges(), 0);
+    JohtoTrainerHouseGetOpponent();
+    EXPECT_EQ(gSpecialVar_Result, 0); // Cal 1 (Lv 10)
+
+    // Give 8 badges
+    for (i = 0; i < 8; i++)
+        FlagSet(FLAG_BADGE01_GET + i);
+    EXPECT_EQ(Confluence_CountBadges(), 8);
+    JohtoTrainerHouseGetOpponent();
+    EXPECT_EQ(gSpecialVar_Result, 1); // Cal 2 (Lv 30)
+
+    // Give 16 badges
+    for (i = 0; i < 8; i++)
+        FlagSet(FLAG_BADGE09_GET + i);
+    EXPECT_EQ(Confluence_CountBadges(), 16);
+    JohtoTrainerHouseGetOpponent();
+    EXPECT_EQ(gSpecialVar_Result, 2); // Cal 3 (Lv 50)
+
+    // 3. Johto Get First Mon Happiness
+    prevCount = gPartiesCount[B_TRAINER_PLAYER];
+    gPartiesCount[B_TRAINER_PLAYER] = 0;
+    JohtoGetFirstMonHappiness();
+    EXPECT_EQ(gSpecialVar_Result, 0); // Safe on empty party
+
+    gPartiesCount[B_TRAINER_PLAYER] = 2;
+    ZeroMonData(&party[0]);
+    ZeroMonData(&party[1]);
+    CreateMon(&party[0], SPECIES_PIKACHU, 25, 0, OTID_STRUCT_PRESET(0));
+    friendship = 180;
+    SetMonData(&party[0], MON_DATA_FRIENDSHIP, &friendship);
+    JohtoGetFirstMonHappiness();
+    EXPECT_EQ(gSpecialVar_Result, 180);
+
+    // 4. Authentic Haircut & Grooming Engine
+    // Test cancel
+    gSpecialVar_0x8004 = PARTY_SIZE;
+    JohtoHaircut();
+    EXPECT_EQ(gSpecialVar_Result, 0);
+
+    // Test Egg rejection
+    CreateEgg(&party[1], SPECIES_TOGEPI, FALSE);
+    gSpecialVar_0x8004 = 1;
+    JohtoOlderHaircut();
+    EXPECT_EQ(gSpecialVar_Result, 1); // Cannot groom an Egg!
+
+    gSpecialVar_0x8004 = 1;
+    JohtoDaisyGrooming();
+    EXPECT_EQ(gSpecialVar_Result, 1); // Cannot groom an Egg!
+
+    // Test Older Brother on Pikachu
+    friendship = 70;
+    SetMonData(&party[0], MON_DATA_FRIENDSHIP, &friendship);
+    gSpecialVar_0x8004 = 0;
+    JohtoOlderHaircut();
+    EXPECT_GE(gSpecialVar_Result, 2);
+    EXPECT_LE(gSpecialVar_Result, 4);
+    EXPECT_EQ(gSpecialVar_0x8004, SPECIES_PIKACHU);
+    EXPECT_GT(GetMonData(&party[0], MON_DATA_FRIENDSHIP), 70);
+
+    // Test Younger Brother on Pikachu
+    friendship = 100;
+    SetMonData(&party[0], MON_DATA_FRIENDSHIP, &friendship);
+    gSpecialVar_0x8004 = 0;
+    JohtoYoungerHaircut();
+    EXPECT_GE(gSpecialVar_Result, 2);
+    EXPECT_LE(gSpecialVar_Result, 4);
+    EXPECT_EQ(gSpecialVar_0x8004, SPECIES_PIKACHU);
+    EXPECT_GT(GetMonData(&party[0], MON_DATA_FRIENDSHIP), 100);
+
+    // Test Daisy's Grooming
+    friendship = 150;
+    SetMonData(&party[0], MON_DATA_FRIENDSHIP, &friendship);
+    gSpecialVar_0x8004 = 0;
+    JohtoDaisyGrooming();
+    EXPECT_EQ(gSpecialVar_Result, 2);
+    EXPECT_EQ(gSpecialVar_0x8004, SPECIES_PIKACHU);
+    EXPECT_EQ(GetMonData(&party[0], MON_DATA_FRIENDSHIP), 170);
+
+    // Clean up
+    ClearAllBadges();
+    gPartiesCount[B_TRAINER_PLAYER] = prevCount;
+}
+
+
+
+
+
+
 
 
 

@@ -176,6 +176,33 @@ static void FieldUpdateRegionMap(void)
         }
         break;
     case 4:
+        // POKE-CONFLUENCE: Cycle regions with L / R buttons when viewing full map
+        if (sFieldRegionMapHandler->regionMap.cursorMovementFrameCounter == 0)
+        {
+            if (JOY_NEW(R_BUTTON))
+            {
+                if (!(sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
+                    && FlagGet(OW_FLAG_POKE_RIDER) && Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE))
+                {
+                    u8 nextRegion = GetNextRegionMapType(sFieldRegionMapHandler->regionMap.selectedRegionMapType, FALSE);
+                    PlaySE(SE_SELECT);
+                    SwitchRegionMapType(nextRegion);
+                    PrintRegionMapSecName();
+                    PrintTitleWindowText();
+                    return;
+                }
+            }
+            else if (JOY_NEW(L_BUTTON))
+            {
+                u8 prevRegion = GetNextRegionMapType(sFieldRegionMapHandler->regionMap.selectedRegionMapType, TRUE);
+                PlaySE(SE_SELECT);
+                SwitchRegionMapType(prevRegion);
+                PrintRegionMapSecName();
+                PrintTitleWindowText();
+                return;
+            }
+        }
+
         switch (DoRegionMapInputCallback())
         {
         case MAP_INPUT_MOVE_END:
@@ -195,6 +222,15 @@ static void FieldUpdateRegionMap(void)
                     gSkipShowMonAnim = TRUE;
                     ReturnToFieldFromFlyMapSelect();
                 }
+                else
+                {
+                    u8 nextRegion = GetNextRegionMapType(sFieldRegionMapHandler->regionMap.selectedRegionMapType, FALSE);
+                    PlaySE(SE_SELECT);
+                    SwitchRegionMapType(nextRegion);
+                    PrintRegionMapSecName();
+                    PrintTitleWindowText();
+                }
+                break;
         }
         break;
     case 5:
@@ -232,11 +268,24 @@ static void PrintTitleWindowText(void)
 {
     static const u8 FlyPromptText[] = _("{R_BUTTON} FLY");
     const u8 *region;
-    if (IS_FRLG)
+    u8 regionMapType = sFieldRegionMapHandler->regionMap.selectedRegionMapType;
+    switch (regionMapType)
+    {
+    case REGION_MAP_JOHTO:
+        region = gText_Johto;
+        break;
+    case REGION_MAP_KANTO:
+    case REGION_MAP_SEVII123:
+    case REGION_MAP_SEVII45:
+    case REGION_MAP_SEVII67:
         region = gText_Kanto;
-    else
+        break;
+    case REGION_MAP_HOENN:
+    default:
         region = gText_Hoenn;
-    u32 hoennOffset = GetStringCenterAlignXOffset(FONT_NORMAL, region, 0x38);
+        break;
+    }
+    u32 regionOffset = GetStringCenterAlignXOffset(FONT_NORMAL, region, 0x38);
     u32 flyOffset = GetStringCenterAlignXOffset(FONT_NORMAL, FlyPromptText, 0x38);
 
     FillWindowPixelBuffer(WIN_TITLE, PIXEL_FILL(1));
@@ -249,7 +298,7 @@ static void PrintTitleWindowText(void)
     }
     else
     {
-        AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, region, hoennOffset, 1, 0, NULL);
+        AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, region, regionOffset, 1, 0, NULL);
         CopyWindowToVram(WIN_TITLE, COPYWIN_FULL);
     }
 }

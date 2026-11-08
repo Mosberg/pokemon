@@ -14,6 +14,7 @@
 #include "overworld.h"
 #include "menu.h"
 #include "pokedex.h"
+#include "regions.h"
 #include "confluence.h"
 #include "constants/rgb.h"
 

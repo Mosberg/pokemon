@@ -6,6 +6,7 @@
 #include "string_util.h"
 #include "trainer_util.h"
 #include "confluence.h"
+#include "event_data.h"
 #include "text.h"
 
 #include "constants/battle_ai.h"
@@ -219,10 +220,13 @@ void GenerateMonFromTrainerMon(struct Pokemon *mon, const struct TrainerMon *tra
         errorf("Unkwown trainer mon gender value %d", trainerMon->gender);
     personality |= genderValue;
     ModifyPersonalityForNature(&personality, trainerMon->nature);
-    CreateMon(mon, trainerMon->species, min(trainerMon->lvl + trainer->levelBoost, MAX_LEVEL), personality, trainer->otID);
-    if (trainerMon->nickname != NULL)
-        SetMonData(mon, MON_DATA_NICKNAME, trainerMon->nickname);
-    if (trainerMon->ev) //ev in struct TrainerMon are stored in Showdown order not vanilla Emerald order
+	{
+		u8 level = FlagGet(FLAG_CONFLUENCE_APEX_CHALLENGE_ACTIVE) ? MAX_LEVEL : min(trainerMon->lvl + trainer->levelBoost, MAX_LEVEL);
+		CreateMon(mon, trainerMon->species, level, personality, trainer->otID);
+	}
+	if (trainerMon->nickname != NULL)
+		SetMonData(mon, MON_DATA_NICKNAME, trainerMon->nickname);
+	if (trainerMon->ev) //ev in struct TrainerMon are stored in Showdown order not vanilla Emerald order
     {
         SetMonData(mon, MON_DATA_HP_EV, &trainerMon->ev[0]);
         SetMonData(mon, MON_DATA_ATK_EV, &trainerMon->ev[1]);
@@ -245,9 +249,39 @@ void GenerateMonFromTrainerMon(struct Pokemon *mon, const struct TrainerMon *tra
     CustomTrainerPartyAssignMoves(mon, trainerMon);
     SetMonData(mon, MON_DATA_HELD_ITEM, &trainerMon->heldItem);
 
-    bool32 abilitySet = FALSE;
-    if (trainerMon->ability)
-    {
+	// POKE-CONFLUENCE: Apex Summit Gauntlet auto-tuning (max IVs, competitive EVs, and held items)
+	if (FlagGet(FLAG_CONFLUENCE_APEX_CHALLENGE_ACTIVE))
+	{
+		u32 maxIVs = 31 | (31 << 5) | (31 << 10) | (31 << 15) | (31 << 20) | (31 << 25);
+		SetMonData(mon, MON_DATA_IVS, &maxIVs);
+
+		if (trainerMon->ev == NULL)
+		{
+			u8 ev252 = 252;
+			u8 ev4 = 4;
+			if (gSpeciesInfo[trainerMon->species].baseAttack >= gSpeciesInfo[trainerMon->species].baseSpAttack)
+				SetMonData(mon, MON_DATA_ATK_EV, &ev252);
+			else
+				SetMonData(mon, MON_DATA_SPATK_EV, &ev252);
+			SetMonData(mon, MON_DATA_SPEED_EV, &ev252);
+			SetMonData(mon, MON_DATA_HP_EV, &ev4);
+		}
+		if (trainerMon->heldItem == ITEM_NONE)
+		{
+			u16 item = ITEM_LEFTOVERS;
+			if (gSpeciesInfo[trainerMon->species].baseSpeed >= 100)
+				item = ITEM_LIFE_ORB;
+			else if (gSpeciesInfo[trainerMon->species].baseDefense >= 100 || gSpeciesInfo[trainerMon->species].baseSpDefense >= 100)
+				item = ITEM_LEFTOVERS;
+			else
+				item = ITEM_SITRUS_BERRY;
+			SetMonData(mon, MON_DATA_HELD_ITEM, &item);
+		}
+	}
+
+	bool32 abilitySet = FALSE;
+	if (trainerMon->ability)
+	{
         abilitySet = SetCorrectAbilityNum(mon, trainerMon->species, trainerMon->ability);
     }
 
