@@ -49,5 +49,7 @@ This workspace contains the complete development environment for **Pokémon Conf
    - Always verify compilation with `make -C pokeconfluence -j$(nproc)` before claiming completion.
    - Always run the headless test suite with `bash pokeconfluence/scripts/test.sh`.
    - Always run the limit auditor with `python3 .agents/scripts/check_limits.py`.
+   - Always run the event script auditor with `python3 .agents/scripts/audit_scripts.py`.
    - Run python emulator tests with `pokeconfluence/.venv/bin/pytest pokeconfluence/mgba-agent/tests`.
+   - Run full workspace health audits with `python3 .agents/scripts/workspace_doctor.py`.
 

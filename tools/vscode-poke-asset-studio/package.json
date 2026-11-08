@@ -1,0 +1,153 @@
+{
+  "name": "poke-decomp-asset-studio",
+  "displayName": "Pokémon GBA Asset Studio",
+  "description": "Professional Image Gallery, Pixel Inspector, Palette Editor, and Sprite Animator for Pokémon GBA Decompilations",
+  "version": "1.1.0",
+  "publisher": "Mosberg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mosberg/poke-decomp-asset-studio"
+  },
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages",
+    "Visualization"
+  ],
+  "keywords": [
+    "pokemon",
+    "gba",
+    "pokeemerald",
+    "pokefirered",
+    "pokecrystal",
+    "pokeconfluence",
+    "palette",
+    "pixel-art",
+    "sprite",
+    "bgr555"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Pokémon GBA Asset Studio",
+      "properties": {
+        "pokeAssetStudio.defaultZoom": {
+          "type": "number",
+          "default": 8,
+          "enum": [
+            1,
+            2,
+            4,
+            8,
+            12,
+            16,
+            24,
+            32
+          ],
+          "description": "Default zoom factor when opening images (e.g. 8 = 800%)."
+        },
+        "pokeAssetStudio.defaultBackground": {
+          "type": "string",
+          "default": "checkerboard-dark",
+          "enum": [
+            "checkerboard-dark",
+            "checkerboard-light",
+            "magenta",
+            "black",
+            "white"
+          ],
+          "description": "Default canvas backdrop color/pattern."
+        },
+        "pokeAssetStudio.animationFps": {
+          "type": "integer",
+          "default": 15,
+          "minimum": 1,
+          "maximum": 60,
+          "description": "Default framerate for sprite animation previews."
+        },
+        "pokeAssetStudio.autoSavePalWithPng": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically update matching sibling JASC-PAL (.pal) when saving an indexed PNG."
+        },
+        "pokeAssetStudio.strictBgr555": {
+          "type": "boolean",
+          "default": true,
+          "description": "Strictly enforce GBA 15-bit BGR555 hardware quantization in color editor."
+        },
+        "pokeAssetStudio.slotZeroStrict": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn when opaque pixels are assigned to Slot 0 (transparent in GBA PPU)."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "pokeAssetStudio.openGallery",
+        "title": "Pokémon Asset Studio: Open Asset Gallery",
+        "icon": "$(photo)"
+      },
+      {
+        "command": "pokeAssetStudio.openInStudio",
+        "title": "Open in Pokémon Asset Studio",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "pokeAssetStudio.auditAssets",
+        "title": "Pokémon Asset Studio: Run Project Graphics Audit",
+        "icon": "$(checklist)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "poke-asset-studio",
+          "title": "Pokémon Asset Studio",
+          "icon": "media/pokeball.svg"
+        }
+      ]
+    },
+    "views": {
+      "poke-asset-studio": [
+        {
+          "type": "webview",
+          "id": "pokeAssetStudio.galleryView",
+          "name": "Asset Gallery",
+          "icon": "media/pokedex.svg"
+        }
+      ]
+    },
+    "customEditors": [
+      {
+        "viewType": "pokeAssetStudio.editor",
+        "displayName": "Pokémon GBA Asset Studio",
+        "selector": [
+          {
+            "filenamePattern": "*.{png,pal,gbapal,4bpp,8bpp,act,gpl}"
+          }
+        ],
+        "priority": "option"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "pokeAssetStudio.openInStudio",
+          "when": "resourceExtname =~ /\\.(png|pal|gbapal|4bpp|8bpp|act|gpl)$/",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "pokeAssetStudio.openGallery",
+          "group": "navigation"
+        }
+      ]
+    }
+  }
+}

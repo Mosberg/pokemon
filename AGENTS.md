@@ -51,17 +51,27 @@ make -C pokeconfluence -j$(nproc)
 # 2. Run C unit tests
 bash pokeconfluence/scripts/test.sh
 
-# 3. Run limit auditor
+# 3. Run hardware & engine limit auditor (checks mapsec, map groups <= 127, objects <= 64, saveblocks)
 python3 .agents/scripts/check_limits.py
 
-# 4. Run emulator agent smoke tests (if Python environment is available)
+# 4. Run event script safety & syntax auditor
+python3 .agents/scripts/audit_scripts.py
+
+# 5. Run emulator agent smoke tests (if Python environment is available)
 pokeconfluence/.venv/bin/pytest pokeconfluence/mgba-agent/tests
+
+# Unified multi-suite runner:
+bash .agents/scripts/run_tests.sh --quick
+# Full workspace diagnostics:
+python3 .agents/scripts/workspace_doctor.py
 ```
 
 ### Pre-Commit Checklist
 1. All changes isolated and marked `// POKE-CONFLUENCE` where applicable.
 2. No new `MAPSEC_*` added without checking the 253 limit.
-3. No map has more than 64 object events in `map.json`.
-4. No C file violates Allman braces, 4-space indentation, or PascalCase/camelCase conventions.
-5. All newly converted scripts compile clean without syntax errors.
+3. No map group exceeds 127 maps (signed 8-bit `WarpData.mapNum` hardware boundary).
+4. No map has more than 64 object events in `map.json`.
+5. No C file violates Allman braces, 4-space indentation, or PascalCase/camelCase conventions.
+6. All newly converted scripts compile clean without syntax errors or forbidden `ON_TRANSITION` blocking calls.
+7. Saveblock budgets verified via `python3 .agents/scripts/check_limits.py`.
 

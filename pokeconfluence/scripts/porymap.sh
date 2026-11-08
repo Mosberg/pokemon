@@ -4,4 +4,4 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 export PATH="$HOME/.local/bin:$PATH"
 command -v porymap >/dev/null || { echo "porymap not found: scripts/setup.sh --extras" >&2; exit 1; }
-exec porymap "$ROOT"
+exec porymap "$ROOT" "$@"

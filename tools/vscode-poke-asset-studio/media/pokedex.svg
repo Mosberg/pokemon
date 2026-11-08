@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="24"
+     height="24"
+     viewBox="0 0 24 24"
+     fill="none">
+
+  <!-- Pokédex Body -->
+  <rect x="2" y="2" width="20" height="20" rx="3" fill="#D32F2F"/>
+
+  <!-- Main Screen -->
+  <rect x="6" y="5" width="12" height="9" rx="1" fill="#E8F5E9"/>
+
+  <!-- Sprite Placeholder -->
+  <rect x="8" y="7" width="4" height="4" fill="#43A047"/>
+  <rect x="12" y="7" width="2" height="2" fill="#66BB6A"/>
+  <rect x="8" y="11" width="6" height="1" fill="#2E7D32"/>
+
+  <!-- Gallery Thumbnails -->
+  <rect x="6" y="16" width="3" height="3" fill="#42A5F5"/>
+  <rect x="10.5" y="16" width="3" height="3" fill="#FFD54F"/>
+  <rect x="15" y="16" width="3" height="3" fill="#AB47BC"/>
+
+  <!-- Pokedex LED -->
+  <circle cx="5" cy="5" r="1.2" fill="#4FC3F7"/>
+  <circle cx="5" cy="5" r="0.5" fill="#B3E5FC"/>
+
+</svg>

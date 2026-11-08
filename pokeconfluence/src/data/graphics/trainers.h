@@ -1349,10 +1349,10 @@ const struct TrainerPicInfo gTrainerPicInfo[TRAINER_PIC_COUNT] =
     },
     [TRAINER_PIC_CHRIS] =
     {
-        .backPic = TRAINER_BACK_PIC(4, gTrainerBackPic_Chris, gTrainerBackPicPalette_Chris, sBackAnims_Hoenn),
+        .backPic = TRAINER_BACK_PIC(4, gTrainerBackPic_Chris, gTrainerBackPicPalette_Chris, sBackAnims_None),
     },
     [TRAINER_PIC_KRIS] =
     {
-        .backPic = TRAINER_BACK_PIC(4, gTrainerBackPic_Kris, gTrainerBackPicPalette_Kris, sBackAnims_Hoenn),
+        .backPic = TRAINER_BACK_PIC(4, gTrainerBackPic_Kris, gTrainerBackPicPalette_Kris, sBackAnims_None),
     },
 };

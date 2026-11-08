@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+
+  <!-- Outer Pokédex -->
+  <rect x="2" y="2" width="20" height="20" rx="4" fill="#CC0000"/>
+
+  <!-- Screen -->
+  <rect x="5" y="5" width="14" height="10" rx="1" fill="#D8F3DC"/>
+
+  <!-- Pixel Sprite -->
+  <g fill="#2E7D32">
+    <rect x="8" y="7" width="2" height="2"/>
+    <rect x="10" y="7" width="2" height="2"/>
+    <rect x="8" y="9" width="2" height="2"/>
+    <rect x="10" y="9" width="2" height="2"/>
+  </g>
+
+  <!-- Zoom Pixel Inspector -->
+  <circle cx="15.5" cy="8.5" r="2" fill="none" stroke="#1565C0" stroke-width="1"/>
+  <line x1="17" y1="10" x2="18.5" y2="11.5"
+        stroke="#1565C0"
+        stroke-width="1"
+        stroke-linecap="round"/>
+
+  <!-- Asset/Gallery Row -->
+  <rect x="6" y="17" width="2" height="2" fill="#42A5F5"/>
+  <rect x="11" y="17" width="2" height="2" fill="#66BB6A"/>
+  <rect x="16" y="17" width="2" height="2" fill="#FFCA28"/>
+
+</svg>
