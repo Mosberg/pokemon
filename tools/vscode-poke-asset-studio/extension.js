@@ -2,19 +2,27 @@
 const vscode = require('vscode');
 const { PokeAssetEditorProvider } = require('./src/editorProvider');
 const { PokeAssetGalleryViewProvider } = require('./src/galleryProvider');
+const { PokeGbaForgeProvider } = require('./src/forgeProvider');
 const scanner = require('./src/scanner');
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-    console.log('[PokeAssetStudio] Pokémon GBA Asset Studio v1.1.0 activating...');
+    console.log('[PokeAssetStudio] Pokémon GBA Asset Studio v1.2.0 activating...');
 
     // 1. Register Custom Editor for Images and Palettes (.png, .pal, .gbapal, .4bpp, .8bpp, .act, .gpl)
     context.subscriptions.push(PokeAssetEditorProvider.register(context));
 
     // 2. Register Activity Bar Gallery View
     context.subscriptions.push(PokeAssetGalleryViewProvider.register(context));
+
+    // 3. Register GBA Forge Studio Panel Command
+    context.subscriptions.push(
+        vscode.commands.registerCommand('pokeAssetStudio.openForge', () => {
+            PokeGbaForgeProvider.createOrShow(context);
+        })
+    );
 
     // 3. Register Context Menu Command
     context.subscriptions.push(

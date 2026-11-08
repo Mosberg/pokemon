@@ -2,7 +2,7 @@
   "name": "poke-decomp-asset-studio",
   "displayName": "Pokémon GBA Asset Studio",
   "description": "Professional Image Gallery, Pixel Inspector, Palette Editor, and Sprite Animator for Pokémon GBA Decompilations",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "publisher": "Mosberg",
   "repository": {
     "type": "git",
@@ -101,6 +101,11 @@
         "command": "pokeAssetStudio.auditAssets",
         "title": "Pokémon Asset Studio: Run Project Graphics Audit",
         "icon": "$(checklist)"
+      },
+      {
+        "command": "pokeAssetStudio.openForge",
+        "title": "Pokémon GBA Forge: Open Sprite Generator Studio",
+        "icon": "$(sparkle)"
       }
     ],
     "viewsContainers": {
@@ -143,6 +148,10 @@
         }
       ],
       "editor/title": [
+        {
+          "command": "pokeAssetStudio.openForge",
+          "group": "navigation"
+        },
         {
           "command": "pokeAssetStudio.openGallery",
           "group": "navigation"

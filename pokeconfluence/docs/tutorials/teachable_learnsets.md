@@ -25,7 +25,7 @@ After `src/data/pokemon/all_learnables.json` has been created, this file will NE
 
 ## Teaching Types
 
-In addition to their teachable learnset described in `src/data/pokemon/all_learnables.json`, Pokemon will be able to learn additional moves based on their teaching types defined in their species data (found in `species/data/pokemon/species_info/gen_X_families.h` for vanilla Pokemon and `species/data/pokemon/species_info.h` for fakemons). There are currently three teaching types in Expansion: Default Learning, TM Illiterate and All Teahcables
+In addition to their teachable learnset described in `src/data/pokemon/all_learnables.json`, Pokemon will be able to learn additional moves based on their teaching types defined in their species data (found in `species/data/pokemon/species_info/gen_X_families.h` for vanilla Pokemon and `species/data/pokemon/species_info.h` for pokemons). There are currently three teaching types in Expansion: Default Learning, TM Illiterate and All Teahcables
 
 ### Default Learning
 
@@ -59,4 +59,3 @@ The script look for tutors moves in your script files, wether map scripts `/data
 ### Extra Tutors
 
 If you somehow add a move that can be learned in new custom ways that don't fit with the previous patterns, you can add the move to the extra tutors list in `src/data/pokemon/special_movesets.json` (there are multiple lists in the file, make sure to edit the one named "extraTutors"). This shouldn't be necessary for most users and if you use this list, remember you will need to add/remove moves from this list and the code that teaches moves.
-

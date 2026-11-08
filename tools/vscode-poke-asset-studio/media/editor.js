@@ -522,6 +522,9 @@
             actualCtx.drawImage(imageCanvas, 0, 0);
         }
 
+        // Update Battle Mockup
+        drawBattleMockup();
+
         // Update VRAM Tiles Badge
         const tilesW = Math.ceil(imageWidth / 8);
         const tilesH = Math.ceil(imageHeight / 8);
@@ -1157,6 +1160,450 @@
     });
     document.getElementById('btnExportGpl').addEventListener('click', () => {
         vscode.postMessage({ type: 'export_palette_gpl', palette: palette });
+    });
+
+    // ==========================================
+    // GBA FORGE MAGIC TOOLS & BATTLE SIMULATOR
+    // ==========================================
+
+    let battleShinyMode = false;
+    const battleCanvas = document.getElementById('battleCanvas');
+    const battleCtx = battleCanvas ? battleCanvas.getContext('2d') : null;
+    const battleBiomeSelect = document.getElementById('battleBiomeSelect');
+
+    function drawBattleMockup() {
+        if (!battleCanvas || !battleCtx) return;
+        const b = battleCtx;
+        b.imageSmoothingEnabled = false;
+
+        const biome = battleBiomeSelect ? battleBiomeSelect.value : 'grass';
+        const colors = {
+            grass: { skyTop: '#7ec8f7', skyBot: '#bfe8ff', groundTop: '#8fd07a', groundBot: '#5da24f', platBase: '#8fd07a', platDark: '#3c6b34' },
+            water: { skyTop: '#63b3ed', skyBot: '#bee3f8', groundTop: '#3182ce', groundBot: '#2a4365', platBase: '#4299e1', platDark: '#1a365d' },
+            cave:  { skyTop: '#4a5568', skyBot: '#2d3748', groundTop: '#2d3748', groundBot: '#1a202c', platBase: '#718096', platDark: '#2d3748' },
+            sand:  { skyTop: '#fbd38d', skyBot: '#feebc8', groundTop: '#d69e2e', groundBot: '#b7791f', platBase: '#ecc94b', platDark: '#744210' }
+        }[biome] || { skyTop: '#7ec8f7', skyBot: '#bfe8ff', groundTop: '#8fd07a', groundBot: '#5da24f', platBase: '#8fd07a', platDark: '#3c6b34' };
+
+        // Background Sky & Ground Gradient
+        const grd = b.createLinearGradient(0, 0, 0, 160);
+        grd.addColorStop(0, colors.skyTop);
+        grd.addColorStop(0.55, colors.skyBot);
+        grd.addColorStop(0.56, colors.groundTop);
+        grd.addColorStop(1, colors.groundBot);
+        b.fillStyle = grd;
+        b.fillRect(0, 0, 240, 160);
+
+        // Ground separator line
+        b.fillStyle = 'rgba(255, 255, 255, 0.4)';
+        b.fillRect(0, 88, 240, 2);
+
+        // Platform drawing helper
+        function drawPlatform(cx, cy, rx, ry, baseCol, darkCol) {
+            b.fillStyle = darkCol;
+            b.beginPath();
+            b.ellipse(cx, cy + 3, rx, ry, 0, 0, Math.PI * 2);
+            b.fill();
+
+            b.fillStyle = baseCol;
+            b.beginPath();
+            b.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+            b.fill();
+
+            b.fillStyle = 'rgba(255, 255, 255, 0.25)';
+            b.beginPath();
+            b.ellipse(cx - 10, cy - 4, rx * 0.5, ry * 0.35, 0, 0, Math.PI * 2);
+            b.fill();
+        }
+
+        // Foe platform & Player platform
+        drawPlatform(190, 88, 50, 15, colors.platBase, colors.platDark);
+        drawPlatform(54, 134, 54, 16, colors.platBase, colors.platDark);
+
+        // Draw Foe Pokémon (current sprite from canvas)
+        if (imageWidth && imageHeight) {
+            const foeCanvas = document.createElement('canvas');
+            foeCanvas.width = imageWidth;
+            foeCanvas.height = imageHeight;
+            const fCtx = foeCanvas.getContext('2d');
+            fCtx.imageSmoothingEnabled = false;
+
+            // Use shiny palette if toggled
+            const palToUse = battleShinyMode ? generateShinyPal(palette) : palette;
+            const fImgData = fCtx.createImageData(imageWidth, imageHeight);
+            for (let i = 0; i < pixelIndices.length; i++) {
+                const pIdx = pixelIndices[i];
+                const o = i * 4;
+                const c = palToUse[pIdx] || { r: 0, g: 0, b: 0 };
+                fImgData.data[o] = c.r;
+                fImgData.data[o + 1] = c.g;
+                fImgData.data[o + 2] = c.b;
+                fImgData.data[o + 3] = pIdx === 0 ? 0 : 255;
+            }
+            fCtx.putImageData(fImgData, 0, 0);
+
+            // Scale to fit 64x64 at (158, 24)
+            b.drawImage(foeCanvas, 0, 0, imageWidth, imageHeight, 158, 24, 64, 64);
+        }
+
+        // Draw Player Pokémon backpic mockup at (8, 72)
+        b.save();
+        b.scale(-1, 1);
+        b.drawImage(imageCanvas, 0, 0, imageWidth, imageHeight, -88, 72, 80, 80);
+        b.restore();
+
+        // GBA Battle Dialogue Box at bottom
+        b.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        b.fillRect(0, 126, 240, 34);
+        b.strokeStyle = '#fff';
+        b.lineWidth = 1;
+        b.strokeRect(1, 127, 238, 32);
+
+        // Battle text
+        b.fillStyle = '#fff';
+        b.font = '8px monospace';
+        b.fillText(battleShinyMode ? 'A wild SHINY Pokémon appeared!' : 'A wild Pokémon appeared!', 8, 145);
+    }
+
+    function generateShinyPal(srcPal) {
+        const out = [{ ...srcPal[0] }];
+        for (let i = 1; i < 16; i++) {
+            const c = srcPal[i] || { r: 0, g: 0, b: 0 };
+            const lum = 0.299 * c.r + 0.587 * c.g + 0.114 * c.b;
+            if (lum < 28) { out.push({ ...c }); continue; }
+            const rN = c.r / 255, gN = c.g / 255, bN = c.b / 255;
+            const max = Math.max(rN, gN, bN), min = Math.min(rN, gN, bN);
+            let h = 0, s = max === 0 ? 0 : (max - min) / max, v = max;
+            if (max !== min) {
+                const d = max - min;
+                if (max === rN) h = (gN - bN) / d + (gN < bN ? 6 : 0);
+                else if (max === gN) h = (bN - rN) / d + 2;
+                else h = (rN - gN) / d + 4;
+                h /= 6;
+            }
+            h = (h + 0.35) % 1.0;
+            const iVal = Math.floor(h * 6), f = h * 6 - iVal;
+            const p = v * (1 - s), q = v * (1 - f * s), t = v * (1 - (1 - f) * s);
+            let rn, gn, bn;
+            switch (iVal % 6) {
+                case 0: rn = v; gn = t; bn = p; break;
+                case 1: rn = q; gn = v; bn = p; break;
+                case 2: rn = p; gn = v; bn = t; break;
+                case 3: rn = p; gn = q; bn = v; break;
+                case 4: rn = t; gn = p; bn = v; break;
+                case 5: rn = v; gn = p; bn = q; break;
+            }
+            const sr = snapToGbaChannel(Math.round(rn * 255));
+            const sg = snapToGbaChannel(Math.round(gn * 255));
+            const sb = snapToGbaChannel(Math.round(bn * 255));
+            out.push({ r: sr, g: sg, b: sb, hex: rgbToHex(sr, sg, sb), bgr555: rgbToBgr555(sr, sg, sb) });
+        }
+        return out;
+    }
+
+    if (battleBiomeSelect) {
+        battleBiomeSelect.addEventListener('change', drawBattleMockup);
+    }
+    const btnBattleShiny = document.getElementById('btnBattleShiny');
+    if (btnBattleShiny) {
+        btnBattleShiny.addEventListener('click', () => {
+            battleShinyMode = !battleShinyMode;
+            btnBattleShiny.classList.toggle('active', battleShinyMode);
+            btnBattleShiny.textContent = battleShinyMode ? '✨ Shiny Foe (ON)' : '✨ Toggle Shiny Foe';
+            drawBattleMockup();
+        });
+    }
+
+    // 1. Remove BG (Kill Background)
+    document.getElementById('btnKillBg').addEventListener('click', () => {
+        pushUndo();
+        const rawData = ctx.getImageData(0, 0, imageWidth, imageHeight);
+        const d = rawData.data;
+        const corners = [
+            [0, 0], [imageWidth - 1, 0],
+            [0, imageHeight - 1], [imageWidth - 1, imageHeight - 1],
+            [Math.floor(imageWidth / 2), 0]
+        ];
+        let rs = 0, gs = 0, bs = 0;
+        for (const [cx, cy] of corners) {
+            const o = (cy * imageWidth + cx) * 4;
+            rs += d[o]; gs += d[o + 1]; bs += d[o + 2];
+        }
+        const br = rs / 5, bg = gs / 5, bb = bs / 5;
+        const seen = new Uint8Array(imageWidth * imageHeight);
+        const stack = [[0, 0], [imageWidth - 1, 0], [0, imageHeight - 1], [imageWidth - 1, imageHeight - 1]];
+
+        while (stack.length > 0) {
+            const [x, y] = stack.pop();
+            if (x < 0 || y < 0 || x >= imageWidth || y >= imageHeight) continue;
+            const idx = y * imageWidth + x;
+            if (seen[idx]) continue;
+            seen[idx] = 1;
+            const o = idx * 4;
+            if (Math.abs(d[o] - br) <= 42 && Math.abs(d[o + 1] - bg) <= 42 && Math.abs(d[o + 2] - bb) <= 42) {
+                pixelIndices[idx] = 0;
+                stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+            }
+        }
+        redrawImageFromIndices();
+        runAuditor();
+        vscode.postMessage({ type: 'notify', message: 'Background removed with corner-sampling flood fill.' });
+    });
+
+    // 2. Auto-Ground (2px above bottom edge)
+    document.getElementById('btnAutoGround').addEventListener('click', () => {
+        pushUndo();
+        let minX = imageWidth, maxX = -1, minY = imageHeight, maxY = -1;
+        for (let y = 0; y < imageHeight; y++) {
+            for (let x = 0; x < imageWidth; x++) {
+                if (pixelIndices[y * imageWidth + x] !== 0) {
+                    if (x < minX) minX = x;
+                    if (x > maxX) maxX = x;
+                    if (y < minY) minY = y;
+                    if (y > maxY) maxY = y;
+                }
+            }
+        }
+        if (maxX >= 0) {
+            const bw = maxX - minX + 1, bh = maxY - minY + 1;
+            const targetX = Math.floor((imageWidth - bw) / 2);
+            const targetY = imageHeight - bh - 2;
+            const next = new Uint8Array(imageWidth * imageHeight);
+            for (let y = 0; y < bh; y++) {
+                for (let x = 0; x < bw; x++) {
+                    const srcIdx = (minY + y) * imageWidth + (minX + x);
+                    const dstY = targetY + y, dstX = targetX + x;
+                    if (dstY >= 0 && dstY < imageHeight && dstX >= 0 && dstX < imageWidth) {
+                        next[dstY * imageWidth + dstX] = pixelIndices[srcIdx];
+                    }
+                }
+            }
+            pixelIndices = next;
+            redrawImageFromIndices();
+            runAuditor();
+            vscode.postMessage({ type: 'notify', message: 'Battle sprite centered and grounded (2px from bottom).' });
+        }
+    });
+
+    // 3. Style Outlines (Color-coded deep saturated outlines)
+    document.getElementById('btnStyleOutlines').addEventListener('click', () => {
+        pushUndo();
+        for (let y = 0; y < imageHeight; y++) {
+            for (let x = 0; x < imageWidth; x++) {
+                const pos = y * imageWidth + x;
+                const val = pixelIndices[pos];
+                if (val === 0) continue;
+                let isEdge = false;
+                for (let dy = -1; dy <= 1 && !isEdge; dy++) {
+                    for (let dx = -1; dx <= 1; dx++) {
+                        const nx = x + dx, ny = y + dy;
+                        if (nx < 0 || ny < 0 || nx >= imageWidth || ny >= imageHeight || pixelIndices[ny * imageWidth + nx] === 0) {
+                            isEdge = true;
+                            break;
+                        }
+                    }
+                }
+                if (!isEdge) continue;
+                const c = palette[val] || { r: 0, g: 0, b: 0 };
+                const lum = 0.299 * c.r + 0.587 * c.g + 0.114 * c.b;
+                if (lum < 42) continue;
+                let bestIdx = val, bestScore = Infinity;
+                for (let k = 1; k < 16; k++) {
+                    const q = palette[k] || { r: 0, g: 0, b: 0 };
+                    const qLum = 0.299 * q.r + 0.587 * q.g + 0.114 * q.b;
+                    if (qLum > 68) continue;
+                    const score = (q.r - c.r)**2 + (q.g - c.g)**2 + (q.b - c.b)**2 + qLum * 2;
+                    if (score < bestScore) { bestScore = score; bestIdx = k; }
+                }
+                if (bestIdx !== val) pixelIndices[pos] = bestIdx;
+            }
+        }
+        redrawImageFromIndices();
+        runAuditor();
+        vscode.postMessage({ type: 'notify', message: 'Outlines styled to deep saturated body tones.' });
+    });
+
+    // 4. Synthesize anim_front.png (128x64 Emerald Idle Bounce)
+    document.getElementById('btnGenAnim').addEventListener('click', () => {
+        const outW = 128, outH = 64;
+        const can = document.createElement('canvas');
+        can.width = outW; can.height = outH;
+        const c2 = can.getContext('2d');
+        c2.imageSmoothingEnabled = false;
+
+        // Frame 0: original
+        c2.drawImage(imageCanvas, 0, 0, imageWidth, imageHeight, 0, 0, 64, 64);
+        // Frame 1: shifted up 2px, squashed 1px
+        c2.drawImage(imageCanvas, 0, 2, imageWidth, imageHeight - 2, 64, 0, 64, 62);
+        c2.drawImage(imageCanvas, 0, imageHeight - 2, imageWidth, 2, 64, 62, 64, 2);
+
+        const dataUrl = can.toDataURL('image/png');
+        vscode.postMessage({ type: 'save_sub_asset', fileName: 'anim_front.png', dataUrl: dataUrl });
+    });
+
+    // 5. Synthesize icon.png (64x32 Party Menu Icon)
+    document.getElementById('btnGenIcon').addEventListener('click', () => {
+        const can = document.createElement('canvas');
+        can.width = 64; can.height = 32;
+        const c2 = can.getContext('2d');
+        c2.imageSmoothingEnabled = false;
+
+        const small = document.createElement('canvas');
+        small.width = 28; small.height = 28;
+        small.getContext('2d').drawImage(imageCanvas, 0, 0, 28, 28);
+
+        c2.drawImage(small, 2, 2);       // Frame 0 at (2, 2)
+        c2.drawImage(small, 34, 0);      // Frame 1 at (34, 0) (bob 2px up)
+
+        const dataUrl = can.toDataURL('image/png');
+        vscode.postMessage({ type: 'save_sub_asset', fileName: 'icon.png', dataUrl: dataUrl });
+    });
+
+    // 6. Synthesize footprint.png (16x16 1-bit Pokédex Stamp)
+    document.getElementById('btnGenFoot').addEventListener('click', () => {
+        const can = document.createElement('canvas');
+        can.width = 16; can.height = 16;
+        const c2 = can.getContext('2d');
+        c2.imageSmoothingEnabled = false;
+
+        // Sample bottom half of sprite
+        const id = c2.createImageData(16, 16);
+        const startY = Math.floor(imageHeight * 0.6);
+        for (let y = 0; y < 16; y++) {
+            for (let x = 0; x < 16; x++) {
+                const sx = Math.floor((x / 16) * imageWidth);
+                const sy = startY + Math.floor((y / 16) * (imageHeight - startY));
+                const val = pixelIndices[sy * imageWidth + sx];
+                const o = (y * 16 + x) * 4;
+                if (val !== 0) {
+                    id.data[o] = 0; id.data[o + 1] = 0; id.data[o + 2] = 0; id.data[o + 3] = 255;
+                } else {
+                    id.data[o] = 255; id.data[o + 1] = 255; id.data[o + 2] = 255; id.data[o + 3] = 0;
+                }
+            }
+        }
+        c2.putImageData(id, 0, 0);
+
+        const dataUrl = can.toDataURL('image/png');
+        vscode.postMessage({ type: 'save_sub_asset', fileName: 'footprint.png', dataUrl: dataUrl });
+    });
+
+    // 7. Synthesize ow_sheet.png (3x4 Overworld Walk Cycle Sheet)
+    document.getElementById('btnGenOW').addEventListener('click', () => {
+        const size = 32;
+        const can = document.createElement('canvas');
+        can.width = size * 3; can.height = size * 4;
+        const c2 = can.getContext('2d');
+        c2.imageSmoothingEnabled = false;
+
+        const cell = document.createElement('canvas');
+        cell.width = size; cell.height = size;
+        cell.getContext('2d').drawImage(imageCanvas, 0, 0, size, size);
+
+        // Build step variant with leg shifts
+        function stepVariant(dx) {
+            const v = document.createElement('canvas');
+            v.width = size; v.height = size;
+            const vc = v.getContext('2d');
+            vc.imageSmoothingEnabled = false;
+            vc.drawImage(cell, 0, 0);
+            if (dx !== 0) {
+                const legY = Math.floor(size * 0.62);
+                const legH = Math.ceil(size * 0.38);
+                const strip = vc.getImageData(0, legY, size, legH);
+                vc.clearRect(0, legY, size, legH);
+                vc.putImageData(strip, dx, legY);
+            }
+            return v;
+        }
+
+        const frames = [stepVariant(0), stepVariant(-1), stepVariant(1)];
+        for (let dir = 0; dir < 4; dir++) {
+            for (let f = 0; f < 3; f++) {
+                const v = document.createElement('canvas');
+                v.width = size; v.height = size;
+                const vc = v.getContext('2d');
+                vc.imageSmoothingEnabled = false;
+                vc.drawImage(frames[f], 0, 0);
+                if (dir === 2) {
+                    vc.clearRect(0, 0, size, size);
+                    vc.save();
+                    vc.scale(-1, 1);
+                    vc.drawImage(frames[f], -size, 0);
+                    vc.restore();
+                }
+                c2.drawImage(v, f * size, dir * size);
+            }
+        }
+
+        const dataUrl = can.toDataURL('image/png');
+        vscode.postMessage({ type: 'save_sub_asset', fileName: 'ow_sheet.png', dataUrl: dataUrl });
+    });
+
+    // 8. Export Complete Species Pack (6 files directly)
+    document.getElementById('btnExportSpeciesPack').addEventListener('click', () => {
+        // Build anim_front
+        const canAnim = document.createElement('canvas');
+        canAnim.width = 128; canAnim.height = 64;
+        const cAnim = canAnim.getContext('2d');
+        cAnim.imageSmoothingEnabled = false;
+        cAnim.drawImage(imageCanvas, 0, 0, imageWidth, imageHeight, 0, 0, 64, 64);
+        cAnim.drawImage(imageCanvas, 0, 2, imageWidth, imageHeight - 2, 64, 0, 64, 62);
+        cAnim.drawImage(imageCanvas, 0, imageHeight - 2, imageWidth, 2, 64, 62, 64, 2);
+
+        // Build icon
+        const canIcon = document.createElement('canvas');
+        canIcon.width = 64; canIcon.height = 32;
+        const cIcon = canIcon.getContext('2d');
+        cIcon.imageSmoothingEnabled = false;
+        const small = document.createElement('canvas');
+        small.width = 28; small.height = 28;
+        small.getContext('2d').drawImage(imageCanvas, 0, 0, 28, 28);
+        cIcon.drawImage(small, 2, 2);
+        cIcon.drawImage(small, 34, 0);
+
+        // Build footprint
+        const canFoot = document.createElement('canvas');
+        canFoot.width = 16; canFoot.height = 16;
+        const cFoot = canFoot.getContext('2d');
+        cFoot.imageSmoothingEnabled = false;
+        const id = cFoot.createImageData(16, 16);
+        const startY = Math.floor(imageHeight * 0.6);
+        for (let y = 0; y < 16; y++) {
+            for (let x = 0; x < 16; x++) {
+                const sx = Math.floor((x / 16) * imageWidth);
+                const sy = startY + Math.floor((y / 16) * (imageHeight - startY));
+                const val = pixelIndices[sy * imageWidth + sx];
+                const o = (y * 16 + x) * 4;
+                if (val !== 0) { id.data[o] = 0; id.data[o+1] = 0; id.data[o+2] = 0; id.data[o+3] = 255; }
+            }
+        }
+        cFoot.putImageData(id, 0, 0);
+
+        // Build JASC palettes
+        let normalText = 'JASC-PAL\r\n0100\r\n16\r\n';
+        for (let i = 0; i < 16; i++) {
+            const c = palette[i] || { r: 0, g: 0, b: 0 };
+            normalText += `${c.r} ${c.g} ${c.b}\r\n`;
+        }
+
+        const shinyPal = generateShinyPal(palette);
+        let shinyText = 'JASC-PAL\r\n0100\r\n16\r\n';
+        for (let i = 0; i < 16; i++) {
+            const c = shinyPal[i] || { r: 0, g: 0, b: 0 };
+            shinyText += `${c.r} ${c.g} ${c.b}\r\n`;
+        }
+
+        vscode.postMessage({
+            type: 'export_species_bundle',
+            bundle: {
+                front: imageCanvas.toDataURL('image/png'),
+                animFront: canAnim.toDataURL('image/png'),
+                icon: canIcon.toDataURL('image/png'),
+                footprint: canFoot.toDataURL('image/png'),
+                normalPal: normalText,
+                shinyPal: shinyText
+            }
+        });
     });
 
     // Keyboard Shortcuts

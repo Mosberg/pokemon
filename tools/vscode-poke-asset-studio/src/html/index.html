@@ -1,0 +1,2716 @@
+<style>
+  :root {
+    --gba-dark: #0f200f;
+    --gba-darker: #0a140a;
+    --gba-panel: #1c2f1c;
+    --gba-green: #9bbc0f;
+    --gba-light: #c6e377;
+    --gba-mid: #8bac0f;
+    --gba-dim: #306230;
+    --accent: #ffd94d;
+    --accent2: #ff7b54;
+    --blue: #5db9ff;
+    --ink: #e8f3d0;
+    --muted: #9db48a;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    color-scheme: dark;
+  }
+  body {
+    margin: 0;
+    font-family: "Trebuchet MS", Verdana, system-ui, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #24402a 0%, var(--gba-darker) 60%) fixed,
+      var(--gba-darker);
+    color: var(--ink);
+    text-align: left;
+  }
+  a {
+    color: var(--accent);
+  }
+  header.top {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 14px;
+    background: linear-gradient(180deg, #2c4a33, #16261a);
+    border-bottom: 3px solid #000;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 2px 0 var(--gba-dim);
+  }
+  .gba-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ff4d4d;
+    box-shadow: 0 0 8px #ff4d4d;
+    flex: none;
+  }
+  .gba-light.on {
+    background: #7cff6b;
+    box-shadow: 0 0 8px #7cff6b;
+  }
+  header.top h1 {
+    font-size: 17px;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+  header.top h1 span {
+    color: var(--accent);
+  }
+  .badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-left: auto;
+  }
+  .badge {
+    font-size: 11px;
+    background: #0008;
+    border: 1px solid #ffffff22;
+    padding: 3px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge b {
+    color: var(--accent);
+  }
+  main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 14px;
+    display: grid;
+    grid-template-columns: 340px 1fr 320px;
+    gap: 12px;
+  }
+  @media (max-width: 1080px) {
+    main {
+      grid-template-columns: 1fr 1fr;
+    }
+    .col-right {
+      grid-column: 1/-1;
+    }
+  }
+  @media (max-width: 760px) {
+    main {
+      grid-template-columns: 1fr;
+    }
+  }
+  .card {
+    background: linear-gradient(180deg, #203a26, #141f16);
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow:
+      inset 0 0 0 2px #ffffff14,
+      0 4px 0 #000;
+    overflow: hidden;
+  }
+  .card h2 {
+    margin: 0;
+    padding: 8px 12px;
+    font-size: 13px;
+    background: #0d150e;
+    border-bottom: 2px solid #000;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .card .body {
+    padding: 10px 12px;
+  }
+  label.f {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 8px 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  input[type="text"],
+  textarea,
+  select {
+    width: 100%;
+    background: #0b120c;
+    border: 2px solid #000;
+    border-radius: 6px;
+    color: var(--ink);
+    padding: 8px;
+    font-size: 14px;
+    box-shadow: inset 0 2px 0 #0006;
+  }
+  textarea {
+    min-height: 64px;
+    resize: vertical;
+  }
+  .row {
+    display: flex;
+    gap: 8px;
+  }
+  .row > * {
+    flex: 1;
+  }
+  button {
+    cursor: pointer;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 9px 10px;
+    font-weight: 800;
+    font-size: 13px;
+    background: linear-gradient(180deg, #ffe27a, #e0a92e);
+    color: #3a2400;
+    box-shadow:
+      0 3px 0 #000,
+      inset 0 1px 0 #fff8;
+  }
+  button:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #000;
+  }
+  button.ghost {
+    background: linear-gradient(180deg, #3a5a41, #223824);
+    color: var(--ink);
+  }
+  button.blue {
+    background: linear-gradient(180deg, #9fdcff, #3f8fd1);
+    color: #08283f;
+  }
+  button.danger {
+    background: linear-gradient(180deg, #ff9d87, #d14a3f);
+    color: #fff;
+  }
+  button:disabled {
+    filter: grayscale(0.8) brightness(0.7);
+    cursor: not-allowed;
+  }
+  button.small {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+  .hint {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .promptPrev {
+    font-size: 11px;
+    background: #0009;
+    border: 1px dashed #ffffff33;
+    border-radius: 6px;
+    padding: 8px;
+    white-space: pre-wrap;
+    max-height: 130px;
+    overflow: auto;
+  }
+  .tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 6px 0;
+  }
+  .tabs button {
+    flex: 1 1 auto;
+  }
+  .tabs button.active {
+    outline: 3px solid var(--blue);
+  }
+  .viewGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media (max-width: 520px) {
+    .viewGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .spriteBox {
+    background: #000;
+    border: 2px solid #000;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  .spriteBox .cap {
+    font-size: 11px;
+    padding: 5px 8px;
+    background: #0d150e;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .spriteBox canvas {
+    display: block;
+    width: 100%;
+    image-rendering: pixelated;
+    background-image:
+      linear-gradient(45deg, #222 25%, transparent 25%),
+      linear-gradient(-45deg, #222 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #222 75%),
+      linear-gradient(-45deg, transparent 75%, #222 75%);
+    background-size: 16px 16px;
+    background-position:
+      0 0,
+      0 8px,
+      8px -8px,
+      -8px 0;
+    background-color: #111;
+  }
+  .palGrid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
+    margin: 8px 0;
+  }
+  .pal {
+    aspect-ratio: 1;
+    border: 2px solid #000;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+  }
+  .pal.sel {
+    outline: 2px solid #fff;
+  }
+  .pal i {
+    position: absolute;
+    bottom: -1px;
+    right: 1px;
+    font-size: 9px;
+    background: #000c;
+    color: #fff;
+    padding: 0 3px;
+    border-radius: 3px;
+    font-style: normal;
+  }
+  .pal.trans {
+    background: repeating-conic-gradient(#666 0 25%, #222 0 50%) 0 0/10px 10px !important;
+  }
+  .check {
+    font-size: 12px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    margin: 4px 0;
+    border: 1px solid #ffffff22;
+    background: #0006;
+  }
+  .check.ok {
+    border-color: #7cff6b66;
+  }
+  .check.bad {
+    border-color: #ff6b6b88;
+    background: #3a1414;
+  }
+  .check b {
+    float: right;
+  }
+  #battleCanvas {
+    width: 100%;
+    image-rendering: pixelated;
+    background: #000;
+    border-radius: 6px;
+    display: block;
+  }
+  .animRow {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .animRow canvas {
+    image-rendering: pixelated;
+    background: #000;
+    border: 2px solid #000;
+    border-radius: 6px;
+  }
+  details {
+    border: 1px solid #ffffff22;
+    border-radius: 8px;
+    margin: 8px 0;
+    background: #0005;
+  }
+  details summary {
+    cursor: pointer;
+    padding: 8px 10px;
+    font-size: 13px;
+    font-weight: 800;
+  }
+  details .in {
+    padding: 0 10px 10px;
+  }
+  table.spec {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  table.spec td,
+  table.spec th {
+    border: 1px solid #ffffff22;
+    padding: 4px 6px;
+    text-align: left;
+  }
+  table.spec th {
+    background: #0008;
+    color: var(--accent);
+  }
+  .kbd {
+    font-family: monospace;
+    background: #000;
+    padding: 1px 5px;
+    border-radius: 4px;
+    border: 1px solid #ffffff33;
+    font-size: 11px;
+  }
+  .loading {
+    position: relative;
+    overflow: hidden;
+  }
+  .loading::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 30%, #ffffff55 50%, transparent 70%);
+    animation: sh 1s infinite;
+  }
+  @keyframes sh {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  .bar {
+    height: 8px;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #ffffff33;
+  }
+  .bar i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--gba-green), var(--accent));
+    width: 0%;
+  }
+  footer {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 14px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+  }
+  .zoomBtns {
+    display: flex;
+    gap: 4px;
+  }
+  .zoomBtns button {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+  #editCanvas {
+    cursor: crosshair;
+  }
+  .twoCol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+</style>
+
+<header class="top">
+  <div class="gba-light on" id="powerLight"></div>
+  <h1>
+    ◤ POKEMON <span>GBA FORGE</span>
+    <span style="font-size: 11px; color: #9db48a"
+      >· Gen 3 · Ruby / Sapphire / Emerald · FR / LG</span
+    >
+  </h1>
+  <div class="badges">
+    <span class="badge"><b>4bpp</b> indexed</span>
+    <span class="badge"><b>16</b> colors</span>
+    <span class="badge"><b>BGR555</b></span>
+    <span class="badge"><b>8×8</b> tiles</span>
+  </div>
+</header>
+
+<main>
+  <!-- LEFT -->
+  <div class="col-left">
+    <div class="card">
+      <h2>① Concept + AI prompt</h2>
+      <div class="body">
+        <label class="f">Pokemon name</label>
+        <div class="row">
+          <input type="text" id="nameInput" value="Embercub" maxlength="24" />
+          <button class="ghost small" id="diceBtn" title="randomize">🎲</button>
+        </div>
+        <div class="row">
+          <div>
+            <label class="f">Type 1</label
+            ><select id="type1Input"></select>
+          </div>
+          <div>
+            <label class="f">Type 2</label
+            ><select id="type2Input"></select>
+          </div>
+        </div>
+        <label class="f">Body plan / anatomy</label>
+        <input
+          type="text"
+          id="bodyInput"
+          value="small quadruped lion cub with coal back-plates and big round ears"
+        />
+        <label class="f">Extra details (colors, parts)</label>
+        <textarea id="descInput">
+burnt-orange fur, cream belly, dark-brown mane tufts, stubby tail with ember tip</textarea
+        >
+        <label class="f">Asset category (canvas + framing)</label>
+        <select id="catInput">
+          <option value="front">Pokémon Battle Front — 64×64</option>
+          <option value="back">Pokémon Battle Back — 64×64</option>
+          <option value="anim">Animated Front (Emerald) — 128×64 (2 frames)</option>
+          <option value="trainerFront">Trainer Battle Front — 64×64</option>
+          <option value="trainerBack">Trainer Battle Back — 64×64</option>
+          <option value="icon">Party / Box Icon — 64×32 (2 frames)</option>
+          <option value="ow16">Overworld NPC — 16×32 tall (4-dir × 3-frame sheet)</option>
+          <option value="owmon">Overworld Pokémon — 32×32 (16 / 32 / 64 selectable)</option>
+          <option value="item">Item Sprite (Bag) — 24×24</option>
+          <option value="footprint">Pokédex Footprint — 16×16 · 1bpp</option>
+          <option value="terrain">Battle Terrain Base — 128×48</option>
+          <option value="backdrop">Battle Background — 240×112 tilemap</option>
+          <option value="tile">Overworld Env Tile — 16×16 metatile (8×8 base)</option>
+        </select>
+        <div class="twoCol" style="margin-top: 6px">
+          <div>
+            <label class="f">OW size</label>
+            <select id="owSizeInput">
+              <option value="16">16×16</option>
+              <option value="32" selected>32×32</option>
+              <option value="64">64×64</option>
+            </select>
+          </div>
+          <div>
+            <label class="f">Item size</label>
+            <select id="itemSizeInput">
+              <option value="24" selected>24×24</option>
+              <option value="32">32×32 (expanded)</option>
+            </select>
+          </div>
+        </div>
+        <label class="f">GBA conversion</label>
+        <div class="row">
+          <div>
+            <label class="hint"
+              ><input type="checkbox" id="rmBgCheck" checked /> kill white bg</label
+            >
+          </div>
+          <div>
+            <label class="hint"
+              ><input type="checkbox" id="outlineCheck" checked /> color-code outlines</label
+            >
+          </div>
+        </div>
+        <div class="row" style="margin-top: 6px">
+          <div>
+            <label class="f">Dither</label>
+            <select id="ditherInput">
+              <option value="none" selected>none (authentic flesh/metal)</option>
+              <option value="bayer">ordered Bayer 4×4 (fur/sand/rock only)</option>
+              <option value="fs">Floyd-Steinberg (use sparingly)</option>
+            </select>
+          </div>
+          <div>
+            <label class="f">Fit</label>
+            <select id="fitInput">
+              <option value="ground" selected>centered + grounded</option>
+              <option value="fit">fit contain</option>
+              <option value="stretch">stretch (no keep-aspect)</option>
+            </select>
+          </div>
+        </div>
+        <label class="f">Shiny hue shift (°) — luminance preserved</label>
+        <div class="row">
+          <input
+            type="range"
+            id="shinyShiftInput"
+            min="0"
+            max="360"
+            value="110"
+            style="flex: 3"
+          /><input
+            type="text"
+            id="shinyShiftVal"
+            value="110°"
+            style="flex: 1; text-align: center"
+            readonly
+          />
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 10px">
+          <button id="genFrontBtn" style="flex: 2">⚡ GENERATE FRONT</button>
+          <button
+            id="genBackBtn"
+            class="blue"
+            style="flex: 1"
+            title="Generates back view locked to front palette (shared master palette)"
+          >
+            BACK ↺
+          </button>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 8px">
+          <button id="uploadBtn" class="ghost">📤 upload art</button>
+          <button id="demoBtn" class="ghost">🧪 demo blob</button>
+          <input type="file" id="fileInput" accept="image/*" hidden />
+        </div>
+        <div class="bar" style="margin-top: 8px"><i id="progBar"></i></div>
+        <div class="hint" id="statusEl" style="margin-top: 6px">
+          Idle. AI gen takes ~10–40s — watch the progress bar.
+        </div>
+        <label class="f">Resolved AI prompt (what is sent)</label>
+        <div class="promptPrev" id="promptPrev"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 12px">
+      <h2>Gen 3 style bible (enforced)</h2>
+      <div class="body hint">
+        <b style="color: var(--accent)">Light:</b> top-left. Highlights upper-left, shadows
+        bottom-right.<br />
+        <b style="color: var(--accent)">Outlines:</b> 1px, color-coded (deep navy / crimson / brown
+        — not pure black). Black only for eyes / deepest crevices. Inner lines lighter than
+        exterior.<br />
+        <b style="color: var(--accent)">Shading:</b> 2–4 cel tones per material (base + 1 hi + 1–2
+        shade). Dither only fur / sand / rock.<br />
+        <b style="color: var(--accent)">Camera:</b> front = ¾ facing <b>left</b>; back =
+        over-shoulder facing <b>upper-right</b>; OW = high-angle oblique chibi; trainer back = bust
+        facing right.<br />
+        <b style="color: var(--accent)">Hardware:</b> dims must be multiples of 8 · 15 visible + 1
+        transparent · BGR555 steps of 8 · front/back share one palette · shiny = same indices,
+        hue-rotated, darks kept.
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER -->
+  <div class="col-mid">
+    <div class="card">
+      <h2>
+        ② GBA hardware output — <span id="dimLabel">64×64</span> · <span id="palLabel">–</span>
+      </h2>
+      <div class="body">
+        <div class="tabs">
+          <button class="small ghost active" data-view="normal">Normal</button>
+          <button class="small ghost" data-view="shiny">✨ Shiny</button>
+          <button class="small ghost" data-view="compare">Compare</button>
+          <button class="small ghost" data-view="foot">Footprint 1bpp</button>
+        </div>
+        <div class="viewGrid">
+          <div class="spriteBox">
+            <div class="cap"><span>AI source (pre-GBA)</span><span id="srcInfo">–</span></div>
+            <canvas id="srcCanvas" width="256" height="256"></canvas>
+          </div>
+          <div class="spriteBox">
+            <div class="cap">
+              <span id="gbaCap">GBA result · 4× zoom</span
+              ><span class="zoomBtns"
+                ><button class="small ghost" data-zoom="2">2×</button
+                ><button class="small ghost" data-zoom="4">4×</button
+                ><button class="small ghost" data-zoom="8">8×</button></span
+              >
+            </div>
+            <canvas id="gbaCanvas" width="256" height="256"></canvas>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 8px">
+          <div>
+            <label class="f">Display</label>
+            <div class="hint">
+              <label><input type="checkbox" id="gridCheck" checked /> 8×8 tile grid</label> ·
+              <label
+                ><input type="checkbox" id="checkerCheck" checked /> checker transparency</label
+              >
+              · <label><input type="checkbox" id="groundCheck" checked /> ground line</label>
+            </div>
+          </div>
+          <div>
+            <label class="f">Frames</label>
+            <div style="display: flex; gap: 6px">
+              <button class="small ghost" id="makeAnimBtn">→ build Emerald anim (128×64)</button
+              ><button class="small ghost" id="makeIconBtn">→ build icon (64×32)</button>
+            </div>
+          </div>
+        </div>
+        <div class="animRow" style="margin-top: 10px">
+          <div>
+            <div class="hint">anim_front.png (128×64) — Emerald 2-frame</div>
+            <canvas id="animCanvas" width="128" height="64" style="width: 256px"></canvas
+            ><br /><button class="small ghost" id="playAnimBtn">▶ play</button>
+            <button class="small ghost" id="dlAnimBtn">⬇ anim_front.png</button>
+          </div>
+          <div>
+            <div class="hint">icon (64×32) — frame1 = −2px jump</div>
+            <canvas id="iconCanvas" width="64" height="32" style="width: 192px"></canvas
+            ><br /><button class="small ghost" id="playIconBtn">▶ jump</button>
+            <button class="small ghost" id="dlIconBtn">⬇ icon.png</button>
+          </div>
+          <div style="flex: 1; min-width: 200px">
+            <div class="hint">Battle mockup — 240×160 GBA screen (backdrop + 128×48 bases)</div>
+            <canvas id="battleCanvas" width="240" height="160"></canvas>
+            <div style="margin-top: 6px; display: flex; gap: 6px">
+              <button class="small ghost" id="dlBattleBtn">⬇ battle mockup</button
+              ><button class="small ghost" id="genBackdropBtn">🎨 AI backdrop</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 12px">
+      <h2>③ Pixel touch-up editor (indexed — stays hardware-legal)</h2>
+      <div class="body">
+        <div class="row">
+          <div style="flex: 2">
+            <canvas
+              id="editCanvas"
+              width="64"
+              height="64"
+              style="
+                width: 100%;
+                image-rendering: pixelated;
+                background: #000;
+                border: 2px solid #000;
+                border-radius: 6px;
+              "
+            ></canvas>
+            <div class="hint">
+              Left-click paint · right-click = transparent (idx 0) · drag to stroke. Editing
+              re-snaps to BGR555 and refreshes shiny + anim + battle.
+            </div>
+          </div>
+          <div style="flex: 1">
+            <label class="f">Brush (palette index)</label>
+            <div class="palGrid" id="brushPal" style="grid-template-columns: repeat(4, 1fr)"></div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap">
+              <button class="small ghost" id="mirrorBtn">⇋ mirror</button>
+              <button class="small ghost" id="up2Btn">↑ −2px (icon jump)</button>
+              <button class="small ghost" id="cleanBtn">🧹 isolated-pixel clean</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 12px">
+      <h2>④ Overworld · item · footprint · tiles</h2>
+      <div class="body">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <button class="small blue" id="buildOwBtn">Build OW sheet (4-dir × 3-frame)</button>
+          <button class="small blue" id="buildItemBtn">Build item 24×24</button>
+          <button class="small blue" id="buildFootBtn">Stamp footprint 1bpp</button>
+          <button class="small blue" id="buildTileBtn">Build 16×16 metatile</button>
+        </div>
+        <div class="animRow" style="margin-top: 10px">
+          <div>
+            <div class="hint">OW sheet (each cell = selected OW size; down/idle highlighted)</div>
+            <canvas id="owCanvas" width="96" height="128" style="width: 192px"></canvas
+            ><br /><button class="small ghost" id="playOwBtn">▶ walk</button>
+            <button class="small ghost" id="dlOwBtn">⬇ ow_sheet.png</button>
+          </div>
+          <div>
+            <div class="hint">Item</div>
+            <canvas id="itemCanvas" width="24" height="24" style="width: 120px"></canvas
+            ><br /><button class="small ghost" id="dlItemBtn">⬇ item.png</button>
+          </div>
+          <div>
+            <div class="hint">Footprint (1-bit)</div>
+            <canvas id="footCanvas" width="16" height="16" style="width: 128px"></canvas
+            ><br /><button class="small ghost" id="dlFootBtn">⬇ footprint.png</button>
+          </div>
+          <div>
+            <div class="hint">Metatile (16×16 = 4× 8×8 tiles)</div>
+            <canvas id="tileCanvas" width="16" height="16" style="width: 128px"></canvas
+            ><br /><button class="small ghost" id="dlTileBtn">⬇ metatile.png</button>
+          </div>
+        </div>
+        <details>
+          <summary>📐 Full category spec table (from hardware docs)</summary>
+          <div class="in">
+            <table class="spec">
+              <tr>
+                <th>Asset</th>
+                <th>Canvas</th>
+                <th>Palette</th>
+                <th>Framing</th>
+              </tr>
+              <tr>
+                <td>Battle Front</td>
+                <td>64×64</td>
+                <td>15+1</td>
+                <td>centered/grounded, ¾ facing left</td>
+              </tr>
+              <tr>
+                <td>Battle Back</td>
+                <td>64×64</td>
+                <td>shared w/ front</td>
+                <td>over-shoulder, facing upper-right</td>
+              </tr>
+              <tr>
+                <td>Anim Front</td>
+                <td>128×64</td>
+                <td>15+1</td>
+                <td>two 64×64 side-by-side</td>
+              </tr>
+              <tr>
+                <td>Trainer Front/Back</td>
+                <td>64×64</td>
+                <td>15+1</td>
+                <td>dynamic left / bust facing right</td>
+              </tr>
+              <tr>
+                <td>Icon</td>
+                <td>64×32 (2× 32×32)</td>
+                <td>shared 16</td>
+                <td>frame1 −2px jump</td>
+              </tr>
+              <tr>
+                <td>OW NPC</td>
+                <td>16×32 / 16×16</td>
+                <td>15+1</td>
+                <td>4 dirs × 3 frames</td>
+              </tr>
+              <tr>
+                <td>OW mon</td>
+                <td>16/32/64 sq</td>
+                <td>15+1</td>
+                <td>multiples of 8×8 tiles</td>
+              </tr>
+              <tr>
+                <td>Item</td>
+                <td>24×24 (32 exp.)</td>
+                <td>15+1</td>
+                <td>iso / front icon</td>
+              </tr>
+              <tr>
+                <td>Footprint</td>
+                <td>16×16</td>
+                <td>1-bit</td>
+                <td>B/W stamp</td>
+              </tr>
+              <tr>
+                <td>Terrain base</td>
+                <td>128×48</td>
+                <td>15+1</td>
+                <td>ellipse platform</td>
+              </tr>
+              <tr>
+                <td>Backdrop</td>
+                <td>240×112/160</td>
+                <td>multi-palette tilemap</td>
+                <td>dedup 8×8 tiles</td>
+              </tr>
+              <tr>
+                <td>Env tiles</td>
+                <td>8×8 → 16×16 meta</td>
+                <td>16/sub-pal ×16</td>
+                <td>Bottom/Mid/Top layers</td>
+              </tr>
+            </table>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="col-right">
+    <div class="card">
+      <h2>Master palette (shared front/back)</h2>
+      <div class="body">
+        <div class="hint">
+          Index 0 = transparent. Front + back + anim frames must reference this
+          <b>identical</b> table. Shiny keeps the same order — only colors change.
+        </div>
+        <div class="palGrid" id="palGrid"></div>
+        <div class="hint" id="palHex" style="font-family: monospace; word-break: break-all"></div>
+        <div class="row" style="margin-top: 6px">
+          <button class="small ghost" id="copyPalBtn">copy .pal (JASC)</button>
+          <button class="small ghost" id="copyShinyBtn">copy shiny.pal</button>
+        </div>
+        <label class="f">Back-sprite palette lock</label>
+        <div class="hint">
+          When ON (default), the back sprite is re-mapped to the front's master palette with
+          nearest-color matching — guaranteeing the shared-palette rule even though pixels differ.
+        </div>
+        <label class="hint"
+          ><input type="checkbox" id="lockPalCheck" checked /> lock back to front palette</label
+        >
+        <div style="display: flex; gap: 6px; margin-top: 8px">
+          <button class="small blue" id="remapBackBtn">↺ remap back → front palette</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 12px">
+      <h2>Hardware validator</h2>
+      <div class="body" id="validBox"></div>
+    </div>
+    <div class="card" style="margin-top: 12px">
+      <h2>Export — ROM-ready pack</h2>
+      <div class="body">
+        <label class="f">Files included</label>
+        <div class="hint">
+          <span class="kbd">front.png</span> <span class="kbd">back.png</span>
+          <span class="kbd">anim_front.png (128×64)</span> <span class="kbd">icon.png (64×32)</span>
+          <span class="kbd">ow_sheet.png</span> <span class="kbd">item.png</span>
+          <span class="kbd">footprint.png</span>
+          <span class="kbd">normal.pal / shiny.pal (JASC)</span> <span class="kbd">normal.gpl</span>
+          <span class="kbd">manifest.json</span>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap">
+          <button id="dlFrontBtn">⬇ front.png</button>
+          <button id="dlBackBtn" class="blue">⬇ back.png</button>
+          <button id="dlPalBtn" class="ghost">⬇ normal.pal</button>
+          <button id="dlShinyPalBtn" class="ghost">⬇ shiny.pal</button>
+        </div>
+        <button id="dlZipBtn" style="width: 100%; margin-top: 8px">
+          📦 DOWNLOAD FULL PACK (.zip)
+        </button>
+        <div class="hint" style="margin-top: 6px">
+          PNGs are true-color previews of the indexed data (every color already BGR555-snapped, ≤15
+          + transparent). <span class="kbd">.pal</span> files are JASC-PAL — import directly into
+          Aseprite / usenti / GBA toolchains. Footprint thresholded to pure 1-bit.
+        </div>
+        <label class="f">Pokédex entry (AI flavor)</label>
+        <button class="small ghost" id="dexBtn" style="width: 100%">📖 generate dex entry</button>
+        <div class="hint" id="dexOut" style="margin-top: 6px"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="forge-footer">
+  <p>
+    <strong>POKÉMON GBA FORGE</strong> · Authentic Game Boy Advance asset pipeline. Every graphic is
+    automatically validated and converted to GBA specifications: 4bpp indexed color, 16-color
+    palettes (index 0 transparent), BGR555 color space, 8×8 tile alignment, shared front/back master
+    palette, and index-matched shiny palette generation with luminance preservation.
+  </p>
+
+  <p>
+    AI-generated artwork serves only as a <em>starting sketch</em>. Every imported image is
+    re-quantized, palette-corrected, and rebuilt into production-ready assets suitable for direct
+    ROM integration.
+  </p>
+
+  <p>
+    <strong>Recommended workflow:</strong>
+    Front Sprite → Back Sprite (palette-locked) → Animation Frames → Party Icon → Overworld Sprite →
+    Item Icon → Footprint
+  </p>
+
+  <div class="footer-bottom">
+    <span>© 2026 Mosberg. All rights reserved.</span>
+    <a href="https://github.com/mosberg" target="_blank" rel="noopener noreferrer"> GitHub </a>
+  </div>
+</footer>
+
+<script>
+  "use strict";
+  /* ============================================================
+   POKEMON GBA FORGE — hardware-accurate Gen 3 pipeline
+   All conversion runs client-side. No pixel leaves the device
+   except the AI sketch request itself.
+   ============================================================ */
+  const $ = (id) => document.getElementById(id);
+  const TYPES = [
+    "None",
+    "Normal",
+    "Fire",
+    "Water",
+    "Electric",
+    "Grass",
+    "Ice",
+    "Fighting",
+    "Poison",
+    "Ground",
+    "Flying",
+    "Psychic",
+    "Bug",
+    "Rock",
+    "Ghost",
+    "Dragon",
+    "Dark",
+    "Steel",
+    "Fairy",
+  ];
+  $("type1Input").innerHTML = TYPES.slice(1)
+    .map((t) => `<option ${t === "Fire" ? "selected" : ""}>${t}</option>`)
+    .join("");
+  $("type2Input").innerHTML = TYPES.map((t) => `<option>${t}</option>`).join("");
+
+  const CATS = {
+    front: {
+      w: 64,
+      h: 64,
+      label: "Battle Front 64×64",
+      suffix:
+        "pokemon battle front sprite, full body 3/4 combat angle FACING LEFT, centered and grounded with feet near bottom edge, eye-level slightly tilted down, dynamic pose",
+    },
+    back: {
+      w: 64,
+      h: 64,
+      label: "Battle Back 64×64",
+      suffix:
+        "pokemon battle back sprite, zoomed over-the-shoulder close view from behind, creature FACING UPPER-RIGHT toward opponent, cropped at waist, back of head and shoulders prominent",
+    },
+    anim: {
+      w: 128,
+      h: 64,
+      label: "Animated Front 128×64",
+      suffix:
+        "pokemon battle front sprite, full body 3/4 combat angle FACING LEFT, centered and grounded, symmetrical neutral pose suitable for 2-frame idle bounce animation",
+    },
+    trainerFront: {
+      w: 64,
+      h: 64,
+      label: "Trainer Front 64×64",
+      suffix:
+        "pokemon trainer battle front sprite, human character in dynamic combat pose FACING LEFT, pointing or throwing stance, full upper body visible, anime style",
+    },
+    trainerBack: {
+      w: 64,
+      h: 64,
+      label: "Trainer Back 64×64",
+      suffix:
+        "pokemon trainer battle back sprite, bust waist-up view from behind FACING RIGHT, cap and backpack visible, throwing arm raised",
+    },
+    icon: {
+      w: 64,
+      h: 32,
+      label: "Icon 64×32",
+      suffix:
+        "pokemon menu icon, head-focused chibi bust, front-facing neutral expression, tightly framed, simple shapes readable at 32x32 pixels",
+    },
+    ow16: {
+      w: 16,
+      h: 32,
+      label: "OW NPC 16×32",
+      suffix:
+        "pokemon game overworld NPC sprite, tall 16x32, high-angle top-down oblique view, semi-chibi big head, DOWN-FACING neutral standing pose, arms at sides, full body head-to-toe",
+    },
+    owmon: {
+      w: 32,
+      h: 32,
+      label: "OW mon",
+      suffix:
+        "pokemon overworld follower sprite, high-angle oblique chibi, DOWN-FACING neutral standing pose, compact readable silhouette",
+    },
+    item: {
+      w: 24,
+      h: 24,
+      label: "Item 24×24",
+      suffix:
+        "pokemon bag item icon, single item floating front-facing, slight isometric tilt, centered with 2px padding, no shadow",
+    },
+    footprint: {
+      w: 16,
+      h: 16,
+      label: "Footprint 16×16",
+      suffix:
+        "animal footprint stamp silhouette, single paw print, top-down flat black shape on white, high contrast, no shading",
+    },
+    terrain: {
+      w: 128,
+      h: 48,
+      label: "Terrain 128×48",
+      suffix:
+        "pokemon battle terrain platform, flat horizontal ellipse disc viewed slightly from above, grassy texture with 3 cel tones, transparent background outside ellipse",
+    },
+    backdrop: {
+      w: 240,
+      h: 112,
+      label: "Backdrop 240×112",
+      suffix:
+        "pokemon battle background landscape, wide scenic backdrop, horizon at upper third, soft sky gradient bands plus simple ground texture, no characters, no text, tileable 8x8 friendly flat shapes",
+    },
+    tile: {
+      w: 16,
+      h: 16,
+      label: "Metatile 16×16",
+      suffix:
+        "pokemon overworld grass tile texture, top-down 16x16, 3 flat tones, subtle checker detail, tileable edges, no objects",
+    },
+  };
+  const STYLE_SUFFIX =
+    "game boy advance pixel art, ruby sapphire emerald style, clean cel-shading with 2 to 4 tone steps per material, single-pixel color-coded outlines in deep saturated dark tones (navy brown crimson, NOT pure black except eyes), top-left lighting with highlights on upper-left contours and shadows to bottom-right, solid clustered pixels, minimal dithering, limited 15-color palette, flat white background, no photo effects, no gradients, no text, no watermark, no frame";
+  const NEG =
+    "blurry, photorealistic, 3d render, smooth gradient, heavy dithering noise, pure black thick outline, extra limbs, deformed, watermark, text, border, background clutter, shadow ellipse";
+
+  const S = {
+    cat: "front",
+    view: "normal",
+    zoom: 4,
+    srcImage: null,
+    front: null, // {w,h,idx:Uint8Array,pal:[{r,g,b}], rgba:ImageData}
+    back: null,
+    shinyPal: null,
+    brush: 1,
+    painting: false,
+    animTimer: null,
+    iconTimer: null,
+    owTimer: null,
+    owSheet: null,
+    itemData: null,
+    footData: null,
+    tileData: null,
+    backdropImg: null,
+  };
+
+  /* ---------- color utils ---------- */
+  function snap555(v) {
+    let s = Math.round(v / 8) * 8;
+    if (s > 248) s = 248;
+    if (s < 0) s = 0;
+    return s;
+  }
+  function snapPal(p) {
+    return p.map((c) => ({ r: snap555(c.r), g: snap555(c.g), b: snap555(c.b) }));
+  }
+  function rgb2hsl(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const mx = Math.max(r, g, b),
+      mn = Math.min(r, g, b);
+    let h = 0,
+      s = 0,
+      l = (mx + mn) / 2;
+    if (mx !== mn) {
+      const d = mx - mn;
+      s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn);
+      switch (mx) {
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r) / d + 2;
+          break;
+        default:
+          h = (r - g) / d + 4;
+      }
+      h *= 60;
+    }
+    return { h, s, l };
+  }
+  function hsl2rgb(h, s, l) {
+    h = (((h % 360) + 360) % 360) / 360;
+    let r, g, b;
+    if (s === 0) {
+      r = g = b = l;
+    } else {
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s,
+        p = 2 * l - q;
+      const f = (t) => {
+        t = ((t % 1) + 1) % 1;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+        return p;
+      };
+      r = f(h + 1 / 3);
+      g = f(h);
+      b = f(h - 1 / 3);
+    }
+    return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
+  }
+  function lum(r, g, b) {
+    return 0.299 * r + 0.587 * g + 0.114 * b;
+  }
+  function dist2(a, b) {
+    const dr = a.r - b.r,
+      dg = a.g - b.g,
+      db = a.b - b.b;
+    return dr * dr + dg * dg + db * db;
+  }
+  function hex(c) {
+    return "#" + [c.r, c.g, c.b].map((v) => v.toString(16).padStart(2, "0")).join("");
+  }
+
+  /* ---------- median-cut quantizer ---------- */
+  function medianCut(px, maxColors) {
+    if (!px.length) return [{ r: 0, g: 0, b: 0 }];
+    let boxes = [px];
+    while (boxes.length < maxColors) {
+      let bi = -1,
+        best = -1;
+      boxes.forEach((box, i) => {
+        if (box.length < 2) return;
+        let rmin = 255,
+          rmax = 0,
+          gmin = 255,
+          gmax = 0,
+          bmin = 255,
+          bmax = 0;
+        for (const p of box) {
+          if (p.r < rmin) rmin = p.r;
+          if (p.r > rmax) rmax = p.r;
+          if (p.g < gmin) gmin = p.g;
+          if (p.g > gmax) gmax = p.g;
+          if (p.b < bmin) bmin = p.b;
+          if (p.b > bmax) bmax = p.b;
+        }
+        const rng = Math.max(rmax - rmin, gmax - gmin, bmax - bmin);
+        if (rng > best) {
+          best = rng;
+          bi = i;
+        }
+      });
+      if (bi < 0) break;
+      const box = boxes[bi];
+      let rmin = 255,
+        rmax = 0,
+        gmin = 255,
+        gmax = 0,
+        bmin = 255,
+        bmax = 0;
+      for (const p of box) {
+        if (p.r < rmin) rmin = p.r;
+        if (p.r > rmax) rmax = p.r;
+        if (p.g < gmin) gmin = p.g;
+        if (p.g > gmax) gmax = p.g;
+        if (p.b < bmin) bmin = p.b;
+        if (p.b > bmax) bmax = p.b;
+      }
+      const rr = rmax - rmin,
+        gg = gmax - gmin,
+        bb = bmax - bmin;
+      const ch = rr >= gg && rr >= bb ? "r" : gg >= bb ? "g" : "b";
+      box.sort((a, b) => a[ch] - b[ch]);
+      const mid = Math.floor(box.length / 2);
+      boxes.splice(bi, 1, box.slice(0, mid), box.slice(mid));
+    }
+    return boxes.map((box) => {
+      if (!box.length) return { r: 0, g: 0, b: 0 };
+      let r = 0,
+        g = 0,
+        b = 0;
+      for (const p of box) {
+        r += p.r;
+        g += p.g;
+        b += p.b;
+      }
+      return {
+        r: Math.round(r / box.length),
+        g: Math.round(g / box.length),
+        b: Math.round(b / box.length),
+      };
+    });
+  }
+  function nearestIdx(c, pal) {
+    let bi = 0,
+      bd = 1e12;
+    for (let i = 0; i < pal.length; i++) {
+      const d = dist2(c, pal[i]);
+      if (d < bd) {
+        bd = d;
+        bi = i;
+      }
+    }
+    return bi;
+  }
+
+  /* ---------- transparency: flood-fill from edges ---------- */
+  function killBackground(imgData, tol) {
+    const d = imgData.data,
+      W = imgData.width,
+      H = imgData.height;
+    const corners = [
+      [0, 0],
+      [W - 1, 0],
+      [0, H - 1],
+      [W - 1, H - 1],
+      [Math.floor(W / 2), 0],
+    ];
+    let rs = 0,
+      gs = 0,
+      bs = 0,
+      n = 0;
+    for (const [x, y] of corners) {
+      const o = (y * W + x) * 4;
+      rs += d[o];
+      gs += d[o + 1];
+      bs += d[o + 2];
+      n++;
+    }
+    const br = rs / n,
+      bg = gs / n,
+      bb = bs / n;
+    // if corners are not bright, don't kill
+    if (lum(br, bg, bb) < 170) return false;
+    const seen = new Uint8Array(W * H);
+    const stack = [
+      [0, 0],
+      [W - 1, 0],
+      [0, H - 1],
+      [W - 1, H - 1],
+    ];
+    const close = (o) =>
+      Math.abs(d[o] - br) < tol && Math.abs(d[o + 1] - bg) < tol && Math.abs(d[o + 2] - bb) < tol;
+    while (stack.length) {
+      const [x, y] = stack.pop();
+      if (x < 0 || y < 0 || x >= W || y >= H) continue;
+      const i = y * W + x;
+      if (seen[i]) continue;
+      seen[i] = 1;
+      const o = i * 4;
+      if (d[o + 3] < 10) {
+        /*already*/
+      } else if (!close(o)) continue;
+      d[o + 3] = 0;
+      stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+    }
+    return true;
+  }
+
+  /* ---------- core: fit + quantize ---------- */
+  function gbaConvert(srcCanvas, TW, TH, opts) {
+    opts = Object.assign(
+      { killBg: true, dither: "none", fit: "ground", lockPal: null, colorCodeOutlines: true },
+      opts || {},
+    );
+    // 1. bounding box of opaque
+    const sw = srcCanvas.width,
+      sh = srcCanvas.height;
+    const sctx = srcCanvas.getContext("2d", { willReadFrequently: true });
+    const sdata = sctx.getImageData(0, 0, sw, sh);
+    if (opts.killBg) killBackground(sdata, 42);
+    // trim: find bbox
+    let x0 = sw,
+      y0 = sh,
+      x1 = -1,
+      y1 = -1;
+    for (let y = 0; y < sh; y++)
+      for (let x = 0; x < sw; x++) {
+        const a = sdata.data[(y * sw + x) * 4 + 3];
+        if (a > 16) {
+          if (x < x0) x0 = x;
+          if (x > x1) x1 = x;
+          if (y < y0) y0 = y;
+          if (y > y1) y1 = y;
+        }
+      }
+    let tmp = document.createElement("canvas");
+    if (x1 < 0) {
+      tmp.width = TW;
+      tmp.height = TH;
+      const c = tmp.getContext("2d");
+      c.clearRect(0, 0, TW, TH);
+      return {
+        w: TW,
+        h: TH,
+        idx: new Uint8Array(TW * TH),
+        pal: [],
+        rgba: c.getImageData(0, 0, TW, TH),
+        empty: true,
+      };
+    }
+    let bw = x1 - x0 + 1,
+      bh = y1 - y0 + 1;
+    // This is a hack: getImageData(x0..) from sdata directly
+    // Rebuild properly: draw modified sdata then crop
+    const full = document.createElement("canvas");
+    full.width = sw;
+    full.height = sh;
+    full.getContext("2d").putImageData(sdata, 0, 0);
+    const cc = document.createElement("canvas");
+    cc.width = bw;
+    cc.height = bh;
+    cc.getContext("2d").drawImage(full, x0, y0, bw, bh, 0, 0, bw, bh);
+    // 2. scale to fit
+    const pad = TW <= 16 ? 1 : TW <= 32 ? 2 : 4;
+    let dw, dh;
+    const availW = TW - pad * 2,
+      availH = TH - pad * 2 - (opts.fit === "ground" ? 2 : 0);
+    if (opts.fit === "stretch") {
+      dw = availW;
+      dh = availH;
+    } else {
+      const s = Math.min(availW / bw, availH / bh);
+      dw = Math.max(1, Math.floor(bw * s));
+      dh = Math.max(1, Math.floor(bh * s));
+    }
+    dw = Math.min(dw, TW);
+    dh = Math.min(dh, TH);
+    const small = document.createElement("canvas");
+    small.width = Math.max(1, dw);
+    small.height = Math.max(1, dh);
+    const smctx = small.getContext("2d");
+    smctx.imageSmoothingEnabled = true;
+    smctx.imageSmoothingQuality = "high";
+    smctx.clearRect(0, 0, small.width, small.height);
+    smctx.drawImage(cc, 0, 0, small.width, small.height);
+    // place onto target
+    const tgt = document.createElement("canvas");
+    tgt.width = TW;
+    tgt.height = TH;
+    const tctx = tgt.getContext("2d");
+    tctx.imageSmoothingEnabled = false;
+    tctx.clearRect(0, 0, TW, TH);
+    let ox = Math.floor((TW - small.width) / 2),
+      oy;
+    if (opts.fit === "ground") oy = TH - small.height - 2;
+    else oy = Math.floor((TH - small.height) / 2);
+    tctx.drawImage(small, ox, oy);
+    let tdata = tctx.getImageData(0, 0, TW, TH);
+    // 3. collect opaque
+    const px = [];
+    const alphaMask = new Uint8Array(TW * TH);
+    for (let i = 0; i < TW * TH; i++) {
+      const o = i * 4;
+      if (tdata.data[o + 3] > 128) {
+        alphaMask[i] = 1;
+        px.push({ r: tdata.data[o], g: tdata.data[o + 1], b: tdata.data[o + 2] });
+      }
+    }
+    let pal;
+    if (opts.lockPal) {
+      pal = opts.lockPal.map((c) => ({ ...c }));
+    } else {
+      pal = medianCut(px, 15);
+      pal = snapPal(pal);
+      // dedupe
+      const seen = new Set(),
+        uniq = [];
+      for (const c of pal) {
+        const k = c.r + "," + c.g + "," + c.b;
+        if (!seen.has(k)) {
+          seen.add(k);
+          uniq.push(c);
+        }
+      }
+      pal = uniq.slice(0, 15);
+    }
+    // 4. map + optional dither
+    const idx = new Uint8Array(TW * TH);
+    if (opts.dither === "none" || !px.length) {
+      for (let y = 0; y < TH; y++)
+        for (let x = 0; x < TW; x++) {
+          const i = y * TW + x;
+          if (!alphaMask[i]) {
+            idx[i] = 0;
+            continue;
+          }
+          const o = i * 4;
+          idx[i] =
+            nearestIdx({ r: tdata.data[o], g: tdata.data[o + 1], b: tdata.data[o + 2] }, pal) + 1;
+        }
+    } else if (opts.dither === "bayer") {
+      const M = [
+        [0, 8, 2, 10],
+        [12, 4, 14, 6],
+        [3, 11, 1, 9],
+        [15, 7, 13, 5],
+      ];
+      for (let y = 0; y < TH; y++)
+        for (let x = 0; x < TW; x++) {
+          const i = y * TW + x;
+          if (!alphaMask[i]) {
+            idx[i] = 0;
+            continue;
+          }
+          const o = i * 4;
+          const t = (M[y % 4][x % 4] / 16 - 0.5) * 24;
+          idx[i] =
+            nearestIdx(
+              { r: tdata.data[o] + t, g: tdata.data[o + 1] + t, b: tdata.data[o + 2] + t },
+              pal,
+            ) + 1;
+        }
+    } else {
+      // Floyd-Steinberg
+      const buf = new Float32Array(tdata.data);
+      for (let y = 0; y < TH; y++)
+        for (let x = 0; x < TW; x++) {
+          const i = y * TW + x,
+            o = i * 4;
+          if (!alphaMask[i]) {
+            idx[i] = 0;
+            continue;
+          }
+          const old = { r: buf[o], g: buf[o + 1], b: buf[o + 2] };
+          const bi = nearestIdx(old, pal);
+          idx[i] = bi + 1;
+          const err = { r: old.r - pal[bi].r, g: old.g - pal[bi].g, b: old.b - pal[bi].b };
+          const spread = [
+            [1, 0, 7 / 16],
+            [-1, 1, 3 / 16],
+            [0, 1, 5 / 16],
+            [1, 1, 1 / 16],
+          ];
+          for (const [dx, dy, f] of spread) {
+            const nx = x + dx,
+              ny = y + dy;
+            if (nx < 0 || nx >= TW || ny >= TH) continue;
+            const no = (ny * TW + nx) * 4;
+            buf[no] += err.r * f;
+            buf[no + 1] += err.g * f;
+            buf[no + 2] += err.b * f;
+          }
+        }
+    }
+    // 5. color-coded outlines: edge opaque pixels adjacent to transparent -> darken toward saturated dark
+    if (opts.colorCodeOutlines && pal.length) {
+      for (let y = 0; y < TH; y++)
+        for (let x = 0; x < TW; x++) {
+          const i = y * TW + x;
+          if (!alphaMask[i] || idx[i] === 0) continue;
+          let edge = false;
+          for (let dy = -1; dy <= 1 && !edge; dy++)
+            for (let dx = -1; dx <= 1; dx++) {
+              const nx = x + dx,
+                ny = y + dy;
+              if (nx < 0 || ny < 0 || nx >= TW || ny >= TH) {
+                edge = true;
+                break;
+              }
+              if (!alphaMask[ny * TW + nx]) {
+                edge = true;
+                break;
+              }
+            }
+          if (!edge) continue;
+          const pi = idx[i] - 1,
+            c = pal[pi];
+          // keep already-dark pixels as outlines (don't brighten)
+          if (lum(c.r, c.g, c.b) < 42) continue;
+          // push toward deep saturated dark of same hue: scale down + saturate
+          const hsl = rgb2hsl(c.r, c.g, c.b);
+          const dark = hsl2rgb(
+            hsl.h,
+            Math.min(1, hsl.s * 1.15 + 0.12),
+            Math.max(0.1, hsl.l * 0.32),
+          );
+          // find or add? map edge pixel to nearest dark in palette — if none, keep original (avoid adding colors)
+          // Instead: darken palette entry only if ALL pixels using it are edges? Simpler: leave palette, but track — we instead post-process palette: identify darkest entry as outline keeper.
+          // Approach: replace pixel index with darkest palette index whose hue is closest, if darker.
+          let best = pi,
+            bd = 1e12;
+          for (let k = 0; k < pal.length; k++) {
+            const q = pal[k];
+            if (lum(q.r, q.g, q.b) > 70) continue;
+            const qh = rgb2hsl(q.r, q.g, q.b);
+            let dh = Math.abs(qh.h - hsl.h);
+            dh = Math.min(dh, 360 - dh);
+            const score = dh + lum(q.r, q.g, q.b) * 0.2;
+            if (score < bd) {
+              bd = score;
+              best = k;
+            }
+          }
+          if (best !== pi && bd < 120) idx[i] = best + 1;
+        }
+    }
+    // 6. build rgba
+    const out = tctx.createImageData(TW, TH);
+    for (let i = 0; i < TW * TH; i++) {
+      const o = i * 4;
+      if (idx[i] === 0) {
+        out.data[o + 3] = 0;
+      } else {
+        const c = pal[idx[i] - 1];
+        out.data[o] = c.r;
+        out.data[o + 1] = c.g;
+        out.data[o + 2] = c.b;
+        out.data[o + 3] = 255;
+      }
+    }
+    return { w: TW, h: TH, idx, pal: pal.map((c) => ({ ...c })), rgba: out };
+  }
+
+  /* ---------- shiny: hue-rotate, keep luminance + darks ---------- */
+  function makeShiny(pal, deg) {
+    return pal.map((c) => {
+      const L = lum(c.r, c.g, c.b);
+      if (L < 38) return { ...c }; // keep outlines / eyes / deepest shadows
+      const hsl = rgb2hsl(c.r, c.g, c.b);
+      // grays stay gray-ish: if saturation tiny, shift lightness slightly instead
+      if (hsl.s < 0.08) {
+        const nl = Math.min(0.9, Math.max(0.08, hsl.l * 1.06 + 0.04));
+        const g = hsl2rgb(0, 0, nl);
+        return { r: snap555(g.r), g: snap555(g.g), b: snap555(g.b) };
+      }
+      const out = hsl2rgb(hsl.h + deg, Math.min(1, hsl.s * 1.02), hsl.l);
+      return { r: snap555(out.r), g: snap555(out.g), b: snap555(out.b) };
+    });
+  }
+  function applyPal(data, pal) {
+    const out = new ImageData(data.w, data.h);
+    for (let i = 0; i < data.w * data.h; i++) {
+      const o = i * 4;
+      const id = data.idx[i];
+      if (id === 0) {
+        out.data[o + 3] = 0;
+      } else {
+        const c = pal[id - 1];
+        out.data[o] = c.r;
+        out.data[o + 1] = c.g;
+        out.data[o + 2] = c.b;
+        out.data[o + 3] = 255;
+      }
+    }
+    return out;
+  }
+
+  /* ---------- render helpers ---------- */
+  function drawIndexed(canvas, data, palOverride) {
+    const pal = palOverride || data.pal;
+    const c = canvas;
+    c.width = data.w;
+    c.height = data.h;
+    const ctx = c.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.putImageData(applyPal(data, pal), 0, 0);
+    return c;
+  }
+  function drawWithGrid(canvas, data, palOverride, opts) {
+    opts = Object.assign({ zoom: 4, grid: true, checker: true, ground: false }, opts || {});
+    drawIndexed(canvas, data, palOverride);
+    const z = opts.zoom,
+      W = data.w * z,
+      H = data.h * z;
+    const big = document.createElement("canvas");
+    big.width = W;
+    big.height = H;
+    const b = big.getContext("2d");
+    b.imageSmoothingEnabled = false;
+    if (opts.checker) {
+      b.fillStyle = "#181818";
+      b.fillRect(0, 0, W, H);
+      b.fillStyle = "#2a2a2a";
+      const s = 8 * Math.max(1, Math.floor(z / 2));
+      for (let y = 0; y < H; y += s)
+        for (let x = 0; x < W; x += s) if (((x + y) / s) % 2 === 0) b.fillRect(x, y, s, s);
+    } else {
+      b.fillStyle = "#000";
+      b.fillRect(0, 0, W, H);
+    }
+    b.drawImage(canvas, 0, 0, W, H);
+    if (opts.ground) {
+      b.fillStyle = "#ffffff55";
+      b.fillRect(0, H - z, W, 1);
+    }
+    if (opts.grid) {
+      b.strokeStyle = "rgba(93,185,255,0.35)";
+      b.lineWidth = 1;
+      for (let x = 0; x <= data.w; x += 8) {
+        b.beginPath();
+        b.moveTo(x * z + 0.5, 0);
+        b.lineTo(x * z + 0.5, H);
+        b.stroke();
+      }
+      for (let y = 0; y <= data.h; y += 8) {
+        b.beginPath();
+        b.moveTo(0, y * z + 0.5);
+        b.lineTo(W, y * z + 0.5);
+        b.stroke();
+      }
+      b.strokeStyle = "rgba(255,217,77,0.5)";
+      for (let x = 0; x <= data.w; x += 32) {
+        b.beginPath();
+        b.moveTo(x * z + 0.5, 0);
+        b.lineTo(x * z + 0.5, H);
+        b.stroke();
+      }
+    }
+    canvas.width = W;
+    canvas.height = H;
+    const ctx = canvas.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(big, 0, 0);
+  }
+  function drawSrcPreview(img) {
+    const c = $("srcCanvas");
+    const ctx = c.getContext("2d");
+    ctx.imageSmoothingEnabled = true;
+    c.width = 256;
+    c.height = 256;
+    ctx.clearRect(0, 0, 256, 256);
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, 256, 256);
+    const s = Math.min(256 / img.width, 256 / img.height);
+    const w = img.width * s,
+      h = img.height * s;
+    ctx.drawImage(img, (256 - w) / 2, (256 - h) / 2, w, h);
+    $("srcInfo").textContent = img.width + "×" + img.height;
+  }
+
+  /* ---------- validation ---------- */
+  function validateAll() {
+    const box = $("validBox");
+    const rows = [];
+    const d = S.front;
+    if (!d) {
+      box.innerHTML =
+        '<div class="check">No sprite yet — generate, upload, or load the demo blob.</div>';
+      return;
+    }
+    const mult8 = d.w % 8 === 0 && d.h % 8 === 0;
+    rows.push({
+      ok: mult8,
+      t: `Canvas ${d.w}×${d.h} — multiples of 8`,
+      v: mult8 ? "PASS" : "FAIL",
+    });
+    const nColors = d.pal.length;
+    rows.push({
+      ok: nColors <= 15,
+      t: `Visible colors ${nColors}/15 (+1 transparent = ${nColors + 1}/16)`,
+      v: nColors <= 15 ? "PASS" : "FAIL",
+    });
+    let bgr = true;
+    for (const c of d.pal) {
+      if (c.r % 8 !== 0 || c.g % 8 !== 0 || c.b % 8 !== 0 || c.r > 248 || c.g > 248 || c.b > 248) {
+        bgr = false;
+        break;
+      }
+    }
+    rows.push({ ok: bgr, t: "BGR555 — every channel steps of 8 (≤248)", v: bgr ? "PASS" : "FAIL" });
+    if (S.back) {
+      let same =
+        S.back.pal.length === d.pal.length &&
+        S.back.pal.every((c, i) => c.r === d.pal[i].r && c.g === d.pal[i].g && c.b === d.pal[i].b);
+      rows.push({
+        ok: same,
+        t: "Shared master palette (front == back)",
+        v: same ? "SHARED" : "MISMATCH — hit remap",
+      });
+    } else
+      rows.push({
+        ok: true,
+        t: "Back sprite — not generated yet (generate BACK to lock palette)",
+        v: "—",
+      });
+    if (S.shinyPal) {
+      const match = S.shinyPal.length === d.pal.length;
+      let lumOk = true;
+      for (let i = 0; i < d.pal.length && match; i++) {
+        const a = lum(d.pal[i].r, d.pal[i].g, d.pal[i].b),
+          b = lum(S.shinyPal[i].r, S.shinyPal[i].g, S.shinyPal[i].b);
+        if (a < 38) continue;
+        if (Math.abs(a - b) > 90) lumOk = false;
+      }
+      rows.push({
+        ok: match && lumOk,
+        t: "Shiny — index-matched, luminance preserved, darks kept",
+        v: match ? (lumOk ? "PASS" : "CHECK HUES") : "FAIL",
+      });
+    }
+    const tiles = Math.ceil(d.w / 8) * Math.ceil(d.h / 8);
+    rows.push({ ok: true, t: `Tile footprint — ${tiles} hardware 8×8 tiles`, v: tiles + " tiles" });
+    // unique tiles for backdrop
+    box.innerHTML = rows
+      .map((r) => `<div class="check ${r.ok ? "ok" : "bad"}">${r.t}<b>${r.v}</b></div>`)
+      .join("");
+  }
+
+  /* ---------- palette UI ---------- */
+  function renderPalette() {
+    const g = $("palGrid");
+    g.innerHTML = "";
+    const mk = (c, i, isBrush) => {
+      const el = document.createElement("div");
+      el.className = "pal" + (i === 0 ? " trans" : "");
+      el.title = i === 0 ? "idx 0 — transparent" : "idx " + i + " " + hex(c);
+      if (i > 0) el.style.background = hex(c);
+      if (S.brush === i) el.classList.add("sel");
+      el.innerHTML = `<i>${i}</i>`;
+      el.onclick = () => {
+        S.brush = i;
+        renderPalette();
+        renderBrush();
+        refreshViews();
+      };
+      return el;
+    };
+    const d = S.front;
+    if (!d) {
+      g.innerHTML = '<div class="hint">—</div>';
+      $("palHex").textContent = "";
+      return;
+    }
+    g.appendChild(mk({ r: 0, g: 0, b: 0 }, 0));
+    d.pal.forEach((c, i) => g.appendChild(mk(c, i + 1)));
+    $("palHex").textContent =
+      "idx0 TRANS | " +
+      d.pal.map((c, i) => `${i + 1}:${hex(c)} rgb(${c.r},${c.g},${c.b})`).join("  ");
+    $("palLabel").textContent = d.pal.length + 1 + "/16 colors";
+    renderBrush();
+  }
+  function renderBrush() {
+    const g = $("brushPal");
+    if (!g) return;
+    g.innerHTML = "";
+    const d = S.front;
+    if (!d) return;
+    const mk = (bg, i) => {
+      const el = document.createElement("div");
+      el.className = "pal" + (i === 0 ? " trans" : "");
+      if (i > 0) el.style.background = bg;
+      if (S.brush === i) el.classList.add("sel");
+      el.innerHTML = `<i>${i}</i>`;
+      el.onclick = () => {
+        S.brush = i;
+        renderPalette();
+        renderBrush();
+      };
+      return el;
+    };
+    g.appendChild(mk("", 0));
+    d.pal.forEach((c, i) => g.appendChild(mk(hex(c), i + 1)));
+  }
+
+  /* ---------- prompt building ---------- */
+  function dimsForCat() {
+    if (S.cat === "owmon") {
+      const s = parseInt($("owSizeInput").value, 10);
+      return { w: s, h: s };
+    }
+    if (S.cat === "item") {
+      const s = parseInt($("itemSizeInput").value, 10);
+      return { w: s, h: s };
+    }
+    const c = CATS[S.cat];
+    return { w: c.w, h: c.h };
+  }
+  function buildPrompt() {
+    const name = $("nameInput").value.trim() || "wild pokemon";
+    const t1 = $("type1Input").value,
+      t2 = $("type2Input").value;
+    const typeStr = t2 === "None" ? `${t1} type` : `${t1} / ${t2} type`;
+    const body = $("bodyInput").value.trim(),
+      desc = $("descInput").value.trim();
+    const cat = CATS[S.cat];
+    return `pixel art game sprite of ${name}, ${body}, ${typeStr} pokemon (${desc}), ${cat.suffix}, ${STYLE_SUFFIX}`;
+  }
+  function refreshPrompt() {
+    $("promptPrev").textContent = buildPrompt() + "\n\n(negative: " + NEG + ")";
+    const d = dimsForCat();
+    $("dimLabel").textContent = d.w + "×" + d.h;
+  }
+
+  /* ---------- AI generation ---------- */
+  function setBusy(b, msg) {
+    ["genFrontBtn", "genBackBtn"].forEach((id) => ($(id).disabled = b));
+    $("powerLight").classList.toggle("on", !b);
+    if (msg) $("statusEl").textContent = msg;
+    $("progBar").style.width = b ? "60%" : "0%";
+  }
+  function resFor(w, h) {
+    if (w >= 200 || h >= 100) return "768x512";
+    if (w > h * 1.4 || h > w * 1.4) return "768x512";
+    return "512x512";
+  }
+
+  async function aiToImage(prompt, rmBg) {
+    const dims = dimsForCat();
+    const res = resFor(dims.w, dims.h);
+    const out = rmBg
+      ? await root.generateImage({
+          prompt,
+          negativePrompt: NEG,
+          resolution: res,
+          removeBackground: true,
+        })
+      : await root.generateImage({ prompt, negativePrompt: NEG, resolution: res });
+    return new Promise((res2, rej) => {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => res2(img);
+      img.onerror = rej;
+      img.src = out.dataUrl || String(out);
+    });
+  }
+  function canvasFromImg(img) {
+    const c = document.createElement("canvas");
+    c.width = img.naturalWidth || img.width;
+    c.height = img.naturalHeight || img.height;
+    c.getContext("2d").drawImage(img, 0, 0);
+    return c;
+  }
+  async function generateKind(kind) {
+    setBusy(
+      true,
+      kind === "back"
+        ? "Generating BACK view (will lock to front palette)…"
+        : "Generating AI sketch — ~10–40s…",
+    );
+    $("gbaCanvas").classList.add("loading");
+    try {
+      const catSave = S.cat;
+      if (kind === "back")
+        S.cat = catSave === "anim" || catSave === "front" || catSave === "back" ? "back" : catSave;
+      const dims = dimsForCat();
+      const prompt = buildPrompt();
+      const img = await aiToImage(prompt, true);
+      S.srcImage = img;
+      drawSrcPreview(img);
+      const srcC = canvasFromImg(img);
+      const lockPal = kind === "back" && S.front && $("lockPalCheck").checked ? S.front.pal : null;
+      // back in trainerBack etc: use same dims
+      const data = gbaConvert(srcC, dims.w, dims.h, {
+        killBg: $("rmBgCheck").checked,
+        dither: $("ditherInput").value,
+        fit: $("fitInput").value,
+        lockPal,
+        colorCodeOutlines: $("outlineCheck").checked,
+      });
+      if (kind === "back") {
+        S.back = data;
+        if (!$("lockPalCheck").checked || !S.front) {
+          S.front = S.front || data;
+        }
+      } else {
+        S.front = data;
+      }
+      if (!S.front) S.front = data;
+      S.shinyPal = makeShiny(S.front.pal, parseInt($("shinyShiftInput").value, 10));
+      S.cat = catSave;
+      refreshPrompt();
+      renderPalette();
+      validateAll();
+      refreshViews();
+      syncEditCanvas();
+      $("statusEl").textContent =
+        (kind === "back"
+          ? "Back sprite done — locked to master palette."
+          : "Front sprite done — GBA-ified.") +
+        " Palette: " +
+        S.front.pal.length +
+        "+1 colors, all BGR555.";
+    } catch (e) {
+      console.error(e);
+      $("statusEl").textContent =
+        "Generation failed: " + ((e && e.message) || e) + ". Try again or upload art.";
+    } finally {
+      setBusy(false);
+      $("gbaCanvas").classList.remove("loading");
+      $("progBar").style.width = "100%";
+      setTimeout(() => ($("progBar").style.width = "0%"), 600);
+    }
+  }
+
+  /* ---------- views ---------- */
+  function currentPal() {
+    return S.view === "shiny" && S.shinyPal ? S.shinyPal : S.front ? S.front.pal : null;
+  }
+  function refreshViews() {
+    refreshPrompt();
+    if (!S.front) return;
+    const pal = currentPal();
+    if (S.view === "compare") {
+      // side-by-side: draw normal left half / shiny right half into gbaCanvas at native res scaled
+      const d = S.front,
+        W = d.w * 2,
+        H = d.h;
+      const c = $("gbaCanvas");
+      c.width = W;
+      c.height = H;
+      const ctx = c.getContext("2d");
+      ctx.imageSmoothingEnabled = false;
+      const n = document.createElement("canvas");
+      drawIndexed(n, d, d.pal);
+      const s2 = document.createElement("canvas");
+      drawIndexed(s2, d, S.shinyPal || d.pal);
+      ctx.drawImage(n, 0, 0);
+      ctx.drawImage(s2, d.w, 0);
+      ctx.fillStyle = "#fff";
+      ctx.font = "8px monospace";
+      ctx.fillText("NORMAL", 2, 8);
+      ctx.fillText("SHINY", d.w + 2, 8);
+      // scale up for display via CSS (canvas width 100%)
+    } else {
+      drawWithGrid($("gbaCanvas"), S.front, pal, {
+        zoom: S.zoom,
+        grid: $("gridCheck").checked,
+        checker: $("checkerCheck").checked,
+        ground: $("groundCheck").checked,
+      });
+      $("gbaCap").textContent =
+        "GBA result · " + S.zoom + "× zoom" + (S.view === "shiny" ? " · ✨SHINY" : "");
+    }
+    buildAnim();
+    buildIcon();
+    drawBattle();
+    renderPalette();
+    validateAll();
+  }
+  function syncEditCanvas() {
+    if (!S.front) return;
+    const e = $("editCanvas");
+    e.width = S.front.w;
+    e.height = S.front.h;
+    drawIndexed(e, S.front);
+  }
+  function buildAnim() {
+    const c = $("animCanvas");
+    if (!S.front) {
+      return;
+    }
+    const f = S.front,
+      W = 128,
+      H = 64;
+    c.width = W;
+    c.height = H;
+    const ctx = c.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.clearRect(0, 0, W, H);
+    const f0 = document.createElement("canvas");
+    drawIndexed(f0, f, currentPal());
+    // Emerald style frame1: same sprite nudged up 2px + 1px squash (authentic idle bounce)
+    ctx.drawImage(f0, 0, 0, 64, 64, 0, 0, 64, 64);
+    ctx.clearRect(64, 0, 64, 64);
+    ctx.drawImage(f0, 0, 2, 64, 62, 64, 0, 64, 62);
+    ctx.drawImage(f0, 0, 62, 64, 2, 64, 62, 64, 2);
+  }
+  function buildIcon() {
+    const c = $("iconCanvas");
+    if (!S.front) return;
+    c.width = 64;
+    c.height = 32;
+    const ctx = c.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    ctx.clearRect(0, 0, 64, 32);
+    // downscale front into 32x32
+    const f0 = document.createElement("canvas");
+    drawIndexed(f0, S.front, currentPal());
+    const small = document.createElement("canvas");
+    small.width = 28;
+    small.height = 28;
+    small.getContext("2d").drawImage(f0, 0, 0, 28, 28);
+    ctx.drawImage(small, 2, 2); // frame0
+    ctx.drawImage(small, 34, 0); // frame1 shifted up 2px
+  }
+  function drawBattle() {
+    const c = $("battleCanvas");
+    const ctx = c.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    function ellipse(cx, cy, rx, ry, base, dark) {
+      ctx.fillStyle = dark;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy + 2, rx, ry, 0, 0, 7);
+      ctx.fill();
+      ctx.fillStyle = base;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, rx, ry, 0, 0, 7);
+      ctx.fill();
+      ctx.fillStyle = "#ffffff44";
+      ctx.beginPath();
+      ctx.ellipse(cx - 12, cy - 6, rx * 0.5, ry * 0.35, 0, 0, 7);
+      ctx.fill();
+    }
+    function drawActors() {
+      if (S.front) {
+        const pal = currentPal();
+        const foe = document.createElement("canvas");
+        drawIndexed(foe, S.front, pal);
+        ctx.drawImage(foe, 158, 24, 64, 64);
+        const me = S.back || S.front;
+        const meC = document.createElement("canvas");
+        drawIndexed(meC, me, S.back && $("lockPalCheck").checked ? pal : me.pal || pal);
+        ctx.drawImage(meC, 8, 72, 80, 80);
+      } else {
+        ctx.fillStyle = "#fff";
+        ctx.font = "8px monospace";
+        ctx.fillText("generate FRONT + BACK to preview battle", 40, 80);
+      }
+    }
+    if (S.backdropImg) {
+      ctx.drawImage(S.backdropImg, 0, 0, 240, 112);
+      ctx.fillStyle = "#5da24f";
+      ctx.fillRect(0, 112, 240, 48);
+      ctx.fillStyle = "#ffffff88";
+      ctx.fillRect(0, 110, 240, 2);
+    } else {
+      const grd = ctx.createLinearGradient(0, 0, 0, 160);
+      grd.addColorStop(0, "#7ec8f7");
+      grd.addColorStop(0.55, "#bfe8ff");
+      grd.addColorStop(0.56, "#8fd07a");
+      grd.addColorStop(1, "#5da24f");
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, 240, 160);
+      ctx.fillStyle = "#ffffff88";
+      ctx.fillRect(0, 88, 240, 2);
+    }
+    ellipse(190, 88, 52, 16, "#8fd07a", "#3c6b34");
+    ellipse(52, 132, 56, 17, "#9ad884", "#3c6b34");
+    drawActors();
+  }
+
+  /* ---------- OW / item / footprint / tile builders ---------- */
+  function buildOW() {
+    if (!S.front) {
+      $("statusEl").textContent = "Generate a front sprite first.";
+      return;
+    }
+    const size = parseInt($("owSizeInput").value, 10);
+    const src = document.createElement("canvas");
+    drawIndexed(src, S.front);
+    // downscale to OW size cell
+    const cell = document.createElement("canvas");
+    cell.width = size;
+    cell.height = size;
+    cell.getContext("2d").drawImage(src, 0, 0, size, size);
+    // sheet: 3 cols (neutral, stepL, stepR) × 4 rows (down, up, left, right)
+    const sheet = document.createElement("canvas");
+    sheet.width = size * 3;
+    sheet.height = size * 4;
+    const ctx = sheet.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+    function stepVariant(dx) {
+      const v = document.createElement("canvas");
+      v.width = size;
+      v.height = size;
+      const vc = v.getContext("2d");
+      vc.imageSmoothingEnabled = false;
+      vc.drawImage(cell, 0, 0); // legs: shift bottom rows
+      if (dx !== 0) {
+        const strip = vc.getImageData(0, Math.floor(size * 0.62), size, Math.ceil(size * 0.38));
+        vc.clearRect(0, Math.floor(size * 0.62), size, Math.ceil(size * 0.38));
+        vc.putImageData(strip, dx, Math.floor(size * 0.62));
+      }
+      return v;
+    }
+    const frames = [stepVariant(0), stepVariant(-1), stepVariant(1)];
+    for (let dir = 0; dir < 4; dir++)
+      for (let f = 0; f < 3; f++) {
+        const v = document.createElement("canvas");
+        v.width = size;
+        v.height = size;
+        const vc = v.getContext("2d");
+        vc.imageSmoothingEnabled = false;
+        vc.drawImage(frames[f], 0, 0);
+        if (dir === 1) {
+          /* up: darken top slightly */
+        }
+        if (dir === 2) {
+          // left: mirror
+          vc.clearRect(0, 0, size, size);
+          vc.save();
+          vc.scale(-1, 1);
+          vc.drawImage(frames[f], -size, 0);
+          vc.restore();
+        }
+        ctx.drawImage(v, f * size, dir * size);
+      }
+    S.owSheet = { w: sheet.width, h: sheet.height, canvas: sheet };
+    const oc = $("owCanvas");
+    oc.width = sheet.width;
+    oc.height = sheet.height;
+    oc.getContext("2d").drawImage(sheet, 0, 0);
+    // GBA-ify sheet through palette lock
+    $("statusEl").textContent =
+      `OW sheet built: ${sheet.width}×${sheet.height} (3×4 cells of ${size}×${size}).`;
+  }
+  function buildItem() {
+    if (!S.front) {
+      $("statusEl").textContent = "Generate a front sprite first.";
+      return;
+    }
+    const s = parseInt($("itemSizeInput").value, 10);
+    const src = document.createElement("canvas");
+    drawIndexed(src, S.front);
+    const d = gbaConvert(src, s, s, {
+      killBg: true,
+      dither: "none",
+      fit: "fit",
+      lockPal: null,
+      colorCodeOutlines: true,
+    });
+    S.itemData = d;
+    const c = $("itemCanvas");
+    c.width = s;
+    c.height = s;
+    drawIndexed(c, d);
+    $("statusEl").textContent = `Item built: ${s}×${s}, ${d.pal.length}+1 colors.`;
+  }
+  function buildFoot() {
+    if (!S.front) {
+      $("statusEl").textContent = "Generate a front sprite first.";
+      return;
+    }
+    const src = document.createElement("canvas");
+    drawIndexed(src, S.front);
+    const c16 = document.createElement("canvas");
+    c16.width = 16;
+    c16.height = 16;
+    const x = c16.getContext("2d");
+    x.imageSmoothingEnabled = true;
+    x.clearRect(0, 0, 16, 16);
+    x.drawImage(src, 0, 0, 16, 16);
+    const id = x.getImageData(0, 0, 16, 16);
+    // luminance threshold → 1-bit; alpha→white
+    for (let i = 0; i < 256; i++) {
+      const o = i * 4;
+      const a = id.data[o + 3];
+      const L = a < 64 ? 255 : lum(id.data[o], id.data[o + 1], id.data[o + 2]);
+      const v = L < 128 ? 0 : 255;
+      id.data[o] = id.data[o + 1] = id.data[o + 2] = v;
+      id.data[o + 3] = 255;
+    }
+    x.putImageData(id, 0, 0);
+    S.footData = id;
+    const f = $("footCanvas");
+    f.width = 16;
+    f.height = 16;
+    f.getContext("2d").putImageData(id, 0, 0);
+    $("statusEl").textContent = "Footprint stamped: 16×16 1-bit (pure B/W).";
+  }
+  function buildTile() {
+    if (!S.front) {
+      $("statusEl").textContent = "Generate a front sprite first.";
+      return;
+    }
+    // derive a tileable texture: take center 16x16 of front, mirror-tile to make seamless, quantize
+    const src = document.createElement("canvas");
+    drawIndexed(src, S.front);
+    const t = document.createElement("canvas");
+    t.width = 16;
+    t.height = 16;
+    const x = t.getContext("2d");
+    x.imageSmoothingEnabled = true;
+    x.drawImage(src, S.front.w / 2 - 8, S.front.h / 2 - 8, 16, 16, 0, 0, 16, 16);
+    const d = gbaConvert(t, 16, 16, {
+      killBg: false,
+      dither: "bayer",
+      fit: "stretch",
+      colorCodeOutlines: false,
+    });
+    S.tileData = d;
+    const c = $("tileCanvas");
+    c.width = 16;
+    c.height = 16;
+    drawIndexed(c, d);
+    $("statusEl").textContent = `Metatile built: 16×16 = four 8×8 tiles, ${d.pal.length}+1 colors.`;
+  }
+
+  /* ---------- export ---------- */
+  function jascPal(pal) {
+    let s = "JASC-PAL\r\n0100\r\n16\r\n";
+    s += "0 0 0\r\n"; // idx0 transparent stored as black
+    for (const c of pal) s += `${c.r} ${c.g} ${c.b}\r\n`;
+    const n = pal.length + 1;
+    for (let i = n; i < 16; i++) s += "0 0 0\r\n";
+    return s;
+  }
+  function dl(url, name) {
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = name;
+    a.click();
+  }
+  function canvasURL(c) {
+    return c.toDataURL("image/png");
+  }
+  function downloadFront() {
+    if (!S.front) return;
+    const c = document.createElement("canvas");
+    drawIndexed(c, S.front, S.view === "shiny" ? S.shinyPal : S.front.pal);
+    dl(canvasURL(c), ($("nameInput").value || "pokemon").toLowerCase() + "_front.png");
+  }
+  function downloadBack() {
+    const d = S.back || S.front;
+    if (!d) return;
+    const c = document.createElement("canvas");
+    drawIndexed(c, d, S.front.pal);
+    dl(canvasURL(c), ($("nameInput").value || "pokemon").toLowerCase() + "_back.png");
+  }
+  function downloadPal(shiny) {
+    if (!S.front) return;
+    const p = shiny ? S.shinyPal : S.front.pal;
+    if (!p) return;
+    dl(
+      URL.createObjectURL(new Blob([jascPal(p)], { type: "text/plain" })),
+      shiny ? "shiny.pal" : "normal.pal",
+    );
+  }
+  async function downloadZip() {
+    if (!S.front) {
+      $("statusEl").textContent = "Nothing to export yet.";
+      return;
+    }
+    $("statusEl").textContent = "Packing ROM-ready ZIP…";
+    const { default: JSZip } = await import("https://esm.sh/jszip@3.10.1");
+    const zip = new JSZip();
+    const base = ($("nameInput").value || "pokemon").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const addCanvas = (name, canvas) => {
+      const u = canvas.toDataURL("image/png").split(",")[1];
+      zip.file(name, u, { base64: true });
+    };
+    const c1 = document.createElement("canvas");
+    drawIndexed(c1, S.front, S.front.pal);
+    addCanvas(`${base}_front.png`, c1);
+    const bs = document.createElement("canvas");
+    drawIndexed(bs, S.back || S.front, S.front.pal);
+    addCanvas(`${base}_back.png`, bs);
+    addCanvas(`${base}_anim_front_128x64.png`, $("animCanvas"));
+    addCanvas(`${base}_icon_64x32.png`, $("iconCanvas"));
+    if (S.owSheet) addCanvas(`${base}_ow_sheet.png`, $("owCanvas"));
+    if (S.itemData) {
+      const ic = document.createElement("canvas");
+      drawIndexed(ic, S.itemData);
+      addCanvas(`${base}_item.png`, ic);
+    }
+    if (S.footData) {
+      const fc = $("footCanvas");
+      addCanvas(`${base}_footprint_16x16_1bpp.png`, fc);
+    }
+    addCanvas(`${base}_battle_mockup_240x160.png`, $("battleCanvas"));
+    zip.file(`${base}_normal.pal`, jascPal(S.front.pal));
+    if (S.shinyPal) zip.file(`${base}_shiny.pal`, jascPal(S.shinyPal));
+    let gpl = "GIMP Palette\nName: " + base + "\nColumns: 8\n#\n0   0   0   Transparent\n";
+    S.front.pal.forEach((c) => {
+      gpl += `${String(c.r).padEnd(3)} ${String(c.g).padEnd(3)} ${String(c.b).padEnd(3)} ${hex(c)}\n`;
+    });
+    zip.file(`${base}_normal.gpl`, gpl);
+    zip.file(
+      `${base}_manifest.json`,
+      JSON.stringify(
+        {
+          name: $("nameInput").value,
+          type1: $("type1Input").value,
+          type2: $("type2Input").value,
+          front: {
+            w: S.front.w,
+            h: S.front.h,
+            colors: S.front.pal.length + 1,
+            bgr555: true,
+            tiles: Math.ceil(S.front.w / 8) * Math.ceil(S.front.h / 8),
+          },
+          shinyHueShift: parseInt($("shinyShiftInput").value, 10),
+          palette: S.front.pal,
+          shiny: S.shinyPal,
+          hardware: {
+            bpp: 4,
+            index0: "transparent",
+            colorDepth: "BGR555",
+            tileGrid: "8x8",
+            sharedPalette: !!S.back,
+          },
+        },
+        null,
+        2,
+      ),
+    );
+    const blob = await zip.generateAsync({ type: "blob" });
+    dl(URL.createObjectURL(blob), base + "_gba_pack.zip");
+    $("statusEl").textContent =
+      "ZIP downloaded — insert front/back + normal.pal into your decomp (pokeemerald-style) or usenti.";
+  }
+
+  /* ---------- events ---------- */
+  $("catInput").onchange = (e) => {
+    S.cat = e.target.value;
+    refreshPrompt();
+  };
+  [
+    "nameInput",
+    "bodyInput",
+    "descInput",
+    "type1Input",
+    "type2Input",
+    "owSizeInput",
+    "itemSizeInput",
+  ].forEach((id) => $("" + id).addEventListener("input", refreshPrompt));
+  $("shinyShiftInput").oninput = (e) => {
+    $("shinyShiftVal").value = e.target.value + "°";
+    if (S.front) {
+      S.shinyPal = makeShiny(S.front.pal, parseInt(e.target.value, 10));
+      refreshViews();
+    }
+  };
+  document.querySelectorAll("[data-view]").forEach(
+    (b) =>
+      (b.onclick = () => {
+        document.querySelectorAll("[data-view]").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active");
+        S.view = b.dataset.view;
+        if (S.view === "foot") buildFoot();
+        refreshViews();
+      }),
+  );
+  document.querySelectorAll("[data-zoom]").forEach(
+    (b) =>
+      (b.onclick = () => {
+        S.zoom = parseInt(b.dataset.zoom, 10);
+        refreshViews();
+      }),
+  );
+  ["gridCheck", "checkerCheck", "groundCheck"].forEach((id) => ($(id).onchange = refreshViews));
+  $("genFrontBtn").onclick = () => generateKind("front");
+  $("genBackBtn").onclick = () => generateKind("back");
+  $("remapBackBtn").onclick = () => {
+    if (!S.front || !S.back) {
+      $("statusEl").textContent = "Need both front and back first.";
+      return;
+    }
+    // re-map back pixels to front palette
+    const src = document.createElement("canvas");
+    drawIndexed(src, S.back);
+    S.back = gbaConvert(src, S.back.w, S.back.h, {
+      killBg: false,
+      dither: $("ditherInput").value,
+      fit: "stretch",
+      lockPal: S.front.pal,
+      colorCodeOutlines: true,
+    });
+    S.back.pal = S.front.pal.map((c) => ({ ...c }));
+    refreshViews();
+    $("statusEl").textContent = "Back remapped → master palette shared ✓";
+  };
+  $("uploadBtn").onclick = () => $("fileInput").click();
+  $("fileInput").onchange = (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    const img = new Image();
+    img.onload = () => {
+      S.srcImage = img;
+      drawSrcPreview(img);
+      const dims = dimsForCat();
+      S.front = gbaConvert(canvasFromImg(img), dims.w, dims.h, {
+        killBg: $("rmBgCheck").checked,
+        dither: $("ditherInput").value,
+        fit: $("fitInput").value,
+        colorCodeOutlines: $("outlineCheck").checked,
+      });
+      S.shinyPal = makeShiny(S.front.pal, parseInt($("shinyShiftInput").value, 10));
+      renderPalette();
+      validateAll();
+      refreshViews();
+      syncEditCanvas();
+      $("statusEl").textContent = "Upload GBA-ified: " + dims.w + "×" + dims.h;
+    };
+    img.src = URL.createObjectURL(f);
+  };
+  $("demoBtn").onclick = () => {
+    // procedural demo creature — guarantees offline test of full pipeline
+    const c = document.createElement("canvas");
+    c.width = 96;
+    c.height = 96;
+    const x = c.getContext("2d");
+    x.fillStyle = "#fff";
+    x.fillRect(0, 0, 96, 96);
+    const blob = (cx, cy, rx, ry, col) => {
+      x.fillStyle = col;
+      x.beginPath();
+      x.ellipse(cx, cy, rx, ry, 0, 0, 7);
+      x.fill();
+    };
+    blob(48, 58, 30, 24, "#e8943a");
+    blob(48, 52, 30, 22, "#f5b95e");
+    blob(48, 66, 22, 12, "#fdf0d0");
+    blob(28, 30, 12, 14, "#e8943a");
+    blob(68, 30, 12, 14, "#e8943a");
+    blob(28, 30, 6, 8, "#fdf0d0");
+    blob(68, 30, 6, 8, "#fdf0d0");
+    blob(40, 52, 5, 7, "#202020");
+    blob(56, 52, 5, 7, "#202020");
+    blob(41, 50, 2, 2, "#fff");
+    blob(57, 50, 2, 2, "#fff");
+    blob(48, 62, 4, 3, "#7a3a1a");
+    blob(30, 70, 10, 6, "#8a4a1e");
+    blob(66, 70, 10, 6, "#8a4a1e");
+    blob(20, 44, 4, 8, "#5a2a12");
+    blob(76, 44, 4, 8, "#5a2a12");
+    x.fillStyle = "#3a1c08";
+    x.fillRect(38, 20, 20, 6);
+    const img = new Image();
+    img.onload = () => {
+      S.srcImage = img;
+      drawSrcPreview(img);
+      const dims = dimsForCat();
+      S.front = gbaConvert(c, dims.w, dims.h, {
+        killBg: true,
+        dither: $("ditherInput").value,
+        fit: $("fitInput").value,
+        colorCodeOutlines: $("outlineCheck").checked,
+      });
+      S.shinyPal = makeShiny(S.front.pal, parseInt($("shinyShiftInput").value, 10));
+      renderPalette();
+      validateAll();
+      refreshViews();
+      syncEditCanvas();
+    };
+    img.src = c.toDataURL();
+  };
+  $("diceBtn").onclick = () => {
+    const pick = (a) => a[Math.floor(Math.random() * a.length)];
+    const types = TYPES.slice(1);
+    $("nameInput").value = pick([
+      "Embercub",
+      "Aquaffin",
+      "Thornimp",
+      "Galvokit",
+      "Mosslet",
+      "Cindrake",
+      "Frostnip",
+      "Voltpup",
+      "Duskmoth",
+      "Pebblor",
+    ]);
+    $("type1Input").value = pick(types);
+    $("type2Input").value = Math.random() < 0.4 ? pick(types) : "None";
+    const bodies = [
+      "small quadruped mammal with big ears",
+      "serpentine sea-dragon with fins",
+      "bipedal frog fighter with round belly",
+      "floating ghost-wisp with tattered cloak",
+      "armored beetle with cannon horns",
+      "chubby bird with crest feathers",
+      "rocky golem with moss cracks",
+      "fox kit with split tails",
+      "cactus imp with spines",
+      "ember lizard with coal back-plates",
+    ];
+    $("bodyInput").value = pick(bodies);
+    refreshPrompt();
+  };
+  $("makeAnimBtn").onclick = () => {
+    if (!S.front) return;
+    const keep = S.cat;
+    S.cat = "anim";
+    buildAnim();
+    S.cat = keep;
+    $("statusEl").textContent =
+      "anim_front.png ready: two 64×64 frames side-by-side (frame1 = Emerald bounce).";
+  };
+  $("makeIconBtn").onclick = () => {
+    buildIcon();
+    $("statusEl").textContent = "icon.png ready: frame1 shifted up 2px for the jump.";
+  };
+  $("playAnimBtn").onclick = () => {
+    if (S.animTimer) {
+      clearInterval(S.animTimer);
+      S.animTimer = null;
+      $("playAnimBtn").textContent = "▶ play";
+      return;
+    }
+    const c = $("animCanvas"),
+      ctx = c.getContext("2d");
+    let f = 0;
+    const full = document.createElement("canvas");
+    full.width = 128;
+    full.height = 64;
+    full.getContext("2d").drawImage(c, 0, 0);
+    $("playAnimBtn").textContent = "⏸ stop";
+    S.animTimer = setInterval(() => {
+      ctx.clearRect(0, 0, 64, 64);
+      ctx.drawImage(full, f ? 64 : 0, 0, 64, 64, 0, 0, 64, 64);
+      f ^= 1;
+    }, 380);
+  };
+  $("playIconBtn").onclick = () => {
+    if (S.iconTimer) {
+      clearInterval(S.iconTimer);
+      S.iconTimer = null;
+      $("playIconBtn").textContent = "▶ jump";
+      return;
+    }
+    const c = $("iconCanvas"),
+      ctx = c.getContext("2d");
+    let f = 0;
+    const full = document.createElement("canvas");
+    full.width = 64;
+    full.height = 32;
+    full.getContext("2d").drawImage(c, 0, 0);
+    $("playIconBtn").textContent = "⏸ stop";
+    S.iconTimer = setInterval(() => {
+      ctx.clearRect(0, 0, 64, 32);
+      ctx.drawImage(full, f ? 32 : 0, 0, 32, 32, 16, f ? 6 : 8);
+      f ^= 1;
+    }, 300);
+  };
+  $("buildOwBtn").onclick = buildOW;
+  $("buildItemBtn").onclick = buildItem;
+  $("buildFootBtn").onclick = buildFoot;
+  $("buildTileBtn").onclick = buildTile;
+  $("playOwBtn").onclick = () => {
+    if (!S.owSheet) return;
+    if (S.owTimer) {
+      clearInterval(S.owTimer);
+      S.owTimer = null;
+      $("playOwBtn").textContent = "▶ walk";
+      return;
+    }
+    $("playOwBtn").textContent = "⏸ stop";
+    const oc = $("owCanvas"),
+      ctx = oc.getContext("2d");
+    const size = parseInt($("owSizeInput").value, 10);
+    let f = 0;
+    S.owTimer = setInterval(() => {
+      ctx.clearRect(0, 0, oc.width, oc.height);
+      ctx.drawImage(S.owSheet.canvas, 0, 0);
+      // highlight walking row
+      ctx.strokeStyle = "#ffd94d";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(f * size + 1, 1, size - 2, size - 2);
+      f = (f + 1) % 3;
+    }, 350);
+  };
+  $("dlAnimBtn").onclick = () => dl(canvasURL($("animCanvas")), "anim_front_128x64.png");
+  $("dlIconBtn").onclick = () => dl(canvasURL($("iconCanvas")), "icon_64x32.png");
+  $("dlBattleBtn").onclick = () => dl(canvasURL($("battleCanvas")), "battle_mockup_240x160.png");
+  $("dlOwBtn").onclick = () => {
+    if (S.owSheet) dl(canvasURL($("owCanvas")), "ow_sheet.png");
+  };
+  $("dlItemBtn").onclick = () => {
+    if (S.itemData) {
+      const c = document.createElement("canvas");
+      drawIndexed(c, S.itemData);
+      dl(canvasURL(c), "item.png");
+    }
+  };
+  $("dlFootBtn").onclick = () => dl(canvasURL($("footCanvas")), "footprint_16x16_1bpp.png");
+  $("dlTileBtn").onclick = () => {
+    if (S.tileData) {
+      const c = document.createElement("canvas");
+      drawIndexed(c, S.tileData);
+      dl(canvasURL(c), "metatile_16x16.png");
+    }
+  };
+  $("dlFrontBtn").onclick = downloadFront;
+  $("dlBackBtn").onclick = downloadBack;
+  $("dlPalBtn").onclick = () => downloadPal(false);
+  $("dlShinyPalBtn").onclick = () => downloadPal(true);
+  $("dlZipBtn").onclick = downloadZip;
+  $("copyPalBtn").onclick = async () => {
+    if (!S.front) return;
+    await navigator.clipboard.writeText(jascPal(S.front.pal));
+    $("statusEl").textContent = "normal.pal copied (JASC).";
+  };
+  $("copyShinyBtn").onclick = async () => {
+    if (!S.shinyPal) return;
+    await navigator.clipboard.writeText(jascPal(S.shinyPal));
+    $("statusEl").textContent = "shiny.pal copied (JASC).";
+  };
+  $("genBackdropBtn").onclick = async () => {
+    setBusy(true, "Generating battle backdrop…");
+    try {
+      const t2 = $("type1Input").value.toLowerCase();
+      const prompt = `pokemon battle background landscape for ${t2} terrain, wide scenic backdrop, horizon upper third, flat cel bands, simple ground texture, no characters no text, ${STYLE_SUFFIX}`;
+      const out = await root.generateImage({ prompt, negativePrompt: NEG, resolution: "768x512" });
+      const img = new Image();
+      await new Promise((r, j) => {
+        img.onload = r;
+        img.onerror = j;
+        img.src = out.dataUrl || String(out);
+      });
+      const c = document.createElement("canvas");
+      c.width = 240;
+      c.height = 112;
+      c.getContext("2d").drawImage(img, 0, 0, 240, 112);
+      S.backdropImg = c;
+      drawBattle();
+      $("statusEl").textContent = "Backdrop painted (240×112). Battle mockup updated.";
+    } catch (e) {
+      $("statusEl").textContent = "Backdrop failed: " + ((e && e.message) || e);
+    }
+    setBusy(false);
+  };
+  $("dexBtn").onclick = async () => {
+    $("dexOut").textContent = "Writing dex entry…";
+    try {
+      const t = await root.generateText(
+        `Write a 2-sentence Ruby/Sapphire-style Pokédex entry for a pokemon named ${$("nameInput").value} (${$("type1Input").value}${$("type2Input").value !== "None" ? "/" + $("type2Input").value : ""}), body: ${$("bodyInput").value}, details: ${$("descInput").value}. Terse, in-world, no stats.`,
+      );
+      $("dexOut").textContent = t.text || String(t);
+    } catch (e) {
+      $("dexOut").textContent = "Dex failed: " + ((e && e.message) || e);
+    }
+  };
+  /* pixel editor */
+  (function () {
+    const e = $("editCanvas");
+    function pos(ev) {
+      const r = e.getBoundingClientRect();
+      const x = Math.floor(((ev.clientX - r.left) / r.width) * e.width),
+        y = Math.floor(((ev.clientY - r.top) / r.height) * e.height);
+      return { x, y };
+    }
+    function paint(ev) {
+      if (!S.front) return;
+      const { x, y } = pos(ev);
+      if (x < 0 || y < 0 || x >= S.front.w || y >= S.front.h) return;
+      if (ev.button === 2 || S.brush === 0) {
+        S.front.idx[y * S.front.w + x] = 0;
+      } else S.front.idx[y * S.front.w + x] = S.brush;
+      S.front.rgba = applyPal(S.front, S.front.pal);
+      drawIndexed(e, S.front);
+      refreshViews();
+    }
+    e.addEventListener("pointerdown", (ev) => {
+      S.painting = true;
+      e.setPointerCapture(ev.pointerId);
+      paint(ev);
+    });
+    e.addEventListener("pointermove", (ev) => {
+      if (S.painting) paint(ev);
+    });
+    e.addEventListener("pointerup", () => (S.painting = false));
+    e.addEventListener("contextmenu", (ev) => ev.preventDefault());
+  })();
+  $("mirrorBtn").onclick = () => {
+    if (!S.front) return;
+    const { w, h, idx } = S.front;
+    for (let y = 0; y < h; y++)
+      for (let x = 0; x < w / 2; x++) {
+        const a = y * w + x,
+          b = y * w + (w - 1 - x);
+        const t = idx[a];
+        idx[a] = idx[b];
+        idx[b] = t;
+      }
+    syncEditCanvas();
+    refreshViews();
+  };
+  $("up2Btn").onclick = () => {
+    if (!S.front) return;
+    const { w, h, idx } = S.front;
+    const n = new Uint8Array(w * h);
+    for (let y = 0; y < h; y++)
+      for (let x = 0; x < w; x++) {
+        const ny = y - 2;
+        if (ny >= 0) n[ny * w + x] = idx[y * w + x];
+      }
+    S.front.idx.set(n);
+    syncEditCanvas();
+    refreshViews();
+  };
+  $("cleanBtn").onclick = () => {
+    if (!S.front) return;
+    const { w, h, idx } = S.front;
+    const n = Uint8Array.from(idx);
+    for (let y = 1; y < h - 1; y++)
+      for (let x = 1; x < w - 1; x++) {
+        const i = y * w + x;
+        if (!idx[i]) continue;
+        let same = 0;
+        for (let dy = -1; dy <= 1; dy++)
+          for (let dx = -1; dx <= 1; dx++) {
+            if (!dx && !dy) continue;
+            if (idx[(y + dy) * w + (x + dx)] === idx[i]) same++;
+          }
+        if (same === 0) n[i] = 0;
+      }
+    S.front.idx.set(n);
+    syncEditCanvas();
+    refreshViews();
+    $("statusEl").textContent = "Cleaned isolated pixels.";
+  };
+
+  /* init */
+  refreshPrompt();
+  validateAll();
+</script>

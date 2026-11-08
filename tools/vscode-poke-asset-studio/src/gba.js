@@ -585,6 +585,298 @@ function generateShinyPalette(normalPal, hueShift = 0.35) {
     return out;
 }
 
+/**
+ * Intelligent foreground background killer from GBA Forge:
+ * Samples 4 corners and top-center, verifies high luminance (>165),
+ * and executes a 4-way flood fill to strip white/light sketch backgrounds.
+ */
+function killBackground(rgbaData, width, height, tolerance = 42) {
+    const corners = [
+        [0, 0],
+        [width - 1, 0],
+        [0, height - 1],
+        [width - 1, height - 1],
+        [Math.floor(width / 2), 0]
+    ];
+    let rs = 0, gs = 0, bs = 0, n = 0;
+    for (const [x, y] of corners) {
+        const o = (y * width + x) * 4;
+        rs += rgbaData[o];
+        gs += rgbaData[o + 1];
+        bs += rgbaData[o + 2];
+        n++;
+    }
+    const br = rs / n, bg = gs / n, bb = bs / n;
+    const lum = 0.299 * br + 0.587 * bg + 0.114 * bb;
+    if (lum < 165) return false;
+
+    const seen = new Uint8Array(width * height);
+    const stack = [
+        [0, 0], [width - 1, 0],
+        [0, height - 1], [width - 1, height - 1]
+    ];
+
+    const isMatch = (o) => {
+        return Math.abs(rgbaData[o] - br) <= tolerance &&
+               Math.abs(rgbaData[o + 1] - bg) <= tolerance &&
+               Math.abs(rgbaData[o + 2] - bb) <= tolerance;
+    };
+
+    while (stack.length > 0) {
+        const [x, y] = stack.pop();
+        if (x < 0 || y < 0 || x >= width || y >= height) continue;
+        const idx = y * width + x;
+        if (seen[idx]) continue;
+        seen[idx] = 1;
+
+        const o = idx * 4;
+        if (rgbaData[o + 3] < 10) {
+            // Already transparent
+        } else if (!isMatch(o)) {
+            continue;
+        }
+
+        rgbaData[o + 3] = 0; // zero out alpha
+        stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+    }
+    return true;
+}
+
+/**
+ * Game Freak battle sprite auto-grounding:
+ * Centers horizontally and places lowest opaque pixel 2px above bottom edge.
+ */
+function autoGround(indices, width, height, padBottom = 2) {
+    let minX = width, maxX = -1, minY = height, maxY = -1;
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            if (indices[y * width + x] !== 0) {
+                if (x < minX) minX = x;
+                if (x > maxX) maxX = x;
+                if (y < minY) minY = y;
+                if (y > maxY) maxY = y;
+            }
+        }
+    }
+    if (maxX < 0) return indices; // empty
+
+    const bw = maxX - minX + 1;
+    const bh = maxY - minY + 1;
+    const targetX = Math.floor((width - bw) / 2);
+    const targetY = height - bh - padBottom;
+
+    const out = new Uint8Array(width * height);
+    for (let y = 0; y < bh; y++) {
+        for (let x = 0; x < bw; x++) {
+            const srcIdx = (minY + y) * width + (minX + x);
+            const dstY = targetY + y;
+            const dstX = targetX + x;
+            if (dstY >= 0 && dstY < height && dstX >= 0 && dstX < width) {
+                out[dstY * width + dstX] = indices[srcIdx];
+            }
+        }
+    }
+    return out;
+}
+
+/**
+ * Color-Coded Outline Darkening from GBA Forge:
+ * Identifies boundary pixels bordering transparency and maps them
+ * to the deepest saturated hue-matching palette index (navy, crimson, dark brown)
+ * rather than flat harsh black.
+ */
+function colorCodeOutlines(indices, palette, width, height) {
+    const out = new Uint8Array(indices);
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const pos = y * width + x;
+            const val = indices[pos];
+            if (val === 0) continue;
+
+            // Check if adjacent to transparent (slot 0)
+            let isEdge = false;
+            for (let dy = -1; dy <= 1 && !isEdge; dy++) {
+                for (let dx = -1; dx <= 1; dx++) {
+                    const nx = x + dx, ny = y + dy;
+                    if (nx < 0 || ny < 0 || nx >= width || ny >= height || indices[ny * width + nx] === 0) {
+                        isEdge = true;
+                        break;
+                    }
+                }
+            }
+            if (!isEdge) continue;
+
+            const c = palette[val] || { r: 0, g: 0, b: 0 };
+            const lum = 0.299 * c.r + 0.587 * c.g + 0.114 * c.b;
+            if (lum < 42) continue; // already a dark outline
+
+            // Find closest dark color in palette of similar hue
+            let bestIdx = val;
+            let bestScore = Infinity;
+            for (let k = 1; k < 16; k++) {
+                const q = palette[k] || { r: 0, g: 0, b: 0 };
+                const qLum = 0.299 * q.r + 0.587 * q.g + 0.114 * q.b;
+                if (qLum > 68) continue; // not dark enough
+
+                const dr = q.r - c.r;
+                const dg = q.g - c.g;
+                const db = q.b - c.b;
+                const score = dr * dr + dg * dg + db * db + qLum * 2;
+                if (score < bestScore) {
+                    bestScore = score;
+                    bestIdx = k;
+                }
+            }
+            if (bestIdx !== val) {
+                out[pos] = bestIdx;
+            }
+        }
+    }
+    return out;
+}
+
+/**
+ * Synthesizes the authentic Emerald 2-frame front bounce animation (128x64):
+ * Frame 0: original 64x64 sprite.
+ * Frame 1: shifted up 2px with a 1px vertical squash.
+ */
+function generateAnimFrontSheet(indices, width = 64, height = 64) {
+    const outWidth = width * 2;
+    const out = new Uint8Array(outWidth * height);
+
+    // Frame 0: copy as-is to left 64x64
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            out[y * outWidth + x] = indices[y * width + x];
+        }
+    }
+
+    // Frame 1: shift up 2px, squash 1px
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const srcY = y + 2; // sample 2px below (moving up)
+            let val = 0;
+            if (srcY < height) {
+                val = indices[srcY * width + x];
+            }
+            out[y * outWidth + (width + x)] = val;
+        }
+    }
+
+    return { width: outWidth, height: height, indices: out };
+}
+
+/**
+ * Synthesizes 2-frame party menu icon (64x32):
+ * Downscales 64x64 into 28x28 bounding boxes, with Frame 1 bobbing up 2px.
+ */
+function generateMenuIconSheet(indices, width = 64, height = 64) {
+    const outWidth = 64;
+    const outHeight = 32;
+    const out = new Uint8Array(outWidth * outHeight);
+
+    // Downscale 64x64 to 28x28 using nearest neighbor
+    const downscaled = new Uint8Array(28 * 28);
+    for (let y = 0; y < 28; y++) {
+        for (let x = 0; x < 28; x++) {
+            const sx = Math.floor((x / 28) * width);
+            const sy = Math.floor((y / 28) * height);
+            downscaled[y * 28 + x] = indices[sy * width + sx];
+        }
+    }
+
+    // Frame 0: placed at (2, 2)
+    for (let y = 0; y < 28; y++) {
+        for (let x = 0; x < 28; x++) {
+            out[(y + 2) * outWidth + (x + 2)] = downscaled[y * 28 + x];
+        }
+    }
+
+    // Frame 1: placed at (34, 0) -> shifted up 2px
+    for (let y = 0; y < 28; y++) {
+        for (let x = 0; x < 28; x++) {
+            out[y * outWidth + (32 + x + 2)] = downscaled[y * 28 + x];
+        }
+    }
+
+    return { width: outWidth, height: outHeight, indices: out };
+}
+
+/**
+ * Stamps a 16x16 1-bit footprint silhouette from sprite contact points.
+ */
+function generateFootprint(indices, width = 64, height = 64) {
+    const out = new Uint8Array(16 * 16);
+    // Sample lowest 32x32 section of the sprite
+    const startY = Math.floor(height * 0.6);
+    for (let y = 0; y < 16; y++) {
+        for (let x = 0; x < 16; x++) {
+            const sx = Math.floor((x / 16) * width);
+            const sy = startY + Math.floor((y / 16) * (height - startY));
+            const val = indices[sy * width + sx];
+            out[y * 16 + x] = val !== 0 ? 1 : 0; // 1 = black stamp, 0 = transparent
+        }
+    }
+    return { width: 16, height: 16, indices: out };
+}
+
+/**
+ * Synthesizes a 3x4 Overworld Follower Walking Spritesheet (Down, Up, Left, Right):
+ */
+function generateOverworldSheet(indices, width = 64, height = 64, cellW = 32, cellH = 32) {
+    const totalW = cellW * 3;
+    const totalH = cellH * 4;
+    const out = new Uint8Array(totalW * totalH);
+
+    // Downscale base to cell
+    const cell = new Uint8Array(cellW * cellH);
+    for (let y = 0; y < cellH; y++) {
+        for (let x = 0; x < cellW; x++) {
+            const sx = Math.floor((x / cellW) * width);
+            const sy = Math.floor((y / cellH) * height);
+            cell[y * cellW + x] = indices[sy * width + sx];
+        }
+    }
+
+    // Create step variants: neutral, left-step (-1px leg shift), right-step (+1px leg shift)
+    const legCutY = Math.floor(cellH * 0.65);
+    const getStepFrame = (dx) => {
+        const f = new Uint8Array(cell);
+        if (dx !== 0) {
+            for (let y = legCutY; y < cellH; y++) {
+                for (let x = 0; x < cellW; x++) {
+                    const nx = x + dx;
+                    f[y * cellW + x] = (nx >= 0 && nx < cellW) ? cell[y * cellW + nx] : 0;
+                }
+            }
+        }
+        return f;
+    };
+
+    const frames = [getStepFrame(0), getStepFrame(-1), getStepFrame(1)];
+
+    // 4 rows: 0=Down, 1=Up, 2=Left, 3=Right
+    for (let row = 0; row < 4; row++) {
+        for (let col = 0; col < 3; col++) {
+            const frame = frames[col];
+            for (let y = 0; y < cellH; y++) {
+                for (let x = 0; x < cellW; x++) {
+                    let pxVal = frame[y * cellW + x];
+                    // If row 3 (Right), mirror x from Left
+                    if (row === 3) {
+                        pxVal = frame[y * cellW + (cellW - 1 - x)];
+                    }
+                    const dstX = col * cellW + x;
+                    const dstY = row * cellH + y;
+                    out[dstY * totalW + dstX] = pxVal;
+                }
+            }
+        }
+    }
+
+    return { width: totalW, height: totalH, indices: out };
+}
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         snapToGbaChannel,
@@ -611,6 +903,13 @@ if (typeof module !== 'undefined' && module.exports) {
         quantizeRgbToGba,
         swapPaletteIndices,
         adjustPaletteBrightnessContrast,
-        generateShinyPalette
+        generateShinyPalette,
+        killBackground,
+        autoGround,
+        colorCodeOutlines,
+        generateAnimFrontSheet,
+        generateMenuIconSheet,
+        generateFootprint,
+        generateOverworldSheet
     };
 }

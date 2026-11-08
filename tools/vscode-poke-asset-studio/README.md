@@ -1,63 +1,42 @@
-# Pokémon GBA Asset Studio v1.1.0 (`poke-decomp-asset-studio`)
+# Pokémon GBA Asset Studio v1.2.0 (`poke-decomp-asset-studio`)
 
 A professional, high-performance VSCode extension engineered specifically for Pokémon GBA decompilation projects (`pokeemerald`, `pokefirered`, `pokeruby`, `pokecrystal`, `pokeconfluence`).
 
-Features an integrated **Asset Gallery**, **Pixel Inspector**, **16-Color Palette Studio**, **Sprite Animator**, **Planar 4bpp/8bpp Binary Engine**, and **GBA Hardware Engine Compliance Auditor**.
+Features an integrated **Asset Gallery**, **Pixel Inspector**, **16-Color Palette Studio**, **Sprite Animator**, **Planar 4bpp/8bpp Binary Engine**, **GBA Forge Magic Tools**, **GBA Battle Scene Simulator**, and the embedded **Pokémon GBA Forge Studio**.
 
 ---
 
-## What's New in v1.1.0
+## What's New in v1.2.0 (GBA Forge Integration)
 
-### 1. Expanded Drawing Tools & Transforms
-- **Line Tool (`L`)**: Bresenham line algorithm with real-time preview overlay while dragging.
-- **Rectangle Tool (`U`)**: Outlined or filled bounding boxes.
-- **Circle Tool (`C`)**: Midpoint circle and ellipse tool.
-- **Color Replace Tool (`R`)**: Click any pixel to replace all occurrences of that palette index across the entire sprite with the active index.
-- **Brush Sizes**: 1px, 2px, and 4px square brushes.
-- **Sprite Transforms**:
-  - **Flip Horizontal (Mirror X)**
-  - **Flip Vertical (Mirror Y)**
-  - **Rotate 90° Clockwise**
+### 1. Embedded Pokémon GBA Forge Studio
+- **Launch via Command / Icon**: Run `Pokémon GBA Forge: Open Sprite Generator Studio` (`pokeAssetStudio.openForge`) or click the sparkle `$(sparkle)` icon in the editor title bar.
+- **Hardware-Accurate Gen 3 AI Generator**: Generate authentic Ruby/Sapphire/Emerald & FireRed/LeafGreen sprites from text prompts.
+- **⚡ Save to pokeconfluence Button**: One-click direct export of generated species straight into `pokeconfluence/graphics/pokemon/<name>/`:
+  - `front.png` (64x64)
+  - `back.png` (64x64)
+  - `anim_front.png` (128x64 authentic 2-frame idle bounce)
+  - `icon.png` (64x32 2-frame party menu icon)
+  - `footprint.png` (16x16 1-bit Pokédex silhouette)
+  - `normal.pal` (JASC-PAL 16 colors)
+  - `shiny.pal` (JASC-PAL index-matched shiny swap)
 
-### 2. GBA Binary Planar (.4bpp / .8bpp) Direct Support
-- Open and view raw `.4bpp` and `.8bpp` tile binaries.
-- Edit pixels directly in the canvas.
-- Save directly back to `.4bpp` (32 bytes per 8x8 tile) and `.8bpp` (64 bytes per 8x8 tile) binaries with round-trip fidelity.
-- Live VRAM tile counter badge showing exactly how many 8x8 VRAM tiles and bytes your asset consumes.
+### 2. GBA Forge Magic Tools (In Custom Editor)
+Available in the side inspector of any open sprite:
+- `✂️ Remove BG`: Flood-fill corner/edge background isolator that strips sketch backgrounds with clean alpha.
+- `⚓ Ground Feet`: Official Game Freak battle sprite alignment (centers horizontally, grounds feet 2px from bottom).
+- `🎨 Outlines`: Replaces harsh black edges with deep saturated body tones (navy, crimson, dark brown) of matching hue.
+- `🎬 Gen Anim`: Synthesizes the authentic Emerald 2-frame front bounce (`anim_front.png`, 128x64) with 2px nudge and 1px squash.
+- `⭐ Gen Icon`: Downscales front sprite into a 2-frame party menu icon (`icon.png`, 64x32) with a 2px vertical bob.
+- `🐾 Gen Foot`: Stamps a 16x16 1-bit black/white footprint silhouette for the Pokédex (`footprint.png`).
+- `🚶 Gen Overworld`: Generates a full 3x4 overworld walking spritesheet (`ow_sheet.png`) across Down, Up, Left, Right.
+- `📦 Export Pack`: One-click save of all 6 standard species files directly into the current folder.
 
-### 3. Palette Studio & Hardware Tools
-- **Auto-Quantize to 16 Colors**: Intelligent median-cut color quantization that snaps arbitrary images to 16 GBA BGR555 colors while preserving Slot 0 as transparent.
-- **Tweak Colors Modal**: Non-destructive Brightness (-60 to +60) and Contrast (-60 to +60) adjustment sliders with hardware BGR555 re-quantization.
-- **Swap Slots Modal**: Swap any two palette indices across the entire image and palette with one click.
-- **Copy C Code**: Copies the GBA C array (`const u16 gPalette_...[16]`) directly to your system clipboard.
-- **Additional Palette Formats**: Support for GIMP Palette (`.gpl`) and Adobe Photoshop Color Table (`.act`).
-
-### 4. Animation & Overworld Upgrades
-- **1:1 Live Scale Actual Size Preview**: Docked actual GBA screen scale (1x) preview updating in real-time side-by-side as you paint at 800% or 1600%.
-- **Onion Skinning**: Faint semi-transparent ghost of frame $N-1$ under the canvas for frame-by-frame walk cycle alignment.
-- **Directional Overworld Walk Cycle Animator**: Quick buttons for ⬇️ Down, ⬆️ Up, ⬅️ Left, and ➡️ Right animations.
-- **Framerate Slider**: Configurable 1 to 60 FPS playback.
-
-### 5. Activity Bar Gallery & Navigation
-- **Generation Filters**: Filter 1,028 species by **All**, **Gen 1 Kanto**, **Gen 2 Johto**, **Gen 3 Hoenn**, or **Gen 4+ / Custom**.
-- **Interface & UI Category**: Browse battle interfaces, PokéNav graphics, town maps, title screens, and text window fonts.
-- **Live Stats Bar**: Real-time counter of total species, trainers, items, and overworld characters.
-- **Project Graphics Audit**: One-click command `pokeAssetStudio.auditAssets` to generate a comprehensive markdown health report of all workspace graphics.
-
----
-
-## Configuration Settings
-
-You can customize the extension via VSCode Settings (`Ctrl+,` -> search `Pokémon GBA Asset Studio`):
-
-| Setting | Default | Description |
-| :--- | :--- | :--- |
-| `pokeAssetStudio.defaultZoom` | `8` (800%) | Default zoom factor when opening images (1x, 2x, 4x, 8x, 16x, 32x). |
-| `pokeAssetStudio.defaultBackground` | `"checkerboard-dark"` | Default backdrop (`checkerboard-dark`, `checkerboard-light`, `magenta`, `black`, `white`). |
-| `pokeAssetStudio.animationFps` | `15` | Default playback framerate for sprite animations (1–60 FPS). |
-| `pokeAssetStudio.autoSavePalWithPng` | `true` | Automatically update matching sibling `.pal` when saving an indexed `.png`. |
-| `pokeAssetStudio.strictBgr555` | `true` | Strictly enforce GBA 15-bit hardware color depth. |
-| `pokeAssetStudio.slotZeroStrict` | `true` | Warn when opaque pixels are assigned to Slot 0 (transparent in GBA PPU). |
+### 3. GBA Battle Scene Simulator ($240\times 160$)
+- Real-time in-game battle screen mockup right inside the side inspector.
+- **Biome Switcher**: Test your sprite across Grass/Field, Ocean/Water, Dark Cave, and Desert/Sand environments.
+- **Terrain Platforms**: Renders standard GBA battle ellipses for opponent (`190, 88`) and player (`54, 134`).
+- **✨ Toggle Shiny Foe**: Instant preview of normal vs shiny battle presentation.
+- **GBA Dialogue Box & Healthbars**: Verifies in-game framing and visibility before compiling.
 
 ---
 

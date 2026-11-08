@@ -182,6 +182,53 @@ class PokeAssetEditorProvider {
                 } catch (err) {
                     vscode.window.showErrorMessage(`Failed to save ${baseName}: ${err.message}`);
                 }
+            } else if (msg.type === 'save_sub_asset') {
+                try {
+                    const targetPath = path.join(dirName, msg.fileName);
+                    if (msg.dataUrl) {
+                        const base64Data = msg.dataUrl.replace(/^data:image\/png;base64,/, '');
+                        fs.writeFileSync(targetPath, Buffer.from(base64Data, 'base64'));
+                    } else if (msg.textContent) {
+                        fs.writeFileSync(targetPath, msg.textContent, 'utf-8');
+                    } else if (msg.rawBytes) {
+                        fs.writeFileSync(targetPath, Buffer.from(msg.rawBytes));
+                    }
+                    vscode.window.showInformationMessage(`Generated and saved ${msg.fileName} in current folder!`);
+                } catch (e) {
+                    vscode.window.showErrorMessage(`Failed to save ${msg.fileName}: ${e.message}`);
+                }
+            } else if (msg.type === 'export_species_bundle') {
+                try {
+                    const bundle = msg.bundle;
+                    let count = 0;
+                    if (bundle.front) {
+                        fs.writeFileSync(path.join(dirName, 'front.png'), Buffer.from(bundle.front.replace(/^data:image\/png;base64,/, ''), 'base64'));
+                        count++;
+                    }
+                    if (bundle.animFront) {
+                        fs.writeFileSync(path.join(dirName, 'anim_front.png'), Buffer.from(bundle.animFront.replace(/^data:image\/png;base64,/, ''), 'base64'));
+                        count++;
+                    }
+                    if (bundle.icon) {
+                        fs.writeFileSync(path.join(dirName, 'icon.png'), Buffer.from(bundle.icon.replace(/^data:image\/png;base64,/, ''), 'base64'));
+                        count++;
+                    }
+                    if (bundle.footprint) {
+                        fs.writeFileSync(path.join(dirName, 'footprint.png'), Buffer.from(bundle.footprint.replace(/^data:image\/png;base64,/, ''), 'base64'));
+                        count++;
+                    }
+                    if (bundle.normalPal) {
+                        fs.writeFileSync(path.join(dirName, 'normal.pal'), bundle.normalPal, 'utf-8');
+                        count++;
+                    }
+                    if (bundle.shinyPal) {
+                        fs.writeFileSync(path.join(dirName, 'shiny.pal'), bundle.shinyPal, 'utf-8');
+                        count++;
+                    }
+                    vscode.window.showInformationMessage(`Exported ${count} species files directly to folder: ${path.basename(dirName)}!`);
+                } catch (e) {
+                    vscode.window.showErrorMessage(`Failed to export species bundle: ${e.message}`);
+                }
             } else if (msg.type === 'copy_c_array') {
                 const varName = path.basename(filePath, ext);
                 const text = gba.exportCArray(msg.palette, varName);
@@ -315,6 +362,47 @@ class PokeAssetEditorProvider {
                 </div>
                 <div class="actual-preview-container">
                     <canvas id="actualScaleCanvas" width="64" height="64" class="actual-scale-canvas"></canvas>
+                </div>
+            </div>
+
+            <!-- GBA Forge Magic Tools -->
+            <div class="panel-section">
+                <div class="section-title">
+                    <span>⚡ GBA Forge Magic Tools</span>
+                    <span style="font-size: 9px; color: var(--accent);">Auto-Generate</span>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-action" id="btnKillBg" title="Flood-fill remove white/sketch background">✂️ Remove BG</button>
+                    <button class="btn-action" id="btnAutoGround" title="Center horizontally and ground feet 2px from bottom">⚓ Ground Feet</button>
+                    <button class="btn-action" id="btnStyleOutlines" title="Color-code outlines using deep saturated body tones">🎨 Outlines</button>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-action" id="btnGenAnim" title="Synthesize authentic Emerald 2-frame front bounce (128x64)">🎬 Gen Anim</button>
+                    <button class="btn-action" id="btnGenIcon" title="Synthesize 2-frame party menu icon (64x32)">⭐ Gen Icon</button>
+                    <button class="btn-action" id="btnGenFoot" title="Synthesize 16x16 1-bit Pokédex footprint">🐾 Gen Foot</button>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-action" id="btnGenOW" title="Synthesize 3x4 overworld walk cycle sheet">🚶 Gen Overworld</button>
+                    <button class="btn-action accent" id="btnExportSpeciesPack" title="Export front, anim_front, icon, footprint, normal.pal, shiny.pal directly">📦 Export Pack</button>
+                </div>
+            </div>
+
+            <!-- GBA Battle Scene Simulator (240x160) -->
+            <div class="panel-section">
+                <div class="section-title">
+                    <span>🎮 GBA Battle Mockup (240×160)</span>
+                    <select id="battleBiomeSelect" style="font-size: 9px; background: var(--bg-tertiary); color: #eee; border: 1px solid var(--border-color); border-radius: 2px;">
+                        <option value="grass">Grass/Field</option>
+                        <option value="water">Ocean/Water</option>
+                        <option value="cave">Dark Cave</option>
+                        <option value="sand">Desert/Sand</option>
+                    </select>
+                </div>
+                <div style="background: #000; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; display: flex; justify-content: center;">
+                    <canvas id="battleCanvas" width="240" height="160" style="width: 100%; aspect-ratio: 240/160; image-rendering: pixelated;"></canvas>
+                </div>
+                <div class="btn-row" style="margin-top: 6px;">
+                    <button class="tool-btn" id="btnBattleShiny" style="flex: 1; justify-content: center; background: var(--bg-tertiary);">✨ Toggle Shiny Foe</button>
                 </div>
             </div>
 

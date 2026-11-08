@@ -1,0 +1,560 @@
+$meta
+  title = POKEMON GBA Forge — AI Gen 3 Sprite Generator
+  shortTitle = GBA Forge
+  description = Generate authentic Generation 3 (Ruby/Sapphire/Emerald, FireRed/LeafGreen) Pokémon sprites from text. Hardware-accurate 4bpp 16-color palettes, BGR555 snapping, 8x8 tile grid, shared front/back palettes, index-matched shiny swap, battle/icon/overworld/item/footprint/terrain/backdrop export.
+  tags = pokemon, gba, pixel-art, sprite-generator, pokemon, emerald, firered, gamedev
+  header
+    mode = minimal
+
+generateImage = {import:text-to-image-plugin}
+generateText = {import:ai-text-plugin}
+
+// Pokémon type list — used for prompt building + randomize
+pokeType
+  Normal
+  Fire
+  Water
+  Electric
+  Grass
+  Ice
+  Fighting
+  Poison
+  Ground
+  Flying
+  Psychic
+  Bug
+  Rock
+  Ghost
+  Dragon
+  Dark
+  Steel
+  Fairy
+
+// Body-plan seeds for prompt randomization
+bodyPlan
+  small quadruped mammal with big ears
+  serpentine sea-dragon with fins
+  bipedal frog-like fighter with round belly
+  floating ghost-wisp with tattered cloak
+  armored beetle with cannon horns
+  chubby bird with crest feathers
+  rocky golem with moss cracks
+  fox kit with split tails
+  cactus imp with spines
+  ember lizard with coal back-plates
+
+  agile feline predator with saber fangs
+  tiny mouse-like electric rodent
+  bulky rhinoceros beetle tank
+  elegant crane with ribbon-like feathers
+  mischievous monkey with oversized hands
+  deep-sea angler creature with glowing lure
+  armored turtle with crystal shell
+  wolf pup with elemental mane
+  owl sage with floating feathers
+  bat hunter with crescent wings
+  rabbit sprinter with spring-loaded legs
+  mushroom sprite with glowing cap
+  prehistoric raptor with blade feathers
+  mountain goat with gemstone horns
+  salamander with magma-filled veins
+  seal pup with icy whiskers
+  praying mantis duelist with scythe arms
+  dragon newt with frilled neck
+  spider weaver with silk armor
+  pangolin guardian with metallic scales
+
+  floating psychic orb creature
+  living thundercloud with eyes
+  haunted scarecrow stitched from leaves
+  coral serpent covered in reef growth
+  armored armadillo with drill claws
+  jellyfish oracle with glowing tendrils
+  lion cub with sun-like mane
+  mole digger with crystal claws
+  dolphin trickster with wave fins
+  gargoyle perched on stone wings
+
+  tiny gremlin carrying oversized tools
+  bipedal crocodile bruiser
+  beetle knight with shield carapace
+  antlered forest spirit
+  shark hound with finned tail
+  phoenix chick with ember plumage
+  chameleon stalker with prism skin
+  slug titan covered in mineral plates
+  hummingbird mage with energy wings
+  dragonfly scout with glassy armor
+
+// Sample concept names
+sampleName
+  Embercub
+  Aquaffin
+  Thornimp
+  Galvokit
+  Mossgolette
+  Cindrake
+  Frostnip
+  Voltpup
+
+  Pyraven
+  Shellhorn
+  Bloomire
+  Voltusk
+  Drizzlet
+  Cragloom
+  Glacikit
+  Thornox
+  Sparrook
+  Aquawisp
+
+  Luminyx
+  Ferrox
+  Tidefang
+  Pyrodile
+  Sporeling
+  Tempestag
+  Cryscoon
+  Duskettle
+  Bouldrake
+  Bramblet
+
+  Nebulisk
+  Florabbit
+  Mossfang
+  Frostusk
+  Magmolt
+  Zephyroo
+  Shocktail
+  Aquarrow
+  Thornling
+  Driftalon
+
+  Solcub
+  Lunabbit
+  Vinetusk
+  Stormaw
+  Glimmerat
+  Gravowl
+  Mistimp
+  Reefang
+  Asharoo
+  Petalisk
+
+  Cryowl
+  Ignisaur
+  Volthound
+  Mirecoon
+  Bloomgeist
+  Cindelope
+  Tundrail
+  Ferrowl
+  Lumifin
+  Thornadon
+
+// Name prefixes
+namePrefix
+  ember
+  aqua
+  volt
+  thorn
+  frost
+  moss
+  lunar
+  solar
+  storm
+  crystal
+  shadow
+  gale
+  pyro
+  terra
+  flora
+
+  blaze
+  spark
+  mist
+  dusk
+  dawn
+  tide
+  reef
+  coral
+  bloom
+  vine
+  root
+  fern
+  thorn
+  petal
+  swirl
+  drift
+  echo
+  pulse
+  nova
+  astral
+  nebula
+  aurora
+  comet
+  glitch
+  rune
+  shard
+  steel
+  iron
+  cobalt
+  magma
+  ash
+  smoke
+  tundra
+  glacier
+  zephyr
+  thunder
+  gale
+  phantom
+  spirit
+  venom
+  toxic
+  prism
+  dusk
+  lumen
+  starlit
+  orbit
+  quake
+  cyclone
+
+// Name suffixes
+nameSuffix
+  cub
+  pup
+  fang
+  fin
+  tail
+  drake
+  owl
+  horn
+  kit
+  imp
+  bat
+  hare
+  hound
+  mite
+  rex
+
+  claw
+  plume
+  wing
+  jaw
+  shell
+  scale
+  whisk
+  spike
+  bloom
+  bloomer
+  bloomet
+  bloomling
+  bloomtail
+  sprout
+  root
+  vine
+  leaf
+  petal
+  bud
+  bloom
+  shard
+  stone
+  hide
+  crest
+  plume
+  talon
+  beak
+  roar
+  howl
+  flare
+  spark
+  surge
+  bolt
+  current
+  tide
+  wave
+  drift
+  mist
+  frost
+  chill
+  blaze
+  cinder
+  ember
+  gloom
+  shade
+  wisp
+  ghost
+  spirit
+  rune
+  glint
+  gleam
+  nova
+  star
+  comet
+  orbit
+  quake
+  crusher
+  guardian
+  sentinel
+  prowler
+  scout
+
+// Trait seeds
+trait
+  glowing markings
+  oversized claws
+  crystalline armor
+  bioluminescent fins
+  ember-speckled fur
+  frost-covered whiskers
+  gemstone horns
+  leaf-like ears
+  metallic scales
+  cloud-like mane
+  thorn-covered tail
+  floating rune fragments
+  molten cracks
+  luminous eyes
+  multiple tails
+  feathered crest
+  retractable blades
+  moss-covered shell
+  spiraled antlers
+  vine-wrapped limbs
+  smoke-emitting nostrils
+  armored faceplate
+  comet-like tail
+  jagged dorsal spikes
+  pollen-dusted wings
+  skeletal mask
+  prism-colored frills
+  flowing spectral ribbons
+  giant paws
+  oversized ears
+  crystal-studded hide
+  glowing vein patterns
+  magnetic body plates
+  lightning-shaped markings
+  star-speckled fur
+  lava-filled shell
+  coral growths
+  floating gemstones
+  ice-coated horns
+  bark-textured skin
+  silk-wrapped armor
+  obsidian claws
+  rainbow sheen
+  floating flame wisps
+  rune-etched armor
+  segmented plating
+  mechanical-looking joints
+  shark-like fins
+  dragon-like whiskers
+  flower crown growths
+  orbiting stones
+
+// Ability flavor seeds
+abilitySeed
+  stores electrical energy in its tail
+  absorbs sunlight through crystal growths
+  creates protective gusts with its wings
+  manipulates shadows to conceal itself
+  releases spores when threatened
+  generates heat from internal magma sacs
+  predicts danger moments before it occurs
+  hardens its skin like steel
+  swims effortlessly through sand
+  freezes moisture in the air
+  amplifies nearby plant growth
+  absorbs static electricity
+  creates mirages using reflected light
+  converts moonlight into energy
+  emits soothing psychic waves
+  channels storms through its horns
+  glides on invisible currents
+  stores water within its body
+  reinforces allies with rhythmic calls
+  senses vibrations beneath the ground
+  bends surrounding gravity slightly
+  reflects attacks with crystal surfaces
+  spreads restorative pollen
+  draws power from gemstones
+  purifies polluted water
+  absorbs ambient heat
+  creates protective mist
+  energizes nearby allies
+  camouflages perfectly in forests
+  summons spectral flames
+  strengthens during rainfall
+  stores kinetic energy while moving
+  manipulates magnetic fields
+  accelerates plant growth nearby
+  creates miniature sandstorms
+  harvests energy from thunderstorms
+  emits dazzling flashes of light
+  gathers power during the night
+  strengthens near volcanic terrain
+  communicates through psychic signals
+
+// Personality seeds
+personality
+  playful and curious
+  fiercely protective
+  calm and wise
+  mischievous and energetic
+  shy around strangers
+  proud and noble
+  competitive and bold
+  patient and observant
+  loyal to companions
+  easily distracted
+  fearless despite its size
+  gentle toward smaller creatures
+  stubborn and persistent
+  highly intelligent
+  secretive and elusive
+  cheerful and optimistic
+  territorial and vigilant
+  disciplined and focused
+  adventurous and reckless
+  surprisingly affectionate
+
+// Habitat seeds
+habitat
+  dense forest
+  volcanic mountains
+  coastal cliffs
+  deep ocean trenches
+  frozen tundra
+  ancient ruins
+  flowering meadows
+  bamboo groves
+  crystal caverns
+  thunderstorm plains
+  desert canyons
+  misty swamps
+  coral reefs
+  snowy peaks
+  moonlit lakes
+  underground tunnels
+  haunted woodlands
+  rocky badlands
+  tropical islands
+  floating sky islands
+
+// Species class seeds
+speciesClass
+  Mouse Pokémon
+  Fox Pokémon
+  Pup Pokémon
+  Cub Pokémon
+  Serpent Pokémon
+  Lizard Pokémon
+  Dragon Pokémon
+  Spirit Pokémon
+  Seed Pokémon
+  Bloom Pokémon
+  Thorn Pokémon
+  Reef Pokémon
+  Crystal Pokémon
+  Storm Pokémon
+  Cave Pokémon
+  Sky Pokémon
+  Frost Pokémon
+  Magma Pokémon
+  Rune Pokémon
+  Guardian Pokémon
+  Mirage Pokémon
+  Beast Pokémon
+  Scout Pokémon
+  Hunter Pokémon
+  Sentinel Pokémon
+
+// Evolution-stage seeds
+evolutionStage
+  basic stage, small and cute, simple silhouette, one main feature, rounded proportions
+  basic stage, baby-like appearance, oversized head, tiny limbs, expressive eyes
+  basic stage, energetic and playful, clean shape language, minimal ornamentation
+
+  middle stage, adolescent appearance, more defined anatomy, additional secondary features
+  middle stage, stronger and more confident, evolving armor or markings
+  middle stage, longer limbs and larger silhouette, expanded elemental traits
+  middle stage, transitional form with visible growths and developing weapons
+  middle stage, increased complexity while remaining recognizable from previous stage
+
+  final stage, powerful and imposing, highly recognizable silhouette
+  final stage, fully developed elemental traits and signature features
+  final stage, legendary-looking presence without being overdesigned
+  final stage, battle-ready anatomy, detailed armor and ornamentation
+  final stage, elegant and majestic proportions
+  final stage, apex predator appearance
+  final stage, guardian-like presence with symbolic markings
+
+// Evolution scaling guidance
+stageScale
+  baby = tiny body, oversized head, simplified features
+  basic = compact body, one dominant feature
+  middle = larger silhouette, secondary features begin developing
+  final = largest silhouette, fully developed design language
+
+// Authentic Gen 3 palette constraints
+gbaPaletteRule
+  maximum 15 visible colors plus transparent index 0
+  shared palette between front and back sprite
+  avoid excessive gradients
+  clear silhouette readability at 64x64 resolution
+  strong hue separation between major body regions
+  darkest outline colors use tinted outlines rather than pure black
+  limited highlight ramps
+  high contrast focal points around face and eyes
+  colors compatible with BGR555 quantization
+  color ramps survive GBA LCD display limitations
+  saturated colors reserved for focal elements
+  no anti-aliasing outside sprite boundary
+  preserve palette slots for shiny remapping
+  avoid near-duplicate colors
+  avoid banding in large areas
+  use selective outlining
+  maintain readability on light and dark backgrounds
+
+// Gen 3 primary palette archetypes
+paletteArchetype
+  warm reds and cream accents
+  cool blues and white highlights
+  earthy browns and moss greens
+  black and crimson contrast
+  gold and royal blue
+  emerald green and yellow
+  lavender and deep violet
+  orange and charcoal
+  aqua and teal
+  silver and cobalt
+  forest green and tan
+  pink and magenta
+  icy cyan and navy
+  volcanic red and obsidian
+  sand beige and rust
+  jade and bronze
+  moonlit blue and silver
+  toxic purple and lime
+  coral red and cream
+  storm gray and electric yellow
+
+// Gen 3 design complexity controls
+designComplexity
+  very simple, Pikachu-level complexity
+  simple, Gen 1 starter complexity
+  moderate, Gen 2 evolution complexity
+  moderate, Gen 3 regional Pokémon complexity
+  advanced, pseudo-legendary complexity
+  advanced, final evolution complexity
+
+generationStyle
+  designed as an official Generation 3 Pokémon
+  designed in Ken Sugimori Generation 3 style
+  Ruby Sapphire era creature design
+  Emerald version battle sprite design
+  FireRed LeafGreen era Pokémon design
+  Hoenn-native Pokémon aesthetic
+  simple and iconic Game Freak silhouette
+  authentic 2002 Nintendo creature design
