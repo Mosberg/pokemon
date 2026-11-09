@@ -329,6 +329,14 @@ static const u16 ALIGNED(4) sRegionMapSevii67_Pal[] = INCGFX_U16("graphics/poken
 static const u32 sRegionMapSevii67_Gfx[] = INCGFX_U32("graphics/pokenav/region_map/map_sevii_67.png", ".8bpp.smol");
 static const u32 sRegionMapSevii67_Tilemap[] = INCGFX_U32("graphics/pokenav/region_map/map_sevii_67.bin", ".smolTM");
 
+// POKE-CONFLUENCE: Johto Region Map Assets
+static const u16 ALIGNED(4) sPokedexAreaMapJohto_Pal[] = INCGFX_U16("graphics/pokedex/region_map_johto.pal", ".gbapal");
+static const u32 sPokedexAreaMapJohto_Gfx[] = INCGFX_U32("graphics/pokedex/region_map_johto.png", ".8bpp.smol");
+static const u32 sPokedexAreaMapJohto_Tilemap[] = INCGFX_U32("graphics/pokedex/region_map_johto.bin", ".smolTM");
+static const u16 ALIGNED(4) sRegionMapJohto_Pal[] = INCGFX_U16("graphics/pokenav/region_map/map_johto.pal", ".gbapal");
+static const u32 sRegionMapJohto_Gfx[] = INCGFX_U32("graphics/pokenav/region_map/map_johto.png", ".8bpp.smol");
+static const u32 sRegionMapJohto_Tilemap[] = INCGFX_U32("graphics/pokenav/region_map/map_johto.bin", ".smolTM");
+
 const struct RegionMapInfo gRegionMapInfos[] =
 {
     [REGION_MAP_HOENN]    =
@@ -384,13 +392,13 @@ const struct RegionMapInfo gRegionMapInfos[] =
     // POKE-CONFLUENCE: Johto Region Map
     [REGION_MAP_JOHTO]    =
     {
-        .dexMapPalette = sPokedexAreaMap_Pal,
-        .dexMapGfx = sPokedexAreaMap_Gfx,
-        .dexMapTilemap = sPokedexAreaMap_Tilemap,
-        .dexMapPaletteSize = sizeof(sPokedexAreaMap_Pal),
-        .regionMapPalette = sRegionMapBg_Pal,
-        .regionMapGfx = sRegionMapBg_GfxLZ,
-        .regionMapTilemap = sRegionMapBg_TilemapLZ,
+        .dexMapPalette = sPokedexAreaMapJohto_Pal,
+        .dexMapGfx = sPokedexAreaMapJohto_Gfx,
+        .dexMapTilemap = sPokedexAreaMapJohto_Tilemap,
+        .dexMapPaletteSize = sizeof(sPokedexAreaMapJohto_Pal),
+        .regionMapPalette = sRegionMapJohto_Pal,
+        .regionMapGfx = sRegionMapJohto_Gfx,
+        .regionMapTilemap = sRegionMapJohto_Tilemap,
     },
 };
 
@@ -2566,8 +2574,8 @@ void SwitchRegionMapType(u8 newRegionMapType)
             y = 11 + MAPCURSOR_Y_MIN;
             break;
         case REGION_MAP_JOHTO:
-            x = 22 + MAPCURSOR_X_MIN;
-            y = 9 + MAPCURSOR_Y_MIN;
+            x = 19 + MAPCURSOR_X_MIN;
+            y = 10 + MAPCURSOR_Y_MIN;
             break;
         case REGION_MAP_HOENN:
         default:
